@@ -1,6 +1,6 @@
 # Estadística Bayesiana
 
-Enlace a la web: [https://tomicapretto.github.io/estadistica-bayesiana/](https://tomicapretto.github.io/estadistica-bayesiana/)
+Para renderizar la web hay que tener instalado Quarto. Luego correr alguno de los siguientes comandos. El primero crea una previsualizacion, el segundo crea renderiza.
 
 ```
 quarto preview estadistica-bayesiana/
@@ -14,9 +14,4 @@ quarto render estadistica-bayesiana/
 
 ## Recursos útiles
 
-* ...
-
-## Ideas
-
-* Crear una organizacion y meter este repo bajo ese nombre (y que no quede bajo la cuenta de una persona)
-
+* Enlace a la web: [https://estadisticaunr.github.io/estadistica-bayesiana/](https://estadisticaunr.github.io/estadistica-bayesiana/)
