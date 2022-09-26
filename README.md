@@ -1,5 +1,7 @@
 # Estadística Bayesiana
 
+Enlace a la web: [https://tomicapretto.github.io/estadistica-bayesiana/](https://tomicapretto.github.io/estadistica-bayesiana/)
+
 ```
 quarto preview estadistica-bayesiana/
 ```
