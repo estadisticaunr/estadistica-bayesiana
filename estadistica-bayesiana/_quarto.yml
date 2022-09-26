@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Estadística Bayesiana"
-  description: "Página del curso Estadística Bayesiana - Licenciatura en Estadística (UNR )."
+  description: "Página del curso Estadística Bayesiana - Licenciatura en Estadística (UNR)."
   site-url: "https://tomicapretto.github.io/estadistica-bayesiana/"
 
   page-footer:
