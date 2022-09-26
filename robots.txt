@@ -1,1 +1,1 @@
-Sitemap: https://github.com/tomicapretto/estadistica-bayesiana/sitemap.xml
+Sitemap: https://tomicapretto.github.io/estadistica-bayesiana/sitemap.xml
