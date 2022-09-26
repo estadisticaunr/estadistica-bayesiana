@@ -1,6 +1,14 @@
 # Estadística Bayesiana
 
+```
+quarto preview estadistica-bayesiana/
+```
 
+o
+
+```
+quarto render estadistica-bayesiana/
+```
 
 ## Recursos útiles
 
