@@ -4,7 +4,7 @@ project:
 website:
   title: "Estadística Bayesiana"
   description: "Página del curso Estadística Bayesiana - Licenciatura en Estadística (UNR)."
-  site-url: "https://tomicapretto.github.io/estadistica-bayesiana/"
+  site-url: "https://estadisticaunr.github.io/estadistica-bayesiana/"
 
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
@@ -17,7 +17,7 @@ website:
         href: www.google.com
         text: www.google.com
       - icon: github
-        href: https://github.com/tomicapretto/estadistica-bayesiana
+        href: https://github.com/estadisticaunr/estadistica-bayesiana
     style: "docked"
     search: true
     collapse-level: 1
