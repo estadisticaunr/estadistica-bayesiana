@@ -46,8 +46,10 @@ website:
           text: "Introduccion"
     - section: "Práctica"
       contents:
-        - href: apuntes/introduccion.qmd
-          text: "Introduccion"
+        - href: practica/01_primer_tema.qmd
+          text: "Unidad 1"
+        - href: practica/02_segundo_tema.qmd
+          text: "Unidad 2"
     - section: "Proyecto"
       contents:
         - href: proyecto/descripcion.qmd
