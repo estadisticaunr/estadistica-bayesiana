@@ -1,0 +1,5 @@
+---
+title: "TP2: Implementación del algoritmo de Metropolis-Hastings"
+---
+
+# Implementación del algoritmo de Metropolis-Hastings
