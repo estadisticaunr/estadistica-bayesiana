@@ -28,6 +28,8 @@ website:
           text: Descripción
         - href: info/programa.qmd
           text: Programa
+        - href: info/bibliografia.qmd
+          text: Bibliografia
         - href: info/docentes.qmd
           text: Docentes
         - href: info/calendario.qmd
