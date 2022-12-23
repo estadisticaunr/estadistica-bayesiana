@@ -15,8 +15,6 @@ website:
     pinned: True
     align: center
     tools:
-      - icon: globe
-        href: www.google.com
       - icon: github
         href: https://github.com/estadisticaunr/estadistica-bayesiana
     style: "docked"
