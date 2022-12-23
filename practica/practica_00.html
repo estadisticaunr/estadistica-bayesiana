@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP3: Estudio de modelos lineales mediante simulaciones</title>
+<title>Estadística Bayesiana - Práctica - Unidad 0</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,6 +58,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -68,7 +69,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">TP3: Estudio de modelos lineales mediante simulaciones</h1>
+      <h1 class="quarto-secondary-nav-title">Práctica - Unidad 0</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,15 +173,15 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Práctica</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Práctica</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../practica/practica_00.html" class="sidebar-item-text sidebar-link">Unidad 0</a>
+  <a href="../practica/practica_00.html" class="sidebar-item-text sidebar-link active">Unidad 0</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,7 +240,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#estudio-de-modelos-lineales-mediante-simulaciones" id="toc-estudio-de-modelos-lineales-mediante-simulaciones" class="nav-link active" data-scroll-target="#estudio-de-modelos-lineales-mediante-simulaciones">Estudio de modelos lineales mediante simulaciones</a></li>
+  <li><a href="#repaso-de-probabilidad" id="toc-repaso-de-probabilidad" class="nav-link active" data-scroll-target="#repaso-de-probabilidad">Repaso de probabilidad</a></li>
   </ul>
 </nav>
     </div>
@@ -248,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">TP3: Estudio de modelos lineales mediante simulaciones</h1>
+<h1 class="title d-none d-lg-block">Práctica - Unidad 0</h1>
 </div>
 
 
@@ -263,8 +264,28 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="estudio-de-modelos-lineales-mediante-simulaciones" class="level1">
-<h1>Estudio de modelos lineales mediante simulaciones</h1>
+<section id="repaso-de-probabilidad" class="level1">
+<h1>Repaso de probabilidad</h1>
+<ol type="1">
+<li><p>De las siguientes expresiones cual(es) se corresponde(n) con el enunciado “la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022”?</p>
+<ul>
+<li><span class="math inline">\(P(\text{18 de Diciembre de 2022} | \text{Argentina campeon})\)</span></li>
+<li><span class="math inline">\(P(\text{Argentina campeon})\)</span></li>
+<li><span class="math inline">\(P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / \text{18 de Diciembre de 2022})\)</span></li>
+<li><span class="math inline">\(P(\text{Argentina campeon} | \text{Diciembre})\)</span></li>
+<li><span class="math inline">\(P(\text{Argentina campeon} | \text{18 de Diciembre de 2022})\)</span></li>
+</ul></li>
+<li><p>Enuncie con palabras cada una de las expresiones del punto anterior.</p></li>
+<li><p>Según la definición de probabilidad condicional</p>
+<ul>
+<li>¿Cuál es el valor de <span class="math inline">\(P(A | A)\)</span>?</li>
+<li>¿Cuál es la probabilidad de <span class="math inline">\(P(A, B)\)</span>?</li>
+<li>¿Cuál es la probabilidad de <span class="math inline">\(P(A, B)\)</span> en el caso que <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> sean independientes?</li>
+<li>Cuando se cumple que <span class="math inline">\(P(A | B) = P(A)\)</span>?</li>
+<li>Es posible que <span class="math inline">\(P(A | B) &gt; P(A)\)</span>? Cuando?</li>
+<li>Es posible que <span class="math inline">\(P(A | B) &lt; P(A)\)</span>? Cuando?</li>
+</ul></li>
+</ol>
 
 
 </section>

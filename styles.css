@@ -1,1 +1,11 @@
 /* css styles */
+
+/* Cambiar tamaño de la fuente en la leyenda */
+.panel-caption, caption, .figure-caption {
+    font-size: 0.8rem; /*1rem por defecto*/
+}
+
+/* Eliminar margin arriba de la leyenda */
+figure>figcaption {
+    margin-top: 0;
+}

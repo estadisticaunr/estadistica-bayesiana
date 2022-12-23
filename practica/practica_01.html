@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP3: Estudio de modelos lineales mediante simulaciones</title>
+<title>Estadística Bayesiana - Práctica - Unidad 1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,25 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -68,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">TP3: Estudio de modelos lineales mediante simulaciones</h1>
+      <h1 class="quarto-secondary-nav-title">Práctica - Unidad 1</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,12 +191,12 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">Práctica</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Práctica</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../practica/practica_00.html" class="sidebar-item-text sidebar-link">Unidad 0</a>
@@ -185,7 +204,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../practica/practica_01.html" class="sidebar-item-text sidebar-link">Unidad 1</a>
+  <a href="../practica/practica_01.html" class="sidebar-item-text sidebar-link active">Unidad 1</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,7 +258,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#estudio-de-modelos-lineales-mediante-simulaciones" id="toc-estudio-de-modelos-lineales-mediante-simulaciones" class="nav-link active" data-scroll-target="#estudio-de-modelos-lineales-mediante-simulaciones">Estudio de modelos lineales mediante simulaciones</a></li>
+  <li><a href="#regla-de-bayes" id="toc-regla-de-bayes" class="nav-link active" data-scroll-target="#regla-de-bayes">Regla de Bayes</a>
+  <ul class="collapse">
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -248,7 +270,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">TP3: Estudio de modelos lineales mediante simulaciones</h1>
+<h1 class="title d-none d-lg-block">Práctica - Unidad 1</h1>
 </div>
 
 
@@ -263,13 +285,103 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="estudio-de-modelos-lineales-mediante-simulaciones" class="level1">
-<h1>Estudio de modelos lineales mediante simulaciones</h1>
+<section id="regla-de-bayes" class="level1">
+<h1>Regla de Bayes</h1>
+<ol type="1">
+<li><p>El test <del>in</del>falible</p>
+<p>En una población dada, una de cada mil personas tiene una enfermedad. Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo. El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.</p>
+<ul>
+<li>¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?</li>
+<li>Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
+<ul>
+<li>¿Cuál seria la probabilidad que el paciente esté enfermo?</li>
+<li>¿Y si diera negativo?</li>
+<li>¿Es el a priori el mismo para el segundo análisis que para el primero?</li>
+</ul></li>
+</ul></li>
+<li><p>¿Es verdad que existen los vampiros? Versión Crepúsculo</p>
+<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros?</p>
+<center>
+<p><img src="imgs/crepusculo_vampiro.jpg" style="width: 500px"></p>
+</center></li>
+<li><p>Los M&amp;Ms azul fueron introducidos en el año 1995 (<a href="http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html">antes había dos tipos de marrón</a>)</p>
+<ul>
+<li>Antes de 1995, la mezcla de colores en una bolsa de M&amp;Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón <em>bronceado</em>.</li>
+<li>Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.</li>
+</ul>
+<p>Un amigo tiene dos bolsas de M&amp;M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál. Nos da un M&amp;M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos). ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?</p></li>
+<li><p>Árboles enfermos</p>
+<p>Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros. Lamentablemente, el 18% de los árboles del vivero estan infectados con moho. Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies. Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies. Con el objetivo de monitorear cuanto se propagó la enfermedad, uno de los empleados del vivero selecciona al azar uno de los árboles para testear.</p>
+<ul>
+<li>¿Cuál es la probabilidad a priori de que el árbolo tenga moho?</li>
+<li>Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?</li>
+<li>¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?</li>
+<li>Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo?</li>
+</ul>
+<center>
+<p><img src="imgs/ceibo.jpg" style="width: 500px"></p>
+</center></li>
+<li><p>Transporte El Impuntual</p>
+<p>Una cierta empresa de transporte regional, que decidimos llamar “El Impuntual”, tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos los días de la semana. Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40% salen a la noche. Los pasajeros suelen estar muy frustrados ya que un 25% de los viajes salen tarde<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde, y el 10% restante ocurre a la noche.</p>
+<p>Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes.</p>
+<ul>
+<li>Lucio se fue en uno de los colectivos de la mañana. ¿Cuál es la probabilidad que su viaje esté demorado?</li>
+<li>El colectivo de Franco no está demorado. ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?</li>
+</ul>
+<center>
+<figure class="figure">
+<p><img src="imgs/colectivo.jpg" style="width: 500px" class="figure-img"></p>
+<figcaption class="figure-caption">
+<p>Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></p>
+</figcaption>
+</figure>
+</center></li>
+<li><p>Bebé panda</p>
+<p>Supongamos que hay dos especies de osos panda. Ambas especies son igual de frecuentes y viven en la misma región. Es más, lucen de la misma forma y comen la misma comida. Aún no existe una prueba genética que pueda diferenciarlos. Lo único que los diferencia es la cantidad de crías que suelen tener. Las madres de la especie A dan luz a mellizos el 10% del tiempo. Y las madres de la especie B dan a luz mellizos el 20% del tiempo. En todos los otros casos, estas madres dan a luz un solo bebé panda.</p>
+<p>Usando un poco la imaginación, supongamos que somos la persona encargada de un programa de reproducción de pandas. Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, pero no sabemos a que especie pertenece.</p>
+<ul>
+<li>¿Cuál es la probabilidad que la mamá panda sea de la especie A?</li>
+<li>¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?</li>
+<li>Un tiempo después sos encontramos con que en la segunda parición da a luz a un único bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?</li>
+</ul>
+<center>
+<figure class="figure">
+<p><img src="imgs/bebe_panda.jpg" style="width: 500px" class="figure-img"></p>
+<figcaption class="figure-caption">
+<p>Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></p>
+</figcaption>
+</figure>
+</center></li>
+</ol>
+<p><strong>To Do</strong></p>
+<ul>
+<li>Algunos ejercicios un poco mas matematicos. Por ejemplo sacados de Capitulo 1 de <span class="citation" data-cites="Reich2020">Reich and Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span>?</li>
+</ul>
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
+Johnson, Alicia A., Miles Q. Ott, and Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
+</div>
+<div id="ref-McElreath2020" class="csl-entry" role="doc-biblioentry">
+McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in r and Stan</em>. 2nd edition. Chapman; Hall/CRC.
+</div>
+<div id="ref-Reich2020" class="csl-entry" role="doc-biblioentry">
+Reich, Brian J., and Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 1st edition. Chapman; Hall/CRC.
+</div>
+</div>
 
 
 </section>
+</section>
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Algunos dicen que “cada dos por tres” te deja a pata. No nos vamos a pelear explicándoles que estan siendo demasiado malos, ya que un 25% también es un montón!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
