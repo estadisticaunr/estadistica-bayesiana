@@ -1,0 +1,129 @@
+---
+title: "Práctica - Unidad 1"
+bibliography: ../references.bib
+nocite: |
+  @Johnson2021, @McElreath2020
+---
+
+# Regla de Bayes
+
+1. El test ~~in~~falible
+
+    En una población dada, una de cada mil personas tiene una enfermedad. 
+    Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo.
+    El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad. 
+    Además, dicho test tiene una tasa de falsos positivos del 5%.
+
+    * ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
+    * Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo 
+        * ¿Cuál seria la probabilidad que el paciente esté enfermo? 
+        * ¿Y si diera negativo?
+        * ¿Es el a priori el mismo para el segundo análisis que para el primero?
+
+1. ¿Es verdad que existen los vampiros? Versión Crepúsculo
+
+    Edward quiere probarle a Bella que los vampiros existen.
+    Según Bella, hay una probabilidad del 5% de que los vampiros existan.
+    También cree que la probabilidad de que exista alguien con la piel brillante
+    dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga 
+    la piel brillante si los vampiros no existen es del 3%.
+    Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎
+    ¿Cuál es la probabilidad que existan los vampiros?
+
+    <center>
+        <img src="imgs/crepusculo_vampiro.jpg" style="width: 500px"></img>
+    </center>
+
+1. Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
+
+    * Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
+    * Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
+
+    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál. Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos). ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
+
+1. Árboles enfermos
+
+    Un vivero de la ciudad se destaca por vender una variedad de árboles nativos,
+    incluyendo al jacarandá, ceibo, ombú, entre otros.
+    Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
+    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies.
+    Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies.
+    Con el objetivo de monitorear cuanto se propagó la enfermedad, uno de los empleados 
+    del vivero selecciona al azar uno de los árboles para testear.
+
+    * ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
+    * Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber 
+    seleccionado un ceibo?
+    * ¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?
+    * Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
+    ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
+
+    <center>
+        <img src="imgs/ceibo.jpg" style="width: 500px"></img>
+    </center>
+
+1. Transporte El Impuntual
+
+    Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual",
+    tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos
+    los días de la semana. Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde,
+    y el restante 40% salen a la noche. Los pasajeros suelen estar muy frustrados
+    ya que un 25% de los viajes salen tarde^[Algunos dicen que "cada dos por tres" te deja a pata. 
+    No nos vamos a pelear explicándoles que estan siendo demasiado malos, ya que un 25% 
+    también es un montón!]. De estos viajes demorados, el 40% corresponden a la mañana, un
+    50% suceden a la tarde, y el 10% restante ocurre a la noche. 
+    
+    Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes. 
+
+    * Lucio se fue en uno de los colectivos de la mañana. 
+    ¿Cuál es la probabilidad que su viaje esté demorado?
+    * El colectivo de Franco no está demorado. 
+    ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
+
+    <center>
+        <figure>
+        <img src="imgs/colectivo.jpg" style="width: 500px"></img>
+        <figcaption>
+            Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en 
+            <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></figcaption>
+        </figure>
+    </center>
+
+1. Bebé panda
+
+    Supongamos que hay dos especies de osos panda. 
+    Ambas especies son igual de frecuentes y viven en la misma región. 
+    Es más, lucen de la misma forma y comen la misma comida. 
+    Aún no existe una prueba genética que pueda diferenciarlos. 
+    Lo único que los diferencia es la cantidad de crías que suelen tener.
+    Las madres de la especie A dan luz a mellizos el 10% del tiempo.
+    Y las madres de la especie B dan a luz mellizos el 20% del tiempo.
+    En todos los otros casos, estas madres dan a luz un solo bebé panda.
+
+    Usando un poco la imaginación, 
+    supongamos que somos la persona encargada de un programa de reproducción de pandas.
+    Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, 
+    pero no sabemos a que especie pertenece.
+
+    * ¿Cuál es la probabilidad que la mamá panda sea de la especie A?
+    * ¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?
+    * Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
+    bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
+
+    <center>
+        <figure>
+        <img src="imgs/bebe_panda.jpg" style="width: 500px"></img>
+        <figcaption>
+            Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en 
+            <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></figcaption>
+        </figure>
+    </center>
+
+
+**To Do**
+
+* Algunos ejercicios un poco mas matematicos. Por ejemplo sacados de Capitulo 1 de @Reich2020?
+
+## Referencias
+
+<div id="refs"></div>

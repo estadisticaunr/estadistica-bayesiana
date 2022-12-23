@@ -1,5 +1,5 @@
 ---
-title: "Práctica - U2"
+title: "Práctica - Unidad 2"
 ---
 
 # Modelos de Distribuciones Conjugadas

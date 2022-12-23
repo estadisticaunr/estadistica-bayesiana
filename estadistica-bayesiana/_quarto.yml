@@ -1,5 +1,7 @@
 project:
   type: website
+  preview:
+    port: 4200
 
 website:
   title: "Estadística Bayesiana"
@@ -15,7 +17,6 @@ website:
     tools:
       - icon: globe
         href: www.google.com
-        text: www.google.com
       - icon: github
         href: https://github.com/estadisticaunr/estadistica-bayesiana
     style: "docked"
@@ -48,9 +49,11 @@ website:
           text: "Introduccion"
     - section: "Práctica"
       contents:
-        - href: practica/01_primer_tema.qmd
+        - href: practica/practica_00.qmd
+          text: "Unidad 0"
+        - href: practica/practica_01.qmd
           text: "Unidad 1"
-        - href: practica/02_segundo_tema.qmd
+        - href: practica/practica_02.qmd
           text: "Unidad 2"
     - section: "Proyecto"
       contents:

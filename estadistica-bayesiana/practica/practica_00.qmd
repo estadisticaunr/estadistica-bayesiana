@@ -1,0 +1,27 @@
+---
+title: "Práctica - Unidad 0"
+---
+
+# Repaso de probabilidad
+
+1. De las siguientes expresiones cual(es) se corresponde(n) con el enunciado "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
+    * $P(\text{18 de Diciembre de 2022} | \text{Argentina campeon})$
+    * $P(\text{Argentina campeon})$
+    * $P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / \text{18 de Diciembre de 2022})$
+    * $P(\text{Argentina campeon} | \text{Diciembre})$
+    * $P(\text{Argentina campeon} | \text{18 de Diciembre de 2022})$
+
+1. Enuncie con palabras cada una de las expresiones del punto anterior.
+
+1. Según la definición de probabilidad condicional
+
+    * ¿Cuál es el valor de $P(A | A)$?
+    * ¿Cuál es la probabilidad de $P(A, B)$?
+    * ¿Cuál es la probabilidad de $P(A, B)$ en el caso que $A$ y $B$ sean independientes?
+    * Cuando se cumple que $P(A | B) = P(A)$?
+    * Es posible que $P(A | B) > P(A)$? Cuando?
+    * Es posible que $P(A | B) < P(A)$? Cuando?
+    
+
+
+
