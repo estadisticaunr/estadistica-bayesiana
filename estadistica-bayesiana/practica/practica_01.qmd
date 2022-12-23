@@ -31,7 +31,7 @@ nocite: |
     ¿Cuál es la probabilidad que existan los vampiros?
 
     <center>
-        <img src="imgs/crepusculo_vampiro.jpg" style="width: 500px"></img>
+        <img src="imgs/crepusculo_vampiro.jpg" class="img-practica"></img>
     </center>
 
 1. Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
@@ -59,7 +59,7 @@ nocite: |
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
 
     <center>
-        <img src="imgs/ceibo.jpg" style="width: 500px"></img>
+        <img src="imgs/ceibo.jpg" class="img-practica"></img>
     </center>
 
 1. Transporte El Impuntual
@@ -82,7 +82,7 @@ nocite: |
 
     <center>
         <figure>
-        <img src="imgs/colectivo.jpg" style="width: 500px"></img>
+        <img src="imgs/colectivo.jpg" class="img-practica"></img>
         <figcaption>
             Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en 
             <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></figcaption>
@@ -112,7 +112,7 @@ nocite: |
 
     <center>
         <figure>
-        <img src="imgs/bebe_panda.jpg" style="width: 500px"></img>
+        <img src="imgs/bebe_panda.jpg" class="img-practica"></img>
         <figcaption>
             Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en 
             <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></figcaption>
