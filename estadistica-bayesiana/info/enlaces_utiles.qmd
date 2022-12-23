@@ -1,1 +1,6 @@
-# Enlaces útiles
+---
+title: Enlaces útiles
+---
+
+* [Awesome Bayesian Statistics](https://github.com/aayushmalik/awesome-bayesian-statistics).
+Es un listado de recursos en línea (y gratuitos!) relacionados al mundo de la Estadística Bayesiana.

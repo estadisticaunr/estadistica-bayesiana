@@ -1,9 +1,8 @@
 ---
+title: Bibliografía
 bibliography: ../references.bib
 nocite: |
   @*
 ---
-
-# Bibliografía
 
 <div id="refs"></div>
