@@ -2,10 +2,20 @@
 title: "Práctica - Unidad 1"
 bibliography: ../references.bib
 nocite: |
-  @Johnson2021, @McElreath2020
+  @Johnson2021, @McElreath2020, @Martin2021
 ---
 
 # Regla de Bayes
+
+1. Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
+    a. Probabilidad de un parametro dados los datos observados
+    a. La distribucion de probabilidad de los parametros antes de ver los datos
+    a. La verosimilitud de los datos para un valor dado de los parámetros
+    a. La probabilidad de una observación nueva dados los datos observados
+    a. La probabilidad de una observación  antes de ver los datos
+    a. **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", 
+    u otra expresión.
+    a. **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**.
 
 1. El test ~~in~~falible
 
@@ -30,9 +40,7 @@ nocite: |
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎
     ¿Cuál es la probabilidad que existan los vampiros?
 
-    <center>
-        <img src="imgs/crepusculo_vampiro.jpg" class="img-practica"></img>
-    </center>
+    <img src="imgs/crepusculo_vampiro.jpg" class="img-practica"></img>
 
 1. Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
@@ -58,9 +66,7 @@ nocite: |
     * Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
 
-    <center>
-        <img src="imgs/ceibo.jpg" class="img-practica"></img>
-    </center>
+    <img src="imgs/ceibo.jpg" class="img-practica"></img>
 
 1. Transporte El Impuntual
 
@@ -80,14 +86,12 @@ nocite: |
     * El colectivo de Franco no está demorado. 
     ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
 
-    <center>
-        <figure>
-        <img src="imgs/colectivo.jpg" class="img-practica"></img>
-        <figcaption>
-            Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en 
-            <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></figcaption>
-        </figure>
-    </center>
+    <figure>
+    <img src="imgs/colectivo.jpg" class="img-practica"></img>
+    <figcaption>
+        Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en 
+        <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></figcaption>
+    </figure>
 
 1. Bebé panda
 
@@ -110,14 +114,12 @@ nocite: |
     * Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
 
-    <center>
-        <figure>
-        <img src="imgs/bebe_panda.jpg" class="img-practica"></img>
-        <figcaption>
-            Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en 
-            <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></figcaption>
-        </figure>
-    </center>
+    <figure>
+    <img src="imgs/bebe_panda.jpg" class="img-practica"></img>
+    <figcaption>
+        Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en 
+        <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></figcaption>
+    </figure>
 
 
 **To Do**
