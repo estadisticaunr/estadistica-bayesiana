@@ -1,4 +1,4 @@
-OUTPUT_DIR <- "."
+OUTPUT_DIR <- "practica"
 PRACTICA_DIR <- "practica"
 ROOT <- here::here("estadistica-bayesiana")
 
@@ -31,6 +31,12 @@ render_pdf <- function(input, output, verbose = FALSE) {
     return(system(command))
 }
 
+move_file <- function(from, to) {
+    command_components <- c("mv", enquote(from), enquote(to))
+    command <- paste(command_components, collapse = " ")
+    return(system(command))
+}
+
 # Obtener los .qmd que se corresponden a la practica
 practica_dir <- file.path(ROOT, PRACTICA_DIR)
 output_dir <- file.path(ROOT, OUTPUT_DIR)
@@ -41,4 +47,16 @@ output_files <- vapply(practica_files, get_pdf_filename, character(1), USE.NAMES
 
 # Renderizarlos como pdf
 exit_codes <- mapply(render_pdf, practica_files, output_files, MoreArgs = list(verbose = TRUE))
+
+output_files <- file.path(ROOT, output_files)
+
+# Sino existel directorio, crearlo
+if (!dir.exists(OUTPUT_DIR)) {
+    dir.create(OUTPUT_DIR)
+}
+
+# Mover los PDF al directorio de salida
+for (file in output_files) {
+    move_file(file, file.path(OUTPUT_DIR, basename(file)))
+}
 
