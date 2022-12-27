@@ -24,7 +24,6 @@ make_command <- function(input, output) {
     return(command)
 }
 
-
 render_pdf <- function(input, output, verbose = FALSE) {
     command <- make_command(input, output)
     if (verbose) cat(command)
@@ -50,7 +49,7 @@ exit_codes <- mapply(render_pdf, practica_files, output_files, MoreArgs = list(v
 
 output_files <- file.path(ROOT, output_files)
 
-# Sino existel directorio, crearlo
+# Sino existe el directorio, crearlo
 if (!dir.exists(OUTPUT_DIR)) {
     dir.create(OUTPUT_DIR)
 }
@@ -60,5 +59,3 @@ for (file in output_files) {
     cat("Moving...", file)
     move_file(file, file.path(OUTPUT_DIR, basename(file)))
 }
-
-cat(list.files(OUTPUT_DIR), "\n")

@@ -43,7 +43,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎
     ¿Cuál es la probabilidad que existan los vampiros?
 
-    <img src="imgs/crepusculo_vampiro.jpg" class="img-practica"></img>
+    ![](imgs/crepusculo_vampiro.jpg){class="img-practica" width=70%}
 
 1. Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
@@ -69,7 +69,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     * Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
 
-    <img src="imgs/ceibo.jpg" class="img-practica"></img>
+    ![](imgs/ceibo.jpg){class="img-practica" width=70%}
 
 1. Transporte El Impuntual
 
@@ -88,13 +88,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     ¿Cuál es la probabilidad que su viaje esté demorado?
     * El colectivo de Franco no está demorado. 
     ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
-
-    <figure>
-    <img src="imgs/colectivo.jpg" class="img-practica"></img>
-    <figcaption>
-        Foto de <a href="https://unsplash.com/@markuswinkler">Markus Winkler</a> en 
-        <a href="https://unsplash.com/photos/HII6PEEvLHw">Unsplash</a></figcaption>
-    </figure>
+    
+    ![Foto de <a href='https://unsplash.com/markuswinkler'>Markus Winkler</a> en <a href='https://unsplash.com/photos/HII6PEEvLHw'>Unsplash</a>](imgs/colectivo.jpg){class="img-practica" width=70%}
 
 1. Bebé panda
 
@@ -117,13 +112,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     * Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
 
-    <figure>
-    <img src="imgs/bebe_panda.jpg" class="img-practica"></img>
-    <figcaption>
-        Foto de <a href="https://unsplash.com/@stonewyq">Stone Wang</a> en 
-        <a href="https://unsplash.com/photos/0wk7m5SVPsM">Unsplash</a></figcaption>
-    </figure>
-
+    ![Foto de <a href='https://unsplash.com/stonewyq'>Stone Wang</a> en <a href='https://unsplash.com/photos/0wk7m5SVPsM'>Unsplash</a>](imgs/bebe_panda.jpg){class="img-practica" width=70%}
 
 ## Popurrí?
 
