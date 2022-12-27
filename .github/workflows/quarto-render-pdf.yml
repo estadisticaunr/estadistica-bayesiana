@@ -1,0 +1,25 @@
+on:
+  push:
+    branches: main
+
+name: Renderizar PDF de la practica
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install R
+        uses: r-lib/actions/setup-r@master
+        with:
+          r-version: 'release'
+
+      - name: Check out repository
+        uses: actions/checkout@v2 
+        
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2     
+
+      - name : Run script to create PDF files
+        run: |
+          Rscript scripts/render_pdf.R

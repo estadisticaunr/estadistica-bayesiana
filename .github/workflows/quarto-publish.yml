@@ -2,7 +2,7 @@ on:
   push:
     branches: main
 
-name: Render and Publish
+name: Renderizar y publicar página web
 
 jobs:
   build-deploy:
