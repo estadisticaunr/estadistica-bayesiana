@@ -36,4 +36,4 @@ jobs:
           git rm -r '*'
           git add practica
           git commit -m "Render PDFs"
-          git push origin pdf
+          git push origin pdf --force
