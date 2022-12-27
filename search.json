@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "apuntes/introduccion.html",
-    "href": "apuntes/introduccion.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Introducción"
-  },
-  {
-    "objectID": "complementario/probabilidad.html",
-    "href": "complementario/probabilidad.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Probabilidad"
-  },
-  {
     "objectID": "trabajos_practicos/03_tp3.html",
     "href": "trabajos_practicos/03_tp3.html",
     "title": "TP3: Estudio de modelos lineales mediante simulaciones",
@@ -112,11 +98,25 @@
     "text": "Referencias\n\n\nMartin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. Bayesian Modeling and Computation in Python. 1st edition. Chapman; Hall/CRC."
   },
   {
-    "objectID": "computo/instalacion.html",
-    "href": "computo/instalacion.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Instalación de herramientas computacionales"
+    "objectID": "computo/instalacion.html#rstan",
+    "href": "computo/instalacion.html#rstan",
+    "title": "Instalación de herramientas comutacionales",
+    "section": "RStan",
+    "text": "RStan\n\nWindows\n\n\nUbuntu\n\n\nMac OS\n\n\nVerificación"
+  },
+  {
+    "objectID": "computo/instalacion.html#librerias-adicionales",
+    "href": "computo/instalacion.html#librerias-adicionales",
+    "title": "Instalación de herramientas comutacionales",
+    "section": "Librerias adicionales",
+    "text": "Librerias adicionales\n\n{brms}\n{ggplot2}\n{dplyr}\n**Estaria bueno pinear las dependencias usando {here} o algo similar\n\n\nVerificación"
+  },
+  {
+    "objectID": "computo/instalacion.html#dependencias-optativas",
+    "href": "computo/instalacion.html#dependencias-optativas",
+    "title": "Instalación de herramientas comutacionales",
+    "section": "Dependencias optativas",
+    "text": "Dependencias optativas\n\nQuarto\n… ?"
   },
   {
     "objectID": "info/docentes.html",
