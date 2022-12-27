@@ -24,3 +24,13 @@ jobs:
       - name : Run script to create PDF files
         run: |
           Rscript scripts/render_pdf.R
+
+      - name : Publish to 'pdf' branch
+        shell: bash
+        env:
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "$GitHub Actions"
+          git add *.pdf
+          git commit -am "Render PDFs"
+          git push origin pdfs
