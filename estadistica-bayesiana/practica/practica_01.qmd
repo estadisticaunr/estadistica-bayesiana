@@ -5,7 +5,7 @@ nocite: |
   @Johnson2021, @McElreath2020, @Martin2021
 ---
 
-# Regla de Bayes
+## Regla de Bayes
 
 1. Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
     a. Probabilidad de un parametro dados los datos observados
@@ -122,9 +122,82 @@ nocite: |
     </figure>
 
 
-**To Do**
+## Popurrí?
 
-* Algunos ejercicios un poco mas matematicos. Por ejemplo sacados de Capitulo 1 de @Reich2020?
+Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividimos
+
+<!-- @Reich2020 -->
+1.  Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
+    árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
+    probabilidad _a priori_ de que la especie se encuentre en el bosque. 
+    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que 
+    $X_2$ de ellas pertenecen a la especie de interés.  
+
+    El modelo luego es
+    $$
+    \begin{array}{lc}
+    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con } \lambda \in [0, 1]
+    \end{array}
+    $$
+
+    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se
+    encuentra en el bosque. 
+
+    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ 
+    para las siguientes probabilidades:
+
+    i. $P(X_1 = 0, X_2 = 0)$
+    i. $P(X_1 = 0)$
+    i. $P(X_2 = 0)$
+    i. $P(X_1 = 0 | X_2 = 0)$
+    i. $P(X_2 = 0 | X_1 = 0)$
+    i. $P(X_1 = 0 | X_2 = 1)$
+    i. $P(X_2 = 0 | X_1 = 1)$
+    i. Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii)
+    cambian según $n$, $\theta$ y $\lambda$.
+    i. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
+    se puede concluir con 95% de confianza que la especie no se encuentra en el bosque?
+
+<!-- @Reich2020 -->
+1.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número
+    de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
+    marinas bivalvas^[Una clase de molusco. El mejillón, la ostra y la almeja son bivalvos]
+    descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.  
+    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y 
+    asumiendo:
+    
+    $$
+    \begin{aligned}
+    Y_t | \lambda &\underset{iid}{\sim} \text{Poisson}(\lambda) \\
+    \lambda       &\sim \text{Uniforme}(0, 100)
+    \end{aligned}
+    $$  
+
+    Graficar la distribución a posteriori de $\lambda$.
+
+<!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" -->
+<!-- @Reich2020 -->
+1.  Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
+    El número de clientes que realizan una compra es $Y$ y se cumple que 
+
+    $$
+    Y | n \sim \text{Binomial}(n, \theta)
+    $$
+
+    donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
+    La distribución _a priori_ de $n$ es $n \sim \text{Poisson}(5)$. 
+    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, 
+    graficar la distribución _a posteriori_ de $n$ para todas las combinaciones de 
+    $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$. Explique cual es del efecto de 
+    cambiar $Y$ y $\theta$ sobre la distribución _a posteriori_.  
+
+## To Do
+
+* Ejercicios conceptuales
+* Sacar likelihood a mano
+* Sacar posterior a mano
+    * Una discreta
+    * Una continua
 
 ## Referencias
 

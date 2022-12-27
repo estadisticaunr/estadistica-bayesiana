@@ -5,7 +5,7 @@ nocite: |
     @Martin2021
 ---
 
-# Modelos de Distribuciones Conjugadas
+## Modelos de Distribuciones Conjugadas
 
 1.  En un campamento de verano para infantes se realizaron actividades que promueven el
     contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate.
@@ -14,8 +14,8 @@ nocite: |
     asumimos una distribución $\text{Beta}(1, 1)$.
 
     i. Calcular la media y el desvío estándar _a posteriori_ de $\theta$ a mano.
-    i. Verificar el cálculo utilizando `R`.
-    i. Calcular un intervalo de credibilidad del 95% para $\theta$.
+    i. Verifique el cálculo utilizando `R`.
+    i. Calcule un intervalo de credibilidad del 95% para $\theta$.
         a. A mano
         a. Usando `R`
 
@@ -26,8 +26,20 @@ nocite: |
         <a href="https://unsplash.com/photos/vrbZVyX2k4I">Unsplash</a></figcaption>
     </figure>
 
+<!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
+1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables aleatorias
+    independientes e idénticamente distribuidas según una distribución 
+    $\text{Uniforme}(0, \theta)$ y $\theta \sim \text{Pareto}(a, b)$. 
+    Derivar la distribución _a posteriori_ de $\theta | \mathbf{x}$  
+    **revisar redaccion y si hablamos de muestras o variables aleatorias**.
 
-# Simulaciones
+* Calculo de conjugada no tradicional
+    * Binomial negativa - Beta
+    * Exponencial - Gamma
+
+1. 
+
+## Simulaciones
 
 1.  `Modern Data Science with R` 
     El tiempo que un empleado de recursos humanos demora en 
@@ -39,6 +51,8 @@ nocite: |
 
     i. ¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?
     i. ¿Cuál es el horario esperado al que terminará su entrevista?
+
+    <!-- @Johnson2021 -->
 
 1.  Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300
 
@@ -79,7 +93,7 @@ nocite: |
 1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
 
 
-# Elección de distribuciones a priori?
+## Elección de distribuciones a priori?
 
 1. Esbozar la distribución de las siguientes variables
 
@@ -131,3 +145,7 @@ En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es d
 dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto.
 Acá podriamos mostrar que usamos $\text{Beta}(a, b)$ con 
 $\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}$
+
+## Referencias
+
+<div id="refs"></div>

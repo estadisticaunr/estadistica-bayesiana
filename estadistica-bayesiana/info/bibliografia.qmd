@@ -5,4 +5,6 @@ nocite: |
   @*
 ---
 
+**To Do**: Dividir en bibliografia principal y en bibliografia complementaria
+
 <div id="refs"></div>
