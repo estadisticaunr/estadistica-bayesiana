@@ -30,6 +30,8 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "$GitHub Actions"
-          git add *.pdf
+          git checkout -b pdf
+          git rm -r '*'
+          git add practica
           git commit -am "Render PDFs"
-          git push origin pdfs
+          git push origin pdf
