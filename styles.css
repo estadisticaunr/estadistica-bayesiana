@@ -5,11 +5,20 @@
     font-size: 0.8rem; /*1rem por defecto*/
 }
 
-/* Eliminar margin arriba de la leyenda */
-figure>figcaption {
-    margin-top: 0;
-}
-
 .img-practica {
     width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+figure {
+    display: inline-block;
+}
+figure img {
+    vertical-align: top;
+}
+figure figcaption {
+    margin-top: 0; /* Eliminar margin arriba de la leyenda */
+    text-align: center;  /*Centrar la leyenda*/
 }
