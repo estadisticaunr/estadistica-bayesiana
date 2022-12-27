@@ -1,1 +1,38 @@
-# Instalación de herramientas computacionales
+---
+title: "Instalación de herramientas comutacionales"
+---
+
+## R
+
+### Windows
+
+### Ubuntu
+
+### Mac OS
+
+### Verificación
+
+## RStan
+
+### Windows
+
+### Ubuntu
+
+### Mac OS
+
+### Verificación
+
+## Librerias adicionales
+
+* `{brms}`
+* `{ggplot2}`
+* `{dplyr}`
+
+* **Estaria bueno pinear las dependencias usando `{here}` o algo similar
+
+### Verificación
+
+## Dependencias optativas
+
+* Quarto
+* ... ?

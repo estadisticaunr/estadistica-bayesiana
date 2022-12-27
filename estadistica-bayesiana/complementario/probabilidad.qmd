@@ -1,1 +1,3 @@
-# Probabilidad
+---
+title: "Repaso de Probabilidad"
+---
