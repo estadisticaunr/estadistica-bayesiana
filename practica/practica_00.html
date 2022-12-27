@@ -20,6 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -239,7 +258,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#repaso-de-probabilidad" id="toc-repaso-de-probabilidad" class="nav-link active" data-scroll-target="#repaso-de-probabilidad">Repaso de probabilidad</a></li>
+  <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link active" data-scroll-target="#probabilidad">Probabilidad</a></li>
+  <li><a href="#distribuciones" id="toc-distribuciones" class="nav-link" data-scroll-target="#distribuciones">Distribuciones</a></li>
   </ul>
 </nav>
     </div>
@@ -263,33 +283,116 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="repaso-de-probabilidad" class="level1">
-<h1>Repaso de probabilidad</h1>
+<section id="probabilidad" class="level1">
+<h1>Probabilidad</h1>
+<!-- @Martin2021 -->
 <ol type="1">
 <li><p>De las siguientes expresiones cual(es) se corresponde(n) con el enunciado “la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022”?</p>
-<ul>
+<ol type="i">
 <li><span class="math inline">\(P(\text{18 de Diciembre de 2022} | \text{Argentina campeon})\)</span></li>
 <li><span class="math inline">\(P(\text{Argentina campeon})\)</span></li>
 <li><span class="math inline">\(P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / \text{18 de Diciembre de 2022})\)</span></li>
 <li><span class="math inline">\(P(\text{Argentina campeon} | \text{Diciembre})\)</span></li>
 <li><span class="math inline">\(P(\text{Argentina campeon} | \text{18 de Diciembre de 2022})\)</span></li>
-</ul></li>
-<li><p>Enuncie con palabras cada una de las expresiones del punto anterior.</p></li>
+</ol></li>
+</ol>
+<!-- @Martin2021 -->
+<ol type="1">
+<li>Enuncie con palabras cada una de las expresiones del punto anterior.</li>
+</ol>
+<!-- @Martin2021 -->
+<ol type="1">
 <li><p>Según la definición de probabilidad condicional</p>
-<ul>
+<ol type="i">
 <li>¿Cuál es el valor de <span class="math inline">\(P(A | A)\)</span>?</li>
 <li>¿Cuál es la probabilidad de <span class="math inline">\(P(A, B)\)</span>?</li>
 <li>¿Cuál es la probabilidad de <span class="math inline">\(P(A, B)\)</span> en el caso que <span class="math inline">\(A\)</span> y <span class="math inline">\(B\)</span> sean independientes?</li>
 <li>Cuando se cumple que <span class="math inline">\(P(A | B) = P(A)\)</span>?</li>
 <li>Es posible que <span class="math inline">\(P(A | B) &gt; P(A)\)</span>? Cuando?</li>
 <li>Es posible que <span class="math inline">\(P(A | B) &lt; P(A)\)</span>? Cuando?</li>
-</ul></li>
+</ol></li>
 </ol>
+</section>
+<section id="distribuciones" class="level1">
+<h1>Distribuciones</h1>
+<!-- @Reich2020 -->
+<ol type="1">
+<li>Sea <span class="math inline">\(X\)</span> una variable aleatoria con soporte <span class="math inline">\(X \in \mathcal{S} = [1, \infty)\)</span>. Encuentre la constante <span class="math inline">\(c\)</span>, en función de <span class="math inline">\(\theta\)</span>, que haga que <span class="math inline">\(f(x) = c \exp(-x / \theta)\)</span> sea una función de densidad de probabilidad (pdf) válida.</li>
+</ol>
+<!-- @Reich2020 -->
+<ol type="1">
+<li><p>Suponga <span class="math inline">\(X \sim \text{Uniforme}(a, b)\)</span>, por lo que su soporte es <span class="math inline">\(\mathcal{S} = [a, b]\)</span> y su función de densidad de probabilidad es <span class="math inline">\(f(x) = 1 / (b - a)\)</span> para todo <span class="math inline">\(x \in \mathcal{S}\)</span>.</p>
+<ol type="i">
+<li>Pruebe que <span class="math inline">\(f(x)\)</span> es una función de densidad de probabilidad válida.</li>
+<li>Encuentre la media y la varianza de <span class="math inline">\(X\)</span>.</li>
+</ol></li>
+</ol>
+<!-- @Reich2020 -->
+<ol type="1">
+<li>Según los expertos de un problema determinado, se indica que el valor de un parámetro debe ser positivo y su distribución <em>a priori</em> debe tener media igual a 5 y varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones.</li>
+</ol>
+<!-- @Reich2020 -->
+<ol type="1">
+<li><p>Sean <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> dos variables aleatorias con función de probabilidad conjunta dada por la siguiente tabla.</p>
+<center>
+<div class="table-practica" style="width:50%">
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(X_1\)</span> / <span class="math inline">\(X_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X_2=0\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X_2=1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(X_1=0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.15\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(X_1=1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.20\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(X_2=2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.15\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0.20\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</center>
+<p>Donde la celda de la primer fila y primer columna se lee <span class="math inline">\(P(X_1=0, X_2=0)=0.15\)</span></p>
+<ol type="i">
+<li>Obtenga la distribución marginal de <span class="math inline">\(X_1\)</span>.</li>
+<li>Obtenga la distribución marginal de <span class="math inline">\(X_2\)</span>.</li>
+<li>Obtenga la distribución condicional de <span class="math inline">\(X_1\)</span> dado <span class="math inline">\(X_2\)</span>.</li>
+<li>Obtenga la distribución condicional de <span class="math inline">\(X_2\)</span> dado <span class="math inline">\(X_1\)</span>.</li>
+</ol></li>
+</ol>
+<!-- @Reich2020 -->
+<ol type="1">
+<li><p>Sean <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> tales que <span class="math inline">\((X_1, X_2)\)</span> siguen una distribución normal bivariada con <span class="math inline">\(\mathbb{E}(X_1) = \mathbb{E}(X_1)\)</span> = 0, <span class="math inline">\(\text{Var}(X_1) = \text{Var}(X_2 = 1)\)</span> y <span class="math inline">\(\text{cor}(X_1, X_2) = \rho\)</span></p>
+<ol type="i">
+<li>Encuentre la distribución marginal de <span class="math inline">\(X_1\)</span>.</li>
+<li>Encuentre la distribución condicional de <span class="math inline">\(X_1\)</span> dado <span class="math inline">\(X_2\)</span>.</li>
+</ol></li>
+</ol>
+
 
 
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
+Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
+</div>
+<div id="ref-Reich2020" class="csl-entry" role="doc-biblioentry">
+Reich, Brian J., and Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 1st edition. Chapman; Hall/CRC.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

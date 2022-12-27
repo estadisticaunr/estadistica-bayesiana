@@ -260,10 +260,9 @@ div.csl-indent {
   <ul>
   <li><a href="#modelos-de-distribuciones-conjugadas" id="toc-modelos-de-distribuciones-conjugadas" class="nav-link active" data-scroll-target="#modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</a></li>
   <li><a href="#simulaciones" id="toc-simulaciones" class="nav-link" data-scroll-target="#simulaciones">Simulaciones</a></li>
-  <li><a href="#elección-de-distribuciones-a-priori" id="toc-elección-de-distribuciones-a-priori" class="nav-link" data-scroll-target="#elección-de-distribuciones-a-priori">Elección de distribuciones a priori?</a>
-  <ul class="collapse">
+  <li><a href="#elección-de-distribuciones-a-priori" id="toc-elección-de-distribuciones-a-priori" class="nav-link" data-scroll-target="#elección-de-distribuciones-a-priori">Elección de distribuciones a priori?</a></li>
   <li><a href="#notas" id="toc-notas" class="nav-link" data-scroll-target="#notas">Notas</a></li>
-  </ul></li>
+  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   </ul>
 </nav>
     </div>
@@ -287,14 +286,14 @@ div.csl-indent {
 
 </header>
 
-<section id="modelos-de-distribuciones-conjugadas" class="level1">
-<h1>Modelos de Distribuciones Conjugadas</h1>
+<section id="modelos-de-distribuciones-conjugadas" class="level2">
+<h2 class="anchored" data-anchor-id="modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</h2>
 <ol type="1">
 <li><p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de ellas. Llamaremos con <span class="math inline">\(\theta\)</span> a la probabilidad de que una semilla de tomate germine y asumimos una distribución <span class="math inline">\(\text{Beta}(1, 1)\)</span>.</p>
 <ol type="i">
 <li>Calcular la media y el desvío estándar <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> a mano.</li>
-<li>Verificar el cálculo utilizando <code>R</code>.</li>
-<li>Calcular un intervalo de credibilidad del 95% para <span class="math inline">\(\theta\)</span>.
+<li>Verifique el cálculo utilizando <code>R</code>.</li>
+<li>Calcule un intervalo de credibilidad del 95% para <span class="math inline">\(\theta\)</span>.
 <ol type="a">
 <li>A mano</li>
 <li>Usando <code>R</code></li>
@@ -307,15 +306,31 @@ div.csl-indent {
 </figcaption>
 </figure></li>
 </ol>
+<!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
+<ol type="1">
+<li>Suponga <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Pareto}(a, b)\)</span>. Derivar la distribución <em>a posteriori</em> de <span class="math inline">\(\theta | \mathbf{x}\)</span><br>
+<strong>revisar redaccion y si hablamos de muestras o variables aleatorias</strong>.</li>
+</ol>
+<ul>
+<li>Calculo de conjugada no tradicional
+<ul>
+<li>Binomial negativa - Beta</li>
+<li>Exponencial - Gamma</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li></li>
+</ol>
 </section>
-<section id="simulaciones" class="level1">
-<h1>Simulaciones</h1>
+<section id="simulaciones" class="level2">
+<h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
 <ol type="1">
 <li><p><code>Modern Data Science with R</code> El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
 <li>¿Cuál es el horario esperado al que terminará su entrevista?</li>
-</ol></li>
+</ol>
+<!-- @Johnson2021 --></li>
 <li><p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
@@ -341,8 +356,8 @@ div.csl-indent {
 <li><p>Quizás algo con tasa de falsos descubrimientos, p-values y su distribución…</p></li>
 </ol>
 </section>
-<section id="elección-de-distribuciones-a-priori" class="level1">
-<h1>Elección de distribuciones a priori?</h1>
+<section id="elección-de-distribuciones-a-priori" class="level2">
+<h2 class="anchored" data-anchor-id="elección-de-distribuciones-a-priori">Elección de distribuciones a priori?</h2>
 <ol type="1">
 <li><p>Esbozar la distribución de las siguientes variables</p>
 <ol type="i">
@@ -372,20 +387,23 @@ div.csl-indent {
 <li>El primo de un amigo disfruta de salir a pescar, y lo hace muy seguido. En el asado de los Jueves dice que “El 90% de las veces que salgo a pescar, vuelvo con algo. Si te tuviera que dar un rango, te diría entre el 85% y el 100% de las veces”.</li>
 </ol></li>
 </ol>
+</section>
 <section id="notas" class="level2">
 <h2 class="anchored" data-anchor-id="notas">Notas</h2>
 <p>En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto. Acá podriamos mostrar que usamos <span class="math inline">\(\text{Beta}(a, b)\)</span> con <span class="math inline">\(\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}\)</span></p>
-
-
-
 </section>
-</section>
-
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<section id="referencias" class="level2">
+<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
 </div>
-</div></section></div></main> <!-- /main -->
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
