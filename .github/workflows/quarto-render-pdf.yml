@@ -19,11 +19,13 @@ jobs:
         uses: actions/checkout@v2 
         
       - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2     
+        uses: quarto-dev/quarto-actions/setup@v2  
+
+      - name: Install TinyTex.   
+        run: quarto install tinytex
 
       - name : Run script to create PDF files
-        run: |
-          Rscript scripts/render_pdf.R
+        run: Rscript scripts/render_pdf.R
 
       - name : Publish to 'pdf' branch
         shell: bash
