@@ -3,7 +3,10 @@ title: "Práctica - Unidad 0"
 bibliography: ../references.bib
 nocite: |
   @Martin2021, @Reich2020
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf
 ---
+
+[Descargar PDF]({{< meta pdf_file >}})
 
 # Probabilidad
 
