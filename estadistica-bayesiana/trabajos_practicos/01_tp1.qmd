@@ -3,3 +3,20 @@ title: "TP1: Aplicación de modelos conjugados a reviews de Google Maps"
 ---
 
 # Aplicación de modelos conjugados a reviews de Google Maps
+
+Cafeterías de especialidad en Rosario...
+
+## Modelo simple beta-binomial
+
+https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382
+
+## Modelo complejo Dirichlet-multinomial
+
+### Descubriendo la distribución de Dirichlet
+(hacer plots con el paquete `ggtern``)
+
+### Aplicación 
+
+Principalmente de: https://fulmicoton.com/posts/bayesian_rating/
+
+Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html

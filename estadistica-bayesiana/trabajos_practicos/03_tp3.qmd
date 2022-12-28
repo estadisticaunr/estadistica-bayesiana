@@ -3,3 +3,19 @@ title: "TP3: Estudio de modelos lineales mediante simulaciones"
 ---
 
 # Estudio de modelos lineales mediante simulaciones
+
+## Simulaciones y validación cruzada
+
+1. Algo de calibración de probabilidades
+2. Calcular lppd "a mano"
+
+## Enfriamiento de agua en un termo
+
+1. Ecuación diferencial (verificar)
+2. Transformación de variables
+3. Ajustar el modelo lineal
+4. Encontrar el _posterior_ del parámetro transformado
+5. Predecir la temperatura a la que estará después de un tiempo...
+
+
+

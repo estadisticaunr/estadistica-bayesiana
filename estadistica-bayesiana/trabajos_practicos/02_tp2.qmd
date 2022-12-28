@@ -2,4 +2,13 @@
 title: "TP2: Implementación del algoritmo de Metropolis-Hastings"
 ---
 
+# Grid approximation en 3D?
+
 # Implementación del algoritmo de Metropolis-Hastings
+
+## MH en 1D
+
+## MH en 2D para diferentes casos de normales
+
+## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?
+
