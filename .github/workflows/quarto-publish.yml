@@ -23,7 +23,7 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2 
         
-       - name: Publish to GitHub Pages (and render)
+      - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           path: estadistica-bayesiana/
