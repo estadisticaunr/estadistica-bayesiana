@@ -60,6 +60,8 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
     ```
 
+    ![](imgs/crepusculo.jpg)
+
 1.  Los M&Ms azul fueron introducidos en el año 1995 
     ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 

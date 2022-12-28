@@ -35,7 +35,6 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
         a. Usando `R`
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
-    #if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 
