@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.2.280">
@@ -65,15 +65,15 @@ div.csl-indent {
   "type": "textbox",
   "limit": 20,
   "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
   }
 }</script>
 
@@ -255,14 +255,13 @@ div.csl-indent {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
+    <h2 id="toc-title">En esta página</h2>
    
   <ul>
   <li><a href="#modelos-de-distribuciones-conjugadas" id="toc-modelos-de-distribuciones-conjugadas" class="nav-link active" data-scroll-target="#modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</a></li>
   <li><a href="#simulaciones" id="toc-simulaciones" class="nav-link" data-scroll-target="#simulaciones">Simulaciones</a></li>
   <li><a href="#elección-de-distribuciones-a-priori" id="toc-elección-de-distribuciones-a-priori" class="nav-link" data-scroll-target="#elección-de-distribuciones-a-priori">Elección de distribuciones a priori?</a></li>
   <li><a href="#notas" id="toc-notas" class="nav-link" data-scroll-target="#notas">Notas</a></li>
-  <li><a href="#referencias" id="toc-referencias" class="nav-link" data-scroll-target="#referencias">Referencias</a></li>
   </ul>
 </nav>
     </div>
@@ -300,12 +299,16 @@ div.csl-indent {
 <li>Usando <code>R</code></li>
 </ol></li>
 </ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="imgs/almaciguera_tomates.jpg" class="img-practica figure-img"></p>
-<figcaption class="figure-caption">
-<p>Foto de <a href="https://unsplash.com/@markusspiske">Markus Spiske</a> en <a href="https://unsplash.com/photos/vrbZVyX2k4I">Unsplash</a></p>
-</figcaption>
-</figure></li>
+<p><img src="imgs/tomates.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Foto de <a href="https://unsplash.com/markusspiske">Markus Spiske</a> en <a href="https://unsplash.com/photos/vrbZVyX2k4I">Unsplash</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 </ol>
 <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
 <ol type="1">
@@ -319,9 +322,6 @@ div.csl-indent {
 <li>Exponencial - Gamma</li>
 </ul></li>
 </ul>
-<ol type="1">
-<li></li>
-</ol>
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
@@ -338,7 +338,16 @@ div.csl-indent {
 <li>¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?</li>
 </ol></li>
 <li><p><code>Modern Data Science with R</code> El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta. <strong>To Do</strong> Explicar el juego.</p>
-<p><img src="imgs/monty_hall.png" class="img-practica"></p></li>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/monty_hall.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Las 3 puertas del problema de Monty Hall</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p>Basándose en el <a href="https://twitter.com/Kit_Yates_Maths/status/1542767039814713346">siguiente tuit</a> y conociendo el problema del cumpleaños (¿cuántas personas debe haber en una habitación para que la probabilidad de que dos de ellas cumplan años el mismo día sea mayor a X%?) construir un gráfico similar al del tuit donde se grafique la probabilidad de que haya <span class="math inline">\(n\)</span> personas que cumplan años el mismo día para <span class="math inline">\(K\)</span> personas presentes en la habitación.</p></li>
 <li><p>El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. Cada paquete trae cinco figuritas.</p>
 <ol type="i">
@@ -392,19 +401,16 @@ div.csl-indent {
 <section id="notas" class="level2">
 <h2 class="anchored" data-anchor-id="notas">Notas</h2>
 <p>En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto. Acá podriamos mostrar que usamos <span class="math inline">\(\text{Beta}(a, b)\)</span> con <span class="math inline">\(\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}\)</span></p>
+
+
+
 </section>
-<section id="referencias" class="level2">
-<h2 class="anchored" data-anchor-id="referencias">Referencias</h2>
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
-Martin, Osvaldo A., Ravin Kumar, and Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
+Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
 </div>
-</div>
-
-
-</section>
-
-</main> <!-- /main -->
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -445,12 +451,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
+    button.setAttribute("title", "Copiado");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
+      button.setAttribute("data-bs-title", "Copiado");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
