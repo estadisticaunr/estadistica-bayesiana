@@ -4,21 +4,35 @@
     "href": "trabajos_practicos/03_tp3.html",
     "title": "TP3: Estudio de modelos lineales mediante simulaciones",
     "section": "",
-    "text": "Estudio de modelos lineales mediante simulaciones"
+    "text": "Algo de calibración de probabilidades\nCalcular lppd “a mano”\n\n\n\n\n\nEcuación diferencial (verificar)\nTransformación de variables\nAjustar el modelo lineal\nEncontrar el posterior del parámetro transformado\nPredecir la temperatura a la que estará después de un tiempo…"
   },
   {
     "objectID": "trabajos_practicos/01_tp1.html",
     "href": "trabajos_practicos/01_tp1.html",
     "title": "TP1: Aplicación de modelos conjugados a reviews de Google Maps",
     "section": "",
-    "text": "Aplicación de modelos conjugados a reviews de Google Maps"
+    "text": "Cafeterías de especialidad en Rosario…\n\n\nhttps://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382\n\n\n\n\n\n(hacer plots con el paquete `ggtern``)\n\n\n\nPrincipalmente de: https://fulmicoton.com/posts/bayesian_rating/\nUn análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html"
   },
   {
-    "objectID": "trabajos_practicos/02_tp2.html",
-    "href": "trabajos_practicos/02_tp2.html",
+    "objectID": "trabajos_practicos/02_tp2.html#mh-en-1d",
+    "href": "trabajos_practicos/02_tp2.html#mh-en-1d",
     "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
-    "section": "",
-    "text": "Implementación del algoritmo de Metropolis-Hastings"
+    "section": "MH en 1D",
+    "text": "MH en 1D"
+  },
+  {
+    "objectID": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
+    "href": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "MH en 2D para diferentes casos de normales",
+    "text": "MH en 2D para diferentes casos de normales"
+  },
+  {
+    "objectID": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
+    "href": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?",
+    "text": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?"
   },
   {
     "objectID": "trabajos_practicos/00_tp0.html",
