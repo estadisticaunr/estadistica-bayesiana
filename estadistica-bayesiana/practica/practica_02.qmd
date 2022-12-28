@@ -7,6 +7,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 ---
 
 ```{r echo=FALSE, include=FALSE}
+options("knitr.graphics.error" = FALSE)
 is_html <- knitr::is_html_output()
 source(here::here("scripts", "utils.R"))
 caption_data <- list(
