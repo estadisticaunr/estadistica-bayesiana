@@ -8,7 +8,6 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 ```{r echo=FALSE, include=FALSE}
 is_html <- knitr::is_html_output()
-imgs_dir <- here::here("estadistica-bayesiana", "practica", "imgs")
 source(here::here("scripts", "utils.R"))
 caption_data <- list(
     "bebe_panda" = list(author = "Stone Wang", handle = "stonewyq", code = "0wk7m5SVPsM"),
@@ -57,7 +56,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     ¿Cuál es la probabilidad que existan los vampiros?
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["crepusculo"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "crepusculo.jpg"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
     ```
 
 1.  Los M&Ms azul fueron introducidos en el año 1995 
@@ -86,7 +85,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["ceibo"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "ceibo.png"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
     ```
 
 1.  Transporte El Impuntual
@@ -108,7 +107,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
     
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["colectivo"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "colectivo.jpg"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
     ```
 
 1.  Bebé panda
@@ -133,7 +132,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["bebe_panda"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "bebe_panda.jpg"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 
 ## Popurrí?

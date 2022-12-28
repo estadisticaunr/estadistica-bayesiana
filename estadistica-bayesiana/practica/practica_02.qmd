@@ -8,7 +8,6 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 ```{r echo=FALSE, include=FALSE}
 is_html <- knitr::is_html_output()
-imgs_dir <- here::here("estadistica-bayesiana", "practica", "imgs")
 source(here::here("scripts", "utils.R"))
 caption_data <- list(
     "tomates" = list(author = "Markus Spiske", handle = "markusspiske", code = "vrbZVyX2k4I")
@@ -34,7 +33,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
         a. Usando `R`
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "tomates.jpg"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 
 <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
@@ -75,7 +74,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
-    if (is_html) knitr::include_graphics(file.path(imgs_dir, "monty_hall.png"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
     ```
 
 1.  Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346) 
