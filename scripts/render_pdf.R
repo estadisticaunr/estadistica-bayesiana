@@ -56,6 +56,6 @@ if (!dir.exists(OUTPUT_DIR)) {
 
 # Mover los PDF al directorio de salida
 for (file in output_files) {
-    cat("Moving...", file)
+    cat("Moving...", file, "\n")
     move_file(file, file.path(OUTPUT_DIR, basename(file)))
 }

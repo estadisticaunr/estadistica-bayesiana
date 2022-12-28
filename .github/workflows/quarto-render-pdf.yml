@@ -14,7 +14,7 @@ jobs:
         with:
           r-version: 'release'
       - name: Install dependencies
-        run: R -e 'install.packages("here")'
+        run: R -e 'install.packages(c("here", "knitr"))'
       - name: Check out repository
         uses: actions/checkout@v2 
         

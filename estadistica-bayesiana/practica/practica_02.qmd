@@ -6,6 +6,17 @@ nocite: |
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_02.pdf
 ---
 
+```{r echo=FALSE, include=FALSE}
+is_html <- knitr::is_html_output()
+imgs_dir <- here::here("estadistica-bayesiana", "practica", "imgs")
+source(here::here("scripts", "utils.R"))
+caption_data <- list(
+    "tomates" = list(author = "Markus Spiske", handle = "markusspiske", code = "vrbZVyX2k4I")
+)
+captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
+captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
+```
+
 [Descargar PDF]({{< meta pdf_file >}})
 
 ## Modelos de Distribuciones Conjugadas
@@ -22,12 +33,9 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
         a. A mano
         a. Usando `R`
 
-    <figure>
-    <img src="imgs/almaciguera_tomates.jpg" class="img-practica"></img>
-    <figcaption>
-        Foto de <a href="https://unsplash.com/@markusspiske">Markus Spiske</a> en 
-        <a href="https://unsplash.com/photos/vrbZVyX2k4I">Unsplash</a></figcaption>
-    </figure>
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
+    if (is_html) knitr::include_graphics(file.path(imgs_dir, "tomates.jpg"))
+    ```
 
 <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
 1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables aleatorias
@@ -39,8 +47,6 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 * Calculo de conjugada no tradicional
     * Binomial negativa - Beta
     * Exponencial - Gamma
-
-1. 
 
 ## Simulaciones
 
@@ -67,7 +73,10 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta.
     **To Do** Explicar el juego.
 
-     <img src="imgs/monty_hall.png" class="img-practica"></img>
+
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
+    if (is_html) knitr::include_graphics(file.path(imgs_dir, "monty_hall.png"))
+    ```
 
 1.  Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346) 
     y conociendo el problema del cumpleaños 
@@ -83,11 +92,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. ¿Cuántos paquetes se necesitan, en promedio, para completar el álbum?
     i. Si a una persona le faltan diez figuritas para completar el álbum, ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?
 
-1. Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias de $k$ caras?
+1.  Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias de $k$ caras?
 
-1. ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos?
+1.  ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos?
 
-1. Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina 
+1.  Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina 
     se reúnen en la habitación del hotel como se describe en [este tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
     
     i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
@@ -98,7 +107,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 ## Elección de distribuciones a priori?
 
-1. Esbozar la distribución de las siguientes variables
+1.  Esbozar la distribución de las siguientes variables
 
     i. El número de personas que compran café en el bar de la facultad asumiendo distribución de Poisson.
     i. El peso de perros adultos en kilogramos asumiendo una distribución Uniforme.
@@ -114,7 +123,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
    concuerde con el conocimiento del problema.
 
 
-1. Comparar las siguientes distribuciones _a priori_.
+1.  Comparar las siguientes distribuciones _a priori_.
 
     * $\text{Beta}(0.5, 0.5)$
     * $\text{Beta}(1, 1)$
@@ -148,7 +157,3 @@ En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es d
 dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto.
 Acá podriamos mostrar que usamos $\text{Beta}(a, b)$ con 
 $\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}$
-
-## Referencias
-
-<div id="refs"></div>
