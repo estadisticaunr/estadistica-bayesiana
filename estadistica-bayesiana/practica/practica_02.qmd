@@ -7,8 +7,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 ---
 
 ```{r echo=FALSE, include=FALSE}
-imgs_relative_path <- file.path("practica", "imgs")
 options("knitr.graphics.error" = FALSE)
+knitr::opts_knit$set(root.dir = here::here("estadistica-bayesiana","practica"))
 is_html <- knitr::is_html_output()
 source(here::here("scripts", "utils.R"))
 caption_data <- list(
@@ -36,8 +36,10 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
     #if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
-    if (is_html) knitr::include_graphics(here::here("estadistica-bayesiana","practica", "imgs","tomates.jpg"))
+    if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
+
+    blablabadasd
 
 <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
 1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables aleatorias
