@@ -15,7 +15,7 @@ jobs:
           r-version: 'release'
 
       - name: Install dependencies
-        run: R -e 'install.packages(c("here", "knitr"))'
+        run: R -e 'install.packages(c("here", "rmarkdown", "knitr"))'
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2    
