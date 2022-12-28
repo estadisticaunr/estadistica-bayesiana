@@ -2,8 +2,8 @@ project:
   type: website
   preview:
     port: 4200
-  post-render: 
-    - ../scripts/copy_imgs.R
+  #post-render: 
+  #  - ../scripts/copy_imgs.R
 
 website:
   title: "Estadística Bayesiana"

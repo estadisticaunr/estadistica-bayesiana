@@ -3,4 +3,5 @@
 .RData
 .Ruserdata
 _site/
-practica/
+# Solo lo omite si esta en la raiz del proyecto
+/practica 
