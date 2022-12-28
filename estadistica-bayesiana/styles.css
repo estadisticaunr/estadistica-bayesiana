@@ -2,14 +2,7 @@
 
 /* Cambiar tamaño de la fuente en la leyenda */
 .panel-caption, caption, .figure-caption {
-    font-size: 0.8rem; /*1rem por defecto*/
-}
-
-.img-practica {
-    width: 70%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    font-size: 0.9rem; /*1rem por defecto*/
 }
 
 .table-practica {
@@ -25,6 +18,6 @@ figure img {
     vertical-align: top;
 }
 figure figcaption {
-    margin-top: 0; /* Eliminar margin arriba de la leyenda */
+    margin-top: 0; /*Eliminar margin arriba de la leyenda*/
     text-align: center;  /*Centrar la leyenda*/
 }

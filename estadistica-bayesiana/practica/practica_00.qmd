@@ -10,20 +10,21 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 # Probabilidad
 
-<!-- @Martin2021 -->
+
 1.  De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
     
     i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeon})$
     i. $P(\text{Argentina campeon})$
-    i. $P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / \text{18 de Diciembre de 2022})$
+    i. $P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$
     i. $P(\text{Argentina campeon} | \text{Diciembre})$
     i. $P(\text{Argentina campeon} | \text{18 de Diciembre de 2022})$
+    <!-- @Martin2021 -->
 
-<!-- @Martin2021 -->
+
 1.  Enuncie con palabras cada una de las expresiones del punto anterior.
+    <!-- @Martin2021 -->
 
-<!-- @Martin2021 -->
 1.  Según la definición de probabilidad condicional
 
     i. ¿Cuál es el valor de $P(A | A)$?
@@ -32,31 +33,31 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Cuando se cumple que $P(A | B) = P(A)$?
     i. Es posible que $P(A | B) > P(A)$? Cuando?
     i. Es posible que $P(A | B) < P(A)$? Cuando?
+    <!-- @Martin2021 -->
 
 
 # Distribuciones
 
-<!-- @Reich2020 -->
 1.  Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
     Encuentre la constante $c$, en función de $\theta$, que haga que 
     $f(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad (pdf) válida.
+    <!-- @Reich2020 -->
 
-<!-- @Reich2020 -->
 1.  Suponga $X \sim \text{Uniforme}(a, b)$, por lo que su soporte es $\mathcal{S} = [a, b]$
     y su función de densidad de probabilidad es $f(x) = 1 / (b - a)$ para todo $x \in \mathcal{S}$.
     
     i. Pruebe que $f(x)$ es una función de densidad de probabilidad válida.
     i. Encuentre la media y la varianza de $X$.
+    <!-- @Reich2020 -->
 
-<!-- @Reich2020 -->
 1.  Según los expertos de un problema determinado, se indica que el valor de un parámetro 
     debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y varianza
     igual a 3. Encuentre una distribución que satisfaga estas condiciones.
+    <!-- @Reich2020 -->
 
-<!-- @Reich2020 -->
 1.  Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
     por la siguiente tabla.
-
+    
     <center>
     <div style="width:50%" class="table-practica">
 
@@ -75,11 +76,12 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Obtenga la distribución marginal de $X_2$.
     i. Obtenga la distribución condicional de $X_1$ dado $X_2$.
     i. Obtenga la distribución condicional de $X_2$ dado $X_1$.
+    <!-- @Reich2020 -->
 
-<!-- @Reich2020 -->
 1.  Sean $X_1$ y $X_2$ tales que $(X_1, X_2)$ siguen una distribución normal bivariada
     con $\mathbb{E}(X_1) = \mathbb{E}(X_1)$ = 0, $\text{Var}(X_1) = \text{Var}(X_2 = 1)$ y 
     $\text{cor}(X_1, X_2) = \rho$
 
     i. Encuentre la distribución marginal de $X_1$.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
+    <!-- @Reich2020 -->
