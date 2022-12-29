@@ -1,0 +1,13 @@
+---
+title: "Práctica - Unidad 3"
+bibliography: ../references.bib
+nocite: |
+    @Martin2021
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_02.pdf
+---
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+## Métodos Computacionales
+
+1.  Grid approximation para un modelo de tres parámetros? Una regresión lineal? No la dimos pero la conocen... aas
