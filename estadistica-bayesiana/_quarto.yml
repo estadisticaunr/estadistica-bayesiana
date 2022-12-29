@@ -2,6 +2,8 @@ project:
   type: website
   preview:
     port: 4200
+  #post-render: 
+  #  - ../scripts/copy_imgs.R
 
 website:
   title: "Estadística Bayesiana"
@@ -69,6 +71,4 @@ format:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-
+    lang: es

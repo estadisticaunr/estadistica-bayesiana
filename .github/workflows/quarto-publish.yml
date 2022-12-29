@@ -8,12 +8,21 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Install R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: 'release'
+
+      - name: Install dependencies
+        run: R -e 'install.packages(c("here", "rmarkdown", "knitr"))'
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2    
+
       - name: Check out repository
         uses: actions/checkout@v2 
         
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2     
-
       - name: Publish to GitHub Pages (and render)
         uses: quarto-dev/quarto-actions/publish@v2
         with:

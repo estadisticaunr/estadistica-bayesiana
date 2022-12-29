@@ -6,6 +6,19 @@ nocite: |
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_01.pdf
 ---
 
+```{r echo=FALSE, include=FALSE}
+is_html <- knitr::is_html_output()
+options("knitr.graphics.error" = FALSE)
+source(here::here("scripts", "utils.R"))
+caption_data <- list(
+    "bebe_panda" = list(author = "Stone Wang", handle = "stonewyq", code = "0wk7m5SVPsM"),
+    "colectivo" = list(author = "Markus Winkler", handle = "markuswinkler", code = "HII6PEEvLHw")
+)
+captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
+captions[["crepusculo"]] <- "Robert Pattinson como Edward en Crepúsculo"
+captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
+```
+
 [Descargar PDF]({{< meta pdf_file >}})
 
 ## Regla de Bayes
@@ -33,7 +46,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
         * ¿Y si diera negativo?
         * ¿Es el a priori el mismo para el segundo análisis que para el primero?
 
-1. ¿Es verdad que existen los vampiros? Versión Crepúsculo
+1.  ¿Es verdad que existen los vampiros? Versión Crepúsculo
 
     Edward quiere probarle a Bella que los vampiros existen.
     Según Bella, hay una probabilidad del 5% de que los vampiros existan.
@@ -43,16 +56,19 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎
     ¿Cuál es la probabilidad que existan los vampiros?
 
-    ![](imgs/crepusculo_vampiro.jpg){class="img-practica" width=70%}
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["crepusculo"]]}
+    if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
+    ```
 
-1. Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
+1.  Los M&Ms azul fueron introducidos en el año 1995 
+    ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
     * Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
     * Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
 
     Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál. Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos). ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
 
-1. Árboles enfermos
+1.  Árboles enfermos
 
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos,
     incluyendo al jacarandá, ceibo, ombú, entre otros.
@@ -69,9 +85,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     * Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
 
-    ![](imgs/ceibo.jpg){class="img-practica" width=70%}
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["ceibo"]]}
+    if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
+    ```
 
-1. Transporte El Impuntual
+1.  Transporte El Impuntual
 
     Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual",
     tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos
@@ -89,9 +107,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     * El colectivo de Franco no está demorado. 
     ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
     
-    ![Foto de <a href='https://unsplash.com/markuswinkler'>Markus Winkler</a> en <a href='https://unsplash.com/photos/HII6PEEvLHw'>Unsplash</a>](imgs/colectivo.jpg){class="img-practica" width=70%}
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["colectivo"]]}
+    if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
+    ```
 
-1. Bebé panda
+1.  Bebé panda
 
     Supongamos que hay dos especies de osos panda. 
     Ambas especies son igual de frecuentes y viven en la misma región. 
@@ -112,13 +132,14 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     * Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
 
-    ![Foto de <a href='https://unsplash.com/stonewyq'>Stone Wang</a> en <a href='https://unsplash.com/photos/0wk7m5SVPsM'>Unsplash</a>](imgs/bebe_panda.jpg){class="img-practica" width=70%}
+    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["bebe_panda"]]}
+    if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
+    ```
 
 ## Popurrí?
 
 Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividimos
 
-<!-- @Reich2020 -->
 1.  Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
     árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
     probabilidad _a priori_ de que la especie se encuentre en el bosque. 
@@ -149,8 +170,8 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
     cambian según $n$, $\theta$ y $\lambda$.
     i. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
     se puede concluir con 95% de confianza que la especie no se encuentra en el bosque?
+    <!-- @Reich2020 -->
 
-<!-- @Reich2020 -->
 1.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número
     de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
     marinas bivalvas^[Una clase de molusco. El mejillón, la ostra y la almeja son bivalvos]
@@ -166,9 +187,8 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
     $$  
 
     Graficar la distribución a posteriori de $\lambda$.
+    <!-- @Reich2020 -->
 
-<!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" -->
-<!-- @Reich2020 -->
 1.  Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
     El número de clientes que realizan una compra es $Y$ y se cumple que 
 
@@ -182,6 +202,8 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
     graficar la distribución _a posteriori_ de $n$ para todas las combinaciones de 
     $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$. Explique cual es del efecto de 
     cambiar $Y$ y $\theta$ sobre la distribución _a posteriori_.  
+    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" -->
+    <!-- @Reich2020 -->
 
 ## To Do
 
@@ -190,7 +212,3 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
 * Sacar posterior a mano
     * Una discreta
     * Una continua
-
-## Referencias
-
-<div id="refs"></div>
