@@ -19,7 +19,11 @@ captions[["crepusculo"]] <- "Robert Pattinson como Edward en Crepúsculo"
 captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 ```
 
+::: {.content-visible when-format="html"}
+
 [Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 ## Regla de Bayes
 

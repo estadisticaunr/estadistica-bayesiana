@@ -6,7 +6,11 @@ nocite: |
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf
 ---
 
+::: {.content-visible when-format="html"}
+
 [Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 # Probabilidad
 

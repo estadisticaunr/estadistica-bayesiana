@@ -17,7 +17,12 @@ captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 ```
 
+::: {.content-visible when-format="html"}
+
 [Descargar PDF]({{< meta pdf_file >}})
+
+:::
+
 
 ## Modelos de Distribuciones Conjugadas
 

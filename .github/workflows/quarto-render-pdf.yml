@@ -25,7 +25,10 @@ jobs:
             any::here
             any::rmarkdown
             any::knitr
-        
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
       - name: Install TinyTex.   
         run: quarto install tinytex
 
