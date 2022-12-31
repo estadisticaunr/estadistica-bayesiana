@@ -50,8 +50,8 @@ output_files <- file.path(
 # Renderizarlos como pdf
 exit_codes <- mapply(
     render_pdf,
-    practica_files[1:2],
-    output_files[1:2],
+    practica_files,
+    output_files,
     MoreArgs = list(verbose = TRUE)
 )
 
