@@ -3,7 +3,7 @@ title: "Práctica - Unidad 3"
 bibliography: ../references.bib
 nocite: |
     @Martin2021
-pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_02.pdf
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_03.pdf
 ---
 
 [Descargar PDF]({{< meta pdf_file >}})

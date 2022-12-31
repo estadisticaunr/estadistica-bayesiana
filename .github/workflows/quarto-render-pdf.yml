@@ -35,6 +35,7 @@ jobs:
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
           git checkout --orphan pdf
+          git reset .
           mv .output/practica/*.pdf practica/
           git add practica/*.pdf
           git commit -m "Render PDFs"
