@@ -2,9 +2,16 @@
 title: "Práctica - Unidad 0"
 bibliography: ../references.bib
 nocite: |
-  @Martin2021, @Reich2020
+  @Martin2021, @Reich2020, @Hoff2009
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf
 ---
+
+```{r echo=FALSE, include=FALSE}
+is_html <- knitr::is_html_output()
+options("knitr.graphics.error" = FALSE)
+captions <- list()
+captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
+```
 
 ::: {.content-visible when-format="html"}
 
@@ -12,7 +19,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 :::
 
-# Probabilidad
+## Probabilidad
 
 
 1.  De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
@@ -40,7 +47,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     <!-- @Martin2021 -->
 
 
-# Distribuciones
+## Distribuciones
 
 1.  Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
     Encuentre la constante $c$, en función de $\theta$, que haga que 
@@ -89,3 +96,46 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Encuentre la distribución marginal de $X_1$.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
     <!-- @Reich2020 -->
+
+
+## Esperanza y Varianza
+
+
+1.  Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
+    urna $E$ contiene un 60% de bolas verdes y un 40% de bolas rojas.
+    Una persona arroja una moneda de un peso argentino y selecciona una bola de una de 
+    las dos urnas dependiendo de si la moneda en sol o escudo. 
+    Si la moneda cae en sol, saca una bola de la urna $S$ y si la moneda cae en escudo, 
+    saca una bola de la urna $E$.  
+    
+    Considere las siguientes variables aleatorias:
+
+    $$
+    \begin{aligned}
+    X &= 
+        \begin{cases}
+        1 & \text{Si la moneda cae en sol} \\
+        0 & \text{Si la moneda cae en escudo}
+        \end{cases}
+    \\
+    \\
+    Y &= 
+        \begin{cases}
+        1 & \text{Si la bola es verde} \\
+        0 & \text{Si la bola es roja}
+        \end{cases}
+    \end{aligned}
+    $$
+
+    i. Encuentre la distribución conjunta de $X$ e $Y$ en una tabla.
+    i. Encuentre $\mathbb{E}(Y)$. ¿Cuál es la probabilidad de que la bola sea verde?
+    i. Encuentre $\text{Var}(Y | X = 0)$, $\text{Var}(Y | X = 1)$ Y $\text{Var}(Y)$.
+    Considerando a la varianza como una medida de incertidumbre, explique de manera 
+    intuitiva por que algunas variancias son mas grandes que otras.
+    i. Suponga que observa que la bola es verde. ¿Cuál es la probabilidad de que la moneda
+    haya caido en escudo?
+    <!-- @Hoff2009 -->
+
+    ```{r, echo=FALSE, out.width="40%", fig.align="center", fig.cap=captions[["un_peso"]]}
+    if (is_html) knitr::include_graphics(file.path("imgs", "un_peso.jpg"))
+    ```
