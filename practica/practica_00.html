@@ -265,6 +265,7 @@ div.csl-indent {
   <ul>
   <li><a href="#probabilidad" id="toc-probabilidad" class="nav-link active" data-scroll-target="#probabilidad">Probabilidad</a></li>
   <li><a href="#distribuciones" id="toc-distribuciones" class="nav-link" data-scroll-target="#distribuciones">Distribuciones</a></li>
+  <li><a href="#esperanza-y-varianza" id="toc-esperanza-y-varianza" class="nav-link" data-scroll-target="#esperanza-y-varianza">Esperanza y Varianza</a></li>
   </ul>
 </nav>
     </div>
@@ -291,8 +292,8 @@ div.csl-indent {
 <div>
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf">Descargar PDF</a></p>
 </div>
-<section id="probabilidad" class="level1">
-<h1>Probabilidad</h1>
+<section id="probabilidad" class="level2">
+<h2 class="anchored" data-anchor-id="probabilidad">Probabilidad</h2>
 <ol type="1">
 <li><p>De las siguientes expresiones cual(es) se corresponde(n) con el enunciado “la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022”?</p>
 <ol type="i">
@@ -314,8 +315,8 @@ div.csl-indent {
 </ol></li>
 </ol>
 </section>
-<section id="distribuciones" class="level1">
-<h1>Distribuciones</h1>
+<section id="distribuciones" class="level2">
+<h2 class="anchored" data-anchor-id="distribuciones">Distribuciones</h2>
 <ol type="1">
 <li><p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con soporte <span class="math inline">\(X \in \mathcal{S} = [1, \infty)\)</span>. Encuentre la constante <span class="math inline">\(c\)</span>, en función de <span class="math inline">\(\theta\)</span>, que haga que <span class="math inline">\(f(x) = c \exp(-x / \theta)\)</span> sea una función de densidad de probabilidad (pdf) válida. <!-- @Reich2020 --></p></li>
 <li><p>Suponga <span class="math inline">\(X \sim \text{Uniforme}(a, b)\)</span>, por lo que su soporte es <span class="math inline">\(\mathcal{S} = [a, b]\)</span> y su función de densidad de probabilidad es <span class="math inline">\(f(x) = 1 / (b - a)\)</span> para todo <span class="math inline">\(x \in \mathcal{S}\)</span>.</p>
@@ -368,12 +369,54 @@ div.csl-indent {
 <li>Encuentre la distribución condicional de <span class="math inline">\(X_1\)</span> dado <span class="math inline">\(X_2\)</span>. <!-- @Reich2020 --></li>
 </ol></li>
 </ol>
+</section>
+<section id="esperanza-y-varianza" class="level2">
+<h2 class="anchored" data-anchor-id="esperanza-y-varianza">Esperanza y Varianza</h2>
+<ol type="1">
+<li><p>Suponga una urna <span class="math inline">\(S\)</span> contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra urna <span class="math inline">\(E\)</span> contiene un 60% de bolas verdes y un 40% de bolas rojas. Una persona arroja una moneda de un peso argentino y selecciona una bola de una de las dos urnas dependiendo de si la moneda en sol o escudo. Si la moneda cae en sol, saca una bola de la urna <span class="math inline">\(S\)</span> y si la moneda cae en escudo, saca una bola de la urna <span class="math inline">\(E\)</span>.</p>
+<p>Considere las siguientes variables aleatorias:</p>
+<p><span class="math display">\[
+\begin{aligned}
+X &amp;=
+    \begin{cases}
+    1 &amp; \text{Si la moneda cae en sol} \\
+    0 &amp; \text{Si la moneda cae en escudo}
+    \end{cases}
+\\
+\\
+Y &amp;=
+    \begin{cases}
+    1 &amp; \text{Si la bola es verde} \\
+    0 &amp; \text{Si la bola es roja}
+    \end{cases}
+\end{aligned}
+\]</span></p>
+<ol type="i">
+<li>Encuentre la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> en una tabla.</li>
+<li>Encuentre <span class="math inline">\(\mathbb{E}(Y)\)</span>. ¿Cuál es la probabilidad de que la bola sea verde?</li>
+<li>Encuentre <span class="math inline">\(\text{Var}(Y | X = 0)\)</span>, <span class="math inline">\(\text{Var}(Y | X = 1)\)</span> Y <span class="math inline">\(\text{Var}(Y)\)</span>. Considerando a la varianza como una medida de incertidumbre, explique de manera intuitiva por que algunas variancias son mas grandes que otras.</li>
+<li>Suponga que observa que la bola es verde. ¿Cuál es la probabilidad de que la moneda haya caido en escudo? <!-- @Hoff2009 --></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/un_peso.jpg" class="img-fluid figure-img" style="width:40.0%"></p>
+<p></p><figcaption class="figure-caption">Moneda de un peso argentino acuñada en 1995</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ol>
 
 
 
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Hoff2009" class="csl-entry" role="doc-biblioentry">
+Hoff, Peter D. 2009. <em>A First Course in Bayesian Statistical Methods</em>. 1st edition. Springer.
+</div>
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
 </div>

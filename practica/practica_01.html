@@ -265,6 +265,7 @@ div.csl-indent {
   <ul>
   <li><a href="#regla-de-bayes" id="toc-regla-de-bayes" class="nav-link active" data-scroll-target="#regla-de-bayes">Regla de Bayes</a></li>
   <li><a href="#popurrí" id="toc-popurrí" class="nav-link" data-scroll-target="#popurrí">Popurrí?</a></li>
+  <li><a href="#conceptuales" id="toc-conceptuales" class="nav-link" data-scroll-target="#conceptuales">Conceptuales</a></li>
   <li><a href="#to-do" id="toc-to-do" class="nav-link" data-scroll-target="#to-do">To Do</a></li>
   </ul>
 </nav>
@@ -303,7 +304,7 @@ div.csl-indent {
 <li>La probabilidad de una observación nueva dados los datos observados</li>
 <li>La probabilidad de una observación antes de ver los datos</li>
 <li><strong>To Do</strong> Revisar texto. No se si es mejor usar “dado/dada” o “condicional a”, u otra expresión.</li>
-<li><strong>To Do</strong> Algunas descripciones no estan cubiertas en la <strong>Unidad 1</strong>.</li>
+<li><strong>To Do</strong> Algunas descripciones no estan cubiertas en la <strong>Unidad 1</strong>. <!-- @Martin2021 --></li>
 </ol></li>
 <li><p>El test <del>in</del>falible</p>
 <p>En una población dada, una de cada mil personas tiene una enfermedad. Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo. El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.</p>
@@ -313,11 +314,11 @@ div.csl-indent {
 <ul>
 <li>¿Cuál seria la probabilidad que el paciente esté enfermo?</li>
 <li>¿Y si diera negativo?</li>
-<li>¿Es el a priori el mismo para el segundo análisis que para el primero?</li>
+<li>¿Es el a priori el mismo para el segundo análisis que para el primero? <!-- @Martin2021 --></li>
 </ul></li>
 </ul></li>
 <li><p>¿Es verdad que existen los vampiros? Versión Crepúsculo</p>
-<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros?</p>
+<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros? <!-- @Johnson2021 --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -340,7 +341,7 @@ div.csl-indent {
 <li>¿Cuál es la probabilidad a priori de que el árbolo tenga moho?</li>
 <li>Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?</li>
 <li>¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?</li>
-<li>Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo?</li>
+<li>Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo? <!-- @Johnson2021 --></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -357,7 +358,7 @@ div.csl-indent {
 <p>Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes.</p>
 <ul>
 <li>Lucio se fue en uno de los colectivos de la mañana. ¿Cuál es la probabilidad que su viaje esté demorado?</li>
-<li>El colectivo de Franco no está demorado. ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?</li>
+<li>El colectivo de Franco no está demorado. ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana? <!-- @Johnson2021 --></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -375,7 +376,7 @@ div.csl-indent {
 <ul>
 <li>¿Cuál es la probabilidad que la mamá panda sea de la especie A?</li>
 <li>¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?</li>
-<li>Un tiempo después sos encontramos con que en la segunda parición da a luz a un único bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?</li>
+<li>Un tiempo después sos encontramos con que en la segunda parición da a luz a un único bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A? <!-- @McElreath2020 --></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -387,6 +388,17 @@ div.csl-indent {
 </div>
 </div>
 </div></li>
+<li><p>Demuestra la validez de la siguiente expresión de la regla de Bayes</p>
+<p><span class="math display">\[
+P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
+\]</span></p>
+<p>donde <span class="math inline">\(A\)</span> es un evento cualquiera y <span class="math inline">\(\{B_1, \cdots, B_K\}\)</span> forman una partición. Para ello siga los siguientes pasos</p>
+<ol type="i">
+<li>Demuestre que <span class="math inline">\(P(B_j | A) P(A) = P(A | B_j) P(B_j)\)</span>.</li>
+<li>Demuestre que <span class="math inline">\(P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})\)</span>.</li>
+<li>Demuestre que <span class="math inline">\(P(A) = \sum_{k=1}^{K} P(A \cap B_j)\)</span>.</li>
+<li>Junte las partes para formar la regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. --></li>
+</ol></li>
 <li><p>House of Cards</p>
 <p>Hay 538 miembros en el Congreso de Estados Unidos. Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado. Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo. ¿Cuántos miembros del Congreso son honestos? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
 <li><p>Estás a punto de subir a un avión rumbo a Seattle. Querés saber si tenés que llevar un paraguas. Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. Cuál es la probbailidad de que realmente esté lloviendo en Seattle? Se puede asumir que llueve el 10% del tiempo. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
@@ -458,6 +470,27 @@ Y | n \sim \text{Binomial}(n, \theta)
 <p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p></li>
 </ol>
 </section>
+<section id="conceptuales" class="level2">
+<h2 class="anchored" data-anchor-id="conceptuales">Conceptuales</h2>
+<ol type="1">
+<li><p>Voy a conseguir esa pasantía</p>
+<p>La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus <strong>datos</strong>. Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu <strong>hipótesis</strong>.</p>
+<ol type="i">
+<li>Desde la perspectiva de una persona con un razonamiento frecuentista, ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?</li>
+<li>Repita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.</li>
+<li>¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. <!-- @Johnson2021 --></li>
+</ol></li>
+<li><p>Beneficios de la Estadística Bayesiana</p>
+<p>Una amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana. Explica lo siguiente:</p>
+<ol type="i">
+<li>¿Por qué es útil el enfoque Bayesiano?</li>
+<li>¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano? <!-- @Johnson2021 --></li>
+</ol></li>
+</ol>
+<!-- 1.  Me gusta mucho el ejercicio 1.1 de @Johnson2021 pero creo que es muy yankee-céntrico. 
+    Habría que buscar uno que hable de una historia que sea mas familiar en nuestro 
+    contexto. -->
+</section>
 <section id="to-do" class="level2">
 <h2 class="anchored" data-anchor-id="to-do">To Do</h2>
 <ul>
@@ -470,6 +503,35 @@ Y | n \sim \text{Binomial}(n, \theta)
 </ul></li>
 </ul>
 
+<!-- * Me parece que algunas preguntas conceptuales podrian estar incluso al final del curso
+    * O podriamos volver a hacerlas, a ver como cambian las respuestas
+    * Eso permitiria dejarlas aca, pero sacarle presion
+* Prefiero el contraste entre "enfoque bayesiano" y "enfoque frecuentista" que 
+"estadistica bayesiana" y "estadistica frecuentista". Creo que hay una sola "estadistica"
+y hay muchisimos principios que son comunes. Luego varia el "enfoque" con el cual se mira
+a los parametros y el proceso generador de datos. En otras palabras, puedo expresar el mismo
+modelo estadistico pero encararlo desde distinto enfoque. El modelo sigue siendo el mismo,
+lo que cambia es el enfoque con el que lo miro, y en consecuencia, el significado de 
+algunas partes.     
+* Tambien me parece que "frecuentista" vs "bayesiano" es una simplificacion que mete
+dentro de frecuentista a muchas cosas que no son exactamente lo mismo, hay
+unos trabajos de Bradley Efron que ayudan (ver abajo)
+
+Hay un par de trabajos/comentarios criticos que me parecen interesantes y creo que 
+la materia deberia tenerlos en cuenta
+https://www2.stat.duke.edu/courses/Spring10/sta122/Handouts/EfronWhyEveryone.pdf
+https://www.jstor.org/stable/27590513
+https://www.colorado.edu/amath/sites/default/files/attached-files/efron.pdf
+https://twitter.com/dan_p_simpson/status/1564579319758073856
+https://math.stackexchange.com/a/2079842
+https://www.ime.usp.br/~abe/lista/pdfxeAKkfZxJM.pdf
+http://www.math.chalmers.se/Stat/Grundutb/GU/MSA220/S16/Efron250years.pdf
+Computer Age Statistical Inference:
+    * Los capitulos 2, 3, y 4 tratan 
+    "Frequentist Inference", "Bayesian Inference", 
+    y "Fisherian Inference and Maximum Likelihood Estimation"
+-->
+
 
 
 </section>
@@ -478,6 +540,9 @@ Y | n \sim \text{Binomial}(n, \theta)
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
 Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
+</div>
+<div id="ref-Hoff2009" class="csl-entry" role="doc-biblioentry">
+Hoff, Peter D. 2009. <em>A First Course in Bayesian Statistical Methods</em>. 1st edition. Springer.
 </div>
 <div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
 Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
