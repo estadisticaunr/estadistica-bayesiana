@@ -2,7 +2,7 @@
 title: "Práctica - Unidad 1"
 bibliography: ../references.bib
 nocite: |
-  @Johnson2021, @McElreath2020, @Martin2021
+  @Johnson2021, @McElreath2020, @Martin2021, @Hoff2009
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_01.pdf
 ---
 
@@ -36,6 +36,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     a. **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", 
     u otra expresión.
     a. **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**.
+    <!-- @Martin2021 -->
 
 1. El test ~~in~~falible
 
@@ -49,6 +50,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
         * ¿Cuál seria la probabilidad que el paciente esté enfermo? 
         * ¿Y si diera negativo?
         * ¿Es el a priori el mismo para el segundo análisis que para el primero?
+    <!-- @Martin2021 -->
 
 1.  ¿Es verdad que existen los vampiros? Versión Crepúsculo
 
@@ -59,6 +61,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     la piel brillante si los vampiros no existen es del 3%.
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎
     ¿Cuál es la probabilidad que existan los vampiros?
+    <!-- @Johnson2021 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["crepusculo"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
@@ -88,6 +91,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     * ¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?
     * Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo?
+    <!-- @Johnson2021 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["ceibo"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
@@ -110,6 +114,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     ¿Cuál es la probabilidad que su viaje esté demorado?
     * El colectivo de Franco no está demorado. 
     ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana?
+    <!-- @Johnson2021 -->
     
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["colectivo"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
@@ -135,10 +140,27 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     * ¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?
     * Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A?
+    <!-- @McElreath2020 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["bebe_panda"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
+
+1.  Demuestra la validez de la siguiente expresión de la regla de Bayes
+
+    $$
+    P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
+    $$
+
+    donde $A$ es un evento cualquiera y $\{B_1, \cdots, B_K\}$ forman una partición.
+    Para ello siga los siguientes pasos
+
+    i. Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
+    i. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
+    i. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
+    i. Junte las partes para formar la regla de Bayes.
+    <!-- @Hoff2009 -->
+    <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
 
 ## Popurrí?
 
@@ -209,6 +231,38 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
     <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" -->
     <!-- @Reich2020 -->
 
+## Conceptuales
+
+1.  Voy a conseguir esa pasantía
+
+    La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes
+    para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda,
+    te das cuenta que sos una persona calificada para el puesto: estos son tus **datos**.
+    Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu **hipótesis**. 
+
+    i. Desde la perspectiva de una persona con un razonamiento frecuentista, 
+    ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?
+    i. Repita el punto anterior considerando la perspectiva de una persona con un 
+    razonamiento Bayesiano.
+    i. ¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? 
+    Justifica tu respuesta.
+    <!-- @Johnson2021 -->
+
+1.  Beneficios de la Estadística Bayesiana
+
+    Una amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana.
+    Explica lo siguiente:
+
+    i. ¿Por qué es útil el enfoque Bayesiano?
+    i. ¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano?
+    <!-- @Johnson2021 -->
+
+
+<!-- 1.  Me gusta mucho el ejercicio 1.1 de @Johnson2021 pero creo que es muy yankee-céntrico. 
+    Habría que buscar uno que hable de una historia que sea mas familiar en nuestro 
+    contexto. -->
+
+
 ## To Do
 
 * Ejercicios conceptuales
@@ -216,3 +270,33 @@ Todos como que caen dentro de "regla de bayes". Tenemos que ver como los dividim
 * Sacar posterior a mano
     * Una discreta
     * Una continua
+
+
+<!-- * Me parece que algunas preguntas conceptuales podrian estar incluso al final del curso
+    * O podriamos volver a hacerlas, a ver como cambian las respuestas
+    * Eso permitiria dejarlas aca, pero sacarle presion
+* Prefiero el contraste entre "enfoque bayesiano" y "enfoque frecuentista" que 
+"estadistica bayesiana" y "estadistica frecuentista". Creo que hay una sola "estadistica"
+y hay muchisimos principios que son comunes. Luego varia el "enfoque" con el cual se mira
+a los parametros y el proceso generador de datos. En otras palabras, puedo expresar el mismo
+modelo estadistico pero encararlo desde distinto enfoque. El modelo sigue siendo el mismo,
+lo que cambia es el enfoque con el que lo miro, y en consecuencia, el significado de 
+algunas partes.     
+* Tambien me parece que "frecuentista" vs "bayesiano" es una simplificacion que mete
+dentro de frecuentista a muchas cosas que no son exactamente lo mismo, hay
+unos trabajos de Bradley Efron que ayudan (ver abajo)
+
+Hay un par de trabajos/comentarios criticos que me parecen interesantes y creo que 
+la materia deberia tenerlos en cuenta
+https://www2.stat.duke.edu/courses/Spring10/sta122/Handouts/EfronWhyEveryone.pdf
+https://www.jstor.org/stable/27590513
+https://www.colorado.edu/amath/sites/default/files/attached-files/efron.pdf
+https://twitter.com/dan_p_simpson/status/1564579319758073856
+https://math.stackexchange.com/a/2079842
+https://www.ime.usp.br/~abe/lista/pdfxeAKkfZxJM.pdf
+http://www.math.chalmers.se/Stat/Grundutb/GU/MSA220/S16/Efron250years.pdf
+Computer Age Statistical Inference:
+    * Los capitulos 2, 3, y 4 tratan 
+    "Frequentist Inference", "Bayesian Inference", 
+    y "Fisherian Inference and Maximum Likelihood Estimation"
+-->

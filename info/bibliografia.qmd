@@ -1,10 +1,25 @@
 ---
 title: Bibliografía
 bibliography: ../references.bib
-nocite: |
-  @*
+filters:
+  - section-bibliographies
+citeproc: false
 ---
 
-**To Do**: Dividir en bibliografia principal y en bibliografia complementaria
+# Bibliografía principal
 
-<div id="refs"></div>
+<div style="visibility: hidden; height: 0;">
+  @Johnson2021
+  @McElreath2020
+  @Gelman2006
+  @Kruschke2014
+  @Reich2020
+</div>
+
+# Bibliografía complementaria
+
+<div style="visibility: hidden; height: 0;">
+  @Gelman2013, @Gelman2021, @Downey2021, @Lee2014, @DavidsonPilon2015, @Nicenboim2022,
+  @Barr2021, @Carlin2008, @Hoff2009, @MacKay2003, @Lambert2018, @Murphy2022,
+  @Murphy2023, @Bishop2006, @Martin2021, @Theoridis2020, @Clyde2022, @Ma2022
+</div>
