@@ -1,4 +1,4 @@
-# Estadística Bayesiana
+# Estadística Bayesiana <img src="utils/imgs/logo.png" width="150px" align="right" />
 
 🚧 Trabajo en progreso! 🚧
 

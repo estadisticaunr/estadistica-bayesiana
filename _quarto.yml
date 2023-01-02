@@ -7,11 +7,13 @@ website:
   title: "Estadística Bayesiana"
   description: "Página del curso Estadística Bayesiana - Licenciatura en Estadística (UNR)."
   site-url: "https://estadisticaunr.github.io/estadistica-bayesiana/"
+  favicon: utils/imgs/favicon.png
 
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
 
   sidebar:
+    logo: utils/imgs/logo.png
     pinned: True
     align: center
     tools:
