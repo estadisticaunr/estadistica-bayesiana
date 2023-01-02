@@ -21,7 +21,6 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
 
 ## Probabilidad
 
-
 1.  De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
     

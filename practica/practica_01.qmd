@@ -30,31 +30,30 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 1.  Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
 
-    a.  Probabilidad de un parametro dados los datos observados
-    a.  La distribucion de probabilidad de los parametros antes de ver los datos
-    a.  La verosimilitud de los datos para un valor dado de los parámetros
-    a.  La probabilidad de una observación nueva dados los datos observados
-    a.  La probabilidad de una observación antes de ver los datos
-    a.  **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", u otra expresión.
-    a.  **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**.
+    a. Probabilidad de un parametro dados los datos observados
+    a. La distribucion de probabilidad de los parametros antes de ver los datos
+    a. La verosimilitud de los datos para un valor dado de los parámetros
+    a. La probabilidad de una observación nueva dados los datos observados
+    a. La probabilidad de una observación antes de ver los datos
+    a. **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", u otra expresión.
+    a. **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**.
     <!-- @Martin2021 -->
 
-2.  El test ~~in~~falible
+1.  El test ~~in~~falible
 
     En una población dada, una de cada mil personas tiene una enfermedad.
     Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo.
     El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad.
     Además, dicho test tiene una tasa de falsos positivos del 5%.
   
-    -   ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
-    -   Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
-        -   ¿Cuál seria la probabilidad que el paciente esté enfermo?
-        -   ¿Y si diera negativo?
-        -   ¿Es el a priori el mismo para el segundo análisis que para el primero?
+    - ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
+    - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
+        - ¿Cuál seria la probabilidad que el paciente esté enfermo?
+        - ¿Y si diera negativo?
+        - ¿Es el a priori el mismo para el segundo análisis que para el primero?
         <!-- @Martin2021 -->
 
-3.  ¿Es verdad que existen los vampiros?
-    Versión Crepúsculo
+1.  ¿Es verdad que existen los vampiros? Versión Crepúsculo
 
     Edward quiere probarle a Bella que los vampiros existen.
     Según Bella, hay una probabilidad del 5% de que los vampiros existan.
@@ -69,7 +68,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
     ```
 
-4.  Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
+1.  Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
     - Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
     - Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
@@ -78,7 +77,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
     ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
 
-5.  Árboles enfermos
+1.  Árboles enfermos
 
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
@@ -210,8 +209,11 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 Todos como que caen dentro de "regla de bayes".
 Tenemos que ver como los dividimos
 
-1.  Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la probabilidad *a priori* de que la especie se encuentre en el bosque.
-    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que $X_2$ de ellas pertenecen a la especie de interés.
+1.  Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
+    árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
+    probabilidad *a priori* de que la especie se encuentre en el bosque.
+    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que 
+    $X_2$ de ellas pertenecen a la especie de interés.
 
     El modelo luego es $$
     \begin{array}{lc}
@@ -219,23 +221,33 @@ Tenemos que ver como los dividimos
     \end{array}
     $$
 
-    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.
+    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se 
+    encuentra en el bosque.
 
-    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las siguientes probabilidades:
+    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las 
+    siguientes probabilidades:
 
     i.  $P(X_1 = 0, X_2 = 0)$
-    ii. $P(X_1 = 0)$
-    iii. $P(X_2 = 0)$
-    iv. $P(X_1 = 0 | X_2 = 0)$
-    v.  $P(X_2 = 0 | X_1 = 0)$
-    vi. $P(X_1 = 0 | X_2 = 1)$
-    vii. $P(X_2 = 0 | X_1 = 1)$
-    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
-    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 -->
+    i. $P(X_1 = 0)$
+    i. $P(X_2 = 0)$
+    i. $P(X_1 = 0 | X_2 = 0)$
+    i.  $P(X_2 = 0 | X_1 = 0)$
+    i. $P(X_1 = 0 | X_2 = 1)$
+    i. $P(X_2 = 0 | X_1 = 1)$
+    i. Explique de manera intuitiva cómo es que las probabilidades calculadas en
+    (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
+    i. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ 
+    ¿Cuán grande debe ser $n$ para que se puede concluir con 95\% de confianza que la 
+    especie no se encuentra en el bosque?
+    <!-- @Reich2020 -->
 
-1.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.
-    \
-    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y asumiendo:
+1.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número 
+    de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
+    marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 
+    64, 13, 33, 18, 30 y 20.
+    
+    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y 
+    asumiendo:
 
     $$
     \begin{aligned}
@@ -256,46 +268,60 @@ Tenemos que ver como los dividimos
 
     donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
     La distribución *a priori* de $n$ es $n \sim \text{Poisson}(5)$.
-    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la distribución *a posteriori* de $n$ para todas las combinaciones de $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
-    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución *a posteriori*.\
-    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 -->
+    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar 
+    la distribución *a posteriori* de $n$ para todas las combinaciones de 
+    $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
+    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución *a posteriori*.
+    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> 
+    <!-- @Reich2020 -->
 
-1.  Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$).A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
-    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a $T$.
+1.  Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$). 
+    A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
+    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos
+    es mayor, menor o igual a $T$.
 
-    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ (siendo $G$ más grande, $C$ más chico e $I$ igual).
+    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ 
+    (siendo $G$ más grande, $C$ más chico e $I$ igual).
     ¿Cuál es la distribución *a posteriori* de los valores de $T$?
     <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
 
 1.  Hay dos monedas en una caja.
     Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.
 
-    i.  Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
-    ii. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
+    i. Se elige una moneda al azar, se arroja, y se obtiene cara. 
+    ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
+    i. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras.
+    ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
 
-1.  Cansado de los experimentos de arrojar una moneda cientos de veces al aire, un estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o seca y registra el resultado.
+1.  Cansado de los experimentos de arrojar una moneda cientos de veces al aire, un 
+    estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
+    o Ceca y registra el resultado.
 
     Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
-    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).
+    En particular, la probabilidad de que clasificar mal es de 0.2 
+    (20% de las veces que sale cara, el sistema dice ceca, y viceversa).
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
 
-    i.  ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
-    ii. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía?
-<!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+    i. ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
+    i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía?
+    <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
 
-1.  En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.
+1.  En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en
+    un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más
+     de 1000 personas en la sala, superando el máximo permitido.
 
-    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo.
+    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque
+    piensa que contarlas podría llevar mucho tiempo.  
     Decide hacer un experimento:
 
-    -   Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
-    -   Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
-    -   Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
+    -  Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
+    -  Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
+    -  Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
 
     ¿Cuántas personas hay en la sala?
     O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
-<!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+    <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
 
 [^2]: Una clase de molusco.
     El mejillón, la ostra y la almeja son bivalvos
