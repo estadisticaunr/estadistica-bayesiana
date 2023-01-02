@@ -387,6 +387,13 @@ div.csl-indent {
 </div>
 </div>
 </div></li>
+<li><p>House of Cards</p>
+<p>Hay 538 miembros en el Congreso de Estados Unidos. Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado. Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo. ¿Cuántos miembros del Congreso son honestos? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<li><p>Estás a punto de subir a un avión rumbo a Seattle. Querés saber si tenés que llevar un paraguas. Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. Cuál es la probbailidad de que realmente esté lloviendo en Seattle? Se puede asumir que llueve el 10% del tiempo. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<li><p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Oliver estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<li><p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs. Le preguntamos si algunx de ellxs es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambxs sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<li><p>Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo? Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son siempre del mismo sexo biológico. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<li><p>Dos cajones contienen medias. Uno de ellos tiene igual cantidad de medias blancas y negras. El otro contiene un número igual de medias rojas, verdes y azules. Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales. ¿Cuál es la probabilidad de que las medias sean blancas? Supóngase que sacar la primera media no altera las proporciones. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 </ol>
 </section>
 <section id="popurrí" class="level2">
@@ -427,6 +434,28 @@ Y | n \sim \text{Binomial}(n, \theta)
 \]</span></p>
 <p>donde <span class="math inline">\(\theta\)</span> es la probabilidad de compra, dado que se produce la visita a la tienda. La distribución <em>a priori</em> de <span class="math inline">\(n\)</span> es <span class="math inline">\(n \sim \text{Poisson}(5)\)</span>. Bajo el supuesto que <span class="math inline">\(\theta\)</span> es conocido y que <span class="math inline">\(n\)</span> es desconocido, graficar la distribución <em>a posteriori</em> de <span class="math inline">\(n\)</span> para todas las combinaciones de <span class="math inline">\(Y \in \{0, 5, 10 \}\)</span> y <span class="math inline">\(\theta \in \{0.2, 0.5\}\)</span>. Explique cual es del efecto de cambiar <span class="math inline">\(Y\)</span> y <span class="math inline">\(\theta\)</span> sobre la distribución <em>a posteriori</em>.<br>
 <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 --></p></li>
+<li><p>Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo <span class="math inline">\(T\)</span>).A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces. No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a <span class="math inline">\(T\)</span>.</p>
+<p>Supongamos que nos da la secuencia: <span class="math inline">\(G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C\)</span> (siendo <span class="math inline">\(G\)</span> más grande, <span class="math inline">\(C\)</span> más chico e <span class="math inline">\(I\)</span> igual). ¿Cuál es la distribución <em>a posteriori</em> de los valores de <span class="math inline">\(T\)</span>? <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html --></p></li>
+<li><p>Hay dos monedas en una caja. Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.</p>
+<ol type="i">
+<li>Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?</li>
+<li>Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?</li>
+</ol></li>
+<li><p>Cansado de los experimentos de arrojar una moneda cientos de veces al aire, un estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o seca y registra el resultado.</p>
+<p>Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error. En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).</p>
+<p>Se arroja la moneda 250 veces y el sistema detecta 140 caras,</p>
+<ol type="i">
+<li>¿Cuál es la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, la probabilidad de obtener cara?</li>
+<li>¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></li>
+</ol></li>
+<li><p>En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.</p>
+<p>La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo. Decide hacer un experimento:</p>
+<ul>
+<li>Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.</li>
+<li>Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.</li>
+<li>Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.</li>
+</ul>
+<p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p></li>
 </ol>
 </section>
 <section id="to-do" class="level2">
@@ -447,6 +476,9 @@ Y | n \sim \text{Binomial}(n, \theta)
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
+Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
+</div>
 <div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
 Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
 </div>
