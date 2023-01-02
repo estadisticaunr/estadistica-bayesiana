@@ -2,8 +2,11 @@
 title: "Práctica - Unidad 2"
 bibliography: ../references.bib
 nocite: |
-    @Martin2021
+    @Martin2021, @Downey2021
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_02.pdf
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
 ```{r echo=FALSE, include=FALSE}
@@ -18,25 +21,24 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 ```
 
 ::: {.content-visible when-format="html"}
-
-[Descargar PDF]({{< meta pdf_file >}})
-
+[Descargar PDF](%7B%7B%3C%20meta%20pdf_file%20%3E%7D%7D)
 :::
-
 
 ## Modelos de Distribuciones Conjugadas
 
-1.  En un campamento de verano para infantes se realizaron actividades que promueven el
-    contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate.
-    Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de ellas.
-    Llamaremos con $\theta$ a la probabilidad de que una semilla de tomate germine y 
-    asumimos una distribución $\text{Beta}(1, 1)$.
+1.  En un campamento de verano para infantes se realizaron actividades
+    que promueven el contacto con la naturaleza. Una de las tareas
+    consistió en germinar semillas de tomate. Josefina plantó 18
+    semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de
+    ellas. Llamaremos con $\theta$ a la probabilidad de que una semilla
+    de tomate germine y asumimos una distribución $\text{Beta}(1, 1)$.
 
-    i. Calcular la media y el desvío estándar _a posteriori_ de $\theta$ a mano.
-    i. Verifique el cálculo utilizando `R`.
-    i. Calcule un intervalo de credibilidad del 95% para $\theta$.
-        a. A mano
-        a. Usando `R`
+    i.  Calcular la media y el desvío estándar *a posteriori* de
+        $\theta$ a mano.
+    ii. Verifique el cálculo utilizando `R`.
+    iii. Calcule un intervalo de credibilidad del 95% para $\theta$.
+         a.  A mano
+         b.  Usando `R`
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
@@ -44,122 +46,196 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
     blablabadasd
 
-<!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
-1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables aleatorias
-    independientes e idénticamente distribuidas según una distribución 
-    $\text{Uniforme}(0, \theta)$ y $\theta \sim \text{Pareto}(a, b)$. 
-    Derivar la distribución _a posteriori_ de $\theta | \mathbf{x}$  
-    **revisar redaccion y si hablamos de muestras o variables aleatorias**.
+2.  En la final del 2018 de la Copa del Mundo de la FIFA, Francia le
+    ganó a Croacia por 4 a 2. En función de este resultado,
 
-* Calculo de conjugada no tradicional
-    * Binomial negativa - Beta
-    * Exponencial - Gamma
+    i.  ¿Qué probabilidad hay de que Francia fuera un mejor equipo que
+        Croacia?
+    ii. Si el mismo partido se jugara de nuevo (cosa que los franceses
+        en aquella oportunidad no pidieron), ¿cuál es la probabilidad de
+        que Francia ganara de nuevo?
+        <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
+
+3.  Durante el desarrollo de las vacunas contra el COVID-19, un medio
+    anunció para una determinada vacuna una eficacia del 100%.
+
+> En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la
+> vacuna BNT162b2 de Pfizer-BioNTech para el COVID-19 demostró una
+> eficacia del 100% y una respuesta robusta de anticuerpos. El ensayo
+> clínico involucró 2260 jóvenes estadounidenses. En el ensayo, 18 casos
+> de COVID-19 fueron observados en el grupo placebo ($n=1129$) y ninguno
+> en el grupo vacunado ($n=1131$)
+
+Es de esperar que, en un ensayo más grande, aparezca algún caso de
+COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la
+probabilidad de algo que aún no ocurrió?
+<!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html -->
+
+1.  La regla del tres
+
+    Una estudiante de Licenciatura en Estadística está releyendo su
+    tesina antes de entregarla. Si en 20 páginas encontrara 5 typos,
+    sería *razonable* estimar $\frac{5}{20} = \frac{1}{4}$ typos/página.
+    ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
+    
+    Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación razonable para
+    $\tau$ (la tasa de typos por página), siendo $N$ el número de páginas.
+    Para ello, hallar la probabilidad de que $\tau > $\frac{3}{N}$ para diferentes valores de $N$. 
+<!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
+
+2.  Una colega quiere comprar un producto por Internet. Tres vendedores
+    ofrecen el mismo producto al mismo precio. Un vendedor tiene 100%
+    evaluaciones positivas, con 10 *reviews*. Otro tiene 96% de
+    evaluaciones positivas, con 50 *reviews*. El último tiene 90% de
+    comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres
+    vendedores le recomendarías?
+<!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
+
+<!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
+
+1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables
+    aleatorias independientes e idénticamente distribuidas según una
+    distribución $\text{Uniforme}(0, \theta)$ y
+    $\theta \sim \text{Pareto}(a, b)$. Derivar la distribución *a
+    posteriori* de $\theta | \mathbf{x}$\
+    **revisar redaccion y si hablamos de muestras o variables
+    aleatorias**.
+
+-   Calculo de conjugada no tradicional
+    -   Binomial negativa - Beta
+    -   Exponencial - Gamma
 
 ## Simulaciones
 
-1.  `Modern Data Science with R` 
-    El tiempo que un empleado de recursos humanos demora en 
-    hacer una entrevista tiene distribución exponencial con media 30 minutos. 
-    Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. 
-    Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. 
-    Es válido considerar que todos los postulantes llegan puntuales a su entrevista. 
-    Cuando la persona del turno de las 8:15 llega a la oficina
+1.  `Modern Data Science with R` El tiempo que un empleado de recursos
+    humanos demora en hacer una entrevista tiene distribución
+    exponencial con media 30 minutos. Los tiempos de duración de cada
+    entrevista se pueden considerar independientes entre sí. Las
+    entrevistas a postulantes para un trabajo están programadas cada 15
+    minutos, comenzando desde las 8. Es válido considerar que todos los
+    postulantes llegan puntuales a su entrevista. Cuando la persona del
+    turno de las 8:15 llega a la oficina
 
-    i. ¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?
-    i. ¿Cuál es el horario esperado al que terminará su entrevista?
+    i.  ¿Cuál es la probabilidad de que tenga que esperar antes de ser
+        entrevistada?
+    ii. ¿Cuál es el horario esperado al que terminará su entrevista?
 
     <!-- @Johnson2021 -->
 
-1.  Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300
+2.  Dos personas se conocen en la fila de embarque para un vuelo en un
+    avión Airbus A330-300
 
-    i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
-    i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
+    i.  ¿Cuál es la probabilidad de que tengan asientos en la misma
+        fila?
+    ii. ¿Cuál es la probabilidad de que estén sentados en asientos
+        adyacentes?
 
-1.  `Modern Data Science with R` 
-    El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. 
-    Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta.
-    **To Do** Explicar el juego.
+3.  `Modern Data Science with R` El Problema de Monty Hall es trabajado
+    con frecuencia en cursos de Probabilidad. Mediante simulación,
+    determine cuál es la probabilidad de ganar el juego si se cambia de
+    puerta. **To Do** Explicar el juego.
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
     ```
 
-1.  Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346) 
-    y conociendo el problema del cumpleaños 
-    (¿cuántas personas debe haber en una habitación para que la probabilidad de que dos de ellas cumplan años el mismo día sea mayor a X%?) 
-    construir un gráfico similar al del tuit donde se grafique la probabilidad de que haya 
-    $n$ personas que cumplan años el mismo día para $K$ personas presentes en la habitación.
+4.  Basándose en el [siguiente
+    tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346)
+    y conociendo el problema del cumpleaños (¿cuántas personas debe
+    haber en una habitación para que la probabilidad de que dos de ellas
+    cumplan años el mismo día sea mayor a X%?) construir un gráfico
+    similar al del tuit donde se grafique la probabilidad de que haya
+    $n$ personas que cumplan años el mismo día para $K$ personas
+    presentes en la habitación.
 
-1.  El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. 
-    Cada paquete trae cinco figuritas.
+5.  El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638
+    figuritas. Cada paquete trae cinco figuritas.
 
-    i. Comprando cinco paquetes, ¿cuál es la probabilidad de tener a Messi?
-    i. Comprando cinco paquetes, ¿cuál es la probabilidad de sacar a Messi repetido?
-    i. ¿Cuántos paquetes se necesitan, en promedio, para completar el álbum?
-    i. Si a una persona le faltan diez figuritas para completar el álbum, ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?
+    i.  Comprando cinco paquetes, ¿cuál es la probabilidad de tener a
+        Messi?
+    ii. Comprando cinco paquetes, ¿cuál es la probabilidad de sacar a
+        Messi repetido?
+    iii. ¿Cuántos paquetes se necesitan, en promedio, para completar el
+         álbum?
+    iv. Si a una persona le faltan diez figuritas para completar el
+        álbum, ¿cuántos paquetes tiene que comprar para asegurarse de
+        lograrlo?
 
-1.  Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias de $k$ caras?
+6.  Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que
+    no haya secuencias de $k$ caras?
 
-1.  ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos?
+7.  ¿Cuál es la probabilidad de que tres personas en un ascensor con
+    doce pisos presionen para ir a tres pisos consecutivos?
 
-1.  Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina 
-    se reúnen en la habitación del hotel como se describe en [este tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
-    
-    i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
-    i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
+8.  Previo a la final de la Copa América 2021, los jugadores de la
+    Selección Argentina se reúnen en la habitación del hotel como se
+    describe en [este
+    tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
 
-1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
+    i.  ¿Cuál es la probabilidad de que un jugador adivine una de diez
+        cartas?
+    ii. ¿Cuál es la probabilidad de que tres de ellos adivinen una de
+        diez cartas?
 
+9.  Quizás algo con tasa de falsos descubrimientos, p-values y su
+    distribución...
 
 ## Elección de distribuciones a priori?
 
 1.  Esbozar la distribución de las siguientes variables
 
-    i. El número de personas que compran café en el bar de la facultad asumiendo distribución de Poisson.
-    i. El peso de perros adultos en kilogramos asumiendo una distribución Uniforme.
-    i. El peso de elefantes adultos en kilogramos asumiendo una distribución Normal.
-    i. El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia la derecha.
+    i.  El número de personas que compran café en el bar de la facultad
+        asumiendo distribución de Poisson.
+    ii. El peso de perros adultos en kilogramos asumiendo una
+        distribución Uniforme.
+    iii. El peso de elefantes adultos en kilogramos asumiendo una
+         distribución Normal.
+    iv. El peso de humanos adultos en libras asumiendo una distribución
+        asimétrica hacia la derecha.
 
-1. Para cada uno  cada uno de los ejemplos del ejercicio anterior, graficar la distribución usando `R`.
-   Seleccionar los parámetros que creas razonable, 
-   tomar una muestra aleatoria de tamaño 1000
-   y graficar la distribución en base a las muestras. 
-   ¿Se refleja tu conocimiento del problema en la distribución graficada?
-   Si no, ajustar los parámetros y repetir el proceso hasta que el resultado tenga
-   concuerde con el conocimiento del problema.
+2.  Para cada uno cada uno de los ejemplos del ejercicio anterior,
+    graficar la distribución usando `R`. Seleccionar los parámetros que
+    creas razonable, tomar una muestra aleatoria de tamaño 1000 y
+    graficar la distribución en base a las muestras. ¿Se refleja tu
+    conocimiento del problema en la distribución graficada? Si no,
+    ajustar los parámetros y repetir el proceso hasta que el resultado
+    tenga concuerde con el conocimiento del problema.
 
+3.  Comparar las siguientes distribuciones *a priori*.
 
-1.  Comparar las siguientes distribuciones _a priori_.
+    -   $\text{Beta}(0.5, 0.5)$
+    -   $\text{Beta}(1, 1)$
+    -   $\text{Beta}(1, 1)$
+    -   $\text{Beta}(1, 4)$
+    -   $\text{Beta}(5, 1.5)$
 
-    * $\text{Beta}(0.5, 0.5)$
-    * $\text{Beta}(1, 1)$
-    * $\text{Beta}(1, 1)$
-    * $\text{Beta}(1, 4)$
-    * $\text{Beta}(5, 1.5)$
+    i.  ¿En qué se diferencian?
+    ii. ¿Cuál de ellas es más informativa?
+    iii. ¿Cómo lo determinaste?
 
-    i. ¿En qué se diferencian?
-    i. ¿Cuál de ellas es más informativa?
-    i. ¿Cómo lo determinaste?
+4.  En cada una de la situaciones que se describen debajo, ajustar
+    manualmente los parámetros de una distribución $\text{Beta}$ para
+    que reflejen la información brindada. En algunos casos puede haber
+    varias respuestas aceptables en vez de existir "la respuesta
+    correcta".
 
-
-1.  En cada una de la situaciones que se describen debajo, ajustar manualmente los
-    parámetros de una distribución $\text{Beta}$ para que reflejen la información brindada. 
-    En algunos casos puede haber varias respuestas aceptables en vez de existir "la respuesta correcta".
-
-    i. Un amigo se postuló para un empleo en LinkedIn y te dijo: "Diría que tengo una 
-    chance del 40% de que me den el trabajo, pero no estoy seguro". Cuando le preguntamos
-    un poco mas, dijo que estima sus chances entre un 20% y un 60%.
-    i. Un grupo de investigación del CONICET desarrolló una nueva prueba para una 
-    enfermedad bastante rara. El grupo espera que esta prueba arroje resultados correctos
-    el 80% de las veces, con una varianza de 0.05.
-    i. El primo de un amigo disfruta de salir a pescar, y lo hace muy seguido. En el 
-    asado de los Jueves dice que "El 90% de las veces que salgo a pescar, vuelvo con algo.
-    Si te tuviera que dar un rango, te diría entre el 85% y el 100% de las veces".
-
+    i.  Un amigo se postuló para un empleo en LinkedIn y te dijo: "Diría
+        que tengo una chance del 40% de que me den el trabajo, pero no
+        estoy seguro". Cuando le preguntamos un poco mas, dijo que
+        estima sus chances entre un 20% y un 60%.
+    ii. Un grupo de investigación del CONICET desarrolló una nueva
+        prueba para una enfermedad bastante rara. El grupo espera que
+        esta prueba arroje resultados correctos el 80% de las veces, con
+        una varianza de 0.05.
+    iii. El primo de un amigo disfruta de salir a pescar, y lo hace muy
+         seguido. En el asado de los Jueves dice que "El 90% de las
+         veces que salgo a pescar, vuelvo con algo. Si te tuviera que
+         dar un rango, te diría entre el 85% y el 100% de las veces".
 
 ## Notas
 
-En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es despejar
-dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto.
-Acá podriamos mostrar que usamos $\text{Beta}(a, b)$ con 
+En algún lado podríamos tener un glosario, o algo del estilo. El
+objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de
+las distribuciones que utilizamos por defecto. Acá podriamos mostrar que
+usamos $\text{Beta}(a, b)$ con
 $\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}$
