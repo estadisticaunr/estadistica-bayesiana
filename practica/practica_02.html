@@ -315,29 +315,23 @@ div.csl-indent {
 </figure>
 </div>
 </div>
-</div>
-<p>blablabadasd</p></li>
+</div></li>
 <li><p>En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por 4 a 2. En función de este resultado,</p>
 <ol type="i">
 <li>¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?</li>
 <li>Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
 </ol></li>
-<li><p>Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una determinada vacuna una eficacia del 100%.</p></li>
-</ol>
+<li><p>Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una determinada vacuna una eficacia del 100%.</p>
 <blockquote class="blockquote">
 <p>En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la vacuna BNT162b2 de Pfizer-BioNTech para el COVID-19 demostró una eficacia del 100% y una respuesta robusta de anticuerpos. El ensayo clínico involucró 2260 jóvenes estadounidenses. En el ensayo, 18 casos de COVID-19 fueron observados en el grupo placebo (<span class="math inline">\(n=1129\)</span>) y ninguno en el grupo vacunado (<span class="math inline">\(n=1131\)</span>)</p>
 </blockquote>
-<p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p>
-<ol type="1">
+<p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p></li>
 <li><p>La regla del tres</p>
 <p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrara 5 typos, sería <em>razonable</em> estimar <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span> typos/página. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
 <p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de typos por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que $&gt; <span class="math inline">\(\frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p></li>
 <li><p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
-</ol>
-<!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
-<ol type="1">
-<li>Suponga <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Pareto}(a, b)\)</span>. Derivar la distribución <em>a posteriori</em> de <span class="math inline">\(\theta | \mathbf{x}\)</span><br>
-<strong>revisar redaccion y si hablamos de muestras o variables aleatorias</strong>.</li>
+<li><p>Suponga <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Pareto}(a, b)\)</span>. Derivar la distribución <em>a posteriori</em> de <span class="math inline">\(\theta | \mathbf{x}\)</span><br>
+<strong>revisar redaccion y si hablamos de muestras o variables aleatorias</strong>. <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) --></p></li>
 </ol>
 <ul>
 <li>Calculo de conjugada no tradicional
@@ -350,18 +344,17 @@ div.csl-indent {
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
 <ol type="1">
-<li><p><code>Modern Data Science with R</code> El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
+<li><p>El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
-<li>¿Cuál es el horario esperado al que terminará su entrevista?</li>
-</ol>
-<!-- @Johnson2021 --></li>
+<li>¿Cuál es el horario esperado al que terminará su entrevista? <!-- `Modern Data Science with R` --></li>
+</ol></li>
 <li><p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
 <li>¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?</li>
 </ol></li>
-<li><p><code>Modern Data Science with R</code> El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta. <strong>To Do</strong> Explicar el juego.</p>
+<li><p>El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta. <strong>To Do</strong> Explicar el juego. <!-- `Modern Data Science with R` --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
