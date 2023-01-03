@@ -48,7 +48,7 @@ Este es el subtitulo...
 
 ::: {.g-col-12 .g-col-sm-6}
 
-### Ignacio Evangelista
+### Nacho Evangelista
 
 * {{< fa envelope >}} &nbsp; [email_de_nacho@mail.com](email_de_nacho@mail.com)
 * {{< fa calendar >}} &nbsp; Miércoles (7:00-9:00) y Viernes (7:00-9:00)
