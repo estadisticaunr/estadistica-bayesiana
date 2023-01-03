@@ -198,9 +198,9 @@
   {
     "objectID": "info/calendario.html",
     "href": "info/calendario.html",
-    "title": "Estadística Bayesiana",
+    "title": "Calendario",
     "section": "",
-    "text": "Calendario"
+    "text": "Semana\nFecha\nClase #\nApuntes\nLectura sugerida\n\n\n\n\n1\n18-03-2022\nIntroducción\n\nA\n\n\n\n21-03-2022\nTeorema de Bayes\n\nB\n\n\n2\n18-03-2022\nPriors\n\nC\n\n\n\n21-03-2022\nPosteriors\n\nD"
   },
   {
     "objectID": "info/enlaces_utiles.html",
@@ -221,7 +221,14 @@
     "href": "index.html",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Esta es la página del curso de grado Estadística Bayesiana que se dicta en la Facultad de Ciencias Económicas y Estadística de la Universidad Nacional de Rosario."
+    "text": "Este es el subtitulo…\n\n\n Facultad de Ciencias Económicas y Estadística\n Universidad Nacional de Rosario"
+  },
+  {
+    "objectID": "index.html#profesores",
+    "href": "index.html#profesores",
+    "title": "Estadística Bayesiana",
+    "section": "Profesores",
+    "text": "Profesores\n\n\nIgnacio Evangelista\n\n   email_de_nacho@mail.com\n   Horario de clases\n\nMiércoles 7:00-9:00\nViernes 7:00-9:00\n\n\n\n\nTomás Capretto\n\n   email_de_tomi@mail.com\n   Horario de clases\n\nLunes 11:00-13:00\nMiércoles 7:00-9:00"
   },
   {
     "objectID": "proyecto/recursos.html",
