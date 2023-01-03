@@ -1,1 +1,47 @@
-# Calendario
+---
+title: Calendario
+toc: false
+tbl-colwidths: [10, 15, 30, 10, 35]
+---
+
+```{r, echo=FALSE}
+enquote <- function(x) {
+    paste0("'", x, "'")
+}
+
+f <- function(link) {
+    is_active <- !is.na(link)
+    if (is_active) {
+        code <- paste0(
+            paste0("<a href=", enquote(link), ">"),
+            "<i class='fas fa-file-pdf fa-fw active'></i></a>"
+        )
+    } else {
+        code <- "<i class='fas fa-file-pdf fa-fw inactive'></i>"
+    }
+    return(code)
+}
+```
+
+```{r echo=FALSE, include=FALSE}
+data <- data.frame(
+    "Semana" = c("1", "", "2", ""),
+    "Fecha" = c("18-03-2022", "21-03-2022", "18-03-2022", "21-03-2022"),
+    "Clase" = c("Introducción", "Teorema de Bayes", "Priors", "Posteriors"),
+    "Apuntes" = c(NA, "enlace.pdf", NA, "enlace2.pdf"),
+    "Lectura sugerida" = LETTERS[1:4]
+)
+
+data[["Apuntes"]] <- sapply(data[["Apuntes"]], f)
+```
+
+```{r echo=FALSE}
+knitr::kable(
+    data,
+    col.names = c("Semana", "Fecha", "Clase #", "Apuntes", "Lectura sugerida"),
+    align = "l",
+    escape = TRUE
+)
+```
+
+{{< fa pdf >}}

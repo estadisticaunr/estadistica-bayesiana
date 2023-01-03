@@ -1,6 +1,70 @@
 ---
-title: "Estadística Bayesiana"
+page-layout: full
+sidebar: false
+toc: false
+course-logo: utils/imgs/logo.png
 ---
 
-Esta es la página del curso de grado Estadística Bayesiana que se dicta en la Facultad de 
-Ciencias Económicas y Estadística de la Universidad Nacional de Rosario.
+::: {.grid .title-block}
+
+::: {.course-details-title-block .g-col-12 .g-col-sm-8 .order-2 .order-sm-1 .text-center .text-sm-start}
+
+# Estadística Bayesiana {.course-title}
+
+::: {.course-subtitle}
+Este es el subtitulo...
+:::
+
+::: {.course-meta}
+{{< fa location-dot >}} Facultad de Ciencias Económicas y Estadística  
+{{< fa university >}} Universidad Nacional de Rosario
+:::
+
+:::
+
+::: {.g-col-12 .g-col-sm-4 .order-1 .order-sm-2}
+
+::: {.grid .five-columns}
+
+::: {.g-col-1 .g-col-sm-0}
+:::
+
+::: {.g-col-3 .g-col-sm-5}
+<img src="utils/imgs/logo.png" class="img-fluid"><img>
+:::
+
+::: {.g-col-1 .g-col-sm-0}
+:::
+:::
+
+:::
+
+:::
+
+
+## Profesores
+
+::: {.grid .course-details}
+
+::: {.g-col-12 .g-col-sm-6}
+
+### Ignacio Evangelista
+
+* {{< fa envelope >}} &nbsp; [email_de_nacho@mail.com](email_de_nacho@mail.com)
+* {{< fa calendar >}} &nbsp; Horario de clases
+    * **Miércoles** 7:00-9:00
+    * **Viernes**   7:00-9:00
+
+:::
+
+::: {.g-col-12 .g-col-sm-6}
+
+### Tomás Capretto
+
+* {{< fa envelope >}} &nbsp; [email_de_tomi@mail.com](email_de_tomi@mail.com)
+* {{< fa calendar >}} &nbsp; Horario de clases
+    * **Lunes** 11:00-13:00
+    * **Miércoles** 7:00-9:00
+
+:::
+:::

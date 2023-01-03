@@ -5,3 +5,4 @@
 _site/
 /.quarto/
 /.output/
+/.luarc.json

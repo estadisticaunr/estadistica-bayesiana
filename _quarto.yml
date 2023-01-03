@@ -9,68 +9,88 @@ website:
   site-url: "https://estadisticaunr.github.io/estadistica-bayesiana/"
   favicon: utils/imgs/favicon.png
 
+  navbar:
+    pinned: true
+    background: "#f07039"
+    right:
+      - text: Información
+        file: info/programa.qmd
+      - text: Apuntes
+        file: apuntes/introduccion.qmd
+      - text: Practica
+        file: practica/practica_00.qmd
+      - text: Proyecto
+        file: proyecto/descripcion.qmd
+      - text: Cómputo
+        file: computo/instalacion.qmd
+      - text: Material complementario
+        file: computo/instalacion.qmd
+      - icon: github
+        href: "https://github.com/estadisticaunr/estadistica-bayesiana"
+
+
+  sidebar:
+    - title: Información
+      style: docked
+      search: false
+      background: dark
+      contents:
+        - text: Programa
+          file: info/programa.qmd
+        - text: Bibliografia
+          file: info/bibliografia.qmd
+        - text: Docentes
+          file: info/docentes.qmd
+        - text: Calendario
+          file: info/calendario.qmd
+        - text: Enlaces útiles
+          file: info/enlaces_utiles.qmd
+        - text: Preguntas frecuentes
+          file: info/faq.qmd
+    - title: Practica
+      style: docked
+      search: false
+      background: dark
+      contents:
+        - text: Unidad 0
+          file: practica/practica_00.qmd
+        - text: Unidad 1
+          file: practica/practica_01.qmd
+        - text: Unidad 2
+          file: practica/practica_02.qmd
+        - text: Unidad 3
+          file: practica/practica_03.qmd
+    - title: Proyecto
+      style: docked
+      search: false
+      background: dark
+      contents:
+        - text: Descripción
+          file: proyecto/descripcion.qmd
+        - text: Recursos
+          file: proyecto/recursos.qmd
+    - title: Cómputo
+      style: docked
+      search: false
+      background: dark
+      contents:
+        - text: Instalación
+          file: computo/instalacion.qmd
+    - title: Material complementario
+      style: docked
+      search: false
+      background: dark
+      contents:
+        - text: Probabilidad
+          file: complementario/probabilidad.qmd
+
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
 
-  sidebar:
-    logo: utils/imgs/logo.png
-    pinned: True
-    align: center
-    tools:
-      - icon: github
-        href: https://github.com/estadisticaunr/estadistica-bayesiana
-    style: "docked"
-    search: true
-    collapse-level: 1
-    contents:
-    - section: "Información del curso"
-      contents:
-        - href: index.qmd
-          text: Descripción
-        - href: info/programa.qmd
-          text: Programa
-        - href: info/bibliografia.qmd
-          text: Bibliografia
-        - href: info/docentes.qmd
-          text: Docentes
-        - href: info/calendario.qmd
-          text: Calendario
-        - href: info/enlaces_utiles.qmd
-          text: Enlaces útiles
-        - href: info/faq.qmd
-          text: Preguntas frecuentes
-    - section: "Apuntes"
-      contents:
-        - href: apuntes/introduccion.qmd
-          text: "Introduccion"
-    - section: "Práctica"
-      contents:
-        - href: practica/practica_00.qmd
-          text: "Unidad 0"
-        - href: practica/practica_01.qmd
-          text: "Unidad 1"
-        - href: practica/practica_02.qmd
-          text: "Unidad 2"
-        - href: practica/practica_03.qmd
-          text: "Unidad 3"
-    - section: "Proyecto"
-      contents:
-        - href: proyecto/descripcion.qmd
-          text: Descripción
-        - href: proyecto/recursos.qmd
-          text: Recursos
-    - section: "Cómputo"
-      contents:
-        - href: computo/instalacion.qmd
-          text: Instalación
-    - section: "Material complementario"
-      contents:
-        - href: complementario/probabilidad.qmd
-          text: Probabilidad
-
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: 
+      - cosmo
+      - styles.scss
     toc: true
     lang: es

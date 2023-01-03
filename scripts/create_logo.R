@@ -21,7 +21,7 @@ sticker(
   p_family = "Roboto Slab",
   p_size = 11,
   p_color = "#444444",
-  h_size = 0.8,
+  h_size = 0.9,
   h_fill = colors[4],
   h_color = colors[3],
   url = "Escuela de Estadística - UNR",
