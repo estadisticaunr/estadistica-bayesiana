@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana – programa</title>
+<title>Estadística Bayesiana - Programa</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"></h1>
+      <h1 class="quarto-secondary-nav-title">Programa</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -130,6 +130,11 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../info/programa.html" class="sidebar-item-text sidebar-link active">Programa</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../info/aprobacion.html" class="sidebar-item-text sidebar-link">Condiciones de aprobación</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -165,10 +170,66 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Programa</h1>
+</div>
 
 
-<section id="programa-de-la-materia" class="level1">
-<h1>Programa de la materia</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="fundamentación" class="level1">
+<h1>Fundamentación</h1>
+<p>La Estadística Bayesiana es un enfoque de la inferencia estadística que se basa en utilizar probabilidades para representar el conocimiento disponible sobre el conjunto de parámetros de un modelo y actualizar esa información utilizando la Regla de Bayes a partir de la observación de un conjunto de datos. El conocimiento inicial se representa con una distribución de probabilidad a priori, la información contenida en los datos observados se modeliza con una función de verosimilitud y ambas fuentes de información se combinan para obtener una distribución de probabilidad a posteriori. La información a posteriori puede ser utilizada para extraer conclusiones sobre el fenómeno en estudio y realizar predicciones sobre datos no observados o eventos futuros.</p>
+<p>Los métodos bayesianos requieren, salvo en casos muy simples, una complejidad computacional que resultaba inalcanzable hace algunos años. Gracias a desarrollos revolucionarios en el ámbito de la computación, la principal barrera para la implementación de los modelos bayesianos desapareció y la utilización de estos se ha incrementado masivamente en múltiples campos científicos. Esta creciente popularidad se debe a que la inferencia bayesiana brinda un marco teórico consistente que permite la incorporación de información a priori, el desarrollo de un aprendizaje secuencial, la obtención de inferencias y predicciones en forma de distribuciones de probabilidad, el tratamiento de datos faltantes, los análisis con pocos datos, entre otras ventajas.</p>
+</section>
+<section id="objetivos" class="level1">
+<h1>Objetivos</h1>
+<p>Que quienes cursen la materia logren:</p>
+<ul>
+<li>entender las características y los conceptos fundamentales de la Estadística Bayesiana;</li>
+<li>describir las características principales de la Estadística Bayesiana;</li>
+<li>comprender la complejidad analítica de la inferencia bayesiana y la necesidad de la utilización de un enfoque computacional para superar estas dificultades;</li>
+<li>ser capaces de aplicar métodos bayesianos a problemas reales utilizando software específico; e</li>
+<li>interpretar los resultados del proceso de análisis bayesiano de datos.</li>
+</ul>
+</section>
+<section id="contenidos" class="level1">
+<h1>Contenidos</h1>
+<dl>
+<dt>Unidad 1: Introducción y Fundamentos de la Estadística Bayesiana</dt>
+<dd>
+<p>Probabilidad para cuantificar la incertidumbre. Modelos de probabilidad. Regla de Bayes. Inferencia bayesiana. Distribución a priori, función de verosimilitud, distribución a posteriori.</p>
+</dd>
+<dt>Unidad 2: Inferencia Bayesiana</dt>
+<dd>
+<p>Modelos de distribuciones conjugadas. Modelos de un parámetro. Modelo beta-binomial. Enfoque intuitivo. Distribución a posteriori como compromiso entre la verosimilitud y la distribución a priori. Razonamiento secuencial. Modelo normal-normal. Modelo gamma–Poisson. Modelos de varios parámetros. Modelo normal – normal-gamma-inversa. Modelo Dirichlet–multinomial.</p>
+<p>Elección de distribuciones a priori: no informativas (impropias, de Jeffrey) y débilmente informativas. Medidas de resumen de la distribución a posteriori. Intervalos de credibilidad. Distribución predictiva a posteriori. Nociones de teoría de la decisión bayesiana. Riesgo bayesiano. Estimador de Bayes.</p>
+</dd>
+<dt>Unidad 3: Métodos Computacionales</dt>
+<dd>
+<p>Limitaciones del enfoque analítico: cálculo de probabilidades y determinación de la distribución a posteriori. Soluciones: análisis de datos simulados y aproximación de grilla. Introducción al cómputo bayesiano. Nociones básicas de métodos de cadenas de Markov – Montecarlo (MCMC). Algoritmo de Metropolis–Hastings. Montecarlo Hamiltoniano. Diagnóstico de métodos MCMC.</p>
+<p>Programación probabilística. Alternativas. Sintaxis de modelos. Ejemplos. Diagnóstico. Medidas de resumen a partir de las cadenas obtenidas. Visualizaciones.</p>
+</dd>
+<dt>Unidad 4: Modelos Lineales</dt>
+<dd>
+<p>Modelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV).</p>
+</dd>
+<dt>Unidad 5: Modelos Avanzados</dt>
+<dd>
+<p>Regresión logística. Regresión Poisson. Comparación de grupos. Modelos de variable latente. Formulación gráfica. Análisis de sensibilidad.</p>
+<p>El enfoque multinivel: modelos jerárquicos. Modelo beta-binomial jerárquico. Shrinkage de parámetros. Variación en el intercepto. Variación en la pendiente. Pooling de estimaciones. Problemas de estimación.</p>
+</dd>
+</dl>
 
 
 </section>
