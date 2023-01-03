@@ -92,5 +92,5 @@ format:
     theme: 
       - cosmo
       - styles.scss
-    toc: true
+    toc: false
     lang: es

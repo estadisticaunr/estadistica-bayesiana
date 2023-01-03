@@ -1,6 +1,5 @@
 ---
 title: Calendario
-toc: false
 tbl-colwidths: [10, 15, 30, 10, 35]
 ---
 
@@ -27,7 +26,7 @@ f <- function(link) {
 data <- data.frame(
     "Semana" = c("1", "", "2", ""),
     "Fecha" = c("18-03-2022", "21-03-2022", "18-03-2022", "21-03-2022"),
-    "Clase" = c("Introducción", "Teorema de Bayes", "Priors", "Posteriors"),
+    "Tema" = c("Introducción", "Teorema de Bayes", "Priors", "Posteriors"),
     "Apuntes" = c(NA, "enlace.pdf", NA, "enlace2.pdf"),
     "Lectura sugerida" = LETTERS[1:4]
 )
@@ -38,7 +37,7 @@ data[["Apuntes"]] <- sapply(data[["Apuntes"]], f)
 ```{r echo=FALSE}
 knitr::kable(
     data,
-    col.names = c("Semana", "Fecha", "Clase #", "Apuntes", "Lectura sugerida"),
+    col.names = c("Semana", "Fecha", "Tema", "Apuntes", "Lectura sugerida"),
     align = "l",
     escape = TRUE
 )
