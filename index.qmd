@@ -6,12 +6,16 @@ course-logo: utils/imgs/logo.png
 
 ::: {.grid .title-block}
 
-::: {.course-details-title-block .g-col-12 .g-col-sm-8 .order-2 .order-sm-1 .text-center .text-sm-start}
+::: {.course-details-title-block .g-col-12 .g-col-sm-8 .order-2 .order-sm-1 .text-sm-start}
+
+::: {.text-center .text-sm-start}
 
 # Estadística Bayesiana {.course-title}
 
 ::: {.course-subtitle}
 Este es el subtitulo...
+:::
+
 :::
 
 ::: {.course-meta}
