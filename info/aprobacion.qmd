@@ -1,0 +1,27 @@
+---
+title: Condiciones de aprobación
+---
+
+# Instancias de evaluación
+
+-   📝 **Parcial** -- escrito e individual, se aprueba con 6, hay una instancia de recuperación;
+
+-   💻💻💻 **Trabajos prácticos cortos** -- grupales (hasta tres personas), se hacen por fuera del horario de clase, se entrega informe;
+
+-   📈 **Trabajo práctico final** -- realización grupal, defensa individual.
+
+# Condiciones de aprobación
+
+Promoción
+
+:   Las y los estudiantes que hayan aprobado el parcial o su recuperatorio (con nota $P$), los tres trabajos prácticos cortos (con promedio simple $T$) y hayan entregado el trabajo práctico final, accederán a una instancia de evaluación oral donde se discutirá el trabajo práctico final y se evaluarán de manera general todos los contenidos conceptuales de la asignatura; esta instancia puede incluir la realización de algunas actividades en computadora (el trabajo práctico final y la instancia oral tendrán nota $O$).
+
+    La nota final se obtendrá según $0.3\ T + 0.4\ P + 0.3\ O$
+
+Regularidad
+
+:   Quienes no alcancen la condición de promoción podrán quedar en condición de estudiante regular si aprueban el parcial o su recuperatorio y aprueban al menos dos de los trabajos prácticos cortos. Para alcanzar la aprobación de la asignatura, los y las estudiantes en condición de regulares deberán presentar el trabajo final en una mesa de examen y aprobar una instancia oral de defensa del trabajo y de evaluación integral de los contenidos de la materia. Esta instancia puede incluir la realización de algunas actividades en computadora.
+
+Libres
+
+:   Aquellas personas que no alcancen la promoción de la asignatura ni la condición de estudiante regular quedarán en condición de estudiante libre. Los y las estudiantes en condición de libre deberán presentar un trabajo práctico y rendir un examen teórico-práctico sobre la totalidad de los temas de la asignatura.

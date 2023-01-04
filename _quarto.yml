@@ -37,6 +37,8 @@ website:
       contents:
         - text: Programa
           file: info/programa.qmd
+        - text: Condiciones de aprobación
+          file: info/aprobacion.qmd
         - text: Bibliografia
           file: info/bibliografia.qmd
         - text: Docentes
