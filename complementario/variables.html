@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - Repaso de Probabilidad</title>
+<title>Estadística Bayesiana - Repaso de Variables Aleatorias</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,25 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
 }
 </style>
 
@@ -59,10 +78,11 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -99,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Cómputo</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../complementario/probabilidad.html" aria-current="page">
+    <a class="nav-link" href="../complementario/probabilidad.html">
  <span class="menu-text">Material complementario</span></a>
   </li>  
   <li class="nav-item compact">
@@ -112,29 +132,10 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Repaso de Probabilidad</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../complementario/probabilidad.html" class="sidebar-item-text sidebar-link active">Probabilidad</a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -142,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Repaso de Probabilidad</h1>
+<h1 class="title">Repaso de Variables Aleatorias</h1>
 </div>
 
 
@@ -157,10 +158,50 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<ul>
+<li>Variables aleatorias
+<ul>
+<li>Discretas</li>
+<li>Continuas</li>
+</ul></li>
+<li>CDF</li>
+<li>PDF</li>
+<li>Distribucion conjunta</li>
+<li>Distribucion marginal</li>
+<li>Distribucion condicional</li>
+<li>Independencia e independencia condicional</li>
+<li>Momentos de una distribucion</li>
+<li>Regla de Bayes</li>
+<li>Distribuciones de probabilidad frecuentemente utilizadas</li>
+<li>Transformacion de variables aleatorias
+<ul>
+<li>Propiedades de transformaciones lineales</li>
+</ul></li>
+</ul>
+<p>Este listado esta sacado del capitulo 2 de <span class="citation" data-cites="Murphy2022">Murphy (<a href="#ref-Murphy2022" role="doc-biblioref">2022</a>)</span></p>
+<p>Tambien hay cosas interesantes en capitulo 3 de <span class="citation" data-cites="Murphy2022">Murphy (<a href="#ref-Murphy2022" role="doc-biblioref">2022</a>)</span></p>
+<ul>
+<li>Uncorrelated does not imply independent</li>
+<li>Correlation does not imply causation</li>
+</ul>
+<ol type="1">
+<li><p>Pairwise independence does not imply mutual independence</p>
+<p>We say that two random variables are pairwise independent if <span class="math inline">\(p(X_2|X_1) = p(X_2)\)</span> and hence <span class="math inline">\(p(X_2, X_1) = p(X_1)p(X_2|X_1) = p(X_1)p(X_2)\)</span></p>
+<p>We say that <span class="math inline">\(n\)</span> random variables are mutually independent if <span class="math inline">\(p(Xi|XS) = p(Xi)\)</span> <span class="math inline">\(\forall S \subseteq \{1, \cdots , n\}\)</span> and hence <span class="math inline">\(\displaystyle p(X_{1:n}) = \prod_{i=1}^{n} p(X_i)\)</span></p>
+<p>Show that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counter example.</p></li>
+<li><p>Exercise 2.5 <span class="citation" data-cites="Murphy2022">Murphy (<a href="#ref-Murphy2022" role="doc-biblioref">2022</a>)</span></p></li>
+<li><p>Exercise 2.6 <span class="citation" data-cites="Murphy2022">Murphy (<a href="#ref-Murphy2022" role="doc-biblioref">2022</a>)</span></p></li>
+<li><p>Exercise 3.5 [Gaussian vs jointly Gaussian ]</p></li>
+</ol>
 
 
 
-</main> <!-- /main -->
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Murphy2022" class="csl-entry" role="doc-biblioentry">
+Murphy, Kevin P. 2022. <em>Probabilistic Machine Learning: An Introduction</em>. 1st edition. The MIT Press. <a href="https://probml.ai/">https://probml.ai/</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
