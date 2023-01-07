@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "complementario/probabilidad.html",
+    "href": "complementario/probabilidad.html",
+    "title": "Repaso de Probabilidad",
+    "section": "",
+    "text": "Bla bla bla…"
+  },
+  {
     "objectID": "trabajos_practicos/03_tp3.html",
     "href": "trabajos_practicos/03_tp3.html",
     "title": "TP3: Estudio de modelos lineales mediante simulaciones",
@@ -61,6 +68,13 @@
     "title": "TP0: Distribución de Rocklets azules",
     "section": "",
     "text": "Distribución de Rocklets azules"
+  },
+  {
+    "objectID": "trabajos_practicos/descripcion.html",
+    "href": "trabajos_practicos/descripcion.html",
+    "title": "Descripción",
+    "section": "",
+    "text": "Acá se describe la cantidad de trabajos prácticos, como se evalúan, el propósito de tener tantos trabajos, etc. etc."
   },
   {
     "objectID": "practica/practica_03.html",
@@ -257,19 +271,5 @@
     "title": "Estadística Bayesiana",
     "section": "Profesores",
     "text": "Profesores\n\n\nNacho Evangelista\n\n   email_de_nacho@mail.com\n   Miércoles (7:00-9:00) y Viernes (7:00-9:00)\n\n\n\nTomás Capretto\n\n   email_de_tomi@mail.com\n   Lunes (11-13hs) y Miércoles (7-9hs)"
-  },
-  {
-    "objectID": "proyecto/recursos.html",
-    "href": "proyecto/recursos.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Recursos"
-  },
-  {
-    "objectID": "proyecto/descripcion.html",
-    "href": "proyecto/descripcion.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Descripción del proyecto"
   }
 ]
