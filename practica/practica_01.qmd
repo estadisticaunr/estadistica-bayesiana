@@ -70,20 +70,27 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 1.  Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
-    - Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
-    - Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
+    - Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 
+    20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
+    - Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo,
+     13% rojo y 13% marrón.
 
-    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál.
-    Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
+    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 
+    1996, pero no nos dice cuál es cuál.
+    Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde 
+    (ambos posiblemente estén vencidos).
     ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
 
 1.  Árboles enfermos
 
-    Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros.
+    Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
+    incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
-    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies.
+    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de 
+    otras especies [^ft_colectivo].
     Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies.
-    Con el objetivo de monitorear cuanto se propagó la enfermedad, uno de los empleados del vivero selecciona al azar uno de los árboles para testear.
+    Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
+    trabaja en el vivero selecciona al azar uno de los árboles para testear.
 
     * ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
     * Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber 
@@ -103,12 +110,12 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos
     los días de la semana. Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde,
     y el restante 40% salen a la noche. Los pasajeros suelen estar muy frustrados
-    ya que un 25% de los viajes salen tarde^[Algunos dicen que "cada dos por tres" te deja a pata. 
-    No nos vamos a pelear explicándoles que estan siendo demasiado malos, ya que un 25% 
-    también es un montón!]. De estos viajes demorados, el 40% corresponden a la mañana, un
-    50% suceden a la tarde, y el 10% restante ocurre a la noche. 
+    ya que un 25% de los viajes salen tarde. 
+    De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde,
+    y el 10% restante ocurre a la noche. 
     
-    Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes. 
+    Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos 
+    diferentes. 
 
     * Lucio se fue en uno de los colectivos de la mañana. 
     ¿Cuál es la probabilidad que su viaje esté demorado?
@@ -131,8 +138,10 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     Y las madres de la especie B dan a luz mellizos el 20% del tiempo.
     En todos los otros casos, estas madres dan a luz un solo bebé panda.
 
-    Usando un poco la imaginación, supongamos que somos la persona encargada de un programa de reproducción de pandas.
-    Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, pero no sabemos a que especie pertenece.
+    Usando un poco la imaginación, supongamos que somos la persona encargada de un 
+    programa de reproducción de pandas.
+    Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, pero no 
+    sabemos a que especie pertenece.
 
     * ¿Cuál es la probabilidad que la mamá panda sea de la especie A?
     * ¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?
@@ -163,15 +172,19 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 1.  House of Cards
 
     Hay 538 miembros en el Congreso de Estados Unidos.
-    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado.
-    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo.
+    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron 
+    rendimientos por encima del mercado.
+    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de 
+    tener rendimientos por encima del mercado, pero uno deshonesto que opera con 
+    información confidencial tiene una chance del 90% de hacerlo.
     ¿Cuántos miembros del Congreso son honestos?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
 1.  Estás a punto de subir a un avión rumbo a Seattle.
     Querés saber si tenés que llevar un paraguas.
     Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo.
-    Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma.
+    Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte
+    para hacerte una broma.
     Los tres responden que sí está lloviendo.
     Cuál es la probbailidad de que realmente esté lloviendo en Seattle?
     Se puede asumir que llueve el 10% del tiempo.
@@ -179,7 +192,9 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 1.  Dos personas dejaron rastros de sangre en la escena del crimen.
     La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo '0'.
-    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia del 1% en la población).
+    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, 
+    presente en el 60% de las personas) y de tipo 'AB' 
+    (un tipo raro, con una frecuencia del 1% en la población).
     ¿Estos datos representan evidencia de que Oliver estaba presente en la escena del crimen?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
@@ -243,7 +258,7 @@ Tenemos que ver como los dividimos
 
 1.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número 
     de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
-    marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 
+    marinas bivalvas[^ft_bivalvas] descubiertas cada año entre 2010 y 2015 fue 
     64, 13, 33, 18, 30 y 20.
     
     Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y 
@@ -293,9 +308,9 @@ Tenemos que ver como los dividimos
     i. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras.
     ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
 
-1.  Cansado de los experimentos de arrojar una moneda cientos de veces al aire, un 
+1.  Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una
     estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
-    o Ceca y registra el resultado.
+    o ceca y registra el resultado.
 
     Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
     En particular, la probabilidad de que clasificar mal es de 0.2 
@@ -303,13 +318,14 @@ Tenemos que ver como los dividimos
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
 
-    i. ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
+    i. ¿Cuál es la distribución *a posteriori* de $\theta$, 
+    la probabilidad de obtener cara?
     i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía?
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
 
 1.  En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en
     un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más
-     de 1000 personas en la sala, superando el máximo permitido.
+    de 1000 personas en la sala, superando el máximo permitido.
 
     La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque
     piensa que contarlas podría llevar mucho tiempo.  
@@ -322,9 +338,6 @@ Tenemos que ver como los dividimos
     ¿Cuántas personas hay en la sala?
     O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
-
-[^2]: Una clase de molusco.
-    El mejillón, la ostra y la almeja son bivalvos
 
 ## Conceptuales
 
@@ -346,7 +359,7 @@ Tenemos que ver como los dividimos
 1.  Beneficios de la Estadística Bayesiana
 
     Una amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana.
-    Explica lo siguiente:
+    Explícale lo siguiente:
 
     i. ¿Por qué es útil el enfoque Bayesiano?
     i. ¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano?
@@ -358,14 +371,12 @@ Tenemos que ver como los dividimos
     contexto. -->
 
 
-## To Do
+[^ft_colectivo]: Hay gente que dice que "cada dos por tres" te deja a pata. 
+    No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, 
+    ya que un 25% también es un montón!
 
-* Ejercicios conceptuales
-* Sacar likelihood a mano
-* Sacar posterior a mano
-    * Una discreta
-    * Una continua
-
+[^ft_bivalvas]: Una clase de molusco.
+    El mejillón, la ostra y la almeja son bivalvos
 
 <!-- * Me parece que algunas preguntas conceptuales podrian estar incluso al final del curso
     * O podriamos volver a hacerlas, a ver como cambian las respuestas
