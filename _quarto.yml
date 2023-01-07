@@ -19,12 +19,12 @@ website:
         file: apuntes/introduccion.qmd
       - text: Practica
         file: practica/practica_00.qmd
-      - text: Proyecto
-        file: proyecto/descripcion.qmd
+      - text: Trabajos Practicos
+        file: trabajos_practicos/descripcion.qmd
       - text: Cómputo
         file: computo/instalacion.qmd
       - text: Material complementario
-        file: computo/instalacion.qmd
+        file: complementario/probabilidad.qmd
       - icon: github
         href: "https://github.com/estadisticaunr/estadistica-bayesiana"
 
@@ -62,15 +62,21 @@ website:
           file: practica/practica_02.qmd
         - text: Unidad 3
           file: practica/practica_03.qmd
-    - title: Proyecto
+    - title: Trabajos Practicos
       style: docked
       search: false
       background: dark
       contents:
         - text: Descripción
-          file: proyecto/descripcion.qmd
-        - text: Recursos
-          file: proyecto/recursos.qmd
+          file: trabajos_practicos/descripcion.qmd
+        - text: Trabajo 0
+          file: trabajos_practicos/00_tp0.qmd
+        - text: Trabajo 1
+          file: trabajos_practicos/01_tp1.qmd
+        - text: Trabajo 2
+          file: trabajos_practicos/02_tp2.qmd
+        - text: Trabajo 3
+          file: trabajos_practicos/03_tp3.qmd
     - title: Cómputo
       style: docked
       search: false

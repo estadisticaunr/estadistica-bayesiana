@@ -113,6 +113,15 @@ figure figcaption {
   color: #ffdfba;
 }
 
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon {
+  color: #fffefd;
+}
+
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:hover,
+.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:focus {
+  color: #ffdfba;
+}
+
 .navbar-title {
   font-family: $font-family-sans-serif;
   font-size: 1.4rem;

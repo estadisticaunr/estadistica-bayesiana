@@ -1,0 +1,6 @@
+---
+title: "Descripción"
+---
+
+Acá se describe la cantidad de trabajos prácticos, como se evalúan, el propósito de 
+tener tantos trabajos, etc. etc.
