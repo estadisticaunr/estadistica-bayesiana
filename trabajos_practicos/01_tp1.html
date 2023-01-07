@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.280">
+<meta name="generator" content="quarto-1.2.313">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -138,26 +139,88 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="aplicación-de-modelos-conjugados-a-reviews-de-google-maps" class="level1">
-<h1>Aplicación de modelos conjugados a reviews de Google Maps</h1>
-<p>Cafeterías de especialidad en Rosario…</p>
-<section id="modelo-simple-beta-binomial" class="level2">
-<h2 class="anchored" data-anchor-id="modelo-simple-beta-binomial">Modelo simple beta-binomial</h2>
-<p>https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382</p>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En 2017 comenzó una revolución gastronómica en Rosario. La experiencia de tomar café pasó a otro nivel. Comenzaron a aparecer cafeterías con una característica particular: ofrecer café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos al café.</p>
+<p>Una cafetería de especialidad es una cafetería en donde el café es lo más importante de todo, preparado por baristas, con granos de café de distintas partes del mundo (con información meticulosa sobre la finca de la que vienen, la variedad de la planta, la altura a la que fue cultivado, y el grado de tueste) y distintos métodos de preparación aparte del ya tradicional café de máquina espresso (como por ejemplo, los cafés filtrados)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/cafe.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">El arte latte suele ser distintivo de las cafeterías de especialidad</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La primera cafetería de especialidad que causó furor en Rosario fue <a href="https://www.instagram.com/artocafe/?hl=es"><strong>Arto</strong></a>(Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió <a href="https://www.instagram.com/cafeorlan/?hl=es"><strong>Orlan</strong></a> (Dorrego1670).</p>
+<p>En enero de 2023, en Google Maps, <strong>Arto</strong> tiene una puntuación de 4.5⭐ (en 750 <em>reviews</em>) y <strong>Orlan</strong>, una puntuación de 4.9⭐ (en 90 <em>reviews</em>). Basándonos exclusivamente en las <em>reviews</em> de Google Maps, ¿podemos decir que <strong>Orlan</strong>&nbsp;es una opción mejor que <strong>Arto</strong>? ¿Podrá la estadística bayesiana darnos una respuesta?</p>
+<p>En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐.</p>
 </section>
-<section id="modelo-complejo-dirichlet-multinomial" class="level2">
-<h2 class="anchored" data-anchor-id="modelo-complejo-dirichlet-multinomial">Modelo complejo Dirichlet-multinomial</h2>
-<section id="descubriendo-la-distribución-de-dirichlet" class="level3">
-<h3 class="anchored" data-anchor-id="descubriendo-la-distribución-de-dirichlet">Descubriendo la distribución de Dirichlet</h3>
+<section id="modelo-beta-binomial" class="level1">
+<h1>Modelo beta-binomial</h1>
+<p>En primera instancia, se modelizarán las <em>reviews</em>&nbsp;como una sucesión de lanzamientos de una moneda sesgada. La moneda tiene un 👍🏼 de un lado y un 👎🏼 del otro. La probabilidad de obtener 👍🏼 es <span class="math inline">\(\sigma\)</span>, que está relacionada con la calidad del bar. Luego de tomarse un cafecito, el cliente arroja la moneda al aire cuatro veces y puntúa a la cafetería según el número de 👍🏼 que obtuvo.</p>
+<p>Según esta descripción, cada <em>review</em> es un proceso binomial con cuatro intentos y probabilidad de acierto <span class="math inline">\(\sigma\)</span>.</p>
+<ol type="1">
+<li>Explique la relación entre <span class="math inline">\(\sigma\)</span> y la puntuación en ⭐del bar (ayuda: piense cuánto vale <span class="math inline">\(\sigma\)</span> para un bar 5⭐)</li>
+<li>Construya una función que, dada una puntuación real de 1⭐ a 5⭐, simule el proceso de calificación de un usuario.</li>
+<li>Construya una función que, apoyándose en la apartado anterior, simule las <em>reviews</em> de <span class="math inline">\(U\)</span> personas.</li>
+<li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
+</ol>
+<p>Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
+<ol start="5" type="1">
+<li>Elegir una distribución <em>a priori</em> para <span class="math inline">\(\sigma\)</span> utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida?</li>
+<li>Con los datos de la introducción, obtener la distribución <em>a posteriori</em> de <span class="math inline">\(\sigma\)</span> para cada cafetería.</li>
+<li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
+</ol>
+<!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
+</section>
+<section id="modelo-dirichlet-multinomial" class="level1">
+<h1>Modelo Dirichlet-multinomial</h1>
+<p>Trabajaremos a continuación con otro modelo, también de distribuciones conjugadas. Para ello es necesario presentar dos distribuciones de probabilidad: la distribución de Dirichlet y la distribución multinomial.</p>
+<section id="descubriendo-la-distribución-de-dirichlet" class="level2">
+<h2 class="anchored" data-anchor-id="descubriendo-la-distribución-de-dirichlet">Descubriendo la distribución de Dirichlet</h2>
+<p>La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en <span class="math inline">\(K\geq 2\)</span> es la distribución de probabilidad del vector aleatorio <span class="math inline">\(X=[X_1,X_2.\dots,X_K]\)</span> dimensiones tiene como parámetro al vector <span class="math inline">\(\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]\)</span>.</p>
+<p><span class="math display">\[
+f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{\alpha})} \prod_{i=1}^K x_i^{\alpha_i-1}
+\]</span></p>
+<p>donde los <span class="math inline">\(\alpha_i \in \mathbb{R}^+\)</span> y <span class="math inline">\(B(\mathbf{\alpha})\)</span> es la constante que hace que la integral sea unitaria.</p>
+<p>El soporte de la distribución Dirichlet es tal que <span class="math inline">\(\sum_{i=1}^{K} x_i = 1\)</span> y <span class="math inline">\(x_i \in [0,1]\)</span>. Es decir, los <span class="math inline">\(x_i\)</span> suman 1. Si consideramos, por ejemplo, <span class="math inline">\(K=3\)</span>, el vector <span class="math inline">\([x_1, x_2, x_3]\)</span> pertenece al triángulo en <span class="math inline">\(\mathbb{R}^3\)</span> que tiene por vértices a los puntos <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span> y <span class="math inline">\((0,0,1)\)</span>. Así, si <span class="math inline">\(x_1=1\)</span> entonces <span class="math inline">\(x_2=x_3=0\)</span>.</p>
+<p>Más simple aún, cuando <span class="math inline">\(K=2\)</span>, el vector <span class="math inline">\([x_1,x_2]\)</span> pertenece al segmento en <span class="math inline">\(\mathbb{R}^2\)</span> que tiene por extremos a los puntos <span class="math inline">\((1,0)\)</span> y <span class="math inline">\((0,1)\)</span>.</p>
+<p>Notar que esta característica hace que los <span class="math inline">\(x_1,x_2,\dots,x_K\)</span> puedan representar las probabilidades de un experimento con <span class="math inline">\(K\)</span> resultados posibles.</p>
+<p>A título informativo, el soporte de la distribución Dirichlet en <span class="math inline">\(K\)</span> dimensiones es lo que se conoce como simplex (estándar) de <span class="math inline">\(K-1\)</span> dimensiones. El <span class="math inline">\(3\)</span>-simplex es un triángulo y el <span class="math inline">\(2\)</span>-simplex es un segmento. En general, un <span class="math inline">\(K-1\)</span>-simplex es la envolvente convexa de <span class="math inline">\(K\)</span> vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto (Teorema de Carathéodory).</p>
+<p>Los párrafos anteriores, delirantemente matemáticos, muestran una virtud particular de la distribución Dirichlet de <span class="math inline">\(K=3\)</span> dimensiones. Esta distribución, a pesar de ser de una variable aleatoria en <span class="math inline">\(\mathbb{R}^3\)</span>, puede representarse perfectamente de manera gráfica en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas baricéntricas), como si se tratara de una distribución bivariada.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/dirichlet.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Como los valores posibles del vector aleatorio tridimensional yacen en un plano, la distribución de probabilidad puede representarse gráficamente con facilidad</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
 <p>(hacer plots con el paquete `ggtern``)</p>
+<ol type="1">
+<li>Mostrar que, cuando <span class="math inline">\(K=2\)</span>, la distribución de Dirichlet es la distribución beta de parámetros <span class="math inline">\(a=\alpha_1\)</span> y <span class="math inline">\(b=\alpha_2\)</span></li>
+</ol>
 </section>
-<section id="aplicación" class="level3">
-<h3 class="anchored" data-anchor-id="aplicación">Aplicación</h3>
+<section id="relación-entre-la-distribución-dirichlet-y-la-multinomial" class="level2">
+<h2 class="anchored" data-anchor-id="relación-entre-la-distribución-dirichlet-y-la-multinomial">Relación entre la distribución Dirichlet y la multinomial</h2>
+<p>Cuando un experimento puede tener dos resultados posibles, uno de ellos tiene probabilidad <span class="math inline">\(p\)</span> y el otro probabilidad <span class="math inline">\(1-p\)</span>. Si coleccionamos <span class="math inline">\(N\)</span> realizaciones del experimento, el número de éxitos es una variable aleatoria con distribución binomial. Estudiamos que era natural utilizar la distribución beta como distribución <em>a priori</em> para <span class="math inline">\(p\)</span>, dado que la distribución <em>a posteriori</em>&nbsp;también era beta.</p>
+<p>Análogamente, cuando un experimento puede tener tres resultados posibles, el primero tiene probabilidad <span class="math inline">\(p_1\)</span>, el segundo tiene probabilidad <span class="math inline">\(p_2\)</span> y el tercero, probabilidad <span class="math inline">\(p_3 = p_1 - p_2\)</span>. Necesariamente debe ser <span class="math inline">\(p_1+p_2+p_3=1\)</span>. Si coleccionamos <span class="math inline">\(N\)</span> realizaciones del experimento, el número de ocurrencias de cada resultado posible es un vector aleatorio con distribución multinomial. Por lo visto hasta aquí, todo parece indicar que, si queremos realizar inferencias sobre <span class="math inline">\(p_1\)</span>, <span class="math inline">\(p_2\)</span> y <span class="math inline">\(p_3\)</span>, sería natural utilizar la distribución Dirichlet de tres dimensiones como distribución <em>a priori</em> para las probabilidades…</p>
+<p>En efecto, cuando la distribución <em>a priori</em> es Dirichlet y la verosimilitud es multinomial, la distribución <em>a posteriori</em> también es Dirichlet.</p>
+<ol start="2" type="1">
+<li><p>Sabemos que si para una verosimilitud binomial, si la distribución <em>a priori</em> de la probabilidad de éxito <span class="math inline">\(p\)</span> es beta de parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> y se observan <span class="math inline">\(s\)</span> éxitos en <span class="math inline">\(N\)</span> intentos, la distribución <em>a posteriori</em> es beta de parámetros <span class="math inline">\(a' = a+s\)</span> y <span class="math inline">\(b'=b+(N-s)\)</span>.</p>
+<p>Hallar, por analogía con el caso anterior, los parámetros de la distribución <em>a posteriori</em> que se obtiene si la verosimilitud es multinomial con tres resultados posibles, la distribución a priori&nbsp;es Dirichlet de parámetros <span class="math inline">\([\alpha_1,\alpha_2,\alpha_3]\)</span> y se obtuvieron <span class="math inline">\(s_1\)</span> veces el primer resultado y <span class="math inline">\(s_2\)</span> veces el segundo resultado, sobre un total de <span class="math inline">\(N\)</span> intentos.</p></li>
+</ol>
+</section>
+<section id="aplicación" class="level2">
+<h2 class="anchored" data-anchor-id="aplicación">Aplicación</h2>
 <p>Principalmente de: https://fulmicoton.com/posts/bayesian_rating/</p>
 <p>Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html</p>
 
 
-</section>
 </section>
 </section>
 
