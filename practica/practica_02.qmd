@@ -77,7 +77,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     $\tau$ (la tasa de typos por página), siendo $N$ el número de páginas.
     Para ello, hallar la probabilidad de que $\tau > $\frac{3}{N}$ para diferentes valores de $N$. 
 <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
-
+4
 1.  Una colega quiere comprar un producto por Internet. Tres vendedores
     ofrecen el mismo producto al mismo precio. Un vendedor tiene 100%
     evaluaciones positivas, con 10 *reviews*. Otro tiene 96% de
@@ -85,16 +85,69 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres
     vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
-    
 
-1.  Suponga $\mathbf{X} = (X_1,..., X_n)$ es un vector de $n$ variables
-    aleatorias independientes e idénticamente distribuidas según una
-    distribución $\text{Uniforme}(0, \theta)$ y
-    $\theta \sim \text{Pareto}(a, b)$. Derivar la distribución *a
-    posteriori* de $\theta | \mathbf{x}$\
-    **revisar redaccion y si hablamos de muestras o variables
-    aleatorias**.
-    <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) -->
+
+1.  Inferencia sobre una distribución de Poisson
+
+    La distribución de masa de probabilidad Poisson se define como
+    $$
+    \begin{array}{lcr}
+    \displaystyle \text{Po}(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} & 
+    \text{con} &
+    x \in \{0, 1, 2, \cdots \}
+    \end{array}
+    $$
+
+    donde $\lambda > 0$ es la cantidad promedio de veces que ocurre el evento de interés en un 
+    periodo o espacio determinado.
+
+    i. Derive el estimador de máxima verosimilitud del parámetro $\lambda$.
+    i. Derive el posterior $p(\lambda|D)$ suponiendo que el prior sobre $\lambda$ es 
+    $p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}$. Ayuda: El posterior también es una distribución Gamma.
+    i. ¿A qué valor tiende la media a posteriori cuando $a \to 0$ y $b \to 0$? Recuerde que la media de una distribución $\text{Ga}(a, b)$ es $a/b$.
+    <!-- @Murphy2012 -->
+
+1.  Inferencia sobre una distribución Uniforme
+
+    Considere una distribución uniforme crentrada en $0$ y rango $2a$. 
+    La función de densidad de probabilidad es
+
+    $$
+    p(x) = \frac{1}{2a}I(x \in [-a, a])
+    $$
+
+    Sea $\mathbf{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes e idénticamente distribuidas según $p(x)$
+
+    Inferencia máximo-verosímil
+
+    i. ¿Cuál es el estimador máximo verosímil de $a$ (llámelo $\hat{a}$)?
+    i. ¿Qué probabilidad le asigna el modelo a una nueva observación $x_{n + 1}$
+    usando $\hat{a}$?
+    i. ¿Observa algún problema con el resultado anterior? Si es así, sugiera una 
+    alternativa mejor.
+
+    Inferencia Bayesiana
+
+    El prior conjugado es la distribución de Pareto ...
+
+<!-- In this exercise, we will perform a Bayesian analysis of the uniform distribution
+(following (Minka 2001a)). The conjugate prior is the Pareto distribution, p(θ) = Pareto(θ|b, K), defined in
+Section 2.4.6. Given a Pareto prior, the joint distribution of θ and D = (x1,...,xN ) is
+p(D, θ) = KbK
+θN+K+1 I(θ ≥ max(D)) (3.93)
+Let m = max(D). The evidence (the probability that all N samples came from the same uniform
+distribution) is
+p(D) = $ ∞
+m
+KbK
+θN+K+1 dθ (3.94)
+=
+% K
+(N+K)bN if m ≤ b
+KbK
+(N+K)mN+K if m>b (3.95)
+Derive the posterior p(θ|D), and show that if can be expressed as a Pareto distribution -->
+<!-- Murphy2012 -->
 
 -   Calculo de conjugada no tradicional
     -   Binomial negativa - Beta

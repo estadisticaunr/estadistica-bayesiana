@@ -91,6 +91,8 @@ website:
       contents:
         - text: Probabilidad
           file: complementario/probabilidad.qmd
+        - text: Variables aleatorias y distribuciones de probabilidad
+          file: complementario/variables.qmd
 
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
