@@ -235,7 +235,7 @@ div.csl-indent {
 <li><p>Inferencia sobre una distribución de Poisson</p>
 <p>La distribución de masa de probabilidad Poisson se define como <span class="math display">\[
 \begin{array}{lcr}
-\displaystyle \text{Po}(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
+\displaystyle p(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
 \text{con} &amp;
 x \in \{0, 1, 2, \cdots \}
 \end{array}
@@ -259,33 +259,59 @@ p(x) = \frac{1}{2a}I(x \in [-a, a])
 <li>¿Observa algún problema con el resultado anterior? Si es así, sugiera una alternativa mejor.</li>
 </ol>
 <p>Inferencia Bayesiana</p>
-<p>El prior conjugado es la distribución de Pareto …</p></li>
-</ol>
-<!-- In this exercise, we will perform a Bayesian analysis of the uniform distribution
-(following (Minka 2001a)). The conjugate prior is the Pareto distribution, p(θ) = Pareto(θ|b, K), defined in
-Section 2.4.6. Given a Pareto prior, the joint distribution of θ and D = (x1,...,xN ) is
-p(D, θ) = KbK
-θN+K+1 I(θ ≥ max(D)) (3.93)
-Let m = max(D). The evidence (the probability that all N samples came from the same uniform
-distribution) is
-p(D) = $ ∞
-m
-KbK
-θN+K+1 dθ (3.94)
-=
-% K
-(N+K)bN if m ≤ b
-KbK
-(N+K)mN+K if m>b (3.95)
-Derive the posterior p(θ|D), and show that if can be expressed as a Pareto distribution -->
-<!-- Murphy2012 -->
-<ul>
-<li>Calculo de conjugada no tradicional
+<p>El prior conjugado de la distribución uniforme es la distribución de Pareto.</p>
+<p>Si <span class="math inline">\(x \sim \text{Pareto}(x | \alpha, m)\)</span>, luego</p>
+<p><span class="math display">\[
+p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+\]</span></p>
+<p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es</p>
+<p><span class="math display">\[
+p(\theta, \mathbf{X})
+    = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
+    \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
+\]</span></p>
+<p>Llamando <span class="math inline">\(M_x = \text{max}(\mathbf{X})\)</span>. La evidencia (la probabilidad que las <span class="math inline">\(n\)</span> muestras provengan de la misma distribución uniforme) es</p>
+<p><span class="math display">\[
+\begin{aligned}
+p(\mathbf{X}) &amp;= \int_{M_x}^\infty
+                 \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
+                 d\theta \\
+&amp;=  \begin{cases}
+    \frac{\alpha}{(n+\alpha)m^n} &amp; \text{Si} \ M_x \le m \\
+    \frac{\alpha m^\alpha}{(n+\alpha)m^{n+\alpha}} &amp; \text{Si} \ M_x \gt m
+    \end{cases}
+\end{aligned}
+\]</span></p>
+<p>Derive el <em>posterior</em> y muestre que puede ser expresado como una distribución de Pareto. <!-- @Murphy2012 --> <!-- Hay que mejorar la redaccion y ver que la notacion es consistente --></p></li>
+<li><p>Inferencia sobre una distribución Exponencial</p>
+<p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
+<p><span class="math display">\[
+\begin{array}{lcrr}
+p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
+\end{array}
+\]</span></p>
+<ol type="i">
+<li><p>Muestre que el estimador máximo verosímil es <span class="math inline">\(\hat{\theta} = 1/\bar{x}\)</span><br>
+</p></li>
+<li><p>Suponga que se observan los siguientes tiempos de vida de tres máquinas independientes <span class="math inline">\(x_1 = 5\)</span>, <span class="math inline">\(x_2 = 6\)</span>, <span class="math inline">\(x_3 = 4\)</span>. ¿Cuál es el valor del estimador MV?</p></li>
+<li><p>Una experta del área sugiere que <span class="math inline">\(\theta\)</span> debe tener una distribución <em>a priori</em> que también sea exponencial. <span class="math display">\[
+\begin{aligned}
+\theta &amp;\sim \text{Exp}(\lambda) \\
+p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
+\end{aligned}
+\]</span> Elija un valor para la distribución <em>a priori</em>, llámelo <span class="math inline">\(\hat{\lambda}\)</span>, tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>.</p></li>
+<li><p>¿Cuál es el posterior <span class="math inline">\(p(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
+<li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
+<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
+<li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>.<br>
+¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
+</ol></li>
+<li><p>Calculo de conjugada no tradicional</p>
 <ul>
 <li>Binomial negativa - Beta</li>
-<li>Exponencial - Gamma</li>
+<li>Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?</li>
 </ul></li>
-</ul>
+</ol>
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>

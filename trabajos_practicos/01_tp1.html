@@ -187,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>La primera cafetería de especialidad que causó furor en Rosario fue <a href="https://www.instagram.com/artocafe/?hl=es"><strong>Arto</strong></a>(Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió <a href="https://www.instagram.com/cafeorlan/?hl=es"><strong>Orlan</strong></a> (Dorrego1670).</p>
+<p>La primera cafetería de especialidad que causó furor en Rosario fue <a href="https://www.instagram.com/artocafe/?hl=es"><strong>Arto</strong></a> (Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió <a href="https://www.instagram.com/cafeorlan/?hl=es"><strong>Orlan</strong></a> (Dorrego 1670).</p>
 <p>En enero de 2023, en Google Maps, <strong>Arto</strong> tiene una puntuación de 4.5⭐ (en 750 <em>reviews</em>) y <strong>Orlan</strong>, una puntuación de 4.9⭐ (en 95 <em>reviews</em>). Basándonos exclusivamente en las <em>reviews</em> de Google Maps, ¿podemos decir que <strong>Orlan</strong>&nbsp;es una opción mejor que <strong>Arto</strong>? ¿Podrá la estadística bayesiana darnos una respuesta?</p>
 <p>En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐.</p>
 </section>
@@ -196,7 +196,7 @@ ul.task-list li input[type="checkbox"] {
 <p>En primera instancia, se modelizarán las <em>reviews</em>&nbsp;como una sucesión de lanzamientos de una moneda sesgada. La moneda tiene un 👍🏼 de un lado y un 👎🏼 del otro. La probabilidad de obtener 👍🏼 es <span class="math inline">\(\sigma\)</span>, que está relacionada con la calidad del bar. Luego de tomarse un cafecito, el cliente arroja la moneda al aire cuatro veces y puntúa a la cafetería según el número de 👍🏼 que obtuvo.</p>
 <p>Según esta descripción, cada <em>review</em> es un proceso binomial con cuatro intentos y probabilidad de acierto <span class="math inline">\(\sigma\)</span>.</p>
 <ol type="1">
-<li>Explique la relación entre <span class="math inline">\(\sigma\)</span> y la puntuación en ⭐del bar (ayuda: piense cuánto vale <span class="math inline">\(\sigma\)</span> para un bar 5⭐)</li>
+<li>Explique la relación entre <span class="math inline">\(\sigma\)</span> y la puntuación en ⭐ del bar (ayuda: piense cuánto vale <span class="math inline">\(\sigma\)</span> para un bar 5⭐)</li>
 <li>Construya una función que, dada una puntuación real de 1⭐ a 5⭐, simule el proceso de calificación de un usuario.</li>
 <li>Construya una función que, apoyándose en la apartado anterior, simule las <em>reviews</em> de <span class="math inline">\(U\)</span> personas.</li>
 <li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
@@ -214,7 +214,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Trabajaremos a continuación con otro modelo, también de distribuciones conjugadas. Para ello es necesario presentar dos distribuciones de probabilidad: la distribución de Dirichlet y la distribución multinomial.</p>
 <section id="descubriendo-la-distribución-de-dirichlet" class="level2">
 <h2 class="anchored" data-anchor-id="descubriendo-la-distribución-de-dirichlet">Descubriendo la distribución de Dirichlet</h2>
-<p>La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en <span class="math inline">\(K\geq 2\)</span> es la distribución de probabilidad del vector aleatorio <span class="math inline">\(X=[X_1,X_2.\dots,X_K]\)</span> dimensiones tiene como parámetro al vector <span class="math inline">\(\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]\)</span>.</p>
+<p>La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en <span class="math inline">\(K \geq 2\)</span> es la distribución de probabilidad del vector aleatorio <span class="math inline">\(X=[X_1, X_2 \dots, X_K]\)</span> dimensiones tiene como parámetro al vector <span class="math inline">\(\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]\)</span>.</p>
 <p><span class="math display">\[
 f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{\alpha})} \prod_{i=1}^K x_i^{\alpha_i-1}
 \]</span></p>
@@ -222,7 +222,7 @@ f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{
 <p>El soporte de la distribución Dirichlet es tal que <span class="math inline">\(\sum_{i=1}^{K} x_i = 1\)</span> y <span class="math inline">\(x_i \in [0,1]\)</span>. Es decir, los <span class="math inline">\(x_i\)</span> suman 1. Si consideramos, por ejemplo, <span class="math inline">\(K=3\)</span>, el vector <span class="math inline">\([x_1, x_2, x_3]\)</span> pertenece al triángulo en <span class="math inline">\(\mathbb{R}^3\)</span> que tiene por vértices a los puntos <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span> y <span class="math inline">\((0,0,1)\)</span>. Así, si <span class="math inline">\(x_1=1\)</span> entonces <span class="math inline">\(x_2=x_3=0\)</span>.</p>
 <p>Más simple aún, cuando <span class="math inline">\(K=2\)</span>, el vector <span class="math inline">\([x_1,x_2]\)</span> pertenece al segmento en <span class="math inline">\(\mathbb{R}^2\)</span> que tiene por extremos a los puntos <span class="math inline">\((1,0)\)</span> y <span class="math inline">\((0,1)\)</span>.</p>
 <p>Notar que esta característica hace que los <span class="math inline">\(x_1,x_2,\dots,x_K\)</span> puedan representar las probabilidades de un experimento con <span class="math inline">\(K\)</span> resultados posibles.</p>
-<p>A título informativo, el soporte de la distribución Dirichlet en <span class="math inline">\(K\)</span> dimensiones es lo que se conoce como simplex (estándar) de <span class="math inline">\(K-1\)</span> dimensiones. El <span class="math inline">\(3\)</span>-simplex es un triángulo y el <span class="math inline">\(2\)</span>-simplex es un segmento. En general, un <span class="math inline">\(K-1\)</span>-simplex es la envolvente convexa de <span class="math inline">\(K\)</span> vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto (Teorema de Carathéodory).</p>
+<p>A título informativo, el soporte de la distribución Dirichlet en <span class="math inline">\(K\)</span> dimensiones es lo que se conoce como <em>simplex</em> (estándar) de <span class="math inline">\(K-1\)</span> dimensiones. El <span class="math inline">\(3\)</span>-<em>simplex</em> es un triángulo y el <span class="math inline">\(2\)</span>-<em>simplex</em> es un segmento. En general, un <span class="math inline">\(K-1\)</span>-<em>simplex</em> es la envolvente convexa de <span class="math inline">\(K\)</span> vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto <a href="https://es.wikipedia.org/wiki/Teorema_de_Carath%C3%A9odory">(Teorema de Carathéodory)</a>.</p>
 <p>Los párrafos anteriores, delirantemente matemáticos, muestran una virtud particular de la distribución Dirichlet de <span class="math inline">\(K=3\)</span> dimensiones. Esta distribución, a pesar de ser de una variable aleatoria en <span class="math inline">\(\mathbb{R}^3\)</span>, puede representarse perfectamente de manera gráfica en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas baricéntricas), como si se tratara de una distribución bivariada.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -234,7 +234,7 @@ f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{
 </div>
 </div>
 </div>
-<p>(hacer plots con el paquete `ggtern``)</p>
+<!-- (hacer plots con el paquete \`ggtern\`\`) -->
 <ol type="1">
 <li>Mostrar que, cuando <span class="math inline">\(K=2\)</span>, la distribución de Dirichlet es la distribución beta de parámetros <span class="math inline">\(a=\alpha_1\)</span> y <span class="math inline">\(b=\alpha_2\)</span></li>
 </ol>
