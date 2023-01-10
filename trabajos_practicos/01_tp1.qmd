@@ -20,7 +20,7 @@ Una cafetería de especialidad es una cafetería en donde el café es lo más im
 if (is_html) knitr::include_graphics(file.path("imgs", "cafe.jpg"))
 ```
 
-La primera cafetería de especialidad que causó furor en Rosario fue [**Arto**](https://www.instagram.com/artocafe/?hl=es)(Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió [**Orlan**](https://www.instagram.com/cafeorlan/?hl=es) (Dorrego1670).
+La primera cafetería de especialidad que causó furor en Rosario fue [**Arto**](https://www.instagram.com/artocafe/?hl=es) (Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió [**Orlan**](https://www.instagram.com/cafeorlan/?hl=es) (Dorrego 1670).
 
 En enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ (en 750 *reviews*) y **Orlan**, una puntuación de 4.9⭐ (en 95 *reviews*). Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
 
@@ -38,7 +38,7 @@ En primera instancia, se modelizarán las *reviews* como una sucesión de lanza
 
 Según esta descripción, cada *review* es un proceso binomial con cuatro intentos y probabilidad de acierto $\sigma$.
 
-1.  Explique la relación entre $\sigma$ y la puntuación en ⭐del bar (ayuda: piense cuánto vale $\sigma$ para un bar 5⭐)
+1.  Explique la relación entre $\sigma$ y la puntuación en ⭐ del bar (ayuda: piense cuánto vale $\sigma$ para un bar 5⭐)
 2.  Construya una función que, dada una puntuación real de 1⭐ a 5⭐, simule el proceso de calificación de un usuario.
 3.  Construya una función que, apoyándose en la apartado anterior, simule las *reviews* de $U$ personas.
 4.  Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?
@@ -57,7 +57,7 @@ Trabajaremos a continuación con otro modelo, también de distribuciones conjuga
 
 ## Descubriendo la distribución de Dirichlet
 
-La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en $K\geq 2$ es la distribución de probabilidad del vector aleatorio $X=[X_1,X_2.\dots,X_K]$ dimensiones tiene como parámetro al vector $\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]$.
+La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en $K \geq 2$ es la distribución de probabilidad del vector aleatorio $X=[X_1, X_2 \dots, X_K]$ dimensiones tiene como parámetro al vector $\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]$.
 
 $$
 f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{\alpha})} \prod_{i=1}^K x_i^{\alpha_i-1}
@@ -71,7 +71,7 @@ Más simple aún, cuando $K=2$, el vector $[x_1,x_2]$ pertenece al segmento en $
 
 Notar que esta característica hace que los $x_1,x_2,\dots,x_K$ puedan representar las probabilidades de un experimento con $K$ resultados posibles.
 
-A título informativo, el soporte de la distribución Dirichlet en $K$ dimensiones es lo que se conoce como simplex (estándar) de $K-1$ dimensiones. El $3$-simplex es un triángulo y el $2$-simplex es un segmento. En general, un $K-1$-simplex es la envolvente convexa de $K$ vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto (Teorema de Carathéodory).
+A título informativo, el soporte de la distribución Dirichlet en $K$ dimensiones es lo que se conoce como _simplex_ (estándar) de $K-1$ dimensiones. El $3$-_simplex_ es un triángulo y el $2$-_simplex_ es un segmento. En general, un $K-1$-_simplex_ es la envolvente convexa de $K$ vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto [(Teorema de Carathéodory)](https://es.wikipedia.org/wiki/Teorema_de_Carath%C3%A9odory).
 
 Los párrafos anteriores, delirantemente matemáticos, muestran una virtud particular de la distribución Dirichlet de $K=3$ dimensiones. Esta distribución, a pesar de ser de una variable aleatoria en $\mathbb{R}^3$, puede representarse perfectamente de manera gráfica en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas baricéntricas), como si se tratara de una distribución bivariada.
 
@@ -79,7 +79,7 @@ Los párrafos anteriores, delirantemente matemáticos, muestran una virtud parti
 if (is_html) knitr::include_graphics(file.path("imgs", "dirichlet.jpg"))
 ```
 
-(hacer plots con el paquete \`ggtern\`\`)
+<!-- (hacer plots con el paquete \`ggtern\`\`) -->
 
 1.  Mostrar que, cuando $K=2$, la distribución de Dirichlet es la distribución beta de parámetros $a=\alpha_1$ y $b=\alpha_2$
 
