@@ -22,7 +22,13 @@ if (is_html) knitr::include_graphics(file.path("imgs", "cafe.jpg"))
 
 La primera cafetería de especialidad que causó furor en Rosario fue [**Arto**](https://www.instagram.com/artocafe/?hl=es)(Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió [**Orlan**](https://www.instagram.com/cafeorlan/?hl=es) (Dorrego1670).
 
-En enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ (en 750 *reviews*) y **Orlan**, una puntuación de 4.9⭐ (en 90 *reviews*). Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
+En enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ (en 750 *reviews*) y **Orlan**, una puntuación de 4.9⭐ (en 95 *reviews*). Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
+
+```{r, echo=FALSE, include=FALSE}
+# cantidad de califaciones para cada número de estrellas
+arto <- data.frame(s = 1:5, r = c(530,150,40,10,20))
+orlan <- data.frame(s = 1:5, r = c(89,3,1,0,2))
+```
 
 En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐.
 
@@ -39,8 +45,8 @@ Según esta descripción, cada *review* es un proceso binomial con cuatro intent
 
 Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de **Arto** y **Orlan**.
 
-5.  Elegir una distribución *a priori* para $\sigma$ utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución *a priori* elegida?
-6.  Con los datos de la introducción, obtener la distribución *a posteriori* de $\sigma$ para cada cafetería.
+5.  Elija una distribución *a priori* para $\sigma$ utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución *a priori* elegida? Considere las implicancias para ambas cantidades de *reviews*.
+6.  Con los datos de la introducción, obtenga la distribución *a posteriori* de $\sigma$ para cada cafetería.
 7.  ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
 
 <!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
@@ -85,12 +91,32 @@ Análogamente, cuando un experimento puede tener tres resultados posibles, el pr
 
 En efecto, cuando la distribución *a priori* es Dirichlet y la verosimilitud es multinomial, la distribución *a posteriori* también es Dirichlet.
 
-2.  Sabemos que si para una verosimilitud binomial, si la distribución *a priori* de la probabilidad de éxito $p$ es beta de parámetros $a$ y $b$ y se observan $s$ éxitos en $N$ intentos, la distribución *a posteriori* es beta de parámetros $a' = a+s$ y $b'=b+(N-s)$.
+2.  Sabemos que para una verosimilitud binomial, si la distribución *a priori* de la probabilidad de éxito $p$ es beta de parámetros $a$ y $b$ y se observan $s$ éxitos en $N$ intentos, la distribución *a posteriori* es beta de parámetros $a' = a+s$ y $b'=b+(N-s)$.
 
     Hallar, por analogía con el caso anterior, los parámetros de la distribución *a posteriori* que se obtiene si la verosimilitud es multinomial con tres resultados posibles, la distribución a priori es Dirichlet de parámetros $[\alpha_1,\alpha_2,\alpha_3]$ y se obtuvieron $s_1$ veces el primer resultado y $s_2$ veces el segundo resultado, sobre un total de $N$ intentos.
 
 ## Aplicación
 
-Principalmente de: https://fulmicoton.com/posts/bayesian_rating/
+Asumiremos ahora que las *reviews* de un local tienen distribución multinomial de parámetros $[p_1,p_2,\dots,p_5]$. Es decir, la probabilidad de que un usuario asigne 1⭐ es $p_1$, de que asigne 2⭐ es $p_2$, y así sucesivamente. Llamaremos $n_1$ al número de calificaciones de 1⭐, $n_2$ al número de calificaciones de 2⭐, y así sucesivamente. $n_1+n_2+n_3+n_4+n_5 = N$ será el número total de *reviews*.
 
-Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html
+Se puede verificar que el número esperado de reviews de $i$⭐ será $N p_i$. Por lo tanto, la puntuación esperada será:
+
+$$
+\frac{1}{N} (1\cdot N p_1 + 2\cdot N p_2 + 3\cdot N p_3 + 4\cdot N p_4 +5\cdot N p_5) = \sum_{i=1}^5 i\cdot p_i
+$$
+
+3.  Elija dos combinaciones de posibles valores de $p_i$ que den un valor esperado de 4.1⭐. Piense en una combinación que represente acuerdo entre los clientes y otra que indique la presencia de opiniones dispares.
+4.  Escriba una función que, dada una combinación de valores de $p_i$, simule el proceso de calificación de un cliente
+5.  Construya una función que simule la calificación de $U$ clientes
+6.  Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?
+
+Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de **Arto** y **Orlan**.
+
+7.  Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los parámetros de esa distribución multinomial? ¿Qué distribución *a priori* sería conveniente utilizar? ¿Cómo está parametrizada esa distribución *a priori*?
+8.  Elija los parámetros de la distribución *a priori* de modo tal que la creencia inicial sea uniforme sobre los posibles valores de los $p_i$. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución *a priori* elegida?
+9.  Con los datos de la introducción, obtenga la distribución *a posteriori* de los $p_i$ para cada cafetería.
+10. ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
+
+<!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
+
+<!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
