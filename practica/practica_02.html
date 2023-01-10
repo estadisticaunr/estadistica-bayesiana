@@ -230,11 +230,55 @@ div.csl-indent {
 <p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p></li>
 <li><p>La regla del tres</p>
 <p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrara 5 typos, sería <em>razonable</em> estimar <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span> typos/página. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
-<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de typos por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que $&gt; <span class="math inline">\(\frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p></li>
+<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de typos por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que $&gt; <span class="math inline">\(\frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --> 4</p></li>
 <li><p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
-<li><p>Suponga <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Pareto}(a, b)\)</span>. Derivar la distribución <em>a posteriori</em> de <span class="math inline">\(\theta | \mathbf{x}\)</span><br>
-<strong>revisar redaccion y si hablamos de muestras o variables aleatorias</strong>. <!-- An Introduction to Bayesian Inference, Methods and Computation (Nick Heard) --></p></li>
+<li><p>Inferencia sobre una distribución de Poisson</p>
+<p>La distribución de masa de probabilidad Poisson se define como <span class="math display">\[
+\begin{array}{lcr}
+\displaystyle \text{Po}(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
+\text{con} &amp;
+x \in \{0, 1, 2, \cdots \}
+\end{array}
+\]</span></p>
+<p>donde <span class="math inline">\(\lambda &gt; 0\)</span> es la cantidad promedio de veces que ocurre el evento de interés en un periodo o espacio determinado.</p>
+<ol type="i">
+<li>Derive el estimador de máxima verosimilitud del parámetro <span class="math inline">\(\lambda\)</span>.</li>
+<li>Derive el posterior <span class="math inline">\(p(\lambda|D)\)</span> suponiendo que el prior sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}\)</span>. Ayuda: El posterior también es una distribución Gamma.</li>
+<li>¿A qué valor tiende la media a posteriori cuando <span class="math inline">\(a \to 0\)</span> y <span class="math inline">\(b \to 0\)</span>? Recuerde que la media de una distribución <span class="math inline">\(\text{Ga}(a, b)\)</span> es <span class="math inline">\(a/b\)</span>. <!-- @Murphy2012 --></li>
+</ol></li>
+<li><p>Inferencia sobre una distribución Uniforme</p>
+<p>Considere una distribución uniforme crentrada en <span class="math inline">\(0\)</span> y rango <span class="math inline">\(2a\)</span>. La función de densidad de probabilidad es</p>
+<p><span class="math display">\[
+p(x) = \frac{1}{2a}I(x \in [-a, a])
+\]</span></p>
+<p>Sea <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
+<p>Inferencia máximo-verosímil</p>
+<ol type="i">
+<li>¿Cuál es el estimador máximo verosímil de <span class="math inline">\(a\)</span> (llámelo <span class="math inline">\(\hat{a}\)</span>)?</li>
+<li>¿Qué probabilidad le asigna el modelo a una nueva observación <span class="math inline">\(x_{n + 1}\)</span> usando <span class="math inline">\(\hat{a}\)</span>?</li>
+<li>¿Observa algún problema con el resultado anterior? Si es así, sugiera una alternativa mejor.</li>
 </ol>
+<p>Inferencia Bayesiana</p>
+<p>El prior conjugado es la distribución de Pareto …</p></li>
+</ol>
+<!-- In this exercise, we will perform a Bayesian analysis of the uniform distribution
+(following (Minka 2001a)). The conjugate prior is the Pareto distribution, p(θ) = Pareto(θ|b, K), defined in
+Section 2.4.6. Given a Pareto prior, the joint distribution of θ and D = (x1,...,xN ) is
+p(D, θ) = KbK
+θN+K+1 I(θ ≥ max(D)) (3.93)
+Let m = max(D). The evidence (the probability that all N samples came from the same uniform
+distribution) is
+p(D) = $ ∞
+m
+KbK
+θN+K+1 dθ (3.94)
+=
+% K
+(N+K)bN if m ≤ b
+KbK
+(N+K)mN+K if m>b (3.95)
+Derive the posterior p(θ|D), and show that if can be expressed as a Pareto distribution -->
+<!-- Murphy2012 -->
 <ul>
 <li>Calculo de conjugada no tradicional
 <ul>

@@ -193,7 +193,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <p>La primera cafetería de especialidad que causó furor en Rosario fue <a href="https://www.instagram.com/artocafe/?hl=es"><strong>Arto</strong></a>(Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió <a href="https://www.instagram.com/cafeorlan/?hl=es"><strong>Orlan</strong></a> (Dorrego1670).</p>
-<p>En enero de 2023, en Google Maps, <strong>Arto</strong> tiene una puntuación de 4.5⭐ (en 750 <em>reviews</em>) y <strong>Orlan</strong>, una puntuación de 4.9⭐ (en 90 <em>reviews</em>). Basándonos exclusivamente en las <em>reviews</em> de Google Maps, ¿podemos decir que <strong>Orlan</strong>&nbsp;es una opción mejor que <strong>Arto</strong>? ¿Podrá la estadística bayesiana darnos una respuesta?</p>
+<p>En enero de 2023, en Google Maps, <strong>Arto</strong> tiene una puntuación de 4.5⭐ (en 750 <em>reviews</em>) y <strong>Orlan</strong>, una puntuación de 4.9⭐ (en 95 <em>reviews</em>). Basándonos exclusivamente en las <em>reviews</em> de Google Maps, ¿podemos decir que <strong>Orlan</strong>&nbsp;es una opción mejor que <strong>Arto</strong>? ¿Podrá la estadística bayesiana darnos una respuesta?</p>
 <p>En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐.</p>
 </section>
 <section id="modelo-beta-binomial" class="level1">
@@ -208,8 +208,8 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <p>Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
 <ol start="5" type="1">
-<li>Elegir una distribución <em>a priori</em> para <span class="math inline">\(\sigma\)</span> utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida?</li>
-<li>Con los datos de la introducción, obtener la distribución <em>a posteriori</em> de <span class="math inline">\(\sigma\)</span> para cada cafetería.</li>
+<li>Elija una distribución <em>a priori</em> para <span class="math inline">\(\sigma\)</span> utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida? Considere las implicancias para ambas cantidades de <em>reviews</em>.</li>
+<li>Con los datos de la introducción, obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\sigma\)</span> para cada cafetería.</li>
 <li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
 </ol>
 <!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
@@ -250,14 +250,32 @@ f(x_1,x_2,\dots,x_k\mid \alpha_1, \alpha_2,\dots,\alpha_K) = \frac{1}{B(\mathbf{
 <p>Análogamente, cuando un experimento puede tener tres resultados posibles, el primero tiene probabilidad <span class="math inline">\(p_1\)</span>, el segundo tiene probabilidad <span class="math inline">\(p_2\)</span> y el tercero, probabilidad <span class="math inline">\(p_3 = p_1 - p_2\)</span>. Necesariamente debe ser <span class="math inline">\(p_1+p_2+p_3=1\)</span>. Si coleccionamos <span class="math inline">\(N\)</span> realizaciones del experimento, el número de ocurrencias de cada resultado posible es un vector aleatorio con distribución multinomial. Por lo visto hasta aquí, todo parece indicar que, si queremos realizar inferencias sobre <span class="math inline">\(p_1\)</span>, <span class="math inline">\(p_2\)</span> y <span class="math inline">\(p_3\)</span>, sería natural utilizar la distribución Dirichlet de tres dimensiones como distribución <em>a priori</em> para las probabilidades…</p>
 <p>En efecto, cuando la distribución <em>a priori</em> es Dirichlet y la verosimilitud es multinomial, la distribución <em>a posteriori</em> también es Dirichlet.</p>
 <ol start="2" type="1">
-<li><p>Sabemos que si para una verosimilitud binomial, si la distribución <em>a priori</em> de la probabilidad de éxito <span class="math inline">\(p\)</span> es beta de parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> y se observan <span class="math inline">\(s\)</span> éxitos en <span class="math inline">\(N\)</span> intentos, la distribución <em>a posteriori</em> es beta de parámetros <span class="math inline">\(a' = a+s\)</span> y <span class="math inline">\(b'=b+(N-s)\)</span>.</p>
+<li><p>Sabemos que para una verosimilitud binomial, si la distribución <em>a priori</em> de la probabilidad de éxito <span class="math inline">\(p\)</span> es beta de parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> y se observan <span class="math inline">\(s\)</span> éxitos en <span class="math inline">\(N\)</span> intentos, la distribución <em>a posteriori</em> es beta de parámetros <span class="math inline">\(a' = a+s\)</span> y <span class="math inline">\(b'=b+(N-s)\)</span>.</p>
 <p>Hallar, por analogía con el caso anterior, los parámetros de la distribución <em>a posteriori</em> que se obtiene si la verosimilitud es multinomial con tres resultados posibles, la distribución a priori&nbsp;es Dirichlet de parámetros <span class="math inline">\([\alpha_1,\alpha_2,\alpha_3]\)</span> y se obtuvieron <span class="math inline">\(s_1\)</span> veces el primer resultado y <span class="math inline">\(s_2\)</span> veces el segundo resultado, sobre un total de <span class="math inline">\(N\)</span> intentos.</p></li>
 </ol>
 </section>
 <section id="aplicación" class="level2">
 <h2 class="anchored" data-anchor-id="aplicación">Aplicación</h2>
-<p>Principalmente de: https://fulmicoton.com/posts/bayesian_rating/</p>
-<p>Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html</p>
+<p>Asumiremos ahora que las <em>reviews</em> de un local tienen distribución multinomial de parámetros <span class="math inline">\([p_1,p_2,\dots,p_5]\)</span>. Es decir, la probabilidad de que un usuario asigne 1⭐ es <span class="math inline">\(p_1\)</span>, de que asigne 2⭐ es <span class="math inline">\(p_2\)</span>, y así sucesivamente. Llamaremos <span class="math inline">\(n_1\)</span> al número de calificaciones de 1⭐, <span class="math inline">\(n_2\)</span> al número de calificaciones de 2⭐, y así sucesivamente. <span class="math inline">\(n_1+n_2+n_3+n_4+n_5 = N\)</span> será el número total de <em>reviews</em>.</p>
+<p>Se puede verificar que el número esperado de reviews de <span class="math inline">\(i\)</span>⭐ será <span class="math inline">\(N p_i\)</span>. Por lo tanto, la puntuación esperada será:</p>
+<p><span class="math display">\[
+\frac{1}{N} (1\cdot N p_1 + 2\cdot N p_2 + 3\cdot N p_3 + 4\cdot N p_4 +5\cdot N p_5) = \sum_{i=1}^5 i\cdot p_i
+\]</span></p>
+<ol start="3" type="1">
+<li>Elija dos combinaciones de posibles valores de <span class="math inline">\(p_i\)</span> que den un valor esperado de 4.1⭐. Piense en una combinación que represente acuerdo entre los clientes y otra que indique la presencia de opiniones dispares.</li>
+<li>Escriba una función que, dada una combinación de valores de <span class="math inline">\(p_i\)</span>, simule el proceso de calificación de un cliente</li>
+<li>Construya una función que simule la calificación de <span class="math inline">\(U\)</span> clientes</li>
+<li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
+</ol>
+<p>Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
+<ol start="7" type="1">
+<li>Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los parámetros de esa distribución multinomial? ¿Qué distribución <em>a priori</em> sería conveniente utilizar? ¿Cómo está parametrizada esa distribución <em>a priori</em>?</li>
+<li>Elija los parámetros de la distribución <em>a priori</em> de modo tal que la creencia inicial sea uniforme sobre los posibles valores de los <span class="math inline">\(p_i\)</span>. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida?</li>
+<li>Con los datos de la introducción, obtenga la distribución <em>a posteriori</em> de los <span class="math inline">\(p_i\)</span> para cada cafetería.</li>
+<li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
+</ol>
+<!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
+<!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
 
 
 </section>
