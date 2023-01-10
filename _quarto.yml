@@ -67,15 +67,13 @@ website:
       search: false
       background: dark
       contents:
-        - text: Descripción
+        - text: Generalidades
           file: trabajos_practicos/descripcion.qmd
-        - text: Trabajo 0
-          file: trabajos_practicos/00_tp0.qmd
-        - text: Trabajo 1
+        - text: TP 1
           file: trabajos_practicos/01_tp1.qmd
-        - text: Trabajo 2
+        - text: TP 2
           file: trabajos_practicos/02_tp2.qmd
-        - text: Trabajo 3
+        - text: TP 3
           file: trabajos_practicos/03_tp3.qmd
     - title: Cómputo
       style: docked

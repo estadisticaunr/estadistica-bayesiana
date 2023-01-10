@@ -1,6 +1,15 @@
 ---
-title: "Descripción"
+title: "Generalidades"
 ---
 
-Acá se describe la cantidad de trabajos prácticos, como se evalúan, el propósito de 
-tener tantos trabajos, etc. etc.
+Para aprobar la materia es necesario completar tres trabajos prácticos *cortos*. La denominación *cortos* hace referencia a que los trabajos son guiados y las tareas a realizar están delimitadas. 
+
+Los trabajos prácticos tienen como objetivo repasar y afianzar los conocimientos adquiridos durante las clases, adquirir práctica en la aplicación de conceptos trabajados, mejorar las habilidades de programación y el uso de R, e incorporar algunos conceptos complementarios.
+
+Cada trabajo práctico será presentado y discutido en clase. Se destinará una fracción de la clase a comenzar a pensar algunas de las actividades.
+
+La fecha de entrega de cada trabajo práctico será de dos semanas luego de la fecha de presentación. Se podrá entregar el trabajo práctico una semana después de la fecha de entrega con una penalización del 25% de la nota final.
+
+Para cada trabajo práctico, cada grupo deberá entregar un informe en formato pdf donde se resuelvan las actividades propuestas. El informe debe estar obligatoriamente elaborado utilizando $\LaTeX$ (a través de Quarto, RMarkdown o alguna otra variante). Tener en cuenta que los apartados presentados en el enunciado del trabajo práctico constituyen una guía de actividades a resolver y no deben responderse uno a uno como si se tratara de un cuestionario. El informe deberá permitir una lectura fluida de los resultados y análisis presentados. Cuando la resolución de una problemática consista en una función o porción de código en R, el código deberá mostrarse en el informe.
+
+Se evaluarán los siguientes aspectos del informe: presentación, redacción (claridad, coherencia y cohesión), estética, resultados obtenidos, profundidad del análisis.
