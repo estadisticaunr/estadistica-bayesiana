@@ -73,9 +73,10 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     sería *razonable* estimar $\frac{5}{20} = \frac{1}{4}$ typos/página.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
     
-    Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación razonable para
-    $\tau$ (la tasa de typos por página), siendo $N$ el número de páginas.
-    Para ello, hallar la probabilidad de que $\tau > $\frac{3}{N}$ para diferentes valores de $N$. 
+    Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación 
+    razonable para $\tau$ (la tasa de typos por página), siendo $N$ el número de páginas.
+    Para ello, hallar la probabilidad de que $\tau > $\frac{3}{N}$ para diferentes valores
+    de $N$. 
 <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
 4
 1.  Una colega quiere comprar un producto por Internet. Tres vendedores
@@ -92,19 +93,21 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     La distribución de masa de probabilidad Poisson se define como
     $$
     \begin{array}{lcr}
-    \displaystyle \text{Po}(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} & 
+    \displaystyle p(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} & 
     \text{con} &
     x \in \{0, 1, 2, \cdots \}
     \end{array}
     $$
 
-    donde $\lambda > 0$ es la cantidad promedio de veces que ocurre el evento de interés en un 
-    periodo o espacio determinado.
+    donde $\lambda > 0$ es la cantidad promedio de veces que ocurre el evento de interés 
+    en un periodo o espacio determinado.
 
     i. Derive el estimador de máxima verosimilitud del parámetro $\lambda$.
     i. Derive el posterior $p(\lambda|D)$ suponiendo que el prior sobre $\lambda$ es 
-    $p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}$. Ayuda: El posterior también es una distribución Gamma.
-    i. ¿A qué valor tiende la media a posteriori cuando $a \to 0$ y $b \to 0$? Recuerde que la media de una distribución $\text{Ga}(a, b)$ es $a/b$.
+    $p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}$. 
+    Ayuda: El posterior también es una distribución Gamma.
+    i. ¿A qué valor tiende la media a posteriori cuando $a \to 0$ y $b \to 0$? 
+    Recuerde que la media de una distribución $\text{Ga}(a, b)$ es $a/b$.
     <!-- @Murphy2012 -->
 
 1.  Inferencia sobre una distribución Uniforme
@@ -116,7 +119,8 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     p(x) = \frac{1}{2a}I(x \in [-a, a])
     $$
 
-    Sea $\mathbf{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes e idénticamente distribuidas según $p(x)$
+    Sea $\mathbf{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes
+    e idénticamente distribuidas según $p(x)$
 
     Inferencia máximo-verosímil
 
@@ -128,30 +132,80 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
     Inferencia Bayesiana
 
-    El prior conjugado es la distribución de Pareto ...
+    El prior conjugado de la distribución uniforme es la distribución de Pareto.
 
-<!-- In this exercise, we will perform a Bayesian analysis of the uniform distribution
-(following (Minka 2001a)). The conjugate prior is the Pareto distribution, p(θ) = Pareto(θ|b, K), defined in
-Section 2.4.6. Given a Pareto prior, the joint distribution of θ and D = (x1,...,xN ) is
-p(D, θ) = KbK
-θN+K+1 I(θ ≥ max(D)) (3.93)
-Let m = max(D). The evidence (the probability that all N samples came from the same uniform
-distribution) is
-p(D) = $ ∞
-m
-KbK
-θN+K+1 dθ (3.94)
-=
-% K
-(N+K)bN if m ≤ b
-KbK
-(N+K)mN+K if m>b (3.95)
-Derive the posterior p(θ|D), and show that if can be expressed as a Pareto distribution -->
-<!-- Murphy2012 -->
+    Si $x \sim \text{Pareto}(x | \alpha, m)$, luego
 
--   Calculo de conjugada no tradicional
-    -   Binomial negativa - Beta
-    -   Exponencial - Gamma
+    $$
+    p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+    $$
+
+    Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y 
+    $\mathbf{X} = (X_1,..., X_n)$ es 
+
+    $$
+    p(\theta, \mathbf{X}) 
+        = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
+        \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
+    $$
+
+    Llamando $M_x = \text{max}(\mathbf{X})$. 
+    La evidencia (la probabilidad que las $n$ muestras provengan de la misma distribución 
+    uniforme) es
+
+    $$
+    \begin{aligned}
+    p(\mathbf{X}) &= \int_{M_x}^\infty
+                     \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
+                     d\theta \\
+    &=  \begin{cases}
+        \frac{\alpha}{(n+\alpha)m^n} & \text{Si} \ M_x \le m \\
+        \frac{\alpha m^\alpha}{(n+\alpha)m^{n+\alpha}} & \text{Si} \ M_x \gt m
+        \end{cases}
+    \end{aligned}
+    $$
+
+    Derive el _posterior_ y muestre que puede ser expresado como una distribución de 
+    Pareto.
+    <!-- @Murphy2012 -->
+    <!-- Hay que mejorar la redaccion y ver que la notacion es consistente -->
+
+1.  Inferencia sobre una distribución Exponencial
+
+    El tiempo de vida de una máquina en años $X$ es modelado con una distribución 
+    exponencial con parámetro $\theta$ desconocido. La función de densidad es 
+
+    $$
+    \begin{array}{lcrr}
+    p(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
+    \end{array}
+    $$
+
+    i. Muestre que el estimador máximo verosímil es $\hat{\theta} = 1/\bar{x}$  
+    i. Suponga que se observan los siguientes tiempos de vida de tres máquinas 
+    independientes $x_1 = 5$, $x_2 = 6$, $x_3 = 4$.
+    ¿Cuál es el valor del estimador MV?
+    i. Una experta del área sugiere que $\theta$ debe tener una distribución _a priori_ 
+    que también sea exponencial.
+    $$
+    \begin{aligned}
+        \theta &\sim \text{Exp}(\lambda) \\
+        p(\theta | \lambda) &= \lambda e^{-\lambda \theta}
+    \end{aligned}
+    $$
+    Elija un valor para la distribución _a priori_, llámelo $\hat{\lambda}$, tal que 
+    $\mathbb{E}(\theta) = 1/3$.
+
+    i. ¿Cuál es el posterior $p(\theta | \mathbf{X}, \hat{\lambda})$?
+    i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
+    i. Encuentre la media del _posterior_, $\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})$
+    i. Explique por que difieren el estimador MV de la media _a posteriori_.  
+    ¿Cuál es más razonable en este ejemplo?
+    <!-- @Murphy2012 -->
+
+1.  Calculo de conjugada no tradicional
+    * Binomial negativa - Beta
+    * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
 
 ## Simulaciones
 
