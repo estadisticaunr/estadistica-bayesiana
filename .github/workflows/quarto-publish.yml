@@ -24,6 +24,7 @@ jobs:
             any::here
             any::rmarkdown
             any::knitr
+            any::googlesheets4
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2    

@@ -1,14 +1,21 @@
 ---
 title: Calendario
-tbl-colwidths: [10, 15, 30, 10, 35]
+tbl-colwidths: [7.5, 12.5, 7.5, 42.5, 10, 25]
 ---
 
-```{r, echo=FALSE}
-enquote <- function(x) {
-    paste0("'", x, "'")
-}
+```{r, echo=FALSE, include=FALSE}
+SHEET_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
+googlesheets4::gs4_deauth()
+data <- googlesheets4::read_sheet(SHEET_ID)
+data[["fecha"]] <- as.Date(data[["fecha"]])
+data[] <- lapply(data, as.character)
+```
 
-f <- function(link) {
+
+```{r, echo=FALSE}
+enquote <- function(x) {paste0("'", x, "'")}
+
+add_pdf_link <- function(link) {
     is_active <- !is.na(link)
     if (is_active) {
         code <- paste0(
@@ -20,25 +27,17 @@ f <- function(link) {
     }
     return(code)
 }
+
+data[["apuntes"]] <- sapply(data[["apuntes"]], add_pdf_link)
+data[is.na(data)] <- ""
 ```
 
-```{r echo=FALSE, include=FALSE}
-data <- data.frame(
-    "Semana" = c("1", "", "2", ""),
-    "Fecha" = c("18-03-2022", "21-03-2022", "18-03-2022", "21-03-2022"),
-    "Tema" = c("Introducción", "Teorema de Bayes", "Priors", "Posteriors"),
-    "Apuntes" = c(NA, "enlace.pdf", NA, "enlace2.pdf"),
-    "Lectura sugerida" = LETTERS[1:4]
-)
-
-data[["Apuntes"]] <- sapply(data[["Apuntes"]], f)
-```
 
 ```{r echo=FALSE}
 knitr::kable(
     data,
-    col.names = c("Semana", "Fecha", "Tema", "Apuntes", "Lectura sugerida"),
-    align = "l",
+    col.names = c("Semana", "Fecha", "Unidad", "Tema", "Apuntes", "Lectura sugerida"),
+    align = c("c", "c", "c", "l", "c", "l"),
     escape = TRUE
 )
 ```
