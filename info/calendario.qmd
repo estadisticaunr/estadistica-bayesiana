@@ -1,6 +1,7 @@
 ---
 title: Calendario
-tbl-colwidths: [7.5, 12.5, 7.5, 42.5, 10, 25]
+tbl-colwidths: [2.5, 10, 5, 37.5, 5, 25, 17.5]
+page-layout: full
 ---
 
 ```{r, echo=FALSE, include=FALSE}
@@ -9,6 +10,7 @@ googlesheets4::gs4_deauth()
 data <- googlesheets4::read_sheet(SHEET_ID)
 data[["fecha"]] <- as.Date(data[["fecha"]])
 data[] <- lapply(data, as.character)
+data[] <- lapply(data, function(x) gsub("\n", "<br>", x))
 ```
 
 
@@ -32,12 +34,13 @@ data[["apuntes"]] <- sapply(data[["apuntes"]], add_pdf_link)
 data[is.na(data)] <- ""
 ```
 
-
 ```{r echo=FALSE}
 knitr::kable(
     data,
-    col.names = c("Semana", "Fecha", "Unidad", "Tema", "Apuntes", "Lectura sugerida"),
-    align = c("c", "c", "c", "l", "c", "l"),
+    col.names = c(
+        "Semana", "Fecha", "Unidad", "Temas", "Apunte", "Lectura sugerida", "Novedades"
+    ),
+    align = c("c", "c", "c", "l", "c", "l", "l"),
     escape = TRUE
 )
 ```
