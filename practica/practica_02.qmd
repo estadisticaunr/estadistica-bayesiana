@@ -206,6 +206,8 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 1.  Calculo de conjugada no tradicional
     * Binomial negativa - Beta
     * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
+    
+1.  7.4.5 de Reich
 
 ## Simulaciones
 
@@ -265,6 +267,8 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
     i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
     i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
+    
+1.  7.4.2 de Reich
 
 1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
 
@@ -313,6 +317,15 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. El primo de un amigo disfruta de salir a pescar, y lo hace muy seguido. 
     En el asado de los Jueves dice que "El 90% de las veces que salgo a pescar, vuelvo con
     algo. Si te tuviera que dar un rango, te diría entre el 85% y el 100% de las veces".
+    
+1.  Efecto de la parametrización
+    
+    Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para explorar los efectos de las siguientes elecciones de distribuciones _a priori_
+    
+    i. Si $\theta \sim \text{Uniforme}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
+    i. Si $\theta \sim \text{Beta}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
+    i. Si $\gamma \sim \text{Uniforme}(0,100)$, ¿cuál es el _prior_ inducido para $\theta$?
+    i. Si $\gamma \sim \text{Gamma}(1,1)$, ¿cuál es el _prior_ inducido para $\theta$? 
 
 ## Notas
 
