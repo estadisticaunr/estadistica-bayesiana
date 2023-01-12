@@ -308,6 +308,19 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li><p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs. Le preguntamos si algunx de ellxs es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambxs sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p>Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo? Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son siempre del mismo sexo biológico. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p>Dos cajones contienen medias. Uno de ellos tiene igual cantidad de medias blancas y negras. El otro contiene un número igual de medias rojas, verdes y azules. Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales. ¿Cuál es la probabilidad de que las medias sean blancas? Supóngase que sacar la primera media no altera las proporciones. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<li><p><em>Prosecutor’s Fallacy</em></p>
+<p>Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, murió con 11 semanas en diciembre de 1996 y su hijo más joven, Harry, con 8 semanas en enero de 1998. Durante el juicio, la defensa argumentó que las muertes se debieron al síndrome de muerte súbita del lactante (SIDS). Clark fue condenada a partir del testimonio del pediatra Sir Roy Meadow, quien argumentó en la corte lo siguiente:</p>
+<ul>
+<li>En familias sanas, la chance de muerte por SIDS es de <span class="math inline">\(\frac{1}{8500}\)</span></li>
+<li>La probabilidad de dos muertes por SIDS en la misma familia es aproximadamente <span class="math inline">\(\frac{1}{8500^2} \approx \frac{1}{73000000}\)</span></li>
+<li>Es, por ende, muy poco probable que Clark sea inocente</li>
+</ul>
+<p>Luego de pasar 3 años en priosión, Clark fue liberada en 2003 luego de que se determinara que el testimonio <em>experto</em> de Meadows era equivocado. Dos mujeres, a las cuales el testimonio de Meadows había enviado a prisión, también fueron liberadas.</p>
+<ol type="i">
+<li>Identifica una falla en la probabilidad de <span class="math inline">\(\frac{1}{73000000}\)</span> dada por Meadows</li>
+<li>Incluso aceptando el número anterior como correcto, ¿cuál es el problema de interpretar esa probabilidad como la probabilidad de inocencia de Clark?</li>
+</ol>
+<!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf --></li>
 </ol>
 </section>
 <section id="popurrí" class="level2">
@@ -370,6 +383,27 @@ Decide hacer un experimento:</p>
 <li>Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.</li>
 </ul>
 <p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p></li>
+<li><p>Supongamos que existe un idioma con seis palabras:</p>
+<p><span class="math display">\[
+\text{\{perro, parra, farra, carro, corro, tarro\}}
+\]</span></p>
+<p>Un análisis lingüístico exhaustivo de esta lengua ha descubierto que todas las palabras son igualmente probables, excepto por ‘perro’, que es <span class="math inline">\(\alpha\)</span> veces más probable que las otras. Además:</p>
+<ul>
+<li><p>Cuando se tipean, un caracter se introduce erróneamente con probabilidad <span class="math inline">\(\theta\)</span>;</p></li>
+<li><p>Todas las letras tienen la misma probabilidad de producir un error de tipeo;</p></li>
+<li><p>Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia;</p></li>
+<li><p>Los errores son independientes a lo largo de una palabras.</p></li>
+</ul>
+<ol type="i">
+<li>¿Cuál es la probabilidad de escribir correctamente ‘tarro’?</li>
+<li>¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?</li>
+<li>Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua. Para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, hallar la probabilidad de que cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar las siguientes combinaciones de parámetros:
+<ol type="a">
+<li><span class="math inline">\(\alpha=2\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
+<li><span class="math inline">\(\alpha=50\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
+<li><span class="math inline">\(\alpha=2\)</span> y <span class="math inline">\(\theta = 0.9\)</span></li>
+</ol></li>
+</ol></li>
 </ol>
 </section>
 <section id="conceptuales" class="level2">
