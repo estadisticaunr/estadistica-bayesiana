@@ -1,45 +1,38 @@
 [
   {
-    "objectID": "trabajos_practicos/02_tp2.html#mh-en-1d",
-    "href": "trabajos_practicos/02_tp2.html#mh-en-1d",
-    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
-    "section": "MH en 1D",
-    "text": "MH en 1D"
-  },
-  {
-    "objectID": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
-    "href": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
-    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
-    "section": "MH en 2D para diferentes casos de normales",
-    "text": "MH en 2D para diferentes casos de normales"
-  },
-  {
-    "objectID": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
-    "href": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
-    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
-    "section": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?",
-    "text": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?"
+    "objectID": "complementario/variables.html",
+    "href": "complementario/variables.html",
+    "title": "Repaso de Variables Aleatorias",
+    "section": "",
+    "text": "Variables aleatorias\n\nDiscretas\nContinuas\n\nCDF\nPDF\nDistribucion conjunta\nDistribucion marginal\nDistribucion condicional\nIndependencia e independencia condicional\nMomentos de una distribucion\nRegla de Bayes\nDistribuciones de probabilidad frecuentemente utilizadas\nTransformacion de variables aleatorias\n\nPropiedades de transformaciones lineales\n\n\nEste listado esta sacado del capitulo 2 de Murphy (2022)\nTambien hay cosas interesantes en capitulo 3 de Murphy (2022)\n\nUncorrelated does not imply independent\nCorrelation does not imply causation\n\n\nPairwise independence does not imply mutual independence\nWe say that two random variables are pairwise independent if \\(p(X_2|X_1) = p(X_2)\\) and hence \\(p(X_2, X_1) = p(X_1)p(X_2|X_1) = p(X_1)p(X_2)\\)\nWe say that \\(n\\) random variables are mutually independent if \\(p(Xi|XS) = p(Xi)\\) \\(\\forall S \\subseteq \\{1, \\cdots , n\\}\\) and hence \\(\\displaystyle p(X_{1:n}) = \\prod_{i=1}^{n} p(X_i)\\)\nShow that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counter example.\nExercise 2.5 Murphy (2022)\nExercise 2.6 Murphy (2022)\nExercise 3.5 [Gaussian vs jointly Gaussian ]\n\n\n\n\n\nReferencias\n\nMurphy, Kevin P. 2022. Probabilistic Machine Learning: An Introduction. 1st edition. The MIT Press. https://probml.ai/."
   },
   {
     "objectID": "trabajos_practicos/03_tp3.html",
     "href": "trabajos_practicos/03_tp3.html",
     "title": "TP3: Estudio de modelos lineales mediante simulaciones",
     "section": "",
-    "text": "Algo de calibración de probabilidades\nCalcular lppd “a mano”\n\n\n\n\n\nEcuación diferencial (verificar)\nTransformación de variables\nAjustar el modelo lineal\nEncontrar el posterior del parámetro transformado\nPredecir la temperatura a la que estará después de un tiempo…"
+    "text": "Descargar PDF"
   },
   {
-    "objectID": "trabajos_practicos/descripcion.html",
-    "href": "trabajos_practicos/descripcion.html",
-    "title": "Generalidades",
-    "section": "",
-    "text": "Para aprobar la materia es necesario completar tres trabajos prácticos cortos. La denominación cortos hace referencia a que los trabajos son guiados y las tareas a realizar están delimitadas.\nLos trabajos prácticos tienen como objetivo repasar y afianzar los conocimientos adquiridos durante las clases, adquirir práctica en la aplicación de conceptos trabajados, mejorar las habilidades de programación y el uso de R, e incorporar algunos conceptos complementarios.\nCada trabajo práctico será presentado y discutido en clase. Se destinará una fracción de la clase a comenzar a pensar algunas de las actividades.\nLa fecha de entrega de cada trabajo práctico será de dos semanas luego de la fecha de presentación. Se podrá entregar el trabajo práctico una semana después de la fecha de entrega con una penalización del 25% de la nota final.\nPara cada trabajo práctico, cada grupo deberá entregar un informe en formato pdf donde se resuelvan las actividades propuestas. El informe debe estar obligatoriamente elaborado utilizando \\(\\mathrm{\\LaTeX{}}\\) (a través de Quarto, RMarkdown o alguna otra variante). Tener en cuenta que los apartados presentados en el enunciado del trabajo práctico constituyen una guía de actividades a resolver y no deben responderse uno a uno como si se tratara de un cuestionario. El informe deberá permitir una lectura fluida de los resultados y análisis presentados. Cuando la resolución de una problemática consista en una función o porción de código en R, el código deberá mostrarse en el informe.\nSe evaluarán los siguientes aspectos del informe: presentación, redacción (claridad, coherencia y cohesión), estética, resultados obtenidos, profundidad del análisis."
+    "objectID": "trabajos_practicos/03_tp3.html#simulaciones-y-validación-cruzada",
+    "href": "trabajos_practicos/03_tp3.html#simulaciones-y-validación-cruzada",
+    "title": "TP3: Estudio de modelos lineales mediante simulaciones",
+    "section": "Simulaciones y validación cruzada",
+    "text": "Simulaciones y validación cruzada\n\nAlgo de calibración de probabilidades\nCalcular lppd “a mano”"
+  },
+  {
+    "objectID": "trabajos_practicos/03_tp3.html#enfriamiento-de-agua-en-un-termo",
+    "href": "trabajos_practicos/03_tp3.html#enfriamiento-de-agua-en-un-termo",
+    "title": "TP3: Estudio de modelos lineales mediante simulaciones",
+    "section": "Enfriamiento de agua en un termo",
+    "text": "Enfriamiento de agua en un termo\n\nEcuación diferencial (verificar)\nTransformación de variables\nAjustar el modelo lineal\nEncontrar el posterior del parámetro transformado\nPredecir la temperatura a la que estará después de un tiempo…"
   },
   {
     "objectID": "trabajos_practicos/01_tp1.html",
     "href": "trabajos_practicos/01_tp1.html",
     "title": "TP1: Aplicación de modelos conjugados a reviews de Google Maps",
     "section": "",
-    "text": "En 2017 comenzó una revolución gastronómica en Rosario. La experiencia de tomar café pasó a otro nivel. Comenzaron a aparecer cafeterías con una característica particular: ofrecer café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos al café.\nUna cafetería de especialidad es una cafetería en donde el café es lo más importante de todo, preparado por baristas, con granos de café de distintas partes del mundo (con información meticulosa sobre la finca de la que vienen, la variedad de la planta, la altura a la que fue cultivado, y el grado de tueste) y distintos métodos de preparación aparte del ya tradicional café de máquina espresso (como por ejemplo, los cafés filtrados)\n\n\n\n\n\nEl arte latte suele ser distintivo de las cafeterías de especialidad\n\n\n\n\nLa primera cafetería de especialidad que causó furor en Rosario fue Arto (Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió Orlan (Dorrego 1670).\nEn enero de 2023, en Google Maps, Arto tiene una puntuación de 4.5⭐ (en 750 reviews) y Orlan, una puntuación de 4.9⭐ (en 95 reviews). Basándonos exclusivamente en las reviews de Google Maps, ¿podemos decir que Orlan es una opción mejor que Arto? ¿Podrá la estadística bayesiana darnos una respuesta?\nEn este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐."
+    "text": "Descargar PDF"
   },
   {
     "objectID": "trabajos_practicos/01_tp1.html#descubriendo-la-distribución-de-dirichlet",
@@ -63,25 +56,60 @@
     "text": "Aplicación\nAsumiremos ahora que las reviews de un local tienen distribución multinomial de parámetros \\([p_1,p_2,\\dots,p_5]\\). Es decir, la probabilidad de que un usuario asigne 1⭐ es \\(p_1\\), de que asigne 2⭐ es \\(p_2\\), y así sucesivamente. Llamaremos \\(n_1\\) al número de calificaciones de 1⭐, \\(n_2\\) al número de calificaciones de 2⭐, y así sucesivamente. \\(n_1+n_2+n_3+n_4+n_5 = N\\) será el número total de reviews.\nSe puede verificar que el número esperado de reviews de \\(i\\)⭐ será \\(N p_i\\). Por lo tanto, la puntuación esperada será:\n\\[\n\\frac{1}{N} (1\\cdot N p_1 + 2\\cdot N p_2 + 3\\cdot N p_3 + 4\\cdot N p_4 +5\\cdot N p_5) = \\sum_{i=1}^5 i\\cdot p_i\n\\]\n\nElija dos combinaciones de posibles valores de \\(p_i\\) que den un valor esperado de 4.1⭐. Piense en una combinación que represente acuerdo entre los clientes y otra que indique la presencia de opiniones dispares.\nEscriba una función que, dada una combinación de valores de \\(p_i\\), simule el proceso de calificación de un cliente\nConstruya una función que simule la calificación de \\(U\\) clientes\nSimule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?\n\nUtilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de Arto y Orlan.\n\nLos datos se generan siguiendo una distribución multinomial. ¿Cuáles son los parámetros de esa distribución multinomial? ¿Qué distribución a priori sería conveniente utilizar? ¿Cómo está parametrizada esa distribución a priori?\nElija los parámetros de la distribución a priori de modo tal que la creencia inicial sea uniforme sobre los posibles valores de los \\(p_i\\). ¿Qué implicancias tiene para la puntuación en ⭐ la distribución a priori elegida?\nCon los datos de la introducción, obtenga la distribución a posteriori de los \\(p_i\\) para cada cafetería.\n¿Cuál es la probabilidad de que Orlan sea mejor que Arto?"
   },
   {
+    "objectID": "trabajos_practicos/02_tp2.html",
+    "href": "trabajos_practicos/02_tp2.html",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "",
+    "text": "Descargar PDF"
+  },
+  {
+    "objectID": "trabajos_practicos/02_tp2.html#mh-en-1d",
+    "href": "trabajos_practicos/02_tp2.html#mh-en-1d",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "MH en 1D",
+    "text": "MH en 1D"
+  },
+  {
+    "objectID": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
+    "href": "trabajos_practicos/02_tp2.html#mh-en-2d-para-diferentes-casos-de-normales",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "MH en 2D para diferentes casos de normales",
+    "text": "MH en 2D para diferentes casos de normales"
+  },
+  {
+    "objectID": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
+    "href": "trabajos_practicos/02_tp2.html#aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu",
+    "title": "TP2: Implementación del algoritmo de Metropolis-Hastings",
+    "section": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?",
+    "text": "Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?"
+  },
+  {
     "objectID": "trabajos_practicos/00_tp0.html",
     "href": "trabajos_practicos/00_tp0.html",
     "title": "TP0: Distribución de Rocklets azules",
     "section": "",
-    "text": "Distribución de Rocklets azules"
+    "text": "Descargar PDF\n\n\nDistribución de Rocklets azules"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Estadística Bayesiana",
+    "objectID": "trabajos_practicos/descripcion.html",
+    "href": "trabajos_practicos/descripcion.html",
+    "title": "Generalidades",
     "section": "",
-    "text": "Este es el subtitulo…\n\n\n\n   Licenciatura en Estadística\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   1° Cuatrimestre 2023"
+    "text": "Para aprobar la materia es necesario completar tres trabajos prácticos cortos. La denominación cortos hace referencia a que los trabajos son guiados y las tareas a realizar están delimitadas.\nLos trabajos prácticos tienen como objetivo repasar y afianzar los conocimientos adquiridos durante las clases, adquirir práctica en la aplicación de conceptos trabajados, mejorar las habilidades de programación y el uso de R, e incorporar algunos conceptos complementarios.\nCada trabajo práctico será presentado y discutido en clase. Se destinará una fracción de la clase a comenzar a pensar algunas de las actividades.\nLa fecha de entrega de cada trabajo práctico será de dos semanas luego de la fecha de presentación. Se podrá entregar el trabajo práctico una semana después de la fecha de entrega con una penalización del 25% de la nota final.\nPara cada trabajo práctico, cada grupo deberá entregar un informe en formato pdf donde se resuelvan las actividades propuestas. El informe debe estar obligatoriamente elaborado utilizando \\(\\mathrm{\\LaTeX{}}\\) (a través de Quarto, RMarkdown o alguna otra variante). Tener en cuenta que los apartados presentados en el enunciado del trabajo práctico constituyen una guía de actividades a resolver y no deben responderse uno a uno como si se tratara de un cuestionario. El informe deberá permitir una lectura fluida de los resultados y análisis presentados. Cuando la resolución de una problemática consista en una función o porción de código en R, el código deberá mostrarse en el informe.\nSe evaluarán los siguientes aspectos del informe: presentación, redacción (claridad, coherencia y cohesión), estética, resultados obtenidos, profundidad del análisis."
   },
   {
-    "objectID": "index.html#profesores",
-    "href": "index.html#profesores",
-    "title": "Estadística Bayesiana",
-    "section": "Profesores",
-    "text": "Profesores\n\n\nNacho Evangelista\n\n   email_de_nacho@mail.com\n   Miércoles (7:00-9:00) y Viernes (7:00-9:00)\n\n\n\nTomás Capretto\n\n   email_de_tomi@mail.com\n   Lunes (11-13hs) y Miércoles (7-9hs)"
+    "objectID": "practica/practica_03.html",
+    "href": "practica/practica_03.html",
+    "title": "Práctica - Unidad 3",
+    "section": "",
+    "text": "Descargar PDF"
+  },
+  {
+    "objectID": "practica/practica_03.html#métodos-computacionales",
+    "href": "practica/practica_03.html#métodos-computacionales",
+    "title": "Práctica - Unidad 3",
+    "section": "Métodos Computacionales",
+    "text": "Métodos Computacionales\n\nEn la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. En ese momento del partido,\n\n¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?\n¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? \n\nGrid approximation para un modelo de tres parámetros? Una regresión lineal? No la dimos pero la conocen…"
   },
   {
     "objectID": "practica/practica_01.html",
@@ -110,20 +138,6 @@
     "title": "Práctica - Unidad 1",
     "section": "Conceptuales",
     "text": "Conceptuales\n\nVoy a conseguir esa pasantía\nLa empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus datos. Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu hipótesis.\n\nDesde la perspectiva de una persona con un razonamiento frecuentista, ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?\nRepita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.\n¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. \n\nBeneficios de la Estadística Bayesiana\nUna amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana. Explícale lo siguiente:\n\n¿Por qué es útil el enfoque Bayesiano?\n¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano?"
-  },
-  {
-    "objectID": "practica/practica_03.html",
-    "href": "practica/practica_03.html",
-    "title": "Práctica - Unidad 3",
-    "section": "",
-    "text": "Descargar PDF"
-  },
-  {
-    "objectID": "practica/practica_03.html#métodos-computacionales",
-    "href": "practica/practica_03.html#métodos-computacionales",
-    "title": "Práctica - Unidad 3",
-    "section": "Métodos Computacionales",
-    "text": "Métodos Computacionales\n\nEn la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. En ese momento del partido,\n\n¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?\n¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? \n\nGrid approximation para un modelo de tres parámetros? Una regresión lineal? No la dimos pero la conocen…"
   },
   {
     "objectID": "practica/practica_00.html",
@@ -189,55 +203,6 @@
     "text": "Notas\nEn algún lado podríamos tener un glosario, o algo del estilo. El objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto. Acá podriamos mostrar que usamos \\(\\text{Beta}(a, b)\\) con \\(\\text{pdf}(x) = \\frac{\\Gamma(a + b)}{\\Gamma(a) + \\Gamma(b)} x^{a-1}(1-x)^{b-1}\\)"
   },
   {
-    "objectID": "info/bibliografia.html",
-    "href": "info/bibliografia.html",
-    "title": "Bibliografía",
-    "section": "",
-    "text": "Bibliografía principal\n\nJohnson, Ott, y Dogucu (2022) McElreath (2020) Gelman y Hill (2006) Kruschke (2014) Reich y Ghosh (2019)\n\n\n\nGelman, Andrew, y Jennifer Hill. 2006. Data Analysis Using Regression and Multilevel-Hierarchical Models. 1st edition. Cambridge University Press.\n\n\nJohnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. Bayes Rules! An Introduction to Bayesian Modeling. 1st edition. Chapman; Hall/CRC. https://www.bayesrulesbook.com/.\n\n\nKruschke, John. 2014. Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan. 2nd edition. Academic Press.\n\n\nMcElreath, Richard. 2020. Statistical Rethinking: A Bayesian Course with Examples in R and Stan. 2nd edition. Chapman; Hall/CRC.\n\n\nReich, Brian J., y Sujit K. Ghosh. 2019. Bayesian Statistical Methods. 1st edition. Chapman; Hall/CRC.\n\n\n\n\nBibliografía complementaria\n\nGelman et al. (2013), Gelman, Hill, y Vehtari (2021), Downey (2021), Lee y Wagenmakers (2014), Davidson-Pilon (2015), Nicenboim, Schad, y Vasishth (2022), Barr (2021), Carlin y Louis (2008), Hoff (2009), MacKay (2003), Lambert (2018), Murphy (2022), Murphy (2023), Bishop (2006), Martin, Kumar, y Lao (2021), Theoridis (2020), Clyde et al. (2022), Ma, Kording, y Goldreich (2022)\n\n\n\n\n\nBarr, Dale J. 2021. Learning statistical models through simulation in R: An interactive textbook. 1st edition. https://psyteachr.github.io/stat-models-v1/.\n\n\nBishop, Christopher M. 2006. Pattern Recognition and Machine Learning. 1st edition. Springer.\n\n\nCarlin, Bradley P., y Thomas A. Louis. 2008. Bayesian Methods for Data Analysis. 3rd edition. Chapman; Hall/CRC.\n\n\nClyde, Merlise, Mine Çetinkaya-Rundel, Colin Rundel, David Banks, Christine Chai, y Lizzy Huang. 2022. An Introduction to Bayesian Thinking. 1st edition. https://statswithr.github.io/book/.\n\n\nDavidson-Pilon, Cameron. 2015. Bayesian Methods for Hackers: Probabilistic Programming and Bayesian Inference. 1st edition. Addison-Wesley Data; Analytics Series.\n\n\nDowney, Allen B. 2021. Think Bayes: Bayesian Statistics in Python. 2nd edition. O’Reilly Media. http://allendowney.github.io/ThinkBayes2/.\n\n\nGelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. Bayesian Data Analysis. 3rd edition. Chapman; Hall/CRC.\n\n\nGelman, Andrew, Jennifer Hill, y Aki Vehtari. 2021. Regression and Other Stories. 1st edition. Cambridge University Press. https://users.aalto.fi/~ave/ROS.pdf.\n\n\nHoff, Peter D. 2009. A First Course in Bayesian Statistical Methods. 1st edition. Springer.\n\n\nLambert, Ben. 2018. A Student’s Guide to Bayesian Statistics. 1st edition. SAGE Publications Ltd.\n\n\nLee, Michael D., y Eric-Jan Wagenmakers. 2014. Bayesian Cognitive Modeling: A Practical Course. 1st edition. Cambridge University Press.\n\n\nMa, Wei Ji, Konrad P. Kording, y Daniel Goldreich. 2022. Bayesian Models of Perception and Action: An Introduction. 3rd edition. http://www.cns.nyu.edu/malab/bayesianbook.html.\n\n\nMacKay, David J. C. 2003. Information Theory, Inference and Learning Algorithms. 1st edition. Cambridge University Press.\n\n\nMartin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. Bayesian Modeling and Computation in Python. 1st edition. Chapman; Hall/CRC.\n\n\nMurphy, Kevin P. 2022. Probabilistic Machine Learning: An Introduction. 1st edition. The MIT Press. https://probml.ai/.\n\n\nMurphy, Kevin P. 2023. Probabilistic Machine Learning: Advanced Topics. 1st edition. The MIT Press. https://probml.ai/.\n\n\nNicenboim, Bruno, Daniel Schad, y Shravan Vasishth. 2022. An Introduction to Bayesian Data Analysis for Cognitive Science. https://vasishth.github.io/bayescogsci/book/.\n\n\nTheoridis, Sergios. 2020. Machine Learning: A Bayesian and Optimization Perspective. 2nd edition. Academic Press."
-  },
-  {
-    "objectID": "info/enlaces_utiles.html",
-    "href": "info/enlaces_utiles.html",
-    "title": "Enlaces útiles",
-    "section": "",
-    "text": "Awesome Bayesian Statistics. Es un listado de recursos en línea (y gratuitos!) relacionados al mundo de la Estadística Bayesiana."
-  },
-  {
-    "objectID": "info/aprobacion.html",
-    "href": "info/aprobacion.html",
-    "title": "Condiciones de aprobación",
-    "section": "",
-    "text": "Instancias de evaluación\n\n📝 Parcial – escrito e individual, se aprueba con 6, hay una instancia de recuperación;\n💻💻💻 Trabajos prácticos cortos – grupales (hasta tres personas), se hacen por fuera del horario de clase, se entrega informe;\n📈 Trabajo práctico final – realización grupal, defensa individual.\n\n\n\nCondiciones de aprobación\n\nPromoción\n\nLas y los estudiantes que hayan aprobado el parcial o su recuperatorio (con nota \\(P\\)), los tres trabajos prácticos cortos (con promedio simple \\(T\\)) y hayan entregado el trabajo práctico final, accederán a una instancia de evaluación oral donde se discutirá el trabajo práctico final y se evaluarán de manera general todos los contenidos conceptuales de la asignatura; esta instancia puede incluir la realización de algunas actividades en computadora (el trabajo práctico final y la instancia oral tendrán nota \\(O\\)).\nLa nota final se obtendrá según \\(0.3\\ T + 0.4\\ P + 0.3\\ O\\)\n\nRegularidad\n\nQuienes no alcancen la condición de promoción podrán quedar en condición de estudiante regular si aprueban el parcial o su recuperatorio y aprueban al menos dos de los trabajos prácticos cortos. Para alcanzar la aprobación de la asignatura, los y las estudiantes en condición de regulares deberán presentar el trabajo final en una mesa de examen y aprobar una instancia oral de defensa del trabajo y de evaluación integral de los contenidos de la materia. Esta instancia puede incluir la realización de algunas actividades en computadora.\n\nLibres\n\nAquellas personas que no alcancen la promoción de la asignatura ni la condición de estudiante regular quedarán en condición de estudiante libre. Los y las estudiantes en condición de libre deberán presentar un trabajo práctico y rendir un examen teórico-práctico sobre la totalidad de los temas de la asignatura."
-  },
-  {
-    "objectID": "info/faq.html",
-    "href": "info/faq.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Preguntas frecuentes"
-  },
-  {
-    "objectID": "info/docentes.html",
-    "href": "info/docentes.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Docentes"
-  },
-  {
-    "objectID": "info/programa.html",
-    "href": "info/programa.html",
-    "title": "Programa",
-    "section": "",
-    "text": "Fundamentación\nLa Estadística Bayesiana es un enfoque de la inferencia estadística que se basa en utilizar probabilidades para representar el conocimiento disponible sobre el conjunto de parámetros de un modelo y actualizar esa información utilizando la Regla de Bayes a partir de la observación de un conjunto de datos. El conocimiento inicial se representa con una distribución de probabilidad a priori, la información contenida en los datos observados se modeliza con una función de verosimilitud y ambas fuentes de información se combinan para obtener una distribución de probabilidad a posteriori. La información a posteriori puede ser utilizada para extraer conclusiones sobre el fenómeno en estudio y realizar predicciones sobre datos no observados o eventos futuros.\nLos métodos bayesianos requieren, salvo en casos muy simples, una complejidad computacional que resultaba inalcanzable hace algunos años. Gracias a desarrollos revolucionarios en el ámbito de la computación, la principal barrera para la implementación de los modelos bayesianos desapareció y la utilización de estos se ha incrementado masivamente en múltiples campos científicos. Esta creciente popularidad se debe a que la inferencia bayesiana brinda un marco teórico consistente que permite la incorporación de información a priori, el desarrollo de un aprendizaje secuencial, la obtención de inferencias y predicciones en forma de distribuciones de probabilidad, el tratamiento de datos faltantes, los análisis con pocos datos, entre otras ventajas.\n\n\nObjetivos\nQue quienes cursen la materia logren:\n\nentender las características y los conceptos fundamentales de la Estadística Bayesiana;\ndescribir las características principales de la Estadística Bayesiana;\ncomprender la complejidad analítica de la inferencia bayesiana y la necesidad de la utilización de un enfoque computacional para superar estas dificultades;\nser capaces de aplicar métodos bayesianos a problemas reales utilizando software específico; e\ninterpretar los resultados del proceso de análisis bayesiano de datos.\n\n\n\nContenidos\n\nUnidad 1: Introducción y Fundamentos de la Estadística Bayesiana\n\nProbabilidad para cuantificar la incertidumbre. Modelos de probabilidad. Regla de Bayes. Inferencia bayesiana. Distribución a priori, función de verosimilitud, distribución a posteriori.\n\nUnidad 2: Inferencia Bayesiana\n\nModelos de distribuciones conjugadas. Modelos de un parámetro. Modelo beta-binomial. Enfoque intuitivo. Distribución a posteriori como compromiso entre la verosimilitud y la distribución a priori. Razonamiento secuencial. Modelo normal-normal. Modelo gamma–Poisson. Modelos de varios parámetros. Modelo normal – normal-gamma-inversa. Modelo Dirichlet–multinomial.\nElección de distribuciones a priori: no informativas (impropias, de Jeffrey) y débilmente informativas. Medidas de resumen de la distribución a posteriori. Intervalos de credibilidad. Distribución predictiva a posteriori. Nociones de teoría de la decisión bayesiana. Riesgo bayesiano. Estimador de Bayes.\n\nUnidad 3: Métodos Computacionales\n\nLimitaciones del enfoque analítico: cálculo de probabilidades y determinación de la distribución a posteriori. Soluciones: análisis de datos simulados y aproximación de grilla. Introducción al cómputo bayesiano. Nociones básicas de métodos de cadenas de Markov – Montecarlo (MCMC). Algoritmo de Metropolis–Hastings. Montecarlo Hamiltoniano. Diagnóstico de métodos MCMC.\nProgramación probabilística. Alternativas. Sintaxis de modelos. Ejemplos. Diagnóstico. Medidas de resumen a partir de las cadenas obtenidas. Visualizaciones.\n\nUnidad 4: Modelos Lineales\n\nModelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV).\n\nUnidad 5: Modelos Avanzados\n\nRegresión logística. Regresión Poisson. Comparación de grupos. Modelos de variable latente. Formulación gráfica. Análisis de sensibilidad.\nEl enfoque multinivel: modelos jerárquicos. Modelo beta-binomial jerárquico. Shrinkage de parámetros. Variación en el intercepto. Variación en la pendiente. Pooling de estimaciones. Problemas de estimación."
-  },
-  {
-    "objectID": "info/calendario.html",
-    "href": "info/calendario.html",
-    "title": "Calendario",
-    "section": "",
-    "text": "Semana\nFecha\nUnidad\nTemas\nApunte\nLectura sugerida\nOtras actividades\n\n\n\n\n1\n2023-03-20\n1\nProbabilidad para cuantificar la incertidumbre. Repaso de probabilidad. Modelos de probabilidad. Regla de Bayes.\n\n\n\n\n\n2\n2023-03-27\n1\nInferencia bayesiana. Distribucion a priori, funcion de verosimilitud y distribucion a posteriori.\n\n\n\n\n\n\n\n2\nConjugación. Modelos conjugados a un parámetro. Modelo beta-binomial. Posterior como compromismo entre verosimilitud y prior. Razonamiento secuencial.\n\n\n\n\n\n3\n2023-04-03\n2\nModelos conjugados a un parámetro. Modelo normal-normal. Modelo gamma-poisson. Modelos de varios parametros. Normal-normal-gamma-inversa. Modelo Dirichlet-multinomial.\n\n\nPresentación TP 1\n\n\n4\n2023-04-10\n2\nMedidas de resumen de la distribucion a posteriori. Distribucion predictiva a posteriori. Teoria de decision bayesiana. Estimador de Bayes.\n\n\n\n\n\n5\n2023-04-17\n3\nLimitaciones en el enfoque analítico. Aproximación mediante grilla de puntos. Limitaciones en la aproximación mediante grilla de puntos. Necesidad de contar con otro tipo de técnicas. Solución de problemas mediante técnicas de simulación. Obtención de muestras de distribuciones de probabilidad.\n\n\nEntrega TP 1\n\n\n6\n2023-04-24\n3\nIntroducción al cómputo bayesiano. Nociones básicas de cadenas de Markov y de muestreo mediante el método de Algoritmo de Metrópolis-Hastings. Monte Carlo Hamiltoniano. Diagnóstico de métodos de MCMC. Monte Carlo basado en cadenas de Markov.\n\n\n\n\n\n7\n2023-05-01\n3\nProgramación probabilística. Introducción a Stan. Sintáxis básica de modelos en Stan. Especificación de modelos en Stan. Obtención del posterior. Diagnósticos. Análisis del posterior. Responder preguntas usando las muestras del posterior.\n\n\nParcialPresentación TP 2\n\n\n8\n2023-05-08\n4\nRepaso de modelos lineales. Estimación clásica (MCO y MV). Limitaciones. Interpretación frecuentista de los Intervalos de Confianza. Modelos lineales bajo el enfoque bayesiano. Uso de distribuciones a priori. Estimación. Intervalos de Credibilidad y su interpretación. Elección de distribuciones a priori. Predicciones basadas en distribuciones de probabilidad. Distribución predictiva a posteriori.\n\n\n\n\n\n9\n2023-05-15\n4\nModelos lineales. Introducción a brms. Reemplazo de Stan por brms. Diagnósticos y selección de modelos. lppd. Deviance. AIC, BIC, WAIC. Validación cruzada. Sobreajuste y subajuste. PSIS-CV.\n\n\nEntrega TP 2Presentación TP 3\n\n\n10\n2023-05-22\n4\nEjercitación integradora de modelos lineales bayesianos usando R y brms.\n\n\n\n\n\n11\n2023-05-29\n5\nExtensión de los modelos lineales considerando funciones de verosimilitud no-normales. Introducción a MLG. Predictor lineal. Función de enlace. Función de verosimilitud. Mención a modelos para datos de conteo y para probabilidades. Modelos para datos de conteo. Verosimilitud Poisson. Función de enlace logarítmica, y otras funciones.\n\n\nEntrega TP 3\n\n\n12\n2023-06-05\n5\nEjercitación con modelos para datos de conteo. Modelos para probabilidades. Verosimilitud Bernoulli. Función de enlace logit. Interpretación de coeficientes.\n\n\nPresentación TP Final\n\n\n13\n2023-06-12\n5\n…\n\n\n\n\n\n14\n2023-06-19\n5\n…\n\n\n\n\n\n15\n2023-06-26\n5\n…\n\n\nDefensa oral del TP Final\n\n\n16\n2023-07-03\n5\n…"
-  },
-  {
     "objectID": "computo/instalacion.html#rstan",
     "href": "computo/instalacion.html#rstan",
     "title": "Instalación de herramientas comutacionales",
@@ -259,10 +224,66 @@
     "text": "Dependencias optativas\n\nQuarto\n… ?"
   },
   {
-    "objectID": "complementario/variables.html",
-    "href": "complementario/variables.html",
-    "title": "Repaso de Variables Aleatorias",
+    "objectID": "info/docentes.html",
+    "href": "info/docentes.html",
+    "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Variables aleatorias\n\nDiscretas\nContinuas\n\nCDF\nPDF\nDistribucion conjunta\nDistribucion marginal\nDistribucion condicional\nIndependencia e independencia condicional\nMomentos de una distribucion\nRegla de Bayes\nDistribuciones de probabilidad frecuentemente utilizadas\nTransformacion de variables aleatorias\n\nPropiedades de transformaciones lineales\n\n\nEste listado esta sacado del capitulo 2 de Murphy (2022)\nTambien hay cosas interesantes en capitulo 3 de Murphy (2022)\n\nUncorrelated does not imply independent\nCorrelation does not imply causation\n\n\nPairwise independence does not imply mutual independence\nWe say that two random variables are pairwise independent if \\(p(X_2|X_1) = p(X_2)\\) and hence \\(p(X_2, X_1) = p(X_1)p(X_2|X_1) = p(X_1)p(X_2)\\)\nWe say that \\(n\\) random variables are mutually independent if \\(p(Xi|XS) = p(Xi)\\) \\(\\forall S \\subseteq \\{1, \\cdots , n\\}\\) and hence \\(\\displaystyle p(X_{1:n}) = \\prod_{i=1}^{n} p(X_i)\\)\nShow that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counter example.\nExercise 2.5 Murphy (2022)\nExercise 2.6 Murphy (2022)\nExercise 3.5 [Gaussian vs jointly Gaussian ]\n\n\n\n\n\nReferencias\n\nMurphy, Kevin P. 2022. Probabilistic Machine Learning: An Introduction. 1st edition. The MIT Press. https://probml.ai/."
+    "text": "Docentes"
+  },
+  {
+    "objectID": "info/aprobacion.html",
+    "href": "info/aprobacion.html",
+    "title": "Condiciones de aprobación",
+    "section": "",
+    "text": "Instancias de evaluación\n\n📝 Parcial – escrito e individual, se aprueba con 6, hay una instancia de recuperación;\n💻💻💻 Trabajos prácticos cortos – grupales (hasta tres personas), se hacen por fuera del horario de clase, se entrega informe;\n📈 Trabajo práctico final – realización grupal, defensa individual.\n\n\n\nCondiciones de aprobación\n\nPromoción\n\nLas y los estudiantes que hayan aprobado el parcial o su recuperatorio (con nota \\(P\\)), los tres trabajos prácticos cortos (con promedio simple \\(T\\)) y hayan entregado el trabajo práctico final, accederán a una instancia de evaluación oral donde se discutirá el trabajo práctico final y se evaluarán de manera general todos los contenidos conceptuales de la asignatura; esta instancia puede incluir la realización de algunas actividades en computadora (el trabajo práctico final y la instancia oral tendrán nota \\(O\\)).\nLa nota final se obtendrá según \\(0.3\\ T + 0.4\\ P + 0.3\\ O\\)\n\nRegularidad\n\nQuienes no alcancen la condición de promoción podrán quedar en condición de estudiante regular si aprueban el parcial o su recuperatorio y aprueban al menos dos de los trabajos prácticos cortos. Para alcanzar la aprobación de la asignatura, los y las estudiantes en condición de regulares deberán presentar el trabajo final en una mesa de examen y aprobar una instancia oral de defensa del trabajo y de evaluación integral de los contenidos de la materia. Esta instancia puede incluir la realización de algunas actividades en computadora.\n\nLibres\n\nAquellas personas que no alcancen la promoción de la asignatura ni la condición de estudiante regular quedarán en condición de estudiante libre. Los y las estudiantes en condición de libre deberán presentar un trabajo práctico y rendir un examen teórico-práctico sobre la totalidad de los temas de la asignatura."
+  },
+  {
+    "objectID": "info/bibliografia.html",
+    "href": "info/bibliografia.html",
+    "title": "Bibliografía",
+    "section": "",
+    "text": "Bibliografía principal\n\nJohnson, Ott, y Dogucu (2022) McElreath (2020) Gelman y Hill (2006) Kruschke (2014) Reich y Ghosh (2019)\n\n\n\nGelman, Andrew, y Jennifer Hill. 2006. Data Analysis Using Regression and Multilevel-Hierarchical Models. 1st edition. Cambridge University Press.\n\n\nJohnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. Bayes Rules! An Introduction to Bayesian Modeling. 1st edition. Chapman; Hall/CRC. https://www.bayesrulesbook.com/.\n\n\nKruschke, John. 2014. Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan. 2nd edition. Academic Press.\n\n\nMcElreath, Richard. 2020. Statistical Rethinking: A Bayesian Course with Examples in R and Stan. 2nd edition. Chapman; Hall/CRC.\n\n\nReich, Brian J., y Sujit K. Ghosh. 2019. Bayesian Statistical Methods. 1st edition. Chapman; Hall/CRC.\n\n\n\n\nBibliografía complementaria\n\nGelman et al. (2013), Gelman, Hill, y Vehtari (2021), Downey (2021), Lee y Wagenmakers (2014), Davidson-Pilon (2015), Nicenboim, Schad, y Vasishth (2022), Barr (2021), Carlin y Louis (2008), Hoff (2009), MacKay (2003), Lambert (2018), Murphy (2022), Murphy (2023), Bishop (2006), Martin, Kumar, y Lao (2021), Theoridis (2020), Clyde et al. (2022), Ma, Kording, y Goldreich (2022)\n\n\n\n\n\nBarr, Dale J. 2021. Learning statistical models through simulation in R: An interactive textbook. 1st edition. https://psyteachr.github.io/stat-models-v1/.\n\n\nBishop, Christopher M. 2006. Pattern Recognition and Machine Learning. 1st edition. Springer.\n\n\nCarlin, Bradley P., y Thomas A. Louis. 2008. Bayesian Methods for Data Analysis. 3rd edition. Chapman; Hall/CRC.\n\n\nClyde, Merlise, Mine Çetinkaya-Rundel, Colin Rundel, David Banks, Christine Chai, y Lizzy Huang. 2022. An Introduction to Bayesian Thinking. 1st edition. https://statswithr.github.io/book/.\n\n\nDavidson-Pilon, Cameron. 2015. Bayesian Methods for Hackers: Probabilistic Programming and Bayesian Inference. 1st edition. Addison-Wesley Data; Analytics Series.\n\n\nDowney, Allen B. 2021. Think Bayes: Bayesian Statistics in Python. 2nd edition. O’Reilly Media. http://allendowney.github.io/ThinkBayes2/.\n\n\nGelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. Bayesian Data Analysis. 3rd edition. Chapman; Hall/CRC.\n\n\nGelman, Andrew, Jennifer Hill, y Aki Vehtari. 2021. Regression and Other Stories. 1st edition. Cambridge University Press. https://users.aalto.fi/~ave/ROS.pdf.\n\n\nHoff, Peter D. 2009. A First Course in Bayesian Statistical Methods. 1st edition. Springer.\n\n\nLambert, Ben. 2018. A Student’s Guide to Bayesian Statistics. 1st edition. SAGE Publications Ltd.\n\n\nLee, Michael D., y Eric-Jan Wagenmakers. 2014. Bayesian Cognitive Modeling: A Practical Course. 1st edition. Cambridge University Press.\n\n\nMa, Wei Ji, Konrad P. Kording, y Daniel Goldreich. 2022. Bayesian Models of Perception and Action: An Introduction. 3rd edition. http://www.cns.nyu.edu/malab/bayesianbook.html.\n\n\nMacKay, David J. C. 2003. Information Theory, Inference and Learning Algorithms. 1st edition. Cambridge University Press.\n\n\nMartin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. Bayesian Modeling and Computation in Python. 1st edition. Chapman; Hall/CRC.\n\n\nMurphy, Kevin P. 2022. Probabilistic Machine Learning: An Introduction. 1st edition. The MIT Press. https://probml.ai/.\n\n\nMurphy, Kevin P. 2023. Probabilistic Machine Learning: Advanced Topics. 1st edition. The MIT Press. https://probml.ai/.\n\n\nNicenboim, Bruno, Daniel Schad, y Shravan Vasishth. 2022. An Introduction to Bayesian Data Analysis for Cognitive Science. https://vasishth.github.io/bayescogsci/book/.\n\n\nTheoridis, Sergios. 2020. Machine Learning: A Bayesian and Optimization Perspective. 2nd edition. Academic Press."
+  },
+  {
+    "objectID": "info/programa.html",
+    "href": "info/programa.html",
+    "title": "Programa",
+    "section": "",
+    "text": "Fundamentación\nLa Estadística Bayesiana es un enfoque de la inferencia estadística que se basa en utilizar probabilidades para representar el conocimiento disponible sobre el conjunto de parámetros de un modelo y actualizar esa información utilizando la Regla de Bayes a partir de la observación de un conjunto de datos. El conocimiento inicial se representa con una distribución de probabilidad a priori, la información contenida en los datos observados se modeliza con una función de verosimilitud y ambas fuentes de información se combinan para obtener una distribución de probabilidad a posteriori. La información a posteriori puede ser utilizada para extraer conclusiones sobre el fenómeno en estudio y realizar predicciones sobre datos no observados o eventos futuros.\nLos métodos bayesianos requieren, salvo en casos muy simples, una complejidad computacional que resultaba inalcanzable hace algunos años. Gracias a desarrollos revolucionarios en el ámbito de la computación, la principal barrera para la implementación de los modelos bayesianos desapareció y la utilización de estos se ha incrementado masivamente en múltiples campos científicos. Esta creciente popularidad se debe a que la inferencia bayesiana brinda un marco teórico consistente que permite la incorporación de información a priori, el desarrollo de un aprendizaje secuencial, la obtención de inferencias y predicciones en forma de distribuciones de probabilidad, el tratamiento de datos faltantes, los análisis con pocos datos, entre otras ventajas.\n\n\nObjetivos\nQue quienes cursen la materia logren:\n\nentender las características y los conceptos fundamentales de la Estadística Bayesiana;\ndescribir las características principales de la Estadística Bayesiana;\ncomprender la complejidad analítica de la inferencia bayesiana y la necesidad de la utilización de un enfoque computacional para superar estas dificultades;\nser capaces de aplicar métodos bayesianos a problemas reales utilizando software específico; e\ninterpretar los resultados del proceso de análisis bayesiano de datos.\n\n\n\nContenidos\n\nUnidad 1: Introducción y Fundamentos de la Estadística Bayesiana\n\nProbabilidad para cuantificar la incertidumbre. Modelos de probabilidad. Regla de Bayes. Inferencia bayesiana. Distribución a priori, función de verosimilitud, distribución a posteriori.\n\nUnidad 2: Inferencia Bayesiana\n\nModelos de distribuciones conjugadas. Modelos de un parámetro. Modelo beta-binomial. Enfoque intuitivo. Distribución a posteriori como compromiso entre la verosimilitud y la distribución a priori. Razonamiento secuencial. Modelo normal-normal. Modelo gamma–Poisson. Modelos de varios parámetros. Modelo normal – normal-gamma-inversa. Modelo Dirichlet–multinomial.\nElección de distribuciones a priori: no informativas (impropias, de Jeffrey) y débilmente informativas. Medidas de resumen de la distribución a posteriori. Intervalos de credibilidad. Distribución predictiva a posteriori. Nociones de teoría de la decisión bayesiana. Riesgo bayesiano. Estimador de Bayes.\n\nUnidad 3: Métodos Computacionales\n\nLimitaciones del enfoque analítico: cálculo de probabilidades y determinación de la distribución a posteriori. Soluciones: análisis de datos simulados y aproximación de grilla. Introducción al cómputo bayesiano. Nociones básicas de métodos de cadenas de Markov – Montecarlo (MCMC). Algoritmo de Metropolis–Hastings. Montecarlo Hamiltoniano. Diagnóstico de métodos MCMC.\nProgramación probabilística. Alternativas. Sintaxis de modelos. Ejemplos. Diagnóstico. Medidas de resumen a partir de las cadenas obtenidas. Visualizaciones.\n\nUnidad 4: Modelos Lineales\n\nModelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV).\n\nUnidad 5: Modelos Avanzados\n\nRegresión logística. Regresión Poisson. Comparación de grupos. Modelos de variable latente. Formulación gráfica. Análisis de sensibilidad.\nEl enfoque multinivel: modelos jerárquicos. Modelo beta-binomial jerárquico. Shrinkage de parámetros. Variación en el intercepto. Variación en la pendiente. Pooling de estimaciones. Problemas de estimación."
+  },
+  {
+    "objectID": "info/calendario.html",
+    "href": "info/calendario.html",
+    "title": "Calendario",
+    "section": "",
+    "text": "Semana\nFecha\nUnidad\nTemas\nApunte\nLectura sugerida\nOtras actividades\n\n\n\n\n1\n2023-03-20\n1\nProbabilidad para cuantificar la incertidumbre. Repaso de probabilidad. Modelos de probabilidad. Regla de Bayes.\n\n\n\n\n\n2\n2023-03-27\n1\nInferencia bayesiana. Distribucion a priori, funcion de verosimilitud y distribucion a posteriori.\n\n\n\n\n\n\n\n2\nConjugación. Modelos conjugados a un parámetro. Modelo beta-binomial. Posterior como compromismo entre verosimilitud y prior. Razonamiento secuencial.\n\n\n\n\n\n3\n2023-04-03\n2\nModelos conjugados a un parámetro. Modelo normal-normal. Modelo gamma-poisson. Modelos de varios parametros. Normal-normal-gamma-inversa. Modelo Dirichlet-multinomial.\n\n\nPresentación TP 1\n\n\n4\n2023-04-10\n2\nMedidas de resumen de la distribucion a posteriori. Distribucion predictiva a posteriori. Teoria de decision bayesiana. Estimador de Bayes.\n\n\n\n\n\n5\n2023-04-17\n3\nLimitaciones en el enfoque analítico. Aproximación mediante grilla de puntos. Limitaciones en la aproximación mediante grilla de puntos. Necesidad de contar con otro tipo de técnicas. Solución de problemas mediante técnicas de simulación. Obtención de muestras de distribuciones de probabilidad.\n\n\nEntrega TP 1\n\n\n6\n2023-04-24\n3\nIntroducción al cómputo bayesiano. Nociones básicas de cadenas de Markov y de muestreo mediante el método de Algoritmo de Metrópolis-Hastings. Monte Carlo Hamiltoniano. Diagnóstico de métodos de MCMC. Monte Carlo basado en cadenas de Markov.\n\n\n\n\n\n7\n2023-05-01\n3\nProgramación probabilística. Introducción a Stan. Sintáxis básica de modelos en Stan. Especificación de modelos en Stan. Obtención del posterior. Diagnósticos. Análisis del posterior. Responder preguntas usando las muestras del posterior.\n\n\nParcialPresentación TP 2\n\n\n8\n2023-05-08\n4\nRepaso de modelos lineales. Estimación clásica (MCO y MV). Limitaciones. Interpretación frecuentista de los Intervalos de Confianza. Modelos lineales bajo el enfoque bayesiano. Uso de distribuciones a priori. Estimación. Intervalos de Credibilidad y su interpretación. Elección de distribuciones a priori. Predicciones basadas en distribuciones de probabilidad. Distribución predictiva a posteriori.\n\n\n\n\n\n9\n2023-05-15\n4\nModelos lineales. Introducción a brms. Reemplazo de Stan por brms. Diagnósticos y selección de modelos. lppd. Deviance. AIC, BIC, WAIC. Validación cruzada. Sobreajuste y subajuste. PSIS-CV.\n\n\nEntrega TP 2Presentación TP 3\n\n\n10\n2023-05-22\n4\nEjercitación integradora de modelos lineales bayesianos usando R y brms.\n\n\n\n\n\n11\n2023-05-29\n5\nExtensión de los modelos lineales considerando funciones de verosimilitud no-normales. Introducción a MLG. Predictor lineal. Función de enlace. Función de verosimilitud. Mención a modelos para datos de conteo y para probabilidades. Modelos para datos de conteo. Verosimilitud Poisson. Función de enlace logarítmica, y otras funciones.\n\n\nEntrega TP 3\n\n\n12\n2023-06-05\n5\nEjercitación con modelos para datos de conteo. Modelos para probabilidades. Verosimilitud Bernoulli. Función de enlace logit. Interpretación de coeficientes.\n\n\nPresentación TP Final\n\n\n13\n2023-06-12\n5\n…\n\n\n\n\n\n14\n2023-06-19\n5\n…\n\n\n\n\n\n15\n2023-06-26\n5\n…\n\n\nDefensa oral del TP Final\n\n\n16\n2023-07-03\n5\n…"
+  },
+  {
+    "objectID": "info/enlaces_utiles.html",
+    "href": "info/enlaces_utiles.html",
+    "title": "Enlaces útiles",
+    "section": "",
+    "text": "Awesome Bayesian Statistics. Es un listado de recursos en línea (y gratuitos!) relacionados al mundo de la Estadística Bayesiana."
+  },
+  {
+    "objectID": "info/faq.html",
+    "href": "info/faq.html",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Preguntas frecuentes"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Este es el subtitulo…\n\n\n\n   Licenciatura en Estadística\n   Facultad de Ciencias Económicas y Estadística (UNR)\n   1° Cuatrimestre 2023"
+  },
+  {
+    "objectID": "index.html#profesores",
+    "href": "index.html#profesores",
+    "title": "Estadística Bayesiana",
+    "section": "Profesores",
+    "text": "Profesores\n\n\nNacho Evangelista\n\n   email_de_nacho@mail.com\n   Miércoles (7:00-9:00) y Viernes (7:00-9:00)\n\n\n\nTomás Capretto\n\n   email_de_tomi@mail.com\n   Lunes (11-13hs) y Miércoles (7-9hs)"
   }
 ]
