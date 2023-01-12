@@ -1,6 +1,13 @@
 ---
 title: "TP3: Estudio de modelos lineales mediante simulaciones"
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/03_tp3.pdf
 ---
+
+::: {.content-visible when-format="html"}
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 # Estudio de modelos lineales mediante simulaciones
 

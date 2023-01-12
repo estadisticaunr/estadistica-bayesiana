@@ -1,6 +1,13 @@
 ---
 title: "TP2: Implementación del algoritmo de Metropolis-Hastings"
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/02_tp2.pdf
 ---
+
+::: {.content-visible when-format="html"}
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 # Grid approximation en 3D?
 

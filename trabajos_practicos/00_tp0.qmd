@@ -1,5 +1,12 @@
 ---
 title: "TP0: Distribución de Rocklets azules"
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/00_tp0.pdf
 ---
+
+::: {.content-visible when-format="html"}
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 # Distribución de Rocklets azules

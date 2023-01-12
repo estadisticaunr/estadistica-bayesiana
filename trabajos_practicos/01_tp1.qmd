@@ -1,5 +1,6 @@
 ---
 title: "TP1: Aplicación de modelos conjugados a reviews de Google Maps"
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/01_tp1.pdf
 ---
 
 ```{r echo=FALSE, include=FALSE}
@@ -9,6 +10,13 @@ captions <- list()
 captions[["cafe"]] <- "El arte latte suele ser distintivo de las cafeterías de especialidad"
 captions[["dirichlet"]] <- "Como los valores posibles del vector aleatorio tridimensional yacen en un plano, la distribución de probabilidad puede representarse gráficamente con facilidad "
 ```
+
+
+::: {.content-visible when-format="html"}
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+:::
 
 # Introducción
 
