@@ -1,5 +1,6 @@
-OUTPUT_DIR <- file.path(".output", "practica")
-PRACTICA_DIR <- file.path("practica")
+OUTPUT_BASE_DIR <- file.path(".output")
+INPUT_DIRS <- c("practica", "trabajos_practicos")
+OUTPUT_DIRS <- file.path(OUTPUT_BASE_DIR, INPUT_DIRS)
 
 enquote <- function(x) {
     return(paste0("'", x, "'"))
@@ -33,27 +34,42 @@ render_pdf <- function(input, output, verbose = FALSE) {
     return(system(command))
 }
 
-# Sino existe el directorio de salida, crearlo
-if (!dir.exists(OUTPUT_DIR)) {
-    dir.create(OUTPUT_DIR)
+render_pdf_dir <- function(input_dir, output_dir) {
+    # Obtener los .qmd que se corresponden a la practica
+    input_files <- list.files(input_dir, pattern = "qmd", full.names = TRUE)
+
+    # Obtener los nombres de salida
+    output_files <- file.path(
+        output_dir, 
+        vapply(input_files, get_pdf_filename, character(1), USE.NAMES = FALSE)
+    )
+
+    # Renderizarlos como pdf
+    exit_codes <- mapply(
+        render_pdf,
+        input_files,
+        output_files,
+        MoreArgs = list(verbose = TRUE)
+    )
+    return(exit_codes)
 }
 
-# Obtener los .qmd que se corresponden a la practica
-practica_files <- list.files(PRACTICA_DIR, pattern = "qmd", full.names = TRUE)
+# Sino existe el directorio de salida, crearlo
+if (!dir.exists(OUTPUT_BASE_DIR)) {
+    dir.create(OUTPUT_BASE_DIR)
+}
 
-# Obtener los nombres de salida
-output_files <- file.path(
-    OUTPUT_DIR,
-    vapply(practica_files, get_pdf_filename, character(1), USE.NAMES = FALSE)
-)
+# Crear sub-directorios de salida
+for (dir in OUTPUT_DIRS) {
+    if (!dir.exists(dir)) {
+        dir.create(dir)
+    }
+}
 
-# Renderizarlos como pdf
-exit_codes <- mapply(
-    render_pdf,
-    practica_files,
-    output_files,
-    MoreArgs = list(verbose = TRUE)
-)
+exit_codes <- mapply(render_pdf_dir, INPUT_DIRS, OUTPUT_DIRS)
 
 # Codigos de salida
-cat(exit_codes, "\n")
+cat("Codigos de salida:\n")
+for (code in exit_codes) {
+    cat(code, "\n")
+}

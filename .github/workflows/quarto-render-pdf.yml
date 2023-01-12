@@ -42,7 +42,10 @@ jobs:
           git config --local user.name "GitHub Actions"
           git checkout --orphan pdf
           git reset .
-          mv .output/practica/*.pdf practica/
-          git add practica/*.pdf
+          for dir in .output/*/; do
+            subdir=$(basename $dir)
+            cp .output/$subdir/*.pdf $subdir/
+          done
+          git add *.pdf
           git commit -m "Render PDFs"
           git push origin pdf --force

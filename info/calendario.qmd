@@ -1,6 +1,6 @@
 ---
 title: Calendario
-tbl-colwidths: [2.5, 10, 5, 37.5, 5, 25, 17.5]
+tbl-colwidths: [2.5, 10, 7.5, 32.5, 7.5, 20, 20]
 page-layout: full
 ---
 
@@ -38,7 +38,7 @@ data[is.na(data)] <- ""
 knitr::kable(
     data,
     col.names = c(
-        "Semana", "Fecha", "Unidad", "Temas", "Apunte", "Lectura sugerida", "Novedades"
+        "Semana", "Fecha", "Unidad", "Temas", "Apunte", "Lectura sugerida", "Otras actividades"
     ),
     align = c("c", "c", "c", "l", "c", "l", "l"),
     escape = TRUE

@@ -159,8 +159,8 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
                      \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
                      d\theta \\
     &=  \begin{cases}
-        \frac{\alpha}{(n+\alpha)m^n} & \text{Si} \ M_x \le m \\
-        \frac{\alpha m^\alpha}{(n+\alpha)m^{n+\alpha}} & \text{Si} \ M_x \gt m
+        \frac{\alpha}{(n+\alpha)m^n} & \text{Si } M_x \le m \\
+        \frac{\alpha m^\alpha}{(n+\alpha)m^{n+\alpha}} & \text{Si } M_x > m \\
         \end{cases}
     \end{aligned}
     $$
