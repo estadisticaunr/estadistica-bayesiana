@@ -68,10 +68,10 @@ $$
 y
 
 $$
-\mathbf{\alpha} = [2\quad 0]
+\mathbf{\alpha} = [2 \quad 0]
 $$
 
-```{r}
+```{r grafico-2d}
 #| warning: false
 #| cache: true
 #| echo: false
