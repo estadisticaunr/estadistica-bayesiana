@@ -178,7 +178,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="metropolis-hastings-en-1d" class="level1">
 <h1>Metropolis-Hastings en 1D</h1>
-<p>El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad <span class="math inline">\(f^*(\theta)\)</span>, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea nula). Basta con que podamos evaluar <span class="math inline">\(f^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>.</p>
+<p>El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad <span class="math inline">\(f^*(\theta)\)</span>, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno). Basta con que podamos evaluar <span class="math inline">\(f^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>.</p>
 <ol type="1">
 <li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad unidimensional dada. Separe en funciones cada una de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
 <li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
@@ -186,12 +186,12 @@ ul.task-list li input[type="checkbox"] {
 g^*(x) =
 \left\{
 \begin{array}{ll}
-x^4 e^{-x} &amp;&amp; \text{si } x\geq0 \\
-0 &amp;&amp; \text{si } x&lt;0
-\end{array}
+    x^4 e^{-x} &amp;&amp; \text{si } x \geq 0 \\
+    0 &amp;&amp; \text{si } x&lt;0
+    \end{array}
 \right.
 \]</span></p>
-<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas, funciones de autocorrelación, Elegir como punto inicial…</p></li>
+<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas, funciones de autocorrelación. Elegir como punto inicial…</p></li>
 <li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95 , y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
 <li><p>Estimar el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada una de las seis cadenas anteriores.</p></li>
 <li><p>Calcular el estadístico de Gelman-Rubin</p>
@@ -202,7 +202,7 @@ h^*(x) =
 \]</span></p></li>
 <li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y la creencia <em>a priori</em> viene dada por</p>
 <p><span class="math display">\[
-p(\theta) = 2\theta\qquad \theta\in[0,1]
+p(\theta) = 2 \theta \qquad \theta \in [0,1]
 \]</span></p></li>
 </ol>
 <section id="metropolis-hastings-en-2d" class="level2">
@@ -210,16 +210,18 @@ p(\theta) = 2\theta\qquad \theta\in[0,1]
 <p>Se desean tomar muestras de una normal bivariada asimétrica cuya función de densidad viene dada por</p>
 <p><span class="math display">\[
 f(\mathbf{x}) = 2\ \phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\ \Phi(\mathbf{\alpha}^T\mathbf{x}) \qquad \mathbf{x} \in \mathbb{R}^2
-\]</span>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\mathbf{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\alpha\in\mathbb{R}^2\)</span> es un vector de parámetros.</p>
+\]</span></p>
+<p>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\mathbf{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\alpha\in\mathbb{R}^2\)</span> es un vector de parámetros.</p>
 <!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
 <p>En este caso, se tiene:</p>
 <p><span class="math display">\[
 \mathbf{\Omega} = \begin{bmatrix}1.5 &amp; 0.6 \\ 0.6 &amp; 1.5 \end{bmatrix}
-\]</span> y</p>
+\]</span></p>
+<p>y</p>
 <p><span class="math display">\[
 \mathbf{\alpha} = [2\quad 0]
 \]</span></p>
-<div class="cell" data-hash="02_tp2_cache/html/unnamed-chunk-1_cd6c6c4cab87b4b819a1d99f0664ec5d">
+<div class="cell" data-hash="02_tp2_cache/html/unnamed-chunk-1_baf20e6746c2c0aefd50be05e0a77d4d">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
