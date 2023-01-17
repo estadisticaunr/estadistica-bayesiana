@@ -9,7 +9,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabaj
 
 # Metropolis-Hastings en 1D
 
-El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad $f^*(\theta)$, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea nula). Basta con que podamos evaluar $f^*(\theta)$ en cualquier valor de $\theta$.
+El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad $f^*(\theta)$, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno). Basta con que podamos evaluar $f^*(\theta)$ en cualquier valor de $\theta$.
 
 1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad unidimensional dada. Separe en funciones cada una de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.
 
@@ -19,13 +19,13 @@ El algoritmo de Metropolis-Hastings permite obtener muestras de una distribució
     g^*(x) = 
     \left\{
     \begin{array}{ll}
-    x^4 e^{-x} && \text{si } x\geq0 \\
-    0 && \text{si } x<0
-    \end{array}
+        x^4 e^{-x} && \text{si } x \geq 0 \\
+        0 && \text{si } x<0
+        \end{array}
     \right.
     $$
 
-    Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas, funciones de autocorrelación, Elegir como punto inicial...
+    Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas, funciones de autocorrelación. Elegir como punto inicial...
 
 3.  Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95 , y la esperanza de $\sqrt{X}$ sabiendo que $X$ se distribuye según $g^*(x)$
 
@@ -44,7 +44,7 @@ El algoritmo de Metropolis-Hastings permite obtener muestras de una distribució
 7.  Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito $\theta$. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución *a posteriori* de $\theta$ y la creencia *a priori* viene dada por
 
     $$
-    p(\theta) = 2\theta\qquad \theta\in[0,1]
+    p(\theta) = 2 \theta \qquad \theta \in [0,1]
     $$
 
 ## Metropolis-Hastings en 2D
@@ -53,7 +53,9 @@ Se desean tomar muestras de una normal bivariada asimétrica cuya función de de
 
 $$
 f(\mathbf{x}) = 2\ \phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\ \Phi(\mathbf{\alpha}^T\mathbf{x}) \qquad \mathbf{x} \in \mathbb{R}^2
-$$siendo $\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})$ la función de densidad de la normal bivariada de media $\mathbf{0}$ y matriz de covarianza $\mathbf{\Omega}$, $\Phi(\mathbf{\alpha}^T\mathbf{x})$ es la función de probabilidad acumulada de la normal estándar $\mathcal{N}(0,1)$ y $\alpha\in\mathbb{R}^2$ es un vector de parámetros.
+$$
+
+siendo $\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})$ la función de densidad de la normal bivariada de media $\mathbf{0}$ y matriz de covarianza $\mathbf{\Omega}$, $\Phi(\mathbf{\alpha}^T\mathbf{x})$ es la función de probabilidad acumulada de la normal estándar $\mathcal{N}(0,1)$ y $\alpha\in\mathbb{R}^2$ es un vector de parámetros.
 
 <!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
 
@@ -61,7 +63,9 @@ En este caso, se tiene:
 
 $$
 \mathbf{\Omega} = \begin{bmatrix}1.5 & 0.6 \\ 0.6 & 1.5 \end{bmatrix}
-$$ y
+$$
+
+y
 
 $$
 \mathbf{\alpha} = [2\quad 0]
@@ -74,17 +78,18 @@ $$
 #| fig.cap: "Función de densidad de la que se desean obtener muestras"
 library(ggplot2)
 library(dplyr)
-data <- tidyr::crossing(x1 = seq(-3,3,0.1),
-                 x2 = seq(-3,3,0.1))
+data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
 
-data %>%
-  mutate(f = 2*
-           purrr::map2_dbl(x1,x2,~mvtnorm::dmvnorm(c(.x,.y),c(0,0),sigma=matrix(c(1.5,0.6,0.6,1.5),nrow = 2)))*
-           pnorm(x1*2+x2*0)) %>%
-  ggplot() + 
-  geom_raster(aes(x=x1,y=x2,fill=f)) +
-  stat_contour(aes(x=x1,y=x2,z=f), col="white") +
-  viridis::scale_fill_viridis()
+Mu = c(0, 0)
+Sigma = matrix(c(1.5, 0.6, 0.6, 1.5), nrow = 2)
+data |>
+    mutate(
+        f = 2 * purrr::map2_dbl(x1, x2, ~mvtnorm::dmvnorm(c(.x, .y), Mu, Sigma)) * pnorm(x1 * 2 + x2 * 0)
+    ) |>
+    ggplot() + 
+    geom_raster(aes(x = x1, y = x2, fill = f)) +
+    stat_contour(aes(x = x1, y = x2, z = f), col = "white") +
+    viridis::scale_fill_viridis()
 ```
 
 1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.
