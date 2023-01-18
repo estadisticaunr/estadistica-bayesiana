@@ -167,6 +167,11 @@ div.csl-indent {
   <a href="../practica/practica_03.html" class="sidebar-item-text sidebar-link">Unidad 3</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practica/practica_05.html" class="sidebar-item-text sidebar-link">Unidad 5</a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -229,8 +234,8 @@ div.csl-indent {
 </blockquote>
 <p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p></li>
 <li><p>La regla del tres</p>
-<p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrara 5 typos, sería <em>razonable</em> estimar <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span> typos/página. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
-<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de typos por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que $&gt; <span class="math inline">\(\frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --> 4</p></li>
+<p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrara 5 <em>typos</em>, sería <em>razonable</em> estimar <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span> <em>typos</em> por página. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
+<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de <em>typos</em> por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que <span class="math inline">\(\tau &gt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p></li>
 <li><p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
 <li><p>Inferencia sobre una distribución de Poisson</p>
 <p>La distribución de masa de probabilidad Poisson se define como <span class="math display">\[
@@ -306,12 +311,12 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>.<br>
 ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
+<li><p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
 <li><p>Calculo de conjugada no tradicional</p>
 <ul>
 <li>Binomial negativa - Beta</li>
 <li>Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?</li>
 </ul></li>
-<li><p>7.4.5 de Reich</p></li>
 </ol>
 </section>
 <section id="simulaciones" class="level2">
@@ -320,14 +325,14 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
-<li>¿Cuál es el horario esperado al que terminará su entrevista? <!-- `Modern Data Science with R` --></li>
+<li>¿Cuál es el horario esperado al que terminará su entrevista? <!-- Modern Data Science with R --></li>
 </ol></li>
 <li><p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
 <li>¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?</li>
 </ol></li>
-<li><p>El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia de puerta. <strong>To Do</strong> Explicar el juego. <!-- `Modern Data Science with R` --></p>
+<li><p>El Problema de Monty Hall es un problema de probabilidad basado en un juego del concurso televisivo estadounidense “Trato hecho”. En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. El premio consiste en llevarse lo que se encuentra detrás de la elegida. Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las otras dos en la que haya una cabra. A continuación, le da la opción al concursante de cambiar, si lo desea, de puerta (tiene dos opciones). ¿Debe el concursante mantener su elección original o escoger la otra puerta? ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones. <!-- Modern Data Science with R --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -353,7 +358,7 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li>¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?</li>
 <li>¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?</li>
 </ol></li>
-<li><p>7.4.2 de Reich</p></li>
+<li><p>Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga desarrollada por tu compañía sea mas efectiva que el tratamiento actual es <span class="math inline">\(\theta \in [0, 1]\)</span>. Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que la droga que desarrollan es de hecho mejor. El costo del estudio es <strong>$X</strong>. Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%. Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor. Si el ensayo sugiere que tu droga es mejor, ganarás <strong>$cX</strong>. ¿Para qué valores de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(c\)</span> tiene sentido realizar el estudio? <!-- @Reich2020 --></p></li>
 <li><p>Quizás algo con tasa de falsos descubrimientos, p-values y su distribución…</p></li>
 </ol>
 </section>

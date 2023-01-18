@@ -167,6 +167,11 @@ div.csl-indent {
   <a href="../practica/practica_03.html" class="sidebar-item-text sidebar-link">Unidad 3</a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../practica/practica_05.html" class="sidebar-item-text sidebar-link">Unidad 5</a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -195,8 +200,6 @@ div.csl-indent {
 <div>
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf">Descargar PDF</a></p>
 </div>
-<section id="probabilidad" class="level2">
-<h2 class="anchored" data-anchor-id="probabilidad">Probabilidad</h2>
 <ol type="1">
 <li><p>De las siguientes expresiones cual(es) se corresponde(n) con el enunciado “la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022”?</p>
 <ol type="i">
@@ -216,19 +219,14 @@ div.csl-indent {
 <li>Es posible que <span class="math inline">\(P(A | B) &gt; P(A)\)</span>? Cuando?</li>
 <li>Es posible que <span class="math inline">\(P(A | B) &lt; P(A)\)</span>? Cuando? <!-- @Martin2021 --></li>
 </ol></li>
-</ol>
-</section>
-<section id="distribuciones" class="level2">
-<h2 class="anchored" data-anchor-id="distribuciones">Distribuciones</h2>
-<ol type="1">
-<li><p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con soporte <span class="math inline">\(X \in \mathcal{S} = [1, \infty)\)</span>. Encuentre la constante <span class="math inline">\(c\)</span>, en función de <span class="math inline">\(\theta\)</span>, que haga que <span class="math inline">\(f(x) = c \exp(-x / \theta)\)</span> sea una función de densidad de probabilidad (pdf) válida. <!-- @Reich2020 --></p></li>
-<li><p>Suponga <span class="math inline">\(X \sim \text{Uniforme}(a, b)\)</span>, por lo que su soporte es <span class="math inline">\(\mathcal{S} = [a, b]\)</span> y su función de densidad de probabilidad es <span class="math inline">\(f(x) = 1 / (b - a)\)</span> para todo <span class="math inline">\(x \in \mathcal{S}\)</span>.</p>
+<li><p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con soporte <span class="math inline">\(X \in \mathcal{S} = [1, \infty)\)</span>. Encuentre la constante <span class="math inline">\(c\)</span>, en función de <span class="math inline">\(\theta\)</span>, que haga que <span class="math inline">\(f(x) = c \exp(-x / \theta)\)</span> sea una función de densidad de probabilidad válida. <!-- @Reich2020 --></p></li>
+<li><p>Suponga <span class="math inline">\(X \sim \text{Uniforme}(a, b)\)</span>. Su soporte es <span class="math inline">\(\mathcal{S} = [a, b]\)</span> y su función de densidad de probabilidad es <span class="math inline">\(f(x) = 1 / (b - a)\)</span> para todo <span class="math inline">\(x \in \mathcal{S}\)</span>.</p>
 <ol type="i">
 <li>Pruebe que <span class="math inline">\(f(x)\)</span> es una función de densidad de probabilidad válida.</li>
 <li>Encuentre la media y la varianza de <span class="math inline">\(X\)</span>. <!-- @Reich2020 --></li>
 </ol></li>
-<li><p>Según los expertos de un problema determinado, se indica que el valor de un parámetro debe ser positivo y su distribución <em>a priori</em> debe tener media igual a 5 y varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones. <!-- @Reich2020 --></p></li>
-<li><p>Sean <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> dos variables aleatorias con función de probabilidad conjunta dada por la siguiente tabla.</p>
+<li><p>Según personas expertas en un problema determinado, se indica que el valor de un parámetro debe ser positivo y su distribución <em>a priori</em> debe tener media igual a 5 y varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones. <!-- @Reich2020 --></p></li>
+<li><p>Sean <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span> dos variables aleatorias con función de probabilidad conjunta dada por la siguiente tabla</p>
 <center>
 <div class="table-practica" style="width:50%">
 <table class="table">
@@ -259,7 +257,7 @@ div.csl-indent {
 </table>
 </div>
 </center>
-<p>Donde la celda de la primer fila y primer columna se lee <span class="math inline">\(P(X_1=0, X_2=0)=0.15\)</span></p>
+<p>donde la celda de la primer fila y primer columna se lee <span class="math inline">\(P(X_1=0, X_2=0)=0.15\)</span></p>
 <ol type="i">
 <li>Obtenga la distribución marginal de <span class="math inline">\(X_1\)</span>.</li>
 <li>Obtenga la distribución marginal de <span class="math inline">\(X_2\)</span>.</li>
@@ -271,11 +269,6 @@ div.csl-indent {
 <li>Encuentre la distribución marginal de <span class="math inline">\(X_1\)</span>.</li>
 <li>Encuentre la distribución condicional de <span class="math inline">\(X_1\)</span> dado <span class="math inline">\(X_2\)</span>. <!-- @Reich2020 --></li>
 </ol></li>
-</ol>
-</section>
-<section id="esperanza-y-varianza" class="level2">
-<h2 class="anchored" data-anchor-id="esperanza-y-varianza">Esperanza y Varianza</h2>
-<ol type="1">
 <li><p>Suponga una urna <span class="math inline">\(S\)</span> contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra urna <span class="math inline">\(E\)</span> contiene un 60% de bolas verdes y un 40% de bolas rojas. Una persona arroja una moneda de un peso argentino y selecciona una bola de una de las dos urnas dependiendo de si la moneda en sol o escudo. Si la moneda cae en sol, saca una bola de la urna <span class="math inline">\(S\)</span> y si la moneda cae en escudo, saca una bola de la urna <span class="math inline">\(E\)</span>.</p>
 <p>Considere las siguientes variables aleatorias:</p>
 <p><span class="math display">\[
@@ -310,11 +303,11 @@ Y &amp;=
 </div>
 </div>
 </div></li>
+<li><p>Las luces de giro en los automóviles se utilizan para indicar que se va a realizar alguna acción determinada. La acción depende del escenario donde se conduzca (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha). En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se va a girar en un sentido determinado. Sin embargo, esto no siempre se realiza. Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo gira. Aunque menos frecuente, también se da que el vehículo colca la luz de giro, pero no gira. La probabilidad de girar dado que se colca la luz de giro es 0.87 y la probabilidad de girar dado que no se coloca la luz de giro es 0.21. Si observa que un vehículo coloca la luz de giro, ¿cuál es la probabilidad de que efectivamente doble?</p></li>
 </ol>
 
 
 
-</section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Hoff2009" class="csl-entry" role="doc-biblioentry">
