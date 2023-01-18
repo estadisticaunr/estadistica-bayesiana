@@ -19,8 +19,6 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
 
 :::
 
-## Probabilidad
-
 1.  De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
     
@@ -45,28 +43,25 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     i. Es posible que $P(A | B) < P(A)$? Cuando?
     <!-- @Martin2021 -->
 
-
-## Distribuciones
-
 1.  Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
     Encuentre la constante $c$, en función de $\theta$, que haga que 
-    $f(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad (pdf) válida.
+    $f(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad válida.
     <!-- @Reich2020 -->
 
-1.  Suponga $X \sim \text{Uniforme}(a, b)$, por lo que su soporte es $\mathcal{S} = [a, b]$
+1.  Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$ 
     y su función de densidad de probabilidad es $f(x) = 1 / (b - a)$ para todo $x \in \mathcal{S}$.
     
     i. Pruebe que $f(x)$ es una función de densidad de probabilidad válida.
     i. Encuentre la media y la varianza de $X$.
     <!-- @Reich2020 -->
 
-1.  Según los expertos de un problema determinado, se indica que el valor de un parámetro 
+1.  Según personas expertas en un problema determinado, se indica que el valor de un parámetro 
     debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y varianza
     igual a 3. Encuentre una distribución que satisfaga estas condiciones.
     <!-- @Reich2020 -->
 
 1.  Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
-    por la siguiente tabla.
+    por la siguiente tabla
     
     <center>
     <div style="width:50%" class="table-practica">
@@ -80,7 +75,7 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     </div>
     </center>
 
-    Donde la celda de la primer fila y primer columna se lee $P(X_1=0, X_2=0)=0.15$ 
+    donde la celda de la primer fila y primer columna se lee $P(X_1=0, X_2=0)=0.15$ 
 
     i. Obtenga la distribución marginal de $X_1$.
     i. Obtenga la distribución marginal de $X_2$.
@@ -95,10 +90,6 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     i. Encuentre la distribución marginal de $X_1$.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
     <!-- @Reich2020 -->
-
-
-## Esperanza y Varianza
-
 
 1.  Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
     urna $E$ contiene un 60% de bolas verdes y un 40% de bolas rojas.
@@ -138,3 +129,14 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     ```{r, echo=FALSE, out.width="40%", fig.align="center", fig.cap=captions[["un_peso"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "un_peso.jpg"))
     ```
+
+1.  Las luces de giro en los automóviles se utilizan para indicar que se va a realizar
+    alguna acción determinada. La acción depende del escenario donde se conduzca 
+    (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha). 
+    En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se 
+    va a girar en un sentido determinado. Sin embargo, esto no siempre se realiza.
+    Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo gira.
+    Aunque menos frecuente, también se da que el vehículo colca la luz de giro, pero no gira. 
+    La probabilidad de girar dado que se colca la luz de giro es 0.87 y la probabilidad de 
+    girar dado que no se coloca la luz de giro es 0.21. Si observa que un vehículo coloca la 
+    luz de giro, ¿cuál es la probabilidad de que efectivamente doble?

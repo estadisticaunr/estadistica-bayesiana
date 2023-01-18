@@ -69,16 +69,16 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 1.  La regla del tres
 
     Una estudiante de Licenciatura en Estadística está releyendo su
-    tesina antes de entregarla. Si en 20 páginas encontrara 5 typos,
-    sería *razonable* estimar $\frac{5}{20} = \frac{1}{4}$ typos/página.
+    tesina antes de entregarla. Si en 20 páginas encontrara 5 _typos_,
+    sería *razonable* estimar $\frac{5}{20} = \frac{1}{4}$ _typos_ por página.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
     
     Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación 
-    razonable para $\tau$ (la tasa de typos por página), siendo $N$ el número de páginas.
-    Para ello, hallar la probabilidad de que $\tau > $\frac{3}{N}$ para diferentes valores
+    razonable para $\tau$ (la tasa de _typos_ por página), siendo $N$ el número de páginas.
+    Para ello, hallar la probabilidad de que $\tau > \frac{3}{N}$ para diferentes valores
     de $N$. 
-<!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
-4
+    <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
+
 1.  Una colega quiere comprar un producto por Internet. Tres vendedores
     ofrecen el mismo producto al mismo precio. Un vendedor tiene 100%
     evaluaciones positivas, con 10 *reviews*. Otro tiene 96% de
@@ -203,11 +203,16 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
 
+1.  Sea una variable $Y$ tal que $Y | \theta \sim \text{Binomial}(n, \theta)$ y 
+    $\theta \sim \text{Beta}(1/2, 1/2)$. Mediante un estudio de simulación calcule la 
+    cobertura empírica del intervalo de credibilidad del 95% para $n \in \{1, 5, 10, 25\}$ 
+    y $\theta \in \{0.05, 0.10, \dots, 0.50 \}$. Describa las propiedades frecuentistas
+    del intervalo de credibilidad bayesiano.
+    <!-- @Reich2020 -->
+
 1.  Calculo de conjugada no tradicional
     * Binomial negativa - Beta
     * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
-    
-1.  7.4.5 de Reich
 
 ## Simulaciones
 
@@ -220,7 +225,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
     i. ¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?
     i. ¿Cuál es el horario esperado al que terminará su entrevista?
-    <!-- `Modern Data Science with R` -->
+    <!-- Modern Data Science with R -->
 
 1.  Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus 
     A330-300
@@ -228,10 +233,19 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
     i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
 
-1.  El Problema de Monty Hall es trabajado con frecuencia en cursos de Probabilidad. 
-    Mediante simulación, determine cuál es la probabilidad de ganar el juego si se cambia 
-    de puerta. **To Do** Explicar el juego.
-    <!-- `Modern Data Science with R` -->
+1.  El Problema de Monty Hall es un problema de probabilidad basado en un juego del
+    concurso televisivo estadounidense "Trato hecho". 
+    En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. 
+    El premio consiste en llevarse lo que se encuentra detrás de la elegida. 
+    Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos 
+    hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a 
+    los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las
+    otras dos en la que haya una cabra. A continuación, le da la opción al concursante de 
+    cambiar, si lo desea, de puerta (tiene dos opciones). 
+    ¿Debe el concursante mantener su elección original o escoger la otra puerta? 
+    ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones.
+    <!-- Modern Data Science with R -->
+
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
@@ -268,7 +282,15 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
     i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
     
-1.  7.4.2 de Reich
+1.  Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga
+    desarrollada por tu compañía sea mas efectiva que el tratamiento actual es $\theta \in [0, 1]$.
+    Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que
+    la droga que desarrollan es de hecho mejor. El costo del estudio es **\$X**. 
+    Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%.
+    Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor.
+    Si el ensayo sugiere que tu droga es mejor, ganarás **\$cX**. 
+    ¿Para qué valores de $\theta$ y $c$ tiene sentido realizar el estudio?
+    <!-- @Reich2020 -->
 
 1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
 

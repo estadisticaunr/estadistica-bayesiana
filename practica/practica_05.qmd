@@ -2,8 +2,8 @@
 title: "Práctica - Unidad 5"
 bibliography: ../references.bib
 nocite: |
-    @Martin2021, @Downey2021
-pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_03.pdf
+    @Reich2020
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_05.pdf
 ---
 
 ::: {.content-visible when-format="html"}
@@ -13,11 +13,67 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 :::
 
 
-##
+1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016
+    que se provee en @Reich2020. Elabore un modelo de regresión lineal bayesiano donde la 
+    variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo
+    el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice
+    todas las demás variables como predictoras.
 
-    1. 4.6.3 de Reich
-    2. 4.6.4 de Reich
-    3. 4.6.9 de Reich
-    4. 6.3 de Reich
-    5. 5.7.1 de Reich
+    i. Utilice distribuciones a priori normales no informativas. Interprete las distribuciones
+    a posteriori marginales de los coeficientes de regresión.
+    i. Calcule los residuos $\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}$ donde
+    $\hat{\boldsymbol{\beta}}$ es la media a posteriori del vector de coeficientes de regresión. 
+    ¿Puede concluir que los residuos sigan una distribución normal? ¿Qué condados presentan los 
+    residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?
+    i. To Do: Compartir datos de forma accesible
+    <!-- 4.6.3 @Reich2020 sin efectos aleatorios -->
+1.  Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen
+    de un estudio transversal. Para el estado $i$, sea $Y_i$ el numero de homicios y $N_i$ el tamaño
+    de la población.
+
+    i. Ajuste el modelo $Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
+    $\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
+    informativas y $p = 7$ de las covariables en $\mathbf{X}_i$: el intercepto, los cinco 
+    "confounders" $\mathbf{Z}_i$, y el número de leyes relacionadas a armas. 
+    Justifique que el _sampler_ ha convergido y explorado suficientemente la distribución a 
+    posteriori y resuma la distribución a posteriori de $\boldsymbol{\beta}$.
+    i. To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan
+    i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
+
+1.  Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé llamado
+    "Sophia" en cada año luego de 1950.
+
+    ```r
+    library(babynames)
+    dat <- babynames
+    dat <- dat[dat$name == "Sophia" & dat$sex == "F" & dat$year > 1950, ]
+    yr <- dat$year
+    p <- dat$prop
+    t <- dat$year - 1950
+    Y <- log(p / (1 - p))
+    ```
+
+    Sea $Y_t$ el log-odds muestral en el año $t + 1950$. 
+    Ajuste el siguiente modelo auto-regresivo de orden 1:
+
+    $$
+    \begin{aligned}
+    Y_t   &= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
+    \mu_t &= \alpha + \beta t \\
+    \varepsilon &\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
+    \alpha, \beta &\sim \text{Normal}(0, 100^2) \\ 
+    \rho &\sim \text{Uniform}(-1, 1) \\ 
+    \sigma^2 &\sim \text{InvGamma}(0.1, 0.1)
+    \end{aligned}
+    $$
+
+    i. Interprete los parámetros del modelo ($\alpha$, $\beta$, $\rho$ y $\sigma^2$)
+    i. Ajuste el modelo utilizando `RStan` para $t > 1$. Verifique la convergencia y reporte
+    la media a posteriori e intervalos del 95% para los parámetros.
+    i. Grafique la distribución predictiva a posteriori para $Y_t$ en el año 2020.
+
+<!-- 
+4. 6.3 de Reich
+5. 5.7.1 de Reich
+-->
     
