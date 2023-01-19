@@ -291,7 +291,7 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 \mu_t &amp;= \alpha + \beta t \\
 \varepsilon &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
 \alpha, \beta &amp;\sim \text{Normal}(0, 100^2) \\
-\rho &amp;\sim \text{Uniform}(-1, 1) \\
+\rho &amp;\sim \text{Uniforme}(-1, 1) \\
 \sigma^2 &amp;\sim \text{InvGamma}(0.1, 0.1)
 \end{aligned}
 \]</span></p>
@@ -300,11 +300,67 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 <li>Ajuste el modelo utilizando <code>RStan</code> para <span class="math inline">\(t &gt; 1\)</span>. Verifique la convergencia y reporte la media a posteriori e intervalos del 95% para los parámetros.</li>
 <li>Grafique la distribución predictiva a posteriori para <span class="math inline">\(Y_t\)</span> en el año 2020.</li>
 </ol></li>
+<li><p>En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina el resultado de varios estudios. Los datos provienen del paquete <code>rmeta</code> en <code>R</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmeta)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cochrane)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>cochrane</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>          name ev.trt n.trt ev.ctrl n.ctrl
+1     Auckland     36   532      60    538
+2        Block      1    69       5     61
+3        Doran      4    81      11     63
+4        Gamsu     14   131      20    137
+5     Morrison      3    67       7     59
+6 Papageorgiou      1    71       7     75
+7      Tauesch      8    56      10     71</code></pre>
+<p>Los datos provienen de siete ensayos aleatorizados que evalúan el efecto de la terapia con corticosteroides en la muerte neonatal. Para el ensayo <span class="math inline">\(i \in \{1, \dots, 7 \}\)</span> <span class="math inline">\(Y_{i0}\)</span> representa el número de eventos que ocurren en el grupo de control de tamaño <span class="math inline">\(N_{i0}\)</span> y <span class="math inline">\(Y_{i1}\)</span> representa el número de eventos que ocurren en el grupo tratado de tamaño <span class="math inline">\(N_{i1}\)</span>.</p>
+<ol type="i">
+<li>Ajuste el modelo <span class="math inline">\(Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con <span class="math inline">\(\theta_0, \theta_1 \sim \text{Uniforme}(0, 1)\)</span>. ¿Se puede concluir que el tratamiento está asociado a una reducción de la tasa de muerte?</li>
+<li>Ajuste el modelo <span class="math inline">\(Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con
+<ul>
+<li><span class="math inline">\(\text{logit}(\theta_{ij}) = \alpha_{ij}\)</span></li>
+<li><span class="math inline">\(\boldsymbol{\alpha}_i = (\alpha_{i0}, \alpha_{i1})^T \underset{iid}{\sim} \text{Normal}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span></li>
+<li><span class="math inline">\(\boldsymbol{\mu} \sim \text{Normal}(0, 10^2I_2)\)</span></li>
+<li><span class="math inline">\(\boldsymbol{\Sigma} \sim \text{InvWishart}(3, I_2)\)</span></li>
+</ul>
+Interprete los resultados indicando si estos sugieren que el tratamiento está asociado a una reducción en la tasa de muerte.</li>
+<li>Dibuje un DAG para ambos modelos.</li>
+<li>Discuta las ventajas y desventajas de ambos modelos.</li>
+<li>¿Cuál modelo es el preferido para estos datos?</li>
+</ol></li>
+<li><p>Utilice el conjuto de datos <code>airquality</code> que viene con el paquete <code>datasets</code> que se carga automáticamente al crear una sesión de <code>R</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(airquality)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre><code>  Ozone Solar.R Wind Temp Month Day
+1    41     190  7.4   67     5   1
+2    36     118  8.0   72     5   2
+3    12     149 12.6   74     5   3
+4    18     313 11.5   62     5   4
+5    NA      NA 14.3   56     5   5
+6    28      NA 14.9   66     5   6
+```</code></pre>
+<p>Compare los siguientes modelos utilizando <em>5-fold cross-validation</em>:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+\mathcal{M}_1: \text{Ozone}_i \sim \text{Normal}(\beta_1 + \beta_2 \text{Solar.R}_i, \sigma^2) \\
+\mathcal{M}_2: \text{Ozone}_i \sim \text{Normal}(\beta_1 + \beta_2 \text{Solar.R}_i + \beta_3 \text{Temp}_i + \beta_4 \text{Wind}_i, \sigma^2)
+\end{array}
+\]</span></p>
+<p>Elija <em>priors</em> para ambos modelos explicando su elección.</p></li>
 </ol>
-<!-- 
-4. 6.3 de Reich
-5. 5.7.1 de Reich
--->
+<!-- 1.  Curvas de crecimiento de tiranosáuridos
+
+    Analizaremos datos de 20 fósiles para estimar las curvas de crecimiento de cuatro
+    especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 
+    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en el grafico @fig-blabla
+    El objetivo es determinar la curva de crecimiento, esto es, determinar 
+    la masa corporal esperada por edad, para todas las especies.
+
+    Se puede observar que hay una relación no lineal entre la edad y el peso, además de 
+    ciertos patrones comunes entre las especies. En consecuencia, se decide construir
+    un modelo no-lineal jerárquico.
+
+
+    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? -->
 
 
 
