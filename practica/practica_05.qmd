@@ -12,7 +12,6 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 :::
 
-
 1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016
     que se provee en @Reich2020. Elabore un modelo de regresión lineal bayesiano donde la 
     variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo
@@ -27,6 +26,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?
     i. To Do: Compartir datos de forma accesible
     <!-- 4.6.3 @Reich2020 sin efectos aleatorios -->
+
 1.  Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen
     de un estudio transversal. Para el estado $i$, sea $Y_i$ el numero de homicios y $N_i$ el tamaño
     de la población.
@@ -71,7 +71,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Ajuste el modelo utilizando `RStan` para $t > 1$. Verifique la convergencia y reporte
     la media a posteriori e intervalos del 95% para los parámetros.
     i. Grafique la distribución predictiva a posteriori para $Y_t$ en el año 2020.
-
+    <!-- @Reich2020 -->
 
 1.  En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
     el resultado de varios estudios. Los datos provienen del paquete `rmeta` en `R`.
@@ -113,6 +113,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Dibuje un DAG para ambos modelos.
     i. Discuta las ventajas y desventajas de ambos modelos.
     i. ¿Cuál modelo es el preferido para estos datos?
+    <!-- @Reich2020 -->
 
 1.  Utilice el conjuto de datos `airquality` que viene con el paquete `datasets` que se carga
     automáticamente al crear una sesión de `R`.
@@ -138,6 +139,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     $$
 
     Elija _priors_ para ambos modelos explicando su elección.
+    <!-- @Reich2020 -->
 
 <!-- 1.  Curvas de crecimiento de tiranosáuridos
 
@@ -152,4 +154,5 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     un modelo no-lineal jerárquico.
 
 
-    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? -->
+    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
+-->
