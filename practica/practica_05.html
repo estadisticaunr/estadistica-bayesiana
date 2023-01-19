@@ -298,7 +298,7 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 <ol type="i">
 <li>Interprete los parámetros del modelo (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\rho\)</span> y <span class="math inline">\(\sigma^2\)</span>)</li>
 <li>Ajuste el modelo utilizando <code>RStan</code> para <span class="math inline">\(t &gt; 1\)</span>. Verifique la convergencia y reporte la media a posteriori e intervalos del 95% para los parámetros.</li>
-<li>Grafique la distribución predictiva a posteriori para <span class="math inline">\(Y_t\)</span> en el año 2020.</li>
+<li>Grafique la distribución predictiva a posteriori para <span class="math inline">\(Y_t\)</span> en el año 2020. <!-- @Reich2020 --></li>
 </ol></li>
 <li><p>En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina el resultado de varios estudios. Los datos provienen del paquete <code>rmeta</code> en <code>R</code>.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmeta)</span>
@@ -325,7 +325,7 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 Interprete los resultados indicando si estos sugieren que el tratamiento está asociado a una reducción en la tasa de muerte.</li>
 <li>Dibuje un DAG para ambos modelos.</li>
 <li>Discuta las ventajas y desventajas de ambos modelos.</li>
-<li>¿Cuál modelo es el preferido para estos datos?</li>
+<li>¿Cuál modelo es el preferido para estos datos? <!-- @Reich2020 --></li>
 </ol></li>
 <li><p>Utilice el conjuto de datos <code>airquality</code> que viene con el paquete <code>datasets</code> que se carga automáticamente al crear una sesión de <code>R</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(airquality)</span>
@@ -345,7 +345,7 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 \mathcal{M}_2: \text{Ozone}_i \sim \text{Normal}(\beta_1 + \beta_2 \text{Solar.R}_i + \beta_3 \text{Temp}_i + \beta_4 \text{Wind}_i, \sigma^2)
 \end{array}
 \]</span></p>
-<p>Elija <em>priors</em> para ambos modelos explicando su elección.</p></li>
+<p>Elija <em>priors</em> para ambos modelos explicando su elección. <!-- @Reich2020 --></p></li>
 </ol>
 <!-- 1.  Curvas de crecimiento de tiranosáuridos
 
@@ -360,7 +360,8 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
     un modelo no-lineal jerárquico.
 
 
-    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? -->
+    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
+-->
 
 
 
