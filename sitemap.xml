@@ -1,91 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/02_tp2.html</loc>
-    <lastmod>2023-01-19T13:32:39.314Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/03_tp3.html</loc>
-    <lastmod>2023-01-19T13:32:40.938Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/descripcion.html</loc>
-    <lastmod>2023-01-19T13:32:41.974Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/01_tp1.html</loc>
-    <lastmod>2023-01-19T13:32:43.622Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/00_tp0.html</loc>
-    <lastmod>2023-01-19T13:32:43.962Z</lastmod>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/computo/instalacion.html</loc>
+    <lastmod>2023-01-19T23:54:16.273Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/index.html</loc>
-    <lastmod>2023-01-19T13:32:44.310Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/apuntes/introduccion.html</loc>
-    <lastmod>2023-01-19T13:32:44.634Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_01.html</loc>
-    <lastmod>2023-01-19T13:32:46.234Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_03.html</loc>
-    <lastmod>2023-01-19T13:32:46.634Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_00.html</loc>
-    <lastmod>2023-01-19T13:32:47.906Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_02.html</loc>
-    <lastmod>2023-01-19T13:32:49.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_05.html</loc>
-    <lastmod>2023-01-19T13:32:49.938Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/bibliografia.html</loc>
-    <lastmod>2023-01-19T13:32:50.418Z</lastmod>
+    <lastmod>2023-01-19T23:54:17.029Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/enlaces_utiles.html</loc>
-    <lastmod>2023-01-19T13:32:50.746Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/aprobacion.html</loc>
-    <lastmod>2023-01-19T13:32:51.098Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/faq.html</loc>
-    <lastmod>2023-01-19T13:32:51.414Z</lastmod>
-  </url>
-  <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/docentes.html</loc>
-    <lastmod>2023-01-19T13:32:51.730Z</lastmod>
+    <lastmod>2023-01-19T23:54:17.377Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/programa.html</loc>
-    <lastmod>2023-01-19T13:32:52.102Z</lastmod>
+    <lastmod>2023-01-19T23:54:17.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/aprobacion.html</loc>
+    <lastmod>2023-01-19T23:54:18.109Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/faq.html</loc>
+    <lastmod>2023-01-19T23:54:18.437Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/docentes.html</loc>
+    <lastmod>2023-01-19T23:54:18.773Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/bibliografia.html</loc>
+    <lastmod>2023-01-19T23:54:19.273Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/info/calendario.html</loc>
-    <lastmod>2023-01-19T13:32:54.402Z</lastmod>
+    <lastmod>2023-01-19T23:54:21.749Z</lastmod>
   </url>
   <url>
-    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/computo/instalacion.html</loc>
-    <lastmod>2023-01-19T13:32:54.734Z</lastmod>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/apuntes/introduccion.html</loc>
+    <lastmod>2023-01-19T23:54:22.109Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/01_tp1.html</loc>
+    <lastmod>2023-01-19T23:54:23.705Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/03_tp3.html</loc>
+    <lastmod>2023-01-19T23:54:25.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/descripcion.html</loc>
+    <lastmod>2023-01-19T23:54:26.370Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/00_tp0.html</loc>
+    <lastmod>2023-01-19T23:54:26.734Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/trabajos_practicos/02_tp2.html</loc>
+    <lastmod>2023-01-19T23:54:27.954Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_00.html</loc>
+    <lastmod>2023-01-19T23:54:29.462Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_01.html</loc>
+    <lastmod>2023-01-19T23:54:31.358Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_05.html</loc>
+    <lastmod>2023-01-19T23:54:32.006Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_03.html</loc>
+    <lastmod>2023-01-19T23:54:32.426Z</lastmod>
+  </url>
+  <url>
+    <loc>https://estadisticaunr.github.io/estadistica-bayesiana/practica/practica_02.html</loc>
+    <lastmod>2023-01-19T23:54:34.170Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/complementario/variables.html</loc>
-    <lastmod>2023-01-19T13:32:55.090Z</lastmod>
+    <lastmod>2023-01-19T23:54:34.538Z</lastmod>
   </url>
   <url>
     <loc>https://estadisticaunr.github.io/estadistica-bayesiana/complementario/probabilidad.html</loc>
-    <lastmod>2023-01-19T13:32:55.414Z</lastmod>
+    <lastmod>2023-01-19T23:54:34.906Z</lastmod>
   </url>
 </urlset>
