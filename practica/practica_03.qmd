@@ -24,3 +24,18 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 1.  Grid approximation para un modelo de tres parámetros? Una regresión lineal? 
     No la dimos pero la conocen...
+
+
+1.  Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve
+    a colocar junto con otra bola adicional del mismo color. Se repite este proceso 
+    indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que 
+    repetimos más y más veces?
+
+    i. Tiende a 1/2
+    i. Tiende a 0 ó a 1
+    i. No se estabiliza
+    i. Ninguna de las anteriores
+
+    Escriba un programa en `R` para responder esta pregunta utilizando simulaciones.
+    Genere gráficos que faciliten la comprensión del resultado.
+    <!-- https://twitter.com/pgroisma/status/1616137795180822528 -->
