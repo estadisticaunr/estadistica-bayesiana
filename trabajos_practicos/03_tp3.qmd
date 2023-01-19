@@ -4,25 +4,71 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabaj
 ---
 
 ::: {.content-visible when-format="html"}
-
-[Descargar PDF]({{< meta pdf_file >}})
-
+[Descargar PDF](%7B%7B%3C%20meta%20pdf_file%20%3E%7D%7D)
 :::
 
 # Estudio de modelos lineales mediante simulaciones
 
 ## Simulaciones y validación cruzada
 
-1. Algo de calibración de probabilidades
-2. Calcular lppd "a mano"
+1.  Algo de calibración de probabilidades
+2.  Calcular lppd "a mano"
 
 ## Enfriamiento de agua en un termo
 
-1. Ecuación diferencial (verificar)
-2. Transformación de variables
-3. Ajustar el modelo lineal
-4. Encontrar el _posterior_ del parámetro transformado
-5. Predecir la temperatura a la que estará después de un tiempo...
+En un país matero como Argentina, era de esperarse que aparecieran casi tantos termos como personas. Es difícil decir si la cantidad de variantes de termos en el mercado nacional cambió, pero es indudable que, tras el furor del termo color *verde militar*, la elección de un termo adquirió un papel relevante en el ritual del mate.
 
+De acero, de vidrio, con capa aisladora. Diferentes configuraciones dan lugar a distintas capacidades de mantener la temperatura y, obviamente, a distintos rangos de precios. Dejando de lado la cuestión monetaria, centrémonos en estudiar cómo varía la temperatura de un líquido en el interior de un termo en función del tiempo transcurrido.
 
+La temperatura es una medida del grado de agitación de las partículas de una sustancia. Un líquido (o sólido, o gas) está *más caliente* que otro si sus partículas tienen (en promedio) mayor grado de agitación. Sabemos por evidencia empírica que si un cuerpo se pone en contacto con otro que tiene una temperatura menor, hay una transferencia de energía que hace que el primero se enfríe y el segundo se caliente, hasta que alcanzan el denominado equilibrio térmico.
 
+De manera similar, esto es lo que ocurre con el agua que dejamos dentro del termo: en algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el agua del recipiente.
+
+Ahora bien, el ritmo con el cual el agua caliente pierde energía no es constante. Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura del agua en el termo en función del tiempo, notaremos que el ritmo con el que cambia decrece a medida con el que transcurre el tiempo.
+
+La lectura del párrafo anterior debería permitir asociar el concepto de *ritmo de cambio* con la noción matemática de derivada. En efecto, la derivada de la temperatura respecto al tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.
+
+Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del agua en el termo satisface la siguiente ley:
+
+$$
+\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{amb}-T(t)]
+$$ donde $T_{amb}$ es la temperatura ambiente (un valor fijo y conocido), $r$ es una constante y $T(t)$ es la función (en principio desconocida) que describe la temperatura del agua del termo en función del tiempo.
+
+No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una ecuación donde la solución es una función. Buscamos una función $T(t)$ que satisfaga la ecuación: su derivada debe cambiar con el valor que toma la función.
+
+Una función que satisface esa ecuación es:
+
+$$
+T(t) = T_{amb} + (T_i - T_{amb})e^{-rt}
+$$ siendo $T_i$ la temperatura a la que está inicialmente el agua en el termo (un valor fijo y conocido).
+
+1.  Verificar que la función anterior satisface la ecuación diferencial
+2.  Grafique $T(t)$ para $T_{amb} = 20 \text{ C°}$ y $T_i = 90 \text{ C°}$, para dos valores de $r$, $r_1=0.1$ y $r_2 = 0.3$. ¿Qué representa $r$?
+3.  Según su experiencia con termos, ¿cuál es un valor realista de $r$?
+
+Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo en función del tiempo transcurrido.
+
+Leonel tiene un termo Estanli™ que compró por Amason y se dispone a despejar la duda de cualquier usuario de termos Estanli™: ¿cuánto dura el agua caliente? Pone agua en la pava eléctrica, la vierte en el termo y registra la temperatura en algunos momentos posteriores. Ese día, el reporte meteorológico indica una temperatura de $T_{amb}=23\text{ C°}$. Las temperaturas que registró Leonel son las siguientes:
+
+```{r mediciones}
+tabla <- data.frame(t=c("1:20", "2:30", "4:00", "5:15", "8:30"),
+           T=c(92.0, 90.5, 81.4, 80.8, 74.2))
+
+knitr::kable(tabla,col.names = c("t (h)", "T (°C)"))
+```
+
+Para simplificar la construcción de un modelo, en lugar de considerar la temperatura del agua en el termo, se considerará la diferencia entre la temperatura del agua y la temperatura ambiente $T-T_{amb}$. Además, se llamará $T_{diff}$ a la diferencia de temperatura entre la temperatura inicial del agua y la temperatura ambiente $T_i - T_{amb}$.
+
+$$
+T(t) - T_{amb} = T_{diff} e^{-rt}
+$$
+
+4.  Verifique que el logaritmo natural de la nueva variable ($T(t) - T_{amb}$) es una función lineal de $t$. ¿Qué representan $\beta_0$ y $\beta_1$?
+
+Ajustaremos un modelo lineal a los datos transformados.
+
+5.  En función del enunciado del problema y de su conocimiento de termos, elija una distribución *a priori* para $\beta_0$, $\beta_1$ y $\sigma$. ¿Cuáles son las implicancias de sus distribuciones *a priori*? Realice pruebas predictivas *a priori*.
+6.  Ajuste el modelo lineal utilizando \`R\`
+7.  Encontrar el *posterior* de $r$, de $T_{diff}$ y de la temperatura inicial del agua $T_i$
+8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de la experiencia.
+9.  Halle la distribución *a posteriori* del tiempo que le toma al agua llegar a $30\text{ C°}$
