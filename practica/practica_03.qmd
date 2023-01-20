@@ -26,9 +26,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     No la dimos pero la conocen...
 
 
-1.  Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve
-    a colocar junto con otra bola adicional del mismo color. Se repite este proceso 
-    indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que 
+1.  [Este tuit](https://twitter.com/pgroisma/status/1616137795180822528) propone un
+    problema muy interesante. Una urna contiene una bola azul y una amarilla. 
+    Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional 
+    del mismo color. Se repite este proceso indefinidamente. 
+    ¿Qué ocurre con la proporción de bolas azules en la urna a medida que 
     repetimos más y más veces?
 
     i. Tiende a 1/2
@@ -38,4 +40,3 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
     Escriba un programa en `R` para responder esta pregunta utilizando simulaciones.
     Genere gráficos que faciliten la comprensión del resultado.
-    <!-- https://twitter.com/pgroisma/status/1616137795180822528 -->

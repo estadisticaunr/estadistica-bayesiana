@@ -141,18 +141,120 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     Elija _priors_ para ambos modelos explicando su elección.
     <!-- @Reich2020 -->
 
-<!-- 1.  Curvas de crecimiento de tiranosáuridos
+1.  Curvas de crecimiento de tiranosáuridos
 
     Analizaremos datos de 20 fósiles para estimar las curvas de crecimiento de cuatro
     especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 
-    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en el grafico @fig-blabla
+    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en el grafico @fig-dinos
     El objetivo es determinar la curva de crecimiento, esto es, determinar 
     la masa corporal esperada por edad, para todas las especies.
 
     Se puede observar que hay una relación no lineal entre la edad y el peso, además de 
-    ciertos patrones comunes entre las especies. En consecuencia, se decide construir
-    un modelo no-lineal jerárquico.
+    ciertos patrones comunes entre las especies. 
+    
+    Sea $Y_{ij}$ el peso y $X_{ij}$ y la edad de la muestra $i$ de la especie $j$, con 
+    $j = 1, 2, 3, 4$. Se propone el siguiente modelo
+
+    $$
+    Y_{ij} = f_j(X_{ij})\epsilon_{ij}
+    $$
+
+    donde $f_j$ es la verdadera curva de crecimiento para la especie $j$ y $\epsilon_{ij} > 0$ 
+    es un error multiplicativo con media uno. Se utiliza un error multiplicativo en vez de
+    uno aditivo porque es de esperar que la variabilidad se incremente a medida que se
+    el peso o la edad sean mayores. Si se asume una distribución log-normal para el error
+    con $\log(\epsilon_{ij}) \sim \text{Normal}(-\sigma_j^2/2, \sigma_j^2)$, luego 
+    $\mathbb{E}(\epsilon_{ij}) = 1$ tal como se requiere. El modelo resulta
+
+    $$
+    \log Y_{ij} \sim \text{Normal}(\log [f_j(X_{ij})] - \sigma_j^2/2, \sigma_j^2)
+    $$
+    
+    y $\mathbb{E}(Y_{ij}) = f_j(X_{ij})$, donde $\sigma_j^2$ controla la varianza del error para
+    la especie $j$.
+
+    El panel izquierdo de @fig-dinos muestra que la relacion entre las variables es no lineal.
+    Sin embargo, luego de transformas ambas variables con la transformación logarítmica, la 
+    relación se ve aproximadamente lineal. De esta manera, vale la pena considerar el modelo
+    siguiente log lineal
+
+    $$
+    \log [f_j(X)] = a_j + b_j \log(X)
+    $$
+
+    donde $a_j$ y $b_j$ representan al intercepto y pendiente de la especie $j$, respectivamente.
+    La curva de crecimiento en la escala original es $f_j(X) = \exp (a_j)X^{b_j}$.
+    Si $b_j$ es positivo, como se espera, la curva de crecimiento crece indefinidamente, lo que
+    resulta muy poco realista. Luego, se compara el modelo log-lineal con la curva de crecimiento
+    logística
+
+    $$
+    f_j(X) = a_j + b_j \frac{\exp [d_j (x - c_j)]}{1 + \exp [d_j(x - c_j)]}
+    $$
+
+    donde $x = \log(X)$. Este modelo tiene cuatro parámetros:
+
+    1.  $a_j$ es el peso esperado cuando la edad es 0
+    1.  $b_j$ es el peso máximo esperado (o la cota superior del peso)
+    1.  $\log (c_j)$ es la edad a la que la especie $j$ alcanza la mitad del peso máximo
+    1.  $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad
+
+    Continuar...
 
 
-    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
--->
+    ```{r grafico-tiranosauridos}
+    #| warning: false
+    #| cache: true
+    #| echo: false
+    #| fig.cap: "Agregar algo de texto..."
+    #| label: fig-dinos
+
+    library(dplyr)
+    library(ggplot2)
+    library(patchwork)
+
+    data <- readr::read_csv(here::here("datos", "Erickson.csv"))
+    data$Escala <- "original"
+
+    data <- data |> 
+        bind_rows(
+            data |>
+                mutate(
+                    Age = log(Age), 
+                    Mass = log(Mass), 
+                    Escala = "log"
+                )
+        )
+
+    plt_1 <- data |> 
+        filter(Escala == "original") |> 
+        ggplot(aes(x = Age, y = Mass, color = Taxon)) +
+        #geom_smooth(method = "gam", se = FALSE, linewidth = 0.8) + 
+        geom_point(aes(shape = Taxon), size = 2) +
+        scale_x_continuous(name = "Edad (años)", seq(5, 25, by = 5)) +
+        scale_y_continuous(name = "Peso (kilos)", seq(0, 5000, by = 1000)) +
+        scale_shape_manual(values = c(15, 16, 17, 18)) +
+        guides(
+            color = guide_legend(title="Especie"), 
+            shape = guide_legend(title="Especie")
+        )
+
+    plt_2 <- data |> 
+        filter(Escala == "log") |> 
+        ggplot(aes(x = Age, y = Mass, color = Taxon)) +
+        #geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) + 
+        geom_point(aes(shape = Taxon), size = 2) +
+        scale_x_continuous(name = "Log Edad (años)", seq(1, 3, by = 0.5)) +
+        scale_y_continuous(name = "Log Peso (kilos)", seq(4, 8, by = 1)) +
+        scale_shape_manual(values = c(15, 16, 17, 18)) +
+        guides(
+            color = guide_legend(title="Especie"), 
+            shape = guide_legend(title="Especie")
+        )
+    plt <- (plt_1 | plt_2) + plot_layout(guides = "collect") & theme(legend.position = "top")
+    plt
+    ```
+
+    i. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
+ 
+    i. En consecuencia, se decide construir un modelo no-lineal jerárquico.
