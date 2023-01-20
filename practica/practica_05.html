@@ -346,27 +346,57 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 \end{array}
 \]</span></p>
 <p>Elija <em>priors</em> para ambos modelos explicando su elección. <!-- @Reich2020 --></p></li>
+<li><p>Curvas de crecimiento de tiranosáuridos</p>
+<p>Analizaremos datos de 20 fósiles para estimar las curvas de crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. Los datos se toman de la Tabla 1 de <span class="citation" data-cites="Erickson2004">Erickson et&nbsp;al. (<a href="#ref-Erickson2004" role="doc-biblioref">2004</a>)</span> y se muestran en el grafico <a href="#fig-dinos">Figura&nbsp;1</a> El objetivo es determinar la curva de crecimiento, esto es, determinar la masa corporal esperada por edad, para todas las especies.</p>
+<p>Se puede observar que hay una relación no lineal entre la edad y el peso, además de ciertos patrones comunes entre las especies.</p>
+<p>Sea <span class="math inline">\(Y_{ij}\)</span> el peso y <span class="math inline">\(X_{ij}\)</span> y la edad de la muestra <span class="math inline">\(i\)</span> de la especie <span class="math inline">\(j\)</span>, con <span class="math inline">\(j = 1, 2, 3, 4\)</span>. Se propone el siguiente modelo</p>
+<p><span class="math display">\[
+Y_{ij} = f_j(X_{ij})\epsilon_{ij}
+\]</span></p>
+<p>donde <span class="math inline">\(f_j\)</span> es la verdadera curva de crecimiento para la especie <span class="math inline">\(j\)</span> y <span class="math inline">\(\epsilon_{ij} &gt; 0\)</span> es un error multiplicativo con media uno. Se utiliza un error multiplicativo en vez de uno aditivo porque es de esperar que la variabilidad se incremente a medida que se el peso o la edad sean mayores. Si se asume una distribución log-normal para el error con <span class="math inline">\(\log(\epsilon_{ij}) \sim \text{Normal}(-\sigma_j^2/2, \sigma_j^2)\)</span>, luego <span class="math inline">\(\mathbb{E}(\epsilon_{ij}) = 1\)</span> tal como se requiere. El modelo resulta</p>
+<p><span class="math display">\[
+\log Y_{ij} \sim \text{Normal}(\log [f_j(X_{ij})] - \sigma_j^2/2, \sigma_j^2)
+\]</span></p>
+<p>y <span class="math inline">\(\mathbb{E}(Y_{ij}) = f_j(X_{ij})\)</span>, donde <span class="math inline">\(\sigma_j^2\)</span> controla la varianza del error para la especie <span class="math inline">\(j\)</span>.</p>
+<p>El panel izquierdo de <a href="#fig-dinos">Figura&nbsp;1</a> muestra que la relacion entre las variables es no lineal. Sin embargo, luego de transformas ambas variables con la transformación logarítmica, la relación se ve aproximadamente lineal. De esta manera, vale la pena considerar el modelo siguiente log lineal</p>
+<p><span class="math display">\[
+\log [f_j(X)] = a_j + b_j \log(X)
+\]</span></p>
+<p>donde <span class="math inline">\(a_j\)</span> y <span class="math inline">\(b_j\)</span> representan al intercepto y pendiente de la especie <span class="math inline">\(j\)</span>, respectivamente. La curva de crecimiento en la escala original es <span class="math inline">\(f_j(X) = \exp (a_j)X^{b_j}\)</span>. Si <span class="math inline">\(b_j\)</span> es positivo, como se espera, la curva de crecimiento crece indefinidamente, lo que resulta muy poco realista. Luego, se compara el modelo log-lineal con la curva de crecimiento logística</p>
+<p><span class="math display">\[
+f_j(X) = a_j + b_j \frac{\exp [d_j (x - c_j)]}{1 + \exp [d_j(x - c_j)]}
+\]</span></p>
+<p>donde <span class="math inline">\(x = \log(X)\)</span>. Este modelo tiene cuatro parámetros:</p>
+<ol type="1">
+<li><span class="math inline">\(a_j\)</span> es el peso esperado cuando la edad es 0</li>
+<li><span class="math inline">\(b_j\)</span> es el peso máximo esperado (o la cota superior del peso)</li>
+<li><span class="math inline">\(\log (c_j)\)</span> es la edad a la que la especie <span class="math inline">\(j\)</span> alcanza la mitad del peso máximo</li>
+<li><span class="math inline">\(d_j &gt; 0\)</span> determina la tasa de crecimiento del peso conforme aumenta la edad</li>
 </ol>
-<!-- 1.  Curvas de crecimiento de tiranosáuridos
-
-    Analizaremos datos de 20 fósiles para estimar las curvas de crecimiento de cuatro
-    especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 
-    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en el grafico @fig-blabla
-    El objetivo es determinar la curva de crecimiento, esto es, determinar 
-    la masa corporal esperada por edad, para todas las especies.
-
-    Se puede observar que hay una relación no lineal entre la edad y el peso, además de 
-    ciertos patrones comunes entre las especies. En consecuencia, se decide construir
-    un modelo no-lineal jerárquico.
-
-
-    1. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
--->
+<p>Continuar…</p>
+<div class="cell" data-hash="practica_05_cache/html/fig-dinos_a1a9d2d2e81a335eab3aa1ab9bb1efbe">
+<div class="cell-output-display">
+<div id="fig-dinos" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="practica_05_files/figure-html/fig-dinos-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1: Agregar algo de texto…</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="i">
+<li><p><strong>Nota:</strong> Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos?</p></li>
+<li><p>En consecuencia, se decide construir un modelo no-lineal jerárquico.</p></li>
+</ol></li>
+</ol>
 
 
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Erickson2004" class="csl-entry" role="doc-biblioentry">
+Erickson, Gregory M, Peter J Makovicky, Philip J Currie, Mark A Norell, Scott A Yerby, y Christopher A Brochu. 2004. <span>«Gigantism and comparative life-history parameters of tyrannosaurid dinosaurs»</span>. <em>Nature</em> 430: 772-75.
+</div>
 <div id="ref-Reich2020" class="csl-entry" role="doc-biblioentry">
 Reich, Brian J., y Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 1st edition. Chapman; Hall/CRC.
 </div>
