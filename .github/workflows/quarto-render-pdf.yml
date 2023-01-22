@@ -26,7 +26,9 @@ jobs:
             any::ggplot2
             any::here
             any::knitr
+            any::patchwork
             any::rmarkdown
+            any::tidyr
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
