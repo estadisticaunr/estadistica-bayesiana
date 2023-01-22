@@ -26,6 +26,7 @@ jobs:
             any::googlesheets4
             any::here
             any::knitr
+            any::readr
             any::rmarkdown
 
       - name: Set up Quarto
