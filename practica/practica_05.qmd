@@ -145,68 +145,23 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
     Analizaremos datos de 20 fósiles para estimar las curvas de crecimiento de cuatro
     especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 
-    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en el grafico @fig-dinos
+    Los datos se toman de la Tabla 1 de @Erickson2004 y se muestran en la @fig-dinos.
     El objetivo es determinar la curva de crecimiento, esto es, determinar 
-    la masa corporal esperada por edad, para todas las especies.
+    el peso esperado por edad para todas las especies.
 
-    Se puede observar que hay una relación no lineal entre la edad y el peso, además de 
-    ciertos patrones comunes entre las especies. 
+    En el panel izquierdo de @fig-dinos se puede observar que hay una relación no lineal
+    entre la edad y el peso. También se observan ciertos patrones comunes a las especies.
+    Por ejemplo, la relación positiva entre las variables o el decrecimiento en la tasa
+    de cambio conforme la edad es mayor.
     
-    Sea $Y_{ij}$ el peso y $X_{ij}$ y la edad de la muestra $i$ de la especie $j$, con 
-    $j = 1, 2, 3, 4$. Se propone el siguiente modelo
-
-    $$
-    Y_{ij} = f_j(X_{ij})\epsilon_{ij}
-    $$
-
-    donde $f_j$ es la verdadera curva de crecimiento para la especie $j$ y $\epsilon_{ij} > 0$ 
-    es un error multiplicativo con media uno. Se utiliza un error multiplicativo en vez de
-    uno aditivo porque es de esperar que la variabilidad se incremente a medida que se
-    el peso o la edad sean mayores. Si se asume una distribución log-normal para el error
-    con $\log(\epsilon_{ij}) \sim \text{Normal}(-\sigma_j^2/2, \sigma_j^2)$, luego 
-    $\mathbb{E}(\epsilon_{ij}) = 1$ tal como se requiere. El modelo resulta
-
-    $$
-    \log Y_{ij} \sim \text{Normal}(\log [f_j(X_{ij})] - \sigma_j^2/2, \sigma_j^2)
-    $$
-    
-    y $\mathbb{E}(Y_{ij}) = f_j(X_{ij})$, donde $\sigma_j^2$ controla la varianza del error para
-    la especie $j$.
-
-    El panel izquierdo de @fig-dinos muestra que la relacion entre las variables es no lineal.
-    Sin embargo, luego de transformas ambas variables con la transformación logarítmica, la 
-    relación se ve aproximadamente lineal. De esta manera, vale la pena considerar el modelo
-    siguiente log lineal
-
-    $$
-    \log [f_j(X)] = a_j + b_j \log(X)
-    $$
-
-    donde $a_j$ y $b_j$ representan al intercepto y pendiente de la especie $j$, respectivamente.
-    La curva de crecimiento en la escala original es $f_j(X) = \exp (a_j)X^{b_j}$.
-    Si $b_j$ es positivo, como se espera, la curva de crecimiento crece indefinidamente, lo que
-    resulta muy poco realista. Luego, se compara el modelo log-lineal con la curva de crecimiento
-    logística
-
-    $$
-    f_j(X) = a_j + b_j \frac{\exp [d_j (x - c_j)]}{1 + \exp [d_j(x - c_j)]}
-    $$
-
-    donde $x = \log(X)$. Este modelo tiene cuatro parámetros:
-
-    1.  $a_j$ es el peso esperado cuando la edad es 0
-    1.  $b_j$ es el peso máximo esperado (o la cota superior del peso)
-    1.  $\log (c_j)$ es la edad a la que la especie $j$ alcanza la mitad del peso máximo
-    1.  $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad
-
-    Continuar...
-
 
     ```{r grafico-tiranosauridos}
     #| warning: false
     #| cache: true
     #| echo: false
     #| fig.cap: "Agregar algo de texto..."
+    #| fig.width: 9
+    #| fig.height: 5
     #| label: fig-dinos
 
     library(dplyr)
@@ -230,31 +185,170 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
         filter(Escala == "original") |> 
         ggplot(aes(x = Age, y = Mass, color = Taxon)) +
         #geom_smooth(method = "gam", se = FALSE, linewidth = 0.8) + 
-        geom_point(aes(shape = Taxon), size = 2) +
+        geom_point(aes(shape = Taxon, fill = Taxon), size = 2.5) +
         scale_x_continuous(name = "Edad (años)", seq(5, 25, by = 5)) +
         scale_y_continuous(name = "Peso (kilos)", seq(0, 5000, by = 1000)) +
-        scale_shape_manual(values = c(15, 16, 17, 18)) +
+        scale_shape_manual(values = 21:24) +
         guides(
-            color = guide_legend(title="Especie"), 
-            shape = guide_legend(title="Especie")
+            color = guide_legend(title = "Especie"), 
+            shape = guide_legend(title = "Especie"),
+            fill = guide_legend(title = "Especie")
         )
 
     plt_2 <- data |> 
         filter(Escala == "log") |> 
         ggplot(aes(x = Age, y = Mass, color = Taxon)) +
         #geom_smooth(method = "lm", se = FALSE, linewidth = 0.8) + 
-        geom_point(aes(shape = Taxon), size = 2) +
+        geom_point(aes(shape = Taxon, fill = Taxon), size = 2.5) +
         scale_x_continuous(name = "Log Edad (años)", seq(1, 3, by = 0.5)) +
         scale_y_continuous(name = "Log Peso (kilos)", seq(4, 8, by = 1)) +
-        scale_shape_manual(values = c(15, 16, 17, 18)) +
+        scale_shape_manual(values = 21:24) +
         guides(
-            color = guide_legend(title="Especie"), 
-            shape = guide_legend(title="Especie")
+            color = guide_legend(title = "Especie"), 
+            shape = guide_legend(title = "Especie"),
+            fill = guide_legend(title = "Especie")
         )
     plt <- (plt_1 | plt_2) + plot_layout(guides = "collect") & theme(legend.position = "top")
     plt
     ```
 
-    i. **Nota:** Vamos a llegar a cubrir modelos no lineales y modelos jerárquicos? 
- 
-    i. En consecuencia, se decide construir un modelo no-lineal jerárquico.
+    Sea $Y_{ij}$ el peso y $X_{ij}$ y la edad de la muestra $i$ de la especie $j$, con 
+    $j = 1, 2, 3, 4$. 
+
+    Se propone el siguiente modelo:
+
+    $$
+    Y_{ij} = f_j(X_{ij})\epsilon_{ij}
+    $$
+
+    donde $f_j$ es la verdadera curva de crecimiento para la especie $j$ y 
+    $\epsilon_{ij} > 0$ es un error multiplicativo.
+
+    i. ¿Por qué tiene sentido proponer un error multiplicativo?
+    i. ¿Cuál es un valor sensato para la media de la distribución del error?
+    i. Utilice una distribución log-normal para el error, 
+    $\log (\epsilon_{ij}) \sim \text{Normal}$. 
+    Proponga valores para la media y la varianza de forma tal que satisfagan la condición 
+    del punto anterior.
+
+    El modelo que resulta para $\log(Y_{ij})$ es
+
+    $$
+    \log (Y_{ij}) \sim \text{Normal}
+    (\log [f_j(X_{ij})] + \mu_{\log \epsilon}, \sigma^2_{\log \epsilon})
+    $$
+
+    con $\mathbb{E}(Y_{ij}) = f_j(X_{ij})$ y $\sigma^2_j$ determina la varianza del error
+    para la especie $j$.
+
+    A continuación se proponen cuatro modelos que varían según la relación funcional que
+    se propone para $f_j$ y la naturaleza de las distribuciones a priori que se utilizan.
+
+    **Modelo 1**
+    
+    Observando el panel derecho de @fig-dinos se puede concluir que luego de transformar 
+    ambas variables con la función logaritmo la relación se ve aproximadamente lineal.
+    Por lo tanto, se propone el siguiente modelo log-lineal:
+
+    $$
+    \log [f_j(X)] = a_j + b_j \log(X)
+    $$
+
+    donde $a_j$ y $b_j$ representan al intercepto y pendiente de la especie $j$.
+    La curva de crecimiento en la escala original es $f_j(X) = \exp (a_j)X^{b_j}$. 
+    Considere los siguientes _priors_:
+
+    $$
+    \begin{aligned}
+    a_j &\sim \text{Normal}(0, 10) \\
+    b_j &\sim \text{Normal}(0, 10) \\
+    \sigma^2_j &\sim \text{InvGamma}(0.1, 0.1) \\
+    \end{aligned}
+    $$
+
+    i. Escriba un programa en Stan para ajustar este modelo. 
+    i. Analice los coeficientes del modelo y las curvas de crecimiento.
+   
+    **Modelo 2**
+
+    Este modelo es el mismo que el **Modelo 1**, excepto que las especies tienen la misma
+    varianza, $\sigma^2_j = \sigma^2$ y los coeficientes de regresión son modelados
+    de manera jerárquica. 
+
+    $$
+    \begin{aligned}
+    \mu_a    &\sim \text{Normal}(0, 10) \\
+    \sigma_a &\sim \text{InvGamma}(0.1, 0.1) \\
+    \mu_b    &\sim \text{Normal}(0, 10) \\
+    \sigma_b &\sim \text{InvGamma}(0.1, 0.1) \\
+    a_j      &\sim \text{Normal}(\mu_a, \sigma^2_a) \\
+    b_j      &\sim \text{Normal}(\mu_b, \sigma^2_b) \\
+    \sigma^2 &\sim \text{InvGamma}(0.1, 0.1)
+    \end{aligned}
+    $$
+
+    i. Escriba un programa en Stan para ajustar este modelo.
+    i. Analice los coeficientes del modelo y las curvas de crecimiento. 
+    Describa similitudes y diferencias respecto del modelo 1. Justifique su respuesta
+    considerando la naturaleza jerárquica del modelo.
+    i. ¿Qué problemas detecta los modelos 1 y 2? Considere como evoluciona el peso
+    conforme la edad según el modelo.
+    
+    **Modelo 3**
+
+    Como alternativa al componente log-lineal anterior, se propone la siguiente curva de 
+    crecimiento logístico:
+
+    $$
+    f_j(X) = a_j + b_j \frac{\exp [d_j (x - c_j)]}{1 + \exp [d_j(x - c_j)]}
+    $$
+
+    donde $x = \log(X)$. Este modelo tiene cuatro parámetros:
+
+    1.  $a_j$ es el peso esperado cuando la edad es 0
+    1.  $b_j$ es el peso máximo esperado (o la cota superior del peso)
+    1.  $\log (c_j)$ es la edad a la que la especie $j$ alcanza la mitad del peso máximo
+    1.  $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad
+
+    Para que la curva sea positiva y creciente para todas las edades, se debe cumplir que
+    $a_j \gt 0$, $b_j \gt a_j$ y $d_j \gt 0$. Se pueden satisfacer estas restricciones
+    expresando los parámetros en función de parámetros no restringidos.
+
+    * $a_j = \exp (\alpha_{j1})$
+    * $b_j = \exp (\alpha_{j2})$
+    * $c_j = \alpha_{j3}$
+    * $d_j = \exp (\alpha_{j4})$
+
+    Explicar mejor
+
+    $$
+    \begin{aligned}
+    \alpha_{jk} &\sim \text{Normal}(0, 10) \\
+    \sigma^2_j  &\sim \text{InvGamma}(0.1, 0.1)
+    \end{aligned}
+    $$
+
+    i. Analizar resultados, convergencia, graficar, etc. etc.
+
+    **Modelo 4**
+
+    Explicar mejor
+
+    Es el mismo modelo que el modelo 3, excepto que las especies tienen la misma varianza
+    $\sigma^2_j = \sigma^2$ y los coeficientes de regresión se modelan de manera jerárquica.
+
+    $$
+    \begin{aligned}
+    \mu_k &\sim \text{Normal}(0, 10) \\
+    \sigma^2_k &\sim \text{InvGamma}(0.1, 0.1) \\
+    \log (\alpha_{jk}) &\sim \text{Normal}(\mu_k, \sigma^2_k)
+    \end{aligned}
+    $$
+
+    i. Plantear preguntas...
+
+    i. **Nota para nosotros:** Queremos usar los priors del libro? O mejor usamos otra cosa?
+    Estoy mirando los InvGamma por ejemplo. 
+    Ídem con la notación de varianza-desvío estándar.
+
+    <!-- https://www4.stat.ncsu.edu/~bjreich/BSMdata/T_rex.html -->
