@@ -27,6 +27,7 @@ jobs:
             any::here
             any::knitr
             any::patchwork
+            any::readr
             any::rmarkdown
             any::tidyr
 
