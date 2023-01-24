@@ -2,7 +2,7 @@
 title: "Práctica - Unidad 5"
 bibliography: ../references.bib
 nocite: |
-    @Reich2020
+    @Reich2020, @DavidsonPilon2015
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_05.pdf
 ---
 
@@ -140,6 +140,27 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
     Elija _priors_ para ambos modelos explicando su elección.
     <!-- @Reich2020 -->
+
+1.  Accidente del Challenger
+
+    El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del        Challenger explotó poco después del despegue. En el accidente murieron los siete tripulantes. La comisión que investigó el accidente concluyó que el accidente fue         causado por una falla en un _o-ring_ en una juntura de uno de los propulsores. Esta falla se debió a un diseño defectuoso que volvió al _o-ring_ excesivamente sensible     a factores externos, entre ellos la temperatura. De los veinticuatro vuelos previos, existía información de fallas de _o-rings_ para veintitrés de ellos (el otro se       perdió en el océano). Estos datos fueron discutidos la noche previa al incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron a la     conclusión de que no había una evidencia clara. 
+    
+    <!-- @DavidsonPilon2015 -->
+    
+```{r tabla-challenger}
+    #| warning: false
+    #| echo: false
+    #| cache: true
+challenger <- data.frame(
+          "T" = c(66L,70L,69L,68L,67L,72L,73L,70L,57L,
+                 63L,70L,78L,67L,53L,67L,75L,70L,81L,76L,79L,75L,
+                 76L,58L),
+          "Falla" = c(0L,1L,0L,0L,0L,0L,0L,0L,1L,1L,1L,
+                 0L,0L,1L,0L,0L,0L,0L,0L,0L,1L,0L,1L))
+
+knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> kable_styling(full_width = F)
+```
+    
 
 1.  Curvas de crecimiento de tiranosáuridos
 
