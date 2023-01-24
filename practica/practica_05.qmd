@@ -12,6 +12,30 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 :::
 
+1.  Considere un modelo para datos de conteo con un predictor lineal $X$ que toma valores entre -3 y 50
+
+    $$
+    \begin{aligned}
+    Y_i   &\sim \mathrm{Poisson}(\lambda_i) \\
+    \log(\lambda_i) &= \beta X \\
+    \end{aligned}
+    $$
+    
+    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\lambda_i$ y los de $Y_i$. ¿Cómo es $\lambda$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$? ¿Qué ocurre con la varianza de $Y$ en función de $X$? ¿Cómo es la distribución marginal de $Y$?
+    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\lambda_i$ y $Y_i$. Compare los resultados.
+    
+1.  Considere un modelo de clasificación con un predictor lineal $X$ que toma valores entre -30 y 10
+
+    $$
+    \begin{aligned}
+    Y_i   &\sim \mathrm{Bernoulli}(\theta_i) \\
+    \log\left(\frac{\theta_i}{1-\theta_i}\right) &= \beta X \\
+    \end{aligned}
+    $$
+    
+    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\theta_i$ y los de $Y_i$. ¿Cómo es $\theta$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$?
+    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
+
 1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016
     que se provee en @Reich2020. Elabore un modelo de regresión lineal bayesiano donde la 
     variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo
