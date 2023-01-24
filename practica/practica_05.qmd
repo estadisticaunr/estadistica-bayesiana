@@ -158,7 +158,7 @@ challenger <- data.frame(
           "Falla" = c(0L,1L,0L,0L,0L,0L,0L,0L,1L,1L,1L,
                  0L,0L,1L,0L,0L,0L,0L,0L,0L,1L,0L,1L))
 
-knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> kable_styling(full_width = F)
+knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> kableExtra::kable_styling(full_width = F)
 ```
     
 
