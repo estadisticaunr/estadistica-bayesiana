@@ -25,6 +25,7 @@ jobs:
             any::ggplot2
             any::googlesheets4
             any::here
+            any::kableExtra
             any::knitr
             any::readr
             any::rmarkdown

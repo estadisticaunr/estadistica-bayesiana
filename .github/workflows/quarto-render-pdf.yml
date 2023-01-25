@@ -25,6 +25,7 @@ jobs:
             any::dplyr
             any::ggplot2
             any::here
+            any::kableExtra
             any::knitr
             any::patchwork
             any::readr

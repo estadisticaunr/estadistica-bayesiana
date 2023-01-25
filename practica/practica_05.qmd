@@ -172,9 +172,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     <!-- @DavidsonPilon2015 -->
     
 ```{r tabla-challenger}
-    #| warning: false
-    #| echo: false
-    #| cache: true
+#| warning: false
+#| echo: false
 challenger <- data.frame(
           "T" = c(66L,70L,69L,68L,67L,72L,73L,70L,57L,
                  63L,70L,78L,67L,53L,67L,75L,70L,81L,76L,79L,75L,
