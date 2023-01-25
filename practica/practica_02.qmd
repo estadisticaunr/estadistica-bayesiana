@@ -292,6 +292,75 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     ¿Para qué valores de $\theta$ y $c$ tiene sentido realizar el estudio?
     <!-- @Reich2020 -->
 
+1.  Resuelva el problema de concordancia de de Montmort presentado en la Practica 0
+    utilizando simulaciones.
+    <!-- Blitzstein, Introdudction to Probability -->
+
+1.  Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando 
+simulaciones.
+
+1.  ¿Cuánto vale $\pi$?
+
+    Imagine un círculo de radio $r$ y un cuadrado de lado $2r$, ambos centrados en el 
+    mismo punto, que de manera arbitraria puede ser el punto $(0, 0)$. Obtenga muestras
+    de una distribución uniforme en el plano $(x, y)$, cuyo dominio está acotado por 
+    el cuadrado antes mencionado. Para cada muestra extraida, determine si se encuentra 
+    dentro del círculo o no -- todos las muestras se encontrarán dentro del cuadrado. 
+    Utilice esta información para estimar el valor de $\pi$.
+    
+    ```{r circulo-cuadrado-pi}
+    #| warning: false
+    #| echo: false
+    #| fig.width: 6
+    #| fig.height: 6
+    library(ggplot2)
+
+    centro <- c(0, 0)
+    radio <- 1
+    angulos <- seq(0, 2 * pi, length.out = 512)
+
+    x_circulo <- centro[1] + radio * cos(angulos)
+    y_circulo <- centro[2] + radio * sin(angulos)
+
+    x_cuadrado <- c(
+        seq(-1, 1, length.out = 128),
+        rep(1, 128),
+        seq(1, -1, length.out = 128),
+        rep(-1, 128)
+    )
+    y_cuadrado <- c(
+        rep(1, 128), 
+        seq(1, -1, length.out = 128), 
+        rep(-1, 128), 
+        seq(-1, 1, length.out = 128)
+    )
+
+    x <- c(x_circulo)
+    y <- c(y_circulo)
+    figura <- rep(c("circulo", "cuadrado"), each = 512)
+        
+    df <- data.frame(x = x, y = y, figura = figura)
+
+    ggplot(df) + 
+        geom_hline(yintercept = 0, linetype = "dashed", color = "#999999") +
+        geom_vline(xintercept = 0, linetype = "dashed", color = "#999999") +
+        geom_path(aes(x = x, y = y), size = 1.5, color = "#0984C0") +
+        geom_rect(
+            xmin = -1, xmax = 1, ymin = -1, ymax = 1, 
+            fill = NA, color = "#999999", size = 1.5
+        )
+
+    ```
+
+
+
+
+    Datos útiles
+
+    * Area de un círculo: $\pi \cdot r^2$.
+    * Area de un cuadrado: $a^2$, donde $a$ es la longitud del lado.
+
+
 1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
 
 ## Elección de distribuciones a priori?
