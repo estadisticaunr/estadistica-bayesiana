@@ -282,6 +282,9 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
     i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
     
+1. Un cajón contiene 10 pares de medias. No hay dos pares iguales. Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par?
+<!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ -->
+    
 1.  Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga
     desarrollada por tu compañía sea mas efectiva que el tratamiento actual es $\theta \in [0, 1]$.
     Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que
@@ -361,7 +364,10 @@ simulaciones.
     * Area de un cuadrado: $a^2$, donde $a$ es la longitud del lado.
 
 
-1.  Quizás algo con tasa de falsos descubrimientos, p-values y su distribución...
+1.  Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.
+
+    i. Considere el caso en que las dos muestras provienen de poblaciones con igual media y desvío estándar (supongamos normal de media nula y varianza unitaria). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
+    ii. Considere ahora el caso en que las dos muestras provienen de poblaciones con diferente media e igual desvío estándar ($\mathcal{N}(0,1)$ y $\mathcal{N}(1,0)$). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
 
 ## Elección de distribuciones a priori?
 
