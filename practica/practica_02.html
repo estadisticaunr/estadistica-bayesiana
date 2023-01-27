@@ -358,6 +358,7 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li>¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?</li>
 <li>¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?</li>
 </ol></li>
+<li><p>Un cajón contiene 10 pares de medias. No hay dos pares iguales. Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par? <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ --></p></li>
 <li><p>Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga desarrollada por tu compañía sea mas efectiva que el tratamiento actual es <span class="math inline">\(\theta \in [0, 1]\)</span>. Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que la droga que desarrollan es de hecho mejor. El costo del estudio es <strong>$X</strong>. Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%. Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor. Si el ensayo sugiere que tu droga es mejor, ganarás <strong>$cX</strong>. ¿Para qué valores de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(c\)</span> tiene sentido realizar el estudio? <!-- @Reich2020 --></p></li>
 <li><p>Resuelva el problema de concordancia de de Montmort presentado en la Practica 0 utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
 <li><p>Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando simulaciones.</p></li>
@@ -373,7 +374,11 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li>Area de un círculo: <span class="math inline">\(\pi \cdot r^2\)</span>.</li>
 <li>Area de un cuadrado: <span class="math inline">\(a^2\)</span>, donde <span class="math inline">\(a\)</span> es la longitud del lado.</li>
 </ul></li>
-<li><p>Quizás algo con tasa de falsos descubrimientos, p-values y su distribución…</p></li>
+<li><p>Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.</p>
+<ol type="i">
+<li>Considere el caso en que las dos muestras provienen de poblaciones con igual media y desvío estándar (supongamos normal de media nula y varianza unitaria). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los <em>p-values</em> obtenidos para cada test?</li>
+<li>Considere ahora el caso en que las dos muestras provienen de poblaciones con diferente media e igual desvío estándar (<span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\mathcal{N}(1,0)\)</span>). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los <em>p-values</em> obtenidos para cada test?</li>
+</ol></li>
 </ol>
 </section>
 <section id="elección-de-distribuciones-a-priori" class="level2">
