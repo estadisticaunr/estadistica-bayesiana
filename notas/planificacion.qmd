@@ -18,5 +18,9 @@ editor_options:
 -   Regla de Bayes
     + Historia: Bayes, Price, Laplace
     + Presentación tradicional de la Regla de Bayes
+<<<<<<< HEAD
     + Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey). Discutir modelos generativos (probabilidad hacia adelante e inversa).
+=======
+    + Inferencia bayesiana: problema original de Bayes, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey). Discutir modelos generativos (probabilidad hacia adelante e inversa).
+>>>>>>> 58f1da1c0daec4f74c560f265b94e838528a1319
     + Práctica 1 
