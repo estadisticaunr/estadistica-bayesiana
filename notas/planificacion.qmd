@@ -1,0 +1,22 @@
+---
+title: "Contenidos detallados"
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+-   Actividad Rocklets
+
+-   Repaso de probabilidad, distribuciones conjuntas, distribuciones marginales
+-   Práctica 0 (ver qué ejercicios)
+
+-   Probabilidad para cuantificar la incertidumbre
+    + Probabilidades subjetivas
+    + Lógica y razonamiento plausible (ver Jaynes)
+    + Dutch book
+    
+-   Regla de Bayes
+    + Historia: Bayes, Price, Laplace
+    + Presentación tradicional de la Regla de Bayes
+    + Inferencia bayesiana: problema original de Bayes, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey). Discutir modelos generativos (probabilidad hacia adelante e inversa).
+    + Práctica 1 
