@@ -7,8 +7,12 @@ editor_options:
 
 -   Actividad Rocklets
 
+# Repaso 
+
 -   Repaso de probabilidad, distribuciones conjuntas, distribuciones marginales
 -   Práctica 0 (ver qué ejercicios)
+
+# Introducción
 
 -   Probabilidad para cuantificar la incertidumbre
     + Probabilidades subjetivas
@@ -18,6 +22,41 @@ editor_options:
 -   Regla de Bayes
     + Historia: Bayes, Price, Laplace
     + Presentación tradicional de la Regla de Bayes
-    + Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey). Discutir modelos generativos (probabilidad hacia adelante e inversa).
-    + Inferencia bayesiana: problema original de Bayes, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey). Discutir modelos generativos (probabilidad hacia adelante e inversa).
-    + Práctica 1 
+    + Práctica 1 (ver qué ejercicios)
+
+-   Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey).
+    + Discutir modelos generativos (probabilidad hacia adelante e inversa).
+    + Práctica 1 (ver qué ejercicios)
+    + Idea intuitiva: ¿qué es el _prior_? ¿qué es la función de verosimilitud? ¿qué es el _posterior_?
+    
+# Modelos de distribuciones conjugadas
+
+-   Modelo beta-binomial
+    + Demostración
+    + Enfoque intuitivo
+    + Distribución a posteriori como compromiso entre _likelihood_ y _prior_
+    + Razonamiento secuencial
+    + Resumen de la distribución _a posteriori_: media, moda, intervalos de credibilidad. Cálculos a mano, cálculos exacto con funciones de R. Simulaciones (vamos a introducir la idea de utilizar simulaciones para resolver problemas)
+    + Predicciones: simulaciones. Problema del amanecer.
+    + Práctica 2
+    
+- Elección de la distribución a priori
+    + Práctica 2
+    
+- Modelo normal-normal
+    + Enfoque intuitivo
+    + Distribución a posteriori como compromiso entre _likelihood_ y _prior_
+    + Razonamiento secuencial
+    + Predicciones: distribución predictiva. Incertidumbre propia del sampleo + incertidumbre.
+    
+- Modelo Gamma-Poisson
+
+- Otros modelos de distribuciones conjugadas para una variable (ver Práctica 2)
+
+- Modelos de varias variables 
+
+...
+
+- Grid approximation de un problema para estimar N y theta.
+    
+    
