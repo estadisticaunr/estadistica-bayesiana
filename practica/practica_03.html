@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.335">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -78,6 +78,7 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -202,12 +203,15 @@ div.csl-indent {
 <section id="métodos-computacionales" class="level2">
 <h2 class="anchored" data-anchor-id="métodos-computacionales">Métodos Computacionales</h2>
 <ol type="1">
-<li><p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. En ese momento del partido,</p>
+<li><p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distirbución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
 <ol type="i">
+<li>¿Cuál es la distribución <em>a posteriori</em> del tiempo entre goles de Alemania?</li>
 <li>¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?</li>
 <li>¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
 </ol></li>
-<li><p>Grid approximation para un modelo de tres parámetros? Una regresión lineal? No la dimos pero la conocen…</p></li>
+<li><p>Grid approximation para una <em>skew-normal</em>. Estimar los parámetros <span class="math inline">\(\xi\)</span> (posición), <span class="math inline">\(\omega\)</span> (escala) y <span class="math inline">\(\alpha\)</span> (asimetría). <span class="math display">\[
+f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
+\]</span> <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution --></p></li>
 <li><p><a href="https://twitter.com/pgroisma/status/1616137795180822528">Este tuit</a> propone un problema muy interesante. Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional del mismo color. Se repite este proceso indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que repetimos más y más veces?</p>
 <ol type="i">
 <li>Tiende a 1/2</li>
