@@ -15,15 +15,22 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 ## Métodos Computacionales
 
 1.  En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
-    Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. 
+    Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
+    Asuma que el tiempo entre goles sigue una distirbución exponencial. Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o no).
     En ese momento del partido,
 
+    i. ¿Cuál es la distribución _a posteriori_ del tiempo entre goles de Alemania?
     i. ¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?
     i. ¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
 
-1.  Grid approximation para un modelo de tres parámetros? Una regresión lineal? 
-    No la dimos pero la conocen...
+1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), $\omega$ (escala) y $\alpha$ (asimetría).
+    $$
+    f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
+    $$
+    <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution -->
+    
+    
 
 
 1.  [Este tuit](https://twitter.com/pgroisma/status/1616137795180822528) propone un
