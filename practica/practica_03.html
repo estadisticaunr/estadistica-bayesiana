@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -218,17 +281,18 @@ div.csl-indent {
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor 0.25 y menor 0.75?</li>
 </ol></li>
 <li><p>Responda los dos puntos anteriores sin evaluar la función de densidad ni la función de distribución de las variables aleatorias mencionadas. Para eso genere muestras que provengan de las correspondientes distribuciones y utilícelas para responder las preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un enfoque basado en la simulación para resolver problemas.</p></li>
+<li><p>En un problema determinado la distribución a posteriori de la parámetro de inteŕes <span class="math inline">\(\alpha\)</span> es <span class="math inline">\(\Gamma(k=3, \theta=1.5)\)</span>, donde <span class="math inline">\(k\)</span> es el parámetro de forma y <span class="math inline">\(\theta\)</span> es el parámetro de escala. Calcule la probabilidad de que <span class="math inline">\(\alpha^2\)</span> sea mayor a 10. <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable --></p></li>
 <li><p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> dos variables aleatorias independientes con distribución uniforme en el intervalo <span class="math inline">\([0, 1]\)</span>.</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X \le Y\)</span>?</li>
 <li>Grafique los puntos muestreados coloreando de acuerdo a si la muestra satisface el evento antes mencionado o no.</li>
 </ol></li>
-<li><p>Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en Tierra del Fuego cuenta con tres componentes críticos. Ante una falla en cualquiera de estos componentes, la máquina se detiene. Las probabilidades de que estos elementos operen correctamente durante un día cualquiera son <span class="math inline">\(p_1 = 0.8\)</span>, <span class="math inline">\(p_2 = 0.9\)</span> y <span class="math inline">\(p_3 = 0.7\)</span>. Responda las siguientes preguntas utilizando técnicas de simulación</p>
+<li><p>Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. Ante una falla en cualquiera de estos componentes, la máquina se detiene. Las probabilidades de que estos elementos operen correctamente durante un día cualquiera son <span class="math inline">\(p_1 = 0.8\)</span>, <span class="math inline">\(p_2 = 0.9\)</span> y <span class="math inline">\(p_3 = 0.7\)</span>. Responda las siguientes preguntas utilizando técnicas de simulación:</p>
 <ol type="i">
-<li>¿Cuál es la probabilidad de que la máquina falle en el día 1 de uso?</li>
+<li>¿Cuál es la probabilidad de que la máquina falle en el primer día de uso?</li>
 <li>¿Cuál es la probabilidad de que la máquina siga funcionando luego de 10 días?</li>
 <li>¿Cuál es la probabilidad de que la máquina falle en el día 7 de uso?</li>
-<li>Sea <span class="math inline">\(T=\text{Cantidad de días que la máquina funciona ininterrumpidamente}\)</span>. Grafique la función de probabilidad de <span class="math inline">\(T\)</span>.</li>
+<li>Sea <span class="math inline">\(T=\)</span> Cantidad de días que la máquina funciona ininterrumpidamente. Grafique la función de probabilidad de <span class="math inline">\(T\)</span>.</li>
 </ol></li>
 <li><p>Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar por 14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la fotocopiadora entre la estudiante A y el estudiante B?</p></li>
 <li><p><a href="https://twitter.com/pgroisma/status/1616137795180822528">Este tuit</a> propone un problema muy interesante. Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional del mismo color. Se repite este proceso indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que repetimos más y más veces?</p>
@@ -239,17 +303,15 @@ div.csl-indent {
 <li>Ninguna de las anteriores</li>
 </ol>
 <p>Escriba un programa en <code>R</code> para responder esta pregunta utilizando simulaciones. Genere gráficos que faciliten la comprensión del resultado.</p></li>
-<li><p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
-<ol type="i">
-<li>¿Cuál es la distribución <em>a posteriori</em> del tiempo entre goles de Alemania?</li>
-<li>¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?</li>
-<li>¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
-</ol></li>
 <li><p>¿Cuánto vale <span class="math inline">\(\pi\)</span>?</p>
 <p>Imagine un círculo de radio <span class="math inline">\(r\)</span> y un cuadrado de lado <span class="math inline">\(2r\)</span>, ambos centrados en el mismo punto, que de manera arbitraria puede ser el punto <span class="math inline">\((0, 0)\)</span>. Obtenga muestras de una distribución uniforme en el plano <span class="math inline">\((x, y)\)</span>, cuyo dominio está acotado por el cuadrado antes mencionado. Para cada muestra extraida, determine si se encuentra dentro del círculo o no – todos las muestras se encontrarán dentro del cuadrado. Utilice esta información para estimar el valor de <span class="math inline">\(\pi\)</span>.</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<p><img src="practica_03_files/figure-html/circulo-cuadrado-pi-1.png" class="img-fluid" width="576"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practica_03_files/figure-html/circulo-cuadrado-pi-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>Datos útiles</p>
@@ -263,9 +325,50 @@ div.csl-indent {
 <li>Hacer con <code>R</code></li>
 <li>Crear visualización que permita comunicar los resultados</li>
 </ol></li>
+<li><p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
+<ol type="i">
+<li>¿Cuál es la distribución <em>a posteriori</em> del tiempo entre goles de Alemania?</li>
+<li>¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?</li>
+<li>¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
+</ol></li>
 <li><p>Grid approximation para una <em>skew-normal</em>. Estimar los parámetros <span class="math inline">\(\xi\)</span> (posición), <span class="math inline">\(\omega\)</span> (escala) y <span class="math inline">\(\alpha\)</span> (asimetría). <span class="math display">\[
 f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
 \]</span> <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution --></p></li>
+<li><p>Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método es obtener una estimación lo suficientemente buena del peso de cada pescado sin tener que pesarlos uno por uno, ya que es un proceso costoso en tiempo y labor. Para eso, seleccionaron una muestra de pescados, los pesaron y les midieron ciertos aspectos morfológicos (ancho, alto y largo). En el futuro, esperan recolectar estas mismas medidas morfológicas mediante una cámara especializada y utilizar el modelo para estimar el peso.</p>
+<p>El modelo propuesto por el equipo de investigación es el siguiente:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log(\text{Peso}_i) &amp;\sim \text{Normal}(\mu, \sigma) \\
+\mu_i  &amp;= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
+\sigma &amp;\sim \text{Gamma}(k, \theta)
+\end{aligned}
+\]</span></p>
+<p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/fish-market-posterior.csv"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<pre><code># A tibble: 6 × 3
+  intercepto pendiente sigma
+       &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+1      -4.44      3.08 0.408
+2      -4.30      3.05 0.431
+3      -4.49      3.12 0.433
+4      -4.04      2.96 0.341
+5      -4.76      3.18 0.413
+6      -4.65      3.15 0.350</code></pre>
+<ol type="i">
+<li>Analice de manera gráfica y analítica los <em>posteriors</em> marginales de los parámetros del modelo. Realice las transformaciones de parámetros que crea conveniente para facilitar la comprensión del análisis.</li>
+<li>Considere un pescado cuya longitud es de 30 centímetros.
+<ol type="a">
+<li>Obtenga y grafique la distribución a posteriori del peso medio.</li>
+<li>Obtenga y grafique la distribución predictiva a posteriori del peso.</li>
+<li>Interprete los resultados.</li>
+</ol></li>
+<li>Grafique la curva de regresión junto a una banda de credibilidad del 95% en el plano de las variables transformadas y en el plano de las variables originales.</li>
+<li>Agregue al gráfico anterior una banda de credibilidad del 95% para la distribución predictiva a posteriori. Interprete los resultados.</li>
+</ol></li>
 </ol>
 
 
