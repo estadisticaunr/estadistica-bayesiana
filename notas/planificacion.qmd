@@ -15,6 +15,10 @@ editor_options:
 # Introducción
 
 -   Probabilidad para cuantificar la incertidumbre
+    + Definiciones de probabilidad
+        + Clasica
+        + Frecuentista
+        + Bayesiana (subjetiva)
     + Probabilidades subjetivas
     + Lógica y razonamiento plausible (ver Jaynes)
     + Dutch book
@@ -22,6 +26,7 @@ editor_options:
 -   Regla de Bayes
     + Historia: Bayes, Price, Laplace
     + Presentación tradicional de la Regla de Bayes
+        + Ley de la probabilidad total
     + Práctica 1 (ver qué ejercicios)
 
 -   Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey).
