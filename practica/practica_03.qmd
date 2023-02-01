@@ -34,6 +34,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un 
     enfoque basado en la simulación para resolver problemas.
 
+1.  Una variable aleatoria $X$ toma valores en el conjunto $\{2, 4, 6, 8, 10\}$ con igual
+    probabilidad. Encuentre la media y el desvío estándar de las variables $X$ e 
+    $Y = 2X + 1$.
+    <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal -->
+
 1.  En un problema determinado la distribución a posteriori de la parámetro de inteŕes
     $\alpha$ es $\Gamma(k=3, \theta=1.5)$, donde $k$ es el parámetro de forma y $\theta$ 
     es el parámetro de escala. Calcule la probabilidad de que $\alpha^2$ sea mayor a 10.
@@ -156,7 +161,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. ¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
 
-1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), $\omega$ (escala) y $\alpha$ (asimetría).
+1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), 
+    $\omega$ (escala) y $\alpha$ (asimetría).
     $$
     f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
     $$
