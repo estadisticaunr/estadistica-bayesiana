@@ -14,9 +14,29 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 ## Métodos Computacionales
 
+1.  Sea $X \sim \text{Normal}(\mu=3, \sigma=1.2)$. 
+    i. Elabore un gráfico que permita visualizar la función de densidad de probabilidad 
+    de $X$.
+    i. ¿Cuál es la probabilidad de que $X$ sea menor a 2.5?
+    i. ¿Cuál es la probabilidad de que $X$ sea mayor a 4?
+    i. ¿Cuál es la probabilidad de que $X$ sea mayor 2 y menor 3?
+
+1.  Sea $X \sim \text{Beta}(\alpha=10, \beta=2)$
+    i. Elabore un gráfico que permita visualizar la función de densidad de probabilidad 
+    de $X$.
+    i. ¿Cuál es la probabilidad de que $X$ sea menor a 0.5?
+    i. ¿Cuál es la probabilidad de que $X$ sea mayor a 0.8?
+    i. ¿Cuál es la probabilidad de que $X$ sea mayor 0.25 y menor 0.75?
+
+1.  Responda los dos puntos anteriores sin evaluar la función de densidad ni la función
+    de distribución de las variables aleatorias mencionadas. Para eso genere muestras
+    que provengan de las correspondientes distribuciones y utilícelas para responder las 
+    preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un 
+    enfoque basado en la simulación para resolver problemas.
+
 1.  En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
     Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
-    Asuma que el tiempo entre goles sigue una distirbución exponencial. Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o no).
+    Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o no).
     En ese momento del partido,
 
     i. ¿Cuál es la distribución _a posteriori_ del tiempo entre goles de Alemania?
