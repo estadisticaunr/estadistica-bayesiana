@@ -93,8 +93,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     ```{r circulo-cuadrado-pi}
     #| warning: false
     #| echo: false
-    #| fig.width: 6
-    #| fig.height: 6
+    #| fig.width: 4.5
+    #| fig.height: 4.5
     #| fig.align: center
     library(ggplot2)
 
@@ -187,7 +187,10 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
     ```{r}
     #| eval: false
-    url <- "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/fish-market-posterior.csv"
+    url <- paste0(
+        "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/",
+        "main/datos/fish-market-posterior.csv"
+    )
     df_posterior <- readr::read_csv(url)
     head(df_posterior)
     ```
