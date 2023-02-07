@@ -51,6 +51,13 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i.  Grafique los puntos muestreados coloreando de acuerdo a si la muestra satisface
     el evento antes mencionado o no.
 
+1.  Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad
+    entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. 
+    La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en
+    ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar
+    14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la 
+    fotocopiadora entre la estudiante A y el estudiante B?
+
 1.  Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en 
     Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. 
     Ante una falla en cualquiera de estos componentes, la máquina se detiene. 
@@ -62,14 +69,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i.  ¿Cuál es la probabilidad de que la máquina siga funcionando luego de 10 días?
     i.  ¿Cuál es la probabilidad de que la máquina falle en el día 7 de uso?
     i.  Sea $T=$ Cantidad de días que la máquina funciona ininterrumpidamente. 
-    Grafique la función de probabilidad de $T$.
-
-1.  Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad
-    entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. 
-    La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en
-    ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar por
-    14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la 
-    fotocopiadora entre la estudiante A y el estudiante B?
+    Grafique la función de densidad de probabilidad de $T$.
 
 1.  [Este tuit](https://twitter.com/pgroisma/status/1616137795180822528) propone un
     problema muy interesante. Una urna contiene una bola azul y una amarilla. 
@@ -147,8 +147,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?
 
     i.  Intentar hacer a mano?
-    i.  Hacer con `R`
-    i.  Crear visualización que permita comunicar los resultados
+    i.  Resuelva el problema utilizando `R`
+    i.  Elabore una visualización que facilite la comunicación de los resultados
 
 1.  En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
     Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
@@ -219,7 +219,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
         a. Obtenga y grafique la distribución a posteriori del peso medio.
         a. Obtenga y grafique la distribución predictiva a posteriori del peso.
         a. Interprete los resultados. 
-    i.  Grafique la curva de regresión junto a una banda de credibilidad del 95% en el
-    plano de las variables transformadas y en el plano de las variables originales.
-    i.  Agregue al gráfico anterior una banda de credibilidad del 95% para la distribución
-    predictiva a posteriori. Interprete los resultados.
+    i.  Grafique la curva de regresión junto a una banda de credibilidad del 95% 
+    en el plano de las variables originales y en el plano de las variables transformadas-
+    i.  Agregue a los gráficos anteriores una banda de credibilidad del 95% para la 
+    distribución predictiva a posteriori. Interprete los resultados.

@@ -105,6 +105,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     data(cochrane)
     cochrane
     ```
+
     ```
               name ev.trt n.trt ev.ctrl n.ctrl
     1     Auckland     36   532      60    538
@@ -141,9 +142,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 1.  Utilice el conjuto de datos `airquality` que viene con el paquete `datasets` que se carga
     automáticamente al crear una sesión de `R`.
+    
     ```r
     head(airquality)
     ```
+
     ```
       Ozone Solar.R Wind Temp Month Day
     1    41     190  7.4   67     5   1
@@ -153,6 +156,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     5    NA      NA 14.3   56     5   5
     6    28      NA 14.9   66     5   6
     ```
+    
     Compare los siguientes modelos utilizando _5-fold cross-validation_:
 
     $$
@@ -175,13 +179,18 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 #| warning: false
 #| echo: false
 challenger <- data.frame(
-          "T" = c(66L,70L,69L,68L,67L,72L,73L,70L,57L,
-                 63L,70L,78L,67L,53L,67L,75L,70L,81L,76L,79L,75L,
-                 76L,58L),
-          "Falla" = c(0L,1L,0L,0L,0L,0L,0L,0L,1L,1L,1L,
-                 0L,0L,1L,0L,0L,0L,0L,0L,0L,1L,0L,1L))
+    "T" = c(
+        66L, 70L, 69L, 68L, 67L, 72L, 73L, 70L, 57L, 63L, 70L, 78L, 67L, 53L, 67L, 75L, 
+        70L, 81L, 76L, 79L, 75L,76L,58L
+    ),
+    "Falla" = c(
+        0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 
+        1L, 0L, 1L
+    )
+)
 
-knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> kableExtra::kable_styling(full_width = F)
+knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> 
+    kableExtra::kable_styling(full_width = F)
 ```
     
 
@@ -249,7 +258,9 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> kableExtra::kable
             shape = guide_legend(title = "Especie"),
             fill = guide_legend(title = "Especie")
         )
-    plt <- (plt_1 | plt_2) + plot_layout(guides = "collect") & theme(legend.position = "top")
+    plt <- (plt_1 | plt_2) + 
+        plot_layout(guides = "collect") & 
+        theme(legend.position = "top")
     plt
     ```
 
