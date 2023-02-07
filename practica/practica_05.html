@@ -353,16 +353,14 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 <li>¿Cuál modelo es el preferido para estos datos? <!-- @Reich2020 --></li>
 </ol></li>
 <li><p>Utilice el conjuto de datos <code>airquality</code> que viene con el paquete <code>datasets</code> que se carga automáticamente al crear una sesión de <code>R</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>(airquality)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">```</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>  Ozone Solar.R Wind Temp Month Day
 1    41     190  7.4   67     5   1
 2    36     118  8.0   72     5   2
 3    12     149 12.6   74     5   3
 4    18     313 11.5   62     5   4
 5    NA      NA 14.3   56     5   5
-6    28      NA 14.9   66     5   6
-```</code></pre>
+6    28      NA 14.9   66     5   6</code></pre>
 <p>Compare los siguientes modelos utilizando <em>5-fold cross-validation</em>:</p>
 <p><span class="math display">\[
 \begin{array}{l}
@@ -487,7 +485,7 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 <li><p>Curvas de crecimiento de tiranosáuridos</p>
 <p>Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. Los datos se toman de la Tabla 1 de <span class="citation" data-cites="Erickson2004">Erickson et&nbsp;al. (<a href="#ref-Erickson2004" role="doc-biblioref">2004</a>)</span> y se muestran en la <a href="#fig-dinos">Figura&nbsp;1</a>. El objetivo es determinar la curva de crecimiento, esto es, determinar el peso esperado por edad para todas las especies.</p>
 <p>En el panel izquierdo de la <a href="#fig-dinos">Figura&nbsp;1</a> se puede observar que hay una relación no lineal entre la edad y el peso. También se observan ciertos patrones comunes a las especies. Por ejemplo, la relación positiva entre las variables o el decrecimiento en la tasa de cambio conforme la edad es mayor.</p>
-<div class="cell" data-hash="practica_05_cache/html/fig-dinos_b6ecac129a5fe4fd4adf5f07059e0799">
+<div class="cell" data-hash="practica_05_cache/html/fig-dinos_f05486d11e4fab8eb3fd906c9dac432a">
 <div class="cell-output-display">
 <div id="fig-dinos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
