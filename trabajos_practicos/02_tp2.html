@@ -178,29 +178,27 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="metropolis-hastings-en-1d" class="level1">
 <h1>Metropolis-Hastings en 1D</h1>
-<p>El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad <span class="math inline">\(f^*(\theta)\)</span>, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno). Basta con que podamos evaluar <span class="math inline">\(f^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>.</p>
+<p>El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de probabilidad <span class="math inline">\(f^*(\theta)\)</span>, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno). Basta con que se pueda evaluar <span class="math inline">\(f^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>.</p>
 <ol type="1">
-<li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad unidimensional dada. Separe en funciones cada una de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
+<li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad unidimensional dada. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
 <li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
 <p><span class="math display">\[
 g^*(x) =
-\left\{
-\begin{array}{ll}
-    x^4 e^{-x} &amp;&amp; \text{si } x \geq 0 \\
-    0 &amp;&amp; \text{si } x&lt;0
-    \end{array}
-\right.
+\begin{cases}
+    x^4 e^{-x} &amp; \text{si } x \geq 0 \\
+    0 &amp; \text{si } x&lt;0
+\end{cases}
 \]</span></p>
-<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas, funciones de autocorrelación. Elegir como punto inicial…</p></li>
-<li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95 , y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
+<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Compare utilizando histogramas y funciones de autocorrelación. Elegir como punto inicial…<strong>To Do</strong></p></li>
+<li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
 <li><p>Estimar el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada una de las seis cadenas anteriores.</p></li>
 <li><p>Calcular el estadístico de Gelman-Rubin</p>
 <!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html --></li>
-<li><p>Elija la mejor distribución de probabilidad para transiciones que le permita tomar muestras de la función</p>
+<li><p>Elija la mejor distribución de probabilidad para transiciones que le permita tomar muestras de la función <strong>To Do</strong></p>
 <p><span class="math display">\[
 h^*(x) =
 \]</span></p></li>
-<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y la creencia <em>a priori</em> viene dada por</p>
+<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
 <p><span class="math display">\[
 p(\theta) = 2 \theta \qquad \theta \in [0,1]
 \]</span></p></li>
@@ -209,9 +207,12 @@ p(\theta) = 2 \theta \qquad \theta \in [0,1]
 <h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
 <p>Se desean tomar muestras de una normal bivariada asimétrica cuya función de densidad viene dada por</p>
 <p><span class="math display">\[
-f(\mathbf{x}) = 2\ \phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\ \Phi(\mathbf{\alpha}^T\mathbf{x}) \qquad \mathbf{x} \in \mathbb{R}^2
+f(\mathbf{x}) =
+    2\ \phi_2(\mathbf{x} \mid \mathbf{0}, \pmb{\Omega})
+    \ \Phi(\pmb{\alpha}^T\mathbf{x})
+    \qquad \mathbf{x} \in \mathbb{R}^2
 \]</span></p>
-<p>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\mathbf{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\alpha\in\mathbb{R}^2\)</span> es un vector de parámetros.</p>
+<p>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\pmb{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\pmb{\alpha} \in \mathbb{R}^2\)</span> es un vector de parámetros.</p>
 <!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
 <p>En este caso, se tiene:</p>
 <p><span class="math display">\[
@@ -219,9 +220,9 @@ f(\mathbf{x}) = 2\ \phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\ \Phi(\mathb
 \]</span></p>
 <p>y</p>
 <p><span class="math display">\[
-\mathbf{\alpha} = [2 \quad 0]
+\pmb{\alpha} = [2 \quad 0]
 \]</span></p>
-<div class="cell" data-hash="02_tp2_cache/html/grafico-2d_b3091c8e6b53f982c1d39b688e049d54">
+<div class="cell" data-hash="02_tp2_cache/html/grafico-2d_c00272dff8ef390fe1aa0f20b8b73e72">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -234,13 +235,24 @@ f(\mathbf{x}) = 2\ \phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\ \Phi(\mathb
 <ol type="1">
 <li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</li>
 </ol>
-<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings. Se explorará el efecto de diferentes distribuciones de probabilidad de salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si pensamos en escribir</p>
+<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings. Se explorará el efecto de diferentes distribuciones de probabilidad para el salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si se representa a <span class="math inline">\(\mathbf{\Sigma}\)</span> de la siguiente manera</p>
 <p><span class="math display">\[
-\mathbf{\Sigma} = \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix} \begin{bmatrix} 1 &amp; \rho \\ \rho &amp; 1\end{bmatrix}  \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
+\mathbf{\Sigma} =
+    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
+    \begin{bmatrix} 1 &amp; \rho \\ \rho &amp; 1\end{bmatrix}  
+    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
 \]</span></p>
-<p>con <span class="math inline">\(\sigma_i\)</span>, la varianza de la componente <span class="math inline">\(i\)</span> y <span class="math inline">\(\rho\)</span> la correlación entre las variables <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, entonces se deberán ensayar diferentes casos: <span class="math inline">\(\sigma_1=\sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span>, <span class="math inline">\(\sigma_1 &gt; \sigma_2\)</span> y <span class="math inline">\(\rho=0\)</span>, <span class="math inline">\(\sigma_1&lt;\sigma_2\)</span> y <span class="math inline">\(\rho =0\)</span>, <span class="math inline">\(\sigma_1=\sigma_2\)</span> y <span class="math inline">\(\rho &gt; 0\)</span>, <span class="math inline">\(\sigma_1=\sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span>. <strong>TO DO</strong> Hacer gráficos:</p>
+<p>donde <span class="math inline">\(\sigma_i\)</span> representa el desvío estándar de la componente <span class="math inline">\(i\)</span> y <span class="math inline">\(\rho\)</span> la correlación entre las variables <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, entonces se deberán ensayar los siguientes casos:</p>
+<ul>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 &gt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 &lt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &gt; 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span></li>
+</ul>
+<p><strong>TO DO:</strong> Hacer gráficos</p>
 <ol start="2" type="1">
-<li>Para al menos dos variantes de cada uno de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
+<li>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
 </ol>
 </section>
 <section id="aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu" class="level2">
