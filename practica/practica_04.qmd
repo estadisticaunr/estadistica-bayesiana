@@ -1,0 +1,41 @@
+---
+title: "Práctica - Unidad 4"
+# bibliography: ../references.bib
+# nocite: |
+#     @Martin2021, @Downey2021
+pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf
+---
+
+::: {.content-visible when-format="html"}
+
+[Descargar PDF]({{< meta pdf_file >}})
+
+:::
+
+## Ideas
+
+* Modelo lineal basico con datos simulados
+* Modelo lineal con predictores numericos y categoricos
+* Modelo lineal con transformaciones
+    * En predictores y/o respuesta
+* Eleccion de distribuciones a priori
+    * Priors de regularizacion
+        * Caso donde hay muchos predictores numericos
+    * Pruebas predictivas a priori para evaluar cuan vagos o restrictivos son los priors
+* Pruebas predictivas a posteriori
+    * No estoy seguro que poner aca
+    * lppd?
+* Evaluacion/seleccion de modelos
+    * Deviance
+    * Criterios de informacion
+    * CV
+    * PSIS-CV
+    * Bayesiano al palo: No selecciono variables, uso priors que hagan seleccion de variable
+    y uso ese resultado
+* Sobreajuste y subajuste
+
+## Preguntas
+
+* Usamos RStan o brms?
+    * Me inclino por usar brms.
+    * Pero no estaria mal que hagamos uno o dos modelos con RStan.

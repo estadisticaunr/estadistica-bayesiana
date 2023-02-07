@@ -153,8 +153,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 1.  En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
     Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
     Asuma que el tiempo entre goles sigue una distribución exponencial. 
-    Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o no).
-    En ese momento del partido,
+    Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o 
+    no). En ese momento del partido,
 
     i. ¿Cuál es la distribución _a posteriori_ del tiempo entre goles de Alemania?
     i. ¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?
@@ -167,7 +167,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
     $$
     <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution -->
-    
+
 1.  Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para
     estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método
     es obtener una estimación lo suficientemente buena del peso de cada pescado sin tener
@@ -223,3 +223,36 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     en el plano de las variables originales y en el plano de las variables transformadas-
     i.  Agregue a los gráficos anteriores una banda de credibilidad del 95% para la 
     distribución predictiva a posteriori. Interprete los resultados.
+
+### Ejercicios que faltan
+
+* Benchmark del método de aproximación mediante grilla de puntos
+    * Medir y comparar uso de memoria y tiempo computacional
+* Utilizar MH para obtener muestras 
+    * Normal univariada
+    * Gamma univariada
+    * Beta univariada
+    * Una función muy arbitraria y "no genérica"
+    * Normal multivariada
+        * Independiente
+        * Con correlación moderada
+        * Con alta correlación
+* Calcular medidas de diagnóstico sobre los casos anteriores
+    * En algunos casos tenemos que sugerir que corran múltiples cadenas
+* Utilizar MH para obtener el posterior
+    * Utilizar casos de la práctica 2
+        * Incluir algún caso donde no todos los parámetros vivan en $\mathbb{R}$
+* Utilizar HMC para la normal multivariada con correlación moderada y alta correlación
+* Utilizar HMC para los modelos donde se usó MH
+* Stan:
+    * Escribir algunos modelos con Stan
+    * Diferentes priors
+    * Analizar posterior de manera grafica (marginales y conjuntas)
+    * Calcular diagnosticos y analizar
+* Algun caso donde los diagnosticos no den bien...
+    * Puede ser cuando el HMC no esta bien tuneado
+    * Pensar algunos otros (deberia buscar en cosas que he hecho)
+* Algo con brms?
+
+**Nota:** Para los que dicen "utilizar HMC" estaria bueno que proveamos una funcion
+que use HMC, sin que tengan que usar Stan.

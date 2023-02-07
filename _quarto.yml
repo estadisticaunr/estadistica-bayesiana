@@ -62,6 +62,8 @@ website:
           file: practica/practica_02.qmd
         - text: Unidad 3
           file: practica/practica_03.qmd
+        - text: Unidad 4
+          file: practica/practica_04.qmd
         - text: Unidad 5
           file: practica/practica_05.qmd
     - title: Trabajos Prácticos
