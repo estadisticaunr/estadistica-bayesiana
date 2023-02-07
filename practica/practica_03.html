@@ -232,6 +232,11 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../practica/practica_04.html" class="sidebar-item-text sidebar-link">Unidad 4</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../practica/practica_05.html" class="sidebar-item-text sidebar-link">Unidad 5</a>
   </div>
 </li>
@@ -374,9 +379,58 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 <li>Agregue a los gráficos anteriores una banda de credibilidad del 95% para la distribución predictiva a posteriori. Interprete los resultados.</li>
 </ol></li>
 </ol>
+<section id="ejercicios-que-faltan" class="level3">
+<h3 class="anchored" data-anchor-id="ejercicios-que-faltan">Ejercicios que faltan</h3>
+<ul>
+<li>Benchmark del método de aproximación mediante grilla de puntos
+<ul>
+<li>Medir y comparar uso de memoria y tiempo computacional</li>
+</ul></li>
+<li>Utilizar MH para obtener muestras
+<ul>
+<li>Normal univariada</li>
+<li>Gamma univariada</li>
+<li>Beta univariada</li>
+<li>Una función muy arbitraria y “no genérica”</li>
+<li>Normal multivariada
+<ul>
+<li>Independiente</li>
+<li>Con correlación moderada</li>
+<li>Con alta correlación</li>
+</ul></li>
+</ul></li>
+<li>Calcular medidas de diagnóstico sobre los casos anteriores
+<ul>
+<li>En algunos casos tenemos que sugerir que corran múltiples cadenas</li>
+</ul></li>
+<li>Utilizar MH para obtener el posterior
+<ul>
+<li>Utilizar casos de la práctica 2
+<ul>
+<li>Incluir algún caso donde no todos los parámetros vivan en <span class="math inline">\(\mathbb{R}\)</span></li>
+</ul></li>
+</ul></li>
+<li>Utilizar HMC para la normal multivariada con correlación moderada y alta correlación</li>
+<li>Utilizar HMC para los modelos donde se usó MH</li>
+<li>Stan:
+<ul>
+<li>Escribir algunos modelos con Stan</li>
+<li>Diferentes priors</li>
+<li>Analizar posterior de manera grafica (marginales y conjuntas)</li>
+<li>Calcular diagnosticos y analizar</li>
+</ul></li>
+<li>Algun caso donde los diagnosticos no den bien…
+<ul>
+<li>Puede ser cuando el HMC no esta bien tuneado</li>
+<li>Pensar algunos otros (deberia buscar en cosas que he hecho)</li>
+</ul></li>
+<li>Algo con brms?</li>
+</ul>
+<p><strong>Nota:</strong> Para los que dicen “utilizar HMC” estaria bueno que proveamos una funcion que use HMC, sin que tengan que usar Stan.</p>
 
 
 
+</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
