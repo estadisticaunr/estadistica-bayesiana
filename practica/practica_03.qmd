@@ -224,6 +224,128 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i.  Agregue a los gráficos anteriores una banda de credibilidad del 95% para la 
     distribución predictiva a posteriori. Interprete los resultados.
 
+1.  Considere la siguiente familia de distribuciones normales en 2D
+
+    $$
+    f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y las siguientes matrices de covarianza
+
+    $$
+    \begin{array}{c}
+        \pmb{\Sigma}_1 = \begin{bmatrix}
+        1 & 0 \\ 0 & 1
+        \end{bmatrix}
+        &
+        \pmb{\Sigma}_2 = \begin{bmatrix}
+        1 & 0.2 \\ 0.2 & 1
+        \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_1 = \begin{bmatrix}
+        1 & 0.5 \\ 0.5 & 1
+        \end{bmatrix}
+        &
+        \pmb{\Sigma}_2 = \begin{bmatrix}
+        0.1 & 0 \\ 0 & 1
+        \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_1 = \begin{bmatrix}
+        1 & 0.9 \\ 0.9 & 1
+        \end{bmatrix}
+        &
+        \pmb{\Sigma}_2 = \begin{bmatrix}
+        0.01 & 0 \\ 0 & 1
+        \end{bmatrix}
+    \end{array}
+    $$
+
+    Que dan lugar a las siguientes funciones de densidad:
+
+    ```{r plot-matrix-of-gaussians}
+    #| warning: false
+    #| cache: true
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 12
+    #| fig.align: center
+    library(dplyr)
+    library(ggplot2)
+    library(patchwork)
+
+    data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
+    Mu <- replicate(6, c(0, 0), simplify = FALSE)
+    Sigma <- list(
+        matrix(c(1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.2, 0.2, 1), nrow = 2),
+        matrix(c(1, 0.5, 0.5, 1), nrow = 2),
+        matrix(c(0.1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.9, 0.9, 1), nrow = 2),
+        matrix(c(0.01, 0, 0, 1), nrow = 2)
+    )
+
+    index <- 1
+    plot_list <- purrr::map2(Mu, Sigma, function(x, y) {
+        title_str <- paste0("$\\Sigma_", index, "$")
+        plt <- data |>
+            mutate(f = mvtnorm::dmvnorm(data, x, y)) |>
+            ggplot() +
+            geom_raster(aes(x = x1, y = x2, fill = f)) +
+            stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
+            viridis::scale_fill_viridis() +
+            labs(title = latex2exp::TeX(title_str)) + 
+            theme(
+                legend.position = "none", 
+                plot.title = element_text(hjust = 0.5, size = 18)
+            )
+        index <<- index + 1
+        return(plt)
+    })
+
+    plt <- Reduce(`+`, plot_list) + 
+    plot_layout(ncol = 2)
+    plt
+    ```
+
+    **Parte 1:** Metropolis-Hastings
+
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado. 
+
+    **Parte 2:** Hamiltonian Monte Carlo
+
+    i. Utilice el algoritmo HMC para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado. 
+
+    <!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'-->
+
+1.  Torus? To Do
+
+    ```python
+    def torus_logpdf(scale):
+    def logp(x):
+         return -((1 - x.norm(2)) / scale)**2
+    return logp
+
+    # pdf = np.exp(-((1 - np.linalg.norm(xs, axis=0)) / scale)**2)
+    ```
+
 ### Ejercicios que faltan
 
 * Benchmark del método de aproximación mediante grilla de puntos
