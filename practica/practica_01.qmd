@@ -140,7 +140,7 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
     ```
 
 
-1 **Paraguas**
+1. **Paraguas**
 
     Estás a punto de subir a un avión rumbo a Seattle.
     Querés saber si tenés que llevar un paraguas.
@@ -151,7 +151,7 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
     Se puede asumir que llueve el 10% del tiempo en Seattle.
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-1 **Sherlock**
+1. **Sherlock**
 
     Dos personas dejaron rastros de sangre en la escena del crimen.
     La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo '0'.
@@ -344,7 +344,7 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
 
 
 
-1.  **Puede fallar...*
+1.  **Puede fallar...**
 
     Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.
 
