@@ -28,7 +28,11 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 ## Regla de Bayes
 
-1.  Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
+El propósito de esta sección de la práctica es resolver situaciones que impliquen la aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso de Probabilidad.
+
+1.  **El lenguaje de las probabilidades**
+
+    Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
 
     a.  Probabilidad de un parametro dados los datos observados
     b.  La distribucion de probabilidad de los parametros antes de ver los datos
@@ -37,8 +41,24 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     e.  La probabilidad de una observación antes de ver los datos
     f.  **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", u otra expresión.
     g.  **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**. <!-- @Martin2021 -->
+    
+1.  **Demostración**
 
-2.  El test ~~in~~falible
+    Demuestra la validez de la siguiente expresión de la regla de Bayes
+
+    $$
+    P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
+    $$
+
+    donde $A$ es un evento cualquiera y $\{B_1, \cdots, B_K\}$ forman una partición.
+    Para ello siga los siguientes pasos
+
+    i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
+    ii. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
+    iii. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
+    iv. Junte las partes para formar la regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
+
+1.  **El test ~~in~~falible**
 
     En una población dada, una de cada mil personas tiene una enfermedad.
     Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo.
@@ -51,8 +71,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
         -   ¿Y si diera negativo?
         -   ¿Es el a priori el mismo para el segundo análisis que para el primero? <!-- @Martin2021 -->
 
-3.  ¿Es verdad que existen los vampiros?
-    Versión Crepúsculo
+1.  **¿Es verdad que existen los vampiros? Versión Crepúsculo**
 
     Edward quiere probarle a Bella que los vampiros existen.
     Según Bella, hay una probabilidad del 5% de que los vampiros existan.
@@ -64,16 +83,8 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
     ```
 
-4.  Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
-    -   Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
-    -   Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
-
-    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál.
-    Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
-    ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
-
-5.  Árboles enfermos
+1.  **Árboles enfermos**
 
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
@@ -90,7 +101,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
     ```
 
-6.  Transporte El Impuntual
+1.  **Transporte "El Impuntual"**
 
     Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual", tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos los días de la semana.
     Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40% salen a la noche.
@@ -106,7 +117,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
     ```
 
-7.  Bebé panda
+1.  **Bebé panda**
 
     Supongamos que hay dos especies de osos panda.
     Ambas especies son igual de frecuentes y viven en la misma región.
@@ -128,54 +139,43 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 
-8.  Demuestra la validez de la siguiente expresión de la regla de Bayes
 
-    $$
-    P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
-    $$
+1 **Paraguas**
 
-    donde $A$ es un evento cualquiera y $\{B_1, \cdots, B_K\}$ forman una partición.
-    Para ello siga los siguientes pasos
-
-    i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
-    ii. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
-    iii. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
-    iv. Junte las partes para formar la regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
-
-9.  House of Cards
-
-    Hay 538 miembros en el Congreso de Estados Unidos.
-    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado.
-    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo.
-    ¿Cuántos miembros del Congreso son honestos?
-    <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
-
-10. Estás a punto de subir a un avión rumbo a Seattle.
+    Estás a punto de subir a un avión rumbo a Seattle.
     Querés saber si tenés que llevar un paraguas.
     Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo.
     Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma.
     Los tres responden que sí está lloviendo.
     Cuál es la probbailidad de que realmente esté lloviendo en Seattle?
-    Se puede asumir que llueve el 10% del tiempo.
+    Se puede asumir que llueve el 10% del tiempo en Seattle.
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-11. Dos personas dejaron rastros de sangre en la escena del crimen.
+1 **Sherlock**
+
+    Dos personas dejaron rastros de sangre en la escena del crimen.
     La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo '0'.
-    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia del 1% en la población).
+    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia del 1% en la        población).
     ¿Estos datos representan evidencia de que Oliver estaba presente en la escena del crimen?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-12. Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs.
+1. **Hijxs de la probabilidad**
+
+    Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs.
     Le preguntamos si algunx de ellxs es mujer y nos responde que sí.
     ¿Cuál es la probabilidad de que ambxs sean niñas?
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
-13. Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo.
+1. **Los Reyes del Rock**
+
+    Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo.
     ¿Cuál es la probabilidad de que Elvis tuviera un gemelo?
     Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son siempre del mismo sexo biológico.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
-14. Dos cajones contienen medias.
+1. **¿Alguien ordena las medias?**
+
+    Dos cajones contienen medias.
     Uno de ellos tiene igual cantidad de medias blancas y negras.
     El otro contiene un número igual de medias rojas, verdes y azules.
     Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales.
@@ -183,7 +183,7 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
     Supóngase que sacar la primera media no altera las proporciones.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
     
-15. _Prosecutor's Fallacy_
+1. **La Falacia del Fiscal**
 
     Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, murió con 11 semanas en diciembre de 1996 y su hijo más joven, Harry, con 8 semanas en enero de 1998. Durante el juicio, la defensa argumentó que las muertes se debieron al síndrome de muerte súbita del lactante (SIDS). Clark fue condenada a partir del testimonio del pediatra Sir Roy Meadow, quien argumentó en la corte lo siguiente:
     
@@ -202,99 +202,32 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 [^1]: Hay gente que dice que "cada dos por tres" te deja a pata.
     No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, ya que un 25% también es un montón!
 
-## Popurrí?
+## Inferencia Bayesiana
 
-Todos como que caen dentro de "regla de bayes".
-Tenemos que ver como los dividimos
+En esta parte de la práctica, se le otorga un significado a las cantidades que aparecen en la Regla de Bayes modificando conceptualmente el enfoque de las situaciones problemáticas. Ahora los problemas se tratan de realizar inferencias sobre posibles causas de ciertos datos observados. Se incrementa el rigor matemático, aparecen distribuciones de probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.
 
-1.  Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la probabilidad *a priori* de que la especie se encuentre en el bosque.
-    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que $X_2$ de ellas pertenecen a la especie de interés.
+1.  **Qué datazo me tiraste, rey**
 
-    El modelo luego es $$
-    \begin{array}{lc}
-    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con } \lambda \in [0, 1]
-    \end{array}
-    $$
+    Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
-    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.
+    -   Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
+    -   Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
 
-    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las siguientes probabilidades:
+    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál.
+    Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
+    ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
+    
+1.  **La Gran Estafa**
 
-    i.  $P(X_1 = 0, X_2 = 0)$
-    ii. $P(X_1 = 0)$
-    iii. $P(X_2 = 0)$
-    iv. $P(X_1 = 0 | X_2 = 0)$
-    v.  $P(X_2 = 0 | X_1 = 0)$
-    vi. $P(X_1 = 0 | X_2 = 1)$
-    vii. $P(X_2 = 0 | X_1 = 1)$
-    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
-    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 -->
-
-2.  En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.
-
-    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y asumiendo:
-
-    $$
-    \begin{aligned}
-    Y_t | \lambda &\underset{iid}{\sim} \text{Poisson}(\lambda) \\
-    \lambda       &\sim \text{Uniforme}(0, 100)
-    \end{aligned}
-    $$
-
-    Graficar la distribución a posteriori de $\lambda$.
-    <!-- @Reich2020 -->
-
-3.  Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
-    El número de clientes que realizan una compra es $Y$ y se cumple que
-
-    $$
-    Y | n \sim \text{Binomial}(n, \theta)
-    $$
-
-    donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
-    La distribución *a priori* de $n$ es $n \sim \text{Poisson}(5)$.
-    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la distribución *a posteriori* de $n$ para todas las combinaciones de $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
-    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución *a posteriori*.
-    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 -->
-
-4.  Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$).
-    A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
-    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a $T$.
-
-    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ (siendo $G$ más grande, $C$ más chico e $I$ igual).
-    ¿Cuál es la distribución *a posteriori* de los valores de $T$?
-    <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
-
-5.  Hay dos monedas en una caja.
+    Hay dos monedas en una caja.
     Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.
 
     i.  Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
     ii. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
+    
+1.  **Vocabulario limitado**
 
-6.  Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.
-
-    Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
-    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).
-
-    Se arroja la moneda 250 veces y el sistema detecta 140 caras,
-
-    i.  ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
-    ii. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
-
-7.  En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.
-
-    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo.\
-    Decide hacer un experimento:
-
-    -   Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
-    -   Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
-    -   Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
-
-    ¿Cuántas personas hay en la sala?
-    O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
-    <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
-
-8.  Supongamos que existe un idioma con seis palabras:
+    Supongamos que existe un idioma con seis palabras:
 
     $$
     \text{\{perro, parra, farra, carro, corro, tarro\}}
@@ -317,13 +250,123 @@ Tenemos que ver como los dividimos
          a.  $\alpha=2$ y $\theta = 0.1$
          b.  $\alpha=50$ y $\theta = 0.1$
          c.  $\alpha=2$ y $\theta = 0.9$
+         
+
+1.  **Bosque**
+
+    Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la probabilidad *a priori* de que la especie se encuentre en el bosque.
+    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que $X_2$ de ellas pertenecen a la especie de interés.
+
+    El modelo luego es $$
+    \begin{array}{lc}
+    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con } \lambda \in [0, 1]
+    \end{array}
+    $$
+
+    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.
+
+    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las siguientes probabilidades:
+
+    i.  $P(X_1 = 0, X_2 = 0)$
+    ii. $P(X_1 = 0)$
+    iii. $P(X_2 = 0)$
+    iv. $P(X_1 = 0 | X_2 = 0)$
+    v.  $P(X_2 = 0 | X_1 = 0)$
+    vi. $P(X_1 = 0 | X_2 = 1)$
+    vii. $P(X_2 = 0 | X_1 = 1)$
+    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
+    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 -->
+
+1.  **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
+
+    En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.
+
+    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y asumiendo:
+
+    $$
+    \begin{aligned}
+    Y_t | \lambda &\underset{iid}{\sim} \text{Poisson}(\lambda) \\
+    \lambda       &\sim \text{Uniforme}(0, 100)
+    \end{aligned}
+    $$
+
+    Graficar la distribución a posteriori de $\lambda$.
+    <!-- @Reich2020 -->
+
+1.  **Es negocio...**
+
+    Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
+    El número de clientes que realizan una compra es $Y$ y se cumple que
+
+    $$
+    Y | n \sim \text{Binomial}(n, \theta)
+    $$
+
+    donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
+    La distribución *a priori* de $n$ es $n \sim \text{Poisson}(5)$.
+    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la distribución *a posteriori* de $n$ para todas las combinaciones de $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
+    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución *a posteriori*.
+    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 -->
+
+1.  **Con amigos así, quién necesita enemigos**
+
+    Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$).
+    A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
+    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a $T$.
+
+    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ (siendo $G$ más grande, $C$ más chico e $I$ igual).
+    ¿Cuál es la distribución *a posteriori* de los valores de $T$?
+    <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
+    
+1.  **Orden en la sala**
+
+    En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.
+
+    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo.\
+    Decide hacer un experimento:
+
+    -   Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
+    -   Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
+    -   Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
+
+    ¿Cuántas personas hay en la sala?
+    O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
+    <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+    
+    
+1.  **_House of Cards_**
+
+    Hay 538 miembros en el Congreso de Estados Unidos.
+    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado.
+    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo.
+    ¿Cuántos miembros del Congreso son honestos?
+    <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
+
+
+
+1.  **Puede fallar...*
+
+    Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.
+
+    Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
+    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).
+
+    Se arroja la moneda 250 veces y el sistema detecta 140 caras,
+
+    i.  ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
+    ii. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
+    <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+
+
+
+
 
 [^2]: Una clase de molusco.
     El mejillón, la ostra y la almeja son bivalvos
 
 ## Conceptuales
 
-1.  Voy a conseguir esa pasantía
+1.  **Voy a conseguir esa pasantía**
 
     La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos.
     Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus **datos**.
@@ -333,7 +376,7 @@ Tenemos que ver como los dividimos
     ii. Repita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.
     iii. ¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. <!-- @Johnson2021 -->
 
-2.  Beneficios de la Estadística Bayesiana
+1.  **Beneficios de la Estadística Bayesiana**
 
     Una amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana.
     Explícale lo siguiente:
