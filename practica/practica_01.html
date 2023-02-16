@@ -212,16 +212,14 @@ div.csl-indent {
 <li><p><strong>El lenguaje de las probabilidades</strong></p>
 <p>Escribir la expresión matemática para cada una de las siguientes descripciones verbales:</p>
 <ol type="a">
-<li>Probabilidad de un parametro dados los datos observados</li>
-<li>La distribucion de probabilidad de los parametros antes de ver los datos</li>
+<li>Probabilidad de un parámetro dados los datos observados</li>
+<li>La distribución de probabilidad de los parámetros antes de ver los datos</li>
 <li>La verosimilitud de los datos para un valor dado de los parámetros</li>
-<li>La probabilidad de una observación nueva dados los datos observados</li>
-<li>La probabilidad de una observación antes de ver los datos</li>
-<li><strong>To Do</strong> Revisar texto. No se si es mejor usar “dado/dada” o “condicional a”, u otra expresión.</li>
-<li><strong>To Do</strong> Algunas descripciones no estan cubiertas en la <strong>Unidad 1</strong>. <!-- @Martin2021 --></li>
+<li>La probabilidad de una observación nueva luego de observar los datos</li>
+<li>La probabilidad de una observación antes de ver los datos <!-- @Martin2021 --></li>
 </ol></li>
 <li><p><strong>Demostración</strong></p>
-<p>Demuestra la validez de la siguiente expresión de la regla de Bayes</p>
+<p>Demuestra la validez de la siguiente expresión de la Regla de Bayes</p>
 <p><span class="math display">\[
 P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 \]</span></p>
@@ -230,7 +228,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li>Demuestre que <span class="math inline">\(P(B_j | A) P(A) = P(A | B_j) P(B_j)\)</span>.</li>
 <li>Demuestre que <span class="math inline">\(P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})\)</span>.</li>
 <li>Demuestre que <span class="math inline">\(P(A) = \sum_{k=1}^{K} P(A \cap B_j)\)</span>.</li>
-<li>Junte las partes para formar la regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. --></li>
+<li>Junte las partes para formar la Regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. --></li>
 </ol></li>
 <li><p><strong>El test <del>in</del>falible</strong></p>
 <p>En una población dada, una de cada mil personas tiene una enfermedad. Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo. El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.</p>
@@ -240,11 +238,11 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <ul>
 <li>¿Cuál seria la probabilidad que el paciente esté enfermo?</li>
 <li>¿Y si diera negativo?</li>
-<li>¿Es el a priori el mismo para el segundo análisis que para el primero? <!-- @Martin2021 --></li>
+<li>¿Es el <em>prior</em> el mismo para el segundo análisis que para el primero? <!-- @Martin2021 --></li>
 </ul></li>
 </ul></li>
 <li><p><strong>¿Es verdad que existen los vampiros? Versión Crepúsculo</strong></p>
-<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros? <!-- @Johnson2021 --></p>
+<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel rillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros? <!-- @Johnson2021 --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -256,7 +254,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </div>
 </div></li>
 <li><p><strong>Árboles enfermos</strong></p>
-<p>Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros. Lamentablemente, el 18% de los árboles del vivero estan infectados con moho. Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies. Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que trabaja en el vivero selecciona al azar uno de los árboles para testear.</p>
+<p>Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros. Lamentablemente, el 18% de los árboles del vivero estan infectados con moho. Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies. Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies. Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que trabaja en el vivero selecciona al azar uno de los árboles para testear.</p>
 <ul>
 <li>¿Cuál es la probabilidad a priori de que el árbolo tenga moho?</li>
 <li>Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?</li>
@@ -274,7 +272,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </div>
 </div></li>
 <li><p><strong>Transporte “El Impuntual”</strong></p>
-<p>Una cierta empresa de transporte regional, que decidimos llamar “El Impuntual”, tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos los días de la semana. Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40% salen a la noche. Los pasajeros suelen estar muy frustrados ya que un 25% de los viajes salen tarde. De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde, y el 10% restante ocurre a la noche.</p>
+<p>Una cierta empresa de transporte regional, que decidimos llamar “El Impuntual”, tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos los días de la semana. Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40% salen a la noche. Los pasajeros suelen estar muy frustrados ya que un 25% de los viajes salen tarde. De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde, y el 10% restante ocurre a la noche<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p>Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes.</p>
 <ul>
 <li>Lucio se fue en uno de los colectivos de la mañana. ¿Cuál es la probabilidad que su viaje esté demorado?</li>
@@ -309,9 +307,9 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </div>
 </div></li>
 <li><p><strong>Paraguas</strong></p>
-<p>Estás a punto de subir a un avión rumbo a Seattle. Querés saber si tenés que llevar un paraguas. Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. Cuál es la probbailidad de que realmente esté lloviendo en Seattle? Se puede asumir que llueve el 10% del tiempo en Seattle. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<p>Estás a punto de subir a un avión rumbo a Mendoza. Querés saber si tenés que llevar un paraguas o no. Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza? Se puede asumir que en Mendoza llueve en 1 de cada 10 días. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
 <li><p><strong>Sherlock</strong></p>
-<p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Oliver estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
 <li><p><strong>Hijxs de la probabilidad</strong></p>
 <p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs. Le preguntamos si algunx de ellxs es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambxs sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>Los Reyes del Rock</strong></p>
@@ -355,28 +353,30 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <p><span class="math display">\[
 \text{\{perro, parra, farra, carro, corro, tarro\}}
 \]</span></p>
-<p>Un análisis lingüístico exhaustivo de esta lengua ha descubierto que todas las palabras son igualmente probables, excepto por ‘perro’, que es <span class="math inline">\(\alpha\)</span> veces más probable que las otras. Además:</p>
+<p>Un análisis lingüístico exhaustivo de esta lengua ha descubierto que todas las palabras son igualmente probables, excepto por ‘perro’, que es <span class="math inline">\(\alpha\)</span> veces más probable que las otras.</p>
+<p>Además:</p>
 <ul>
-<li><p>Cuando se tipean, un caracter se introduce erróneamente con probabilidad <span class="math inline">\(\theta\)</span>;</p></li>
-<li><p>Todas las letras tienen la misma probabilidad de producir un error de tipeo;</p></li>
-<li><p>Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia;</p></li>
-<li><p>Los errores son independientes a lo largo de una palabras.</p></li>
+<li>Cuando se tipean, un caracter se introduce erróneamente con probabilidad <span class="math inline">\(\theta\)</span></li>
+<li>Todas las letras tienen la misma probabilidad de producir un error de tipeo</li>
+<li>Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia</li>
+<li>Los errores son independientes a lo largo de una palabras.</li>
 </ul>
 <ol type="i">
 <li>¿Cuál es la probabilidad de escribir correctamente ‘tarro’?</li>
 <li>¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?</li>
 <li>Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua. Para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, hallar la probabilidad de que cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar las siguientes combinaciones de parámetros:
 <ol type="a">
-<li><span class="math inline">\(\alpha=2\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
-<li><span class="math inline">\(\alpha=50\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
-<li><span class="math inline">\(\alpha=2\)</span> y <span class="math inline">\(\theta = 0.9\)</span></li>
+<li><span class="math inline">\(\alpha = 2\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
+<li><span class="math inline">\(\alpha = 50\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
+<li><span class="math inline">\(\alpha = 2\)</span> y <span class="math inline">\(\theta = 0.9\)</span></li>
 </ol></li>
 </ol></li>
 <li><p><strong>Bosque</strong></p>
 <p>Sea <span class="math inline">\(X_1 \sim \text{Bernoulli}(\theta)\)</span> una variable que indica si una especie de árboles se halla en un determinado bosque y <span class="math inline">\(\theta \in [0, 1]\)</span> representa la probabilidad <em>a priori</em> de que la especie se encuentre en el bosque. Una investigadora selecciona una muestra de <span class="math inline">\(n\)</span> árboles del bosque y encuentra que <span class="math inline">\(X_2\)</span> de ellas pertenecen a la especie de interés.</p>
-<p>El modelo luego es <span class="math display">\[
+<p>El modelo luego es</p>
+<p><span class="math display">\[
 \begin{array}{lc}
-X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) &amp; \text{con } \lambda \in [0, 1]
+X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) &amp; \text{con} \ \lambda \in [0, 1]
 \end{array}
 \]</span></p>
 <p><span class="math inline">\(\lambda\)</span> representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.</p>
@@ -413,8 +413,7 @@ Y | n \sim \text{Binomial}(n, \theta)
 <p>Supongamos que nos da la secuencia: <span class="math inline">\(G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C\)</span> (siendo <span class="math inline">\(G\)</span> más grande, <span class="math inline">\(C\)</span> más chico e <span class="math inline">\(I\)</span> igual). ¿Cuál es la distribución <em>a posteriori</em> de los valores de <span class="math inline">\(T\)</span>? <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html --></p></li>
 <li><p><strong>Orden en la sala</strong></p>
 <p>En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.</p>
-<p>La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo.<br>
-Decide hacer un experimento:</p>
+<p>La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo. Decide hacer un experimento:</p>
 <ul>
 <li>Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.</li>
 <li>Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.</li>
@@ -435,6 +434,7 @@ Decide hacer un experimento:</p>
 </section>
 <section id="conceptuales" class="level2">
 <h2 class="anchored" data-anchor-id="conceptuales">Conceptuales</h2>
+<p>En esta sección, se nos invita a pensar sobre las características de la Estadística Bayesiana. En lugar de encontrar una respuesta única mediante cálculos matemáticos, se necesita comprender en profundidad tanto el enfoque frecuentista como el bayesiano para interpretar estas visiones en diferentes escenarios.</p>
 <ol type="1">
 <li><p><strong>Voy a conseguir esa pasantía</strong></p>
 <p>La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus <strong>datos</strong>. Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu <strong>hipótesis</strong>.</p>
@@ -482,7 +482,6 @@ Computer Age Statistical Inference:
     "Frequentist Inference", "Bayesian Inference", 
     y "Fisherian Inference and Maximum Likelihood Estimation"
 -->
-<p>```</p>
 
 
 
