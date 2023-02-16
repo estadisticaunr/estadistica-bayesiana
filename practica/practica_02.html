@@ -207,9 +207,12 @@ div.csl-indent {
 </div>
 <section id="modelos-de-distribuciones-conjugadas" class="level2">
 <h2 class="anchored" data-anchor-id="modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</h2>
+<p>Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el lenguaje <code>R</code> para verificar los resultados, mostrar soluciones alternativas y ejercitar el uso de una herramienta que será muy útil a lo largo de todo el curso y de la vida profesional.</p>
 <ol type="1">
-<li><p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de ellas. Llamaremos con <span class="math inline">\(\theta\)</span> a la probabilidad de que una semilla de tomate germine y asumimos una distribución <span class="math inline">\(\text{Beta}(1, 1)\)</span>.</p>
+<li><p><strong>Mi primera huerta</strong></p>
+<p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de ellas. Llamaremos con <span class="math inline">\(\theta\)</span> a la probabilidad de que una semilla de tomate germine y asumimos una distribución <span class="math inline">\(\text{Beta}(1, 1)\)</span>.</p>
 <ol type="i">
+<li>¿Qué información implica el <em>prior</em> sobre la probabilidad de germinación?</li>
 <li>Calcular la media y el desvío estándar <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> a mano.</li>
 <li>Verifique el cálculo utilizando <code>R</code>.</li>
 <li>Calcule un intervalo de credibilidad del 95% para <span class="math inline">\(\theta\)</span>.
@@ -228,22 +231,26 @@ div.csl-indent {
 </div>
 </div>
 </div></li>
-<li><p>En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por 4 a 2. En función de este resultado,</p>
+<li><p><strong>¿Quién dijo que el fútbol da siempre revancha?</strong> <!--**Un mundial que ya no duele**--></p>
+<p>En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por 4 a 2. En función de este resultado,</p>
 <ol type="i">
 <li>¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?</li>
 <li>Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
 </ol></li>
-<li><p>Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una determinada vacuna una eficacia del 100%.</p>
+<li><p><strong>Mirá si me va a pasar a mi…</strong></p>
+<p>Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una determinada vacuna una eficacia del 100%.</p>
 <blockquote class="blockquote">
 <p>En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la vacuna BNT162b2 de Pfizer-BioNTech para el COVID-19 demostró una eficacia del 100% y una respuesta robusta de anticuerpos. El ensayo clínico involucró 2260 jóvenes estadounidenses. En el ensayo, 18 casos de COVID-19 fueron observados en el grupo placebo (<span class="math inline">\(n=1129\)</span>) y ninguno en el grupo vacunado (<span class="math inline">\(n=1131\)</span>)</p>
 </blockquote>
 <p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p></li>
-<li><p>La regla del tres</p>
+<li><p><strong>La regla del tres</strong></p>
 <p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrara 5 <em>typos</em>, sería <em>razonable</em> estimar <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span> <em>typos</em> por página. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
 <p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la tasa de <em>typos</em> por página), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, hallar la probabilidad de que <span class="math inline">\(\tau &gt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span>. <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p></li>
-<li><p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
-<li><p>Inferencia sobre una distribución de Poisson</p>
-<p>La distribución de masa de probabilidad Poisson se define como <span class="math display">\[
+<li><p><strong>¿Tenés alguien para recomendar?</strong></p>
+<p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
+<li><p><strong>Inferencia sobre una distribución de Poisson</strong></p>
+<p>La distribución de masa de probabilidad Poisson se define como</p>
+<p><span class="math display">\[
 \begin{array}{lcr}
 \displaystyle p(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
 \text{con} &amp;
@@ -256,19 +263,19 @@ x \in \{0, 1, 2, \cdots \}
 <li>Derive el posterior <span class="math inline">\(p(\lambda|D)\)</span> suponiendo que el prior sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}\)</span>. Ayuda: El posterior también es una distribución Gamma.</li>
 <li>¿A qué valor tiende la media a posteriori cuando <span class="math inline">\(a \to 0\)</span> y <span class="math inline">\(b \to 0\)</span>? Recuerde que la media de una distribución <span class="math inline">\(\text{Ga}(a, b)\)</span> es <span class="math inline">\(a/b\)</span>. <!-- @Murphy2012 --></li>
 </ol></li>
-<li><p>Inferencia sobre una distribución Uniforme</p>
+<li><p><strong>Inferencia sobre una distribución Uniforme</strong></p>
 <p>Considere una distribución uniforme crentrada en <span class="math inline">\(0\)</span> y rango <span class="math inline">\(2a\)</span>. La función de densidad de probabilidad es</p>
 <p><span class="math display">\[
 p(x) = \frac{1}{2a}I(x \in [-a, a])
 \]</span></p>
 <p>Sea <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
-<p>Inferencia máximo-verosímil</p>
+<p><strong>Inferencia máximo-verosímil</strong></p>
 <ol type="i">
 <li>¿Cuál es el estimador máximo verosímil de <span class="math inline">\(a\)</span> (llámelo <span class="math inline">\(\hat{a}\)</span>)?</li>
 <li>¿Qué probabilidad le asigna el modelo a una nueva observación <span class="math inline">\(x_{n + 1}\)</span> usando <span class="math inline">\(\hat{a}\)</span>?</li>
 <li>¿Observa algún problema con el resultado anterior? Si es así, sugiera una alternativa mejor.</li>
 </ol>
-<p>Inferencia Bayesiana</p>
+<p><strong>Inferencia Bayesiana</strong></p>
 <p>El prior conjugado de la distribución uniforme es la distribución de Pareto.</p>
 <p>Si <span class="math inline">\(x \sim \text{Pareto}(x | \alpha, m)\)</span>, luego</p>
 <p><span class="math display">\[
@@ -293,7 +300,7 @@ p(\mathbf{X}) &amp;= \int_{M_x}^\infty
 \end{aligned}
 \]</span></p>
 <p>Derive el <em>posterior</em> y muestre que puede ser expresado como una distribución de Pareto. <!-- @Murphy2012 --> <!-- Hay que mejorar la redaccion y ver que la notacion es consistente --></p></li>
-<li><p>Inferencia sobre una distribución Exponencial</p>
+<li><p><strong>Inferencia sobre una distribución Exponencial</strong></p>
 <p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
 <p><span class="math display">\[
 \begin{array}{lcrr}
@@ -313,11 +320,9 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>¿Cuál es el posterior <span class="math inline">\(p(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
 <li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
-<li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>.<br>
-¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
+<li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
-<li><p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
-<li><p>Calculo de conjugada no tradicional</p>
+<li><p><strong>Calculo de conjugada no tradicional??</strong></p>
 <ul>
 <li>Binomial negativa - Beta</li>
 <li>Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?</li>
@@ -326,18 +331,24 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
+<p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar útil obtener también una solución a mano para comparar resultados, el nivel de dificultad y que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
-<li><p>El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
+<li><p><strong>Propiedades frecuentistas de inferencias bayesianas (!!)</strong></p>
+<p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
+<li><p><strong>¿Tendré que esperar mucho?</strong></p>
+<p>El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
 <li>¿Cuál es el horario esperado al que terminará su entrevista? <!-- Modern Data Science with R --></li>
 </ol></li>
-<li><p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300</p>
+<li><p><strong>¡Qué casualidad!</strong></p>
+<p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
 <li>¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?</li>
 </ol></li>
-<li><p>El Problema de Monty Hall es un problema de probabilidad basado en un juego del concurso televisivo estadounidense “Trato hecho”. En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. El premio consiste en llevarse lo que se encuentra detrás de la elegida. Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las otras dos en la que haya una cabra. A continuación, le da la opción al concursante de cambiar, si lo desea, de puerta (tiene dos opciones). ¿Debe el concursante mantener su elección original o escoger la otra puerta? ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones. <!-- Modern Data Science with R --></p>
+<li><p><strong>El Problema de Monty Hall</strong></p>
+<p>El Problema de Monty Hall es un problema de probabilidad basado en un juego del concurso televisivo estadounidense “Trato hecho”. En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. El premio consiste en llevarse lo que se encuentra detrás de la elegida. Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las otras dos en la que haya una cabra. A continuación, le da la opción al concursante de cambiar, si lo desea, de puerta (tiene dos opciones). ¿Debe el concursante mantener su elección original o escoger la otra puerta? ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones. <!-- Modern Data Science with R --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -348,26 +359,36 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 </div>
 </div>
 </div></li>
-<li><p>Basándose en el <a href="https://twitter.com/Kit_Yates_Maths/status/1542767039814713346">siguiente tuit</a> y conociendo el problema del cumpleaños (¿cuántas personas debe haber en una habitación para que la probabilidad de que dos de ellas cumplan años el mismo día sea mayor a X%?) construir un gráfico similar al del tuit donde se grafique la probabilidad de que haya <span class="math inline">\(n\)</span> personas que cumplan años el mismo día para <span class="math inline">\(K\)</span> personas presentes en la habitación.</p></li>
-<li><p>El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. Cada paquete trae cinco figuritas.</p>
+<li><p><strong>Que los cumplan feliz</strong></p>
+<p>Basándose en el <a href="https://twitter.com/Kit_Yates_Maths/status/1542767039814713346">siguiente tuit</a> y conociendo el problema del cumpleaños (¿cuántas personas debe haber en una habitación para que la probabilidad de que dos de ellas cumplan años el mismo día sea mayor a X%?) construir un gráfico similar al del tuit donde se grafique la probabilidad de que haya <span class="math inline">\(n\)</span> personas que cumplan años el mismo día para <span class="math inline">\(K\)</span> personas presentes en la habitación.</p></li>
+<li><p><strong>Qué suerte, ¿no?</strong></p>
+<p>Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se reúnen en la habitación del hotel como se describe en <a href="https://twitter.com/PlanetaDeCABJ/status/1587925636869300224">este tuit</a>.</p>
+<ol type="i">
+<li>¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?</li>
+<li>¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?</li>
+</ol></li>
+<li><p><strong>El álbum del Campeón</strong></p>
+<p>El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. Cada paquete trae cinco figuritas.</p>
 <ol type="i">
 <li>Comprando cinco paquetes, ¿cuál es la probabilidad de tener a Messi?</li>
 <li>Comprando cinco paquetes, ¿cuál es la probabilidad de sacar a Messi repetido?</li>
 <li>¿Cuántos paquetes se necesitan, en promedio, para completar el álbum?</li>
 <li>Si a una persona le faltan diez figuritas para completar el álbum, ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?</li>
 </ol></li>
-<li><p>Si se arroja una moneda <span class="math inline">\(n\)</span> veces, ¿cuál es la probabilidad de que no haya secuencias de <span class="math inline">\(k\)</span> caras?</p></li>
-<li><p>¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos?</p></li>
-<li><p>Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se reúnen en la habitación del hotel como se describe en <a href="https://twitter.com/PlanetaDeCABJ/status/1587925636869300224">este tuit</a>.</p>
-<ol type="i">
-<li>¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?</li>
-<li>¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?</li>
-</ol></li>
-<li><p>Un cajón contiene 10 pares de medias. No hay dos pares iguales. Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par? <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ --></p></li>
-<li><p>Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga desarrollada por tu compañía sea mas efectiva que el tratamiento actual es <span class="math inline">\(\theta \in [0, 1]\)</span>. Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que la droga que desarrollan es de hecho mejor. El costo del estudio es <strong>$X</strong>. Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%. Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor. Si el ensayo sugiere que tu droga es mejor, ganarás <strong>$cX</strong>. ¿Para qué valores de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(c\)</span> tiene sentido realizar el estudio? <!-- @Reich2020 --></p></li>
-<li><p>Resuelva el problema de concordancia de de Montmort presentado en la Practica 0 utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
-<li><p>Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando simulaciones.</p></li>
-<li><p>Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.</p>
+<li><p><strong>¿Que tán raras son estas secuencias raras?</strong></p>
+<p>Si se arroja una moneda <span class="math inline">\(n\)</span> veces, ¿cuál es la probabilidad de que no haya secuencias de <span class="math inline">\(k\)</span> caras?</p></li>
+<li><p><strong>Un viaje por el elevador</strong></p>
+<p>¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos? ¿Qué supuestos realiza para resolver el problema? Escríbalos en una lista de manera explícita.</p></li>
+<li><p><strong>La vida es muy corta como para perderla ordenando medias</strong></p>
+<p>Un cajón contiene 10 pares de medias. No hay dos pares iguales. Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par? <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ --></p></li>
+<li><p><strong>¿Vale la pena hacer un ensayo clínico a gran escala?</strong></p>
+<p>Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga desarrollada por tu compañía sea mas efectiva que el tratamiento actual es <span class="math inline">\(\theta \in [0, 1]\)</span>. Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que la droga que desarrollan es de hecho mejor. El costo del estudio es <strong>$X</strong>. Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%. Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor. Si el ensayo sugiere que tu droga es mejor, ganarás <strong>$cX</strong>. ¿Para qué valores de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(c\)</span> tiene sentido realizar el estudio? <!-- @Reich2020 --></p></li>
+<li><p><strong>El problema de concordancia</strong></p>
+<p>Resuelva el problema de concordancia de de Montmort presentado en la Practica 0 utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
+<li><p><strong>El problema de los sobres</strong></p>
+<p>Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando simulaciones.</p></li>
+<li><p><strong>¿Te preguntaste alguna vez cuál es la distribución de un <em>p-value</em>?</strong></p>
+<p>Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.</p>
 <ol type="i">
 <li>Considere el caso en que las dos muestras provienen de poblaciones con igual media y desvío estándar (supongamos normal de media nula y varianza unitaria). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los <em>p-values</em> obtenidos para cada test?</li>
 <li>Considere ahora el caso en que las dos muestras provienen de poblaciones con diferente media e igual desvío estándar (<span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\mathcal{N}(1,0)\)</span>). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los <em>p-values</em> obtenidos para cada test?</li>
@@ -375,17 +396,20 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 </ol>
 </section>
 <section id="elección-de-distribuciones-a-priori" class="level2">
-<h2 class="anchored" data-anchor-id="elección-de-distribuciones-a-priori">Elección de distribuciones a priori?</h2>
+<h2 class="anchored" data-anchor-id="elección-de-distribuciones-a-priori">Elección de distribuciones a priori</h2>
+<p>Esta útima sección de la práctica tiene como propósito ejercitar el uso de distribuciones de probabilidad como herramienta para reflejar información de un problema determinado.</p>
 <ol type="1">
-<li><p>Esbozar la distribución de las siguientes variables</p>
+<li><p><strong>Esbozar la distribución de las siguientes variables</strong></p>
 <ol type="i">
 <li>El número de personas que compran café en el bar de la facultad asumiendo distribución de Poisson.</li>
 <li>El peso de perros adultos en kilogramos asumiendo una distribución Uniforme.</li>
 <li>El peso de elefantes adultos en kilogramos asumiendo una distribución Normal.</li>
 <li>El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia la derecha.</li>
 </ol></li>
-<li><p>Para cada uno cada uno de los ejemplos del ejercicio anterior, graficar la distribución usando <code>R</code>. Seleccionar los parámetros que creas razonable, tomar una muestra aleatoria de tamaño 1000 y graficar la distribución en base a las muestras. ¿Se refleja tu conocimiento del problema en la distribución graficada? Si no, ajustar los parámetros y repetir el proceso hasta que el resultado tenga concuerde con el conocimiento del problema.</p></li>
-<li><p>Comparar las siguientes distribuciones <em>a priori</em>.</p>
+<li><p><strong>Verificar los resultados de manera computacional</strong></p>
+<p>Para cada uno cada uno de los ejemplos del ejercicio anterior, graficar la distribución usando <code>R</code>. Seleccionar los parámetros que creas razonable, tomar una muestra aleatoria de tamaño 1000 y graficar la distribución en base a las muestras. ¿Se refleja tu conocimiento del problema en la distribución graficada? Si no, ajustar los parámetros y repetir el proceso hasta que el resultado tenga concuerde con el conocimiento del problema.</p></li>
+<li><p><strong>Hay que amigarse con de la distribución Beta</strong></p>
+<p>Comparar las siguientes distribuciones <em>a priori</em>.</p>
 <ul>
 <li><span class="math inline">\(\text{Beta}(0.5, 0.5)\)</span></li>
 <li><span class="math inline">\(\text{Beta}(1, 1)\)</span></li>
@@ -398,13 +422,21 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li>¿Cuál de ellas es más informativa?</li>
 <li>¿Cómo lo determinaste?</li>
 </ol></li>
-<li><p>En cada una de la situaciones que se describen debajo, ajustar manualmente los parámetros de una distribución <span class="math inline">\(\text{Beta}\)</span> para que reflejen la información brindada. En algunos casos puede haber varias respuestas aceptables en vez de existir “la respuesta correcta”.</p>
+<li><p><strong>Elicitación de <em>priors</em></strong></p>
+<p>En cada una de la situaciones que se describen debajo, ajustar manualmente los parámetros de una distribución <span class="math inline">\(\text{Beta}\)</span> para que reflejen la información brindada. En algunos casos puede haber varias respuestas aceptables en vez de existir “la respuesta correcta”.</p>
 <ol type="i">
 <li>Un amigo se postuló para un empleo en LinkedIn y te dijo: “Diría que tengo una chance del 40% de que me den el trabajo, pero no estoy seguro”. Cuando le preguntamos un poco mas, dijo que estima sus chances entre un 20% y un 60%.</li>
 <li>Un grupo de investigación del CONICET desarrolló una nueva prueba para una enfermedad bastante rara. El grupo espera que esta prueba arroje resultados correctos el 80% de las veces, con una varianza de 0.05.</li>
-<li>El primo de un amigo disfruta de salir a pescar, y lo hace muy seguido. En el asado de los Jueves dice que “El 90% de las veces que salgo a pescar, vuelvo con algo. Si te tuviera que dar un rango, te diría entre el 85% y el 100% de las veces”.</li>
-</ol></li>
-<li><p>Efecto de la parametrización</p>
+<li>El primo de un amigo es un apasionado de la pesca, lo practica muy seguido, y se dice ser muy bueno. Según comenta tu amigo, en el asado de los Jueves el pescador dijo lo siguiente:</li>
+</ol>
+<blockquote class="blockquote">
+<p>Si tengo que hacer un promedio, 9 de cada 10 veces que salgo, vuelvo con algo. Pero últimamente te diría que siempre es 10 de 10. Estoy infalible. La verdad es que soy un crack de la pesca.</p>
+</blockquote>
+<p>Ante el descreimiento de algunos de los comensales supo reconocer que no siempre le fue tan bien:</p>
+<blockquote class="blockquote">
+<p>Tuve mis malas rachas, pero nunca menos de 8 pescas de cada 10 salidas.</p>
+</blockquote></li>
+<li><p><strong>Efecto de la parametrización</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito en un experimento binomial y sea <span class="math inline">\(\gamma = \frac{\theta}{1-\theta}\)</span> la chance de éxito. Utilizar simulaciones para explorar los efectos de las siguientes elecciones de distribuciones <em>a priori</em></p>
 <ol type="i">
 <li>Si <span class="math inline">\(\theta \sim \text{Uniforme}(0,1)\)</span>, ¿cuál es el <em>prior</em> inducido para <span class="math inline">\(\gamma\)</span>?</li>
