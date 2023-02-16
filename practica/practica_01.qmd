@@ -28,23 +28,23 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 ## Regla de Bayes
 
-El propósito de esta sección de la práctica es resolver situaciones que impliquen la aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso de Probabilidad.
+El propósito de esta sección de la práctica es resolver situaciones que impliquen la 
+aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso de Probabilidad.
 
 1.  **El lenguaje de las probabilidades**
 
     Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
 
-    a.  Probabilidad de un parametro dados los datos observados
-    b.  La distribucion de probabilidad de los parametros antes de ver los datos
+    a.  Probabilidad de un parámetro dados los datos observados
+    b.  La distribución de probabilidad de los parámetros antes de ver los datos
     c.  La verosimilitud de los datos para un valor dado de los parámetros
-    d.  La probabilidad de una observación nueva dados los datos observados
+    d.  La probabilidad de una observación nueva luego de observar los datos
     e.  La probabilidad de una observación antes de ver los datos
-    f.  **To Do** Revisar texto. No se si es mejor usar "dado/dada" o "condicional a", u otra expresión.
-    g.  **To Do** Algunas descripciones no estan cubiertas en la **Unidad 1**. <!-- @Martin2021 -->
+    <!-- @Martin2021 -->
     
 1.  **Demostración**
 
-    Demuestra la validez de la siguiente expresión de la regla de Bayes
+    Demuestra la validez de la siguiente expresión de la Regla de Bayes
 
     $$
     P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
@@ -56,27 +56,34 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
     i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
     ii. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
     iii. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
-    iv. Junte las partes para formar la regla de Bayes. <!-- @Hoff2009 --> <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
+    iv. Junte las partes para formar la Regla de Bayes. 
+    <!-- @Hoff2009 -->
+    <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
 
 1.  **El test ~~in~~falible**
 
     En una población dada, una de cada mil personas tiene una enfermedad.
-    Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo.
-    El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad.
-    Además, dicho test tiene una tasa de falsos positivos del 5%.
+    Se toma una persona al azar de la población, se le aplica un test para detectar dicha
+    enfermedad, y el resultado es positivo.
+    El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la
+    enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.
 
-    -   ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
-    -   Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
-        -   ¿Cuál seria la probabilidad que el paciente esté enfermo?
-        -   ¿Y si diera negativo?
-        -   ¿Es el a priori el mismo para el segundo análisis que para el primero? <!-- @Martin2021 -->
+    - ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
+    - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
+        - ¿Cuál seria la probabilidad que el paciente esté enfermo?
+        - ¿Y si diera negativo?
+        - ¿Es el _prior_ el mismo para el segundo análisis que para el primero? 
+    <!-- @Martin2021 -->
 
 1.  **¿Es verdad que existen los vampiros? Versión Crepúsculo**
 
     Edward quiere probarle a Bella que los vampiros existen.
     Según Bella, hay una probabilidad del 5% de que los vampiros existan.
-    También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%.
-    Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros?
+    También cree que la probabilidad de que exista alguien con la piel brillante dado que
+    los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel 
+    rillante si los vampiros no existen es del 3%.
+    Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 
+    ¿Cuál es la probabilidad que existan los vampiros?
     <!-- @Johnson2021 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["crepusculo"]]}
@@ -86,16 +93,23 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
 
 1.  **Árboles enfermos**
 
-    Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros.
+    Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
+    incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
-    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies [^1].
-    Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies.
-    Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que trabaja en el vivero selecciona al azar uno de los árboles para testear.
+    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de 
+    otras especies.
+    Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras 
+    especies.
+    Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
+    trabaja en el vivero selecciona al azar uno de los árboles para testear.
 
-    -   ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
-    -   Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?
-    -   ¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?
-    -   Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo? <!-- @Johnson2021 -->
+    - ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
+    - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
+    seleccionado un ceibo?
+    - ¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?
+    - Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
+    ¿Cómo afecta el análisis el saber que el árbol es un ceibo? 
+    <!-- @Johnson2021 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["ceibo"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
@@ -103,15 +117,22 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
 
 1.  **Transporte "El Impuntual"**
 
-    Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual", tiene servicios que van desde Rosario hasta Wheelwright varias veces al día, todos los días de la semana.
-    Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40% salen a la noche.
+    Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual", tiene
+    servicios que van desde Rosario hasta Wheelwright varias veces al día, 
+    todos los días de la semana.
+    Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40%
+    salen a la noche.
     Los pasajeros suelen estar muy frustrados ya que un 25% de los viajes salen tarde.
-    De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde, y el 10% restante ocurre a la noche.
+    De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde,
+    y el 10% restante ocurre a la noche[^el_impuntual].
 
     Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes.
 
-    -   Lucio se fue en uno de los colectivos de la mañana. ¿Cuál es la probabilidad que su viaje esté demorado?
-    -   El colectivo de Franco no está demorado. ¿Cuál es la probabilidad de que esté viajando en uno de los colectivos de la mañana? <!-- @Johnson2021 -->
+    - Lucio se fue en uno de los colectivos de la mañana. ¿Cuál es la probabilidad que su 
+    viaje esté demorado?
+    - El colectivo de Franco no está demorado. ¿Cuál es la probabilidad de que esté 
+    viajando en uno de los colectivos de la mañana?
+    <!-- @Johnson2021 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["colectivo"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
@@ -128,35 +149,41 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
     Y las madres de la especie B dan a luz mellizos el 20% del tiempo.
     En todos los otros casos, estas madres dan a luz un solo bebé panda.
 
-    Usando un poco la imaginación, supongamos que somos la persona encargada de un programa de reproducción de pandas.
-    Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, pero no sabemos a que especie pertenece.
+    Usando un poco la imaginación, supongamos que somos la persona encargada de un 
+    programa de reproducción de pandas.
+    Tenemos una panda femenina que acaba de dar a luz a un par de mellizos, pero no 
+    sabemos a que especie pertenece.
 
-    -   ¿Cuál es la probabilidad que la mamá panda sea de la especie A?
-    -   ¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?
-    -   Un tiempo después sos encontramos con que en la segunda parición da a luz a un único bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A? <!-- @McElreath2020 -->
+    - ¿Cuál es la probabilidad que la mamá panda sea de la especie A?
+    - ¿Cuál es la probabilidad que vuelva a tener mellizos en la próxima parición?
+    - Un tiempo después sos encontramos con que en la segunda parición da a luz a un único
+    bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A? 
+    <!-- @McElreath2020 -->
 
     ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["bebe_panda"]]}
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 
-
 1. **Paraguas**
 
-    Estás a punto de subir a un avión rumbo a Seattle.
-    Querés saber si tenés que llevar un paraguas.
-    Llamás a tres amigos que viven en Seattle y les preguntás si está lloviendo.
-    Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma.
+    Estás a punto de subir a un avión rumbo a Mendoza.
+    Querés saber si tenés que llevar un paraguas o no.
+    Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo.
+    Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte
+    para hacerte una broma.
     Los tres responden que sí está lloviendo.
-    Cuál es la probbailidad de que realmente esté lloviendo en Seattle?
-    Se puede asumir que llueve el 10% del tiempo en Seattle.
+    ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza?
+    Se puede asumir que en Mendoza llueve en 1 de cada 10 días.
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
 1. **Sherlock**
 
     Dos personas dejaron rastros de sangre en la escena del crimen.
-    La sangre de Oliver, un sospechoso, es analizada y resulta ser de tipo '0'.
-    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia del 1% en la        población).
-    ¿Estos datos representan evidencia de que Oliver estaba presente en la escena del crimen?
+    La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo '0'.
+    Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, 
+    presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia 
+    del 1% en la población).
+    ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
 1. **Hijxs de la probabilidad**
@@ -168,9 +195,12 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
 
 1. **Los Reyes del Rock**
 
-    Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo.
-    ¿Cuál es la probabilidad de que Elvis tuviera un gemelo?
-    Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son siempre del mismo sexo biológico.
+    Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al 
+    poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo?
+    Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del 
+    mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs 
+    sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son 
+    siempre del mismo sexo biológico.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
 1. **¿Alguien ordena las medias?**
@@ -185,35 +215,47 @@ El propósito de esta sección de la práctica es resolver situaciones que impli
     
 1. **La Falacia del Fiscal**
 
-    Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, murió con 11 semanas en diciembre de 1996 y su hijo más joven, Harry, con 8 semanas en enero de 1998. Durante el juicio, la defensa argumentó que las muertes se debieron al síndrome de muerte súbita del lactante (SIDS). Clark fue condenada a partir del testimonio del pediatra Sir Roy Meadow, quien argumentó en la corte lo siguiente:
+    Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión 
+    perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, 
+    murió con 11 semanas en diciembre de 1996 y su hijo más joven, Harry, con 8 semanas en
+    enero de 1998. Durante el juicio, la defensa argumentó que las muertes se debieron al
+    síndrome de muerte súbita del lactante (SIDS). Clark fue condenada a partir del 
+    testimonio del pediatra Sir Roy Meadow, quien argumentó en la corte lo siguiente:
     
-    -   En familias sanas, la chance de muerte por SIDS es de $\frac{1}{8500}$
-    -   La probabilidad de dos muertes por SIDS en la misma familia es aproximadamente $\frac{1}{8500^2} \approx \frac{1}{73000000}$
-    -   Es, por ende, muy poco probable que Clark sea inocente
+    - En familias sanas, la chance de muerte por SIDS es de $\frac{1}{8500}$
+    - La probabilidad de dos muertes por SIDS en la misma familia es aproximadamente 
+    $\frac{1}{8500^2} \approx \frac{1}{73000000}$
+    - Es, por ende, muy poco probable que Clark sea inocente
     
-    Luego de pasar 3 años en prisión, Clark fue liberada en 2003 luego de que se determinara que el testimonio _experto_ de Meadows era equivocado. Dos mujeres, a las cuales el testimonio de Meadows había enviado a prisión, también fueron liberadas.
+    Luego de pasar 3 años en prisión, Clark fue liberada en 2003 luego de que se 
+    determinara que el testimonio _experto_ de Meadows era equivocado. Dos mujeres, a las
+    cuales el testimonio de Meadows había enviado a prisión, también fueron liberadas.
     
     i. Identifica una falla en la probabilidad de $\frac{1}{73000000}$ dada por Meadows
-    ii. Incluso aceptando el número anterior como correcto, ¿cuál es el problema de interpretar esa probabilidad como la probabilidad de inocencia de Clark?
+    i. Incluso aceptando el número anterior como correcto, ¿cuál es el problema de 
+    interpretar esa probabilidad como la probabilidad de inocencia de Clark?
     
     <!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf -->
     
-
-[^1]: Hay gente que dice que "cada dos por tres" te deja a pata.
-    No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, ya que un 25% también es un montón!
-
 ## Inferencia Bayesiana
 
-En esta parte de la práctica, se le otorga un significado a las cantidades que aparecen en la Regla de Bayes modificando conceptualmente el enfoque de las situaciones problemáticas. Ahora los problemas se tratan de realizar inferencias sobre posibles causas de ciertos datos observados. Se incrementa el rigor matemático, aparecen distribuciones de probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.
+En esta parte de la práctica, se le otorga un significado a las cantidades que aparecen en
+la Regla de Bayes modificando conceptualmente el enfoque de las situaciones problemáticas.
+Ahora los problemas se tratan de realizar inferencias sobre posibles causas de ciertos 
+datos observados. Se incrementa el rigor matemático, aparecen distribuciones de 
+probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.
 
 1.  **Qué datazo me tiraste, rey**
 
     Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
-    -   Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
-    -   Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.
+    - Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 
+    30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
+    - Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo,
+    13% rojo y 13% marrón.
 
-    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál.
+    Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 
+    1996, pero no nos dice cuál es cuál.
     Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
     ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
     
@@ -222,8 +264,10 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
     Hay dos monedas en una caja.
     Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.
 
-    i.  Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
-    ii. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
+    i.  Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la 
+    probabilidad de que la moneda elegida sea la falsa?
+    ii. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres 
+    caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
     
 1.  **Vocabulario limitado**
 
@@ -233,39 +277,49 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
     \text{\{perro, parra, farra, carro, corro, tarro\}}
     $$
 
-    Un análisis lingüístico exhaustivo de esta lengua ha descubierto que todas las palabras son igualmente probables, excepto por 'perro', que es $\alpha$ veces más probable que las otras.
+    Un análisis lingüístico exhaustivo de esta lengua ha descubierto que todas las 
+    palabras son igualmente probables, excepto por 'perro', que es $\alpha$ veces más 
+    probable que las otras.
+    
     Además:
 
-    -   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$;
-
-    -   Todas las letras tienen la misma probabilidad de producir un error de tipeo;
-
-    -   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia;
-
+    -   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$
+    -   Todas las letras tienen la misma probabilidad de producir un error de tipeo
+    -   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia
     -   Los errores son independientes a lo largo de una palabras.
 
-    i.  ¿Cuál es la probabilidad de escribir correctamente 'tarro'?
-    ii. ¿Cuál es la probabilidad de tipear 'cerro' o 'curro' al querer escribir 'carro'?
-    iii. Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua. Para las palabras tipeadas 'farra', 'birra' y 'locos', hallar la probabilidad de que cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar las siguientes combinaciones de parámetros:
-         a.  $\alpha=2$ y $\theta = 0.1$
-         b.  $\alpha=50$ y $\theta = 0.1$
-         c.  $\alpha=2$ y $\theta = 0.9$
+    i. ¿Cuál es la probabilidad de escribir correctamente 'tarro'?
+    i. ¿Cuál es la probabilidad de tipear 'cerro' o 'curro' al querer escribir 'carro'?
+    i. Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua.
+    Para las palabras tipeadas 'farra', 'birra' y 'locos', hallar la probabilidad de que
+    cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar
+    las siguientes combinaciones de parámetros:
+         a.  $\alpha = 2$ y $\theta = 0.1$
+         b.  $\alpha = 50$ y $\theta = 0.1$
+         c.  $\alpha = 2$ y $\theta = 0.9$
          
 
 1.  **Bosque**
 
-    Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la probabilidad *a priori* de que la especie se encuentre en el bosque.
-    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que $X_2$ de ellas pertenecen a la especie de interés.
+    Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
+    árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
+    probabilidad *a priori* de que la especie se encuentre en el bosque.
+    Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que 
+    $X_2$ de ellas pertenecen a la especie de interés.
 
-    El modelo luego es $$
+    El modelo luego es
+
+    $$
     \begin{array}{lc}
-    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con } \lambda \in [0, 1]
+    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con} \ \lambda \in [0, 1]
     \end{array}
     $$
 
-    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.
+    $\lambda$ representa la probabilidad de detectar la especie, dado que la especie se 
+    encuentra en el bosque.
 
-    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las siguientes probabilidades:
+    Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las 
+    siguientes probabilidades:
 
     i.  $P(X_1 = 0, X_2 = 0)$
     ii. $P(X_1 = 0)$
@@ -274,14 +328,21 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
     v.  $P(X_2 = 0 | X_1 = 0)$
     vi. $P(X_1 = 0 | X_2 = 1)$
     vii. $P(X_2 = 0 | X_1 = 1)$
-    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
-    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 -->
+    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en 
+    (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
+    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
+    se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? 
+    <!-- @Reich2020 -->
 
 1.  **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
 
-    En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas[^2] descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.
+    En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número
+    de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
+    marinas bivalvas[^bivalvas] descubiertas cada año entre 2010 y 2015 fue 
+    64, 13, 33, 18, 30 y 20.
 
-    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, y asumiendo:
+    Si se representa con $Y_t$ a la cantidad de especies descubierta en el año $t$, 
+    y asumiendo:
 
     $$
     \begin{aligned}
@@ -320,61 +381,71 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
     
 1.  **Orden en la sala**
 
-    En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.
+    En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en
+    un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más
+    de 1000 personas en la sala, superando el máximo permitido.
 
-    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo.\
-    Decide hacer un experimento:
+    La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque
+    piensa que contarlas podría llevar mucho tiempo. Decide hacer un experimento:
 
-    -   Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
-    -   Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
-    -   Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
+    -  Pregunta cuántas personas nacieron el 11 de mayo. Dos personas levantan la mano.
+    -  Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.
+    -  Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.
 
     ¿Cuántas personas hay en la sala?
     O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
-    
-    
+     
 1.  **_House of Cards_**
 
     Hay 538 miembros en el Congreso de Estados Unidos.
-    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado.
-    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo.
+    Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron
+    rendimientos por encima del mercado.
+    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de
+    tener rendimientos por encima del mercado, pero uno deshonesto que opera con
+    información confidencial tiene una chance del 90% de hacerlo.
     ¿Cuántos miembros del Congreso son honestos?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-
-
 1.  **Puede fallar...**
 
-    Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.
+    Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una 
+    estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
+    o ceca y registra el resultado.
 
     Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
-    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).
+    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que 
+    sale cara, el sistema dice ceca, y viceversa).
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
 
-    i.  ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
-    ii. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
+    i. ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
+    i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
 
 
-
-
-
-[^2]: Una clase de molusco.
-    El mejillón, la ostra y la almeja son bivalvos
-
 ## Conceptuales
+
+En esta sección, se nos invita a pensar sobre las características de la Estadística Bayesiana. 
+En lugar de encontrar una respuesta única mediante cálculos matemáticos, 
+se necesita comprender en profundidad tanto el enfoque frecuentista como el bayesiano
+para interpretar estas visiones en diferentes escenarios.
 
 1.  **Voy a conseguir esa pasantía**
 
-    La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos.
-    Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus **datos**.
+    La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes
+    para pasantes en ciencia de datos.
+    Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona 
+    calificada para el puesto: estos son tus **datos**.
     Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu **hipótesis**.
 
-    i.  Desde la perspectiva de una persona con un razonamiento frecuentista, ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?
-    ii. Repita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.
-    iii. ¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. <!-- @Johnson2021 -->
+    i. Desde la perspectiva de una persona con un razonamiento frecuentista, 
+    ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?
+    i. Repita el punto anterior considerando la perspectiva de una persona con un 
+    razonamiento Bayesiano.
+    i. ¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? 
+    Justifica tu respuesta. 
+    <!-- @Johnson2021 -->
 
 1.  **Beneficios de la Estadística Bayesiana**
 
@@ -384,6 +455,13 @@ En esta parte de la práctica, se le otorga un significado a las cantidades que 
     i.  ¿Por qué es útil el enfoque Bayesiano?
     ii. ¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano? 
     <!-- @Johnson2021 -->
+
+
+[^el_impuntual]: Hay gente que dice que "cada dos por tres" te deja a pata.
+    No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, ya que un 25% también es un montón!
+    
+[^bivalvas]: Una clase de molusco.
+    El mejillón, la ostra y la almeja son bivalvos
 
 <!-- 1.  Me gusta mucho el ejercicio 1.1 de @Johnson2021 pero creo que es muy yankee-céntrico. 
     Habría que buscar uno que hable de una historia que sea mas familiar en nuestro 
@@ -416,4 +494,3 @@ Computer Age Statistical Inference:
     "Frequentist Inference", "Bayesian Inference", 
     y "Fisherian Inference and Maximum Likelihood Estimation"
 -->
-```
