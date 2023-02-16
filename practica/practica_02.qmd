@@ -26,13 +26,23 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
 ## Modelos de Distribuciones Conjugadas
 
-1.  En un campamento de verano para infantes se realizaron actividades
+Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones
+conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden
+realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el 
+lenguaje `R` para verificar los resultados, mostrar soluciones alternativas y ejercitar
+el uso de una herramienta que será muy útil a lo largo de todo el curso y de la vida
+profesional.
+
+1.  **Mi primera huerta**
+
+    En un campamento de verano para infantes se realizaron actividades
     que promueven el contacto con la naturaleza. Una de las tareas
     consistió en germinar semillas de tomate. Josefina plantó 18
     semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de
     ellas. Llamaremos con $\theta$ a la probabilidad de que una semilla
     de tomate germine y asumimos una distribución $\text{Beta}(1, 1)$.
 
+    i. ¿Qué información implica el _prior_ sobre la probabilidad de germinación?
     i. Calcular la media y el desvío estándar *a posteriori* de $\theta$ a mano.
     i. Verifique el cálculo utilizando `R`.
     i. Calcule un intervalo de credibilidad del 95% para $\theta$.
@@ -43,7 +53,9 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 
-1.  En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
+1.  **¿Quién dijo que el fútbol da siempre revancha?** <!--**Un mundial que ya no duele**-->
+
+    En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
     4 a 2. En función de este resultado,
 
     i. ¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?
@@ -51,8 +63,10 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
 
-1.  Durante el desarrollo de las vacunas contra el COVID-19, un medio
-    anunció para una determinada vacuna una eficacia del 100%.
+1.  **Mirá si me va a pasar a mi...**
+
+    Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una 
+    determinada vacuna una eficacia del 100%.
 
     > En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la
     > vacuna BNT162b2 de Pfizer-BioNTech para el COVID-19 demostró una
@@ -66,7 +80,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     ¿Cómo se estima la probabilidad de algo que aún no ocurrió?
     <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html -->
 
-1.  La regla del tres
+1.  **La regla del tres**
 
     Una estudiante de Licenciatura en Estadística está releyendo su
     tesina antes de entregarla. Si en 20 páginas encontrara 5 _typos_,
@@ -79,18 +93,20 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     de $N$. 
     <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
 
-1.  Una colega quiere comprar un producto por Internet. Tres vendedores
-    ofrecen el mismo producto al mismo precio. Un vendedor tiene 100%
-    evaluaciones positivas, con 10 *reviews*. Otro tiene 96% de
-    evaluaciones positivas, con 50 *reviews*. El último tiene 90% de
-    comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres
-    vendedores le recomendarías?
+1.  **¿Tenés alguien para recomendar?**
+
+    Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo
+    producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10 
+    *reviews*. Otro tiene 96% de evaluaciones positivas, con 50 *reviews*. El último tiene
+    90% de comentarios positivos, con 200 evaluaciones. 
+    ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
 
-1.  Inferencia sobre una distribución de Poisson
+1.  **Inferencia sobre una distribución de Poisson**
 
     La distribución de masa de probabilidad Poisson se define como
+
     $$
     \begin{array}{lcr}
     \displaystyle p(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} & 
@@ -110,7 +126,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     Recuerde que la media de una distribución $\text{Ga}(a, b)$ es $a/b$.
     <!-- @Murphy2012 -->
 
-1.  Inferencia sobre una distribución Uniforme
+1.  **Inferencia sobre una distribución Uniforme**
 
     Considere una distribución uniforme crentrada en $0$ y rango $2a$. 
     La función de densidad de probabilidad es
@@ -122,7 +138,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     Sea $\mathbf{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes
     e idénticamente distribuidas según $p(x)$
 
-    Inferencia máximo-verosímil
+    **Inferencia máximo-verosímil**
 
     i. ¿Cuál es el estimador máximo verosímil de $a$ (llámelo $\hat{a}$)?
     i. ¿Qué probabilidad le asigna el modelo a una nueva observación $x_{n + 1}$
@@ -130,7 +146,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Observa algún problema con el resultado anterior? Si es así, sugiera una 
     alternativa mejor.
 
-    Inferencia Bayesiana
+    **Inferencia Bayesiana**
 
     El prior conjugado de la distribución uniforme es la distribución de Pareto.
 
@@ -170,7 +186,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     <!-- @Murphy2012 -->
     <!-- Hay que mejorar la redaccion y ver que la notacion es consistente -->
 
-1.  Inferencia sobre una distribución Exponencial
+1.  **Inferencia sobre una distribución Exponencial**
 
     El tiempo de vida de una máquina en años $X$ es modelado con una distribución 
     exponencial con parámetro $\theta$ desconocido. La función de densidad es 
@@ -199,24 +215,35 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Cuál es el posterior $p(\theta | \mathbf{X}, \hat{\lambda})$?
     i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
     i. Encuentre la media del _posterior_, $\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})$
-    i. Explique por que difieren el estimador MV de la media _a posteriori_.  
+    i. Explique por que difieren el estimador MV de la media _a posteriori_. 
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
 
-1.  Sea una variable $Y$ tal que $Y | \theta \sim \text{Binomial}(n, \theta)$ y 
+1.  **Calculo de conjugada no tradicional??**
+    * Binomial negativa - Beta
+    * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
+
+## Simulaciones
+
+A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y 
+promueve el uso de la computadora y `R` de manera complementaria, esta sección 
+contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas
+en `R`. Es posible que en algunos casos también se pueda obtener una solución analítica. 
+En estos casos, puede resultar útil obtener también una solución a mano para comparar 
+resultados, el nivel de dificultad y que tan intuitivo resultan ambos enfoques.
+
+1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
+    
+    Sea una variable $Y$ tal que $Y | \theta \sim \text{Binomial}(n, \theta)$ y 
     $\theta \sim \text{Beta}(1/2, 1/2)$. Mediante un estudio de simulación calcule la 
     cobertura empírica del intervalo de credibilidad del 95% para $n \in \{1, 5, 10, 25\}$ 
     y $\theta \in \{0.05, 0.10, \dots, 0.50 \}$. Describa las propiedades frecuentistas
     del intervalo de credibilidad bayesiano.
     <!-- @Reich2020 -->
 
-1.  Calculo de conjugada no tradicional
-    * Binomial negativa - Beta
-    * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
+1.  **¿Tendré que esperar mucho?**
 
-## Simulaciones
-
-1.  El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene
+    El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene
     distribución exponencial con media 30 minutos. Los tiempos de duración de cada 
     entrevista se pueden considerar independientes entre sí. 
     Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, 
@@ -227,13 +254,17 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. ¿Cuál es el horario esperado al que terminará su entrevista?
     <!-- Modern Data Science with R -->
 
-1.  Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus 
+1.  **¡Qué casualidad!**
+    
+    Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus 
     A330-300
 
     i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
     i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
 
-1.  El Problema de Monty Hall es un problema de probabilidad basado en un juego del
+1.  **El Problema de Monty Hall**
+
+    El Problema de Monty Hall es un problema de probabilidad basado en un juego del
     concurso televisivo estadounidense "Trato hecho". 
     En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. 
     El premio consiste en llevarse lo que se encuentra detrás de la elegida. 
@@ -251,8 +282,9 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
     ```
 
-1.  Basándose en el [siguiente
-    tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346)
+1.  **Que los cumplan feliz**
+
+    Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346)
     y conociendo el problema del cumpleaños (¿cuántas personas debe
     haber en una habitación para que la probabilidad de que dos de ellas
     cumplan años el mismo día sea mayor a X%?) construir un gráfico
@@ -260,7 +292,18 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     $n$ personas que cumplan años el mismo día para $K$ personas
     presentes en la habitación.
 
-1.  El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. 
+1.  **Qué suerte, ¿no?**
+    
+    Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se
+    reúnen en la habitación del hotel como se describe en 
+    [este tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
+
+    i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
+    i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
+
+1.  **El álbum del Campeón**
+
+    El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. 
     Cada paquete trae cinco figuritas.
 
     i. Comprando cinco paquetes, ¿cuál es la probabilidad de tener a Messi?
@@ -269,26 +312,28 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i. Si a una persona le faltan diez figuritas para completar el álbum, 
     ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?
 
-1.  Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias 
+1.  **¿Que tán raras son estas secuencias raras?**
+
+    Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias 
     de $k$ caras?
 
-1.  ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen 
-    para ir a tres pisos consecutivos?
+1.  **Un viaje por el elevador**
 
-1.  Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se
-    reúnen en la habitación del hotel como se describe en 
-    [este tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
-
-    i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
-    i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
+    ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen 
+    para ir a tres pisos consecutivos? ¿Qué supuestos realiza para resolver el problema?
+    Escríbalos en una lista de manera explícita.
+   
+1.  **La vida es muy corta como para perderla ordenando medias**
     
-1.  Un cajón contiene 10 pares de medias. No hay dos pares iguales. 
+    Un cajón contiene 10 pares de medias. No hay dos pares iguales. 
     Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las
     pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta 
     que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par?
     <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ -->
     
-1.  Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga
+1.  **¿Vale la pena hacer un ensayo clínico a gran escala?**
+
+    Dados los resultados de un estudio piloto, la probabilidad a posteriori de que la droga
     desarrollada por tu compañía sea mas efectiva que el tratamiento actual es $\theta \in [0, 1]$.
     Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que
     la droga que desarrollan es de hecho mejor. El costo del estudio es **\$X**. 
@@ -298,21 +343,38 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     ¿Para qué valores de $\theta$ y $c$ tiene sentido realizar el estudio?
     <!-- @Reich2020 -->
 
-1.  Resuelva el problema de concordancia de de Montmort presentado en la Practica 0
+1.  **El problema de concordancia**
+
+    Resuelva el problema de concordancia de de Montmort presentado en la Practica 0
     utilizando simulaciones.
     <!-- Blitzstein, Introdudction to Probability -->
 
-1.  Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando 
-simulaciones.
+1.  **El problema de los sobres**
 
-1.  Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.
+    Resuelva el problema de los dos sobres presentado en la Practica 0 utilizando 
+    simulaciones.
 
-    i. Considere el caso en que las dos muestras provienen de poblaciones con igual media y desvío estándar (supongamos normal de media nula y varianza unitaria). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
-    ii. Considere ahora el caso en que las dos muestras provienen de poblaciones con diferente media e igual desvío estándar ($\mathcal{N}(0,1)$ y $\mathcal{N}(1,0)$). Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
+1.  **¿Te preguntaste alguna vez cuál es la distribución de un _p-value_?**
 
-## Elección de distribuciones a priori?
+    Considere un problema conocido. Se desean comparar dos muestras independientes de 
+    tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.
 
-1.  Esbozar la distribución de las siguientes variables
+    i. Considere el caso en que las dos muestras provienen de poblaciones con igual media
+    y desvío estándar (supongamos normal de media nula y varianza unitaria). 
+    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, 
+    ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
+    i. Considere ahora el caso en que las dos muestras provienen de poblaciones con 
+    diferente media e igual desvío estándar ($\mathcal{N}(0,1)$ y $\mathcal{N}(1,0)$). 
+    Si se repitiera muchas veces el proceso de tomar las muestras y realizar los tests, 
+    ¿qué distribución tendrán los _p-values_ obtenidos para cada test?
+
+## Elección de distribuciones a priori
+
+Esta útima sección de la práctica tiene como propósito ejercitar el uso de distribuciones
+de probabilidad como herramienta para reflejar información de un problema determinado.
+
+
+1.  **Esbozar la distribución de las siguientes variables**
 
     i. El número de personas que compran café en el bar de la facultad asumiendo 
     distribución de Poisson.
@@ -321,7 +383,9 @@ simulaciones.
     i. El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia 
     la derecha.
 
-1.  Para cada uno cada uno de los ejemplos del ejercicio anterior,
+1.  **Verificar los resultados de manera computacional**  
+
+    Para cada uno cada uno de los ejemplos del ejercicio anterior,
     graficar la distribución usando `R`. Seleccionar los parámetros que
     creas razonable, tomar una muestra aleatoria de tamaño 1000 y
     graficar la distribución en base a las muestras. ¿Se refleja tu
@@ -329,7 +393,9 @@ simulaciones.
     ajustar los parámetros y repetir el proceso hasta que el resultado
     tenga concuerde con el conocimiento del problema.
 
-1.  Comparar las siguientes distribuciones *a priori*.
+1.  **Hay que amigarse con de la distribución Beta**
+
+    Comparar las siguientes distribuciones *a priori*.
 
     - $\text{Beta}(0.5, 0.5)$
     - $\text{Beta}(1, 1)$
@@ -341,7 +407,9 @@ simulaciones.
     i. ¿Cuál de ellas es más informativa?
     i. ¿Cómo lo determinaste?
 
-1.  En cada una de la situaciones que se describen debajo, ajustar manualmente los 
+1.  **Elicitación de _priors_**
+
+    En cada una de la situaciones que se describen debajo, ajustar manualmente los 
     parámetros de una distribución $\text{Beta}$ para que reflejen la información brindada.
     En algunos casos puede haber varias respuestas aceptables en vez de existir
     "la respuesta correcta".
@@ -352,13 +420,24 @@ simulaciones.
     i. Un grupo de investigación del CONICET desarrolló una nueva prueba para una 
     enfermedad bastante rara. El grupo espera que esta prueba arroje resultados correctos
     el 80% de las veces, con una varianza de 0.05.
-    i. El primo de un amigo disfruta de salir a pescar, y lo hace muy seguido. 
-    En el asado de los Jueves dice que "El 90% de las veces que salgo a pescar, vuelvo con
-    algo. Si te tuviera que dar un rango, te diría entre el 85% y el 100% de las veces".
+    i. El primo de un amigo es un apasionado de la pesca, lo practica muy seguido, y se 
+    dice ser muy bueno. Según comenta tu amigo, en el asado de los Jueves el pescador dijo
+    lo siguiente: 
     
-1.  Efecto de la parametrización
+    > Si tengo que hacer un promedio, 9 de cada 10 veces que salgo, vuelvo con algo. 
+    > Pero últimamente te diría que siempre es 10 de 10. Estoy infalible.
+    > La verdad es que soy un crack de la pesca.
     
-    Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para explorar los efectos de las siguientes elecciones de distribuciones _a priori_
+    Ante el descreimiento de algunos de los comensales supo reconocer que no siempre le 
+    fue tan bien:
+    
+    > Tuve mis malas rachas, pero nunca menos de 8 pescas de cada 10 salidas.
+    
+1.  **Efecto de la parametrización**
+    
+    Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea 
+    $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para 
+    explorar los efectos de las siguientes elecciones de distribuciones _a priori_
     
     i. Si $\theta \sim \text{Uniforme}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
     i. Si $\theta \sim \text{Beta}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
