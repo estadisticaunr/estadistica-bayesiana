@@ -2,7 +2,7 @@
 title: "Práctica - Unidad 1"
 bibliography: ../references.bib
 nocite: |
-  @Johnson2021, @McElreath2020, @Martin2021, @Hoff2009, @Downey2021
+  @Johnson2021, @McElreath2020, @Martin2021, @Hoff2009, @Downey2021, @Barber2012
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_01.pdf
 editor_options: 
   markdown: 
@@ -30,17 +30,6 @@ captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
 
 El propósito de esta sección de la práctica es resolver situaciones que impliquen la 
 aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso de Probabilidad.
-
-1.  **El lenguaje de las probabilidades**
-
-    Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
-
-    a.  Probabilidad de un parámetro dados los datos observados
-    b.  La distribución de probabilidad de los parámetros antes de ver los datos
-    c.  La verosimilitud de los datos para un valor dado de los parámetros
-    d.  La probabilidad de una observación nueva luego de observar los datos
-    e.  La probabilidad de una observación antes de ver los datos
-    <!-- @Martin2021 -->
     
 1.  **Demostración**
 
@@ -245,6 +234,17 @@ Ahora los problemas se tratan de realizar inferencias sobre posibles causas de c
 datos observados. Se incrementa el rigor matemático, aparecen distribuciones de 
 probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.
 
+1.  **El lenguaje de las probabilidades**
+
+    Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
+
+    a.  Probabilidad de un parámetro dados los datos observados
+    b.  La distribución de probabilidad de los parámetros antes de ver los datos
+    c.  La verosimilitud de los datos para un valor dado de los parámetros
+    d.  La probabilidad de una observación nueva luego de observar los datos
+    e.  La probabilidad de una observación antes de ver los datos
+    <!-- @Martin2021 -->
+
 1.  **Qué datazo me tiraste, rey**
 
     Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
@@ -422,6 +422,12 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     i. ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
     i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+    
+1.  **¡Saludos a los cubos con puntos! (...) Serán dados**
+
+    Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos
+    es 9. ¿Cuál es la distribución _a posteriori_ de los puntajes de los dados?
+    <!-- @Barber2012 -->
 
 
 ## Conceptuales
