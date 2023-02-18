@@ -209,15 +209,6 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="regla-de-bayes">Regla de Bayes</h2>
 <p>El propósito de esta sección de la práctica es resolver situaciones que impliquen la aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso de Probabilidad.</p>
 <ol type="1">
-<li><p><strong>El lenguaje de las probabilidades</strong></p>
-<p>Escribir la expresión matemática para cada una de las siguientes descripciones verbales:</p>
-<ol type="a">
-<li>Probabilidad de un parámetro dados los datos observados</li>
-<li>La distribución de probabilidad de los parámetros antes de ver los datos</li>
-<li>La verosimilitud de los datos para un valor dado de los parámetros</li>
-<li>La probabilidad de una observación nueva luego de observar los datos</li>
-<li>La probabilidad de una observación antes de ver los datos <!-- @Martin2021 --></li>
-</ol></li>
 <li><p><strong>Demostración</strong></p>
 <p>Demuestra la validez de la siguiente expresión de la Regla de Bayes</p>
 <p><span class="math display">\[
@@ -335,6 +326,15 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <h2 class="anchored" data-anchor-id="inferencia-bayesiana">Inferencia Bayesiana</h2>
 <p>En esta parte de la práctica, se le otorga un significado a las cantidades que aparecen en la Regla de Bayes modificando conceptualmente el enfoque de las situaciones problemáticas. Ahora los problemas se tratan de realizar inferencias sobre posibles causas de ciertos datos observados. Se incrementa el rigor matemático, aparecen distribuciones de probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.</p>
 <ol type="1">
+<li><p><strong>El lenguaje de las probabilidades</strong></p>
+<p>Escribir la expresión matemática para cada una de las siguientes descripciones verbales:</p>
+<ol type="a">
+<li>Probabilidad de un parámetro dados los datos observados</li>
+<li>La distribución de probabilidad de los parámetros antes de ver los datos</li>
+<li>La verosimilitud de los datos para un valor dado de los parámetros</li>
+<li>La probabilidad de una observación nueva luego de observar los datos</li>
+<li>La probabilidad de una observación antes de ver los datos <!-- @Martin2021 --></li>
+</ol></li>
 <li><p><strong>Qué datazo me tiraste, rey</strong></p>
 <p>Los M&amp;Ms azul fueron introducidos en el año 1995 (<a href="http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html">antes había dos tipos de marrón</a>)</p>
 <ul>
@@ -430,6 +430,8 @@ Y | n \sim \text{Binomial}(n, \theta)
 <li>¿Cuál es la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, la probabilidad de obtener cara?</li>
 <li>¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></li>
 </ol></li>
+<li><p><strong>¡Saludos a los cubos con puntos! (…) Serán dados</strong></p>
+<p>Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos es 9. ¿Cuál es la distribución <em>a posteriori</em> de los puntajes de los dados? <!-- @Barber2012 --></p></li>
 </ol>
 </section>
 <section id="conceptuales" class="level2">
@@ -489,6 +491,9 @@ Computer Age Statistical Inference:
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Barber2012" class="csl-entry" role="doc-biblioentry">
+Barber, David. 2012. <em>Bayesian Reasoning and Machine Learning</em>. Cambridge University Press. <a href="http://web4.cs.ucl.ac.uk/staff/D.Barber/pmwiki/pmwiki.php?n=Brml.HomePage">http://web4.cs.ucl.ac.uk/staff/D.Barber/pmwiki/pmwiki.php?n=Brml.HomePage</a>.
+</div>
 <div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
 Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
 </div>
