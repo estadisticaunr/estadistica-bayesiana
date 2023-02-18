@@ -13,7 +13,6 @@ data[] <- lapply(data, as.character)
 data[] <- lapply(data, function(x) gsub("\n", "<br>", x))
 ```
 
-
 ```{r, echo=FALSE}
 enquote <- function(x) {paste0("'", x, "'")}
 
