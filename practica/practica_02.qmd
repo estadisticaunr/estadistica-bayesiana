@@ -33,6 +33,81 @@ lenguaje `R` para verificar los resultados, mostrar soluciones alternativas y ej
 el uso de una herramienta que será muy útil a lo largo de todo el curso y de la vida
 profesional.
 
+1.  **¿Quién domina el _posterior_?**
+
+    Para cada una de las situaciones siguientes, se da una distribución _a priori_ Beta
+    para el parámetro $\pi$ de un ensayo binomial. Para cada escenario, identificar cuál de
+    estos se cumple: el _prior_ tiene mayor influencia en el _posterior_, los datos tienen
+    más influencia en el _posteriori_, o la creencia _a priori_ y los datos influyen de manera
+    similar en la creencia _a posteriori_
+
+    a. _Prior_: \pi \mid \text{Beta}(1,4), observaciones: $Y=8$ éxitos en $n=10$ ensayos
+    a. _Prior_: \pi \mid \text{Beta}(20,3), observaciones: $Y=0$ éxitos en $n=1$ ensayos
+    a. _Prior_: \pi \mid \text{Beta}(4,2), observaciones: $Y=1$ éxitos en $n=3$ ensayos
+    a. _Prior_: \pi \mid \text{Beta}(3,10), observaciones: $Y=10$ éxitos en $n=13$ ensayos
+    a. _Prior_: \pi \mid \text{Beta}(20,2), observaciones: $Y=10$ éxitos en $n=200$ ensayos
+
+
+1.  **Más o menos certeza**
+
+    Sea $\theta$ la proporción de personas que prefieren los perros a los gatos. Suponga que
+    se elige una distribución $\text{Beta}(7,2)$ para representar la creencia _a priori_
+
+    i. De acuerdo al _prior_ ¿cuáles son valores razonables para $\theta$?
+    i. Se observa en una encuesta que $Y=19$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    eso el conocimiento acerca de $\theta$? Comenta en términos de la evolución de la credibilidad
+    media y del grado de certidumbre acerca de $\theta$.
+    i. Si, en lugar de eso, se determina que $Y=1$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    ahora el grado de credibilidad de los diferentes valores de $\theta$?
+    i. Si, en lugar de eso, se determina que $Y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    ahora el grado de credibilidad de los diferentes valores de $\theta$?
+    
+1.  **Pasito a pasito**
+
+    Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
+    _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente:
+
+    i. Primera observación: éxito
+    i. Segunda observación: éxito
+    i. Tercera observación: fracaso
+    i. Cuarta observación: éxito
+    
+1.  **Pasitos tras pasitos**
+
+    Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
+    _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente dados conjuntos
+    de cinco observaciones:
+
+    i. Primeraas observaciones: tres éxitos
+    i. Segundas observaciones: un éxito
+    i. Terceras observaciones: un éxito
+    i. Cuartas observaciónes: dos éxitos
+    
+1.  **Diferentes observaciones, diferentes _posteriors_**
+
+    Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. Tres empleados
+    comparten la misma creencia _a priori_ para $\pi$, la probabilidad de que un cliente haga clic
+    en el anuncio cuando lo ve. No obstante, los tres empleados realizan tres experimentos distintos y
+    por ende tienen acceso a datos diferentes. El primer empleado prueba el anuncio en una persona, que
+    no cliquea el anuncio. El segundo lo prueba en 10 personas, de las cuales 3 cliquean el anuncio. El último
+    lo prueba en 100 personas, 20 de las cuales cliquean el anuncio.
+
+    i. ¿Cuál es el entendimiento _a priori_ que los empleados tienen sobre $\pi$?
+    i. Especifique la distribución _a posteriori_ de cada uno de los empleados
+    i. Compare las distribuciones _a posteriori_ de cada empleado
+    
+1. **¿Galletitas o masitas?**
+
+    La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen
+    una distancia "caminable" suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre
+    la denominación _galletitas_ versus _masitas_. Un rosarino pone un _prior_ $\text{Beta}(20,2)$ a la proporción
+    de personas que dicen _galletitas_, mientras que un oriundo de una localidad del interior dirá que la credibilidad
+    _a priori_ es $\text{Beta}(2,8)$.
+    
+    i. Resuma ambas distribuciones _a priori_ y explique con sus palabras lo que implican
+    i. Con la información de sus compañerxs de curso, actualice ambas distribuciones _a priori_. ¿Es suficiente esa información
+    para acercar ambas posturas?
+
 1.  **Mi primera huerta**
 
     En un campamento de verano para infantes se realizaron actividades
@@ -125,6 +200,24 @@ profesional.
     i. ¿A qué valor tiende la media a posteriori cuando $a \to 0$ y $b \to 0$? 
     Recuerde que la media de una distribución $\text{Ga}(a, b)$ es $a/b$.
     <!-- @Murphy2012 -->
+    
+    
+1.  **Gamma-Poisson**
+
+    Sea $\lambda$ la tasa de mensajes de WhatsApp que una persona recibe en una hora. 
+    Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5
+    con desvío estándar de 0.25 mensajes.
+    
+    i. Elija una distribución Gamma que represente adecuadamente lo que se cree acerca de $\lambda$
+    i. ¿Cuál es la probabilidad _a priori_ de que la tasa de mensajes sea mayor a 10?
+    i. ¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?
+    
+    Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.
+    
+    i. Graficar la verosimilitud de $\lambda$
+    i. Determinar la distribución _a posteriori_ de $\lambda$
+    i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10? 
+    i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
 
 1.  **Inferencia sobre una distribución Uniforme**
 
@@ -218,6 +311,36 @@ profesional.
     i. Explique por que difieren el estimador MV de la media _a posteriori_. 
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
+    
+1.  **Alter-ego**
+
+    El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
+    Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
+    con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes $Y$ varían
+    normalmente alrededor de $\mu$ con una desviación estándar de 0.4
+    
+    i. ¿Cuál es la probabilidad _a priori_ de que un estudiante se saque más de 9 en un examen final?
+    i. El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
+    media de 8.6. Halle la distribución _a posteriori_ de $\mu$.
+    i. El profesor Evangetto toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
+    media de 8.2. Halle la distribución _a posteriori_ de $\mu$.
+    i. Combine las notas de ambos exámenes para obtener la distribución _a posteriori_ de $\mu$
+    i. ¿Cuál es la probabilidad _a posteriori_ de que un estudiante se saque más de 9 en un examen final?
+    
+1. 
+    
+    Considere el siguiente modelo:
+
+    $$
+    Y\mid\theta \sim \text{Geom}(\theta)
+    \theta \sim \text{Beta}(\alpha,\beta)
+    $$
+    
+    donde la función de densidad de la distribución geométrica es $f(y\mid\theta) = \theta(1-\theta)^{y-1}$ para $y \in {1,2,\dots}$.
+    
+    i. ¿Qué debería ocurrir con la distribución _a posteriori_ de $\theta$ para poder afirmar que la distribución geométrica es conjugada
+    de la beta?
+    i. Derive la distribución _a posteriori_ de $\theta$ y concluya.
 
 1.  **Calculo de conjugada no tradicional??**
     * Binomial negativa - Beta
