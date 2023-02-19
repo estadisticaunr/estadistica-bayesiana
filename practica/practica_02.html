@@ -209,6 +209,52 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</h2>
 <p>Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el lenguaje <code>R</code> para verificar los resultados, mostrar soluciones alternativas y ejercitar el uso de una herramienta que será muy útil a lo largo de todo el curso y de la vida profesional.</p>
 <ol type="1">
+<li><p><strong>¿Quién domina el <em>posterior</em>?</strong></p>
+<p>Para cada una de las situaciones siguientes, se da una distribución <em>a priori</em> Beta para el parámetro <span class="math inline">\(\pi\)</span> de un ensayo binomial. Para cada escenario, identificar cuál de estos se cumple: el <em>prior</em> tiene mayor influencia en el <em>posterior</em>, los datos tienen más influencia en el <em>posteriori</em>, o la creencia <em>a priori</em> y los datos influyen de manera similar en la creencia <em>a posteriori</em></p>
+<ol type="a">
+<li><em>Prior</em>: (1,4), observaciones: <span class="math inline">\(Y=8\)</span> éxitos en <span class="math inline">\(n=10\)</span> ensayos</li>
+<li><em>Prior</em>: (20,3), observaciones: <span class="math inline">\(Y=0\)</span> éxitos en <span class="math inline">\(n=1\)</span> ensayos</li>
+<li><em>Prior</em>: (4,2), observaciones: <span class="math inline">\(Y=1\)</span> éxitos en <span class="math inline">\(n=3\)</span> ensayos</li>
+<li><em>Prior</em>: (3,10), observaciones: <span class="math inline">\(Y=10\)</span> éxitos en <span class="math inline">\(n=13\)</span> ensayos</li>
+<li><em>Prior</em>: (20,2), observaciones: <span class="math inline">\(Y=10\)</span> éxitos en <span class="math inline">\(n=200\)</span> ensayos</li>
+</ol></li>
+<li><p><strong>Más o menos certeza</strong></p>
+<p>Sea <span class="math inline">\(\theta\)</span> la proporción de personas que prefieren los perros a los gatos. Suponga que se elige una distribución <span class="math inline">\(\text{Beta}(7,2)\)</span> para representar la creencia <em>a priori</em></p>
+<ol type="i">
+<li>De acuerdo al <em>prior</em> ¿cuáles son valores razonables para <span class="math inline">\(\theta\)</span>?</li>
+<li>Se observa en una encuesta que <span class="math inline">\(Y=19\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia eso el conocimiento acerca de <span class="math inline">\(\theta\)</span>? Comenta en términos de la evolución de la credibilidad media y del grado de certidumbre acerca de <span class="math inline">\(\theta\)</span>.</li>
+<li>Si, en lugar de eso, se determina que <span class="math inline">\(Y=1\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
+<li>Si, en lugar de eso, se determina que <span class="math inline">\(Y=10\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
+</ol></li>
+<li><p><strong>Pasito a pasito</strong></p>
+<p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito de un evento de interés. Sea <span class="math inline">\(\text{Beta}(2,3)\)</span> la distribución <em>a priori</em> para <span class="math inline">\(\theta\)</span>. Actualiza la distribución <em>a posteriori</em> para <span class="math inline">\(\theta\)</span> secuencialmente:</p>
+<ol type="i">
+<li>Primera observación: éxito</li>
+<li>Segunda observación: éxito</li>
+<li>Tercera observación: fracaso</li>
+<li>Cuarta observación: éxito</li>
+</ol></li>
+<li><p><strong>Pasitos tras pasitos</strong></p>
+<p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito de un evento de interés. Sea <span class="math inline">\(\text{Beta}(2,3)\)</span> la distribución <em>a priori</em> para <span class="math inline">\(\theta\)</span>. Actualiza la distribución <em>a posteriori</em> para <span class="math inline">\(\theta\)</span> secuencialmente dados conjuntos de cinco observaciones:</p>
+<ol type="i">
+<li>Primeraas observaciones: tres éxitos</li>
+<li>Segundas observaciones: un éxito</li>
+<li>Terceras observaciones: un éxito</li>
+<li>Cuartas observaciónes: dos éxitos</li>
+</ol></li>
+<li><p><strong>Diferentes observaciones, diferentes <em>posteriors</em></strong></p>
+<p>Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. Tres empleados comparten la misma creencia <em>a priori</em> para <span class="math inline">\(\pi\)</span>, la probabilidad de que un cliente haga clic en el anuncio cuando lo ve. No obstante, los tres empleados realizan tres experimentos distintos y por ende tienen acceso a datos diferentes. El primer empleado prueba el anuncio en una persona, que no cliquea el anuncio. El segundo lo prueba en 10 personas, de las cuales 3 cliquean el anuncio. El último lo prueba en 100 personas, 20 de las cuales cliquean el anuncio.</p>
+<ol type="i">
+<li>¿Cuál es el entendimiento <em>a priori</em> que los empleados tienen sobre <span class="math inline">\(\pi\)</span>?</li>
+<li>Especifique la distribución <em>a posteriori</em> de cada uno de los empleados</li>
+<li>Compare las distribuciones <em>a posteriori</em> de cada empleado</li>
+</ol></li>
+<li><p><strong>¿Galletitas o masitas?</strong></p>
+<p>La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen una distancia “caminable” suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre la denominación <em>galletitas</em> versus <em>masitas</em>. Un rosarino pone un <em>prior</em> <span class="math inline">\(\text{Beta}(20,2)\)</span> a la proporción de personas que dicen <em>galletitas</em>, mientras que un oriundo de una localidad del interior dirá que la credibilidad <em>a priori</em> es <span class="math inline">\(\text{Beta}(2,8)\)</span>.</p>
+<ol type="i">
+<li>Resuma ambas distribuciones <em>a priori</em> y explique con sus palabras lo que implican</li>
+<li>Con la información de sus compañerxs de curso, actualice ambas distribuciones <em>a priori</em>. ¿Es suficiente esa información para acercar ambas posturas?</li>
+</ol></li>
 <li><p><strong>Mi primera huerta</strong></p>
 <p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, germinaron 8 de ellas. Llamaremos con <span class="math inline">\(\theta\)</span> a la probabilidad de que una semilla de tomate germine y asumimos una distribución <span class="math inline">\(\text{Beta}(1, 1)\)</span>.</p>
 <ol type="i">
@@ -262,6 +308,20 @@ x \in \{0, 1, 2, \cdots \}
 <li>Derive el estimador de máxima verosimilitud del parámetro <span class="math inline">\(\lambda\)</span>.</li>
 <li>Derive el posterior <span class="math inline">\(p(\lambda|D)\)</span> suponiendo que el prior sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(p(\lambda) = \text{Ga}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}\)</span>. Ayuda: El posterior también es una distribución Gamma.</li>
 <li>¿A qué valor tiende la media a posteriori cuando <span class="math inline">\(a \to 0\)</span> y <span class="math inline">\(b \to 0\)</span>? Recuerde que la media de una distribución <span class="math inline">\(\text{Ga}(a, b)\)</span> es <span class="math inline">\(a/b\)</span>. <!-- @Murphy2012 --></li>
+</ol></li>
+<li><p><strong>Gamma-Poisson</strong></p>
+<p>Sea <span class="math inline">\(\lambda\)</span> la tasa de mensajes de WhatsApp que una persona recibe en una hora. Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5 con desvío estándar de 0.25 mensajes.</p>
+<ol type="i">
+<li>Elija una distribución Gamma que represente adecuadamente lo que se cree acerca de <span class="math inline">\(\lambda\)</span></li>
+<li>¿Cuál es la probabilidad <em>a priori</em> de que la tasa de mensajes sea mayor a 10?</li>
+<li>¿Cuántos mensajes se espera que reciba una persona en promedio en una hora?</li>
+</ol>
+<p>Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.</p>
+<ol type="i">
+<li>Graficar la verosimilitud de <span class="math inline">\(\lambda\)</span></li>
+<li>Determinar la distribución <em>a posteriori</em> de <span class="math inline">\(\lambda\)</span></li>
+<li>¿Cuál es la probabilidad <em>a posteriori</em> de que la tasa de mensajes sea mayor a 10?</li>
+<li>¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?</li>
 </ol></li>
 <li><p><strong>Inferencia sobre una distribución Uniforme</strong></p>
 <p>Considere una distribución uniforme crentrada en <span class="math inline">\(0\)</span> y rango <span class="math inline">\(2a\)</span>. La función de densidad de probabilidad es</p>
@@ -321,6 +381,25 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
 <li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
+</ol></li>
+<li><p><strong>Alter-ego</strong></p>
+<p>El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. Sus colegas les dijeron que el puntaje promedio en un examen final, <span class="math inline">\(\mu\)</span>, varía normalmente año a año con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes <span class="math inline">\(Y\)</span> varían normalmente alrededor de <span class="math inline">\(\mu\)</span> con una desviación estándar de 0.4</p>
+<ol type="i">
+<li>¿Cuál es la probabilidad <em>a priori</em> de que un estudiante se saque más de 9 en un examen final?</li>
+<li>El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota media de 8.6. Halle la distribución <em>a posteriori</em> de <span class="math inline">\(\mu\)</span>.</li>
+<li>El profesor Evangetto toma el examen final y observa que sus 20 estudiantes obtuvieron una nota media de 8.2. Halle la distribución <em>a posteriori</em> de <span class="math inline">\(\mu\)</span>.</li>
+<li>Combine las notas de ambos exámenes para obtener la distribución <em>a posteriori</em> de <span class="math inline">\(\mu\)</span></li>
+<li>¿Cuál es la probabilidad <em>a posteriori</em> de que un estudiante se saque más de 9 en un examen final?</li>
+</ol></li>
+<li><p>Considere el siguiente modelo:</p>
+<p><span class="math display">\[
+Y\mid\theta \sim \text{Geom}(\theta)
+\theta \sim \text{Beta}(\alpha,\beta)
+\]</span></p>
+<p>donde la función de densidad de la distribución geométrica es <span class="math inline">\(f(y\mid\theta) = \theta(1-\theta)^{y-1}\)</span> para <span class="math inline">\(y \in {1,2,\dots}\)</span>.</p>
+<ol type="i">
+<li>¿Qué debería ocurrir con la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> para poder afirmar que la distribución geométrica es conjugada de la beta?</li>
+<li>Derive la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y concluya.</li>
 </ol></li>
 <li><p><strong>Calculo de conjugada no tradicional??</strong></p>
 <ul>
