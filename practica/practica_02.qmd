@@ -2,7 +2,7 @@
 title: "Práctica - Unidad 2"
 bibliography: ../references.bib
 nocite: |
-    @Martin2021, @Downey2021
+    @Martin2021, @Downey2021, @Johnson2021, @Reich2020
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_02.pdf
 editor_options: 
   markdown: 
@@ -312,6 +312,17 @@ profesional.
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
     
+1. **Bichos**
+
+    Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
+    promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
+    media 0.50 y desvío estándar 0.25. En una investigación en 20 $\text{m}^2$ de área, se hallan 3, 2, 5, 1 y 2
+    insectos en los primeros 5 $\text{m}^2$ y ninguno en la fracción de tierra restante.
+    
+    i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área
+    i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
+    exploración de un área de 10 $\text{m}^2$
+    
 1.  **Alter-ego**
 
     El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
@@ -327,24 +338,50 @@ profesional.
     i. Combine las notas de ambos exámenes para obtener la distribución _a posteriori_ de $\mu$
     i. ¿Cuál es la probabilidad _a posteriori_ de que un estudiante se saque más de 9 en un examen final?
     
-1. 
+1.  **Otras distribuciones conjugadas (I)**
     
     Considere el siguiente modelo:
 
     $$
-    Y\mid\theta \sim \text{Geom}(\theta)
+    \begin{array}{l}
+    Y\mid\theta \sim \text{Geom}(\theta) \\
     \theta \sim \text{Beta}(\alpha,\beta)
+    \end{array}
     $$
-    
     donde la función de densidad de la distribución geométrica es $f(y\mid\theta) = \theta(1-\theta)^{y-1}$ para $y \in {1,2,\dots}$.
     
     i. ¿Qué debería ocurrir con la distribución _a posteriori_ de $\theta$ para poder afirmar que la distribución geométrica es conjugada
     de la beta?
     i. Derive la distribución _a posteriori_ de $\theta$ y concluya.
 
-1.  **Calculo de conjugada no tradicional??**
-    * Binomial negativa - Beta
-    * Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?
+1.  **Otras distribuciones conjugadas (II)**
+
+    Considere el siguiente modelo:
+    
+    $$
+    \begin{array}{l}
+    Y\mid\theta \sim \text{BinomialNeg}(\theta,m) \\
+    \theta \sim \text{Beta}(\alpha,\beta)
+    \end{array}
+    $$
+    donde la función de densidad de la distribución binomial negativa es $f(y\mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y.
+    
+    Obtenga la distribución _a posteriori_ de $\theta$.
+    
+1.  **Otras distribuciones conjugadas (III)**
+
+    Considere el siguiente modelo:
+    
+    $$
+    \begin{array}{l}
+    Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
+    \end{array}
+    $$
+    donde la función de densidad exponencial es $f(y\mid\theta) = \theta e^{-\lambda y}$
+    
+    Elija una distribución _a priori_ conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad _a posteriori_
+    
+
 
 ## Simulaciones
 
@@ -354,6 +391,17 @@ contiene ejercicios que deben ser resueltos mediante técnicas de simulación im
 en `R`. Es posible que en algunos casos también se pueda obtener una solución analítica. 
 En estos casos, puede resultar útil obtener también una solución a mano para comparar 
 resultados, el nivel de dificultad y que tan intuitivo resultan ambos enfoques.
+
+1.  **Entrada en calor**
+
+    Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad
+    
+    i. Intervalo del 95\% para $\pi$ siendo $\pi\mid y \sim \text{Beta}(4,5)$
+    i. Intervalo del 60\% para $\pi$ siendo $\pi\mid y \sim \text{Beta}(4,5)$
+    i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid y \sim \text{Gamma}(1,8)$
+    i. Intervalo del 95\% para $\lambda$ siendo $\lambda\mid y \sim \text{Gamma}(2,5)$
+    i. Intervalo del 81\% para $\mu$ siendo $\mu\mid y \sim \mathcal{N}(10,2^2)$
+    i. Intervalo del 99\% para $\pi$ siendo $\mu\mid y \sim \mathcal{N}(-3,1^2)$
 
 1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
     
@@ -566,6 +614,25 @@ de probabilidad como herramienta para reflejar información de un problema deter
     i. Si $\theta \sim \text{Beta}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
     i. Si $\gamma \sim \text{Uniforme}(0,100)$, ¿cuál es el _prior_ inducido para $\theta$?
     i. Si $\gamma \sim \text{Gamma}(1,1)$, ¿cuál es el _prior_ inducido para $\theta$? 
+    
+    
+## Teoría de la Decisión
+
+1.  Dada la distribución _a posteriori_ $p(\theta \mid y)$, probar que el estimador de Bayes
+    que minimiza la pérdida $L_1$ es la mediana de $p(\theta \mid y)$
+    <!-- https://stats.stackexchange.com/questions/376867/proof-that-posterior-median-is-the-bayes-estimate-of-absolute-loss -->
+    
+1.  Suponga que la distribución _a posteriori_ de $\pi$, $p(\pi \mid y)$, es $\text{Beta}(12,4)$.
+    Determine mediante simulación el estimador que minimiza la pérdida de Huber:
+    $$
+    \mathcal{L}(\delta,\pi) =
+    \begin{cases}
+    \frac{1}{2} (\pi - \delta)^2 \text{ si } |\pi - \delta| \leq \alpha \\
+    \alpha \cdot (|\pi - \delta|-\frac{1}{2}\alpha) \text{ en cualquier otro caso}
+    \end{cases}
+    $$
+1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
+    Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor?
 
 ## Notas
 
