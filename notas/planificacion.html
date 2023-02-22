@@ -172,7 +172,7 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li>Práctica 1 (ver qué ejercicios)</li>
 </ul></li>
-<li>Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey).
+<li>Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey), problema de detección de una explosión (ver Barber).
 <ul>
 <li>Discutir modelos generativos (probabilidad hacia adelante e inversa).</li>
 <li>Práctica 1 (ver qué ejercicios)</li>
@@ -185,12 +185,20 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li><p>Modelo beta-binomial</p>
 <ul>
-<li>Demostración</li>
+<li>Demostración
+<ul>
+<li>Beta(a,b) siendo a y b “pseudocuentas”</li>
+</ul></li>
+<li>Definición de “distribuciones conjugadas” (ver BDA 2.4)</li>
 <li>Enfoque intuitivo</li>
-<li>Distribución a posteriori como compromiso entre <em>likelihood</em> y <em>prior</em></li>
+<li>Distribución a posteriori como compromiso entre <em>likelihood</em> y <em>prior</em>
+<ul>
+<li>ver caso particular y luego generalidad 2.2 de BDA</li>
+</ul></li>
 <li>Razonamiento secuencial</li>
 <li>Resumen de la distribución <em>a posteriori</em>: media, moda, intervalos de credibilidad. Cálculos a mano, cálculos exacto con funciones de R. Simulaciones (vamos a introducir la idea de utilizar simulaciones para resolver problemas)</li>
 <li>Predicciones: simulaciones. Problema del amanecer.</li>
+<li>Estimación por máxima verosimilitud</li>
 <li>Práctica 2</li>
 </ul></li>
 <li><p>Elección de la distribución a priori</p>
@@ -199,16 +207,41 @@ ul.task-list li input[type="checkbox"] {
 </ul></li>
 <li><p>Modelo normal-normal</p>
 <ul>
+<li>Demostración</li>
 <li>Enfoque intuitivo</li>
 <li>Distribución a posteriori como compromiso entre <em>likelihood</em> y <em>prior</em></li>
 <li>Razonamiento secuencial</li>
-<li>Predicciones: distribución predictiva. Incertidumbre propia del sampleo + incertidumbre.</li>
+<li>Predicciones: distribución predictiva. Incertidumbre propia del sampleo + incertidumbre (ver BDA 2.5 y <em>posterior predictive distribution</em>). <em>Plugin approximation</em> vs <em>posterior predictive distribution</em> (3.1.5.2 de Murphy)</li>
+<li>Modelo normal con <em>prior</em> uniforme (ver Devinderjit y Skilling, Sección 2.3 – Example 2)</li>
+<li>(¿) Modelo normal con media conocida y varianza desconocida (?) (ver BDA 2.6)</li>
 </ul></li>
 <li><p>Modelo Gamma-Poisson</p></li>
 <li><p>Otros modelos de distribuciones conjugadas para una variable (ver Práctica 2)</p></li>
-<li><p>Modelos de varias variables</p></li>
+<li><p><strong>Presentación TP1 – Conjugación Dirichlet-Multinomial</strong></p></li>
+<li><p>Modelos de varias variables</p>
+<ul>
+<li><p>Normal con media y desvío desconocido: modelo normal – normal-gamma-inversa (ver Ejemplo 2.8 de Carlin y Louis, BDA Sección 3.3 y 3.2.3.3 de Murphy)</p></li>
+<li><p>Normal con con media y desvío desconocido: <em>prior</em> uniforme (ver Devinderjit y Skilling, Sección 3.3 – Example 5 y ver BDA Sección 3.2). Relación con máxima verosimilitud (ver Devinderjit y Skilling, Sección 3.5 – Approximations)</p></li>
+<li><p>(¿) Distribuciones marginales de los parámetros (?)</p></li>
+</ul></li>
 </ul>
-<p>…</p>
+</section>
+<section id="nociones-de-teoría-de-la-decisión" class="level1">
+<h1>Nociones de Teoría de la Decisión</h1>
+<ul>
+<li><p>El resultado de la inferencia bayesiana es la distribución <em>a posteriori…</em> aún así, a veces podemos querer resumirla</p></li>
+<li><p>¿Por qué tiene sentido resumir la distribución <em>a posteriori</em> usando la media?</p></li>
+<li><p>Funciones de pérdida (ver <a href="https://nbviewer.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter5_LossFunctions/Ch5_LossFunctions_PyMC2.ipynb">Davidson-Pilon, Capítulo 5</a>)</p></li>
+<li><p><em>Posterior expected loss</em> (ver Robert, Sección 2.3: Utility and loss)</p>
+<ul>
+<li>Ejemplo de COVID-19 de Murphy (3.8.2)</li>
+</ul></li>
+<li><p>Demostración de que la media minimiza la pérdida cuadrática (ver Robert, Proposición 2.5.1)</p></li>
+<li><p>Ejercicios (Práctica 2)</p></li>
+</ul>
+</section>
+<section id="métodos-computacionales" class="level1">
+<h1>Métodos Computacionales</h1>
 <ul>
 <li>Grid approximation de un problema para estimar N y theta.</li>
 </ul>
