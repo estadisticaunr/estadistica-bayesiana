@@ -7,61 +7,119 @@ editor_options:
 
 -   Actividad Rocklets
 
-# Repaso 
+# Repaso
 
--   Repaso de probabilidad, distribuciones conjuntas, distribuciones marginales
+-   Repaso de probabilidad, distribuciones conjuntas, distribuciones
+    marginales
 -   Práctica 0 (ver qué ejercicios)
 
 # Introducción
 
 -   Probabilidad para cuantificar la incertidumbre
-    + Definiciones de probabilidad
-        + Clasica
-        + Frecuentista
-        + Bayesiana (subjetiva)
-    + Probabilidades subjetivas
-    + Lógica y razonamiento plausible (ver Jaynes)
-    + Dutch book
-    
+    -   Definiciones de probabilidad
+        -   Clasica
+        -   Frecuentista
+        -   Bayesiana (subjetiva)
+    -   Probabilidades subjetivas
+    -   Lógica y razonamiento plausible (ver Jaynes)
+    -   Dutch book
 -   Regla de Bayes
-    + Historia: Bayes, Price, Laplace
-    + Presentación tradicional de la Regla de Bayes
-        + Ley de la probabilidad total
-    + Práctica 1 (ver qué ejercicios)
+    -   Historia: Bayes, Price, Laplace
+    -   Presentación tradicional de la Regla de Bayes
+        -   Ley de la probabilidad total
+    -   Práctica 1 (ver qué ejercicios)
+-   Inferencia bayesiana: problema original de Bayes, problema de la
+    percepción del suelo mojado, problema de las bolas (¿hecho en vivo
+    con Sugus?), problema del globo terráqueo (¿hecho en vivo?),
+    problema de detección de gluten (ver Downey), problema de detección
+    de una explosión (ver Barber).
+    -   Discutir modelos generativos (probabilidad hacia adelante e
+        inversa).
+    -   Práctica 1 (ver qué ejercicios)
+    -   Idea intuitiva: ¿qué es el *prior*? ¿qué es la función de
+        verosimilitud? ¿qué es el *posterior*?
 
--   Inferencia bayesiana: problema original de Bayes, problema de la percepción del suelo mojado, problema de las bolas (¿hecho en vivo con Sugus?), problema del globo terráqueo (¿hecho en vivo?), problema de detección de gluten (ver Downey).
-    + Discutir modelos generativos (probabilidad hacia adelante e inversa).
-    + Práctica 1 (ver qué ejercicios)
-    + Idea intuitiva: ¿qué es el _prior_? ¿qué es la función de verosimilitud? ¿qué es el _posterior_?
-    
 # Modelos de distribuciones conjugadas
 
 -   Modelo beta-binomial
-    + Demostración
-    + Enfoque intuitivo
-    + Distribución a posteriori como compromiso entre _likelihood_ y _prior_
-    + Razonamiento secuencial
-    + Resumen de la distribución _a posteriori_: media, moda, intervalos de credibilidad. Cálculos a mano, cálculos exacto con funciones de R. Simulaciones (vamos a introducir la idea de utilizar simulaciones para resolver problemas)
-    + Predicciones: simulaciones. Problema del amanecer.
-    + Práctica 2
-    
-- Elección de la distribución a priori
-    + Práctica 2
-    
-- Modelo normal-normal
-    + Enfoque intuitivo
-    + Distribución a posteriori como compromiso entre _likelihood_ y _prior_
-    + Razonamiento secuencial
-    + Predicciones: distribución predictiva. Incertidumbre propia del sampleo + incertidumbre.
-    
-- Modelo Gamma-Poisson
 
-- Otros modelos de distribuciones conjugadas para una variable (ver Práctica 2)
+    -   Demostración
+        -   Beta(a,b) siendo a y b "pseudocuentas"
+    -   Definición de "distribuciones conjugadas" (ver BDA 2.4)
+    -   Enfoque intuitivo
+    -   Distribución a posteriori como compromiso entre *likelihood* y
+        *prior*
+        -   ver caso particular y luego generalidad 2.2 de BDA
+    -   Razonamiento secuencial
+    -   Resumen de la distribución *a posteriori*: media, moda,
+        intervalos de credibilidad. Cálculos a mano, cálculos exacto con
+        funciones de R. Simulaciones (vamos a introducir la idea de
+        utilizar simulaciones para resolver problemas)
+    -   Predicciones: simulaciones. Problema del amanecer.
+    -   Estimación por máxima verosimilitud
+    -   Práctica 2
 
-- Modelos de varias variables 
+-   Elección de la distribución a priori
 
-...
+    -   Práctica 2
 
-- Grid approximation de un problema para estimar N y theta.
-    
-    
+-   Modelo normal-normal
+
+    -   Demostración
+    -   Enfoque intuitivo
+    -   Distribución a posteriori como compromiso entre *likelihood* y
+        *prior*
+    -   Razonamiento secuencial
+    -   Predicciones: distribución predictiva. Incertidumbre propia del
+        sampleo + incertidumbre (ver BDA 2.5 y *posterior predictive
+        distribution*). *Plugin approximation* vs *posterior predictive
+        distribution* (3.1.5.2 de Murphy)
+    -   Modelo normal con *prior* uniforme (ver Devinderjit y Skilling,
+        Sección 2.3 -- Example 2)
+    -   (¿) Modelo normal con media conocida y varianza desconocida (?)
+        (ver BDA 2.6)
+
+-   Modelo Gamma-Poisson
+
+-   Otros modelos de distribuciones conjugadas para una variable (ver
+    Práctica 2)
+
+-   **Presentación TP1 -- Conjugación Dirichlet-Multinomial**
+
+-   Modelos de varias variables
+
+    -   Normal con media y desvío desconocido: modelo normal --
+        normal-gamma-inversa (ver Ejemplo 2.8 de Carlin y Louis, BDA
+        Sección 3.3 y 3.2.3.3 de Murphy)
+
+    -   Normal con con media y desvío desconocido: *prior* uniforme (ver
+        Devinderjit y Skilling, Sección 3.3 -- Example 5 y ver BDA
+        Sección 3.2). Relación con máxima verosimilitud (ver Devinderjit
+        y Skilling, Sección 3.5 -- Approximations)
+
+    -   (¿) Distribuciones marginales de los parámetros (?)
+
+# Nociones de Teoría de la Decisión
+
+-   El resultado de la inferencia bayesiana es la distribución *a
+    posteriori...* aún así, a veces podemos querer resumirla
+
+-   ¿Por qué tiene sentido resumir la distribución *a posteriori* usando
+    la media?
+
+-   Funciones de pérdida (ver [Davidson-Pilon, Capítulo
+    5](https://nbviewer.org/github/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers/blob/master/Chapter5_LossFunctions/Ch5_LossFunctions_PyMC2.ipynb))
+
+-   *Posterior expected loss* (ver Robert, Sección 2.3: Utility and
+    loss)
+
+    -   Ejemplo de COVID-19 de Murphy (3.8.2)
+
+-   Demostración de que la media minimiza la pérdida cuadrática (ver
+    Robert, Proposición 2.5.1)
+
+-   Ejercicios (Práctica 2)
+
+# Métodos Computacionales
+
+-   Grid approximation de un problema para estimar N y theta.
