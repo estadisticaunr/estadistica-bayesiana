@@ -382,6 +382,12 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
+<li><p><strong>Bichos</strong></p>
+<p>Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento <em>a priori</em> del número promedio de insectos por unidad de área (<span class="math inline">\(\text{m}^2\)</span>) se puede representar con una distribución Gamma de media 0.50 y desvío estándar 0.25. En una investigación en 20 <span class="math inline">\(\text{m}^2\)</span> de área, se hallan 3, 2, 5, 1 y 2 insectos en los primeros 5 <span class="math inline">\(\text{m}^2\)</span> y ninguno en la fracción de tierra restante.</p>
+<ol type="i">
+<li>Halle la distribución <em>a posteriori</em> del número medio de insectos por unidad de área</li>
+<li>Halle la distribución predictiva <em>a posteriori</em> del número de insectos que se espera encontrar en una exploración de un área de 10 <span class="math inline">\(\text{m}^2\)</span></li>
+</ol></li>
 <li><p><strong>Alter-ego</strong></p>
 <p>El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. Sus colegas les dijeron que el puntaje promedio en un examen final, <span class="math inline">\(\mu\)</span>, varía normalmente año a año con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes <span class="math inline">\(Y\)</span> varían normalmente alrededor de <span class="math inline">\(\mu\)</span> con una desviación estándar de 0.4</p>
 <ol type="i">
@@ -391,27 +397,51 @@ p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li>Combine las notas de ambos exámenes para obtener la distribución <em>a posteriori</em> de <span class="math inline">\(\mu\)</span></li>
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que un estudiante se saque más de 9 en un examen final?</li>
 </ol></li>
-<li><p>Considere el siguiente modelo:</p>
+<li><p><strong>Otras distribuciones conjugadas (I)</strong></p>
+<p>Considere el siguiente modelo:</p>
 <p><span class="math display">\[
-Y\mid\theta \sim \text{Geom}(\theta)
+\begin{array}{l}
+Y\mid\theta \sim \text{Geom}(\theta) \\
 \theta \sim \text{Beta}(\alpha,\beta)
-\]</span></p>
-<p>donde la función de densidad de la distribución geométrica es <span class="math inline">\(f(y\mid\theta) = \theta(1-\theta)^{y-1}\)</span> para <span class="math inline">\(y \in {1,2,\dots}\)</span>.</p>
+\end{array}
+\]</span> donde la función de densidad de la distribución geométrica es <span class="math inline">\(f(y\mid\theta) = \theta(1-\theta)^{y-1}\)</span> para <span class="math inline">\(y \in {1,2,\dots}\)</span>.</p>
 <ol type="i">
 <li>¿Qué debería ocurrir con la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> para poder afirmar que la distribución geométrica es conjugada de la beta?</li>
 <li>Derive la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y concluya.</li>
 </ol></li>
-<li><p><strong>Calculo de conjugada no tradicional??</strong></p>
-<ul>
-<li>Binomial negativa - Beta</li>
-<li>Exponencial - Gamma. Modificar el ejercicio sobre Exponencial-Exponencial?</li>
-</ul></li>
+<li><p><strong>Otras distribuciones conjugadas (II)</strong></p>
+<p>Considere el siguiente modelo:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+Y\mid\theta \sim \text{BinomialNeg}(\theta,m) \\
+\theta \sim \text{Beta}(\alpha,\beta)
+\end{array}
+\]</span> donde la función de densidad de la distribución binomial negativa es $f(y, m) = {y+m-1 y} ^{m} (1-)^y.</p>
+<p>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>.</p></li>
+<li><p><strong>Otras distribuciones conjugadas (III)</strong></p>
+<p>Considere el siguiente modelo:</p>
+<p><span class="math display">\[
+\begin{array}{l}
+Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
+\end{array}
+\]</span> donde la función de densidad exponencial es <span class="math inline">\(f(y\mid\theta) = \theta e^{-\lambda y}\)</span></p>
+<p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em></p></li>
 </ol>
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
 <p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar útil obtener también una solución a mano para comparar resultados, el nivel de dificultad y que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
+<li><p><strong>Entrada en calor</strong></p>
+<p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad</p>
+<ol type="i">
+<li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid y \sim \text{Beta}(4,5)\)</span></li>
+<li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid y \sim \text{Beta}(4,5)\)</span></li>
+<li>Intervalo del 89% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid y \sim \text{Gamma}(1,8)\)</span></li>
+<li>Intervalo del 95% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid y \sim \text{Gamma}(2,5)\)</span></li>
+<li>Intervalo del 81% para <span class="math inline">\(\mu\)</span> siendo <span class="math inline">\(\mu\mid y \sim \mathcal{N}(10,2^2)\)</span></li>
+<li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid y \sim \mathcal{N}(-3,1^2)\)</span></li>
+</ol></li>
 <li><p><strong>Propiedades frecuentistas de inferencias bayesianas (!!)</strong></p>
 <p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
 <li><p><strong>¿Tendré que esperar mucho?</strong></p>
@@ -525,6 +555,20 @@ Y\mid\theta \sim \text{Geom}(\theta)
 </ol></li>
 </ol>
 </section>
+<section id="teoría-de-la-decisión" class="level2">
+<h2 class="anchored" data-anchor-id="teoría-de-la-decisión">Teoría de la Decisión</h2>
+<ol type="1">
+<li><p>Dada la distribución <em>a posteriori</em> <span class="math inline">\(p(\theta \mid y)\)</span>, probar que el estimador de Bayes que minimiza la pérdida <span class="math inline">\(L_1\)</span> es la mediana de <span class="math inline">\(p(\theta \mid y)\)</span> <!-- https://stats.stackexchange.com/questions/376867/proof-that-posterior-median-is-the-bayes-estimate-of-absolute-loss --></p></li>
+<li><p>Suponga que la distribución <em>a posteriori</em> de <span class="math inline">\(\pi\)</span>, <span class="math inline">\(p(\pi \mid y)\)</span>, es <span class="math inline">\(\text{Beta}(12,4)\)</span>. Determine mediante simulación el estimador que minimiza la pérdida de Huber: <span class="math display">\[
+\mathcal{L}(\delta,\pi) =
+\begin{cases}
+\frac{1}{2} (\pi - \delta)^2 \text{ si } |\pi - \delta| \leq \alpha \\
+\alpha \cdot (|\pi - \delta|-\frac{1}{2}\alpha) \text{ en cualquier otro caso}
+\end{cases}
+\]</span></p></li>
+<li><p><strong>To Do</strong> Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, <span class="math inline">\({\theta_1,\theta_2,\dots,\theta_10}\)</span>. Se dan muestras de las distribuciones <em>a posteriori</em>, <span class="math inline">\(p(\theta_i\mid y)\)</span>. ¿Cuál de los tratamientos es mejor?</p></li>
+</ol>
+</section>
 <section id="notas" class="level2">
 <h2 class="anchored" data-anchor-id="notas">Notas</h2>
 <p>En algún lado podríamos tener un glosario, o algo del estilo. El objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de las distribuciones que utilizamos por defecto. Acá podriamos mostrar que usamos <span class="math inline">\(\text{Beta}(a, b)\)</span> con <span class="math inline">\(\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}\)</span></p>
@@ -537,8 +581,14 @@ Y\mid\theta \sim \text{Geom}(\theta)
 <div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
 Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
 </div>
+<div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
+Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
+</div>
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
+</div>
+<div id="ref-Reich2020" class="csl-entry" role="doc-biblioentry">
+Reich, Brian J., y Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 1st edition. Chapman; Hall/CRC.
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
