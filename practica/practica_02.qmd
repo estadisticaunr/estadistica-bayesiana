@@ -41,11 +41,11 @@ profesional.
     más influencia en el _posteriori_, o la creencia _a priori_ y los datos influyen de manera
     similar en la creencia _a posteriori_
 
-    a. _Prior_: \pi \mid \text{Beta}(1,4), observaciones: $Y=8$ éxitos en $n=10$ ensayos
-    a. _Prior_: \pi \mid \text{Beta}(20,3), observaciones: $Y=0$ éxitos en $n=1$ ensayos
-    a. _Prior_: \pi \mid \text{Beta}(4,2), observaciones: $Y=1$ éxitos en $n=3$ ensayos
-    a. _Prior_: \pi \mid \text{Beta}(3,10), observaciones: $Y=10$ éxitos en $n=13$ ensayos
-    a. _Prior_: \pi \mid \text{Beta}(20,2), observaciones: $Y=10$ éxitos en $n=200$ ensayos
+    a. _Prior_: $\pi \mid \text{Beta}(1,4)$, observaciones: $Y=8$ éxitos en $n=10$ ensayos
+    a. _Prior_: $\pi \mid \text{Beta}(20,3)$, observaciones: $Y=0$ éxitos en $n=1$ ensayos
+    a. _Prior_: $\pi \mid \text{Beta}(4,2)$, observaciones: $Y=1$ éxitos en $n=3$ ensayos
+    a. _Prior_: $\pi \mid \text{Beta}(3,10)$, observaciones: $Y=10$ éxitos en $n=13$ ensayos
+    a. _Prior_: $\pi \mid \text{Beta}(20,2)$, observaciones: $Y=10$ éxitos en $n=200$ ensayos
 
 
 1.  **Más o menos certeza**
