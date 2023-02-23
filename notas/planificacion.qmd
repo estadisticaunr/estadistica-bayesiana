@@ -122,4 +122,7 @@ editor_options:
 
 # Métodos Computacionales
 
+-   Problemas: determinación de probabilidades, cálculo de integrales,
+    determinación de la distribución *a posteriori*
+-   
 -   Grid approximation de un problema para estimar N y theta.

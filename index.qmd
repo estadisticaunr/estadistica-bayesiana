@@ -13,7 +13,7 @@ course-logo: utils/imgs/logo.png
 # Estadística Bayesiana {.course-title}
 
 ::: {.course-subtitle}
-Este es el subtitulo...
+<!--Este es el subtitulo...-->
 :::
 
 :::
@@ -21,7 +21,8 @@ Este es el subtitulo...
 ::: {.course-meta}
 {{< fa graduation-cap >}} &nbsp; Licenciatura en Estadística  
 {{< fa university >}}     &nbsp; Facultad de Ciencias Económicas y Estadística  (UNR)  
-{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2023
+{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2023  
+{{< fa clock >}}   &nbsp; Lun -- 11:00 a 13:00 &nbsp; | &nbsp; Mié -- 7:00 a 9:00 &nbsp; | &nbsp; Vie -- 7:00 a 9:00
 :::
 
 :::
@@ -54,8 +55,8 @@ Este es el subtitulo...
 
 ### Nacho Evangelista
 
-* {{< fa envelope >}} &nbsp; [email_de_nacho@mail.com](email_de_nacho@mail.com)
-* {{< fa calendar >}} &nbsp; Miércoles (7:00-9:00) y Viernes (7:00-9:00)
+* {{< fa envelope >}} &nbsp; [evangelistaignacio@gmail.com](evangelistaignacio@gmail.com)
+* {{< fa calendar >}} &nbsp; Consultas
 
 :::
 
@@ -64,6 +65,6 @@ Este es el subtitulo...
 ### Tomás Capretto
 
 * {{< fa envelope >}} &nbsp; [email_de_tomi@mail.com](email_de_tomi@mail.com)
-* {{< fa calendar >}} &nbsp; Lunes (11-13hs) y Miércoles (7-9hs)
+* {{< fa calendar >}} &nbsp; Consultas
 :::
 :::
