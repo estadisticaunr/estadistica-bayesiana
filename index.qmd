@@ -64,7 +64,7 @@ course-logo: utils/imgs/logo.png
 
 ### Tomás Capretto
 
-* {{< fa envelope >}} &nbsp; [email_de_tomi@mail.com](email_de_tomi@mail.com)
+* {{< fa envelope >}} &nbsp; [tomicapretto@gmail.com](tomicapretto@gmail.com)
 * {{< fa calendar >}} &nbsp; Consultas
 :::
 :::
