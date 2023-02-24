@@ -212,19 +212,19 @@ div.csl-indent {
 <li><p><strong>¿Quién domina el <em>posterior</em>?</strong></p>
 <p>Para cada una de las situaciones siguientes, se da una distribución <em>a priori</em> Beta para el parámetro <span class="math inline">\(\pi\)</span> de un ensayo binomial. Para cada escenario, identificar cuál de estos se cumple: el <em>prior</em> tiene mayor influencia en el <em>posterior</em>, los datos tienen más influencia en el <em>posteriori</em>, o la creencia <em>a priori</em> y los datos influyen de manera similar en la creencia <em>a posteriori</em></p>
 <ol type="i">
-<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(1,4)\)</span>, observaciones: <span class="math inline">\(Y=8\)</span> éxitos en <span class="math inline">\(n=10\)</span> ensayos</li>
-<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(20,3)\)</span>, observaciones: <span class="math inline">\(Y=0\)</span> éxitos en <span class="math inline">\(n=1\)</span> ensayos</li>
-<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(4,2)\)</span>, observaciones: <span class="math inline">\(Y=1\)</span> éxitos en <span class="math inline">\(n=3\)</span> ensayos</li>
-<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(3,10)\)</span>, observaciones: <span class="math inline">\(Y=10\)</span> éxitos en <span class="math inline">\(n=13\)</span> ensayos</li>
-<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(20,2)\)</span>, observaciones: <span class="math inline">\(Y=10\)</span> éxitos en <span class="math inline">\(n=200\)</span> ensayos</li>
+<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(1,4)\)</span>, observaciones: <span class="math inline">\(y=8\)</span> éxitos en <span class="math inline">\(n=10\)</span> ensayos</li>
+<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(20,3)\)</span>, observaciones: <span class="math inline">\(y=0\)</span> éxitos en <span class="math inline">\(n=1\)</span> ensayos</li>
+<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(4,2)\)</span>, observaciones: <span class="math inline">\(y=1\)</span> éxitos en <span class="math inline">\(n=3\)</span> ensayos</li>
+<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(3,10)\)</span>, observaciones: <span class="math inline">\(y=10\)</span> éxitos en <span class="math inline">\(n=13\)</span> ensayos</li>
+<li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(20,2)\)</span>, observaciones: <span class="math inline">\(y=10\)</span> éxitos en <span class="math inline">\(n=200\)</span> ensayos</li>
 </ol></li>
 <li><p><strong>Más o menos certeza</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la proporción de personas que prefieren los perros a los gatos. Suponga que se elige una distribución <span class="math inline">\(\text{Beta}(7,2)\)</span> para representar la creencia <em>a priori</em></p>
 <ol type="i">
 <li>De acuerdo al <em>prior</em> ¿cuáles son valores razonables para <span class="math inline">\(\theta\)</span>?</li>
-<li>Se observa en una encuesta que <span class="math inline">\(Y=19\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia eso el conocimiento acerca de <span class="math inline">\(\theta\)</span>? Comenta en términos de la evolución de la credibilidad media y del grado de certidumbre acerca de <span class="math inline">\(\theta\)</span>.</li>
-<li>Si, en lugar de eso, se determina que <span class="math inline">\(Y=1\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
-<li>Si, en lugar de eso, se determina que <span class="math inline">\(Y=10\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
+<li>Se observa en una encuesta que <span class="math inline">\(y=19\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia eso el conocimiento acerca de <span class="math inline">\(\theta\)</span>? Comenta en términos de la evolución de la credibilidad media y del grado de certidumbre acerca de <span class="math inline">\(\theta\)</span>.</li>
+<li>Si, en lugar de eso, se determina que <span class="math inline">\(y=1\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
+<li>Si, en lugar de eso, se determina que <span class="math inline">\(y=10\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
 </ol></li>
 <li><p><strong>Pasito a pasito</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito de un evento de interés. Sea <span class="math inline">\(\text{Beta}(2,3)\)</span> la distribución <em>a priori</em> para <span class="math inline">\(\theta\)</span>. Actualiza la distribución <em>a posteriori</em> para <span class="math inline">\(\theta\)</span> secuencialmente:</p>
@@ -354,17 +354,17 @@ p(x) = \frac{1}{2a}I(x \in [-a, a])
 </ol>
 <p><strong>Inferencia Bayesiana</strong></p>
 <p>El <em>prior</em> conjugado de la distribución uniforme es la distribución de Pareto.</p>
-<p>Si <span class="math inline">\(x \sim \text{Pareto}(x | \alpha, m)\)</span>, luego</p>
+<p>Si <span class="math inline">\(X \sim \text{Pareto}(\alpha, m)\)</span>, luego</p>
 <p><span class="math display">\[
-p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+f(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
 \]</span></p>
 <p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es</p>
 <p><span class="math display">\[
-p(\theta, \mathbf{X})
+f(\theta, \mathbf{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
     \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
 \]</span></p>
-<p>Llamando <span class="math inline">\(M_x = \text{max}(\mathbf{X})\)</span>. La evidencia (la probabilidad que las <span class="math inline">\(n\)</span> muestras provengan de la misma distribución uniforme) es</p>
+<p>Llamando <span class="math inline">\(M_x = \text{max}(\mathbf{X})\)</span>. La evidencia es</p>
 <p><span class="math display">\[
 \begin{aligned}
 p(\mathbf{X}) &amp;= \int_{M_x}^\infty
@@ -381,7 +381,7 @@ p(\mathbf{X}) &amp;= \int_{M_x}^\infty
 <p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
 <p><span class="math display">\[
 \begin{array}{lcrr}
-p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
+f(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
 \end{array}
 \]</span></p>
 <ol type="i">
@@ -391,10 +391,10 @@ p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \thet
 <li><p>Una experta del área sugiere que <span class="math inline">\(\theta\)</span> debe tener una distribución <em>a priori</em> que también sea exponencial. <span class="math display">\[
 \begin{aligned}
 \theta &amp;\sim \text{Exp}(\lambda) \\
-p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
+f(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 \end{aligned}
 \]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\hat{\lambda}\)</span> para representar al valor.</p></li>
-<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
+<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(f(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
 <li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
@@ -440,12 +440,12 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <li><p><strong>Entrada en calor</strong></p>
 <p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad</p>
 <ol type="i">
-<li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid y \sim \text{Beta}(4,5)\)</span></li>
-<li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid y \sim \text{Beta}(4,5)\)</span></li>
-<li>Intervalo del 89% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid y \sim \text{Gamma}(1,8)\)</span></li>
-<li>Intervalo del 95% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid y \sim \text{Gamma}(2,5)\)</span></li>
-<li>Intervalo del 81% para <span class="math inline">\(\mu\)</span> siendo <span class="math inline">\(\mu\mid y \sim \mathcal{N}(10,2^2)\)</span></li>
-<li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid y \sim \mathcal{N}(-3,1^2)\)</span></li>
+<li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \mathbf{y} \sim \text{Beta}(4,5)\)</span></li>
+<li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \mathbf{y} \sim \text{Beta}(4,5)\)</span></li>
+<li>Intervalo del 89% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \mathbf{y} \sim \text{Gamma}(1,8)\)</span></li>
+<li>Intervalo del 95% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \mathbf{y} \sim \text{Gamma}(2,5)\)</span></li>
+<li>Intervalo del 81% para <span class="math inline">\(\mu\)</span> siendo <span class="math inline">\(\mu\mid \mathbf{y} \sim \mathcal{N}(10,2^2)\)</span></li>
+<li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)\)</span></li>
 </ol></li>
 <li><p><strong>Propiedades frecuentistas de inferencias bayesianas (!!)</strong></p>
 <p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>

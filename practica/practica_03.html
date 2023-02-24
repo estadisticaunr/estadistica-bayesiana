@@ -389,6 +389,51 @@ div.csl-indent {
 <p>Resuelva el problema de concordancia de de Montmort presentado en la <strong>Práctica 0</strong> utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
 <li><p><strong>El problema de los sobres</strong></p>
 <p>Resuelva el problema de los dos sobres presentado en la <strong>Práctica 0</strong> utilizando simulaciones.</p></li>
+</ol>
+</section>
+<section id="posteriors-aproximados" class="level2">
+<h2 class="anchored" data-anchor-id="posteriors-aproximados"><em>Posteriors</em> aproximados</h2>
+<p>Podriamos encontrar un mejor nombre…</p>
+<ol type="1">
+<li><p><strong>Aproximación de grilla</strong></p>
+<p>Se tiene un experimento binomial donde <span class="math inline">\(n=80\)</span> y se observan <span class="math inline">\(y=7\)</span> éxitos. Considere que el <em>prior</em> de la probabilidad de éxito <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\text{Beta}(2, 10)\)</span>.</p>
+<ol type="i">
+<li>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y grafíquela.</li>
+<li>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> utilizando el método de la grilla en base a una grilla de 10 puntos e incluya el resultado en el gráfico creado anteriormente.</li>
+<li>Repita el proceso del punto anterior utilizando una grilla de 100 puntos.</li>
+<li>Concluya sobre la fidelidad de las aproximaciones. ¿Considera que es necesario utilizar una grilla más densa? Describa ventajas y desventajas.</li>
+</ol></li>
+<li><p><strong>Cálculo de probabilidades en base a la grilla</strong></p>
+<p>En base al <em>posterior</em> aproximado del ejercicio anterior calcule las siguientes probabilidades</p>
+<ul>
+<li><span class="math inline">\(P(\theta &lt; 0.7)\)</span></li>
+<li><span class="math inline">\(P(\theta &gt; 0.05)\)</span></li>
+<li><span class="math inline">\(P(0.05 &lt; \theta &lt; 0.15)\)</span></li>
+</ul>
+<p>De ser necesario, obtenga el <em>posterior</em> mediante una grilla de mayor densidad.</p></li>
+<li><p><strong>Aproximación de grilla en 2 dimensiones</strong></p>
+<p>Regresión univariada. Estimar el posterior de beta_0 y beta_1.</p></li>
+<li><p><strong>Escalando la aproximación mediante grilla</strong></p>
+<p><strong>WIP</strong></p>
+<p>¿Cuántos puntos son necesarios para estimar un <em>posterior</em> por la aproximación de la grilla? Suponga que se usa una grilla de 500 puntos en cada dimensión.</p>
+<ol type="i">
+<li>1 dimensión</li>
+<li>2 dimensiones</li>
+<li>3 dimensiones</li>
+<li>4 dimensiones</li>
+</ol></li>
+<li><p><strong><em>Benchmark</em></strong></p>
+<ul>
+<li>¿Algo del consumo de memoria y como eso se compara con las computadoras modernas?</li>
+<li>¿Algo del tiempo que lleva calcular todos los puntos?</li>
+<li>Moraleja: El numero de puntos, el consumo de memoria, y el tiempo computacional se incrementan exponencialmente.</li>
+</ul></li>
+<li><p><strong>La maldición de la dimensionalidad</strong></p>
+<ul>
+<li>Mostrar que casi todo el volumen de un hipercubo está en las esquinas.</li>
+<li>Hablar de la distnacia a la moda en una normal multivariada conforme d -&gt; inftys</li>
+<li>O tal vez es un tema de trabajo practico?</li>
+</ul></li>
 <li><p>Grid approximation para una <em>skew-normal</em>. Estimar los parámetros <span class="math inline">\(\xi\)</span> (posición), <span class="math inline">\(\omega\)</span> (escala) y <span class="math inline">\(\alpha\)</span> (asimetría). <span class="math display">\[
 f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
 \]</span> <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution --></p></li>
