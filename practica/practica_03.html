@@ -412,7 +412,39 @@ div.csl-indent {
 </ul>
 <p>De ser necesario, obtenga el <em>posterior</em> mediante una grilla de mayor densidad.</p></li>
 <li><p><strong>Aproximación de grilla en 2 dimensiones</strong></p>
-<p>Regresión univariada. Estimar el posterior de beta_0 y beta_1.</p></li>
+<p>Sean dos variables aleatorias continuas <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tales que <span class="math inline">\((X, Y) \in \mathbb{R}^2\)</span>, y sea el siguiente modelo de regresión</p>
+<p><span class="math display">\[
+\begin{aligned}
+\alpha &amp;\sim \text{Normal}(0, 1.5) \\
+\beta  &amp;\sim \text{Normal}(0, 2) \\
+Y      &amp;\sim \text{Normal}(\alpha + \beta X, 0.8)
+\end{aligned}
+\]</span></p>
+<ol type="i">
+<li>Obtenga el <em>posterior</em> conjunto del vector de parámetros <span class="math inline">\([\alpha, \beta]^T\)</span> mediante el método de la grilla.</li>
+<li>Obtenga el <em>posterior</em> marginal de <span class="math inline">\(\alpha\)</span></li>
+<li>Obtenga el <em>posterior</em> marginal de <span class="math inline">\(\beta\)</span></li>
+<li>Calcule la probabilidad de que el intercepto sea mayor a 0.5</li>
+<li>Calcule la probabilidad de que la pendiente sea menor a -3</li>
+</ol>
+<p>Para responder las consignas utilice los datos simulados que se obtienen con el siguiente bloque de código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">121195</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, alpha <span class="sc">+</span> beta <span class="sc">*</span> x, sigma)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El gráfico de dispersión luce de la siguiente manera</p>
+<div class="cell" data-layout-align="center">
+
+</div>
+<div class="cell" data-layout-align="center">
+
+</div></li>
 <li><p><strong>Escalando la aproximación mediante grilla</strong></p>
 <p><strong>WIP</strong></p>
 <p>¿Cuántos puntos son necesarios para estimar un <em>posterior</em> por la aproximación de la grilla? Suponga que se usa una grilla de 500 puntos en cada dimensión.</p>
@@ -448,12 +480,12 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 \]</span></p>
 <p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code># A tibble: 6 × 3
   intercepto pendiente sigma
@@ -510,7 +542,7 @@ f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0})
 \end{array}
 \]</span></p>
 <p>Que dan lugar a las siguientes funciones de densidad:</p>
-<div class="cell" data-layout-align="center" data-hash="practica_03_cache/html/plot-matrix-of-gaussians_532abb7d0fbf86944a943bd3af930630">
+<div class="cell" data-layout-align="center" data-hash="practica_03_cache/html/plot-matrix-of-gaussians_2a7ceb711bec1c11d04af72ccfbea328">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -537,12 +569,12 @@ f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0})
 </ol>
 <!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'--></li>
 <li><p>Torus? To Do</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> torus_logpdf(scale):</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logp(x):</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> <span class="op">-</span>((<span class="dv">1</span> <span class="op">-</span> x.norm(<span class="dv">2</span>)) <span class="op">/</span> scale)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> logp</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># pdf = np.exp(-((1 - np.linalg.norm(xs, axis=0)) / scale)**2)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> torus_logpdf(scale):</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> logp(x):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> <span class="op">-</span>((<span class="dv">1</span> <span class="op">-</span> x.norm(<span class="dv">2</span>)) <span class="op">/</span> scale)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="cf">return</span> logp</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># pdf = np.exp(-((1 - np.linalg.norm(xs, axis=0)) / scale)**2)</span></span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <section id="ejercicios-que-faltan" class="level3">
 <h3 class="anchored" data-anchor-id="ejercicios-que-faltan">Ejercicios que faltan</h3>
