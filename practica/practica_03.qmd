@@ -12,6 +12,11 @@ options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
 captions <- list()
 captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
+
+
+library(dplyr)
+library(ggplot2)
+library(patchwork)
 ```
 
 ::: {.content-visible when-format="html"}
@@ -107,8 +112,6 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     #| fig.width: 4.5
     #| fig.height: 4.5
     #| fig.align: center
-    library(ggplot2)
-
     centro <- c(0, 0)
     radio <- 1
     angulos <- seq(0, 2 * pi, length.out = 512)
@@ -137,10 +140,10 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     ggplot(df) + 
         geom_hline(yintercept = 0, linetype = "dashed", color = "#999999") +
         geom_vline(xintercept = 0, linetype = "dashed", color = "#999999") +
-        geom_path(aes(x = x, y = y), size = 1.5, color = "#0984C0") +
+        geom_path(aes(x = x, y = y), linewidth = 1.5, color = "#0984C0") +
         geom_rect(
             xmin = -1, xmax = 1, ymin = -1, ymax = 1, 
-            fill = NA, color = "#999999", size = 1.5
+            fill = NA, color = "#999999", linewidth = 1.5
         )
     ```
 
@@ -309,9 +312,95 @@ Podriamos encontrar un mejor nombre...
 
     De ser necesario, obtenga el _posterior_ mediante una grilla de mayor densidad.
 
-1. **Aproximación de grilla en 2 dimensiones**
+1.  **Aproximación de grilla en 2 dimensiones**
 
-    Regresión univariada. Estimar el posterior de beta_0 y beta_1.
+    Sean dos variables aleatorias continuas $X$ e $Y$ tales que $(X, Y) \in \mathbb{R}^2$,
+    y sea el siguiente modelo de regresión
+
+    $$
+    \begin{aligned}
+    \alpha &\sim \text{Normal}(0, 1.5) \\
+    \beta  &\sim \text{Normal}(0, 2) \\
+    Y      &\sim \text{Normal}(\alpha + \beta X, 0.8)
+    \end{aligned}
+    $$
+
+    i. Obtenga el _posterior_ conjunto del vector de parámetros $[\alpha, \beta]^T$ 
+    mediante el método de la grilla. 
+    i. Obtenga el _posterior_ marginal de $\alpha$
+    i. Obtenga el _posterior_ marginal de $\beta$
+    i. Calcule la probabilidad de que el intercepto sea mayor a 0.5
+    i. Calcule la probabilidad de que la pendiente sea menor a -3
+    
+    Para responder las consignas utilice los datos simulados que se obtienen con el 
+    siguiente bloque de código:
+
+    ```{r}
+    set.seed(121195)
+    alpha <- 1
+    beta <- -2
+    sigma <- 0.8
+    n <- 80
+    x <- rnorm(n)
+    y <- rnorm(n, alpha + beta * x, sigma)
+    df <- data.frame(x = x, y = y)
+    ```
+
+    El gráfico de dispersión luce de la siguiente manera
+
+    ```{r scatterplot-lin-reg}
+    #| eval: false
+    #| warning: false
+    #| echo: false
+    #| fig.width: 5.5
+    #| fig.height: 4.5
+    #| fig.align: center
+    plt <- ggplot(df, aes(x = x, y = y)) +
+        geom_point(alpha = 0.6, fill = "gray60", size = 2)
+    plt
+    ```
+
+    ```{r}
+    #| eval: false
+    #| warning: false
+    #| echo: false
+    #| fig.width: 5.5
+    #| fig.height: 4.5
+    #| fig.align: center
+
+    # Esto es una posible solucion!
+    grid_a <- seq(0.5, 1.5, length.out = 50)
+    grid_b <- seq(-2.5, -1.5, length.out = 50)
+    grid_df <- expand.grid(grid_a, grid_b)
+
+    names(grid_df) <- c("a", "b")
+    likelihood <- numeric(nrow(grid_df))
+    posterior <- numeric(nrow(grid_df))
+
+    # No se que problema hay si lo hago con `mutate()` que todo queda en 0.
+    for (i in seq_along(likelihood)) {
+        likelihood[i] <- prod(dnorm(y, grid_df$a[i] + grid_df$b[i] * x, sigma))
+    }
+    posterior <- (
+        likelihood 
+        * dnorm(grid_df$a, mean = 0, sd = 1.5) # alpha ~ Normal(0, 1.5)
+        * dnorm(grid_df$b, mean = 0, sd = 2)   # beta ~ Normal(0, 2)
+    )
+
+    grid_df$likelihood <- likelihood
+    grid_df$posterior <- posterior
+
+    plt <- ggplot(grid_df, aes(x = a, y = b)) +
+        geom_raster(aes(fill = posterior)) +
+        stat_contour(aes(z = posterior), col = "white", bins = 5) +
+        geom_point(x = alpha, y = beta, color = "black", fill = "red", size = 3, pch = 21) + 
+        labs(x = expression(alpha), y = expression(beta)) +
+        viridis::scale_fill_viridis() + 
+        theme(legend.position = "none")
+    plt
+    ```
+
+
 
 1.  **Escalando la aproximación mediante grilla**
 
@@ -449,10 +538,6 @@ Podriamos encontrar un mejor nombre...
     #| fig.width: 8
     #| fig.height: 12
     #| fig.align: center
-    library(dplyr)
-    library(ggplot2)
-    library(patchwork)
-
     data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
     Mu <- replicate(6, c(0, 0), simplify = FALSE)
     Sigma <- list(
