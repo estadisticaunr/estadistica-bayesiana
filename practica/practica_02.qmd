@@ -130,7 +130,7 @@ vida profesional.
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 
-1.  **¿Quién dijo que el fútbol siempre     da revancha?** <!--**Un mundial que ya no duele**-->
+1.  **¿Quién dijo que el fútbol siempre da revancha?**
 
     En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
     4 a 2. En función de este resultado,
@@ -179,6 +179,32 @@ vida profesional.
     ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
+1. **Bichos**
+
+    Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
+    promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
+    media 0.50 y desvío estándar 0.25. En una investigación en 20 $\text{m}^2$ de área, se hallan 3, 2, 5, 1 y 2
+    insectos en los primeros 5 $\text{m}^2$ y ninguno en la fracción de tierra restante.
+    
+    i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área
+    i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
+    exploración de un área de 10 $\text{m}^2$
+    
+1.  **Alter-ego**
+
+    El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
+    Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
+    con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes $Y$ varían
+    normalmente alrededor de $\mu$ con una desviación estándar de 0.4
+    
+    i. ¿Cuál es la probabilidad _a priori_ de que un estudiante se saque más de 9 en un examen final?
+    i. El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
+    media de 8.6. Halle la distribución _a posteriori_ de $\mu$.
+    i. El profesor Evangetto toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
+    media de 8.2. Halle la distribución _a posteriori_ de $\mu$.
+    i. Combine las notas de ambos exámenes para obtener la distribución _a posteriori_ de $\mu$
+    i. ¿Cuál es la probabilidad _a posteriori_ de que un estudiante se saque más de 9 en un examen final?
+
 
 1.  **Inferencia sobre una distribución de Poisson**
 
@@ -204,7 +230,7 @@ vida profesional.
     <!-- @Murphy2012 -->
     
     
-1.  **Gamma-Poisson**
+1.  **El modelo Gamma-Poisson**
 
     Sea $\lambda$ la tasa de mensajes de WhatsApp que una persona recibe en una hora. 
     Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5
@@ -313,33 +339,7 @@ vida profesional.
     i. Explique por que difieren el estimador MV de la media _a posteriori_. 
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
-    
-1. **Bichos**
-
-    Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
-    promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
-    media 0.50 y desvío estándar 0.25. En una investigación en 20 $\text{m}^2$ de área, se hallan 3, 2, 5, 1 y 2
-    insectos en los primeros 5 $\text{m}^2$ y ninguno en la fracción de tierra restante.
-    
-    i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área
-    i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
-    exploración de un área de 10 $\text{m}^2$
-    
-1.  **Alter-ego**
-
-    El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
-    Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
-    con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes $Y$ varían
-    normalmente alrededor de $\mu$ con una desviación estándar de 0.4
-    
-    i. ¿Cuál es la probabilidad _a priori_ de que un estudiante se saque más de 9 en un examen final?
-    i. El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
-    media de 8.6. Halle la distribución _a posteriori_ de $\mu$.
-    i. El profesor Evangetto toma el examen final y observa que sus 20 estudiantes obtuvieron una nota
-    media de 8.2. Halle la distribución _a posteriori_ de $\mu$.
-    i. Combine las notas de ambos exámenes para obtener la distribución _a posteriori_ de $\mu$
-    i. ¿Cuál es la probabilidad _a posteriori_ de que un estudiante se saque más de 9 en un examen final?
-    
+       
 1.  **Otras distribuciones conjugadas (I)**
     
     Considere el siguiente modelo:
@@ -418,119 +418,6 @@ comparar resultados, niveles de dificultad y ver que tan intuitivo resultan ambo
     y $\theta \in \{0.05, 0.10, \dots, 0.50 \}$. Describa las propiedades frecuentistas
     del intervalo de credibilidad bayesiano.
     <!-- @Reich2020 -->
-
-1.  **¿Tendré que esperar mucho?**
-
-    El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene
-    distribución exponencial con media 30 minutos. Los tiempos de duración de cada 
-    entrevista se pueden considerar independientes entre sí. 
-    Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, 
-    comenzando desde las 8. Es válido considerar que todos los postulantes llegan 
-    puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina
-
-    i. ¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?
-    i. ¿Cuál es el horario esperado al que terminará su entrevista?
-    <!-- Modern Data Science with R -->
-
-1.  **¡Qué casualidad!**
-    
-    Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus 
-    A330-300
-
-    i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
-    i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
-
-1.  **El Problema de Monty Hall**
-
-    El Problema de Monty Hall es un problema de probabilidad basado en un juego del
-    concurso televisivo estadounidense "Trato hecho". 
-    En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. 
-    El premio consiste en llevarse lo que se encuentra detrás de la elegida. 
-    Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos 
-    hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a 
-    los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las
-    otras dos en la que haya una cabra. A continuación, le da la opción al concursante de 
-    cambiar, si lo desea, de puerta (tiene dos opciones). 
-    ¿Debe el concursante mantener su elección original o escoger la otra puerta? 
-    ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones.
-    <!-- Modern Data Science with R -->
-
-
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
-    if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
-    ```
-
-1.  **Que los cumplan feliz**
-
-    Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346)
-    y conociendo el problema del cumpleaños (¿cuántas personas debe
-    haber en una habitación para que la probabilidad de que dos de ellas
-    cumplan años el mismo día sea mayor a X%?) construir un gráfico
-    similar al del tuit donde se grafique la probabilidad de que haya
-    $n$ personas que cumplan años el mismo día para $K$ personas
-    presentes en la habitación.
-
-1.  **Qué suerte, ¿no?**
-    
-    Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se
-    reúnen en la habitación del hotel como se describe en 
-    [este tuit](https://twitter.com/PlanetaDeCABJ/status/1587925636869300224).
-
-    i. ¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?
-    i. ¿Cuál es la probabilidad de que tres de ellos adivinen una de diez cartas?
-
-1.  **El álbum del Campeón**
-
-    El álbum oficial del Mundial de Fútbol de Qatar 2022 consta de 638 figuritas. 
-    Cada paquete trae cinco figuritas.
-
-    i. Comprando cinco paquetes, ¿cuál es la probabilidad de tener a Messi?
-    i. Comprando cinco paquetes, ¿cuál es la probabilidad de sacar a Messi repetido?
-    i. ¿Cuántos paquetes se necesitan, en promedio, para completar el álbum?
-    i. Si a una persona le faltan diez figuritas para completar el álbum, 
-    ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?
-
-1.  **¿Que tán raras son estas secuencias raras?**
-
-    Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias 
-    de $k$ caras?
-
-1.  **Un viaje por el elevador**
-
-    ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen 
-    para ir a tres pisos consecutivos? ¿Qué supuestos realiza para resolver el problema?
-    Escríbalos en una lista de manera explícita.
-   
-1.  **La vida es muy corta como para perderla ordenando medias**
-    
-    Un cajón contiene 10 pares de medias. No hay dos pares iguales. 
-    Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las
-    pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta 
-    que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par?
-    <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ -->
-    
-1.  **¿Vale la pena hacer un ensayo clínico a gran escala?**
-
-    Dados los resultados de un estudio piloto, la probabilidad _a posteriori_ de que la droga
-    desarrollada por tu compañía sea mas efectiva que el tratamiento actual es $\theta \in [0, 1]$.
-    Tu compañía está considerando realizar un ensayo clínico a gran escala para confirmar que
-    la droga que desarrollan es de hecho mejor. El costo del estudio es **\$X**. 
-    Si la droga es mejor, la probabilidad de que esto se confirme en el ensayo es del 80%.
-    Si la droga no es mejor, hay una probabilidad del 5% de que el estudio confirme que es mejor.
-    Si el ensayo sugiere que tu droga es mejor, ganarás **\$cX**. 
-    ¿Para qué valores de $\theta$ y $c$ tiene sentido realizar el estudio?
-    <!-- @Reich2020 -->
-
-1.  **El problema de concordancia**
-
-    Resuelva el problema de concordancia de de Montmort presentado en la **Práctica 0**
-    utilizando simulaciones.
-    <!-- Blitzstein, Introdudction to Probability -->
-
-1.  **El problema de los sobres**
-
-    Resuelva el problema de los dos sobres presentado en la **Práctica 0** utilizando 
-    simulaciones.
 
 1.  **¿Te preguntaste alguna vez cuál es la distribución de un _p-value_?**
 

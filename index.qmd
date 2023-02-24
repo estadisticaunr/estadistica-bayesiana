@@ -55,7 +55,7 @@ course-logo: utils/imgs/logo.png
 
 ### Nacho Evangelista
 
-* {{< fa envelope >}} &nbsp; [evangelistaignacio@gmail.com](evangelistaignacio@gmail.com)
+* {{< fa envelope >}} &nbsp; [evangelistaignacio@gmail.com](mailto:evangelistaignacio@gmail.com)
 * {{< fa calendar >}} &nbsp; Consultas
 
 :::
@@ -64,7 +64,7 @@ course-logo: utils/imgs/logo.png
 
 ### Tomás Capretto
 
-* {{< fa envelope >}} &nbsp; [tomicapretto@gmail.com](tomicapretto@gmail.com)
+* {{< fa envelope >}} &nbsp; [tomicapretto@gmail.com](mailto:tomicapretto@gmail.com)
 * {{< fa calendar >}} &nbsp; Consultas
 :::
 :::
