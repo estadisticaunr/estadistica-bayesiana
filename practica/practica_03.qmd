@@ -280,6 +280,65 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     Resuelva el problema de los dos sobres presentado en la **Práctica 0** utilizando 
     simulaciones.
 
+
+## _Posteriors_ aproximados
+
+Podriamos encontrar un mejor nombre...
+
+1. **Aproximación de grilla**
+
+    Se tiene un experimento binomial donde $n=80$ y se observan $y=7$ éxitos. 
+    Considere que el _prior_ de la probabilidad de éxito $\theta$ es $\text{Beta}(2, 10)$.
+
+    i. Obtenga la distribución _a posteriori_ de $\theta$ y grafíquela.
+    i. Obtenga la distribución _a posteriori_ de $\theta$ utilizando el método de la 
+    grilla en base a una grilla de 10 puntos e incluya el resultado en el gráfico creado 
+    anteriormente.
+    i. Repita el proceso del punto anterior utilizando una grilla de 100 puntos.
+    i. Concluya sobre la fidelidad de las aproximaciones. ¿Considera que es necesario
+    utilizar una grilla más densa? Describa ventajas y desventajas.
+
+1. **Cálculo de probabilidades en base a la grilla**
+
+    En base al _posterior_ aproximado del ejercicio anterior calcule las siguientes
+    probabilidades
+
+    * $P(\theta < 0.7)$
+    * $P(\theta > 0.05)$
+    * $P(0.05 < \theta < 0.15)$
+
+    De ser necesario, obtenga el _posterior_ mediante una grilla de mayor densidad.
+
+1. **Aproximación de grilla en 2 dimensiones**
+
+    Regresión univariada. Estimar el posterior de beta_0 y beta_1.
+
+1.  **Escalando la aproximación mediante grilla**
+
+    **WIP**
+
+    ¿Cuántos puntos son necesarios para estimar un _posterior_ por la aproximación de la 
+    grilla? Suponga que se usa una grilla de 500 puntos en cada dimensión.
+
+    i. 1 dimensión
+    i. 2 dimensiones
+    i. 3 dimensiones
+    i. 4 dimensiones
+
+1.  **_Benchmark_**
+
+    * ¿Algo del consumo de memoria y como eso se compara con las computadoras modernas?
+    * ¿Algo del tiempo que lleva calcular todos los puntos?
+    * Moraleja: El numero de puntos, el consumo de memoria, y el tiempo computacional
+    se incrementan exponencialmente.
+
+
+1. **La maldición de la dimensionalidad**
+
+    * Mostrar que casi todo el volumen de un hipercubo está en las esquinas.
+    * Hablar de la distnacia a la moda en una normal multivariada conforme d -> inftys
+    * O tal vez es un tema de trabajo practico?
+
 1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), 
     $\omega$ (escala) y $\alpha$ (asimetría).
     $$

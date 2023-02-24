@@ -41,11 +41,11 @@ vida profesional.
     más influencia en el _posteriori_, o la creencia _a priori_ y los datos influyen de manera
     similar en la creencia _a posteriori_
 
-    i. _Prior_: $\pi \sim \text{Beta}(1,4)$, observaciones: $Y=8$ éxitos en $n=10$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(20,3)$, observaciones: $Y=0$ éxitos en $n=1$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(4,2)$, observaciones: $Y=1$ éxitos en $n=3$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(3,10)$, observaciones: $Y=10$ éxitos en $n=13$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $Y=10$ éxitos en $n=200$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(1,4)$, observaciones: $y=8$ éxitos en $n=10$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(20,3)$, observaciones: $y=0$ éxitos en $n=1$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(4,2)$, observaciones: $y=1$ éxitos en $n=3$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(3,10)$, observaciones: $y=10$ éxitos en $n=13$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $y=10$ éxitos en $n=200$ ensayos
 
 
 1.  **Más o menos certeza**
@@ -54,12 +54,12 @@ vida profesional.
     se elige una distribución $\text{Beta}(7,2)$ para representar la creencia _a priori_
 
     i. De acuerdo al _prior_ ¿cuáles son valores razonables para $\theta$?
-    i. Se observa en una encuesta que $Y=19$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    i. Se observa en una encuesta que $y=19$ de $n=20$ personas prefieren perros, ¿cómo cambia
     eso el conocimiento acerca de $\theta$? Comenta en términos de la evolución de la credibilidad
     media y del grado de certidumbre acerca de $\theta$.
-    i. Si, en lugar de eso, se determina que $Y=1$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    i. Si, en lugar de eso, se determina que $y=1$ de $n=20$ personas prefieren perros, ¿cómo cambia
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
-    i. Si, en lugar de eso, se determina que $Y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
+    i. Si, en lugar de eso, se determina que $y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
     
 1.  **Pasito a pasito**
@@ -271,24 +271,23 @@ vida profesional.
 
     El _prior_ conjugado de la distribución uniforme es la distribución de Pareto.
 
-    Si $x \sim \text{Pareto}(x | \alpha, m)$, luego
+    Si $X \sim \text{Pareto}(\alpha, m)$, luego
 
     $$
-    p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+    f(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
     $$
 
     Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y 
     $\mathbf{X} = (X_1,..., X_n)$ es 
 
     $$
-    p(\theta, \mathbf{X}) 
+    f(\theta, \mathbf{X}) 
         = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
         \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
     $$
 
     Llamando $M_x = \text{max}(\mathbf{X})$. 
-    La evidencia (la probabilidad que las $n$ muestras provengan de la misma distribución 
-    uniforme) es
+    La evidencia es
 
     $$
     \begin{aligned}
@@ -314,7 +313,7 @@ vida profesional.
 
     $$
     \begin{array}{lcrr}
-    p(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
+    f(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
     \end{array}
     $$
 
@@ -327,13 +326,13 @@ vida profesional.
     $$
     \begin{aligned}
         \theta &\sim \text{Exp}(\lambda) \\
-        p(\theta | \lambda) &= \lambda e^{-\lambda \theta}
+        f(\theta | \lambda) &= \lambda e^{-\lambda \theta}
     \end{aligned}
     $$
     Elija un valor para el hiperparámetro $\lambda$ de la distribución _a priori_ tal que
     $\mathbb{E}(\theta) = 1/3$. Utilice $\hat{\lambda}$ para representar al valor.
 
-    i. ¿Cuál es el _posterior_ $p(\theta | \mathbf{X}, \hat{\lambda})$?
+    i. ¿Cuál es el _posterior_ $f(\theta | \mathbf{X}, \hat{\lambda})$?
     i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
     i. Encuentre la media del _posterior_, $\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})$
     i. Explique por que difieren el estimador MV de la media _a posteriori_. 
@@ -403,12 +402,12 @@ comparar resultados, niveles de dificultad y ver que tan intuitivo resultan ambo
 
     Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad
     
-    i. Intervalo del 95\% para $\pi$ siendo $\pi\mid y \sim \text{Beta}(4,5)$
-    i. Intervalo del 60\% para $\pi$ siendo $\pi\mid y \sim \text{Beta}(4,5)$
-    i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid y \sim \text{Gamma}(1,8)$
-    i. Intervalo del 95\% para $\lambda$ siendo $\lambda\mid y \sim \text{Gamma}(2,5)$
-    i. Intervalo del 81\% para $\mu$ siendo $\mu\mid y \sim \mathcal{N}(10,2^2)$
-    i. Intervalo del 99\% para $\pi$ siendo $\mu\mid y \sim \mathcal{N}(-3,1^2)$
+    i. Intervalo del 95\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$
+    i. Intervalo del 60\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$
+    i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(1,8)$
+    i. Intervalo del 95\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(2,5)$
+    i. Intervalo del 81\% para $\mu$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(10,2^2)$
+    i. Intervalo del 99\% para $\pi$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)$
 
 1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
     
