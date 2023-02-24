@@ -6,10 +6,16 @@ nocite: |
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_03.pdf
 ---
 
+```{r echo=FALSE, include=FALSE}
+is_html <- knitr::is_html_output()
+options("knitr.graphics.error" = FALSE)
+source(here::here("scripts", "utils.R"))
+captions <- list()
+captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
+```
+
 ::: {.content-visible when-format="html"}
-
 [Descargar PDF]({{< meta pdf_file >}})
-
 :::
 
 ## Métodos Computacionales
