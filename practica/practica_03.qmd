@@ -140,10 +140,10 @@ library(patchwork)
     ggplot(df) + 
         geom_hline(yintercept = 0, linetype = "dashed", color = "#999999") +
         geom_vline(xintercept = 0, linetype = "dashed", color = "#999999") +
-        geom_path(aes(x = x, y = y), linewidth = 1.5, color = "#0984C0") +
+        geom_path(aes(x = x, y = y), size = 1.25, color = "#0984C0") +
         geom_rect(
             xmin = -1, xmax = 1, ymin = -1, ymax = 1, 
-            fill = NA, color = "#999999", linewidth = 1.5
+            fill = NA, color = "#999999", size = 1.25
         )
     ```
 
@@ -283,8 +283,7 @@ library(patchwork)
     Resuelva el problema de los dos sobres presentado en la **Práctica 0** utilizando 
     simulaciones.
 
-
-## _Posteriors_ aproximados
+## Método de la grilla
 
 Podriamos encontrar un mejor nombre...
 
@@ -293,18 +292,18 @@ Podriamos encontrar un mejor nombre...
     Se tiene un experimento binomial donde $n=80$ y se observan $y=7$ éxitos. 
     Considere que el _prior_ de la probabilidad de éxito $\theta$ es $\text{Beta}(2, 10)$.
 
-    i. Obtenga la distribución _a posteriori_ de $\theta$ y grafíquela.
+    i. Obtenga la distribución _a posteriori_ de $\theta$ de manera analítica y grafíquela.
     i. Obtenga la distribución _a posteriori_ de $\theta$ utilizando el método de la 
-    grilla en base a una grilla de 10 puntos e incluya el resultado en el gráfico creado 
-    anteriormente.
+    grilla en base a una grilla de 10 puntos y dibuje la curva obtenida en el gráfico 
+    creado anteriormente.
     i. Repita el proceso del punto anterior utilizando una grilla de 100 puntos.
     i. Concluya sobre la fidelidad de las aproximaciones. ¿Considera que es necesario
-    utilizar una grilla más densa? Describa ventajas y desventajas.
+    utilizar una grilla más densa? ¿Cuáles serían las ventajas y desventajas?
 
-1. **Cálculo de probabilidades en base a la grilla**
+1. **Cálculo de probabilidades en base a la grilla (I)**
 
-    En base al _posterior_ aproximado del ejercicio anterior calcule las siguientes
-    probabilidades
+    En base al _posterior_ obtenido en el ejercicio anterior mediante el método de la 
+    grilla calcule las siguientes probabilidades
 
     * $P(\theta < 0.7)$
     * $P(\theta > 0.05)$
@@ -312,10 +311,17 @@ Podriamos encontrar un mejor nombre...
 
     De ser necesario, obtenga el _posterior_ mediante una grilla de mayor densidad.
 
+1. **Cálculo de probabilidades en base a la grilla (II)**
+
+    Utilice los valores de la grilla y sus probabilidades _a posteriori_ para obtener
+    muestras del _posterior_ y calcular las mismas probabilidades que en el ejercicio
+    anterior en base a muestras. Ayuda: Para obtener muestras utilice la función `sample()`.
+
+
 1.  **Aproximación de grilla en 2 dimensiones**
 
     Sean dos variables aleatorias continuas $X$ e $Y$ tales que $(X, Y) \in \mathbb{R}^2$,
-    y sea el siguiente modelo de regresión
+    y sea el siguiente modelo de regresión lineal simple:
 
     $$
     \begin{aligned}
@@ -326,11 +332,12 @@ Podriamos encontrar un mejor nombre...
     $$
 
     i. Obtenga el _posterior_ conjunto del vector de parámetros $[\alpha, \beta]^T$ 
-    mediante el método de la grilla. 
-    i. Obtenga el _posterior_ marginal de $\alpha$
-    i. Obtenga el _posterior_ marginal de $\beta$
-    i. Calcule la probabilidad de que el intercepto sea mayor a 0.5
-    i. Calcule la probabilidad de que la pendiente sea menor a -3
+    mediante el método de la grilla. Elabore un gráfico que permita visualizar esta 
+    distribución.
+    i. Obtenga el _posterior_ marginal de $\alpha$ y grafíquelo.
+    i. Obtenga el _posterior_ marginal de $\beta$ y grafíquelo.
+    i. Calcule la probabilidad de que el intercepto sea mayor a 0.5.
+    i. Calcule la probabilidad de que la pendiente sea menor a -3.
     
     Para responder las consignas utilice los datos simulados que se obtienen con el 
     siguiente bloque de código:
@@ -346,7 +353,8 @@ Podriamos encontrar un mejor nombre...
     df <- data.frame(x = x, y = y)
     ```
 
-    El gráfico de dispersión luce de la siguiente manera
+    **Bonus:** ¿Cómo podría responder las consignas (ii)-(v) utilizando muestras del 
+    _posterior_? 
 
     ```{r scatterplot-lin-reg}
     #| eval: false
@@ -355,6 +363,7 @@ Podriamos encontrar un mejor nombre...
     #| fig.width: 5.5
     #| fig.height: 4.5
     #| fig.align: center
+    # Generar gráfico de dispersión para ver los datos
     plt <- ggplot(df, aes(x = x, y = y)) +
         geom_point(alpha = 0.6, fill = "gray60", size = 2)
     plt
@@ -368,7 +377,7 @@ Podriamos encontrar un mejor nombre...
     #| fig.height: 4.5
     #| fig.align: center
 
-    # Esto es una posible solucion!
+    # Esto es una posible solución a la primera parte
     grid_a <- seq(0.5, 1.5, length.out = 50)
     grid_b <- seq(-2.5, -1.5, length.out = 50)
     grid_df <- expand.grid(grid_a, grid_b)
@@ -400,40 +409,102 @@ Podriamos encontrar un mejor nombre...
     plt
     ```
 
+1.  **Escalando la aproximación de la grilla**
 
-
-1.  **Escalando la aproximación mediante grilla**
-
-    **WIP**
-
-    ¿Cuántos puntos son necesarios para estimar un _posterior_ por la aproximación de la 
-    grilla? Suponga que se usa una grilla de 500 puntos en cada dimensión.
+    Suponga que se tiene que estimar un _posterior_ utilizando la aproximación mediante
+    una grilla de 200 puntos en cada dimensión. Calcule cúantas veces se tiene que evaluar
+    el posterior en cada uno de los siguientes escenarios:
 
     i. 1 dimensión
     i. 2 dimensiones
     i. 3 dimensiones
-    i. 4 dimensiones
+    i. 5 dimensiones
+    i. 10 dimensiones
 
-1.  **_Benchmark_**
+    Concluya sobre las ventajas y desventajas de la aproximación de la grilla teniendo
+    en cuenta sus características conforme se incrementa el número de dimensiones del
+    _posterior_.
 
-    * ¿Algo del consumo de memoria y como eso se compara con las computadoras modernas?
-    * ¿Algo del tiempo que lleva calcular todos los puntos?
-    * Moraleja: El numero de puntos, el consumo de memoria, y el tiempo computacional
-    se incrementan exponencialmente.
+1.  **_Benchmark_ de la aproximación de la grilla**
+    
+    El siguiente bloque de código define una función llamada `create_and_eval_grid()` 
+    que evalúa la función de densidad normal en una cantidad arbitraria dimensiones. 
+    El argumento `dimension_n` indica la dimensionalidad de la distribución normal, y 
+    `grid_n` indica la cantidad de puntos en la grilla de cada dimensión. Debajo, 
+    se utiliza la función `mark()` del paquete `bench` para comparar el desempeño de la
+    función `create_and_eval_grid()` con diferentes números de dimensiones.
 
+    ```{r}
+    #| eval: false
+    create_and_eval_grid <- function(dimension_n, grid_n = 100) {
+        grid <- seq(-3, 3, length.out = grid_n)
+        grids <- replicate(dimension_n, grid, simplify = FALSE)
+        df <- expand.grid(grids, KEEP.OUT.ATTRS = FALSE)
+        Mu <- rep(0, dimension_n)
+        Sigma <- diag(dimension_n)
+        mvtnorm::dmvnorm(df, mean = Mu, sigma = Sigma)
+    }
+    bench::mark(
+        create_and_eval_grid(1),
+        create_and_eval_grid(2),
+        check = FALSE,
+        max_iterations = 500
+    )
+    ```
 
-1. **La maldición de la dimensionalidad**
-
-    * Mostrar que casi todo el volumen de un hipercubo está en las esquinas.
-    * Hablar de la distnacia a la moda en una normal multivariada conforme d -> inftys
-    * O tal vez es un tema de trabajo practico?
+    Modifique el código brindado para evaluar la función de densidad en hasta un máximo
+    de 10 dimensiones. Concluya sobre el tiempo de ejecución, el consumo de memoria, y 
+    otras cantidades que se encuentren en la salida y crea adecuadas para el análisis.
 
 1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), 
     $\omega$ (escala) y $\alpha$ (asimetría).
+    
     $$
     f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
     $$
     <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution -->
+
+## **Metropolis-Hastings**
+
+Están escritos bastante así nomás.
+
+1.  Obtener muestras de las siguientes distirbuciones univariadas 
+    i. Uniforme
+    i. Normal
+    i. Gamma
+    i. Beta
+    i. T-Student
+    i. Alguna otra univariada no tan trivial?
+
+1.  Obtener muestras de la siguientes distribuciones normal multivariada
+    i. Independiente
+    i. Correlacion debil
+    i. Correlacion fuerte
+
+1.  Repetir los cálculos de los puntos anteriores utilizando 4 cadenas y 
+    calcular $\hat{R}$.
+
+1.  Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
+    la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$
+
+1.  Ajustar algun modelo conjugado (y por que no, otro no conjugado), utilizando MH
+
+## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
+
+## **Diagnósticos**
+
+1.  Generar traceplots
+1.  Calcular y graficar funcion de autocorrelacion
+1.  Calcular tamaño efectivo de muestras
+1.  Calcular $\hat{R}$
+1.  Algo más?
+
+## **Programción probabilística**
+
+1.  Escribir y ajustar algunos modelos con Stan
+    * Comparar salidas con resultados teóricos
+
+## **Otros**
 
 1.  Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para
     estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método
@@ -442,9 +513,11 @@ Podriamos encontrar un mejor nombre...
     Para eso, seleccionaron una muestra de pescados, los pesaron
     y les midieron ciertos aspectos morfológicos (ancho, alto y largo). En el futuro,
     esperan recolectar estas mismas medidas morfológicas mediante una cámara especializada
-    y utilizar el modelo para estimar el peso.
+    y utilizar un modelo para estimar el peso.
     
     El modelo propuesto por el equipo de investigación es el siguiente:
+
+    **NOTA:** Tal vez este ejercicio queda mejor en la práctica 4?
 
     $$
     \begin{aligned}
@@ -483,13 +556,13 @@ Podriamos encontrar un mejor nombre...
     parámetros del modelo. Realice las transformaciones de parámetros que crea
     conveniente para facilitar la comprensión del análisis.
     i.  Considere un pescado cuya longitud es de 30 centímetros.
-        a. Obtenga y grafique la distribución a posteriori del peso medio.
-        a. Obtenga y grafique la distribución predictiva a posteriori del peso.
+        a. Obtenga y grafique la distribución _a posteriori_ del peso medio.
+        a. Obtenga y grafique la distribución predictiva _a posteriori_ del peso.
         a. Interprete los resultados. 
     i.  Grafique la curva de regresión junto a una banda de credibilidad del 95% 
-    en el plano de las variables originales y en el plano de las variables transformadas-
+    en el plano de las variables originales y en el plano de las variables transformadas.
     i.  Agregue a los gráficos anteriores una banda de credibilidad del 95% para la 
-    distribución predictiva a posteriori. Interprete los resultados.
+    distribución predictiva _a posteriori_. Interprete los resultados.
 
 1.  Considere la siguiente familia de distribuciones normales en 2D
 
@@ -598,32 +671,9 @@ Podriamos encontrar un mejor nombre...
 
     <!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'-->
 
-1.  Torus? To Do
-
-    ```python
-    def torus_logpdf(scale):
-    def logp(x):
-         return -((1 - x.norm(2)) / scale)**2
-    return logp
-
-    # pdf = np.exp(-((1 - np.linalg.norm(xs, axis=0)) / scale)**2)
-    ```
 
 ### Ejercicios que faltan
 
-* Benchmark del método de aproximación mediante grilla de puntos
-    * Medir y comparar uso de memoria y tiempo computacional
-* Utilizar MH para obtener muestras 
-    * Normal univariada
-    * Gamma univariada
-    * Beta univariada
-    * Una función muy arbitraria y "no genérica"
-    * Normal multivariada
-        * Independiente
-        * Con correlación moderada
-        * Con alta correlación
-* Calcular medidas de diagnóstico sobre los casos anteriores
-    * En algunos casos tenemos que sugerir que corran múltiples cadenas
 * Utilizar MH para obtener el posterior
     * Utilizar casos de la práctica 2
         * Incluir algún caso donde no todos los parámetros vivan en $\mathbb{R}$
@@ -641,3 +691,19 @@ Podriamos encontrar un mejor nombre...
 
 **Nota:** Para los que dicen "utilizar HMC" estaria bueno que proveamos una funcion
 que use HMC, sin que tengan que usar Stan.
+
+
+<!-- 
+1. **La maldición de la dimensionalidad**
+
+    **Nota:** Creo que esto puede ir para el TP 2 de este año, o ser parte del TP 2
+    del año que viene. Esto todo en el contexto de grid approximation.
+
+    * Mostrar que casi todo el volumen de un hipercubo está en las esquinas.
+    * Hablar de la distnacia a la moda en una normal multivariada conforme d -> inftys 
+
+1.  **Tomar el Torus por las astas**
+
+    Ver el script "torus.R"
+-->
+
