@@ -59,6 +59,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -196,7 +197,10 @@ ul.task-list li input[type="checkbox"] {
 <li>ver caso particular y luego generalidad 2.2 de BDA</li>
 </ul></li>
 <li>Razonamiento secuencial</li>
-<li>Resumen de la distribución <em>a posteriori</em>: media, moda, intervalos de credibilidad. Cálculos a mano, cálculos exacto con funciones de R. Simulaciones (vamos a introducir la idea de utilizar simulaciones para resolver problemas)</li>
+<li>Resumen de la distribución <em>a posteriori</em>: media, moda, intervalos de credibilidad. Cálculos a mano, cálculos exacto con funciones de R. Simulaciones (vamos a introducir la idea de utilizar simulaciones para resolver problemas)
+<ul>
+<li>Podemos resolver algunos ejercicios de Simulación de la Práctica 2</li>
+</ul></li>
 <li>Predicciones: simulaciones. Problema del amanecer.</li>
 <li>Estimación por máxima verosimilitud</li>
 <li>Práctica 2</li>
@@ -243,9 +247,113 @@ ul.task-list li input[type="checkbox"] {
 <section id="métodos-computacionales" class="level1">
 <h1>Métodos Computacionales</h1>
 <ul>
-<li>Problemas: determinación de probabilidades, cálculo de integrales, determinación de la distribución <em>a posteriori</em></li>
-<li></li>
-<li>Grid approximation de un problema para estimar N y theta.</li>
+<li>Problemas: determinación de probabilidades, cálculo de integrales, determinación de la distribución <em>a posteriori</em> (dos problemas: integrales analíticas y dimensiones de esa integral)</li>
+<li>Determinación de probabilidades (ya lo hemos trabajado en la Práctica 2)</li>
+<li>Ejercicios Simulación (Práctica 3)</li>
+<li>Grid approximation
+<ul>
+<li><p>Un parámetro</p></li>
+<li><p>Dos parámetros</p></li>
+<li><p>Caso discreto ((¿)grid approximation de un problema para estimar N y theta(?)) y caso continuo</p></li>
+</ul></li>
+<li>Ejercitación grid approximation (Práctica 3)</li>
+<li>Determinación de la distribución <em>a posteriori</em> (aka sampling) por métodos de MCMC
+<ul>
+<li><p>Presentar rejection sampling</p></li>
+<li><p>(¿) Importance sampling (?)</p></li>
+<li><p>Metropolis-Hastings</p></li>
+</ul></li>
+<li>Presentación TP2 – Metropolis-Hastings (trabajo en clase)</li>
+<li>Diagnóstico de métodos de MCMC</li>
+<li>Hamiltonian Montecarlo</li>
+<li>Práctica HMC</li>
+<li>Programación probabilística: Stan</li>
+<li>Componentes de un modelo en Stan</li>
+<li>Implementación de un modelo ya trabajado.
+<ul>
+<li><p>Diagnósticos</p></li>
+<li><p>Manipulación de muestras de MCMC.</p></li>
+<li><p>Visualizaciones de resultados (estimaciones de parámetros y predicciones). Uso del paquete ggdist.</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="modelos-lineales" class="level1">
+<h1>Modelos lineales</h1>
+<ul>
+<li><p>Estimación por mínimos cuadrados. Estimación por máxima verosimilitud.</p>
+<ul>
+<li>Ver ROS 8.1</li>
+</ul></li>
+<li><p>Estimación bayesiana. <em>Priors</em> conjugados para varianza conocida y varianza desconocida.</p>
+<ul>
+<li>Centrado de variables (ver Murphy y 12.3 de ROS)</li>
+</ul></li>
+<li><p>Distribución predictiva.</p></li>
+<li><p>Implementación en Stan y brms (comparación de brms con lm en R, ¿cómo obtenemos los mismos resultados? ver ROS 8.4).</p></li>
+<li><p>Manipulación de resultados.</p></li>
+<li><p>Predicciones probabilísitas (predicciones basadas en distribuciones de probabilidad). Propagación de incertidumbre. Interpretación.</p>
+<ul>
+<li><p>Predicción puntual vs predicción de la media (predictor lineal) vs distribución predictiva</p></li>
+<li><p><em>We have a set of posterior simulations rather than a single point estimate because we have uncertainty about these parameters.</em> (ROS 9.1)</p></li>
+<li><p><em>As sample size approaches infinity, the coefficients a and b are estimated more and more precisely, and the uncertainty in the linear predictor approaches zero, but the uncertainty in the predictive distribution for a new observation does not approach zero; it approaches the residual standard deviation σ.</em> (ROS 9.2)</p></li>
+</ul></li>
+<li><p><em>Parameter recovery</em></p>
+<ul>
+<li>(ver ROS 7.2 Checking the model-fitting procedure using fake-data simulation)</li>
+</ul></li>
+<li><p>Pruebas predictivas <em>a posteriori</em>. Comparación de los datos disponibles con réplicas generadas por el modelo ajustado (lo que en ROS llaman <strong>validación interna</strong>)</p>
+<ul>
+<li>Ver ROS 11.4</li>
+</ul></li>
+<li><p>Elección de una distribución <em>a priori</em>. Pruebas predictivas <em>a</em> <em>priori</em>.</p></li>
+<li><p>Problemas con la estimación de mínimos cuadrados. Regularización ridge (<span class="math inline">\(L_2\)</span>) y lasso (<span class="math inline">\(L_1\)</span>). Distribuciones <em>a priori</em> para regularizar.</p>
+<!--# http://cms.dm.uba.ar/academico/materias/1ercuat2019/modelo_lineal/ridgeclase2.pdf --></li>
+<li><p>Selección de variables con <em>horseshoe prior</em> (ver ROS 12.7)</p></li>
+<li><p><strong>Validación externa</strong> y criterios de información (ver 3.7.4 de Murphy Advanced, McElreath y BDA aunque está medio confuso)</p>
+<ul>
+<li><p>lppd (<em>log pointwise predictive density)</em>: promedio del <em>score</em>&nbsp;predictivo a través de los posibles valores de <span class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[
+lppd = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+\]</span></p>
+<p><span class="math display">\[
+lppd = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{i=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
+\]</span></p></li>
+<li><p>PSIS</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="regresión-logística" class="level1">
+<h1>Regresión Logística</h1>
+<ul>
+<li><p>Modelo para clasificación (creo que podemos trabajarlo bien siguiendo Bayes Rules!)</p></li>
+<li><p>Simulación</p></li>
+<li><p>Interpretación de coeficientes</p></li>
+<li><p>Exceso de ceros (ver ejemplo de Bayes Rules! y Negative Binomial)</p></li>
+</ul>
+</section>
+<section id="regresión-poisson" class="level1">
+<h1>Regresión Poisson</h1>
+<ul>
+<li><p>Modelo para datos de conteo (creo que podemos trabajarlo bien siguiendo Bayes Rules!)</p></li>
+<li><p>Simulación</p></li>
+</ul>
+</section>
+<section id="enfoque-multinivel" class="level1">
+<h1>Enfoque multinivel</h1>
+<ul>
+<li><p>Modelo beta-binomial jerárquico (ver Kruschke)</p></li>
+<li><p><em>Shrinkage</em> de parámetros</p></li>
+<li><p>Ejemplo de uranio de Gelman: <em>no pooling</em> vs <em>complete pooling</em> vs <em>partial pooling</em></p></li>
+<li><p>Ejemplo de las ranas de McElreath:</p></li>
+<li><p>Ejemplo de las canciones (Bayes Rules!)</p></li>
+<li><p>Ejemplo de la carrera de Washington (Bayes Rules!)</p></li>
+<li><p>Modelos jerárquicos con predictores (Capítulo 17 de Bayes Rules)</p>
+<ul>
+<li><p>Variación en el intercepto</p></li>
+<li><p>Variación en la pendiente</p></li>
+</ul></li>
+<li><p>Problemas de estimación</p></li>
+<li><p>Opcional: regresión logística jerárquica y regresión Poisson jerárquica (ver ejemplo de Bayes Rules! y de un paper de Paul Burkner sobre pesca (?))</p></li>
 </ul>
 
 
