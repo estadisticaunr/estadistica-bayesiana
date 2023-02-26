@@ -389,6 +389,15 @@ div.csl-indent {
 <p>Resuelva el problema de concordancia de de Montmort presentado en la <strong>Práctica 0</strong> utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
 <li><p><strong>El problema de los sobres</strong></p>
 <p>Resuelva el problema de los dos sobres presentado en la <strong>Práctica 0</strong> utilizando simulaciones.</p></li>
+<li><p><strong>Integración por muestreo</strong></p>
+<p>Calcule las siguientes integrales utilizando muestras.</p>
+<ol type="i">
+<li><span class="math inline">\(\displaystyle \int_{-\infty}^{\infty}{\frac{x^2}{\sqrt{2\pi}}\exp \left(-\frac{x^2}{2} \right)dx}\)</span></li>
+<li><span class="math inline">\(\displaystyle \int_{1}^{\infty}{\frac{x^3}{\sqrt{2\pi}}\exp \left(-\frac{x^2}{2} \right)dx}\)</span></li>
+<li><span class="math inline">\(\displaystyle \int_{1}^{\infty}{\frac{x^6}{\sqrt{2\pi}}\exp \left(-\frac{x^2 - 4x}{2} \right)dx}\)</span></li>
+<li><span class="math inline">\(\displaystyle \int_{1}^{10}{x^6\frac{e^{-x^4/2}}{\sqrt{2\pi}}dx}\)</span> <!-- @Lambert2018 Capitulo 9 --></li>
+</ol></li>
+<li><p>¿Cuál es la distribución de muestreo aproximada al usar muestreo independiente para evaluar integrales? <!-- @Lambert2018 Capitulo 9 --></p></li>
 </ol>
 </section>
 <section id="método-de-la-grilla" class="level2">
@@ -512,11 +521,53 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 <section id="diagnósticos" class="level2">
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
 <ol type="1">
-<li>Generar traceplots</li>
-<li>Calcular y graficar funcion de autocorrelacion</li>
-<li>Calcular tamaño efectivo de muestras</li>
-<li>Calcular <span class="math inline">\(\hat{R}\)</span></li>
-<li>Algo más?</li>
+<li><p>Generar traceplots</p></li>
+<li><p>Calcular y graficar funcion de autocorrelacion</p></li>
+<li><p>Calcular tamaño efectivo de muestras</p></li>
+<li><p>Calcular <span class="math inline">\(\hat{R}\)</span> usando muestras independientes de un <em>posterior</em></p>
+<ol type="i">
+<li>Calcular variabilidad intra cadenas</li>
+<li>Calcular variabilidad entre cadenas</li>
+</ol></li>
+<li><p>Calcular <span class="math inline">\(\hat{R}\)</span> usando un muestras dependientes de un <em>posterior</em></p>
+<ol type="i">
+<li>Calcular variabilidad intra cadenas</li>
+<li>Calcular variabilidad entre cadenas</li>
+</ol></li>
+<li><p>Calcular tamaño efectivo de muestra utilizando muestras independientes de un <em>posterior</em></p></li>
+<li><p>Calcular tamaño efectivo de muestra utilizando muestras dependientes de un <em>posterior</em></p></li>
+<li><p>Algo más?</p></li>
+<li><p>Describir que problema muestran las siguientes cadenas… WIP?</p>
+<div class="cell">
+
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practica_03_files/figure-html/trace-and-histogram-1-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practica_03_files/figure-html/trace-and-histogram-2-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practica_03_files/figure-html/trace-and-histogram-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div></li>
 </ol>
 </section>
 <section id="programción-probabilística" class="level2">
