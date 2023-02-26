@@ -283,6 +283,20 @@ library(patchwork)
     Resuelva el problema de los dos sobres presentado en la **Práctica 0** utilizando 
     simulaciones.
 
+1.  **Integración por muestreo**
+
+    Calcule las siguientes integrales utilizando muestras.
+
+    i. $\displaystyle \int_{-\infty}^{\infty}{\frac{x^2}{\sqrt{2\pi}}\exp \left(-\frac{x^2}{2} \right)dx}$
+    i. $\displaystyle \int_{1}^{\infty}{\frac{x^3}{\sqrt{2\pi}}\exp \left(-\frac{x^2}{2} \right)dx}$
+    i. $\displaystyle \int_{1}^{\infty}{\frac{x^6}{\sqrt{2\pi}}\exp \left(-\frac{x^2 - 4x}{2} \right)dx}$
+    i. $\displaystyle \int_{1}^{10}{x^6\frac{e^{-x^4/2}}{\sqrt{2\pi}}dx}$
+    <!-- @Lambert2018 Capitulo 9 -->
+
+1.  ¿Cuál es la distribución de muestreo aproximada al usar muestreo independiente para 
+    evaluar integrales?
+    <!-- @Lambert2018 Capitulo 9 -->
+
 ## Método de la grilla
 
 Podriamos encontrar un mejor nombre...
@@ -496,8 +510,94 @@ Están escritos bastante así nomás.
 1.  Generar traceplots
 1.  Calcular y graficar funcion de autocorrelacion
 1.  Calcular tamaño efectivo de muestras
-1.  Calcular $\hat{R}$
+1.  Calcular $\hat{R}$ usando muestras independientes de un _posterior_
+    i. Calcular variabilidad intra cadenas
+    i. Calcular variabilidad entre cadenas
+1.  Calcular $\hat{R}$ usando un muestras dependientes de un _posterior_
+    i. Calcular variabilidad intra cadenas
+    i. Calcular variabilidad entre cadenas
+1.  Calcular tamaño efectivo de muestra utilizando muestras independientes de un _posterior_
+1.  Calcular tamaño efectivo de muestra utilizando muestras dependientes de un _posterior_
 1.  Algo más?
+
+1.  Describir que problema muestran las siguientes cadenas... WIP? 
+
+    ```{R}
+    #| warning: false
+    #| echo: false
+    set.seed(121195)
+    STEPS <- 150
+
+    plot_trace_and_histogram <- function(df) {
+        plt_lines <- ggplot(df, aes(x = x, y = y, color = chain)) +
+            geom_line(size = 1.2) + 
+            labs(x = "Número de muestra", y = "Valor") + 
+            guides(color = guide_legend(title = NULL)) +
+            theme(
+            legend.position = "top",
+            legend.text = element_text(size = 12)
+            )
+        
+        plt_hist <- ggplot(df, aes(y = y, fill = chain)) +
+            geom_histogram(bins = 40, alpha = 0.7, position = "identity") +
+            theme(
+            axis.title = element_blank(),
+            axis.text = element_blank(),
+            axis.ticks = element_blank(),
+            legend.position = "none"
+            )
+        plt <- plt_lines + plt_hist + plot_layout(widths = c(5, 1))
+        return(plt)
+    } 
+    ```
+
+    ```{R trace-and-histogram-1}
+    #| warning: false
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 4.5
+    #| fig.align: center
+    x <- rep(seq(STEPS), times = 2)
+    y1 <- rnorm(STEPS)
+    y2 <- rnorm(STEPS) + 5
+    chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
+    df <- data.frame(x = x, y = c(y1, y2), chain = chain)
+    plot_trace_and_histogram(df)
+    ```
+
+    ```{R trace-and-histogram-2}
+    #| warning: false
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 4.5
+    #| fig.align: center
+    steps <- 150
+    x <- rep(seq(steps), times = 2)
+    y1 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4)
+    y2 <- -0.035 * seq(steps) + rnorm(steps, sd = 0.4) + 5
+    chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
+    df <- data.frame(x = x, y = c(y1, y2), chain = chain)
+
+    plot_trace_and_histogram(df)
+    ```
+
+    ```{R trace-and-histogram-3}
+    #| warning: false
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 4.5
+    #| fig.align: center
+    steps <- 150
+    x <- rep(seq(steps), times = 2)
+    y1 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4)
+    y2 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4) + 5
+    chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
+    df <- data.frame(x = x, y = c(y1, y2), chain = chain)
+
+    plot_trace_and_histogram(df)
+    ```
+
+
 
 ## **Programción probabilística**
 
