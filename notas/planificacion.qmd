@@ -55,6 +55,8 @@ editor_options:
         intervalos de credibilidad. Cálculos a mano, cálculos exacto con
         funciones de R. Simulaciones (vamos a introducir la idea de
         utilizar simulaciones para resolver problemas)
+        -   Podemos resolver algunos ejercicios de Simulación de la
+            Práctica 2
     -   Predicciones: simulaciones. Problema del amanecer.
     -   Estimación por máxima verosimilitud
     -   Práctica 2
@@ -123,6 +125,155 @@ editor_options:
 # Métodos Computacionales
 
 -   Problemas: determinación de probabilidades, cálculo de integrales,
-    determinación de la distribución *a posteriori*
--   
--   Grid approximation de un problema para estimar N y theta.
+    determinación de la distribución *a posteriori* (dos problemas:
+    integrales analíticas y dimensiones de esa integral)
+-   Determinación de probabilidades (ya lo hemos trabajado en la
+    Práctica 2)
+-   Ejercicios Simulación (Práctica 3)
+-   Grid approximation
+    -   Un parámetro
+
+    -   Dos parámetros
+
+    -   Caso discreto ((¿)grid approximation de un problema para estimar
+        N y theta(?)) y caso continuo
+-   Ejercitación grid approximation (Práctica 3)
+-   Determinación de la distribución *a posteriori* (aka sampling) por
+    métodos de MCMC
+    -   Presentar rejection sampling
+
+    -   (¿) Importance sampling (?)
+
+    -   Metropolis-Hastings
+-   Presentación TP2 -- Metropolis-Hastings (trabajo en clase)
+-   Diagnóstico de métodos de MCMC
+-   Hamiltonian Montecarlo
+-   Práctica HMC
+-   Programación probabilística: Stan
+-   Componentes de un modelo en Stan
+-   Implementación de un modelo ya trabajado.
+    -   Diagnósticos
+
+    -   Manipulación de muestras de MCMC.
+
+    -   Visualizaciones de resultados (estimaciones de parámetros y
+        predicciones). Uso del paquete ggdist.
+
+# Modelos lineales
+
+-   Estimación por mínimos cuadrados. Estimación por máxima
+    verosimilitud.
+
+    -   Ver ROS 8.1
+
+-   Estimación bayesiana. *Priors* conjugados para varianza conocida y
+    varianza desconocida.
+
+    -   Centrado de variables (ver Murphy y 12.3 de ROS)
+
+-   Distribución predictiva.
+
+-   Implementación en Stan y brms (comparación de brms con lm en R,
+    ¿cómo obtenemos los mismos resultados? ver ROS 8.4).
+
+-   Manipulación de resultados.
+
+-   Predicciones probabilísitas (predicciones basadas en distribuciones
+    de probabilidad). Propagación de incertidumbre. Interpretación.
+
+    -   Predicción puntual vs predicción de la media (predictor lineal)
+        vs distribución predictiva
+
+    -   *We have a set of posterior simulations rather than a single
+        point estimate because we have uncertainty about these
+        parameters.* (ROS 9.1)
+
+    -   *As sample size approaches infinity, the coefficients a and b
+        are estimated more and more precisely, and the uncertainty in
+        the linear predictor approaches zero, but the uncertainty in the
+        predictive distribution for a new observation does not approach
+        zero; it approaches the residual standard deviation σ.* (ROS
+        9.2)
+
+-   *Parameter recovery*
+
+    -   (ver ROS 7.2 Checking the model-fitting procedure using
+        fake-data simulation)
+
+-   Pruebas predictivas *a posteriori*. Comparación de los datos
+    disponibles con réplicas generadas por el modelo ajustado (lo que en
+    ROS llaman **validación interna**)
+
+    -   Ver ROS 11.4
+
+-   Elección de una distribución *a priori*. Pruebas predictivas *a*
+    *priori*.
+
+-   Problemas con la estimación de mínimos cuadrados. Regularización
+    ridge ($L_2$) y lasso ($L_1$). Distribuciones *a priori* para
+    regularizar.
+
+    <!--# http://cms.dm.uba.ar/academico/materias/1ercuat2019/modelo_lineal/ridgeclase2.pdf -->
+
+-   Selección de variables con *horseshoe prior* (ver ROS 12.7)
+
+-   **Validación externa** y criterios de información (ver 3.7.4 de
+    Murphy Advanced, McElreath y BDA aunque está medio confuso)
+
+    -   lppd (*log pointwise predictive density)*: promedio del
+        *score* predictivo a través de los posibles valores de $\theta$
+
+        $$
+        lppd = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+        $$
+
+        $$
+        lppd = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{i=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
+        $$
+
+    -   PSIS
+
+# Regresión Logística
+
+-   Modelo para clasificación (creo que podemos trabajarlo bien
+    siguiendo Bayes Rules!)
+
+-   Simulación
+
+-   Interpretación de coeficientes
+
+-   Exceso de ceros (ver ejemplo de Bayes Rules! y Negative Binomial)
+
+# Regresión Poisson
+
+-   Modelo para datos de conteo (creo que podemos trabajarlo bien
+    siguiendo Bayes Rules!)
+
+-   Simulación
+
+# Enfoque multinivel
+
+-   Modelo beta-binomial jerárquico (ver Kruschke)
+
+-   *Shrinkage* de parámetros
+
+-   Ejemplo de uranio de Gelman: *no pooling* vs *complete pooling* vs
+    *partial pooling*
+
+-   Ejemplo de las ranas de McElreath:
+
+-   Ejemplo de las canciones (Bayes Rules!)
+
+-   Ejemplo de la carrera de Washington (Bayes Rules!)
+
+-   Modelos jerárquicos con predictores (Capítulo 17 de Bayes Rules)
+
+    -   Variación en el intercepto
+
+    -   Variación en la pendiente
+
+-   Problemas de estimación
+
+-   Opcional: regresión logística jerárquica y regresión Poisson
+    jerárquica (ver ejemplo de Bayes Rules! y de un paper de Paul
+    Burkner sobre pesca (?))
