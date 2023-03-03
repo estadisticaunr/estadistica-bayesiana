@@ -493,26 +493,96 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 </section>
 <section id="metropolis-hastings" class="level2">
 <h2 class="anchored" data-anchor-id="metropolis-hastings"><strong>Metropolis-Hastings</strong></h2>
-<p>Están escritos bastante así nomás.</p>
+<!--
+Copio algunos pasajes del libro porque la verdad me parece super claro. 
+Puede ser útil para la presentación de teoría.
+Although not as efficient as independent sampling, dependent sampling is easier to 
+implement, and only requires calculation of the un-normalised posterior, avoiding the 
+troublesome denominator term
+
+We also know that MCMC is typically used to do dependent sampling. It is called Monte Carlo 
+because the decision of where to step next involves a random component
+
+In this chapter we see that there are two components to this decision: 
+in the first, we choose _where_ to propose a next step from the current position; 
+in the second, we choose _whether_ we accept this step or stay where we are
+@Lambert2018
+-->
+<!--
+El algoritmo Metropolis es un caso especial del algoritmo general Metropolis-Hastings 
+(Hoff, 2009). La principal diferencia es que el algoritmo Metropolis-Hastings no tiene el 
+requisito de distribución simétrica.
+-->
 <ol type="1">
-<li><p>Obtener muestras de las siguientes distirbuciones univariadas</p>
+<li><p><strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (I)</strong></p>
+<p>Use el algoritmo de Metropolis-Hastings y una distribución de propuesta <span class="math inline">\(\text{Normal}(0, 0.1)\)</span> para obtener 5000 muestras de las siguientes distribuciones de probabilidad:</p>
 <ol type="i">
-<li>Uniforme</li>
-<li>Normal</li>
-<li>Gamma</li>
-<li>Beta</li>
-<li>T-Student</li>
-<li>Alguna otra univariada no tan trivial?</li>
-</ol></li>
-<li><p>Obtener muestras de la siguientes distribuciones normal multivariada</p>
+<li><span class="math inline">\(\text{Normal}(\mu = 3, \sigma = 6)\)</span></li>
+<li><span class="math inline">\(\text{StudentT}(\nu = 5)\)</span></li>
+<li><span class="math inline">\(\frac{2}{3}\text{Normal}(\mu = 0, \sigma = 0.5) + \frac{1}{3}\text{Normal}(\mu = 3, \sigma = 2)\)</span></li>
+</ol>
+<p>Grafique las distribuciones obtenidas utilizando un histograma o una estimación de densidad y superponga la función de densidad verdadera para realizar una comparación. Concluya sobre la similitud de las mismas y la aptitud de la distribución de propuesta utilizada.</p></li>
+<li><p><strong>Simplificando el algoritmo de Metropolis-Hastings</strong></p>
+<p>La distribución de propuesta utilizada en el ejercicio anterior goza de una propiedad que permite simplificar el algoritmo de Metropolis-Hastings.</p>
 <ol type="i">
-<li>Independiente</li>
-<li>Correlacion debil</li>
-<li>Correlacion fuerte</li>
+<li>¿Cuál es esta propiedad?</li>
+<li>¿Qué simplificación se puede hacer?</li>
+<li>¿Qué nombre recibe la versión simplificada del algoritmo?</li>
+<li>Implemente la versión simplificada del algoritmo de Metropolis-Hastings y obtenga nuevamente 5000 muestras para las distribuciones presentadas en el ejercicio anterior utilizando la nueva implementación.</li>
 </ol></li>
-<li><p>Repetir los cálculos de los puntos anteriores utilizando 4 cadenas y calcular <span class="math inline">\(\hat{R}\)</span>.</p></li>
-<li><p>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></p></li>
-<li><p>Ajustar algun modelo conjugado (y por que no, otro no conjugado), utilizando MH</p></li>
+<li><p><strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (II)</strong></p>
+<p>Use el algoritmo de Metropolis-Hastings y una distribución de propuesta que crea conveniente para obtener 5000 muestras de las siguientes distribuciones de probabilidad:</p>
+<ol type="i">
+<li><span class="math inline">\(\text{Beta}(\alpha=4, \beta=8)\)</span></li>
+<li><span class="math inline">\(\text{Gamma}(k = 3, \theta = 2)\)</span></li>
+<li><span class="math inline">\(\frac{1}{2}\text{Beta}(\alpha=10, \beta=3) + \frac{1}{2}\text{Beta}(\alpha=3, \beta=10)\)</span></li>
+</ol>
+<p>Realice un análisis similar al realizado en el Ejercicio 1.</p></li>
+<li><p><strong>A jugar con la distribución de propuesta</strong></p>
+<p>Suponga que se desean obtener muestras de una distribución <span class="math inline">\(\text{Normal}(4, 1)\)</span> utilizando Metropolis-Hastings y la siguiente distribución de propuesta:</p>
+<p><span class="math display">\[
+\mu' | \mu \sim \text{Uniforme}(\mu - w, \mu + w)
+\]</span></p>
+<p>Obtenga <span class="math inline">\(n=5000\)</span> muestras con <span class="math inline">\(w \in \{0.01, 1, 100\}\)</span> y compute la probabilidad de aceptación. Luego, para cada <span class="math inline">\(w\)</span>, grafique la distribución obtenida y visualice la cadena de Markov utilizando un <em>traceplot</em>.</p>
+<ul>
+<li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con el desempeño del muestreo?</li>
+<li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con la probabilidad de aceptación? Justifique su respuesta.</li>
+</ul></li>
+<li><p><strong>Modelo Normal-Normal</strong></p>
+<p>Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por semana a la materia Estadística Bayesiana. Para eso se propone utilizar un modelo Normal-Normal, con <span class="math inline">\(\sigma=1.2\)</span> conocido.</p>
+<ol type="i">
+<li>Elija una distribución <em>a priori</em> para el parámetro <span class="math inline">\(\mu\)</span>.</li>
+<li>Describa el modelo matemáticamente.</li>
+<li>Determine una distribución de propuesta adecuada para este problema. Explique.</li>
+<li>Obtenga 2000 muestras del <em>posterior</em> de <span class="math inline">\(\mu\)</span>. Ajuste los parámetros de la distribución de propuesta hasta que los resultados se vean adecuados.</li>
+<li>Grafique un histograma de las muestras obtenidas y concluya sobre el desempeño de la aproximación.</li>
+</ol>
+<p>Para resolver este problema utilice los datos que se leen con el siguiente codigo:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/tiempo-estudio-eb.csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_estudio <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+<li><p><strong>Modelo Beta-Binomial</strong></p>
+<p>Se desea estimar el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> en el siguiente modelo Beta-Binomial:</p>
+<p><span class="math display">\[
+\begin{aligned}
+Y &amp;\sim \text{Binomial}(n, \pi) \\
+\pi &amp;\sim \text{Beta}(2, 3)
+\end{aligned}
+\]</span></p>
+<p>Se observan <span class="math inline">\(n=10\)</span> ensayos de Bernoulli y se registran <span class="math inline">\(y=3\)</span> éxitos. Determine una distribución de propuesta adecuada y obtenga muestras de la distribución <em>a posteriori</em> del parámetro <span class="math inline">\(\pi\)</span> utilizando el algoritmo de Metropolis-Hastings.</p>
+<p>De ser necesario, ajuste los parámetros de la distribución de propuesta.</p></li>
+<li><p><strong>Metropolis-Hastings multivariado</strong></p>
+<p>Obtener muestras de una distribucion normal multivariada.</p></li>
+<li><p><strong>Metropolis-Hastings para regresión</strong></p>
+<p>Reciclar el ejercicio de grid-approximation?</p></li>
+</ol>
+<hr>
+<ol type="1">
+<li>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></li>
 </ol>
 </section>
 <section id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts" class="level2">
@@ -521,6 +591,7 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 <section id="diagnósticos" class="level2">
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
 <ol type="1">
+<li><p>Repetir los cálculos de alguno de los puntos anteriores utilizando 4 cadenas y calcular <span class="math inline">\(\hat{R}\)</span>?</p></li>
 <li><p>Generar traceplots</p></li>
 <li><p>Calcular y graficar funcion de autocorrelacion</p></li>
 <li><p>Calcular tamaño efectivo de muestras</p></li>
@@ -537,10 +608,14 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 <li><p>Calcular tamaño efectivo de muestra utilizando muestras independientes de un <em>posterior</em></p></li>
 <li><p>Calcular tamaño efectivo de muestra utilizando muestras dependientes de un <em>posterior</em></p></li>
 <li><p>Algo más?</p></li>
-<li><p>Describir que problema muestran las siguientes cadenas… WIP?</p>
+<li><p><strong>Cadenas rotas: Un caso simulado</strong></p>
+<p>Los siguientes gráficos muestran las trazas y las distribuciones que resultan al obtener muestras de un <em>posterior</em> utilizando dos cadenas de Markov independientes. Estos muestreos fueron realizados de manera que presenten algunos problemas. Describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
 <div class="cell">
 
 </div>
+<center>
+<p><strong>Gráfico 1</strong></p>
+</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -550,6 +625,9 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 </div>
 </div>
 </div>
+<center>
+<p><strong>Gráfico 2</strong></p>
+</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -559,11 +637,52 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 </div>
 </div>
 </div>
+<center>
+<p><strong>Gráfico 3</strong></p>
+</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="practica_03_files/figure-html/trace-and-histogram-3-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<center>
+<p><strong>Gráfico 4</strong></p>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="practica_03_files/figure-html/trace-and-histogram-4-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div></li>
+<li><p><strong>Cadenas rotas: Un caso real</strong></p>
+<p>Al igual que en el ejercicio anterior, se presentan <em>traceplots</em> donde el muestreo del <em>posterior</em> presenta problemas. En este caso, los gráficos que se observan fueron obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. Nuevamente, describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
+<center>
+<p><strong>Gráfico 1</strong></p>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/posterior_rota.png" class="img-fluid figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<center>
+<p><strong>Gráfico 2</strong></p>
+</center>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/posterior_rota_2.png" class="img-fluid figure-img" style="width:100.0%"></p>
 </figure>
 </div>
 </div>
@@ -594,12 +713,12 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 \]</span></p>
 <p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code># A tibble: 6 × 3
   intercepto pendiente sigma
