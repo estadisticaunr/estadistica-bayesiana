@@ -538,7 +538,7 @@ requisito de distribución simétrica.
 <li><span class="math inline">\(\frac{1}{2}\text{Beta}(\alpha=10, \beta=3) + \frac{1}{2}\text{Beta}(\alpha=3, \beta=10)\)</span></li>
 </ol>
 <p>Realice un análisis similar al realizado en el Ejercicio 1.</p></li>
-<li><p><strong>A jugar con la distribución de propuesta</strong></p>
+<li><p><strong>A jugar con <del>Hugo!</del> la distribución de propuesta!</strong></p>
 <p>Suponga que se desean obtener muestras de una distribución <span class="math inline">\(\text{Normal}(4, 1)\)</span> utilizando Metropolis-Hastings y la siguiente distribución de propuesta:</p>
 <p><span class="math display">\[
 \mu' | \mu \sim \text{Uniforme}(\mu - w, \mu + w)
@@ -588,13 +588,18 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \]</span></p>
 <p>Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique que el <em>sampler</em> convergiera. <!-- @Reich2020 3.10/3.11  --></p></li>
 <li><p><strong>Metropolis-Hastings multivariado</strong></p>
-<p>Obtener muestras de una distribucion normal multivariada.</p></li>
+<p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\pmb{\mu}, \pmb{\Sigma})\)</span> donde</p>
+<p><span class="math display">\[
+\begin{array}{c}
+    \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix},
+    &amp;
+    \pmb{\Sigma} = \begin{bmatrix}3 &amp; 0.2 \\ 0.2 &amp; 2 \end{bmatrix}
+\end{array}
+\]</span></p>
+<p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\mathbf{0}_2, \mathbf{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
 <li><p><strong>Metropolis-Hastings para regresión</strong></p>
-<p>Reciclar el ejercicio de grid-approximation?</p></li>
-</ol>
-<hr>
-<ol type="1">
-<li>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></li>
+<p>Repita el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> pero utilice Metropolis-Hastings para obtener muestras del <em>posterior</em> en vez del método de la grilla.</p></li>
+<li><p>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></p></li>
 </ol>
 </section>
 <section id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts" class="level2">
@@ -759,6 +764,31 @@ basadas en MCMC necesitan diagnósticos de convergencia. En particular, contrast
 <p>Repita los mismos pasos del ejercicio <strong>Modelo Gamma-Poisson con Rstan (I)</strong> pero considere el modelo Normal-Normal para <span class="math inline">\(\mu\)</span> con <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 1.3^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(10, 1.2^2)\)</span>. Suponga que cuenta con <span class="math inline">\(n = 4\)</span> observaciones independientes <span class="math inline">\((y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)\)</span></p></li>
 <li><p><strong>Modelo Normal-Normal con Rstan (II)</strong></p>
 <p>Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 8^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(-15, 2^2)\)</span>. Suponga que en <span class="math inline">\(n = 5\)</span> observaciones independientes observa <span class="math inline">\((y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)\)</span></p></li>
+<li><p><strong>Un modelo no-lineal</strong></p>
+<p>Considere el siguiente modelo</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{mass}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
+\mu_i         &amp;= \theta_1 + \theta_2 + \text{age}_i^{\theta_3} \\
+\theta_1      &amp;\sim \text{Normal}(0, 100^2) \\
+\theta_2      &amp;\sim \text{Uniforme}(0, 20000) \\
+\theta_3      &amp;\sim \text{Normal}(0, 1) \\
+\sigma^2      &amp;\sim \text{InvGamma}(0.01, 0.01)
+\end{aligned}
+\]</span></p>
+<p>y los siguientes datos</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>edad <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">28</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">29.9</span>, <span class="dv">1761</span>, <span class="dv">1807</span>, <span class="dv">2984</span>, <span class="dv">3230</span>, <span class="dv">5040</span>, <span class="dv">5654</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">length</span>(edad)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>data_list <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">peso =</span> peso, <span class="at">edad =</span> edad, <span class="at">n =</span> n)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ol type="i">
+<li>Ajuste el modelo utilizando RStan</li>
+<li>Obtenga una visualización de la edad versus el peso junto con una curva que indique la media <em>a posteriori</em> de <span class="math inline">\(\mu_i\)</span> para evaluar si el modelo ajusta bien.</li>
+<li>Estudie la convergencia de las cadenas de Markov.</li>
+<li>Mencione tres medidas que podría tomar para mejorar la convergencia. <!-- @Reich2020 3.15 --></li>
+</ol></li>
 </ol>
 </section>
 <section id="otros" class="level2">
@@ -776,12 +806,12 @@ basadas en MCMC necesitan diagnósticos de convergencia. En particular, contrast
 \]</span></p>
 <p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code># A tibble: 6 × 3
   intercepto pendiente sigma
