@@ -540,7 +540,7 @@ requisito de distribución simétrica.
 
     Realice un análisis similar al realizado en el Ejercicio 1.
 
-1.  **A jugar con la distribución de propuesta**
+1.  **A jugar con ~~Hugo!~~ la distribución de propuesta!**
 
     Suponga que se desean obtener muestras de una distribución $\text{Normal}(4, 1)$ 
     utilizando Metropolis-Hastings y la siguiente distribución de propuesta:
@@ -625,13 +625,25 @@ requisito de distribución simétrica.
 
 1.  **Metropolis-Hastings multivariado**
 
-    Obtener muestras de una distribucion normal multivariada.
+    Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución
+    $\text{MVN}(\pmb{\mu}, \pmb{\Sigma})$ donde
+
+    $$
+    \begin{array}{c}
+        \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix},
+        &
+        \pmb{\Sigma} = \begin{bmatrix}3 & 0.2 \\ 0.2 & 2 \end{bmatrix}
+    \end{array}
+    $$
+
+    Utilice una distribución de propuesta $\text{MVN}(\mathbf{0}_2, \mathbf{I}_2\sigma)$
+    con $\sigma = 0.2$.
 
 1.  **Metropolis-Hastings para regresión**
 
-    Reciclar el ejercicio de grid-approximation?
-
----
+    Repita el ejercicio **Aproximación de grilla en 2 dimensiones** pero utilice 
+    Metropolis-Hastings para obtener muestras del _posterior_ en vez del método de
+    la grilla.
 
 1.  Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
     la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$
@@ -887,6 +899,38 @@ requisito de distribución simétrica.
     Suponga que en $n = 5$ observaciones independientes observa 
     $(y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)$
 
+
+1.  **Un modelo no-lineal**
+
+    Considere el siguiente modelo
+
+    $$
+    \begin{aligned}
+    \text{mass}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
+    \mu_i         &= \theta_1 + \theta_2 + \text{age}_i^{\theta_3} \\
+    \theta_1      &\sim \text{Normal}(0, 100^2) \\
+    \theta_2      &\sim \text{Uniforme}(0, 20000) \\
+    \theta_3      &\sim \text{Normal}(0, 1) \\
+    \sigma^2      &\sim \text{InvGamma}(0.01, 0.01)
+    \end{aligned}
+    $$
+
+    y los siguientes datos
+
+    ```{R}
+    #| eval: false
+    edad <- c(2, 15, 14, 16, 18, 22, 28)
+    peso <- c(29.9, 1761, 1807, 2984, 3230, 5040, 5654)
+    n <- length(edad)
+    data_list <- data.frame(peso = peso, edad = edad, n = n)
+    ```
+
+    i. Ajuste el modelo utilizando RStan
+    i. Obtenga una visualización de la edad versus el peso junto con una curva que indique
+    la media _a posteriori_ de $\mu_i$ para evaluar si el modelo ajusta bien.
+    i. Estudie la convergencia de las cadenas de Markov.
+    i. Mencione tres medidas que podría tomar para mejorar la convergencia.
+    <!-- @Reich2020 3.15 -->
 
 ## **Otros**
 
