@@ -13,7 +13,6 @@ source(here::here("scripts", "utils.R"))
 captions <- list()
 captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
-
 library(dplyr)
 library(ggplot2)
 library(patchwork)
@@ -480,32 +479,147 @@ Podriamos encontrar un mejor nombre...
 
 ## **Metropolis-Hastings**
 
-Están escritos bastante así nomás.
+<!--
+Copio algunos pasajes del libro porque la verdad me parece super claro. 
+Puede ser útil para la presentación de teoría.
+Although not as efficient as independent sampling, dependent sampling is easier to 
+implement, and only requires calculation of the un-normalised posterior, avoiding the 
+troublesome denominator term
 
-1.  Obtener muestras de las siguientes distirbuciones univariadas 
-    i. Uniforme
-    i. Normal
-    i. Gamma
-    i. Beta
-    i. T-Student
-    i. Alguna otra univariada no tan trivial?
+We also know that MCMC is typically used to do dependent sampling. It is called Monte Carlo 
+because the decision of where to step next involves a random component
 
-1.  Obtener muestras de la siguientes distribuciones normal multivariada
-    i. Independiente
-    i. Correlacion debil
-    i. Correlacion fuerte
+In this chapter we see that there are two components to this decision: 
+in the first, we choose _where_ to propose a next step from the current position; 
+in the second, we choose _whether_ we accept this step or stay where we are
+@Lambert2018
+-->
 
-1.  Repetir los cálculos de los puntos anteriores utilizando 4 cadenas y 
-    calcular $\hat{R}$.
+<!--
+El algoritmo Metropolis es un caso especial del algoritmo general Metropolis-Hastings 
+(Hoff, 2009). La principal diferencia es que el algoritmo Metropolis-Hastings no tiene el 
+requisito de distribución simétrica.
+-->
+
+1.  **Muestreo utilizando el algoritmo de Metropolis-Hastings (I)** 
+
+    Use el algoritmo de Metropolis-Hastings y una distribución de propuesta 
+    $\text{Normal}(0, 0.1)$ para obtener 5000 muestras de las siguientes distribuciones 
+    de probabilidad:
+
+    i. $\text{Normal}(\mu = 3, \sigma = 6)$
+    i. $\text{StudentT}(\nu = 5)$
+    i. $\frac{2}{3}\text{Normal}(\mu = 0, \sigma = 0.5) + \frac{1}{3}\text{Normal}(\mu = 3, \sigma = 2)$
+
+    Grafique las distribuciones obtenidas utilizando un histograma o una estimación
+    de densidad y superponga la función de densidad verdadera para realizar una
+    comparación. Concluya sobre la similitud de las mismas y la aptitud de la distribución
+    de propuesta utilizada.
+
+1.  **Simplificando el algoritmo de Metropolis-Hastings**
+    
+    La distribución de propuesta utilizada en el ejercicio anterior goza de una propiedad
+    que permite simplificar el algoritmo de Metropolis-Hastings.
+
+    i. ¿Cuál es esta propiedad?
+    i. ¿Qué simplificación se puede hacer?
+    i. ¿Qué nombre recibe la versión simplificada del algoritmo?
+    i. Implemente la versión simplificada del algoritmo de Metropolis-Hastings y obtenga
+    nuevamente 5000 muestras para las distribuciones presentadas en el ejercicio anterior
+    utilizando la nueva implementación.
+
+1.  **Muestreo utilizando el algoritmo de Metropolis-Hastings (II)**
+
+    Use el algoritmo de Metropolis-Hastings y una distribución de propuesta que crea
+    conveniente para obtener 5000 muestras de las siguientes distribuciones de 
+    probabilidad:
+
+    i. $\text{Beta}(\alpha=4, \beta=8)$
+    i. $\text{Gamma}(k = 3, \theta = 2)$
+    i. $\frac{1}{2}\text{Beta}(\alpha=10, \beta=3) + \frac{1}{2}\text{Beta}(\alpha=3, \beta=10)$
+
+    Realice un análisis similar al realizado en el Ejercicio 1.
+
+1.  **A jugar con la distribución de propuesta**
+
+    Suponga que se desean obtener muestras de una distribución $\text{Normal}(4, 1)$ 
+    utilizando Metropolis-Hastings y la siguiente distribución de propuesta:
+
+    $$
+    \mu' | \mu \sim \text{Uniforme}(\mu - w, \mu + w)
+    $$
+
+    Obtenga $n=5000$ muestras con $w \in \{0.01, 1, 100\}$ y compute la probabilidad de
+    aceptación. Luego, para cada $w$, grafique la distribución obtenida y visualice la 
+    cadena de Markov utilizando un _traceplot_.
+
+    * ¿Cómo se relaciona $w$ con el desempeño del muestreo?
+    * ¿Cómo se relaciona $w$ con la probabilidad de aceptación? Justifique su respuesta.
+
+
+1.  **Modelo Normal-Normal**
+
+    Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por
+    semana a la materia Estadística Bayesiana. Para eso se propone utilizar un
+    modelo Normal-Normal, con $\sigma=1.2$ conocido.
+
+    i. Elija una distribución _a priori_ para el parámetro $\mu$. 
+    i. Describa el modelo matemáticamente.
+    i. Determine una distribución de propuesta adecuada para este problema. Explique.
+    i. Obtenga 2000 muestras del _posterior_ de $\mu$. Ajuste los parámetros de la 
+    distribución de propuesta hasta que los resultados se vean adecuados.
+    i. Grafique un histograma de las muestras obtenidas y concluya sobre el desempeño 
+    de la aproximación.
+
+    Para resolver este problema utilice los datos que se leen con el siguiente codigo:
+
+    ```{R}
+    #| eval: false
+    url <- paste0(
+        "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/",
+        "main/datos/tiempo-estudio-eb.csv"
+    )
+    df_estudio <- readr::read_csv(url)
+    ```
+
+
+1.  **Modelo Beta-Binomial**
+
+    Se desea estimar el _posterior_ del parámetro $\pi$ en el siguiente modelo 
+    Beta-Binomial:
+
+    $$
+    \begin{aligned}
+    Y &\sim \text{Binomial}(n, \pi) \\
+    \pi &\sim \text{Beta}(2, 3)
+    \end{aligned}
+    $$
+
+    Se observan $n=10$ ensayos de Bernoulli y se registran $y=3$ éxitos. Determine una 
+    distribución de propuesta adecuada y obtenga muestras de la distribución 
+    _a posteriori_ del parámetro $\pi$ utilizando el algoritmo de Metropolis-Hastings.
+
+    De ser necesario, ajuste los parámetros de la distribución de propuesta. 
+
+1.  **Metropolis-Hastings multivariado**
+
+    Obtener muestras de una distribucion normal multivariada.
+
+1.  **Metropolis-Hastings para regresión**
+
+    Reciclar el ejercicio de grid-approximation?
+
+---
 
 1.  Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
     la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$
 
-1.  Ajustar algun modelo conjugado (y por que no, otro no conjugado), utilizando MH
-
 ## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
 
 ## **Diagnósticos**
+
+1.  Repetir los cálculos de alguno de los puntos anteriores utilizando 4 cadenas y 
+    calcular $\hat{R}$?
 
 1.  Generar traceplots
 1.  Calcular y graficar funcion de autocorrelacion
@@ -520,13 +634,21 @@ Están escritos bastante así nomás.
 1.  Calcular tamaño efectivo de muestra utilizando muestras dependientes de un _posterior_
 1.  Algo más?
 
-1.  Describir que problema muestran las siguientes cadenas... WIP? 
+1.  **Cadenas rotas: Un caso simulado**
 
+    Los siguientes gráficos muestran las trazas y las distribuciones que resultan al 
+    obtener muestras de un _posterior_ utilizando dos cadenas de Markov independientes. 
+    Estos muestreos fueron realizados de manera que presenten algunos problemas. 
+    Describa cuales son los problemas que puede observar en los siguientes gráficos y 
+    explique por qué no utilizaría estas muestras para obtener conclusiones sobre
+    el _posterior_.
+    
     ```{R}
     #| warning: false
     #| echo: false
     set.seed(121195)
-    STEPS <- 150
+    STEPS <- 200
+    x <- rep(seq(STEPS), times = 2)
 
     plot_trace_and_histogram <- function(df) {
         plt_lines <- ggplot(df, aes(x = x, y = y, color = chain)) +
@@ -551,13 +673,14 @@ Están escritos bastante así nomás.
     } 
     ```
 
+    <center> **Gráfico 1** </center>
+
     ```{R trace-and-histogram-1}
     #| warning: false
     #| echo: false
     #| fig.width: 8
     #| fig.height: 4.5
     #| fig.align: center
-    x <- rep(seq(STEPS), times = 2)
     y1 <- rnorm(STEPS)
     y2 <- rnorm(STEPS) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
@@ -565,21 +688,23 @@ Están escritos bastante así nomás.
     plot_trace_and_histogram(df)
     ```
 
+    <center> **Gráfico 2** </center>
+
     ```{R trace-and-histogram-2}
     #| warning: false
     #| echo: false
     #| fig.width: 8
     #| fig.height: 4.5
     #| fig.align: center
-    steps <- 150
-    x <- rep(seq(steps), times = 2)
-    y1 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4)
-    y2 <- -0.035 * seq(steps) + rnorm(steps, sd = 0.4) + 5
+    y1 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4)
+    y2 <- -0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
     df <- data.frame(x = x, y = c(y1, y2), chain = chain)
 
     plot_trace_and_histogram(df)
     ```
+
+    <center> **Gráfico 3** </center>
 
     ```{R trace-and-histogram-3}
     #| warning: false
@@ -587,17 +712,48 @@ Están escritos bastante así nomás.
     #| fig.width: 8
     #| fig.height: 4.5
     #| fig.align: center
-    steps <- 150
-    x <- rep(seq(steps), times = 2)
-    y1 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4)
-    y2 <- 0.035 * seq(steps) + rnorm(steps, sd = 0.4) + 5
+    y1 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4)
+    y2 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
     df <- data.frame(x = x, y = c(y1, y2), chain = chain)
 
     plot_trace_and_histogram(df)
     ```
 
+    <center> **Gráfico 4** </center>
 
+    ```{R trace-and-histogram-4}
+    #| warning: false
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 4.5
+    #| fig.align: center
+    set.seed(121195)
+    y1 <- cumsum(rnorm(STEPS, sd = 0.5))
+    y2 <- cumsum(rnorm(STEPS, sd = 0.15)) + 5
+    chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
+    df <- data.frame(x = x, y = c(y1, y2), chain = chain)
+    plot_trace_and_histogram(df)
+    ```
+
+1.  **Cadenas rotas: Un caso real**
+
+    Al igual que en el ejercicio anterior, se presentan _traceplots_ donde el muestreo del
+    _posterior_ presenta problemas. En este caso, los gráficos que se observan fueron 
+    obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. 
+    Nuevamente, describa cuales son los problemas que puede observar en los siguientes 
+    gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre
+    el _posterior_.
+
+    <center> **Gráfico 1** </center>
+    ```{r, echo=FALSE, out.width="100%", fig.align="center"}
+    if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota.png"))
+    ```
+    
+    <center> **Gráfico 2** </center>
+    ```{r, echo=FALSE, out.width="100%", fig.align="center"}
+    if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
+    ```
 
 ## **Programción probabilística**
 
