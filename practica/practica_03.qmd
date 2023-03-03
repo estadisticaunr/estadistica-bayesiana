@@ -601,6 +601,28 @@ requisito de distribución simétrica.
 
     De ser necesario, ajuste los parámetros de la distribución de propuesta. 
 
+1.  **Modelo Poisson**
+
+    En el ejercicio **¡Ostras! ¡Estoy haciendo inferencia bayesiana!** de la Práctica 1
+    se reportó que la cantidad de especies marinas bivalvas descubiertas cada año entre 
+    2010 y 2015 fue 64, 13, 33, 18, 30 y 20.
+
+    Sea $Y_t$ la cantidad de especies descubierta en el año $2009 + t$ (e.g. $Y_1 = 64$ 
+    es el conteo para el año 2010) y el siguiente modelo:
+
+    $$
+    \begin{aligned}
+    Y_t        &\sim \text{Poisson}(\lambda_t) \\
+    \lambda_t  &= \exp (\alpha + \beta t) \\
+    \alpha     &\sim \text{Normal}(0, 10^2) \\
+    \beta      &\sim \text{Normal}(0, 10^2)
+    \end{aligned}
+    $$
+
+    Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique que el _sampler_
+    convergiera.
+    <!-- @Reich2020 3.10/3.11  -->
+
 1.  **Metropolis-Hastings multivariado**
 
     Obtener muestras de una distribucion normal multivariada.
@@ -617,6 +639,35 @@ requisito de distribución simétrica.
 ## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
 
 ## **Diagnósticos**
+
+1.  **Describir medidas de diagnóstico (I)**
+    
+    En sus propias palabras, explique que son $\text{ESS}$, $\hat{R}$ y $\text{MCSE}$. 
+    Considere:
+
+    * ¿Qué miden?
+    * ¿Qué potencial problema de MCMC detectan?
+    <!-- @Martin2021 2E2 -->
+
+1.  **...**
+
+    En sus propias palabras, explique por qué las técnicas de estimación del _posterior_  
+    basadas en MCMC necesitan diagnósticos de convergencia.
+    En particular, contraste estos con los métodos conjugados descritos en la Unidad 2 
+    que no necesitan esos diagnósticos. 
+    ¿Qué es diferente entre los dos métodos de inferencia?
+    <!-- @Martin2021 2E8 -->
+
+
+1.  **Problemitas de MCMC**
+
+    Para cada escenario de simulación mediante MCMC descrito a continuación, describa 
+    cómo el escenario podría afectar la aproximación del _posterior_.
+
+    * La cadena se mezcla muy lentamente
+    * La cadena presenta alta auto-correlación.
+    * La cadena tiende a quedarse "trabada"
+    <!-- @Johnson2021 Exercise 6.3  -->
 
 1.  Repetir los cálculos de alguno de los puntos anteriores utilizando 4 cadenas y 
     calcular $\hat{R}$?
@@ -755,10 +806,87 @@ requisito de distribución simétrica.
     if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
     ```
 
-## **Programción probabilística**
+## **Programación probabilística - Stan y RStan**
 
-1.  Escribir y ajustar algunos modelos con Stan
-    * Comparar salidas con resultados teóricos
+1.  **MCMC con RStan: Precalentamiento (I)**
+
+    Utilice la información proporcionada para definir la estructura del modelo bayesiano 
+    utilizando RStan. No es necesario ejecutar nada, solo necesita proporcionar el 
+    código correcto.
+
+    i. $Y | \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$
+    i. $Y | \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$
+    i. $Y | \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$
+    <!-- @Johnson2021 6.11 -->
+
+1.  **MCMC con RStan: Precalentamiento (II)**
+
+    Utilice la información proporcionada para (1) definir la estructura del modelo 
+    bayesiano y (2) obtener muestras del _posterior_ utilizando RStan. 
+    No es necesario ejecutar nada, solo necesita proporcionar el 
+    código correcto.
+
+    i. $Y | \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$ e $y = 12$
+    i. $Y | \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$ e 
+    $y = 3$.
+    i. $Y | \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$ e 
+    $y = 12.2$.
+    <!-- @Johnson2021 6.12 -->
+
+1.  **Modelo Beta-Binomial con Rstan (I)**
+
+    Considere el modelo Beta-Binomial para $\pi$ con $Y | \pi \sim \text{Binomial}(\pi, n)$
+    y $\pi \sim \text{Beta}(3, 8)$. Suponga que en $n = 10$ ensayos independientes
+    observa $y = 2$ éxitos.
+
+    i. Obtenga muestras del _posterior_ de $\pi$ con RStan utilizando 3 cadenas y 12000
+    iteraciones por cadena.
+    i. Grafique la traza de cada una de las tres cadenas.
+    i. ¿Cuál es el rango de valores en el eje x del _traceplot_? 
+    ¿Por qué el valor máximo de este rango no es 12000?
+    i. Cree un gráfico que permita visualizar la función de densidad de los valores obtenidos
+    con cada una de las tres cadenas.
+    i. Utilizando lo estudiado en la Unidad 2, especifique el _posterior_ de $\pi$. 
+    ¿Cómo se compara con la aproximación mediante MCMC?
+
+1.  **Modelo Beta-Binomial con Rstan (II)**
+
+    Repita el ejercicio anterior utilizando $\pi \sim \text{Beta}(4, 3)$, donde observa
+    $y = 4$ éxitos en $n = 12$ ensayos independientes.
+
+1.  **Modelo Gamma-Poisson con Rstan (I)**
+
+    Considere el modelo Gamma-Poisson para $\lambda$ con 
+    $Y_i | \lambda \sim \text{Poisson}(\lambda)$ y $\lambda \sim \text{Gamma}(20, 5)$.
+    Suponga que cuenta con $n = 3$ observaciones independientes $(y_1, y_2, y_3) = (0, 1, 0)$
+
+    i. Obtenga muestras del _posterior_ de $\lambda$ con RStan utilizando 4 cadenas y 
+    10000 iteraciones por cadena.
+    i. Grafique la traza y la función de densidad de cada una de las tres cadenas.
+    i. A partir del gráfico de la función de densidad, ¿cuáles suelen ser, _a posteriori_,
+    los valores más probables de $\lambda$?
+    i. Utilizando lo estudiado en la Unidad 2, especifique el _posterior_ de $\lambda$. 
+    ¿Cómo se compara con la aproximación mediante MCMC?
+
+1.  **Modelo Gamma-Poisson con Rstan (II)**
+
+    Repita el ejercicio anterior utilizando el _prior_ $\lambda \sim \text{Gamma}(5, 5)$.
+
+1.  **Modelo Normal-Normal con Rstan (I)**
+
+    Repita los mismos pasos del ejercicio **Modelo Gamma-Poisson con Rstan (I)** pero
+    considere el modelo Normal-Normal para $\mu$ con 
+    $Y_i | \mu \sim \text{Normal}(\mu, 1.3^2)$ y $\mu \sim \text{Normal}(10, 1.2^2)$.
+    Suponga que cuenta con $n = 4$ observaciones independientes 
+    $(y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)$
+
+1.  **Modelo Normal-Normal con Rstan (II)**
+
+    Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere 
+    $Y_i | \mu \sim \text{Normal}(\mu, 8^2)$ y $\mu \sim \text{Normal}(-15, 2^2)$.
+    Suponga que en $n = 5$ observaciones independientes observa 
+    $(y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)$
+
 
 ## **Otros**
 
@@ -927,19 +1055,10 @@ requisito de distribución simétrica.
 
     <!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'-->
 
-
 ### Ejercicios que faltan
 
-* Utilizar MH para obtener el posterior
-    * Utilizar casos de la práctica 2
-        * Incluir algún caso donde no todos los parámetros vivan en $\mathbb{R}$
 * Utilizar HMC para la normal multivariada con correlación moderada y alta correlación
 * Utilizar HMC para los modelos donde se usó MH
-* Stan:
-    * Escribir algunos modelos con Stan
-    * Diferentes priors
-    * Analizar posterior de manera grafica (marginales y conjuntas)
-    * Calcular diagnosticos y analizar
 * Algun caso donde los diagnosticos no den bien...
     * Puede ser cuando el HMC no esta bien tuneado
     * Pensar algunos otros (deberia buscar en cosas que he hecho)
@@ -947,7 +1066,6 @@ requisito de distribución simétrica.
 
 **Nota:** Para los que dicen "utilizar HMC" estaria bueno que proveamos una funcion
 que use HMC, sin que tengan que usar Stan.
-
 
 <!-- 
 1. **La maldición de la dimensionalidad**
