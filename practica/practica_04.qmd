@@ -1,6 +1,6 @@
 ---
 title: "Práctica - Unidad 4"
-# bibliography: ../references.bib
+bibliography: ../references.bib
 # nocite: |
 #     @Martin2021, @Downey2021
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf
@@ -12,9 +12,34 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 :::
 
+## Regresión
+
+1.  **Regresión origins**
+
+    ```{r}
+    datos <- readr::read_delim (here::here("datos", "heights.txt"), delim = " ")
+    ```
+
+
+1.  **Comparación de `lm()` y `brm()`**
+
+    Utilice datos simulados para comparar la estimación por mínimos cuadrados con la 
+    estimación Bayesiana en modelos de regresión.
+
+    i. Simule 100 observaciones del modelo $y = 2 + 3x + \epsilon$ donde los valores del
+    predictor $x$ se obtienen de una distribución $\text{Uniforme}(0, 20)$ y los errores
+    son obtenidos de manera independiente de una distribución $\text{Normal}(0, 5^2)$.
+    i. Ajuste el modelo de regresión utilizando `lm()` y `brm()` del paquete `{brms}`
+    utilizando sus configuraciones por defecto.
+    i. Verifique que ambos métodos devuelven resultados casi idénticos.
+    i. Grafique los datos simulados y las dos rectas de regresión ajustadas.
+    i. Repita los pasos anteriores, pero intente simular un escenario para que `lm()` y 
+    `brm()` den resultados muy diferentes.
+    <!-- @Gelman2021 8.8 -->
+
+
 ## Ideas
 
-* Agregar ejercicio 8.8 de Regression and Other Stories
 * Modelo lineal basico con datos simulados
 * Modelo lineal con predictores numericos y categoricos
 * Modelo lineal con transformaciones
@@ -40,3 +65,10 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 * Usamos RStan o brms?
     * Me inclino por usar brms.
     * Pero no estaria mal que hagamos uno o dos modelos con RStan.
+
+
+
+<!-- 
+Unidad 4: Modelos Lineales
+Modelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV). 
+-->
