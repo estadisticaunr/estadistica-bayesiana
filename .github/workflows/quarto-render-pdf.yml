@@ -27,6 +27,7 @@ jobs:
             any::here
             any::kableExtra
             any::knitr
+            any::mvtnorm
             any::patchwork
             any::readr
             any::rmarkdown

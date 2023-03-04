@@ -23,12 +23,14 @@ jobs:
           packages: |
             any::dplyr
             any::ggplot2
-            any::googlesheets4
             any::here
             any::kableExtra
             any::knitr
+            any::mvtnorm
+            any::patchwork
             any::readr
             any::rmarkdown
+            any::tidyr
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2    
