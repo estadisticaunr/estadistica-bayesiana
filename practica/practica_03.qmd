@@ -477,7 +477,7 @@ Podriamos encontrar un mejor nombre...
     $$
     <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution -->
 
-## **Metropolis-Hastings**
+## **Metropolis-Hastings** {#sec-mh}
 
 <!--
 Copio algunos pasajes del libro porque la verdad me parece super claro. 
@@ -540,9 +540,9 @@ requisito de distribución simétrica.
 
     Realice un análisis similar al realizado en el Ejercicio 1.
 
-1.  **A jugar con ~~Hugo!~~ la distribución de propuesta!**
+1.  **A jugar con la distribución de propuesta!**
 
-    Suponga que se desean obtener muestras de una distribución $\text{Normal}(4, 1)$ 
+    Suponga que se desea obtener muestras de una distribución $\text{Normal}(4, 1)$ 
     utilizando Metropolis-Hastings y la siguiente distribución de propuesta:
 
     $$
@@ -554,10 +554,11 @@ requisito de distribución simétrica.
     cadena de Markov utilizando un _traceplot_.
 
     * ¿Cómo se relaciona $w$ con el desempeño del muestreo?
-    * ¿Cómo se relaciona $w$ con la probabilidad de aceptación? Justifique su respuesta.
+    * ¿Cómo se relaciona $w$ con la probabilidad de aceptación? Justifique su respuesta
+    utilizando la ecuación del criterio de aceptación.
 
 
-1.  **Modelo Normal-Normal**
+1.  [**Modelo Normal-Normal**]{#ex-mh-mm}
 
     Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por
     semana a la materia Estadística Bayesiana. Para eso se propone utilizar un
@@ -582,8 +583,7 @@ requisito de distribución simétrica.
     df_estudio <- readr::read_csv(url)
     ```
 
-
-1.  **Modelo Beta-Binomial**
+1.  [**Modelo Beta-Binomial**]{#ex-mh-bb}
 
     Se desea estimar el _posterior_ del parámetro $\pi$ en el siguiente modelo 
     Beta-Binomial:
@@ -619,8 +619,8 @@ requisito de distribución simétrica.
     \end{aligned}
     $$
 
-    Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique que el _sampler_
-    convergiera.
+    Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique la convergencia
+    de las cadenas de Markov.
     <!-- @Reich2020 3.10/3.11  -->
 
 1.  **Metropolis-Hastings multivariado**
@@ -650,6 +650,8 @@ requisito de distribución simétrica.
 
 ## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
 
+...
+
 ## **Diagnósticos**
 
 1.  **Describir medidas de diagnóstico (I)**
@@ -661,19 +663,18 @@ requisito de distribución simétrica.
     * ¿Qué potencial problema de MCMC detectan?
     <!-- @Martin2021 2E2 -->
 
-1.  **...**
+1.  **Describir medidas de diagnóstico (II)**
 
-    En sus propias palabras, explique por qué las técnicas de estimación del _posterior_  
+    En sus propias palabras, explique por qué las técnicas de estimación del _posterior_
     basadas en MCMC necesitan diagnósticos de convergencia.
     En particular, contraste estos con los métodos conjugados descritos en la Unidad 2 
     que no necesitan esos diagnósticos. 
     ¿Qué es diferente entre los dos métodos de inferencia?
     <!-- @Martin2021 2E8 -->
 
-
 1.  **Problemitas de MCMC**
 
-    Para cada escenario de simulación mediante MCMC descrito a continuación, describa 
+    Para cada escenario de simulación mediante MCMC descrito a continuación, explique 
     cómo el escenario podría afectar la aproximación del _posterior_.
 
     * La cadena se mezcla muy lentamente
@@ -681,23 +682,74 @@ requisito de distribución simétrica.
     * La cadena tiende a quedarse "trabada"
     <!-- @Johnson2021 Exercise 6.3  -->
 
-1.  Repetir los cálculos de alguno de los puntos anteriores utilizando 4 cadenas y 
-    calcular $\hat{R}$?
+1.  **Vamos de paseo**
 
-1.  Generar traceplots
-1.  Calcular y graficar funcion de autocorrelacion
-1.  Calcular tamaño efectivo de muestras
-1.  Calcular $\hat{R}$ usando muestras independientes de un _posterior_
-    i. Calcular variabilidad intra cadenas
-    i. Calcular variabilidad entre cadenas
-1.  Calcular $\hat{R}$ usando un muestras dependientes de un _posterior_
-    i. Calcular variabilidad intra cadenas
-    i. Calcular variabilidad entre cadenas
-1.  Calcular tamaño efectivo de muestra utilizando muestras independientes de un _posterior_
-1.  Calcular tamaño efectivo de muestra utilizando muestras dependientes de un _posterior_
-1.  Algo más?
+    Elabore _traceplots_ que le permitan visualizar la traza de la cadena de Markov
+    utilizada en el ejercicio [**Modelo Normal-Normal**](#ex-mh-mm) de la sección 
+    [**Metropolis-Hastings**](#sec-mh). 
+    
+    Luego, repita el ejercicio utilizando 4 cadenas independientes y grafique sus trazas
+    en un mismo gráfico. ¿Qué puede concluir sobre la convergencia y la mezcla de las 
+    cadenas?
 
-1.  **Cadenas rotas: Un caso simulado**
+1.  [**Primeros pasitos con $\hat{R}$**]{#ex-diag-pprhat}
+
+    Repita lo realizado en el ejercicio [**Modelo Beta-Binomial**](#ex-mh-bb) de la 
+    sección [**Metropolis-Hastings**](#sec-mh) utilizando 4 cadenas independientes. Luego:
+
+    i. Calcule la varianza intra-cadenas $W$
+    i. Calcule la varianza entre-cadenas $B$
+    i. Calcule $\hat{R}$ y concluya sobre el resultado obtenido.
+
+    **NOTA:** No hay una única alternativa de $\hat{R}$ dando vueltas por ahí. Está
+    la versión de BDA3, que entiendo que es la misma que la del libro de Lambert, pero hoy
+    se está recomendando una versión "rank-normalized". Ver [este paper](https://projecteuclid.org/journals/bayesian-analysis/advance-publication/Rank-Normalization-Folding-and-Localization--An-Improved-R%CB%86-for/10.1214/20-BA1221.full)
+    y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/)
+
+1.  **$\hat{R}$ para un muestreo independiente**
+
+    En un determinado problema se encuentra que el _posterior_ del parámetro $\pi$ de un
+    modelo con verosimilitud binomial está dado por
+
+    $$
+    \pi | \mathbf{y} \sim \text{Beta}(12, 6)
+    $$
+
+    i. Obtenga 4 conjuntos independientes de 1000 muestras independientes de esta 
+    distribución.
+    i. Calcule $W$, $B$, y $\hat{R}$ considerando que cada conjunto representa una cadena.
+    i. Explique el resultado de $\hat{R}$.
+
+    **Bonus**
+
+    i. ¿Se puede concluir que cada uno de los muestreos realizados representan 
+    realizaciones de una cadena de Markov? ¿Por qué?
+    i. ¿Por qué no fue necesario descartar un conjunto de muestras de _warm-up_?
+
+1.  **Función de autocorrelación**
+
+    Utilice las 4 cadenas obtenidas en el ejercicio 
+    [**Primeros pasitos con $\hat{R}$**](#ex-diag-pprhat) y grafique la función de 
+    autocorrelación y calcule el coeficiente de autocorrelación utilizando un rezago
+    unitario. Concluya sobre la dependencia entre las muestras obtenidas.
+
+1.  **Tamaño de muestra efectivo**
+
+    Utilice las muestras obtenidas en el ejercicio anterior para calcular el tamaño
+    de muestra efectivo. 
+
+1.  **Experimentos con el tamaño de muestra efectivo**
+
+    Suponga una distribución $\text{Normal}(0, 1^2)$. Obtenga $n$ muestras independientes
+    utilizando `rnorm()` y $n$ muestras dependientes utilizando Metropolis-Hastings 
+    con $n \in \{10, 50, 100, 500, 1000, 10000\}$. 
+    
+    i. Calcule el temaño de muestra efectivo en todos los escenarios simulados.
+    i. Describa el comportamiento del tamaño de muestra efectivo conforme se incrementa
+    el número de muestras.
+    i. ¿Por qué se observan los comportamientos descritos?
+
+1.  **¡Rompan todo! Un caso simulado**
 
     Los siguientes gráficos muestran las trazas y las distribuciones que resultan al 
     obtener muestras de un _posterior_ utilizando dos cadenas de Markov independientes. 
@@ -799,14 +851,14 @@ requisito de distribución simétrica.
     plot_trace_and_histogram(df)
     ```
 
-1.  **Cadenas rotas: Un caso real**
+1.  **¡Rompan todo! Un caso real**
 
     Al igual que en el ejercicio anterior, se presentan _traceplots_ donde el muestreo del
     _posterior_ presenta problemas. En este caso, los gráficos que se observan fueron 
     obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. 
     Nuevamente, describa cuales son los problemas que puede observar en los siguientes 
-    gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre
-    el _posterior_.
+    gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones 
+    sobre el _posterior_.
 
     <center> **Gráfico 1** </center>
     ```{r, echo=FALSE, out.width="100%", fig.align="center"}
@@ -817,6 +869,13 @@ requisito de distribución simétrica.
     ```{r, echo=FALSE, out.width="100%", fig.align="center"}
     if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
     ```
+
+    Además, responda:
+
+    i. ¿Cuál gráfico se asocia a un mayor tamaño de muestra efectivo?
+    i. ¿Qué grafico muestra peor mezcla entre cadenas?
+    i. ¿En qué gráfico se puede observar que las cadenas convergen a la misma distribución?
+
 
 ## **Programación probabilística - Stan y RStan**
 
@@ -900,7 +959,7 @@ requisito de distribución simétrica.
     $(y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)$
 
 
-1.  **Un modelo no-lineal**
+1.  **Un modelo que es un poco ¿complicado?**
 
     Considere el siguiente modelo
 

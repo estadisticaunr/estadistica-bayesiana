@@ -24,6 +24,16 @@ ul, ol {
   font-family: $font-family-serif;
 }
 
+/* Hacer que los numeros en las listas ordenadas esten en negrita */
+ol > li::marker {
+  font-weight: bold;
+}
+
+/*Pero si es una lista dentro de otra lista, usar texto normal*/
+ol ol > li::marker {
+  font-weight: normal;
+}
+
 /* Cambiar tamaño de la fuente en la leyenda */
 .panel-caption, caption, .figure-caption {
     font-size: 0.9rem; /*1rem por defecto*/
