@@ -20,6 +20,25 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
 </style>
 
 
@@ -59,6 +78,7 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -187,8 +207,81 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="ideas" class="level2">
 <h2 class="anchored" data-anchor-id="ideas">Ideas</h2>
+<ol type="1">
+<li><p><strong>Comparando lm y brms</strong></p>
+<p>Simule 100 puntos del modelo <span class="math inline">\(Y = 2 + 3X + \varepsilon\)</span> con los predictores <span class="math inline">\(X\)</span> tomados de manera uniforme entre 0 y 20 y con errores independientes y normalmente distribuidos con media 0 y desvío estándar 5.</p>
+<ol type="i">
+<li>Ajuste un modelo utilizando la función lm y mediante brms, utilizando los <em>priors</em> por defecto. Verifique que los resultados obtenidos son similares.</li>
+<li>Represente gráficamente los datos y las dos rectas de regresión</li>
+<li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- Regression and Other Stories 8.8 --></li>
+</ol></li>
+<li><p><strong>Clima en Australia</strong></p>
+<p>El dataset … contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
+<p>Considere los siguientes cuatro modelos:</p>
 <ul>
-<li>Agregar ejercicio 8.8 de Regression and Other Stories</li>
+<li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code></li>
+<li><span class="math inline">\(m_2\)</span>: <code>temp3pm ~ location</code></li>
+<li><span class="math inline">\(m_3\)</span>: <code>temp3pm ~ temp9am + location</code></li>
+<li><span class="math inline">\(m_4\)</span>: <code>temp3pm ~ .</code></li>
+</ul>
+<ol type="i">
+<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
+<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
+<li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
+</ol></li>
+<li><p><strong>Pingüinos</strong></p>
+<p>Considere el dataset de pingüinos de Palmer.</p>
+<p>Considere los siguientes modelos:</p>
+<ul>
+<li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code></li>
+<li><span class="math inline">\(m_2\)</span>: <code>body_mass_g ~ species</code></li>
+<li><span class="math inline">\(m_3\)</span>: <code>body_mass_g ~ flipper_length_mm + species</code></li>
+<li><span class="math inline">\(m_4\)</span>: <code>body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species</code></li>
+<li><span class="math inline">\(m_5\)</span>: <code>body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm</code></li>
+</ul>
+<ol type="i">
+<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
+<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
+<li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
+</ol></li>
+<li><p><strong>De tal palo…</strong></p>
+<p>El dataset <code>child.iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre a la que dio a luz.</p>
+<ol type="i">
+<li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre</li>
+<li>Considere ahora un modelo que incluya la educación de la madre</li>
+</ol></li>
+<li><p><strong>Belleza</strong></p>
+<p>Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un curso y la belleza de los instructores. La determinación de la belleza se hizo a partir de las opiniones de seis estudiantes que no participaron de los cursos y no conocían las notas. Los datos se encuentran en el archivo <code>beauty</code>.</p>
+<ol type="i">
+<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code></li>
+</ol></li>
+<li><p><strong>Ingresos</strong></p>
+<p>El dataset <code>earnings</code> contiene los resultados de la encuesta realizada por Ross sobre Trabajo, Familia y Bienestar.</p>
+<ol type="i">
+<li>Ajuste un modelo que prediga ingreso en función de altura. ¿Qué transformación sería necesaria para interpretar el intercepto como el ingreso promedio de una persona con altura promedio?</li>
+</ol></li>
+<li><p><strong>!Kung</strong></p>
+<p>Los !Kung son un pueblo que habita en el desierto de Kalahari entre Botsuana, Namibia y Angola. Hablan la lengua !Kung, que se destaca por su amplio uso de consonantes clic (chasquido consonántico). El !K del nombre ǃKung es un sonido como cuando sale un corcho de una botella.</p>
+<p>El archivo <code>Howell1</code> contiene datos de un censo parcial realizado por Dobe Howell acerca de la población !Kung.</p>
+<p>Considere un modelo de altura en función del peso.</p>
+<ol type="i">
+<li>Determine e interpretar las distribuciones <em>a posteriori</em> de los parámetros</li>
+<li>Construya un gráfico de altura en función del peso, incluya las observaciones de los individuos, la recta de regresión MAP, el intervalo del 80% para la media y y el intervalo del 80% para la altura predicha.</li>
+<li>Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59 y 54.63. Calcule la altura esperada y el intervalo del 89%.</li>
+</ol></li>
+<li><p><strong>Zorros</strong></p>
+<p>Considere del conjunto de datos sobre zorros urbanos (<code>foxes</code>). Ajuste tres modelos:</p>
+<ul>
+<li><span class="math inline">\(m_1\)</span>: <code>weight ~ area</code></li>
+<li><span class="math inline">\(m_2\)</span>: <code>weight ~ groupsize</code></li>
+<li><span class="math inline">\(m_3\)</span>: <code>weight ~ area + groupsize</code></li>
+</ul>
+<ol type="i">
+<li>Para los modelos <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span>, represente gráficamente los resultados, incluyendo la recta de regresión MAP, su intervalo del 89% y el intervalo de predicción del 89%. ¿Es alguna de las dos variables importantes para predecir la masa de un zorro?</li>
+<li>Representar gráficamente las predicciones del modelo para cada predictor, dejando el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las variables para predecir la masa de un zorro?</li>
+</ol></li>
+</ol>
+<ul>
 <li>Modelo lineal basico con datos simulados</li>
 <li>Modelo lineal con predictores numericos y categoricos</li>
 <li>Modelo lineal con transformaciones
@@ -230,9 +323,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 
 
+
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
+Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
+</div>
+<div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
+Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
