@@ -205,18 +205,65 @@ div.csl-indent {
 <div>
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf">Descargar PDF</a></p>
 </div>
-<section id="ideas" class="level2">
-<h2 class="anchored" data-anchor-id="ideas">Ideas</h2>
+<section id="regresión" class="level2">
+<h2 class="anchored" data-anchor-id="regresión">Regresión</h2>
 <ol type="1">
-<li><p><strong>Comparando lm y brms</strong></p>
-<p>Simule 100 puntos del modelo <span class="math inline">\(Y = 2 + 3X + \varepsilon\)</span> con los predictores <span class="math inline">\(X\)</span> tomados de manera uniforme entre 0 y 20 y con errores independientes y normalmente distribuidos con media 0 y desvío estándar 5.</p>
+<li><p><strong>Mi primer regresión bayesiana</strong></p>
+<p>El conjunto de datos <code>sales</code> contiene los montos de inversión en publicidad y de ingresos de una determinada compañía, por semana. Considere el siguiente modelo de regresión lineal simple</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
+\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\end{aligned}
+\]</span></p>
 <ol type="i">
-<li>Ajuste un modelo utilizando la función lm y mediante brms, utilizando los <em>priors</em> por defecto. Verifique que los resultados obtenidos son similares.</li>
-<li>Represente gráficamente los datos y las dos rectas de regresión</li>
-<li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- Regression and Other Stories 8.8 --></li>
+<li>Ajuste el modelo utilizando <code>{brms}</code> y sus <em>priors</em> por defecto.</li>
+<li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad y superponga la recta de regresión estimada.</li>
+</ol></li>
+<li><p><strong>Mejorando mi regresión bayesiana</strong></p>
+<p>Considere siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo. <span class="math display">\[
+\begin{aligned}
+\text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
+\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\beta_0 &amp;\sim \text{Normal}(\bar{ventas_i}, 10) \\
+\beta_1 &amp;\sim \text{Normal}(0, 0.5) \\
+\sigma^2 &amp;\sim \text{HalfNormal}(5)
+\end{aligned}
+\]</span></p>
+<ol type="i">
+<li>Ajuste el modelo utilizando <code>{brms}</code> y los <em>priors</em> sugeridos.</li>
+<li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad, superponga la recta de regresión estimada, y el intervalo de credibilidad del 95% para la recta de regresión.</li>
+</ol></li>
+<li><p><strong>Comparando de <code>lm()</code> y <code>brm()</code></strong></p>
+<p>Utilice datos simulados para comparar la estimación por mínimos cuadrados con la estimación Bayesiana en modelos de regresión.</p>
+<ol type="i">
+<li>Simule 100 observaciones del modelo <span class="math inline">\(Y = 2 + 3X + \varepsilon\)</span> donde los valores del predictor <span class="math inline">\(X\)</span> se obtienen de una distribución <span class="math inline">\(\text{Uniforme}(0, 20)\)</span> y los errores son obtenidos de manera independiente de una distribución <span class="math inline">\(\text{Normal}(0, 5^2)\)</span>.</li>
+<li>Ajuste el modelo de regresión utilizando <code>lm()</code> y <code>brm()</code> del paquete <code>{brms}</code> utilizando <em>priors</em> por defecto.</li>
+<li>Verifique que ambos métodos arrojan resultados similares.</li>
+<li>Represente gráficamente los datos y las dos rectas de regresión.</li>
+<li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- @Gelman2021 8.8 --></li>
+</ol></li>
+<li><p><strong>La altura… ¿se hereda?</strong></p>
+<p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas de 5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
+<ol type="i">
+<li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa.</li>
+<li>¿Por qué es adecuado utilizar un modelo de regresión lineal?</li>
+<li>Ajuste el siguiente modelo de regresión lineal utilizando <code>{brms}</code> y <em>priors</em> por defecto:</li>
+</ol>
+<p><span class="math display">\[
+\begin{aligned}
+\text{altura\_hija}_i &amp;= \beta_0 + \beta_1 \text{altura\_madre}_i + \varepsilon_i \\
+\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\end{aligned}
+\]</span></p>
+<ol type="i">
+<li>Calcule la media, el desvío estándar, y el intervalo de credibilidad del 95% para los parámetros del modelo utilizando el <em>posterior</em>.</li>
+<li>Interprete los coeficientes del modelo.</li>
+<li>Superponga la recta de regresión en el gráfico donde se visualiza la relación entre las variables.</li>
+<li>Obtenga el <em>posterior</em> del peso medio de una hija cuya madre mide 58 pulgadas. <!-- @Gelman2021 Capitulo 6--></li>
 </ol></li>
 <li><p><strong>Clima en Australia</strong></p>
-<p>El dataset … contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
+<p>El conjunto de datos <strong>…</strong> contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
 <p>Considere los siguientes cuatro modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code></li>
@@ -230,8 +277,7 @@ div.csl-indent {
 <li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
 <li><p><strong>Pingüinos</strong></p>
-<p>Considere el dataset de pingüinos de Palmer.</p>
-<p>Considere los siguientes modelos:</p>
+<p>Considere el dataset de pingüinos de Palmer y los siguientes modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code></li>
 <li><span class="math inline">\(m_2\)</span>: <code>body_mass_g ~ species</code></li>
@@ -245,7 +291,7 @@ div.csl-indent {
 <li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
 <li><p><strong>De tal palo…</strong></p>
-<p>El dataset <code>child.iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre a la que dio a luz.</p>
+<p>El dataset <code>child_iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio a luz.</p>
 <ol type="i">
 <li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre</li>
 <li>Considere ahora un modelo que incluya la educación de la madre</li>
@@ -265,7 +311,7 @@ div.csl-indent {
 <p>El archivo <code>Howell1</code> contiene datos de un censo parcial realizado por Dobe Howell acerca de la población !Kung.</p>
 <p>Considere un modelo de altura en función del peso.</p>
 <ol type="i">
-<li>Determine e interpretar las distribuciones <em>a posteriori</em> de los parámetros</li>
+<li>Determine e interprete las distribuciones <em>a posteriori</em> de los parámetros</li>
 <li>Construya un gráfico de altura en función del peso, incluya las observaciones de los individuos, la recta de regresión MAP, el intervalo del 80% para la media y y el intervalo del 80% para la altura predicha.</li>
 <li>Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59 y 54.63. Calcule la altura esperada y el intervalo del 89%.</li>
 </ol></li>
@@ -280,10 +326,26 @@ div.csl-indent {
 <li>Para los modelos <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span>, represente gráficamente los resultados, incluyendo la recta de regresión MAP, su intervalo del 89% y el intervalo de predicción del 89%. ¿Es alguna de las dos variables importantes para predecir la masa de un zorro?</li>
 <li>Representar gráficamente las predicciones del modelo para cada predictor, dejando el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las variables para predecir la masa de un zorro?</li>
 </ol></li>
+<li><p><strong>Un <em>prior</em> informativo marca la diferencia</strong></p>
+<p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio.csv</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión</p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{pf}_i &amp;= \beta_0 + \beta_1 \text{belleza}_i + \varepsilon_i \\
+\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\end{aligned}
+\]</span></p>
+<p>Donde <span class="math inline">\(\text{pf}\)</span> representa la proporción de bebés de sexo femenino y <span class="math inline">\(\text{belleza}\)</span> representa el grupo de belleza.</p>
+<ol type="i">
+<li>Ajuste el modelo utilizando mínimos cuadrados.</li>
+<li>Ajuste el modelo con <code>brm()</code> y sus <em>priors</em> por defecto.</li>
+<li>Compare el ajuste de ambos modelos.</li>
+<li>Explore los <em>priors</em> utilizados por <code>{brms}</code> y la distribución predictiva <em>a priori</em>. ¿Qué puede concluir?</li>
+<li>Proponga distribuciones <em>a prior</em> informativas.</li>
+<li>Ajuste el modelo utilizando <code>brm()</code> y los <em>priors</em> informativos.</li>
+<li>Compare el resultado con los obtenidos anteriormente y concluya.</li>
+</ol></li>
 </ol>
 <ul>
-<li>Modelo lineal basico con datos simulados</li>
-<li>Modelo lineal con predictores numericos y categoricos</li>
 <li>Modelo lineal con transformaciones
 <ul>
 <li>En predictores y/o respuesta</li>
@@ -294,7 +356,6 @@ div.csl-indent {
 <ul>
 <li>Caso donde hay muchos predictores numericos</li>
 </ul></li>
-<li>Pruebas predictivas a priori para evaluar cuan vagos o restrictivos son los priors</li>
 </ul></li>
 <li>Pruebas predictivas a posteriori
 <ul>
@@ -311,16 +372,10 @@ div.csl-indent {
 </ul></li>
 <li>Sobreajuste y subajuste</li>
 </ul>
-</section>
-<section id="preguntas" class="level2">
-<h2 class="anchored" data-anchor-id="preguntas">Preguntas</h2>
-<ul>
-<li>Usamos RStan o brms?
-<ul>
-<li>Me inclino por usar brms.</li>
-<li>Pero no estaria mal que hagamos uno o dos modelos con RStan.</li>
-</ul></li>
-</ul>
+<!-- 
+Unidad 4: Modelos Lineales
+Modelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV). 
+-->
 
 
 
@@ -329,6 +384,12 @@ div.csl-indent {
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
 Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
+</div>
+<div id="ref-Gelman2021" class="csl-entry" role="doc-biblioentry">
+Gelman, Andrew, Jennifer Hill, y Aki Vehtari. 2021. <em>Regression and Other Stories</em>. 1st edition. Cambridge University Press. <a href="https://users.aalto.fi/~ave/ROS.pdf">https://users.aalto.fi/~ave/ROS.pdf</a>.
+</div>
+<div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
+Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
 </div>
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
