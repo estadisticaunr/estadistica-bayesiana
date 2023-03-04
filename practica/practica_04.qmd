@@ -1,8 +1,8 @@
 ---
 title: "Práctica - Unidad 4"
-# bibliography: ../references.bib
-# nocite: |
-#     @Martin2021, @Downey2021
+bibliography: ../references.bib
+nocite: |
+    @Martin2021, @Downey2021
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf
 ---
 
@@ -14,7 +14,119 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 ## Ideas
 
-* Agregar ejercicio 8.8 de Regression and Other Stories
+1.  **Comparando lm y brms**
+
+    Simule 100 puntos del modelo $Y = 2 + 3X + \varepsilon$ con los predictores $X$ tomados
+    de manera uniforme entre 0 y 20 y con errores independientes y normalmente distribuidos con
+    media 0 y desvío estándar 5.
+    i. Ajuste un modelo utilizando la función lm y mediante brms, utilizando los _priors_
+    por defecto. Verifique que los resultados obtenidos son similares.
+    i. Represente gráficamente los datos y las dos rectas de regresión
+    i. Intente repetir la simulación, pero esta vez cree las condiciones para que ambos
+    enfoques den resultados diferentes.
+    <!-- Regression and Other Stories 8.8 -->
+    
+1.  **Clima en Australia**
+
+    El dataset ... contiene 100 días de datos climáticos para dos ciudades de 
+    Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3
+    de la tarde, utilizando otras variables.
+    
+    Considere los siguientes cuatro modelos:
+    
+    * $m_1$: `temp3pm ~ temp9am`
+    * $m_2$: `temp3pm ~ location`
+    * $m_3$: `temp3pm ~ temp9am + location`
+    * $m_4$: `temp3pm ~ .`
+    
+    i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos
+    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
+    i. Compare los ELPD de cada modelo utilizando LOO
+    <!-- Bayes Rules. Capítulo 11. -->
+    
+1.  **Pingüinos**
+
+    Considere el dataset de pingüinos de Palmer. 
+    
+    Considere los siguientes modelos:
+    
+    * $m_1$: `body_mass_g ~ flipper_length_mm`
+    * $m_2$: `body_mass_g ~ species`
+    * $m_3$: `body_mass_g ~ flipper_length_mm + species`
+    * $m_4$: `body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species`
+    * $m_5$: `body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm`
+    
+    i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos
+    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
+    i. Compare los ELPD de cada modelo utilizando LOO
+    <!-- Bayes Rules. Capítulo 11. -->
+    
+1.  **De tal palo...**
+
+    El dataset `child.iq` contiene información de los resultados de tests de coeficiente
+    intelectual de niños de 3 años, educación de la madre, y edad de la madre a la que dio
+    a luz.
+    
+    i. Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de
+    la madre
+    i. Considere ahora un modelo que incluya la educación de la madre
+    
+1.  **Belleza**
+
+    Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un 
+    curso y la belleza de los instructores. La determinación de la belleza se hizo a 
+    partir de las opiniones de seis estudiantes que no participaron de los cursos y no
+    conocían las notas. Los datos se encuentran en el archivo `beauty`.
+    
+    i. Considere un modelo de regresión `courseevaluation ~ btystdave`
+    
+1.  **Ingresos**
+
+    El dataset `earnings` contiene los resultados de la encuesta realizada por Ross sobre
+    Trabajo, Familia y Bienestar.
+    
+    i. Ajuste un modelo que prediga ingreso en función de altura. ¿Qué transformación 
+    sería necesaria para interpretar el intercepto como el ingreso promedio de una 
+    persona con altura promedio?
+    
+1.  **!Kung**
+
+    Los !Kung son un pueblo que habita en el desierto de Kalahari entre Botsuana, 
+    Namibia y Angola. Hablan la lengua !Kung, que se destaca por su amplio uso de 
+    consonantes clic (chasquido consonántico). El !K del nombre ǃKung es un sonido
+    como cuando sale un corcho de una botella.
+    
+    El archivo `Howell1` contiene datos de un censo parcial realizado por Dobe Howell
+    acerca de la población !Kung.
+    
+    Considere un modelo de altura en función del peso.
+    
+    i. Determine e interpretar las distribuciones _a posteriori_ de los parámetros
+    i. Construya un gráfico de altura en función del peso, incluya las observaciones
+    de los individuos, la recta de regresión MAP, el intervalo del 80\% para la media y
+    y el intervalo del 80\% para la altura predicha.
+    i. Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59
+    y 54.63. Calcule la altura esperada y el intervalo del 89\%.
+    
+1.  **Zorros**
+
+    Considere del conjunto de datos sobre zorros urbanos (`foxes`). Ajuste tres modelos:
+
+    * $m_1$: `weight ~ area`
+    * $m_2$: `weight ~ groupsize`
+    * $m_3$: `weight ~ area + groupsize`
+    
+    i. Para los modelos $m_1$ y $m_2$, represente gráficamente los resultados, incluyendo
+    la recta de regresión MAP, su intervalo del 89\% y el intervalo de predicción del 89\%.
+    ¿Es alguna de las dos variables importantes para predecir la masa de un zorro?
+    i. Representar gráficamente las predicciones del modelo para cada predictor, dejando
+    el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las
+    variables para predecir la masa de un zorro?
+
+    
+    
+
+  
 * Modelo lineal basico con datos simulados
 * Modelo lineal con predictores numericos y categoricos
 * Modelo lineal con transformaciones
