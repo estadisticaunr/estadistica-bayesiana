@@ -1,5 +1,5 @@
 ---
-title: "Instalación de herramientas comutacionales"
+title: "Instalación de herramientas computacionales"
 ---
 
 ## R
