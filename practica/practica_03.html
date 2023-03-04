@@ -491,8 +491,8 @@ f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \
 \]</span> <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution --></p></li>
 </ol>
 </section>
-<section id="metropolis-hastings" class="level2">
-<h2 class="anchored" data-anchor-id="metropolis-hastings"><strong>Metropolis-Hastings</strong></h2>
+<section id="sec-mh" class="level2">
+<h2 class="anchored" data-anchor-id="sec-mh"><strong>Metropolis-Hastings</strong></h2>
 <!--
 Copio algunos pasajes del libro porque la verdad me parece super claro. 
 Puede ser útil para la presentación de teoría.
@@ -538,17 +538,17 @@ requisito de distribución simétrica.
 <li><span class="math inline">\(\frac{1}{2}\text{Beta}(\alpha=10, \beta=3) + \frac{1}{2}\text{Beta}(\alpha=3, \beta=10)\)</span></li>
 </ol>
 <p>Realice un análisis similar al realizado en el Ejercicio 1.</p></li>
-<li><p><strong>A jugar con <del>Hugo!</del> la distribución de propuesta!</strong></p>
-<p>Suponga que se desean obtener muestras de una distribución <span class="math inline">\(\text{Normal}(4, 1)\)</span> utilizando Metropolis-Hastings y la siguiente distribución de propuesta:</p>
+<li><p><strong>A jugar con la distribución de propuesta!</strong></p>
+<p>Suponga que se desea obtener muestras de una distribución <span class="math inline">\(\text{Normal}(4, 1)\)</span> utilizando Metropolis-Hastings y la siguiente distribución de propuesta:</p>
 <p><span class="math display">\[
 \mu' | \mu \sim \text{Uniforme}(\mu - w, \mu + w)
 \]</span></p>
 <p>Obtenga <span class="math inline">\(n=5000\)</span> muestras con <span class="math inline">\(w \in \{0.01, 1, 100\}\)</span> y compute la probabilidad de aceptación. Luego, para cada <span class="math inline">\(w\)</span>, grafique la distribución obtenida y visualice la cadena de Markov utilizando un <em>traceplot</em>.</p>
 <ul>
 <li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con el desempeño del muestreo?</li>
-<li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con la probabilidad de aceptación? Justifique su respuesta.</li>
+<li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con la probabilidad de aceptación? Justifique su respuesta utilizando la ecuación del criterio de aceptación.</li>
 </ul></li>
-<li><p><strong>Modelo Normal-Normal</strong></p>
+<li><p><span id="ex-mh-mm"><strong>Modelo Normal-Normal</strong></span></p>
 <p>Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por semana a la materia Estadística Bayesiana. Para eso se propone utilizar un modelo Normal-Normal, con <span class="math inline">\(\sigma=1.2\)</span> conocido.</p>
 <ol type="i">
 <li>Elija una distribución <em>a priori</em> para el parámetro <span class="math inline">\(\mu\)</span>.</li>
@@ -565,7 +565,7 @@ requisito de distribución simétrica.
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_estudio <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p><strong>Modelo Beta-Binomial</strong></p>
+<li><p><span id="ex-mh-bb"><strong>Modelo Beta-Binomial</strong></span></p>
 <p>Se desea estimar el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> en el siguiente modelo Beta-Binomial:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -586,7 +586,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \beta      &amp;\sim \text{Normal}(0, 10^2)
 \end{aligned}
 \]</span></p>
-<p>Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique que el <em>sampler</em> convergiera. <!-- @Reich2020 3.10/3.11  --></p></li>
+<p>Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique la convergencia de las cadenas de Markov. <!-- @Reich2020 3.10/3.11  --></p></li>
 <li><p><strong>Metropolis-Hastings multivariado</strong></p>
 <p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\pmb{\mu}, \pmb{\Sigma})\)</span> donde</p>
 <p><span class="math display">\[
@@ -604,6 +604,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 </section>
 <section id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts" class="level2">
 <h2 class="anchored" data-anchor-id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts"><strong>Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)</strong></h2>
+<p>…</p>
 </section>
 <section id="diagnósticos" class="level2">
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
@@ -614,34 +615,53 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <li>¿Qué miden?</li>
 <li>¿Qué potencial problema de MCMC detectan? <!-- @Martin2021 2E2 --></li>
 </ul></li>
-<li><p><strong>…</strong></p>
-<p>En sus propias palabras, explique por qué las técnicas de estimación del <em>posterior</em><br>
-basadas en MCMC necesitan diagnósticos de convergencia. En particular, contraste estos con los métodos conjugados descritos en la Unidad 2 que no necesitan esos diagnósticos. ¿Qué es diferente entre los dos métodos de inferencia? <!-- @Martin2021 2E8 --></p></li>
+<li><p><strong>Describir medidas de diagnóstico (II)</strong></p>
+<p>En sus propias palabras, explique por qué las técnicas de estimación del <em>posterior</em> basadas en MCMC necesitan diagnósticos de convergencia. En particular, contraste estos con los métodos conjugados descritos en la Unidad 2 que no necesitan esos diagnósticos. ¿Qué es diferente entre los dos métodos de inferencia? <!-- @Martin2021 2E8 --></p></li>
 <li><p><strong>Problemitas de MCMC</strong></p>
-<p>Para cada escenario de simulación mediante MCMC descrito a continuación, describa cómo el escenario podría afectar la aproximación del <em>posterior</em>.</p>
+<p>Para cada escenario de simulación mediante MCMC descrito a continuación, explique cómo el escenario podría afectar la aproximación del <em>posterior</em>.</p>
 <ul>
 <li>La cadena se mezcla muy lentamente</li>
 <li>La cadena presenta alta auto-correlación.</li>
 <li>La cadena tiende a quedarse “trabada” <!-- @Johnson2021 Exercise 6.3  --></li>
 </ul></li>
-<li><p>Repetir los cálculos de alguno de los puntos anteriores utilizando 4 cadenas y calcular <span class="math inline">\(\hat{R}\)</span>?</p></li>
-<li><p>Generar traceplots</p></li>
-<li><p>Calcular y graficar funcion de autocorrelacion</p></li>
-<li><p>Calcular tamaño efectivo de muestras</p></li>
-<li><p>Calcular <span class="math inline">\(\hat{R}\)</span> usando muestras independientes de un <em>posterior</em></p>
+<li><p><strong>Vamos de paseo</strong></p>
+<p>Elabore <em>traceplots</em> que le permitan visualizar la traza de la cadena de Markov utilizada en el ejercicio <a href="#ex-mh-mm"><strong>Modelo Normal-Normal</strong></a> de la sección <a href="#sec-mh"><strong>Metropolis-Hastings</strong></a>.</p>
+<p>Luego, repita el ejercicio utilizando 4 cadenas independientes y grafique sus trazas en un mismo gráfico. ¿Qué puede concluir sobre la convergencia y la mezcla de las cadenas?</p></li>
+<li><p><span id="ex-diag-pprhat"><strong>Primeros pasitos con <span class="math inline">\(\hat{R}\)</span></strong></span></p>
+<p>Repita lo realizado en el ejercicio <a href="#ex-mh-bb"><strong>Modelo Beta-Binomial</strong></a> de la sección <a href="#sec-mh"><strong>Metropolis-Hastings</strong></a> utilizando 4 cadenas independientes. Luego:</p>
 <ol type="i">
-<li>Calcular variabilidad intra cadenas</li>
-<li>Calcular variabilidad entre cadenas</li>
-</ol></li>
-<li><p>Calcular <span class="math inline">\(\hat{R}\)</span> usando un muestras dependientes de un <em>posterior</em></p>
+<li>Calcule la varianza intra-cadenas <span class="math inline">\(W\)</span></li>
+<li>Calcule la varianza entre-cadenas <span class="math inline">\(B\)</span></li>
+<li>Calcule <span class="math inline">\(\hat{R}\)</span> y concluya sobre el resultado obtenido.</li>
+</ol>
+<p><strong>NOTA:</strong> No hay una única alternativa de <span class="math inline">\(\hat{R}\)</span> dando vueltas por ahí. Está la versión de BDA3, que entiendo que es la misma que la del libro de Lambert, pero hoy se está recomendando una versión “rank-normalized”. Ver <a href="https://projecteuclid.org/journals/bayesian-analysis/advance-publication/Rank-Normalization-Folding-and-Localization--An-Improved-R%CB%86-for/10.1214/20-BA1221.full">este paper</a> y esta <a href="https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/">discusión</a></p></li>
+<li><p><strong><span class="math inline">\(\hat{R}\)</span> para un muestreo independiente</strong></p>
+<p>En un determinado problema se encuentra que el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> de un modelo con verosimilitud binomial está dado por</p>
+<p><span class="math display">\[
+\pi | \mathbf{y} \sim \text{Beta}(12, 6)
+\]</span></p>
 <ol type="i">
-<li>Calcular variabilidad intra cadenas</li>
-<li>Calcular variabilidad entre cadenas</li>
+<li>Obtenga 4 conjuntos independientes de 1000 muestras independientes de esta distribución.</li>
+<li>Calcule <span class="math inline">\(W\)</span>, <span class="math inline">\(B\)</span>, y <span class="math inline">\(\hat{R}\)</span> considerando que cada conjunto representa una cadena.</li>
+<li>Explique el resultado de <span class="math inline">\(\hat{R}\)</span>.</li>
+</ol>
+<p><strong>Bonus</strong></p>
+<ol type="i">
+<li>¿Se puede concluir que cada uno de los muestreos realizados representan realizaciones de una cadena de Markov? ¿Por qué?</li>
+<li>¿Por qué no fue necesario descartar un conjunto de muestras de <em>warm-up</em>?</li>
 </ol></li>
-<li><p>Calcular tamaño efectivo de muestra utilizando muestras independientes de un <em>posterior</em></p></li>
-<li><p>Calcular tamaño efectivo de muestra utilizando muestras dependientes de un <em>posterior</em></p></li>
-<li><p>Algo más?</p></li>
-<li><p><strong>Cadenas rotas: Un caso simulado</strong></p>
+<li><p><strong>Función de autocorrelación</strong></p>
+<p>Utilice las 4 cadenas obtenidas en el ejercicio <a href="#ex-diag-pprhat"><strong>Primeros pasitos con <span class="math inline">\(\hat{R}\)</span></strong></a> y grafique la función de autocorrelación y calcule el coeficiente de autocorrelación utilizando un rezago unitario. Concluya sobre la dependencia entre las muestras obtenidas.</p></li>
+<li><p><strong>Tamaño de muestra efectivo</strong></p>
+<p>Utilice las muestras obtenidas en el ejercicio anterior para calcular el tamaño de muestra efectivo.</p></li>
+<li><p><strong>Experimentos con el tamaño de muestra efectivo</strong></p>
+<p>Suponga una distribución <span class="math inline">\(\text{Normal}(0, 1^2)\)</span>. Obtenga <span class="math inline">\(n\)</span> muestras independientes utilizando <code>rnorm()</code> y <span class="math inline">\(n\)</span> muestras dependientes utilizando Metropolis-Hastings con <span class="math inline">\(n \in \{10, 50, 100, 500, 1000, 10000\}\)</span>.</p>
+<ol type="i">
+<li>Calcule el temaño de muestra efectivo en todos los escenarios simulados.</li>
+<li>Describa el comportamiento del tamaño de muestra efectivo conforme se incrementa el número de muestras.</li>
+<li>¿Por qué se observan los comportamientos descritos?</li>
+</ol></li>
+<li><p><strong>¡Rompan todo! Un caso simulado</strong></p>
 <p>Los siguientes gráficos muestran las trazas y las distribuciones que resultan al obtener muestras de un <em>posterior</em> utilizando dos cadenas de Markov independientes. Estos muestreos fueron realizados de manera que presenten algunos problemas. Describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
 <div class="cell">
 
@@ -694,7 +714,7 @@ basadas en MCMC necesitan diagnósticos de convergencia. En particular, contrast
 </div>
 </div>
 </div></li>
-<li><p><strong>Cadenas rotas: Un caso real</strong></p>
+<li><p><strong>¡Rompan todo! Un caso real</strong></p>
 <p>Al igual que en el ejercicio anterior, se presentan <em>traceplots</em> donde el muestreo del <em>posterior</em> presenta problemas. En este caso, los gráficos que se observan fueron obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. Nuevamente, describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
 <center>
 <p><strong>Gráfico 1</strong></p>
@@ -719,7 +739,13 @@ basadas en MCMC necesitan diagnósticos de convergencia. En particular, contrast
 </figure>
 </div>
 </div>
-</div></li>
+</div>
+<p>Además, responda:</p>
+<ol type="i">
+<li>¿Cuál gráfico se asocia a un mayor tamaño de muestra efectivo?</li>
+<li>¿Qué grafico muestra peor mezcla entre cadenas?</li>
+<li>¿En qué gráfico se puede observar que las cadenas convergen a la misma distribución?</li>
+</ol></li>
 </ol>
 </section>
 <section id="programación-probabilística---stan-y-rstan" class="level2">
@@ -764,7 +790,7 @@ basadas en MCMC necesitan diagnósticos de convergencia. En particular, contrast
 <p>Repita los mismos pasos del ejercicio <strong>Modelo Gamma-Poisson con Rstan (I)</strong> pero considere el modelo Normal-Normal para <span class="math inline">\(\mu\)</span> con <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 1.3^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(10, 1.2^2)\)</span>. Suponga que cuenta con <span class="math inline">\(n = 4\)</span> observaciones independientes <span class="math inline">\((y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)\)</span></p></li>
 <li><p><strong>Modelo Normal-Normal con Rstan (II)</strong></p>
 <p>Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 8^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(-15, 2^2)\)</span>. Suponga que en <span class="math inline">\(n = 5\)</span> observaciones independientes observa <span class="math inline">\((y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)\)</span></p></li>
-<li><p><strong>Un modelo no-lineal</strong></p>
+<li><p><strong>Un modelo que es un poco ¿complicado?</strong></p>
 <p>Considere el siguiente modelo</p>
 <p><span class="math display">\[
 \begin{aligned}
