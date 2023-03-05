@@ -224,8 +224,8 @@ div.csl-indent {
 <p>Considere siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo. <span class="math display">\[
 \begin{aligned}
 \text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
-\beta_0 &amp;\sim \text{Normal}(\bar{ventas_i}, 10) \\
+\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
+\beta_0 &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
 \beta_1 &amp;\sim \text{Normal}(0, 0.5) \\
 \sigma^2 &amp;\sim \text{HalfNormal}(5)
 \end{aligned}
@@ -344,35 +344,52 @@ div.csl-indent {
 <li>Ajuste el modelo utilizando <code>brm()</code> y los <em>priors</em> informativos.</li>
 <li>Compare el resultado con los obtenidos anteriormente y concluya.</li>
 </ol></li>
-<li><p><strong>Vamos de pesca</strong></p>
+<li><p><strong>¡A la pesca de <em>priors</em>!</strong></p>
+<p>El conjunto de datos <code>fish-market</code> contiene mediciones morfológicas realizadas sobre pescados de diferentes especies. El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
+<p>Uno de los modelos propuestos es el siguiente:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\log(\text{Weight}_i) &amp;\sim \text{Normal}(\mu_i, \sigma) \\
+\mu_i  &amp;= \beta_{0, j[i]} + \beta_{1, j[i]} \log(\text{Length1}_i)
+\end{aligned}
+\]</span></p>
+<p><span class="math inline">\(\text{Weight}_i\)</span> es el peso del i-ésimo pescado en gramos y <span class="math inline">\(\text{Length1}_i\)</span> es la longitud del i-ésimo pescado en centímetros. La letra <span class="math inline">\(j\)</span> indexa las especies de los pescados. Por lo tanto, en este modelo cada especie tiene su propio intercepto y pendiente.</p>
+<ol type="i">
+<li>Implemente el modelo utilizando <code>{brms}</code> y los siguientes <em>priors</em> no informativos <span class="math display">\[
+\begin{aligned}
+\beta_{0, j[i]} &amp;\sim \text{Normal}(0, 10) \\
+\beta_{1, j[i]} &amp;\sim \text{Normal}(0, 5)
+\end{aligned}
+\]</span></li>
+<li>Obtenga y visualice la distribución predictiva a <em>priori</em>.</li>
+<li>Elabore un gráfico y describa la función de densidad <em>a priori</em> de los parámetros <span class="math inline">\(\beta_{0, j[i]}\)</span> y <span class="math inline">\(\beta_{1, j[i]}\)</span>.</li>
+<li>Proponga <em>priors</em> más adecuados en base a la interpretación de los parámetros del modelo y la información que tenga del problema.</li>
+<li>Nuevamente, obtenga y visualice la distribución predictiva a <em>priori</em> y compare con el resultado obtenido anteriormente.</li>
+<li>Ajuste el modelo, obtenga la distribución predictiva <em>a posteriori</em> y grafíquela.</li>
+</ol></li>
+<li><p><strong>En búsqueda del modelo más adecuado</strong></p>
+<p>Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
+<p>Considere los siguientes modelos</p>
 <ul>
-<li>Retomar el ejercicio de los pescados.</li>
-<li>Proponer modelos que incrementan en complejidad</li>
-<li>Hacer comparacion/seleccion de modelos</li>
-<li>Un poco el chiste es que todos los predictores ayudan a predecir muy bien la respuesta pero al correlacion entre los predictores es alta, entonces no tiene sentido meter muchos predictores.</li>
-<li>En este modelo tambien meteriamos transformaciones en predictores y respuesta.</li>
-</ul></li>
+<li><span class="math inline">\(m_1\)</span>: <code>log(Weight) ~ 0 + Species</code></li>
+<li><span class="math inline">\(m_2\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1)</code></li>
+<li><span class="math inline">\(m_3\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species</code></li>
+<li><span class="math inline">\(m_4\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)</code></li>
+<li><span class="math inline">\(m_5\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species</code></li>
+</ul>
+<ol type="i">
+<li>Ajuste cada uno de los modelos.</li>
+<li>Estime el ELPD de cada modelo utilizando LOO y seleccione el modelo más adecuado de acuerdo a este criterio.</li>
+<li>Explique el resultado.</li>
+</ol></li>
+<li><p><strong>Ejercicio donde haya sobre-ajuste</strong></p>
+<p>Idea: Utilizar priors estrechos para prevenir sobre-ajuste?</p></li>
 </ol>
+<p>Lo que falta:</p>
 <ul>
 <li>Eleccion de distribuciones a priori
 <ul>
-<li>Priors de regularizacion
-<ul>
-<li>Caso donde hay muchos predictores numericos</li>
-</ul></li>
-</ul></li>
-<li>Pruebas predictivas a posteriori
-<ul>
-<li>No estoy seguro que poner aca</li>
-<li>lppd?</li>
-</ul></li>
-<li>Evaluacion/seleccion de modelos
-<ul>
-<li>Deviance</li>
-<li>Criterios de informacion</li>
-<li>CV</li>
-<li>PSIS-CV</li>
-<li>Bayesiano al palo: No selecciono variables, uso priors que hagan seleccion de variable y uso ese resultado</li>
+<li>Priors de regularizacion (e.g.&nbsp;cuando hay muchos predictores numéricos)</li>
 </ul></li>
 <li>Sobreajuste y subajuste</li>
 </ul>
