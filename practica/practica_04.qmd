@@ -39,8 +39,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     $$
     \begin{aligned}
     \text{ventas}_i &= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
-    \beta_0 &\sim \text{Normal}(\bar{ventas_i}, 10) \\
+    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
+    \beta_0 &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
     \beta_1 &\sim \text{Normal}(0, 0.5) \\
     \sigma^2 &\sim \text{HalfNormal}(5)
     \end{aligned}
@@ -220,30 +220,68 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Ajuste el modelo utilizando `brm()` y los _priors_ informativos.
     i. Compare el resultado con los obtenidos anteriormente y concluya.
 
+1.  **¡A la pesca de _priors_!**
 
-1.  **Vamos de pesca**
+    El conjunto de datos `fish-market` contiene mediciones morfológicas realizadas sobre
+    pescados de diferentes especies. El objetivo es construir un modelo de regresión
+    lineal que permita predecir el peso de los pescados en base a sus otros atributos. 
+    
+    Uno de los modelos propuestos es el siguiente:
 
-    * Retomar el ejercicio de los pescados. 
-    * Proponer modelos que incrementan en complejidad
-    * Hacer comparacion/seleccion de modelos
-    * Un poco el chiste es que todos los predictores ayudan a predecir muy bien la respuesta
-    pero al correlacion entre los predictores es alta, entonces no tiene sentido meter 
-    muchos predictores.
-    * En este modelo tambien meteriamos transformaciones en predictores y respuesta.
+    $$
+    \begin{aligned}
+    \log(\text{Weight}_i) &\sim \text{Normal}(\mu_i, \sigma) \\
+    \mu_i  &= \beta_{0, j[i]} + \beta_{1, j[i]} \log(\text{Length1}_i)
+    \end{aligned}
+    $$
+
+    $\text{Weight}_i$ es el peso del i-ésimo pescado en gramos y $\text{Length1}_i$ es la
+    longitud del i-ésimo pescado en centímetros. La letra $j$ indexa las especies
+    de los pescados. Por lo tanto, en este modelo cada especie tiene su propio intercepto
+    y pendiente.
+
+    i. Implemente el modelo utilizando `{brms}` y los siguientes _priors_ no informativos
+    $$
+    \begin{aligned}
+    \beta_{0, j[i]} &\sim \text{Normal}(0, 10) \\
+    \beta_{1, j[i]} &\sim \text{Normal}(0, 5)
+    \end{aligned}
+    $$
+    i. Obtenga y visualice la distribución predictiva a _priori_.
+    i. Elabore un gráfico y describa la función de densidad _a priori_ de los parámetros 
+    $\beta_{0, j[i]}$ y  $\beta_{1, j[i]}$.
+    i. Proponga _priors_ más adecuados en base a la interpretación de los parámetros del
+    modelo y la información que tenga del problema.
+    i. Nuevamente, obtenga y visualice la distribución predictiva a _priori_ y compare 
+    con el resultado obtenido anteriormente.
+    i. Ajuste el modelo, obtenga la distribución predictiva _a posteriori_ y grafíquela.
+    
+1.  **En búsqueda del modelo más adecuado**
+
+    Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso
+    de los pescados en base a sus otros atributos.
+
+    Considere los siguientes modelos
+
+    * $m_1$: `log(Weight) ~ 0 + Species`
+    * $m_2$: `log(Weight) ~ 0 + Species + log(Length1)`
+    * $m_3$: `log(Weight) ~ 0 + Species + log(Length1):Species`
+    * $m_4$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)`
+    * $m_5$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species`
+    
+    i. Ajuste cada uno de los modelos.
+    i. Estime el ELPD de cada modelo utilizando LOO y seleccione el modelo más
+    adecuado de acuerdo a este criterio.
+    i. Explique el resultado.
+
+1.  **Ejercicio donde haya sobre-ajuste**
+
+    Idea: Utilizar priors estrechos para prevenir sobre-ajuste?
+
+Lo que falta:
 
 * Eleccion de distribuciones a priori
-    * Priors de regularizacion
-        * Caso donde hay muchos predictores numericos
-* Pruebas predictivas a posteriori
-    * No estoy seguro que poner aca
-    * lppd?
-* Evaluacion/seleccion de modelos
-    * Deviance
-    * Criterios de informacion
-    * CV
-    * PSIS-CV
-    * Bayesiano al palo: No selecciono variables, uso priors que hagan seleccion de variable
-    y uso ese resultado
+    * Priors de regularizacion (e.g. cuando hay muchos predictores numéricos)
 * Sobreajuste y subajuste
 
 

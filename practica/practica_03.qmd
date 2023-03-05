@@ -1004,8 +1004,6 @@ requisito de distribución simétrica.
     
     El modelo propuesto por el equipo de investigación es el siguiente:
 
-    **NOTA:** Tal vez este ejercicio queda mejor en la práctica 4?
-
     $$
     \begin{aligned}
     \log(\text{Peso}_i) &\sim \text{Normal}(\mu, \sigma) \\
