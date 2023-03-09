@@ -6,6 +6,18 @@ nocite: |
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf
 ---
 
+```{r echo=FALSE, include=FALSE}
+is_html <- knitr::is_html_output()
+options("knitr.graphics.error" = FALSE)
+captions <- list()
+
+captions[["mesquite"]] <- paste(
+    "Un árbol de mesquite.<br>Foto de Sergei Bogomyakov,",
+    "<a href='https://nationalgeographicla.com/fotografo/alamy-stock-photo'>Alamy Stock Photo</a>."
+)
+```
+
+
 ::: {.content-visible when-format="html"}
 
 [Descargar PDF]({{< meta pdf_file >}})
@@ -276,9 +288,59 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     adecuado de acuerdo a este criterio.
     i. Explique el resultado.
 
+1.  **Comparación de modelos**
+
+    Se recopilaron datos (`mesquite`) con el fin de desarrollar un método para estimar la 
+    producción total (biomasa) de hojas de mesquite utilizando parámetros fácilmente 
+    medibles de la planta, antes de que se realice la cosecha real. 
+    Se tomaron dos conjuntos separados de mediciones, uno en un grupo de 26 arbustos de 
+    mesquite y otro en un grupo diferente de 20 arbustos de mesquite medidos en un momento
+    diferente del año. Todos los datos se obtuvieron en la misma ubicación geográfica,
+    pero ninguno constituyó una muestra estrictamente aleatoria. 
+    La variable de resultado es el peso total (en gramos) de material fotosintético 
+    obtenido de la cosecha real del arbusto. Las variables de entrada son:
+    
+    | **Nombre**      | **Descripción**                                                              |
+    |-----------------|------------------------------------------------------------------------------|
+    | `diam1`         | Diámetro de la copa medido a lo largo del eje más largo del arbusto (metros) |
+    | `diam2`         | Diámetro de la copa medido a lo largo del eje más corto (metros)             |
+    | `canopy_height` | Altura de la copa                                                            |
+    | `total_height`  | Altura total del arbusto                                                     |
+    | `density`       | Número de tallos primarios por planta                                        |
+    | `group`         | Grupo de mediciones (0 para el primer grupo, 1 para el segundo)              |
+    
+    i. Realice un análisis exploratorio de los datos.
+    i. Ajuste el modelo 
+    `weight ~ diam1 + diam2 + canopy_height + total_height + density + group`.
+    i. Explore y describa el _posterior_.
+    i. Estime ELPD mediante PSIS-CV con la función `loo()`, analice los valores de
+    las estimaciones del parámetro $k$ de la distribución generalizada de Pareto y otros
+    valores de la salida que crea relevant, ¿qué puede concluir?
+    i. Estime ELPD mediante _K-fold cross validation_ con $K=10$. Compare la estimación
+    con el resultado obtenido mediante PSIS-CV y concluya.
+    i. Ajuste el modelo transformando todas las variables numéricas con la función
+    logarítmica. ¿Cómo afecta esta transformación la interpretación de los coeficientes?
+    i. Estime ELPD mediante PSIS-CV con al función `loo()`. Concluya acerca de la 
+    estabilidad del cómputo. ¿Es posible comparar la la estimación con la obtenida en el 
+    inciso iv? ¿Por qué?
+    i. Con ambos modelos, obtenga y grafique la distribución predictiva _a posteriori_
+    comparándola con los datos observados ¿Cuál de los modelos representa mejor a los datos?
+
+    ```{R}
+    #| echo: false
+    #| out.width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["mesquite"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "mesquite.png"))
+    ```
+
+    <!-- @Gelman2021 Capitulo 12-->
+    <!-- https://avehtari.github.io/ROS-Examples/Mesquite/mesquite.html -->
+
 1.  **Ejercicio donde haya sobre-ajuste**
 
     Idea: Utilizar priors estrechos para prevenir sobre-ajuste?
+
 
 Lo que falta:
 
