@@ -12,7 +12,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 :::
 
-1.  Considere un modelo para datos de conteo con un predictor lineal $X$ que toma valores entre -3 y 50
+1.  Considere un modelo para datos de conteo con un predictor $X$ que toma valores entre -3 y 50
 
     $$
     \begin{aligned}
@@ -24,30 +24,31 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\lambda_i$ y los de $Y_i$. ¿Cómo es $\lambda$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$? ¿Qué ocurre con la varianza de $Y$ en función de $X$? ¿Cómo es la distribución marginal de $Y$?
     i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\lambda_i$ y $Y_i$. Compare los resultados.
     
-1.  Considere un modelo de clasificación con un predictor lineal $X$ que toma valores entre -30 y 10
+1.  Considere un modelo de clasificación con un predictor $X$ que toma valores entre -30 y 10
 
     $$
     \begin{aligned}
     Y_i   &\sim \mathrm{Bernoulli}(\theta_i) \\
-    \log\left(\frac{\theta_i}{1-\theta_i}\right) &= \beta X \\
+    \log\left(\frac{\theta_i}{1 - \theta_i}\right) &= \beta X \\
     \end{aligned}
     $$
     
     i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\theta_i$ y los de $Y_i$. ¿Cómo es $\theta$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$?
     i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
 
-1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016
-    que se provee en @Reich2020. Elabore un modelo de regresión lineal bayesiano donde la 
-    variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo
-    el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice
-    todas las demás variables como predictoras.
+1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
+    año 2016 que se provee en @Reich2020 (`rep_2012_2016`). Elabore un modelo de regresión
+    lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el 
+    porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo
+    en el 2012 en cada condado y utilice todas las demás variables como predictoras.
 
-    i. Utilice distribuciones a priori normales no informativas. Interprete las distribuciones
-    a posteriori marginales de los coeficientes de regresión.
-    i. Calcule los residuos $\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}$ donde
-    $\hat{\boldsymbol{\beta}}$ es la media a posteriori del vector de coeficientes de regresión. 
-    ¿Puede concluir que los residuos sigan una distribución normal? ¿Qué condados presentan los 
-    residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?
+    i. Utilice distribuciones _a priori_ normales no informativas. Interprete las 
+    distribuciones _a posteriori_ marginales de los coeficientes de regresión.
+    i. Calcule los residuos $\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}$ 
+    donde $\hat{\boldsymbol{\beta}}$ es la media a posteriori del vector de coeficientes 
+    de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué 
+    condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre 
+    estos condados?
     i. To Do: Compartir datos de forma accesible
     <!-- 4.6.3 @Reich2020 sin efectos aleatorios -->
 
@@ -58,7 +59,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     i. Ajuste el modelo $Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
     $\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
     informativas y $p = 7$ de las covariables en $\mathbf{X}_i$: el intercepto, los cinco 
-    "confounders" $\mathbf{Z}_i$, y el número de leyes relacionadas a armas. 
+    _confounders_ $\mathbf{Z}_i$, y el número de leyes relacionadas a armas. 
     Justifique que el _sampler_ ha convergido y explorado suficientemente la distribución a 
     posteriori y resuma la distribución a posteriori de $\boldsymbol{\beta}$.
     i. To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan
