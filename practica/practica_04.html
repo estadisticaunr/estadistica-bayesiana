@@ -209,7 +209,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="regresión">Regresión</h2>
 <ol type="1">
 <li><p><strong>Mi primer regresión bayesiana</strong></p>
-<p>El conjunto de datos <code>sales</code> contiene los montos de inversión en publicidad y de ingresos de una determinada compañía, por semana. Considere el siguiente modelo de regresión lineal simple</p>
+<p>El conjunto de datos <code>sales</code> contiene los montos de inversión en publicidad y de ingresos de una determinada compañía, por semana. Considere el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
@@ -221,7 +221,7 @@ div.csl-indent {
 <li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad y superponga la recta de regresión estimada.</li>
 </ol></li>
 <li><p><strong>Mejorando mi regresión bayesiana</strong></p>
-<p>Considere siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo. <span class="math display">\[
+<p>Considere la siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo: <span class="math display">\[
 \begin{aligned}
 \text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
 \varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
@@ -244,9 +244,9 @@ div.csl-indent {
 <li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- @Gelman2021 8.8 --></li>
 </ol></li>
 <li><p><strong>La altura… ¿se hereda?</strong></p>
-<p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas de 5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
+<p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas de 5524 pares de madres e hijas en pulgadas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
 <ol type="i">
-<li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa.</li>
+<li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa y fidedigna.</li>
 <li>¿Por qué es adecuado utilizar un modelo de regresión lineal?</li>
 <li>Ajuste el siguiente modelo de regresión lineal utilizando <code>{brms}</code> y <em>priors</em> por defecto:</li>
 </ol>
@@ -257,13 +257,13 @@ div.csl-indent {
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Calcule la media, el desvío estándar, y el intervalo de credibilidad del 95% para los parámetros del modelo utilizando el <em>posterior</em>.</li>
+<li>Calcule la media, el desvío estándar y el intervalo de credibilidad del 95% para los parámetros del modelo utilizando el <em>posterior</em>.</li>
 <li>Interprete los coeficientes del modelo.</li>
 <li>Superponga la recta de regresión en el gráfico donde se visualiza la relación entre las variables.</li>
 <li>Obtenga el <em>posterior</em> del peso medio de una hija cuya madre mide 58 pulgadas. <!-- @Gelman2021 Capitulo 6--></li>
 </ol></li>
 <li><p><strong>Clima en Australia</strong></p>
-<p>El conjunto de datos <strong>…</strong> contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
+<p>El conjunto de datos <code>weather_WU</code> contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
 <p>Considere los siguientes cuatro modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code></li>
@@ -277,7 +277,7 @@ div.csl-indent {
 <li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
 <li><p><strong>Pingüinos</strong></p>
-<p>Considere el dataset de pingüinos de Palmer y los siguientes modelos:</p>
+<p>Considere el dataset de pingüinos de Palmer (<code>penguins</code>) y los siguientes modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code></li>
 <li><span class="math inline">\(m_2\)</span>: <code>body_mass_g ~ species</code></li>
@@ -327,20 +327,20 @@ div.csl-indent {
 <li>Representar gráficamente las predicciones del modelo para cada predictor, dejando el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las variables para predecir la masa de un zorro?</li>
 </ol></li>
 <li><p><strong>Un <em>prior</em> informativo marca la diferencia</strong></p>
-<p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio.csv</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión</p>
+<p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \text{pf}_i &amp;= \beta_0 + \beta_1 \text{belleza}_i + \varepsilon_i \\
 \varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
 \end{aligned}
 \]</span></p>
-<p>Donde <span class="math inline">\(\text{pf}\)</span> representa la proporción de bebés de sexo femenino y <span class="math inline">\(\text{belleza}\)</span> representa el grupo de belleza.</p>
+<p>Donde <span class="math inline">\(\text{pf}\)</span> representa la proporción de bebés de sexo femenino y <span class="math inline">\(\text{belleza}\)</span> representa el grupo de belleza de los padres.</p>
 <ol type="i">
 <li>Ajuste el modelo utilizando mínimos cuadrados.</li>
 <li>Ajuste el modelo con <code>brm()</code> y sus <em>priors</em> por defecto.</li>
 <li>Compare el ajuste de ambos modelos.</li>
 <li>Explore los <em>priors</em> utilizados por <code>{brms}</code> y la distribución predictiva <em>a priori</em>. ¿Qué puede concluir?</li>
-<li>Proponga distribuciones <em>a prior</em> informativas.</li>
+<li>Proponga distribuciones <em>a priori</em> informativas.</li>
 <li>Ajuste el modelo utilizando <code>brm()</code> y los <em>priors</em> informativos.</li>
 <li>Compare el resultado con los obtenidos anteriormente y concluya.</li>
 </ol></li>
@@ -367,7 +367,7 @@ div.csl-indent {
 <li>Nuevamente, obtenga y visualice la distribución predictiva a <em>priori</em> y compare con el resultado obtenido anteriormente.</li>
 <li>Ajuste el modelo, obtenga la distribución predictiva <em>a posteriori</em> y grafíquela.</li>
 </ol></li>
-<li><p><strong>En búsqueda del modelo más adecuado</strong></p>
+<li><p><strong>En búsqueda del modelo adecuado</strong></p>
 <p>Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
 <p>Considere los siguientes modelos</p>
 <ul>
