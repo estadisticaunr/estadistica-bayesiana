@@ -19,7 +19,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
     El conjunto de datos `sales` contiene los montos de inversión en publicidad y de 
     ingresos de una determinada compañía, por semana. Considere el siguiente modelo
-    de regresión lineal simple
+    de regresión lineal simple:
 
     $$
     \begin{aligned}
@@ -34,8 +34,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 1.  **Mejorando mi regresión bayesiana**
 
-    Considere siguiente versión del modelo del ejercicio anterior que propone 
-    distribuciones _a priori_ para los parámetros del modelo.
+    Considere la siguiente versión del modelo del ejercicio anterior que propone 
+    distribuciones _a priori_ para los parámetros del modelo:
     $$
     \begin{aligned}
     \text{ventas}_i &= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
@@ -70,12 +70,12 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 1.  **La altura... ¿se hereda?**
 
     El conjunto de datos de las alturas (`heights`) contiene las alturas de 5524 
-    pares de madres e hijas registradas en un estudio realizado por Karl Pearson y 
-    Alice Lee en 1903.
+    pares de madres e hijas en pulgadas registradas en un estudio realizado por Karl 
+    Pearson y Alice Lee en 1903.
 
     i. Elabore un gráfico que permita ver la relación entre las alturas de las madres y 
     las hijas. Aplique las técnicas que crea necesaria para obtener una visualización 
-    informativa.
+    informativa y fidedigna.
     i. ¿Por qué es adecuado utilizar un modelo de regresión lineal?
     i. Ajuste el siguiente modelo de regresión lineal utilizando `{brms}` y _priors_ por
     defecto:
@@ -87,7 +87,7 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     \end{aligned}
     $$
     
-    i. Calcule la media, el desvío estándar, y el intervalo de credibilidad del 95% 
+    i. Calcule la media, el desvío estándar y el intervalo de credibilidad del 95% 
     para los parámetros del modelo utilizando el _posterior_.
     i. Interprete los coeficientes del modelo.
     i. Superponga la recta de regresión en el gráfico donde se visualiza la relación
@@ -97,9 +97,9 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 1.  **Clima en Australia**
 
-    El conjunto de datos **...** contiene 100 días de datos climáticos para dos ciudades 
-    de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3
-    de la tarde, utilizando otras variables.
+    El conjunto de datos `weather_WU` contiene 100 días de datos climáticos para dos 
+    ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las
+    3 de la tarde, utilizando otras variables.
     
     Considere los siguientes cuatro modelos:
     
@@ -115,7 +115,8 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     
 1.  **Pingüinos**
 
-    Considere el dataset de pingüinos de Palmer y los siguientes modelos:
+    Considere el dataset de pingüinos de Palmer (`penguins`) y los siguientes 
+    modelos:
         
     * $m_1$: `body_mass_g ~ flipper_length_mm`
     * $m_2$: `body_mass_g ~ species`
@@ -193,13 +194,13 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 
 1.  **Un _prior_ informativo marca la diferencia**
 
-    Considere el conjunto de datos sobre belleza y proporción de sexos (`sexratio.csv`) .
+    Considere el conjunto de datos sobre belleza y proporción de sexos (`sexratio`) .
     Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en
     una escala de cinco puntos fue evaluado por entrevistadores en una 
     encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos
     y se registraron ciertos atributos entre los cuales se incluyó el sexo. 
     El objetivo del análisis es comparar la proporción de sexos de los hijos según la 
-    belleza de los padres. Para ello considere el siguiente modelo de regresión
+    belleza de los padres. Para ello considere el siguiente modelo de regresión:
 
     $$
     \begin{aligned}
@@ -209,14 +210,14 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     $$
 
     Donde $\text{pf}$ representa la proporción de bebés de sexo femenino y $\text{belleza}$
-    representa el grupo de belleza.
+    representa el grupo de belleza de los padres.
 
     i. Ajuste el modelo utilizando mínimos cuadrados.
     i. Ajuste el modelo con `brm()` y sus _priors_ por defecto.
     i. Compare el ajuste de ambos modelos.
     i. Explore los _priors_ utilizados por `{brms}` y la distribución predictiva _a priori_.
     ¿Qué puede concluir? 
-    i. Proponga distribuciones _a prior_ informativas.
+    i. Proponga distribuciones _a priori_ informativas.
     i. Ajuste el modelo utilizando `brm()` y los _priors_ informativos.
     i. Compare el resultado con los obtenidos anteriormente y concluya.
 
@@ -256,10 +257,11 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
     con el resultado obtenido anteriormente.
     i. Ajuste el modelo, obtenga la distribución predictiva _a posteriori_ y grafíquela.
     
-1.  **En búsqueda del modelo más adecuado**
+1.  **En búsqueda del modelo adecuado**
 
-    Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso
-    de los pescados en base a sus otros atributos.
+    Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo 
+    de regresión lineal que permita predecir el peso de los pescados en base a sus otros 
+    atributos.
 
     Considere los siguientes modelos
 
