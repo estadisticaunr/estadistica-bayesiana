@@ -272,7 +272,7 @@ div.csl-indent {
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_05.pdf">Descargar PDF</a></p>
 </div>
 <ol type="1">
-<li><p>Considere un modelo para datos de conteo con un predictor lineal <span class="math inline">\(X\)</span> que toma valores entre -3 y 50</p>
+<li><p>Considere un modelo para datos de conteo con un predictor <span class="math inline">\(X\)</span> que toma valores entre -3 y 50</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y_i   &amp;\sim \mathrm{Poisson}(\lambda_i) \\
@@ -283,26 +283,26 @@ Y_i   &amp;\sim \mathrm{Poisson}(\lambda_i) \\
 <li>Genere 1000 valores de <span class="math inline">\(X\)</span>, asuma un valor conocido (y fijo) para <span class="math inline">\(\beta\)</span>, simule los correspondientes valores de <span class="math inline">\(\lambda_i\)</span> y los de <span class="math inline">\(Y_i\)</span>. ¿Cómo es <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(X\)</span>? ¿Es lineal la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>? ¿Qué ocurre con la varianza de <span class="math inline">\(Y\)</span> en función de <span class="math inline">\(X\)</span>? ¿Cómo es la distribución marginal de <span class="math inline">\(Y\)</span>?</li>
 <li>Ahora añada incertidumbre al valor de <span class="math inline">\(\beta\)</span> (¿cómo se hace esto?) y simule nuevamente valores para <span class="math inline">\(\lambda_i\)</span> y <span class="math inline">\(Y_i\)</span>. Compare los resultados.</li>
 </ol></li>
-<li><p>Considere un modelo de clasificación con un predictor lineal <span class="math inline">\(X\)</span> que toma valores entre -30 y 10</p>
+<li><p>Considere un modelo de clasificación con un predictor <span class="math inline">\(X\)</span> que toma valores entre -30 y 10</p>
 <p><span class="math display">\[
 \begin{aligned}
 Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
-\log\left(\frac{\theta_i}{1-\theta_i}\right) &amp;= \beta X \\
+\log\left(\frac{\theta_i}{1 - \theta_i}\right) &amp;= \beta X \\
 \end{aligned}
 \]</span></p>
 <ol type="i">
 <li>Genere 1000 valores de <span class="math inline">\(X\)</span>, asuma un valor conocido (y fijo) para <span class="math inline">\(\beta\)</span>, simule los correspondientes valores de <span class="math inline">\(\theta_i\)</span> y los de <span class="math inline">\(Y_i\)</span>. ¿Cómo es <span class="math inline">\(\theta\)</span> en función de <span class="math inline">\(X\)</span>? ¿Es lineal la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?</li>
 <li>Ahora añada incertidumbre al valor de <span class="math inline">\(\beta\)</span> (¿cómo se hace esto?) y simule nuevamente valores para <span class="math inline">\(\theta_i\)</span> y <span class="math inline">\(Y_i\)</span>. Compare los resultados.</li>
 </ol></li>
-<li><p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span>. Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
+<li><p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
-<li>Utilice distribuciones a priori normales no informativas. Interprete las distribuciones a posteriori marginales de los coeficientes de regresión.</li>
-<li>Calcule los residuos <span class="math inline">\(\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}\)</span> donde <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> es la media a posteriori del vector de coeficientes de regresión. ¿Puede concluir que los residuos sigan una distribución normal? ¿Qué condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?</li>
+<li>Utilice distribuciones <em>a priori</em> normales no informativas. Interprete las distribuciones <em>a posteriori</em> marginales de los coeficientes de regresión.</li>
+<li>Calcule los residuos <span class="math inline">\(\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}\)</span> donde <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> es la media a posteriori del vector de coeficientes de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?</li>
 <li>To Do: Compartir datos de forma accesible <!-- 4.6.3 @Reich2020 sin efectos aleatorios --></li>
 </ol></li>
 <li><p>Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen de un estudio transversal. Para el estado <span class="math inline">\(i\)</span>, sea <span class="math inline">\(Y_i\)</span> el numero de homicios y <span class="math inline">\(N_i\)</span> el tamaño de la población.</p>
 <ol type="i">
-<li>Ajuste el modelo <span class="math inline">\(Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones a priori no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\mathbf{X}_i\)</span>: el intercepto, los cinco “confounders” <span class="math inline">\(\mathbf{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>.</li>
+<li>Ajuste el modelo <span class="math inline">\(Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones a priori no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\mathbf{X}_i\)</span>: el intercepto, los cinco <em>confounders</em> <span class="math inline">\(\mathbf{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>.</li>
 <li>To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan</li>
 <li>To Do: Ver como presentamos el tema de las variables a incorporar en el modelo</li>
 </ol></li>

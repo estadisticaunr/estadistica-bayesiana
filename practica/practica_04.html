@@ -444,17 +444,60 @@ div.csl-indent {
 </div>
 <!-- @Gelman2021 Capitulo 12-->
 <!-- https://avehtari.github.io/ROS-Examples/Mesquite/mesquite.html --></li>
-<li><p><strong>Ejercicio donde haya sobre-ajuste</strong></p>
-<p>Idea: Utilizar priors estrechos para prevenir sobre-ajuste?</p></li>
+<li><p><strong>Secundarios en Portugal</strong></p>
+<p>Se cuenta con un conjunto de datos sobre 343 estudiantes de secundaria de Portugal (<code>portugal</code>) y se desea predecir la calificación final en matemáticas del último año en base a un gran número de predictores potencialmente relevantes.</p>
+<p>El listado de variables se compone por: escuela del estudiante, sexo del estudiante, edad del estudiante, tipo de domicilio del estudiante, tamaño de la familia, estado de convivencia de los padres, educación de la madre, educación del padre, tiempo de viaje del hogar a la escuela, tiempo de estudio semanal, número de fracasos escolares pasados, apoyo educativo adicional, clases pagadas adicionales dentro de la materia del curso, actividades extracurriculares, si el estudiante asistió a una guardería, si el estudiante desea cursar estudios superiores, acceso a Internet en el hogar, si el estudiante tiene una relación romántica, calidad de las relaciones familiares, tiempo libre después de la escuela, si el estudiante sale con amigos, consumo de alcohol entre semana, consumo de alcohol los fines de semana, estado de salud actual y número de ausencias escolares.</p>
+<p><strong>Priors débilmente informativos</strong></p>
+<ol type="i">
+<li><p>Ajuste un modelo de regresión lineal utilizando todos los predictores luego de estandarizarlos y con los siguientes <em>priors</em> <span class="math display">\[
+\begin{aligned}
+\beta_k &amp;\sim \text{Normal}(0, 2.5) \\
+\sigma  &amp;\sim \text{Exponential}(1 / \text{std}(y))
+\end{aligned}
+\]</span></p></li>
+<li><p>Elabore un gráfico para visualizar los <em>posteriors</em> marginales y compárelos. ¿Qué puede concluir acerca de su incertidumbre?</p></li>
+<li><p>Calcule y compare la mediana del <span class="math inline">\(R^2\)</span> bayesiano y del <span class="math inline">\(R^2\)</span> mediante <em>LOO</em> ¿Qué conlcusión puede extraer de esta comparación?</p></li>
+<li><p>¿Cuál es el número efectivo de parámetros según <em>LOO</em>? ¿Qué indica?</p></li>
+<li><p>Obtenga muestras del <em>prior</em> y del <em>posterior</em> del <span class="math inline">\(R^2\)</span> bayesiano, compárelos utilizando una visualización y concluya considerando la elección de los <em>priors</em> débilmente informativos sobre <span class="math inline">\(\beta_k\)</span> y <span class="math inline">\(\sigma\)</span>.</p></li>
 </ol>
-<p>Lo que falta:</p>
-<ul>
-<li>Eleccion de distribuciones a priori
-<ul>
-<li>Priors de regularizacion (e.g.&nbsp;cuando hay muchos predictores numéricos)</li>
-</ul></li>
-<li>Sobreajuste y subajuste</li>
-</ul>
+<p><strong>Priors alternativos (I)</strong></p>
+<p>Si se asume que muchos predictores pueden tener poca relevancia, se pueden escalar los <em>priors</em> independientes para que la suma de la varianza de los <em>priors</em> se mantenga alrededor de un valor razonable. En este caso, se cuenta con 26 predictores y se podría tener una suposición previa de que la proporción de la varianza explicada está cerca de 0.3. Entonces, un enfoque simple consiste en asignar <em>priors</em> independientes a los coeficientes de regresión con media 0 y desviación estándar <span class="math inline">\(\sqrt{0.3/26}\text{sd}(y)\)</span> y un <em>prior</em> exponencial con media <span class="math inline">\(\sqrt{0.7}\text{sd}(y)\)</span> para <span class="math inline">\(\sigma\)</span>.</p>
+<ol type="i">
+<li>Ajuste el modelo nuevamente utilizando los siguientes priors <span class="math display">\[
+\begin{aligned}
+\beta_k &amp;\sim \text{Normal}(0, \sqrt{\frac{0.3}{26}}\text{sd}(y)) \\
+\sigma  &amp;\sim \text{Exponential}(1 / \sqrt{0.7}\text{sd}(y))
+\end{aligned}
+\]</span></li>
+<li>Explore la distribución <em>a priori</em> sobre <span class="math inline">\(R^2\)</span> y compárela con la distribución obtenida con los <em>priors</em> débilmente informativos.</li>
+<li>Calcule ELPD mediante <em>loo</em> y compare este modelo con el anterior.</li>
+<li>Elabore un gráfico para visualizar los <em>posteriors</em> marginales. Compare este resultado con el obtenido con los <em>priors</em> débilmente informativos.</li>
+</ol>
+<p><strong>Priors alternativos (II)</strong></p>
+<p>Otra alternativa es asumir que solo algunos de los predictores tienen alta relevancia y que el resto de los predictores tienen una relevancia insignificante. Una posibilidad para modelar bajo este supuesto es el <em>horseshoe prior</em> regularizado.</p>
+<p><span class="math display">\[
+\begin{aligned}
+\beta_k   &amp;\sim \text{Normal}(0, \tau\lambda_k) \\
+\lambda_k &amp;\sim \text{HalfCauchy} \\
+\tau      &amp;\sim \text{HalfCauchy}(\frac{p_0}{p - p_0}\frac{\sigma}{\sqrt{n}})
+\end{aligned}
+\]</span></p>
+<p><strong>To Do:</strong> Terminar</p>
+<!-- @Gelman2021 Capitulo 12 --></li>
+</ol>
+<!-- 
+1.  **Ejercicio donde haya sobre-ajuste**
+
+    Idea: Utilizar priors estrechos para prevenir sobre-ajuste?
+
+
+Lo que falta:
+
+* Eleccion de distribuciones a priori
+    * Priors de regularizacion (e.g. cuando hay muchos predictores numéricos)
+* Sobreajuste y subajuste
+
+-->
 <!-- 
 Unidad 4: Modelos Lineales
 Modelos lineales. Elección de distribuciones a priori. Regularización. Diagnóstico de modelos. Predicciones basadas en distribuciones de probabilidad. Pruebas predictivas a priori y a posteriori. Densidad predictiva a posteriori logarítmica evaluada punto a punto (lppd). Deviance. Criterios de información: AIC, BIC, WAIC. Validacion cruzada. Sobreajuste y subajuste. Validación cruzada utilizando muestreo por importancia mediante suavizado Pareto (PSIS-CV). 
