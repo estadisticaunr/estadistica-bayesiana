@@ -382,6 +382,68 @@ div.csl-indent {
 <li>Estime el ELPD de cada modelo utilizando LOO y seleccione el modelo más adecuado de acuerdo a este criterio.</li>
 <li>Explique el resultado.</li>
 </ol></li>
+<li><p><strong>Comparación de modelos</strong></p>
+<p>Se recopilaron datos (<code>mesquite</code>) con el fin de desarrollar un método para estimar la producción total (biomasa) de hojas de mesquite utilizando parámetros fácilmente medibles de la planta, antes de que se realice la cosecha real. Se tomaron dos conjuntos separados de mediciones, uno en un grupo de 26 arbustos de mesquite y otro en un grupo diferente de 20 arbustos de mesquite medidos en un momento diferente del año. Todos los datos se obtuvieron en la misma ubicación geográfica, pero ninguno constituyó una muestra estrictamente aleatoria. La variable de resultado es el peso total (en gramos) de material fotosintético obtenido de la cosecha real del arbusto. Las variables de entrada son:</p>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Nombre</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>diam1</code></td>
+<td>Diámetro de la copa medido a lo largo del eje más largo del arbusto (metros)</td>
+</tr>
+<tr class="even">
+<td><code>diam2</code></td>
+<td>Diámetro de la copa medido a lo largo del eje más corto (metros)</td>
+</tr>
+<tr class="odd">
+<td><code>canopy_height</code></td>
+<td>Altura de la copa</td>
+</tr>
+<tr class="even">
+<td><code>total_height</code></td>
+<td>Altura total del arbusto</td>
+</tr>
+<tr class="odd">
+<td><code>density</code></td>
+<td>Número de tallos primarios por planta</td>
+</tr>
+<tr class="even">
+<td><code>group</code></td>
+<td>Grupo de mediciones (0 para el primer grupo, 1 para el segundo)</td>
+</tr>
+</tbody>
+</table>
+<ol type="i">
+<li>Realice un análisis exploratorio de los datos.</li>
+<li>Ajuste el modelo <code>weight ~ diam1 + diam2 + canopy_height + total_height + density + group</code>.</li>
+<li>Explore y describa el <em>posterior</em>.</li>
+<li>Estime ELPD mediante PSIS-CV con la función <code>loo()</code>, analice los valores de las estimaciones del parámetro <span class="math inline">\(k\)</span> de la distribución generalizada de Pareto y otros valores de la salida que crea relevant, ¿qué puede concluir?</li>
+<li>Estime ELPD mediante <em>K-fold cross validation</em> con <span class="math inline">\(K=10\)</span>. Compare la estimación con el resultado obtenido mediante PSIS-CV y concluya.</li>
+<li>Ajuste el modelo transformando todas las variables numéricas con la función logarítmica. ¿Cómo afecta esta transformación la interpretación de los coeficientes?</li>
+<li>Estime ELPD mediante PSIS-CV con al función <code>loo()</code>. Concluya acerca de la estabilidad del cómputo. ¿Es posible comparar la la estimación con la obtenida en el inciso iv? ¿Por qué?</li>
+<li>Con ambos modelos, obtenga y grafique la distribución predictiva <em>a posteriori</em> comparándola con los datos observados ¿Cuál de los modelos representa mejor a los datos?</li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/mesquite.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Un árbol de mesquite.<br>Foto de Sergei Bogomyakov, <a href="https://nationalgeographicla.com/fotografo/alamy-stock-photo">Alamy Stock Photo</a>.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- @Gelman2021 Capitulo 12-->
+<!-- https://avehtari.github.io/ROS-Examples/Mesquite/mesquite.html --></li>
 <li><p><strong>Ejercicio donde haya sobre-ajuste</strong></p>
 <p>Idea: Utilizar priors estrechos para prevenir sobre-ajuste?</p></li>
 </ol>
