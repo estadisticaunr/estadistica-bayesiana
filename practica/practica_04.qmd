@@ -9,14 +9,22 @@ pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practi
 ```{r echo=FALSE, include=FALSE}
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
-captions <- list()
-
+source(here::here("scripts", "utils.R"))
+caption_data <- list(
+    "uluru" = list(
+        author = "Snowscat", 
+        handle = "snowscat", 
+        code = "8uq1smN9g1w",
+        msg = "Parque Nacional Uluṟu-Kata Tjuṯa en Uluru, Australia."
+    )
+)
+captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["mesquite"]] <- paste(
     "Un árbol de mesquite.<br>Foto de Sergei Bogomyakov,",
     "<a href='https://nationalgeographicla.com/fotografo/alamy-stock-photo'>Alamy Stock Photo</a>."
 )
+captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tamaños."
 ```
-
 
 ::: {.content-visible when-format="html"}
 
@@ -24,19 +32,18 @@ captions[["mesquite"]] <- paste(
 
 :::
 
-## Regresión
-
+## Regresión lineal
 
 1.  **Mi primer regresión bayesiana**
 
-    El conjunto de datos `sales` contiene los montos de inversión en publicidad y de 
-    ingresos de una determinada compañía, por semana. Considere el siguiente modelo
-    de regresión lineal simple:
+    El conjunto de datos `sales` contiene los montos semanales de inversión en publicidad 
+    y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión 
+    lineal simple:
 
     $$
     \begin{aligned}
-    \text{ventas}_i &= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+    \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
+    \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2)
     \end{aligned}
     $$
 
@@ -50,11 +57,11 @@ captions[["mesquite"]] <- paste(
     distribuciones _a priori_ para los parámetros del modelo:
     $$
     \begin{aligned}
-    \text{ventas}_i &= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
+    \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
+    \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
     \beta_0 &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
     \beta_1 &\sim \text{Normal}(0, 0.5) \\
-    \sigma^2 &\sim \text{HalfNormal}(5)
+    \sigma^2 &\sim \text{Normal}^+(5)
     \end{aligned}
     $$
 
@@ -81,9 +88,9 @@ captions[["mesquite"]] <- paste(
 
 1.  **La altura... ¿se hereda?**
 
-    El conjunto de datos de las alturas (`heights`) contiene las alturas de 5524 
-    pares de madres e hijas en pulgadas registradas en un estudio realizado por Karl 
-    Pearson y Alice Lee en 1903.
+    El conjunto de datos de las alturas (`heights`) contiene las alturas (en pulgadas) de
+    5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y 
+    Alice Lee en 1903.
 
     i. Elabore un gráfico que permita ver la relación entre las alturas de las madres y 
     las hijas. Aplique las técnicas que crea necesaria para obtener una visualización 
@@ -94,8 +101,8 @@ captions[["mesquite"]] <- paste(
 
     $$
     \begin{aligned}
-    \text{altura\_hija}_i &= \beta_0 + \beta_1 \text{altura\_madre}_i + \varepsilon_i \\
-    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+    \mu_i &= \beta_0 + \beta_1 \text{altura\_madre}_i \\
+    \text{altura\_hija}_i &\sim \text{Normal}(\mu_i, \sigma^2)
     \end{aligned}
     $$
     
@@ -109,7 +116,7 @@ captions[["mesquite"]] <- paste(
 
 1.  **Clima en Australia**
 
-    El conjunto de datos `weather_WU` contiene 100 días de datos climáticos para dos 
+    El conjunto de datos `weather_WU` datos climáticos correspondientes a 100 días en dos 
     ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las
     3 de la tarde, utilizando otras variables.
     
@@ -122,9 +129,17 @@ captions[["mesquite"]] <- paste(
     
     i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos
     i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
-    i. Compare los ELPD de cada modelo utilizando LOO
+    i. Compare los _ELPD_ de cada modelo utilizando _LOO_
     <!-- Bayes Rules. Capítulo 11. -->
     
+    ```{R}
+    #| echo: false
+    #| out.width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["uluru"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "uluru.jpg"))
+    ```
+
 1.  **Pingüinos**
 
     Considere el dataset de pingüinos de Palmer (`penguins`) y los siguientes 
@@ -139,7 +154,7 @@ captions[["mesquite"]] <- paste(
     i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros 
     obtenidos
     i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
-    i. Compare los ELPD de cada modelo utilizando LOO
+    i. Compare los _ELPD_ de cada modelo utilizando _LOO_
     <!-- Bayes Rules. Capítulo 11. -->
     
 1.  **De tal palo...**
@@ -152,14 +167,15 @@ captions[["mesquite"]] <- paste(
     edad de la madre
     i. Considere ahora un modelo que incluya la educación de la madre
     
-1.  **Belleza**
+1.  **La pinta es lo de menos...**
 
-    Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un 
-    curso y la belleza de los instructores. La determinación de la belleza se hizo a 
+    Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en 
+    un curso y la belleza de los instructores. La determinación de la belleza se hizo a 
     partir de las opiniones de seis estudiantes que no participaron de los cursos y no
     conocían las notas. Los datos se encuentran en el archivo `beauty`.
     
     i. Considere un modelo de regresión `courseevaluation ~ btystdave`
+    i. **To Do**?
     
 1.  **Ingresos**
 
@@ -189,7 +205,7 @@ captions[["mesquite"]] <- paste(
     i. Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59
     y 54.63. Calcule la altura esperada y el intervalo del 89\%.
     
-1.  **Zorros**
+1.  **Zorros urbanos**
 
     Considere del conjunto de datos sobre zorros urbanos (`foxes`). Ajuste tres modelos:
 
@@ -216,8 +232,8 @@ captions[["mesquite"]] <- paste(
 
     $$
     \begin{aligned}
-    \text{pf}_i &= \beta_0 + \beta_1 \text{belleza}_i + \varepsilon_i \\
-    \varepsilon_i &\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+    \mu_i &= \beta_0 + \beta_1 \text{belleza}_i \\
+    \text{pf}_i &\sim \text{Normal}(\mu_i, \sigma^2)
     \end{aligned}
     $$
 
@@ -269,6 +285,15 @@ captions[["mesquite"]] <- paste(
     con el resultado obtenido anteriormente.
     i. Ajuste el modelo, obtenga la distribución predictiva _a posteriori_ y grafíquela.
     
+    ```{R}
+    #| echo: false
+    #| out.width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["especies_pescados"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "especies_pescados.png"))
+    ```
+
+
 1.  **En búsqueda del modelo adecuado**
 
     Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo 
@@ -284,7 +309,7 @@ captions[["mesquite"]] <- paste(
     * $m_5$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species`
     
     i. Ajuste cada uno de los modelos.
-    i. Estime el ELPD de cada modelo utilizando LOO y seleccione el modelo más
+    i. Estime el _ELPD_ de cada modelo utilizando _LOO_ y seleccione el modelo más
     adecuado de acuerdo a este criterio.
     i. Explique el resultado.
 
@@ -313,14 +338,14 @@ captions[["mesquite"]] <- paste(
     i. Ajuste el modelo 
     `weight ~ diam1 + diam2 + canopy_height + total_height + density + group`.
     i. Explore y describa el _posterior_.
-    i. Estime ELPD mediante PSIS-CV con la función `loo()`, analice los valores de
+    i. Estime _ELPD_ mediante _PSIS-CV_ con la función `loo()`, analice los valores de
     las estimaciones del parámetro $k$ de la distribución generalizada de Pareto y otros
     valores de la salida que crea relevant, ¿qué puede concluir?
     i. Estime ELPD mediante _K-fold cross validation_ con $K=10$. Compare la estimación
-    con el resultado obtenido mediante PSIS-CV y concluya.
+    con el resultado obtenido mediante _PSIS-CV_ y concluya.
     i. Ajuste el modelo transformando todas las variables numéricas con la función
     logarítmica. ¿Cómo afecta esta transformación la interpretación de los coeficientes?
-    i. Estime ELPD mediante PSIS-CV con al función `loo()`. Concluya acerca de la 
+    i. Estime _ELPD_ mediante _PSIS-CV_ con la función `loo()`. Concluya acerca de la 
     estabilidad del cómputo. ¿Es posible comparar la la estimación con la obtenida en el 
     inciso iv? ¿Por qué?
     i. Con ambos modelos, obtenga y grafique la distribución predictiva _a posteriori_
@@ -368,8 +393,8 @@ captions[["mesquite"]] <- paste(
 
     i. Elabore un gráfico para visualizar los _posteriors_ marginales y compárelos.
     ¿Qué puede concluir acerca de su incertidumbre?
-    i. Calcule y compare la mediana del $R^2$ bayesiano y del $R^2$ mediante _LOO_
-    ¿Qué conlcusión puede extraer de esta comparación?
+    i. Calcule y compare la mediana del $R^2$ bayesiano y del $R^2$ calculado mediante 
+    _LOO_ ¿Qué conclusión puede extraer de esta comparación?
     i. ¿Cuál es el número efectivo de parámetros según _LOO_? ¿Qué indica?
     i. Obtenga muestras del _prior_ y del _posterior_ del $R^2$ bayesiano, compárelos
     utilizando una visualización y concluya considerando la elección de los _priors_
@@ -378,13 +403,13 @@ captions[["mesquite"]] <- paste(
     **Priors alternativos (I)**
 
     Si se asume que muchos predictores pueden tener poca relevancia, se pueden escalar 
-    los _priors_ independientes para que la suma de la varianza de los _priors_ se mantenga
+    los _priors_ independientes para que la suma de la varianza de los _priors_ se encuentre
     alrededor de un valor razonable. En este caso, se cuenta con 26 predictores y 
-    se podría tener una suposición previa de que la proporción de la varianza explicada 
-    está cerca de 0.3. Entonces, un enfoque simple consiste en asignar _priors_ 
-    independientes a los coeficientes de regresión con media 0 y desviación estándar 
-    $\sqrt{0.3/26}\text{sd}(y)$ y un _prior_ exponencial con media $\sqrt{0.7}\text{sd}(y)$
-    para $\sigma$.
+    se podría suponer que la proporción de la varianza explicada por los predictores está
+    alrededor de 0.3. Entonces, un enfoque simple consiste en asignar _priors_ 
+    independientes a los coeficientes de regresión con media 0 y desviación estándar
+    $\sqrt{0.3/26}\text{sd}(y)$ y un _prior_ exponencial con media 
+    $\sqrt{0.7}\text{sd}(y)$ para $\sigma$.
 
 
     i. Ajuste el modelo nuevamente utilizando los siguientes priors
@@ -396,7 +421,7 @@ captions[["mesquite"]] <- paste(
     $$
     i. Explore la distribución _a priori_ sobre $R^2$ y compárela con la distribución
     obtenida con los _priors_ débilmente informativos.
-    i. Calcule ELPD mediante _loo_ y compare este modelo con el anterior.
+    i. Calcule _ELPD_ mediante _LOO_ y compare este modelo con el anterior.
     i. Elabore un gráfico para visualizar los _posteriors_ marginales. Compare este 
     resultado con el obtenido con los _priors_ débilmente informativos.
 
@@ -404,20 +429,65 @@ captions[["mesquite"]] <- paste(
 
     Otra alternativa es asumir que solo algunos de los predictores tienen alta 
     relevancia y que el resto de los predictores tienen una relevancia insignificante.
-    Una posibilidad para modelar bajo este supuesto es el _horseshoe prior_ regularizado.
+    Una posibilidad para modelar bajo este supuesto es el _horseshoe prior_ 
+    regularizado[^horseshoe]. Este _prior_ utiliza distribuciones normales independientes 
+    con media 0 y varianza $\tau^2\lambda_k^2$ para los coeficientes de regresión 
+    $\beta_k$ y se describe a continuación:
 
     $$
     \begin{aligned}
-    \beta_k   &\sim \text{Normal}(0, \tau\lambda_k) \\
-    \lambda_k &\sim \text{HalfCauchy} \\
-    \tau      &\sim \text{HalfCauchy}(\frac{p_0}{p - p_0}\frac{\sigma}{\sqrt{n}})
+    \beta_k   &\sim \text{Normal}(0, \tau^2\tilde{\lambda}_k^2) \\
+    \tilde{\lambda}_k^2 &= \frac{c^2\lambda_k^2}{c^2 + \tau^2\lambda_k^2} \\
+    c & = \sqrt{c'} \text{SS} \\
+    c' &\sim \text{InvGamma}(0.5 \cdot SDF, 0.5 \cdot SDF) \\
+    \lambda_k &\sim \text{StudentT}^+(\text{df} = 1, \mu = 0, \sigma = 1 ) \\
+    \tau      &\sim \text{StudentT}^+(\text{df} = 1, \mu = 0, \sigma = \text{GS})
     \end{aligned}
     $$
 
-    **To Do:** Terminar
+    con
+    $$
+    \begin{aligned}
+    \text{GS} = \frac{p_0}{p - p_0} \frac{\sigma}{\sqrt{n}} \\
+    \text{SS} = \sqrt{\frac{0.3}{p_0}} \text{sd}(y) \\
+    \text{SDF} = 4
+    \end{aligned}
+    $$
+
+    donde $\text{GS}$, $\text{SS}$ y $\text{SDF}$ representan _global scale_, _slab scale_ y
+    _slab degrees of freedom_, respectivamente. Además, $p$ representa la cantidad de 
+    predictores, 26, y $p_0$ la cantidad de predictores que se espera que sean relevantes.
+
+    Intuitivamente, el parámetro global $\tau$ empuja todos los $\beta_k$ hacia el 0, 
+    mientras que los parámetros locales $\lambda_k$ contribuyen a que algunos de los 
+    $\beta_k$ escapen del 0.
+
+    i. Utilice $p_0 = 6$ para ajustar el modelo con todos los predictores y grafique
+    y analice los _posteriors_ marginales.
+    i. Compare este modelo con los ajustados anteriormente en base a sus _ELPD_ estimados
+    con _LOO_ y concluya.
+
+    **Priors débilmente informativos con menos predictores**
+
+    Ajuste el modelo de regresión con un subconjunto de predictores que crea conveniente
+    y los _priors_ débilmente informativos que se utilizaron inicialmente.
+
+    i. Visualice los _posteriors_ marginales.
+    i. Nuevamente, calcule y compare la mediana del $R^2$ bayesiano y del $R^2$ calculado 
+    mediante.
+    i. Compare este modelo con el ajustado anteriormente en base a sus _ELPD_ estimados
+    con _LOO_ y concluya sobre la capacidad predictiva de este modelo.
+
+    <!-- Nota: A la hora de pasar `scale_global` a `horseshoe` de `brms` no hay que incluir
+    `sigma` porque eso pasa internamente (mostrar como buscar la ayuda online) -->
 
     <!-- @Gelman2021 Capitulo 12 -->
 
+
+
+[^horseshoe]: El nombre _horseshoe_ (herradura) no se relaciona con la forma de la función
+    de densidad en sí, sino con la forma del _prior_ implícito para los coeficientes de 
+    _shrinkage_ (contracción) aplicados a cada parámetro.
 
 <!-- 
 1.  **Ejercicio donde haya sobre-ajuste**
@@ -430,7 +500,17 @@ Lo que falta:
 * Eleccion de distribuciones a priori
     * Priors de regularizacion (e.g. cuando hay muchos predictores numéricos)
 * Sobreajuste y subajuste
-
+* Deberiamos ver como escribimos lo de "estimar elpd con loo" porque es ambiguo.
+  La documentacion de la funcion dice
+  "compute PSIS-LOO CV, efficient approximate leave-one-out (LOO) cross-validation for 
+  Bayesian models using Pareto smoothed importance sampling (PSIS)
+  
+  Returns:
+  A matrix with two columns (Estimate, SE) and three rows (elpd_loo, p_loo, looic). 
+  This contains point estimates and standard errors of the expected log pointwise 
+  predictive density (elpd_loo), the effective number of parameters (p_loo) and the 
+  LOO information criterion looic (which is just -2 * elpd_loo, i.e., converted to deviance scale).
+  "
 -->
 
 <!-- 
