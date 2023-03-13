@@ -205,15 +205,15 @@ div.csl-indent {
 <div>
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf">Descargar PDF</a></p>
 </div>
-<section id="regresión" class="level2">
-<h2 class="anchored" data-anchor-id="regresión">Regresión</h2>
+<section id="regresión-lineal" class="level2">
+<h2 class="anchored" data-anchor-id="regresión-lineal">Regresión lineal</h2>
 <ol type="1">
 <li><p><strong>Mi primer regresión bayesiana</strong></p>
-<p>El conjunto de datos <code>sales</code> contiene los montos de inversión en publicidad y de ingresos de una determinada compañía, por semana. Considere el siguiente modelo de regresión lineal simple:</p>
+<p>El conjunto de datos <code>sales</code> contiene los montos semanales de inversión en publicidad y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
+\text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
 \end{aligned}
 \]</span></p>
 <ol type="i">
@@ -223,11 +223,11 @@ div.csl-indent {
 <li><p><strong>Mejorando mi regresión bayesiana</strong></p>
 <p>Considere la siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo: <span class="math display">\[
 \begin{aligned}
-\text{ventas}_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i + \varepsilon_i \\
-\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2) \\
+\mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
+\text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
 \beta_0 &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
 \beta_1 &amp;\sim \text{Normal}(0, 0.5) \\
-\sigma^2 &amp;\sim \text{HalfNormal}(5)
+\sigma^2 &amp;\sim \text{Normal}^+(5)
 \end{aligned}
 \]</span></p>
 <ol type="i">
@@ -244,7 +244,7 @@ div.csl-indent {
 <li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- @Gelman2021 8.8 --></li>
 </ol></li>
 <li><p><strong>La altura… ¿se hereda?</strong></p>
-<p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas de 5524 pares de madres e hijas en pulgadas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
+<p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas (en pulgadas) de 5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
 <ol type="i">
 <li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa y fidedigna.</li>
 <li>¿Por qué es adecuado utilizar un modelo de regresión lineal?</li>
@@ -252,8 +252,8 @@ div.csl-indent {
 </ol>
 <p><span class="math display">\[
 \begin{aligned}
-\text{altura\_hija}_i &amp;= \beta_0 + \beta_1 \text{altura\_madre}_i + \varepsilon_i \\
-\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\mu_i &amp;= \beta_0 + \beta_1 \text{altura\_madre}_i \\
+\text{altura\_hija}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
 \end{aligned}
 \]</span></p>
 <ol type="i">
@@ -263,7 +263,7 @@ div.csl-indent {
 <li>Obtenga el <em>posterior</em> del peso medio de una hija cuya madre mide 58 pulgadas. <!-- @Gelman2021 Capitulo 6--></li>
 </ol></li>
 <li><p><strong>Clima en Australia</strong></p>
-<p>El conjunto de datos <code>weather_WU</code> contiene 100 días de datos climáticos para dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
+<p>El conjunto de datos <code>weather_WU</code> datos climáticos correspondientes a 100 días en dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
 <p>Considere los siguientes cuatro modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code></li>
@@ -274,8 +274,18 @@ div.csl-indent {
 <ol type="i">
 <li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
 <li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
-<li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
-</ol></li>
+<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em> <!-- Bayes Rules. Capítulo 11. --></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/uluru.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Parque Nacional Uluṟu-Kata Tjuṯa en Uluru, Australia. Foto de <a href="https://unsplash.com/snowscat">Snowscat</a> en <a href="https://unsplash.com/photos/8uq1smN9g1w">Unsplash</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p><strong>Pingüinos</strong></p>
 <p>Considere el dataset de pingüinos de Palmer (<code>penguins</code>) y los siguientes modelos:</p>
 <ul>
@@ -288,7 +298,7 @@ div.csl-indent {
 <ol type="i">
 <li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
 <li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
-<li>Compare los ELPD de cada modelo utilizando LOO <!-- Bayes Rules. Capítulo 11. --></li>
+<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em> <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
 <li><p><strong>De tal palo…</strong></p>
 <p>El dataset <code>child_iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio a luz.</p>
@@ -296,10 +306,11 @@ div.csl-indent {
 <li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre</li>
 <li>Considere ahora un modelo que incluya la educación de la madre</li>
 </ol></li>
-<li><p><strong>Belleza</strong></p>
+<li><p><strong>La pinta es lo de menos…</strong></p>
 <p>Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un curso y la belleza de los instructores. La determinación de la belleza se hizo a partir de las opiniones de seis estudiantes que no participaron de los cursos y no conocían las notas. Los datos se encuentran en el archivo <code>beauty</code>.</p>
 <ol type="i">
 <li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code></li>
+<li><strong>To Do</strong>?</li>
 </ol></li>
 <li><p><strong>Ingresos</strong></p>
 <p>El dataset <code>earnings</code> contiene los resultados de la encuesta realizada por Ross sobre Trabajo, Familia y Bienestar.</p>
@@ -315,7 +326,7 @@ div.csl-indent {
 <li>Construya un gráfico de altura en función del peso, incluya las observaciones de los individuos, la recta de regresión MAP, el intervalo del 80% para la media y y el intervalo del 80% para la altura predicha.</li>
 <li>Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59 y 54.63. Calcule la altura esperada y el intervalo del 89%.</li>
 </ol></li>
-<li><p><strong>Zorros</strong></p>
+<li><p><strong>Zorros urbanos</strong></p>
 <p>Considere del conjunto de datos sobre zorros urbanos (<code>foxes</code>). Ajuste tres modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>weight ~ area</code></li>
@@ -330,8 +341,8 @@ div.csl-indent {
 <p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\text{pf}_i &amp;= \beta_0 + \beta_1 \text{belleza}_i + \varepsilon_i \\
-\varepsilon_i &amp;\underset{iid}{\sim} \text{Normal}(0, \sigma^2)
+\mu_i &amp;= \beta_0 + \beta_1 \text{belleza}_i \\
+\text{pf}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
 \end{aligned}
 \]</span></p>
 <p>Donde <span class="math inline">\(\text{pf}\)</span> representa la proporción de bebés de sexo femenino y <span class="math inline">\(\text{belleza}\)</span> representa el grupo de belleza de los padres.</p>
@@ -366,7 +377,17 @@ div.csl-indent {
 <li>Proponga <em>priors</em> más adecuados en base a la interpretación de los parámetros del modelo y la información que tenga del problema.</li>
 <li>Nuevamente, obtenga y visualice la distribución predictiva a <em>priori</em> y compare con el resultado obtenido anteriormente.</li>
 <li>Ajuste el modelo, obtenga la distribución predictiva <em>a posteriori</em> y grafíquela.</li>
-</ol></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/especies_pescados.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Especies de peces de todas variedades y tamaños.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p><strong>En búsqueda del modelo adecuado</strong></p>
 <p>Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
 <p>Considere los siguientes modelos</p>
@@ -379,7 +400,7 @@ div.csl-indent {
 </ul>
 <ol type="i">
 <li>Ajuste cada uno de los modelos.</li>
-<li>Estime el ELPD de cada modelo utilizando LOO y seleccione el modelo más adecuado de acuerdo a este criterio.</li>
+<li>Estime el <em>ELPD</em> de cada modelo utilizando <em>LOO</em> y seleccione el modelo más adecuado de acuerdo a este criterio.</li>
 <li>Explique el resultado.</li>
 </ol></li>
 <li><p><strong>Comparación de modelos</strong></p>
@@ -426,10 +447,10 @@ div.csl-indent {
 <li>Realice un análisis exploratorio de los datos.</li>
 <li>Ajuste el modelo <code>weight ~ diam1 + diam2 + canopy_height + total_height + density + group</code>.</li>
 <li>Explore y describa el <em>posterior</em>.</li>
-<li>Estime ELPD mediante PSIS-CV con la función <code>loo()</code>, analice los valores de las estimaciones del parámetro <span class="math inline">\(k\)</span> de la distribución generalizada de Pareto y otros valores de la salida que crea relevant, ¿qué puede concluir?</li>
-<li>Estime ELPD mediante <em>K-fold cross validation</em> con <span class="math inline">\(K=10\)</span>. Compare la estimación con el resultado obtenido mediante PSIS-CV y concluya.</li>
+<li>Estime <em>ELPD</em> mediante <em>PSIS-CV</em> con la función <code>loo()</code>, analice los valores de las estimaciones del parámetro <span class="math inline">\(k\)</span> de la distribución generalizada de Pareto y otros valores de la salida que crea relevant, ¿qué puede concluir?</li>
+<li>Estime ELPD mediante <em>K-fold cross validation</em> con <span class="math inline">\(K=10\)</span>. Compare la estimación con el resultado obtenido mediante <em>PSIS-CV</em> y concluya.</li>
 <li>Ajuste el modelo transformando todas las variables numéricas con la función logarítmica. ¿Cómo afecta esta transformación la interpretación de los coeficientes?</li>
-<li>Estime ELPD mediante PSIS-CV con al función <code>loo()</code>. Concluya acerca de la estabilidad del cómputo. ¿Es posible comparar la la estimación con la obtenida en el inciso iv? ¿Por qué?</li>
+<li>Estime <em>ELPD</em> mediante <em>PSIS-CV</em> con la función <code>loo()</code>. Concluya acerca de la estabilidad del cómputo. ¿Es posible comparar la la estimación con la obtenida en el inciso iv? ¿Por qué?</li>
 <li>Con ambos modelos, obtenga y grafique la distribución predictiva <em>a posteriori</em> comparándola con los datos observados ¿Cuál de los modelos representa mejor a los datos?</li>
 </ol>
 <div class="cell" data-layout-align="center">
@@ -456,12 +477,12 @@ div.csl-indent {
 \end{aligned}
 \]</span></p></li>
 <li><p>Elabore un gráfico para visualizar los <em>posteriors</em> marginales y compárelos. ¿Qué puede concluir acerca de su incertidumbre?</p></li>
-<li><p>Calcule y compare la mediana del <span class="math inline">\(R^2\)</span> bayesiano y del <span class="math inline">\(R^2\)</span> mediante <em>LOO</em> ¿Qué conlcusión puede extraer de esta comparación?</p></li>
+<li><p>Calcule y compare la mediana del <span class="math inline">\(R^2\)</span> bayesiano y del <span class="math inline">\(R^2\)</span> calculado mediante <em>LOO</em> ¿Qué conclusión puede extraer de esta comparación?</p></li>
 <li><p>¿Cuál es el número efectivo de parámetros según <em>LOO</em>? ¿Qué indica?</p></li>
 <li><p>Obtenga muestras del <em>prior</em> y del <em>posterior</em> del <span class="math inline">\(R^2\)</span> bayesiano, compárelos utilizando una visualización y concluya considerando la elección de los <em>priors</em> débilmente informativos sobre <span class="math inline">\(\beta_k\)</span> y <span class="math inline">\(\sigma\)</span>.</p></li>
 </ol>
 <p><strong>Priors alternativos (I)</strong></p>
-<p>Si se asume que muchos predictores pueden tener poca relevancia, se pueden escalar los <em>priors</em> independientes para que la suma de la varianza de los <em>priors</em> se mantenga alrededor de un valor razonable. En este caso, se cuenta con 26 predictores y se podría tener una suposición previa de que la proporción de la varianza explicada está cerca de 0.3. Entonces, un enfoque simple consiste en asignar <em>priors</em> independientes a los coeficientes de regresión con media 0 y desviación estándar <span class="math inline">\(\sqrt{0.3/26}\text{sd}(y)\)</span> y un <em>prior</em> exponencial con media <span class="math inline">\(\sqrt{0.7}\text{sd}(y)\)</span> para <span class="math inline">\(\sigma\)</span>.</p>
+<p>Si se asume que muchos predictores pueden tener poca relevancia, se pueden escalar los <em>priors</em> independientes para que la suma de la varianza de los <em>priors</em> se encuentre alrededor de un valor razonable. En este caso, se cuenta con 26 predictores y se podría suponer que la proporción de la varianza explicada por los predictores está alrededor de 0.3. Entonces, un enfoque simple consiste en asignar <em>priors</em> independientes a los coeficientes de regresión con media 0 y desviación estándar <span class="math inline">\(\sqrt{0.3/26}\text{sd}(y)\)</span> y un <em>prior</em> exponencial con media <span class="math inline">\(\sqrt{0.7}\text{sd}(y)\)</span> para <span class="math inline">\(\sigma\)</span>.</p>
 <ol type="i">
 <li>Ajuste el modelo nuevamente utilizando los siguientes priors <span class="math display">\[
 \begin{aligned}
@@ -470,19 +491,43 @@ div.csl-indent {
 \end{aligned}
 \]</span></li>
 <li>Explore la distribución <em>a priori</em> sobre <span class="math inline">\(R^2\)</span> y compárela con la distribución obtenida con los <em>priors</em> débilmente informativos.</li>
-<li>Calcule ELPD mediante <em>loo</em> y compare este modelo con el anterior.</li>
+<li>Calcule <em>ELPD</em> mediante <em>LOO</em> y compare este modelo con el anterior.</li>
 <li>Elabore un gráfico para visualizar los <em>posteriors</em> marginales. Compare este resultado con el obtenido con los <em>priors</em> débilmente informativos.</li>
 </ol>
 <p><strong>Priors alternativos (II)</strong></p>
-<p>Otra alternativa es asumir que solo algunos de los predictores tienen alta relevancia y que el resto de los predictores tienen una relevancia insignificante. Una posibilidad para modelar bajo este supuesto es el <em>horseshoe prior</em> regularizado.</p>
+<p>Otra alternativa es asumir que solo algunos de los predictores tienen alta relevancia y que el resto de los predictores tienen una relevancia insignificante. Una posibilidad para modelar bajo este supuesto es el <em>horseshoe prior</em> regularizado<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Este <em>prior</em> utiliza distribuciones normales independientes con media 0 y varianza <span class="math inline">\(\tau^2\lambda_k^2\)</span> para los coeficientes de regresión <span class="math inline">\(\beta_k\)</span> y se describe a continuación:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\beta_k   &amp;\sim \text{Normal}(0, \tau\lambda_k) \\
-\lambda_k &amp;\sim \text{HalfCauchy} \\
-\tau      &amp;\sim \text{HalfCauchy}(\frac{p_0}{p - p_0}\frac{\sigma}{\sqrt{n}})
+\beta_k   &amp;\sim \text{Normal}(0, \tau^2\tilde{\lambda}_k^2) \\
+\tilde{\lambda}_k^2 &amp;= \frac{c^2\lambda_k^2}{c^2 + \tau^2\lambda_k^2} \\
+c &amp; = \sqrt{c'} \text{SS} \\
+c' &amp;\sim \text{InvGamma}(0.5 \cdot SDF, 0.5 \cdot SDF) \\
+\lambda_k &amp;\sim \text{StudentT}^+(\text{df} = 1, \mu = 0, \sigma = 1 ) \\
+\tau      &amp;\sim \text{StudentT}^+(\text{df} = 1, \mu = 0, \sigma = \text{GS})
 \end{aligned}
 \]</span></p>
-<p><strong>To Do:</strong> Terminar</p>
+<p>con <span class="math display">\[
+\begin{aligned}
+\text{GS} = \frac{p_0}{p - p_0} \frac{\sigma}{\sqrt{n}} \\
+\text{SS} = \sqrt{\frac{0.3}{p_0}} \text{sd}(y) \\
+\text{SDF} = 4
+\end{aligned}
+\]</span></p>
+<p>donde <span class="math inline">\(\text{GS}\)</span>, <span class="math inline">\(\text{SS}\)</span> y <span class="math inline">\(\text{SDF}\)</span> representan <em>global scale</em>, <em>slab scale</em> y <em>slab degrees of freedom</em>, respectivamente. Además, <span class="math inline">\(p\)</span> representa la cantidad de predictores, 26, y <span class="math inline">\(p_0\)</span> la cantidad de predictores que se espera que sean relevantes.</p>
+<p>Intuitivamente, el parámetro global <span class="math inline">\(\tau\)</span> empuja todos los <span class="math inline">\(\beta_k\)</span> hacia el 0, mientras que los parámetros locales <span class="math inline">\(\lambda_k\)</span> contribuyen a que algunos de los <span class="math inline">\(\beta_k\)</span> escapen del 0.</p>
+<ol type="i">
+<li>Utilice <span class="math inline">\(p_0 = 6\)</span> para ajustar el modelo con todos los predictores y grafique y analice los <em>posteriors</em> marginales.</li>
+<li>Compare este modelo con los ajustados anteriormente en base a sus <em>ELPD</em> estimados con <em>LOO</em> y concluya.</li>
+</ol>
+<p><strong>Priors débilmente informativos con menos predictores</strong></p>
+<p>Ajuste el modelo de regresión con un subconjunto de predictores que crea conveniente y los <em>priors</em> débilmente informativos que se utilizaron inicialmente.</p>
+<ol type="i">
+<li>Visualice los <em>posteriors</em> marginales.</li>
+<li>Nuevamente, calcule y compare la mediana del <span class="math inline">\(R^2\)</span> bayesiano y del <span class="math inline">\(R^2\)</span> calculado mediante.</li>
+<li>Compare este modelo con el ajustado anteriormente en base a sus <em>ELPD</em> estimados con <em>LOO</em> y concluya sobre la capacidad predictiva de este modelo.</li>
+</ol>
+<!-- Nota: A la hora de pasar `scale_global` a `horseshoe` de `brms` no hay que incluir
+`sigma` porque eso pasa internamente (mostrar como buscar la ayuda online) -->
 <!-- @Gelman2021 Capitulo 12 --></li>
 </ol>
 <!-- 
@@ -496,7 +541,17 @@ Lo que falta:
 * Eleccion de distribuciones a priori
     * Priors de regularizacion (e.g. cuando hay muchos predictores numéricos)
 * Sobreajuste y subajuste
-
+* Deberiamos ver como escribimos lo de "estimar elpd con loo" porque es ambiguo.
+  La documentacion de la funcion dice
+  "compute PSIS-LOO CV, efficient approximate leave-one-out (LOO) cross-validation for 
+  Bayesian models using Pareto smoothed importance sampling (PSIS)
+  
+  Returns:
+  A matrix with two columns (Estimate, SE) and three rows (elpd_loo, p_loo, looic). 
+  This contains point estimates and standard errors of the expected log pointwise 
+  predictive density (elpd_loo), the effective number of parameters (p_loo) and the 
+  LOO information criterion looic (which is just -2 * elpd_loo, i.e., converted to deviance scale).
+  "
 -->
 <!-- 
 Unidad 4: Modelos Lineales
@@ -506,6 +561,7 @@ Modelos lineales. Elección de distribuciones a priori. Regularización. Diagnó
 
 
 </section>
+
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
@@ -520,7 +576,12 @@ Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Intro
 <div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
 Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
 </div>
-</div></section></div></main> <!-- /main -->
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Notas</h2>
+
+<ol>
+<li id="fn1"><p>El nombre <em>horseshoe</em> (herradura) no se relaciona con la forma de la función de densidad en sí, sino con la forma del <em>prior</em> implícito para los coeficientes de <em>shrinkage</em> (contracción) aplicados a cada parámetro.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
