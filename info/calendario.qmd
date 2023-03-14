@@ -21,6 +21,14 @@ paste_human <- function(x, sep = ", ", last = " y ") {
   return(output)
 }
 
+format_date <- function(date, format, locale = NULL) {
+  if (!is.null(locale)) {
+    original_locale <- Sys.getlocale("LC_TIME")
+    Sys.setlocale("LC_TIME", locale)
+    on.exit(Sys.setlocale("LC_TIME", original_locale))
+  }
+  return(format(as.Date(date), format))
+}
 ```
 
 ```{r}
@@ -34,6 +42,7 @@ data$unidad <- sapply(data$unidad, function(x) if (is.null(x)) return(NA) else r
 data[] <- lapply(data, as.character)
 data[] <- lapply(data, function(x) gsub("\n", "<br>", x))
 
+# Parsear las citas recomendadas y mostrarlas de una manera mas amigable
 data$lectura <- str_split(data$lectura, ",") |>
   lapply(str_trim) |>
   lapply(str_split, pattern = "-") |>
@@ -72,7 +81,7 @@ data$lectura <- str_split(data$lectura, ",") |>
       if (length(entry) == 1 && entry == "") {
         return(entry)
       } else {
-        return(paste0("• ", entry, collapse = "<br>"))
+        return(paste("•", entry, collapse = "<br>"))
         # No funciona. Creo que tiene que ver con 
         # https://github.com/quarto-dev/quarto-cli/issues/4419
         # paste(
@@ -85,7 +94,25 @@ data$lectura <- str_split(data$lectura, ",") |>
     character(1)
   )
 
+
+data$tema <- str_replace_all(data$tema, "(\\n)|(<br>)", " ") |>
+  str_replace_all("\\.\\s*", ".") |>
+  str_split("\\.") |>
+  vapply(
+    function(x) {
+      if (length(x) == 1 && is.na(x)) {
+        return(x)  
+      } else {
+        # Solo las cadenas no vacias
+        return(paste("•", str_trim(x[x != ""]), collapse = "<br>"))
+      }
+    },
+    character(1)
+  )
 data$novedades <- str_replace_all(data$novedades, "\\|", "<br>")
+# %e no se queda con el leading zero que conserva %d
+# Los meses van en minuscula... sorpresa
+data$fecha <- format_date(data$fecha, "%e de %B", "es_AR.UTF-8")
 ```
 
 ```{r, echo=FALSE}
@@ -120,3 +147,4 @@ knitr::kable(
 ```
 
 {{< fa pdf >}}
+
