@@ -1,17 +1,91 @@
 ---
 title: Calendario
-tbl-colwidths: [2.5, 10, 7.5, 32.5, 7.5, 20, 20]
+bibliography: ../references.bib
+tbl-colwidths: [2.5, 10, 5, 30, 5, 25, 22.5]
 page-layout: full
 css: calendar.css
 ---
 
-```{r, echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
+library(stringr)
+paste_human <- function(x, sep = ", ", last = " y ") {
+  x_length <- length(x)
+  if (x_length > 1) {
+    output <- paste(x[1:(x_length - 1)], collapse = sep)
+    output <- paste(c(output, x[[x_length]]), collapse = last)
+  } else {
+    output <- paste(x)
+  }
+  return(output)
+}
+
+```
+
+```{r}
+#| echo: false
+#| include: false
 SHEET_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
 googlesheets4::gs4_deauth()
 data <- googlesheets4::read_sheet(SHEET_ID)
 data[["fecha"]] <- as.Date(data[["fecha"]])
+data$unidad <- sapply(data$unidad, function(x) if (is.null(x)) return(NA) else return(x))
 data[] <- lapply(data, as.character)
 data[] <- lapply(data, function(x) gsub("\n", "<br>", x))
+
+data$lectura <- str_split(data$lectura, ",") |>
+  lapply(str_trim) |>
+  lapply(str_split, pattern = "-") |>
+  lapply(
+    function(entries) {
+      output_list <- list()
+      for (entry in entries) {
+        name <- entry[1]
+        value <- entry[2]
+        if (name %in% names(output_list)) {
+          output_list[[name]] <- c(output_list[[name]], value)
+        } else {
+          output_list[[name]] <- value
+        }
+      }
+      output_vector <- character(length(output_list))
+      output_names <- names(output_list)
+      if (length(output_names) == 1 && is.na(output_names)) return(output_vector)
+
+      for (i in seq_along(output_list)) {
+        book <- output_names[i]
+        chapters <- sort(str_trim(str_replace_all(output_list[[book]], "[a-zA-Z]", "")))
+
+        if (length(chapters) > 1) {
+          value <- paste0(book, ": ", paste("Capítulos", paste_human(chapters)))
+        } else {
+          value <- paste0(book, ": ", paste("Capítulo", chapters))
+        }
+        output_vector[i] <- value
+      }
+      return(output_vector)
+    }
+  ) |>
+  vapply(
+    function(entry) {
+      if (length(entry) == 1 && entry == "") {
+        return(entry)
+      } else {
+        return(paste0("• ", entry, collapse = "<br>"))
+        # No funciona. Creo que tiene que ver con 
+        # https://github.com/quarto-dev/quarto-cli/issues/4419
+        # paste(
+        #   "<ul>",
+        #   paste("<li>", entry, "</li>", collapse = " "),
+        #   "</ul>"
+        # )
+      }
+    },
+    character(1)
+  )
+
+data$novedades <- str_replace_all(data$novedades, "\\|", "<br>")
 ```
 
 ```{r, echo=FALSE}
@@ -41,7 +115,7 @@ knitr::kable(
         "Semana", "Fecha", "Unidad", "Temas", "Apunte", "Lectura sugerida", "Otras actividades"
     ),
     align = c("c", "c", "c", "l", "c", "l", "l"),
-    escape = TRUE
+    escape = FALSE
 )
 ```
 
