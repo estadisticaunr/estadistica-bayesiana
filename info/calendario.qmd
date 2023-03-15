@@ -112,7 +112,7 @@ data$tema <- str_replace_all(data$tema, "(\\n)|(<br>)", " ") |>
 data$novedades <- str_replace_all(data$novedades, "\\|", "<br>")
 # %e no se queda con el leading zero que conserva %d
 # Los meses van en minuscula... sorpresa
-data$fecha <- format_date(data$fecha, "%e de %B", "es_ES.UTF-8")
+data$fecha <- format_date(data$fecha, "%e de %B", "es_AR.utf8")
 ```
 
 ```{r, echo=FALSE}
