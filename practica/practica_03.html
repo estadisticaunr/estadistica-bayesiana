@@ -590,9 +590,8 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <li><p><strong>Metropolis-Hastings multivariado</strong></p>
 <p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\pmb{\mu}, \pmb{\Sigma})\)</span> donde</p>
 <p><span class="math display">\[
-\begin{array}{c}
-    \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix},
-    &amp;
+\begin{array}{cc}
+    \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix}, &amp;
     \pmb{\Sigma} = \begin{bmatrix}3 &amp; 0.2 \\ 0.2 &amp; 2 \end{bmatrix}
 \end{array}
 \]</span></p>
@@ -604,7 +603,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 </section>
 <section id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts" class="level2">
 <h2 class="anchored" data-anchor-id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts"><strong>Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)</strong></h2>
-<p>…</p>
+<p>Tenemos que completarlo…</p>
 </section>
 <section id="diagnósticos" class="level2">
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
@@ -634,7 +633,10 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <li>Calcule la varianza entre-cadenas <span class="math inline">\(B\)</span></li>
 <li>Calcule <span class="math inline">\(\hat{R}\)</span> y concluya sobre el resultado obtenido.</li>
 </ol>
-<p><strong>NOTA:</strong> No hay una única alternativa de <span class="math inline">\(\hat{R}\)</span> dando vueltas por ahí. Está la versión de BDA3, que entiendo que es la misma que la del libro de Lambert, pero hoy se está recomendando una versión “rank-normalized”. Ver <a href="https://projecteuclid.org/journals/bayesian-analysis/advance-publication/Rank-Normalization-Folding-and-Localization--An-Improved-R%CB%86-for/10.1214/20-BA1221.full">este paper</a> y esta <a href="https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/">discusión</a></p></li>
+<!-- **NOTA:** No hay una única alternativa de $\hat{R}$ dando vueltas por ahí. Está
+la versión de BDA3, que entiendo que es la misma que la del libro de Lambert, pero hoy
+se está recomendando una versión "rank-normalized". Ver [este paper](https://projecteuclid.org/journals/bayesian-analysis/advance-publication/Rank-Normalization-Folding-and-Localization--An-Improved-R%CB%86-for/10.1214/20-BA1221.full)
+y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/) --></li>
 <li><p><strong><span class="math inline">\(\hat{R}\)</span> para un muestreo independiente</strong></p>
 <p>En un determinado problema se encuentra que el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> de un modelo con verosimilitud binomial está dado por</p>
 <p><span class="math display">\[
@@ -825,8 +827,8 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <p><span class="math display">\[
 \begin{aligned}
 \log(\text{Peso}_i) &amp;\sim \text{Normal}(\mu, \sigma) \\
-\mu_i  &amp;= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
-\sigma &amp;\sim \text{Gamma}(k, \theta)
+\mu_i               &amp;= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
+\sigma              &amp;\sim \text{Gamma}(k, \theta)
 \end{aligned}
 \]</span></p>
 <p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
@@ -866,30 +868,15 @@ f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0})
 \]</span></p>
 <p>y las siguientes matrices de covarianza</p>
 <p><span class="math display">\[
-\begin{array}{c}
-    \pmb{\Sigma}_1 = \begin{bmatrix}
-    1 &amp; 0 \\ 0 &amp; 1
-    \end{bmatrix}
-    &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix}
-    1 &amp; 0.2 \\ 0.2 &amp; 1
-    \end{bmatrix}
+\begin{array}{cc}
+    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_2 = \begin{bmatrix} 1 &amp; 0.2 \\ 0.2 &amp; 1 \end{bmatrix}
     \\ \\
-    \pmb{\Sigma}_1 = \begin{bmatrix}
-    1 &amp; 0.5 \\ 0.5 &amp; 1
-    \end{bmatrix}
-    &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix}
-    0.1 &amp; 0 \\ 0 &amp; 1
-    \end{bmatrix}
+    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0.5 \\ 0.5 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_2 = \begin{bmatrix} 0.1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
     \\ \\
-    \pmb{\Sigma}_1 = \begin{bmatrix}
-    1 &amp; 0.9 \\ 0.9 &amp; 1
-    \end{bmatrix}
-    &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix}
-    0.01 &amp; 0 \\ 0 &amp; 1
-    \end{bmatrix}
+    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0.9 \\ 0.9 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_2 = \begin{bmatrix} 0.01 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
 \end{array}
 \]</span></p>
 <p>Que dan lugar a las siguientes funciones de densidad:</p>
