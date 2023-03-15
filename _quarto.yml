@@ -21,10 +21,10 @@ website:
         file: practica/practica_00.qmd
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
-      - text: Cómputo
-        file: computo/instalacion.qmd
-      - text: Material complementario
-        file: complementario/probabilidad.qmd
+      # - text: Cómputo
+      #   file: computo/instalacion.qmd
+      # - text: Material complementario
+      #   file: complementario/probabilidad.qmd
       - icon: github
         href: "https://github.com/estadisticaunr/estadistica-bayesiana"
 
