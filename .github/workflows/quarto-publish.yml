@@ -45,11 +45,18 @@ jobs:
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2    
-        
-      - name: Publish to GitHub Pages (and render)
+      
+      # Ver: https://github.com/quarto-dev/quarto-actions/issues/41
+      - name: Render Webpage
+        shell: bash
+        run: quarto render --to html --output-dir _site
+
+      - name: Publish to GitHub 
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
+          render: false
+          path: _site
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
