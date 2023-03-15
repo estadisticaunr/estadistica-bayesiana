@@ -166,10 +166,6 @@ div.csl-indent {
  <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../apuntes/introduccion.html">
- <span class="menu-text">Apuntes</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../practica/practica_00.html" aria-current="page">
  <span class="menu-text">Práctica</span></a>
   </li>  
@@ -552,8 +548,8 @@ requisito de distribución simétrica.
 <p>Para resolver este problema utilice los datos que se leen con el siguiente codigo:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/tiempo-estudio-eb.csv"</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"estadistica-bayesiana/main/datos/tiempo-estudio-eb.csv"</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_estudio <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
@@ -660,76 +656,64 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <div class="cell">
 
 </div>
-<center>
-<p><strong>Gráfico 1</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="practica_03_files/figure-html/trace-and-histogram-1-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Gráfico 1</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<center>
-<p><strong>Gráfico 2</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="practica_03_files/figure-html/trace-and-histogram-2-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Gráfico 2</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<center>
-<p><strong>Gráfico 3</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="practica_03_files/figure-html/trace-and-histogram-3-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Gráfico 3</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<center>
-<p><strong>Gráfico 4</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="practica_03_files/figure-html/trace-and-histogram-4-1.png" class="img-fluid figure-img" width="768"></p>
+<p></p><figcaption class="figure-caption">Gráfico 4</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div></li>
 <li><p><strong>¡Rompan todo! Un caso real</strong></p>
 <p>Al igual que en el ejercicio anterior, se presentan <em>traceplots</em> donde el muestreo del <em>posterior</em> presenta problemas. En este caso, los gráficos que se observan fueron obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. Nuevamente, describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
-<center>
-<p><strong>Gráfico 1</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/posterior_rota.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Gráfico 1</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<center>
-<p><strong>Gráfico 2</strong></p>
-</center>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="imgs/posterior_rota_2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<p></p><figcaption class="figure-caption">Gráfico 2</figcaption><p></p>
 </figure>
 </div>
 </div>
@@ -826,8 +810,8 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/"</span>,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"main/datos/fish-market-posterior.csv"</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"estadistica-bayesiana/main/datos/fish-market-posterior.csv"</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df_posterior <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_posterior)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
