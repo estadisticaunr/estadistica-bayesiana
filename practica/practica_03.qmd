@@ -629,9 +629,8 @@ requisito de distribución simétrica.
     $\text{MVN}(\pmb{\mu}, \pmb{\Sigma})$ donde
 
     $$
-    \begin{array}{c}
-        \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix},
-        &
+    \begin{array}{cc}
+        \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix}, &
         \pmb{\Sigma} = \begin{bmatrix}3 & 0.2 \\ 0.2 & 2 \end{bmatrix}
     \end{array}
     $$
@@ -650,7 +649,7 @@ requisito de distribución simétrica.
 
 ## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
 
-...
+Tenemos que completarlo...
 
 ## **Diagnósticos**
 
@@ -701,10 +700,10 @@ requisito de distribución simétrica.
     i. Calcule la varianza entre-cadenas $B$
     i. Calcule $\hat{R}$ y concluya sobre el resultado obtenido.
 
-    **NOTA:** No hay una única alternativa de $\hat{R}$ dando vueltas por ahí. Está
+    <!-- **NOTA:** No hay una única alternativa de $\hat{R}$ dando vueltas por ahí. Está
     la versión de BDA3, que entiendo que es la misma que la del libro de Lambert, pero hoy
     se está recomendando una versión "rank-normalized". Ver [este paper](https://projecteuclid.org/journals/bayesian-analysis/advance-publication/Rank-Normalization-Folding-and-Localization--An-Improved-R%CB%86-for/10.1214/20-BA1221.full)
-    y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/)
+    y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-time-to-let-the-old-ways-die-or-we-broke-r-hat-so-now-we-have-to-fix-it/) -->
 
 1.  **$\hat{R}$ para un muestreo independiente**
 
@@ -815,7 +814,6 @@ requisito de distribución simétrica.
     y2 <- -0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
     df <- data.frame(x = x, y = c(y1, y2), chain = chain)
-
     plot_trace_and_histogram(df)
     ```
 
@@ -831,7 +829,6 @@ requisito de distribución simétrica.
     y2 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
     df <- data.frame(x = x, y = c(y1, y2), chain = chain)
-
     plot_trace_and_histogram(df)
     ```
 
@@ -1007,8 +1004,8 @@ requisito de distribución simétrica.
     $$
     \begin{aligned}
     \log(\text{Peso}_i) &\sim \text{Normal}(\mu, \sigma) \\
-    \mu_i  &= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
-    \sigma &\sim \text{Gamma}(k, \theta)
+    \mu_i               &= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
+    \sigma              &\sim \text{Gamma}(k, \theta)
     \end{aligned}
     $$
 
@@ -1060,30 +1057,15 @@ requisito de distribución simétrica.
     y las siguientes matrices de covarianza
 
     $$
-    \begin{array}{c}
-        \pmb{\Sigma}_1 = \begin{bmatrix}
-        1 & 0 \\ 0 & 1
-        \end{bmatrix}
-        &
-        \pmb{\Sigma}_2 = \begin{bmatrix}
-        1 & 0.2 \\ 0.2 & 1
-        \end{bmatrix}
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
         \\ \\ 
-        \pmb{\Sigma}_1 = \begin{bmatrix}
-        1 & 0.5 \\ 0.5 & 1
-        \end{bmatrix}
-        &
-        \pmb{\Sigma}_2 = \begin{bmatrix}
-        0.1 & 0 \\ 0 & 1
-        \end{bmatrix}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
         \\ \\
-        \pmb{\Sigma}_1 = \begin{bmatrix}
-        1 & 0.9 \\ 0.9 & 1
-        \end{bmatrix}
-        &
-        \pmb{\Sigma}_2 = \begin{bmatrix}
-        0.01 & 0 \\ 0 & 1
-        \end{bmatrix}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
     \end{array}
     $$
 

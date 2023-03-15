@@ -17,6 +17,7 @@ jobs:
           sudo apt-get update 
           sudo apt-get install tzdata locales -y 
           sudo locale-gen es_AR.UTF-8
+          locale -a
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2

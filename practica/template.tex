@@ -1,0 +1,155 @@
+% Options for packages loaded elsewhere
+\documentclass[11pt,a4paper]{article}
+\usepackage[table]{xcolor}
+\usepackage{booktabs}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[T1]{fontenc}
+\usepackage{siunitx}
+\sisetup{per-mode=fraction}
+\sisetup{output-decimal-marker = {,}}
+\sisetup{input-ignore=~,
+	input-protect-tokens = ~\approx\dots\ge\geq\gg\le\leq\ll\mp\pi\pm\sim}
+\DeclareSIUnit\calorie{cal}
+
+\usepackage{upquote}
+
+\usepackage[margin=0.78in]{geometry}
+
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+	\usepackage{parskip}
+}{% else
+	\setlength{\parindent}{0pt}
+	\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+	\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\usepackage{tcolorbox}
+
+\definecolor{iosOrange}{HTML}{FF9500}
+\newtcolorbox{ecuacion}{sharp corners,colback=iosOrange!5!white, boxrule=0pt}
+
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{longtable}
+
+\usepackage{enumitem}
+
+
+\usepackage{unicode-math}
+\usepackage{libertine}
+%\setmathfont{Asana-Math} ANDA
+%\setmathfont{LibertinusMath-Regular.otf} %ANDA!
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+%\titleformat*{\chapter}{\Large\bfseries\sectionsfont}
+
+\usepackage{fontspec}
+\setmonofont[Path = ./fonts/,
+Extension = .ttf,
+UprightFont = *-Regular,
+BoldFont = *-Bold,
+Scale=0.8,
+Contextuals=Alternate]{FiraCode}
+
+\usepackage[spanish]{babel}
+
+\usepackage{listings}
+\usepackage{lstfiracode}
+\lstdefinestyle{codechunk}{
+	backgroundcolor=\color[HTML]{daf1f5},
+	language={},
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	style=FiraCodeStyle,
+	keywordstyle=\bfseries\color[HTML]{90323D},
+	keywordstyle={[2]\color[HTML]{5CB22E}},
+	keywords=[2]{TRUE,FALSE},
+	stringstyle=\color[HTML]{EBA433},
+	alsoletter ={_}}
+%\lstset{escapechar=\&}
+
+\definecolor{newBlue}{HTML}{007AFF}
+\definecolor{iosGreen}{HTML}{ade658}
+\newtcolorbox{problem}{sharp corners,colback=iosGreen!10, boxrule=0pt}
+
+\usepackage{float}
+\floatplacement{figure}{H}
+
+%\usepackage{tikz}
+%\usepackage{pgf}
+\usepackage[skip=2pt,font=footnotesize,labelfont=bf]{caption}
+
+$if(materia)$
+\newcommand{\materia}{$materia$}
+$endif$
+
+$if(fecha)$
+\newcommand{\fecha}{$fecha$}
+$endif$
+
+$if(subauthor)$
+\newcommand{\subauthor}{$subauthor$}
+$endif$
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{\materia. \fecha.}
+\rhead{}
+\lfoot{$author$}
+\rfoot{\thepage}
+\cfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\setlength{\headheight}{13.6pt}
+
+\usepackage[]{hyperref}
+\hypersetup{linkbordercolor=red!30!white}	
+\urlstyle{same}  % don't use monospace font for urls
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\begin{document}
+\thispagestyle{empty}
+\noindent\rule{\textwidth}{1.5pt}
+\begin{center}
+	\textbf{{\LARGE Universidad Nacional de Rosario}}\\
+	\vspace{0.2cm}
+	{\Large Facultad de Ciencias Económicas y Estadística}\\
+	\vspace{0.2cm}
+	{\large $title$}\\
+	\vspace{0.2cm}
+	\textsc{$author$} \\
+	\vspace{0.2cm}
+	$subauthor$
+\end{center}
+\vspace{-0.3cm}
+\noindent\rule{\textwidth}{1.5pt}
+
+\renewcommand{\figurename}{Figura}
+\renewcommand{\tablename}{Tabla}
+
+$body$
+
+\end{document}

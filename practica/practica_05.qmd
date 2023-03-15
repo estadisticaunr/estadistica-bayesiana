@@ -364,7 +364,7 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     * $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad
 
     Para que la curva sea positiva y creciente para todas las edades, se debe cumplir que
-    $a_j \gt 0$, $b_j \gt a_j$ y $d_j \gt 0$. Se pueden satisfacer estas restricciones
+    $a_j > 0$, $b_j > a_j$ y $d_j > 0$. Se pueden satisfacer estas restricciones
     expresando los parámetros en función de parámetros cuyo dominio es $\mathbb{R}$.
 
     * $a_j = \exp (\alpha_{j1})$
