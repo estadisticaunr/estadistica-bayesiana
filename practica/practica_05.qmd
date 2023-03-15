@@ -80,7 +80,8 @@ logo: ../templates/logo.png
 1.  Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé llamado
     "Sophia" en cada año luego de 1950.
 
-    ```r
+    ```{r}
+    #| eval: false
     library(babynames)
     dat <- babynames
     dat <- dat[dat$name == "Sophia" & dat$sex == "F" & dat$year > 1950, ]
@@ -113,7 +114,8 @@ logo: ../templates/logo.png
 1.  En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
     el resultado de varios estudios. Los datos provienen del paquete `rmeta` en `R`.
 
-    ```r
+    ```{r}
+    #| eval: false
     library(rmeta)
     data(cochrane)
     cochrane
@@ -156,7 +158,8 @@ logo: ../templates/logo.png
 1.  Utilice el conjuto de datos `airquality` que viene con el paquete `datasets` que se carga
     automáticamente al crear una sesión de `R`.
     
-    ```r
+    ```{r}
+    #| eval: false
     head(airquality)
     ```
 
@@ -203,7 +206,7 @@ challenger <- data.frame(
 )
 
 knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> 
-    kableExtra::kable_styling(full_width = F)
+    kableExtra::kable_styling(full_width = FALSE)
 ```
     
 
@@ -224,9 +227,9 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     #| warning: false
     #| cache: true
     #| echo: false
-    #| fig.cap: "(Izquierda) Edad (años) vs Peso (kilogramos). (Derecha) Los mismos datos luego de aplicar la transformación logarítmica a ambas variables."
-    #| fig.width: 9
-    #| fig.height: 5
+    #| fig-cap: "(Izquierda) Edad (años) vs Peso (kilogramos). (Derecha) Los mismos datos luego de aplicar la transformación logarítmica a ambas variables."
+    #| fig-width: 9
+    #| fig-height: 5
     #| label: fig-dinos
 
     library(dplyr)

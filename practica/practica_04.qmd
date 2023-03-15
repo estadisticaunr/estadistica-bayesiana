@@ -18,7 +18,9 @@ practica: "Práctica 4"
 logo: ../templates/logo.png
 ---
 
-```{r echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -144,7 +146,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     i. Compare los _ELPD_ de cada modelo utilizando _LOO_
     <!-- Bayes Rules. Capítulo 11. -->
     
-    ```{R}
+    ```{r}
     #| echo: false
     #| out.width: 70%
     #| fig-align: center
@@ -297,7 +299,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     con el resultado obtenido anteriormente.
     i. Ajuste el modelo, obtenga la distribución predictiva _a posteriori_ y grafíquela.
     
-    ```{R}
+    ```{r}
     #| echo: false
     #| out.width: 70%
     #| fig-align: center
@@ -363,7 +365,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     i. Con ambos modelos, obtenga y grafique la distribución predictiva _a posteriori_
     comparándola con los datos observados ¿Cuál de los modelos representa mejor a los datos?
 
-    ```{R}
+    ```{r}
     #| echo: false
     #| out.width: 70%
     #| fig-align: center

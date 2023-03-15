@@ -18,7 +18,9 @@ practica: "Práctica 1"
 logo: ../templates/logo.png
 ---
 
-```{r echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -84,7 +86,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     ¿Cuál es la probabilidad que existan los vampiros?
     <!-- @Johnson2021 -->
 
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["crepusculo"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["crepusculo"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "crepusculo.jpg"))
     ```
 
@@ -109,7 +115,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo? 
     <!-- @Johnson2021 -->
 
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["ceibo"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["ceibo"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
     ```
 
@@ -132,7 +142,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     viajando en uno de los colectivos de la mañana?
     <!-- @Johnson2021 -->
 
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["colectivo"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["colectivo"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
     ```
 
@@ -158,7 +172,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     bebé panda. ¿Cuál es la probabilidad de que este panda sea de la especie A? 
     <!-- @McElreath2020 -->
 
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["bebe_panda"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["bebe_panda"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 

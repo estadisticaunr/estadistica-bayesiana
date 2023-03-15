@@ -15,8 +15,8 @@ website:
     right:
       - text: Información
         file: info/programa.qmd
-      - text: Apuntes
-        file: apuntes/introduccion.qmd
+      # - text: Apuntes
+      #   file: apuntes/introduccion.qmd
       - text: Práctica
         file: practica/practica_00.qmd
       - text: Trabajos Prácticos

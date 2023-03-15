@@ -1,5 +1,5 @@
 ---
-title: "Práctica - Unidad 3"
+title: Práctica - Unidad 3
 bibliography: ../references.bib
 nocite: |
     @Martin2021, @Downey2021
@@ -18,16 +18,18 @@ practica: "Práctica 3"
 logo: ../templates/logo.png
 ---
 
-```{r echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
 captions <- list()
 captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
-
-library(dplyr)
-library(ggplot2)
-library(patchwork)
 ```
 
 ::: {.content-visible when-format="html"}
@@ -120,9 +122,9 @@ library(patchwork)
     ```{r circulo-cuadrado-pi}
     #| warning: false
     #| echo: false
-    #| fig.width: 4.5
-    #| fig.height: 4.5
-    #| fig.align: center
+    #| fig-width: 4.5
+    #| fig-height: 4.5
+    #| fig-align: center
     centro <- c(0, 0)
     radio <- 1
     angulos <- seq(0, 2 * pi, length.out = 512)
@@ -217,8 +219,11 @@ library(patchwork)
     ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones.
     <!-- Modern Data Science with R -->
 
-
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["monty_hall"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["monty_hall"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
     ```
 
@@ -586,11 +591,11 @@ requisito de distribución simétrica.
 
     Para resolver este problema utilice los datos que se leen con el siguiente codigo:
 
-    ```{R}
+    ```{r}
     #| eval: false
     url <- paste0(
-        "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/",
-        "main/datos/tiempo-estudio-eb.csv"
+        "https://raw.githubusercontent.com/estadisticaunr/",
+        "estadistica-bayesiana/main/datos/tiempo-estudio-eb.csv"
     )
     df_estudio <- readr::read_csv(url)
     ```
@@ -769,7 +774,7 @@ Tenemos que completarlo...
     explique por qué no utilizaría estas muestras para obtener conclusiones sobre
     el _posterior_.
     
-    ```{R}
+    ```{r}
     #| warning: false
     #| echo: false
     set.seed(121195)
@@ -799,14 +804,13 @@ Tenemos que completarlo...
     } 
     ```
 
-    <center> **Gráfico 1** </center>
-
-    ```{R trace-and-histogram-1}
+    ```{r trace-and-histogram-1}
     #| warning: false
     #| echo: false
-    #| fig.width: 8
-    #| fig.height: 4.5
-    #| fig.align: center
+    #| fig-width: 8
+    #| fig-height: 4.5
+    #| fig-align: center
+    #| fig-cap: Gráfico 1
     y1 <- rnorm(STEPS)
     y2 <- rnorm(STEPS) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
@@ -814,14 +818,13 @@ Tenemos que completarlo...
     plot_trace_and_histogram(df)
     ```
 
-    <center> **Gráfico 2** </center>
-
-    ```{R trace-and-histogram-2}
+    ```{r trace-and-histogram-2}
     #| warning: false
     #| echo: false
-    #| fig.width: 8
-    #| fig.height: 4.5
-    #| fig.align: center
+    #| fig-width: 8
+    #| fig-height: 4.5
+    #| fig-align: center
+    #| fig-cap: Gráfico 2
     y1 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4)
     y2 <- -0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
@@ -829,14 +832,13 @@ Tenemos que completarlo...
     plot_trace_and_histogram(df)
     ```
 
-    <center> **Gráfico 3** </center>
-
-    ```{R trace-and-histogram-3}
+    ```{r trace-and-histogram-3}
     #| warning: false
     #| echo: false
-    #| fig.width: 8
-    #| fig.height: 4.5
-    #| fig.align: center
+    #| fig-width: 8
+    #| fig-height: 4.5
+    #| fig-align: center
+    #| fig-cap: Gráfico 3
     y1 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4)
     y2 <- 0.035 * seq(STEPS) + rnorm(STEPS, sd = 0.4) + 5
     chain <- rep(c("Cadena 1", "Cadena 2"), each = STEPS)
@@ -844,14 +846,14 @@ Tenemos que completarlo...
     plot_trace_and_histogram(df)
     ```
 
-    <center> **Gráfico 4** </center>
 
-    ```{R trace-and-histogram-4}
+    ```{r trace-and-histogram-4}
     #| warning: false
     #| echo: false
-    #| fig.width: 8
-    #| fig.height: 4.5
-    #| fig.align: center
+    #| fig-width: 8
+    #| fig-height: 4.5
+    #| fig-align: center
+    #| fig-cap: Gráfico 4
     set.seed(121195)
     y1 <- cumsum(rnorm(STEPS, sd = 0.5))
     y2 <- cumsum(rnorm(STEPS, sd = 0.15)) + 5
@@ -869,13 +871,19 @@ Tenemos que completarlo...
     gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones 
     sobre el _posterior_.
 
-    <center> **Gráfico 1** </center>
-    ```{r, echo=FALSE, out.width="100%", fig.align="center"}
+    ```{r}
+    #| echo: false
+    #| out-width: 100%
+    #| fig-align: center
+    #| fig-cap: Gráfico 1
     knitr::include_graphics(file.path("imgs", "posterior_rota.png"))
     ```
     
-    <center> **Gráfico 2** </center>
-    ```{r, echo=FALSE, out.width="100%", fig.align="center"}
+    ```{r}
+    #| echo: false
+    #| out-width: 100%
+    #| fig-align: center
+    #| fig-cap: Gráfico 2
     knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
     ```
 
@@ -1028,8 +1036,8 @@ Tenemos que completarlo...
     ```{r}
     #| eval: false
     url <- paste0(
-        "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/",
-        "main/datos/fish-market-posterior.csv"
+        "https://raw.githubusercontent.com/estadisticaunr/",
+        "estadistica-bayesiana/main/datos/fish-market-posterior.csv"
     )
     df_posterior <- readr::read_csv(url)
     head(df_posterior)

@@ -18,7 +18,9 @@ practica: "Práctica 2"
 logo: ../templates/logo.png
 ---
 
-```{r echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -135,7 +137,11 @@ vida profesional.
          a. A mano
          a. Usando `R`
 
-    ```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["tomates"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["tomates"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 

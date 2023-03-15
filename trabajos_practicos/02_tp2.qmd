@@ -111,7 +111,7 @@ $$
 #| warning: false
 #| cache: true
 #| echo: false
-#| fig.cap: "Función de densidad de la que se desean obtener muestras"
+#| fig-cap: "Función de densidad de la que se desean obtener muestras"
 library(ggplot2)
 library(dplyr)
 data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))

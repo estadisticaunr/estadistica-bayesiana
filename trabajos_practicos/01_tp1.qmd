@@ -15,7 +15,9 @@ practica: "Trabajo Práctico 1"
 logo: ../templates/logo.png
 ---
 
-```{r echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 captions <- list()
@@ -42,7 +44,11 @@ todo, preparado por baristas, con granos de café de distintas partes del mundo
 la altura a la que fue cultivado, y el grado de tueste) y distintos métodos de preparación
 aparte del ya tradicional café de máquina espresso (como por ejemplo, los cafés filtrados)
 
-```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["cafe"]]}
+```{r}
+#| echo: false
+#| out-width: 70%
+#| fig-align: center
+#| fig-cap: !expr captions[["cafe"]]
 if (is_html) knitr::include_graphics(file.path("imgs", "cafe.jpg"))
 ```
 
@@ -57,7 +63,9 @@ En enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐
 Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es
 una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
 
-```{r, echo=FALSE, include=FALSE}
+```{r}
+#| echo: false
+#| include: false
 # cantidad de califaciones para cada número de estrellas
 arto <- data.frame(s = 1:5, r = c(530, 150, 40, 10, 20))
 orlan <- data.frame(s = 1:5, r = c(89, 3, 1, 0, 2))
@@ -151,7 +159,11 @@ variable aleatoria en $\mathbb{R}^3$, puede representarse perfectamente de maner
 en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas 
 baricéntricas), como si se tratara de una distribución bivariada.
 
-```{r, echo=FALSE, out.width="70%", fig.align="center", fig.cap=captions[["dirichlet"]]}
+```{r}
+#| echo: false
+#| out-width: 70%
+#| fig-align: center
+#| fig-cap: !expr captions[["dirichlet"]]
 if (is_html) knitr::include_graphics(file.path("imgs", "dirichlet.jpg"))
 ```
 
