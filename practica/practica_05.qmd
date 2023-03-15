@@ -4,6 +4,11 @@ bibliography: ../references.bib
 nocite: |
     @Reich2020, @DavidsonPilon2015
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_05.pdf
+format:
+    pdf:
+        header-includes:
+            \usepackage{float}
+            \floatplacement{figure}{H}
 ---
 
 ::: {.content-visible when-format="html"}

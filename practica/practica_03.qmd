@@ -4,6 +4,11 @@ bibliography: ../references.bib
 nocite: |
     @Martin2021, @Downey2021
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_03.pdf
+format:
+    pdf:
+        header-includes:
+            \usepackage{float}
+            \floatplacement{figure}{H}
 ---
 
 ```{r echo=FALSE, include=FALSE}
@@ -859,12 +864,12 @@ Tenemos que completarlo...
 
     <center> **Gráfico 1** </center>
     ```{r, echo=FALSE, out.width="100%", fig.align="center"}
-    if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota.png"))
+    knitr::include_graphics(file.path("imgs", "posterior_rota.png"))
     ```
     
     <center> **Gráfico 2** </center>
     ```{r, echo=FALSE, out.width="100%", fig.align="center"}
-    if (is_html) knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
+    knitr::include_graphics(file.path("imgs", "posterior_rota_2.png"))
     ```
 
     Además, responda:
