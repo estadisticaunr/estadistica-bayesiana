@@ -8,6 +8,7 @@ format:
             - ../templates/title.tex
         # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
         suppress-bibliography: true
+    html: default
 year: "2023"
 course: "Estadística Bayesiana"
 practica: "Trabajo Práctico 3"

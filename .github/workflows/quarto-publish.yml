@@ -49,14 +49,14 @@ jobs:
       # Ver: https://github.com/quarto-dev/quarto-actions/issues/41
       - name: Render Webpage
         shell: bash
-        run: quarto render --to html --output-dir _site
+        run: quarto render --to html --output-dir build
 
       - name: Publish to GitHub 
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
           render: false
-          path: _site
+          path: build
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
