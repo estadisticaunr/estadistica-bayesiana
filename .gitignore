@@ -8,8 +8,6 @@ _site/
 
 /.luarc.json
 
-# Ignorar los PDF generados cuando cacheamos cosas
-*/*_cache/pdf
-
-# Ignorar las figuras en PDF generadas cuando cacheamos cosas
-*/*_files/figure-pdf
+# Ignorar todo el cache y archivos asociados
+*/*_cache/*
+*/*_files/*
