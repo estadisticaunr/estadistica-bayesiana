@@ -1,6 +1,17 @@
 ---
 title: "TP1: Aplicación de modelos conjugados a reviews de Google Maps"
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/01_tp1.pdf
+format:
+    pdf: # https://quarto.org/docs/reference/formats/pdf.html
+        template: ../templates/template.tex
+        template-partials:
+            - ../templates/title.tex
+        # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
+        suppress-bibliography: true
+year: "2023"
+course: "Estadística Bayesiana"
+practica: "Trabajo Práctico 1"
+logo: ../templates/logo.png
 ---
 
 ```{r echo=FALSE, include=FALSE}

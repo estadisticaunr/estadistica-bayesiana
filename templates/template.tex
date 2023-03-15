@@ -1,0 +1,27 @@
+\documentclass{scrartcl}
+
+\usepackage{graphicx}                  % Para tener 'includegraphics'
+\usepackage[bidi=default]{babel}       % Porque usamos español
+\usepackage{amsmath, amsthm, amsfonts} % Matemática
+\usepackage{float}                     % Para que las figuras aparezcan en el lugar donde las ponemos 
+\usepackage{hyperref}                  % Para que funcionen los enlaces?
+\usepackage{enumitem}                  % Poner los numeros de los enumarate en negrita
+\usepackage[normalem]{ulem}            % Para que funcione el tachado de texto en titulos con hyperref
+
+\usepackage[margin=1in]{geometry}      % Modifica el margen de la página
+                                       % Mas granularmente seria [left=1in,right=1in,top=1in,bottom=1in] 
+
+$title.tex()$                          % Carga el partial con el titulo y sus configuraciones
+$pandoc.tex()$                         % Cargar el partial llamado 'pandoc' (por defecto de Quarto)
+
+\floatplacement{figure}{H}             % Para que las figuras aparezcan en el lugar donde las ponemos 
+\setcounter{secnumdepth}{-\maxdimen}   % Para que las secciones no vayan numeradas
+\setlist[enumerate]{font=\bfseries}    % Poner los numeros de los enumarate en negrita
+\pdfstringdefDisableCommands{          % Para que funcione el tachado de texto en titulos con hyperref
+    \renewcommand{\sout}{}
+}
+
+\begin{document}
+\maketitle
+$body$
+\end{document}

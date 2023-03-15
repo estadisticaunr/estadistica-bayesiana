@@ -1,6 +1,17 @@
 ---
 title: "TP2: Implementación del algoritmo de Metropolis-Hastings"
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/02_tp2.pdf
+format:
+    pdf: # https://quarto.org/docs/reference/formats/pdf.html
+        template: ../templates/template.tex
+        template-partials:
+            - ../templates/title.tex
+        # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
+        suppress-bibliography: true
+year: "2023"
+course: "Estadística Bayesiana"
+practica: "Trabajo Práctico 2"
+logo: ../templates/logo.png
 ---
 
 ::: {.content-visible when-format="html"}

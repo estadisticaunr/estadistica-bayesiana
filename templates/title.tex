@@ -1,0 +1,41 @@
+\usepackage{fancyhdr}                  % Para usar 'fancypagestyle'
+
+\renewcommand{\headrulewidth}{1pt}     % Linea horizontal en el header
+\renewcommand{\footrulewidth}{0.4pt}   % Linea horizontal en el footer
+
+% Cambia el estilo de la página y permite escribir texto en el header y footer
+% Hay un estilo para la primera página, y un estilo apra el resto
+\fancypagestyle{plain} {
+    \lhead{
+        \begin{minipage}{6cm}
+            \includegraphics[width=5.5cm]{$logo$} 
+        \end{minipage}
+    }
+    \chead{}
+    \rhead{
+        \parbox{10cm}{
+            \textsc{Facultad de Ciencias Económicas y Estadística\\Licenciatura en Estadística\\Estadística Bayesiana}
+        }
+    }
+    \lfoot{$practica$}
+    \rfoot{Página \thepage}
+}
+
+% Para el resto de las páginas, el estilo es el siguiente
+\pagestyle{fancy}
+\lhead{$course$}
+\rhead{\number$year$}
+\lfoot{$practica$}
+\rfoot{Página \thepage}
+\cfoot{}
+
+% Cambiar como funciona el maketitle. Por ejemplo, omite la fecha.
+\def\maketitle{%
+    \thispagestyle{plain}
+    \hspace{100pt}% No sé por que se necesita espacio horizontal
+    \begin{center}
+        \vspace{0.5cm}
+		\textbf{\LARGE $practica$}
+        \vspace{0.5cm}
+	\end{center}
+}

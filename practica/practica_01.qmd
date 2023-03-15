@@ -5,10 +5,16 @@ nocite: |
   @Johnson2021, @McElreath2020, @Martin2021, @Hoff2009, @Downey2021, @Barber2012
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_01.pdf
 format:
-    pdf:
-        header-includes:
-            \usepackage{float}
-            \floatplacement{figure}{H}
+    pdf: # https://quarto.org/docs/reference/formats/pdf.html
+        template: ../templates/template.tex
+        template-partials:
+            - ../templates/title.tex
+        # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
+        suppress-bibliography: true
+year: "2023"
+course: "Estadística Bayesiana"
+practica: "Práctica 1"
+logo: ../templates/logo.png
 ---
 
 ```{r echo=FALSE, include=FALSE}

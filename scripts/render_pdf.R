@@ -40,7 +40,7 @@ render_pdf_dir <- function(input_dir, output_dir) {
 
     # Obtener los nombres de salida
     output_files <- file.path(
-        output_dir, 
+        output_dir,
         vapply(input_files, get_pdf_filename, character(1), USE.NAMES = FALSE)
     )
 
