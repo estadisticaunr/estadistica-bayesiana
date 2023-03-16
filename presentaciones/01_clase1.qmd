@@ -1,0 +1,61 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    slide-number: true
+    fig-cap-location: top
+---
+
+## Getting up
+
+-   Turn off alarm
+-   Get out of bed
+
+. . .
+
+::: {.callout-note appearance="default" icon=false}
+
+## Pay Attention
+
+Using callouts is an effective way to highlight content that your reader give special consideration or attention.
+
+:::
+
+::: {.callout-important appearance="default" icon=false}
+
+## Pay Attention
+
+Using callouts is an effective way to highlight content that your reader give special consideration or attention.
+
+:::
+
+::: {.notes}
+Speaker notes go here.
+:::
+
+## Slide Title {background-color="#ffc13b"}
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Left column
+:::
+
+::: {.column width="60%"}
+Right column
+:::
+
+::::
+
+## Slide 3 {.smaller}
+
+![](imgs/thomasbayes.png){fig-align="center"}
+
+Probando
+
+::: aside
+Some additional commentary of more peripheral interest.
+:::
