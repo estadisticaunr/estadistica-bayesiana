@@ -130,6 +130,7 @@ editor_options:
 -   Determinación de probabilidades (ya lo hemos trabajado en la
     Práctica 2)
 -   Ejercicios Simulación (Práctica 3)
+-   Integración por Montecarlo
 -   Grid approximation
     -   Un parámetro
 
