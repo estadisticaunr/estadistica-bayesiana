@@ -186,7 +186,7 @@
     "href": "presentaciones/01_clase1.html#slide-3",
     "title": "Estadística Bayesiana",
     "section": "Slide 3",
-    "text": "Slide 3\n\n\n\n\n\nProbando\n\n\n\n\nSome additional commentary of more peripheral interest."
+    "text": "Slide 3\n\n\n\n\n\nProbando\n\n\n\n\nEstadística Bayesiana – 2023\n\n\nSome additional commentary of more peripheral interest."
   },
   {
     "objectID": "index.html",
@@ -348,5 +348,19 @@
     "title": "Práctica - Unidad 1",
     "section": "Conceptuales",
     "text": "Conceptuales\nEn esta sección, se nos invita a pensar sobre las características de la Estadística Bayesiana. En lugar de encontrar una respuesta única mediante cálculos matemáticos, se necesita comprender en profundidad tanto el enfoque frecuentista como el bayesiano para interpretar estas visiones en diferentes escenarios.\n\nVoy a conseguir esa pasantía\nLa empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus datos. Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu hipótesis.\n\nDesde la perspectiva de una persona con un razonamiento frecuentista, ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?\nRepita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.\n¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. \n\nBeneficios de la Estadística Bayesiana\nUna amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana. Explícale lo siguiente:\n\n¿Por qué es útil el enfoque Bayesiano?\n¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano?"
+  },
+  {
+    "objectID": "teoria/teoria_01.html",
+    "href": "teoria/teoria_01.html",
+    "title": "Teoría - Unidad 1",
+    "section": "",
+    "text": "Instrucciones para guardar como PDF\n\nHacer click acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambia el Destino a Guardar como PDF\nClick en Guardar\nElegí el nombre del archivo de destino\nListo! 🎉"
+  },
+  {
+    "objectID": "presentaciones/01_clase1.html#getting-up",
+    "href": "presentaciones/01_clase1.html#getting-up",
+    "title": "Estadística Bayesiana",
+    "section": "Getting up",
+    "text": "Getting up\n\nTurn off alarm\nGet out of bed\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\nSpeaker notes go here."
   }
 ]
