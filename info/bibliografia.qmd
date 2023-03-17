@@ -1,10 +1,8 @@
 ---
 title: Bibliografía
-bibliography: ../references.bib
 filters:
   - section-bibliographies
 citeproc: false
-csl: ../chicago-author-date.csl
 ---
 
 # Bibliografía principal

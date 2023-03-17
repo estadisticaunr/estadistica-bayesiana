@@ -99,6 +99,9 @@ website:
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
 
+bibliography: references.bib
+csl: chicago-author-date.csl
+
 format:
   html:
     theme: 

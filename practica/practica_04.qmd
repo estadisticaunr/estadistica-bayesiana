@@ -1,6 +1,5 @@
 ---
 title: "Práctica - Unidad 4"
-bibliography: ../references.bib
 nocite: |
     @Martin2021, @Downey2021, @Gelman2021, @Johnson2021
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf

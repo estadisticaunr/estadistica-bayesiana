@@ -5,14 +5,18 @@
 Para renderizar la web hay que tener instalado Quarto. Luego correr alguno de los siguientes comandos. El primero crea una previsualizacion, el segundo lo renderiza.
 
 ```
-quarto preview
+quarto preview --to html
 ```
 
 o
 
 ```
-quarto render
+quarto render --to html
 ```
+
+**Notas**
+
+El argumento `--to html` es necesario para evitar que se generen los PDF.
 
 ## Recursos útiles
 

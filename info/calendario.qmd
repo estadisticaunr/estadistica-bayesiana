@@ -1,6 +1,5 @@
 ---
 title: Calendario
-bibliography: ../references.bib
 tbl-colwidths: [2.5, 10, 5, 27.5, 5, 25, 25]
 page-layout: full
 css: calendar.css

@@ -1,6 +1,5 @@
 ---
 title: "Repaso de Variables Aleatorias"
-bibliography: ../references.bib
 ---
 
 * Variables aleatorias

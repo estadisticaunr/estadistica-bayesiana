@@ -1,6 +1,5 @@
 ---
 title: "Práctica - Unidad 1"
-bibliography: ../references.bib
 nocite: |
   @Johnson2021, @McElreath2020, @Martin2021, @Hoff2009, @Downey2021, @Barber2012
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_01.pdf
