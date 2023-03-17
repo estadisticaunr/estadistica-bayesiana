@@ -4,7 +4,7 @@ nocite: "@Martin2021, @Reich2020, @Hoff2009"
 format:
     pdf:
         latex_engine: xelatex
-        template: template.tex
+        template: ../templates/template.tex
     html: default
 ---
 
