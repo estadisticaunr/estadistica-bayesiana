@@ -1,14 +1,11 @@
 ---
 title: "Práctica - Unidad 4"
-nocite: |
-    @Martin2021, @Downey2021, @Gelman2021, @Johnson2021
-pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_04.pdf
+nocite: "@Martin2021, @Downey2021, @Gelman2021, @Johnson2021"
 format:
-    pdf: # https://quarto.org/docs/reference/formats/pdf.html
+    pdf:
         template: ../templates/template.tex
         template-partials:
             - ../templates/title.tex
-        # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
         suppress-bibliography: true
     html: default
 year: "2023"
@@ -20,6 +17,10 @@ logo: ../templates/logo.png
 ```{r}
 #| echo: false
 #| include: false
+pdf_file <- paste0(
+    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
+    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
+)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -40,9 +41,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
 ```
 
 ::: {.content-visible when-format="html"}
-
-[Descargar PDF]({{< meta pdf_file >}})
-
+[Descargar PDF](`r pdf_file`)
 :::
 
 ## Regresión lineal

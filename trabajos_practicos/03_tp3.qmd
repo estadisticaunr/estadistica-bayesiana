@@ -1,12 +1,10 @@
 ---
 title: "TP3: Estudio de modelos lineales mediante simulaciones"
-pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/03_tp3.pdf
 format:
-    pdf: # https://quarto.org/docs/reference/formats/pdf.html
+    pdf:
         template: ../templates/template.tex
         template-partials:
             - ../templates/title.tex
-        # https://pandoc.org/MANUAL.html#placement-of-the-bibliography
         suppress-bibliography: true
     html: default
 year: "2023"
@@ -15,8 +13,17 @@ practica: "Trabajo Práctico 3"
 logo: ../templates/logo.png
 ---
 
+```{r}
+#| echo: false
+#| include: false
+pdf_file <- paste0(
+    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
+    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
+)
+```
+
 ::: {.content-visible when-format="html"}
-[Descargar PDF](%7B%7B%3C%20meta%20pdf_file%20%3E%7D%7D)
+[Descargar PDF](`r pdf_file`)
 :::
 
 # Estudio de modelos lineales mediante simulaciones
