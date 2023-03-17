@@ -17,6 +17,8 @@ website:
         file: info/programa.qmd
       # - text: Apuntes
       #   file: apuntes/introduccion.qmd
+      - text: Teoría
+        file: teoria/teoria_01.qmd
       - text: Práctica
         file: practica/practica_00.qmd
       - text: Trabajos Prácticos
@@ -49,6 +51,13 @@ website:
           file: info/enlaces_utiles.qmd
         - text: Preguntas frecuentes
           file: info/faq.qmd
+    - title: Teoría
+      style: docked
+      search: false
+      background: light
+      contents:
+        - text: Unidad 1
+          file: teoria/teoria_01.qmd
     - title: Práctica
       style: docked
       search: false

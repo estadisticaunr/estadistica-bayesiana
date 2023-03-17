@@ -47,9 +47,12 @@ jobs:
         uses: quarto-dev/quarto-actions/setup@v2    
       
       # Ver: https://github.com/quarto-dev/quarto-actions/issues/41
+      # Importante renderizar las presentaciones, luego son linkeadas en la página
       - name: Render Webpage
         shell: bash
-        run: quarto render --to html --output-dir _site
+        run: |
+          quarto render --to html --output-dir _site
+          quarto render presentaciones 
 
       - name: Publish to GitHub 
         uses: quarto-dev/quarto-actions/publish@v2

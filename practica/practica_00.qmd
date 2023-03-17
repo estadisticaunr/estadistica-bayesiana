@@ -4,10 +4,10 @@ bibliography: ../references.bib
 nocite: |
   @Martin2021, @Reich2020, @Hoff2009
 pdf_file: https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/practica_00.pdf
-# format:
-#     pdf:
-#         latex_engine: xelatex
-#         template: template.tex
+format:
+    pdf:
+        latex_engine: xelatex
+        template: template.tex
 ---
 
 ```{r echo=FALSE, include=FALSE}

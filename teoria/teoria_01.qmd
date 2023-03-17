@@ -1,0 +1,20 @@
+---
+title: "Teoría - Unidad 1"
+---
+
+<iframe 
+    height="600" 
+    width="100%" 
+    src="../presentaciones/01_clase1.html"
+    style="border: 3px solid #dee2e6"
+    >
+</iframe>
+
+**Instrucciones para guardar como PDF**
+
+* Hacer <a href="../presentaciones/01_clase1.html?print-pdf" target="_blank">click acá</a>
+* Abrir la ventana de impresión del navegador con CTRL+P
+* Si es necesario, cambia el Destino a Guardar como PDF
+* Click en Guardar
+* Elegí el nombre del archivo de destino
+* Listo! 🎉

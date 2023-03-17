@@ -1,6 +1,5 @@
 ---
 title: "Repaso de Probabilidad"
-bibliography: ../references.bib
 ---
 
 
