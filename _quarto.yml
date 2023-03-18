@@ -43,14 +43,14 @@ website:
           file: info/aprobacion.qmd
         - text: Bibliografia
           file: info/bibliografia.qmd
-        - text: Docentes
-          file: info/docentes.qmd
+        #- text: Docentes
+        #  file: info/docentes.qmd
         - text: Calendario
           file: info/calendario.qmd
-        - text: Enlaces útiles
-          file: info/enlaces_utiles.qmd
-        - text: Preguntas frecuentes
-          file: info/faq.qmd
+        # - text: Enlaces útiles
+        #   file: info/enlaces_utiles.qmd
+        # - text: Preguntas frecuentes
+        #   file: info/faq.qmd
     - title: Teoría
       style: docked
       search: false
