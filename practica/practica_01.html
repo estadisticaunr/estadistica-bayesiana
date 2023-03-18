@@ -290,13 +290,23 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </div>
 </div></li>
 <li><p><strong>Paraguas</strong></p>
-<p>Estás a punto de subir a un avión rumbo a Mendoza. Querés saber si tenés que llevar un paraguas o no. Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza? Se puede asumir que en Mendoza llueve en 1 de cada 10 días. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<p>Estás a punto de subir a un avión rumbo a Mendoza. Querés saber si tenés que llevar un paraguas o no. Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de <span class="math inline">\(2/3\)</span> de decirte la verdad y <span class="math inline">\(1/3\)</span> de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza? Se puede asumir que en Mendoza llueve en 1 de cada 10 días. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
 <li><p><strong>Sherlock</strong></p>
-<p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
-<li><p><strong>Hijxs de la probabilidad</strong></p>
-<p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs. Le preguntamos si algunx de ellxs es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambxs sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/sherlock.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Sherlock Holmes, el detective privado</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
+<li><p><strong>Hijos de la probabilidad</strong></p>
+<p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambos sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>Los Reyes del Rock</strong></p>
-<p>Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo? Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son siempre del mismo sexo biológico. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<p>Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo? Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del mismo parto eran gemelos y 2/3 mellizos; además, la probabilidad de que dos mellizos sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelos son siempre del mismo sexo biológico. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>¿Alguien ordena las medias?</strong></p>
 <p>Dos cajones contienen medias. Uno de ellos tiene igual cantidad de medias blancas y negras. El otro contiene un número igual de medias rojas, verdes y azules. Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales. ¿Cuál es la probabilidad de que las medias sean blancas? Supóngase que sacar la primera media no altera las proporciones. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>La Falacia del Fiscal</strong></p>
@@ -311,7 +321,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li>Identifica una falla en la probabilidad de <span class="math inline">\(\frac{1}{73000000}\)</span> dada por Meadows</li>
 <li>Incluso aceptando el número anterior como correcto, ¿cuál es el problema de interpretar esa probabilidad como la probabilidad de inocencia de Clark?</li>
 </ol>
-<p><!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf --></p></li>
+<!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf --></li>
 </ol>
 </section>
 <section id="inferencia-bayesiana" class="level2">
@@ -363,7 +373,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li><span class="math inline">\(\alpha = 2\)</span> y <span class="math inline">\(\theta = 0.9\)</span></li>
 </ol></li>
 </ol></li>
-<li><p><strong>Bosque</strong></p>
+<li><p><strong>Que el árbol no tape el bosque</strong></p>
 <p>Sea <span class="math inline">\(X_1 \sim \text{Bernoulli}(\theta)\)</span> una variable que indica si una especie de árboles se halla en un determinado bosque y <span class="math inline">\(\theta \in [0, 1]\)</span> representa la probabilidad <em>a priori</em> de que la especie se encuentre en el bosque. Una investigadora selecciona una muestra de <span class="math inline">\(n\)</span> árboles del bosque y encuentra que <span class="math inline">\(X_2\)</span> de ellas pertenecen a la especie de interés.</p>
 <p>El modelo luego es</p>
 <p><span class="math display">\[
@@ -383,7 +393,17 @@ X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) &amp; \text{con} \ \lambda \in [0, 
 <li><span class="math inline">\(P(X_2 = 0 | X_1 = 1)\)</span></li>
 <li>Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según <span class="math inline">\(n\)</span>, <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\lambda\)</span>.</li>
 <li>Asuma <span class="math inline">\(\theta=0.5\)</span>, <span class="math inline">\(\lambda=0.1\)</span> y <span class="math inline">\(X_2 = 0\)</span> ¿Cuán grande debe ser <span class="math inline">\(n\)</span> para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 --></li>
-</ol></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/bosque.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Foto de <a href="https://unsplash.com/sakulich">Sergei A</a> en <a href="https://unsplash.com/photos/-heLWtuAN3c">Unsplash</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p><strong>¡Ostras! ¡Estoy haciendo inferencia bayesiana!</strong></p>
 <p>En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.</p>
 <p>Si se representa con <span class="math inline">\(Y_t\)</span> a la cantidad de especies descubierta en el año <span class="math inline">\(t\)</span>, y asumiendo:</p>
@@ -413,7 +433,17 @@ Y | n \sim \text{Binomial}(n, \theta)
 </ul>
 <p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p></li>
 <li><p><strong><em>House of Cards</em></strong></p>
-<p>Hay 538 miembros en el Congreso de Estados Unidos. Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado. Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo. ¿Cuántos miembros del Congreso son honestos? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<p>Hay 538 miembros en el Congreso de Estados Unidos. Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado. Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo. ¿Cuántos miembros del Congreso son honestos? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/house_of_cards.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Robin Wright y Kevin Spacey, protagonistas de House of Cards</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p><strong>Puede fallar…</strong></p>
 <p>Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.</p>
 <p>Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error. En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).</p>
