@@ -1,11 +1,6 @@
 ---
 title: "Práctica - Unidad 0"
 nocite: "@Martin2021, @Reich2020, @Hoff2009"
-format:
-    pdf:
-        latex_engine: xelatex
-        template: ../templates/template.tex
-    html: default
 ---
 
 ```{r}

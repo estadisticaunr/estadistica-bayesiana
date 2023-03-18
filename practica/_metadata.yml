@@ -1,0 +1,10 @@
+format:
+    pdf:
+        template: ../templates/template.tex
+        template-partials:
+            - ../templates/title.tex
+        suppress-bibliography: true
+    html: default
+year: "2023"
+course: "Estadística Bayesiana"
+logo: ../templates/logo.png

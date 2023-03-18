@@ -1,17 +1,7 @@
 ---
 title: "Práctica - Unidad 5"
 nocite: "@Reich2020, @DavidsonPilon2015"
-format:
-    pdf:
-        template: ../templates/template.tex
-        template-partials:
-            - ../templates/title.tex
-        suppress-bibliography: true
-    html: default
-year: "2023"
-course: "Estadística Bayesiana"
 practica: "Práctica 5"
-logo: ../templates/logo.png
 ---
 
 ```{r}

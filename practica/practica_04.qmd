@@ -1,17 +1,7 @@
 ---
 title: "Práctica - Unidad 4"
 nocite: "@Martin2021, @Downey2021, @Gelman2021, @Johnson2021"
-format:
-    pdf:
-        template: ../templates/template.tex
-        template-partials:
-            - ../templates/title.tex
-        suppress-bibliography: true
-    html: default
-year: "2023"
-course: "Estadística Bayesiana"
 practica: "Práctica 4"
-logo: ../templates/logo.png
 ---
 
 ```{r}
