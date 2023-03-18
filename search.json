@@ -172,39 +172,18 @@
     "href": "presentaciones/presentacion_01.html",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Turn off alarm\nGet out of bed\n\n\n\n\n\n\n\n\nPay Attention\n\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\n\n\n\n\nPay Attention\n\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\nSpeaker notes go here."
+    "text": "Es de naturaleza secuencial\n\n\n\n\n\n\n\n\n\n\n\n\nDutch book\n\n\n\nUn Dutch book es\n\n\n\nSpeaker notes go here.\n\n\n\n\nTres definiciones de probabilidad\n\nClásica\nFrecuentista\nSubjetiva\n\n\n\n\n\n\n\nThis is an important sentence!\n\n\n\n\\[p(x)\\]\n\n\n\n\n\n\n\n\n\nBayes\n\n\n\nPrice\n\n\n\nLaplace"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#slide-title",
-    "href": "presentaciones/presentacion_01.html#slide-title",
+    "objectID": "presentaciones/presentacion_01.html#section",
+    "href": "presentaciones/presentacion_01.html#section",
     "title": "Estadística Bayesiana",
-    "section": "Slide Title",
-    "text": "Slide Title\n\n\nLeft column\n\nRight column"
+    "section": "",
+    "text": "La inferencia bayesiana es la realocación de la credibilidad del conjunto de parámetros de un modelo"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#slide-3",
     "href": "presentaciones/presentacion_01.html#slide-3",
-    "title": "Estadística Bayesiana",
-    "section": "Slide 3",
-    "text": "Slide 3\n\n\n\n\n\nProbando\n\n\n\n\nEstadística Bayesiana – 2023\n\n\nSome additional commentary of more peripheral interest."
-  },
-  {
-    "objectID": "presentaciones/01_clase1.html",
-    "href": "presentaciones/01_clase1.html",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Turn off alarm\nGet out of bed\n\n\n\n\n\n\n\n\nPay Attention\n\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\n\n\n\n\nPay Attention\n\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\nSpeaker notes go here."
-  },
-  {
-    "objectID": "presentaciones/01_clase1.html#slide-title",
-    "href": "presentaciones/01_clase1.html#slide-title",
-    "title": "Estadística Bayesiana",
-    "section": "Slide Title",
-    "text": "Slide Title\n\n\nLeft column\n\nRight column"
-  },
-  {
-    "objectID": "presentaciones/01_clase1.html#slide-3",
-    "href": "presentaciones/01_clase1.html#slide-3",
     "title": "Estadística Bayesiana",
     "section": "Slide 3",
     "text": "Slide 3\n\n\n\n\n\nProbando\n\n\n\n\nEstadística Bayesiana – 2023\n\n\nSome additional commentary of more peripheral interest."
@@ -378,24 +357,87 @@
     "text": "Conceptuales\nEn esta sección, se nos invita a pensar sobre las características de la Estadística Bayesiana. En lugar de encontrar una respuesta única mediante cálculos matemáticos, se necesita comprender en profundidad tanto el enfoque frecuentista como el bayesiano para interpretar estas visiones en diferentes escenarios.\n\nVoy a conseguir esa pasantía\nLa empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes para pasantes en ciencia de datos. Luego de leer la descripción de la búsqueda, te das cuenta que sos una persona calificada para el puesto: estos son tus datos. Tu objetivo es averiguar si te van a ofrecer el puesto: esta es tu hipótesis.\n\nDesde la perspectiva de una persona con un razonamiento frecuentista, ¿Qué es lo que se responde al evaluar la hipótesis de que te ofrecen el puesto?\nRepita el punto anterior considerando la perspectiva de una persona con un razonamiento Bayesiano.\n¿Qué pregunta tiene más sentido responder: la frecuentista o la Bayesiana? Justifica tu respuesta. \n\nBeneficios de la Estadística Bayesiana\nUna amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana. Explícale lo siguiente:\n\n¿Por qué es útil el enfoque Bayesiano?\n¿Cuáles son las similitudes entre el enfoque frecuentista y el Bayesiano?"
   },
   {
-    "objectID": "teoria/teoria_01.html",
-    "href": "teoria/teoria_01.html",
-    "title": "Teoría - Unidad 1",
+    "objectID": "teoria/u1_teoria_01.html",
+    "href": "teoria/u1_teoria_01.html",
+    "title": "Unidad 1 - Introducción",
     "section": "",
-    "text": "Instrucciones para guardar como PDF\n\nHacer click acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambia el Destino a Guardar como PDF\nClick en Guardar\nElegí el nombre del archivo de destino\nListo! 🎉"
+    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#getting-up",
-    "href": "presentaciones/presentacion_01.html#getting-up",
+    "objectID": "presentaciones/presentacion_01.html#lógica-deductiva",
+    "href": "presentaciones/presentacion_01.html#lógica-deductiva",
     "title": "Estadística Bayesiana",
-    "section": "Getting up",
-    "text": "Getting up\n\nTurn off alarm\nGet out of bed\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\nSpeaker notes go here."
+    "section": "Lógica deductiva",
+    "text": "Lógica deductiva"
   },
   {
-    "objectID": "presentaciones/01_clase1.html#getting-up",
-    "href": "presentaciones/01_clase1.html#getting-up",
+    "objectID": "presentaciones/presentacion_01.html#razonamiento-plausible",
+    "href": "presentaciones/presentacion_01.html#razonamiento-plausible",
     "title": "Estadística Bayesiana",
-    "section": "Getting up",
-    "text": "Getting up\n\nTurn off alarm\nGet out of bed\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\n\n\nPay Attention\n\n\nUsing callouts is an effective way to highlight content that your reader give special consideration or attention.\n\n\n\n\nSpeaker notes go here."
+    "section": "Razonamiento plausible",
+    "text": "Razonamiento plausible\nEs de naturaleza secuencial"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#apuestas",
+    "href": "presentaciones/presentacion_01.html#apuestas",
+    "title": "Estadística Bayesiana",
+    "section": "Apuestas",
+    "text": "Apuestas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#dutch-book",
+    "href": "presentaciones/presentacion_01.html#dutch-book",
+    "title": "Estadística Bayesiana",
+    "section": "Dutch book",
+    "text": "Dutch book\n\n\n\nDutch book\n\n\nUn Dutch book es\n\n\n\n\nSpeaker notes go here."
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#probabilidad-1",
+    "href": "presentaciones/presentacion_01.html#probabilidad-1",
+    "title": "Estadística Bayesiana",
+    "section": "Probabilidad",
+    "text": "Probabilidad\nTres definiciones de probabilidad\n\nClásica\nFrecuentista\nSubjetiva"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#probabilidad-subjetiva",
+    "href": "presentaciones/presentacion_01.html#probabilidad-subjetiva",
+    "title": "Estadística Bayesiana",
+    "section": "Probabilidad subjetiva",
+    "text": "Probabilidad subjetiva"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#sesgos",
+    "href": "presentaciones/presentacion_01.html#sesgos",
+    "title": "Estadística Bayesiana",
+    "section": "Sesgos",
+    "text": "Sesgos\nThis is an important sentence!"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#repaso-de-probabilidad",
+    "href": "presentaciones/presentacion_01.html#repaso-de-probabilidad",
+    "title": "Estadística Bayesiana",
+    "section": "Repaso de probabilidad",
+    "text": "Repaso de probabilidad\n\\[p(x)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#regla-de-bayes",
+    "href": "presentaciones/presentacion_01.html#regla-de-bayes",
+    "title": "Estadística Bayesiana",
+    "section": "Regla de Bayes",
+    "text": "Regla de Bayes"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#historia-de-la-regla-de-bayes",
+    "href": "presentaciones/presentacion_01.html#historia-de-la-regla-de-bayes",
+    "title": "Estadística Bayesiana",
+    "section": "Historia de la Regla de Bayes",
+    "text": "Historia de la Regla de Bayes\n\n\n\nBayes\n\n\n\nPrice\n\n\n\nLaplace"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#ejemplos",
+    "href": "presentaciones/presentacion_01.html#ejemplos",
+    "title": "Estadística Bayesiana",
+    "section": "Ejemplos",
+    "text": "Ejemplos"
   }
 ]
