@@ -19,6 +19,13 @@ caption_data <- list(
 )
 captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
+captions[["insectos"]] <- paste0(
+    "Una gran variedad de insectos<br>",
+    htmltools::a(
+        "Imágen de Freepik", 
+        href="https://www.freepik.es/vector-gratis/errores-dibujos-animados-bebe-insecto-divertido-bicho-feliz-linda-mariquita_10722677.htm"
+    )
+)
 ```
 
 ::: {.content-visible when-format="html"}
@@ -108,7 +115,7 @@ vida profesional.
     _a priori_ es $\text{Beta}(2,8)$.
     
     i. Resuma ambas distribuciones _a priori_ y explique con sus palabras lo que implican
-    i. Con la información de sus compañerxs de curso, actualice ambas distribuciones _a priori_. 
+    i. Con la información de sus compañeros de curso, actualice ambas distribuciones _a priori_. 
     ¿Es suficiente esa información para acercar ambas posturas?
 
 1.  **Mi primera huerta**
@@ -184,7 +191,7 @@ vida profesional.
     ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
-1. **Bichos**
+1.  **Bichos**
 
     Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
     promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
@@ -195,6 +202,14 @@ vida profesional.
     i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
     exploración de un área de 10 $\text{m}^2$
     
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["insectos"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "insectos.jpg"))
+    ```
+
 1.  **Alter-ego**
 
     El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
@@ -279,14 +294,14 @@ vida profesional.
     Si $X \sim \text{Pareto}(\alpha, m)$, luego
 
     $$
-    f(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+    p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
     $$
 
     Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y 
     $\mathbf{X} = (X_1,..., X_n)$ es 
 
     $$
-    f(\theta, \mathbf{X}) 
+    p(\theta, \mathbf{X}) 
         = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
         \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
     $$
@@ -318,7 +333,7 @@ vida profesional.
 
     $$
     \begin{array}{lcrr}
-    f(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
+    p(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
     \end{array}
     $$
 
@@ -331,13 +346,13 @@ vida profesional.
     $$
     \begin{aligned}
         \theta &\sim \text{Exp}(\lambda) \\
-        f(\theta | \lambda) &= \lambda e^{-\lambda \theta}
+        p(\theta | \lambda) &= \lambda e^{-\lambda \theta}
     \end{aligned}
     $$
     Elija un valor para el hiperparámetro $\lambda$ de la distribución _a priori_ tal que
     $\mathbb{E}(\theta) = 1/3$. Utilice $\hat{\lambda}$ para representar al valor.
 
-    i. ¿Cuál es el _posterior_ $f(\theta | \mathbf{X}, \hat{\lambda})$?
+    i. ¿Cuál es el _posterior_ $p(\theta | \mathbf{X}, \hat{\lambda})$?
     i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
     i. Encuentre la media del _posterior_, $\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})$
     i. Explique por que difieren el estimador MV de la media _a posteriori_. 
@@ -388,7 +403,7 @@ vida profesional.
     \end{array}
     $$
 
-    donde la función de densidad exponencial es $f(y\mid\theta) = \theta e^{-\theta y}$.
+    donde la función de densidad exponencial es $p(y\mid\theta) = \theta e^{-\theta y}$.
     
     Elija una distribución _a priori_ conjugada de la verosimilitud propuesta y obtenga 
     la expresión para la distribución de probabilidad _a posteriori_
@@ -401,7 +416,8 @@ promueve el uso de la computadora y `R` de manera complementaria, esta sección
 contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas
 en `R`. Es posible que en algunos casos también se pueda obtener una solución analítica. 
 En estos casos, puede resultar de utilidad obtener también una solución a mano para 
-comparar resultados, niveles de dificultad y ver que tan intuitivo resultan ambos enfoques.
+validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan 
+ambos enfoques.
 
 1.  **Entrada en calor**
 
@@ -528,8 +544,10 @@ de probabilidad como herramienta para reflejar información de un problema deter
     \alpha \cdot (|\pi - \delta|-\frac{1}{2}\alpha) \text{ en cualquier otro caso}
     \end{cases}
     $$
-1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
-    Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor?
+
+
+<!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
+    Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
 
 <!-- 
 ## Notas

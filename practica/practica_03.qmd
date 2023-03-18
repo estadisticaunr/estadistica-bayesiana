@@ -27,51 +27,74 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
 
 ## Métodos Computacionales
 
-1.  Sea $X \sim \text{Normal}(\mu=3, \sigma=1.2)$. 
+Esta sección contiene una lista exhaustiva de ejercicios que requieren el uso de 
+herramientas computacionales para resolver problemas que involucran una variedad de 
+cálculos, como el cálculo de probabilidades y el cálculo de integrales. 
+Se vuelve indispensable el uso de `R` y se promueve el uso de buenas prácticas de 
+programación científica, como el uso de funciones compartimentar los componentes de un 
+programa. 
+
+1.  **¡A calcular probabilidades! (I)**
+
+    Sea $X \sim \text{Normal}(\mu=3, \sigma=1.2)$. 
     i. Elabore un gráfico que permita visualizar la función de densidad de probabilidad 
     de $X$.
     i. ¿Cuál es la probabilidad de que $X$ sea menor a 2.5?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor a 4?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor 2 y menor 3?
 
-1.  Sea $X \sim \text{Beta}(\alpha=10, \beta=2)$
+1.  **¡A calcular probabilidades! (II)**
+
+    Sea $X \sim \text{Beta}(\alpha=10, \beta=2)$
     i. Elabore un gráfico que permita visualizar la función de densidad de probabilidad 
     de $X$.
     i. ¿Cuál es la probabilidad de que $X$ sea menor a 0.5?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor a 0.8?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor 0.25 y menor 0.75?
 
-1.  Responda los dos puntos anteriores sin evaluar la función de densidad ni la función
+1.  **Magia blanca: Obtener probabilidades mediante simulación**
+
+    Responda los dos puntos anteriores sin evaluar la función de densidad ni la función
     de distribución de las variables aleatorias mencionadas. Para eso genere muestras
     que provengan de las correspondientes distribuciones y utilícelas para responder las 
     preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un 
     enfoque basado en la simulación para resolver problemas.
 
-1.  Una variable aleatoria $X$ toma valores en el conjunto $\{2, 4, 6, 8, 10\}$ con igual
+1.  **Media y varianza de una variable aleatoria**
+
+    Una variable aleatoria $X$ toma valores en el conjunto $\{2, 4, 6, 8, 10\}$ con igual
     probabilidad. Encuentre la media y el desvío estándar de las variables $X$ e 
     $Y = 2X + 1$.
     <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal -->
 
-1.  En un problema determinado la distribución a posteriori de la parámetro de inteŕes
+1.  **Probabilidades _a posteriori_**
+
+    En un problema determinado la distribución _a posteriori_ de la parámetro de inteŕes
     $\alpha$ es $\Gamma(k=3, \theta=1.5)$, donde $k$ es el parámetro de forma y $\theta$ 
     es el parámetro de escala. Calcule la probabilidad de que $\alpha^2$ sea mayor a 10.
     <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable -->
 
-1.  Sean $X$ e $Y$ dos variables aleatorias independientes con distribución uniforme en el
+1.  **Probabilidades con dos variables aleatorias**
+
+    Sean $X$ e $Y$ dos variables aleatorias independientes con distribución uniforme en el
     intervalo $[0, 1]$. 
 
     i.  ¿Cuál es la probabilidad de que $X \le Y$?
     i.  Grafique los puntos muestreados coloreando de acuerdo a si la muestra satisface
     el evento antes mencionado o no.
 
-1.  Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad
+1.  **Te veo en la fotocopiadora**
+    
+    Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad
     entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. 
     La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en
     ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar
     14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la 
     fotocopiadora entre la estudiante A y el estudiante B?
 
-1.  Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en 
+1.  **Armando celulares en Tierra del Fuego**
+
+    Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en 
     Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. 
     Ante una falla en cualquiera de estos componentes, la máquina se detiene. 
     Las probabilidades de que estos elementos operen correctamente durante un día 
@@ -84,7 +107,9 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     i.  Sea $T=$ Cantidad de días que la máquina funciona ininterrumpidamente. 
     Grafique la función de densidad de probabilidad de $T$.
 
-1.  [Este tuit](https://twitter.com/pgroisma/status/1616137795180822528) propone un
+1.  **Bolas infinitas**
+
+    [Este tuit](https://twitter.com/pgroisma/status/1616137795180822528) propone un
     problema muy interesante. Una urna contiene una bola azul y una amarilla. 
     Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional 
     del mismo color. Se repite este proceso indefinidamente. 
@@ -99,7 +124,7 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     Escriba un programa en `R` para responder esta pregunta utilizando simulaciones.
     Genere gráficos que faciliten la comprensión del resultado.
 
-1.  ¿Cuánto vale $\pi$?
+1.  **Estimando el valor de** $\pi$
 
     Imagine un círculo de radio $r$ y un cuadrado de lado $2r$, ambos centrados en el 
     mismo punto, que de manera arbitraria puede ser el punto $(0, 0)$. Obtenga muestras
@@ -149,19 +174,22 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
         )
     ```
 
-    Datos útiles
+    Algunos datos útiles
 
     * Area de un círculo: $\pi \cdot r^2$.
     * Area de un cuadrado: $a^2$, donde $a$ es la longitud del lado.
 
-1.  Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. 
+1.  **Los puntos uniformes**
+
+    Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. 
     ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?
 
-    i.  Intentar hacer a mano?
     i.  Resuelva el problema utilizando `R`
     i.  Elabore una visualización que facilite la comunicación de los resultados
 
-1.  En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
+1.  **Sobre el histórico 7 a 1 del 2014**
+
+    En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
     Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23.
     Asuma que el tiempo entre goles sigue una distribución exponencial. 
     Elija una distribución _a priori_ para el tiempo entre goles (puede ser conjugada o 
@@ -302,9 +330,12 @@ captions[["monty_hall"]] <- "Las 3 puertas del problema de Monty Hall"
     evaluar integrales?
     <!-- @Lambert2018 Capitulo 9 -->
 
-## Método de la grilla
+## Aproximación de una distribución mediante una grilla
 
-Podriamos encontrar un mejor nombre...
+En esta parte de la práctica se comienza a utilizar técnicas computacionales que se 
+asocian directamente a la práctica de la estadística bayesiana. Los problemas tienen como 
+objetivo la familiarización con el uso práctico de estas técnicas y la comprensión de sus 
+características principales.
 
 1. **Aproximación de grilla**
 
@@ -335,7 +366,6 @@ Podriamos encontrar un mejor nombre...
     Utilice los valores de la grilla y sus probabilidades _a posteriori_ para obtener
     muestras del _posterior_ y calcular las mismas probabilidades que en el ejercicio
     anterior en base a muestras. Ayuda: Para obtener muestras utilice la función `sample()`.
-
 
 1.  **Aproximación de grilla en 2 dimensiones**
 
@@ -475,16 +505,20 @@ Podriamos encontrar un mejor nombre...
     de 10 dimensiones. Concluya sobre el tiempo de ejecución, el consumo de memoria, y 
     otras cantidades que se encuentren en la salida y crea adecuadas para el análisis.
 
+<!-- 
+TO DO
+
 1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), 
     $\omega$ (escala) y $\alpha$ (asimetría).
     
     $$
     f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
     $$
-    <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution -->
+    https://en.wikipedia.org/wiki/Skew_normal_distribution 
+
+-->
 
 ## **Metropolis-Hastings** {#sec-mh}
-
 <!--
 Copio algunos pasajes del libro porque la verdad me parece super claro. 
 Puede ser útil para la presentación de teoría.
@@ -506,6 +540,9 @@ El algoritmo Metropolis es un caso especial del algoritmo general Metropolis-Has
 (Hoff, 2009). La principal diferencia es que el algoritmo Metropolis-Hastings no tiene el 
 requisito de distribución simétrica.
 -->
+
+En esta sección, se profundiza en la práctica de uno de los algoritmos fundamentales de la
+inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings. 
 
 1.  **Muestreo utilizando el algoritmo de Metropolis-Hastings (I)** 
 
@@ -650,14 +687,25 @@ requisito de distribución simétrica.
     Metropolis-Hastings para obtener muestras del _posterior_ en vez del método de
     la grilla.
 
-1.  Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
+1.  **Demostración sobre la distribución estacionaria**
+    
+    Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
     la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$
+
+<!--
+TO DO
 
 ## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
 
 Tenemos que completarlo...
+-->
 
 ## **Diagnósticos**
+
+El uso de algoritmos de MCMC provee de un gran poder que conlleva una gran responsabilidad.
+En los ejercicios de esta sección ya se cuenta con un _posterior_ y se busca evaluar
+la fiabilidad de las muestras utilizando diferentes medidas de diagnóstico análiticas
+y gráficas.
 
 1.  **Describir medidas de diagnóstico (I)**
     
@@ -835,7 +883,6 @@ Tenemos que completarlo...
     plot_trace_and_histogram(df)
     ```
 
-
     ```{r trace-and-histogram-4}
     #| warning: false
     #| echo: false
@@ -882,8 +929,12 @@ Tenemos que completarlo...
     i. ¿Qué grafico muestra peor mezcla entre cadenas?
     i. ¿En qué gráfico se puede observar que las cadenas convergen a la misma distribución?
 
-
 ## **Programación probabilística - Stan y RStan**
+
+En esta sección se comienza a utilizar Stan para realizar los cálculos relacionados a la
+inferencia bayesiana. Stan es uno de los lenguajes de programación probabilística mas 
+potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que
+deben ser resueltos con la interface de Stan a R, RStan.
 
 1.  **MCMC con RStan: Precalentamiento (I)**
 
@@ -1055,6 +1106,10 @@ Tenemos que completarlo...
     i.  Agregue a los gráficos anteriores una banda de credibilidad del 95% para la 
     distribución predictiva _a posteriori_. Interprete los resultados.
 
+
+<!--
+TO DO: Mover a otro lado?
+
 1.  Considere la siguiente familia de distribuciones normales en 2D
 
     $$
@@ -1145,7 +1200,13 @@ Tenemos que completarlo...
     lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
     se haya encontrado. 
 
-    <!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'-->
+    **To Do** Proveer valores para los parámetros 'mu' y 'sigma'
+
+-->
+
+
+<!--
+TO DO
 
 ### Ejercicios que faltan
 
@@ -1158,6 +1219,7 @@ Tenemos que completarlo...
 
 **Nota:** Para los que dicen "utilizar HMC" estaria bueno que proveamos una funcion
 que use HMC, sin que tengan que usar Stan.
+-->
 
 <!-- 
 1. **La maldición de la dimensionalidad**

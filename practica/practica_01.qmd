@@ -103,8 +103,8 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     - ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
     - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
     seleccionado un ceibo?
-    - ¿Cuál es la probabilidad a posteriori de que el ceibo seleccionado tenga moho?
-    - Compare las probabilidades a priori y a posteriori de que el árbol tenga moho. 
+    - ¿Cuál es la probabilidad _a posteriori_ de que el ceibo seleccionado tenga moho?
+    - Compare las probabilidades a priori y _a posteriori_ de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo? 
     <!-- @Johnson2021 -->
 
@@ -215,7 +215,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 
     Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al 
     poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo?
-    Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del 
+    Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanos del 
     mismo parto eran gemelos y 2/3 mellizos; además, la probabilidad de que dos mellizos 
     sean del mismo sexo biológico puede estimarse en 50\%, mientras que dos gemelos son 
     siempre del mismo sexo biológico.
@@ -388,7 +388,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     \end{aligned}
     $$
 
-    Graficar la distribución a posteriori de $\lambda$.
+    Graficar la distribución _a posteriori_ de $\lambda$.
     <!-- @Reich2020 -->
 
 1.  **Es negocio...**
@@ -402,9 +402,12 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
     La distribución *a priori* de $n$ es $n \sim \text{Poisson}(5)$.
-    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la distribución *a posteriori* de $n$ para todas las combinaciones de $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
-    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución *a posteriori*.
-    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 -->
+    Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la 
+    distribución _a posteriori_ de $n$ para todas las combinaciones de 
+    $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.
+    Explique cual es del efecto de cambiar $Y$ y $\theta$ sobre la distribución _a posteriori_.
+    <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> 
+    <!-- @Reich2020 -->
 
 1.  **Con amigos así, quién necesita enemigos**
 
@@ -413,7 +416,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a $T$.
 
     Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ (siendo $G$ más grande, $C$ más chico e $I$ igual).
-    ¿Cuál es la distribución *a posteriori* de los valores de $T$?
+    ¿Cuál es la distribución _a posteriori_ de los valores de $T$?
     <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
     
 1.  **Orden en la sala**
@@ -465,7 +468,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
 
-    i. ¿Cuál es la distribución *a posteriori* de $\theta$, la probabilidad de obtener cara?
+    i. ¿Cuál es la distribución _a posteriori_ de $\theta$, la probabilidad de obtener cara?
     i. ¿Qué ocurre a medida que la probabilidad de clasificar mal varía? 
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
     
