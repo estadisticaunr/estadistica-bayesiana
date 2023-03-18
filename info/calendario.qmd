@@ -1,6 +1,6 @@
 ---
 title: Calendario
-tbl-colwidths: [2.5, 10, 5, 27.5, 5, 25, 25]
+tbl-colwidths: [2.5, 12.5, 5, 30, 30, 20]
 page-layout: full
 css: calendar.css
 ---
@@ -109,14 +109,13 @@ data$tema <- str_replace_all(data$tema, "(\\n)|(<br>)", " ") |>
     character(1)
   )
 data$novedades <- str_replace_all(data$novedades, "\\|", "<br>")
-# %e no se queda con el leading zero que conserva %d
-# Los meses van en minuscula... sorpresa
+# '%e' no se queda con el leading zero que conserva '%d'
 data$fecha <- format_date(data$fecha, "%e de %B", "es_AR.utf8")
 ```
 
-```{r, echo=FALSE}
+```{r}
+#| echo: false
 enquote <- function(x) {paste0("'", x, "'")}
-
 add_pdf_link <- function(link) {
     is_active <- !is.na(link)
     if (is_active) {
@@ -134,13 +133,14 @@ data[["apuntes"]] <- sapply(data[["apuntes"]], add_pdf_link)
 data[is.na(data)] <- ""
 ```
 
-```{r echo=FALSE}
+```{r}
+#| echo: false
 knitr::kable(
-    data,
+    subset(data, select = -c(apuntes)),
     col.names = c(
-        "Semana", "Fecha", "Unidad", "Temas", "Apunte", "Lectura sugerida", "Otras actividades"
+        "Semana", "Fecha", "Unidad", "Temas", "Lectura sugerida", "Otras actividades"
     ),
-    align = c("c", "c", "c", "l", "c", "l", "l"),
+    align = c("c", "c", "c", "l", "l", "l"),
     escape = FALSE
 )
 ```
