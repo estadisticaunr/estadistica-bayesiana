@@ -262,38 +262,48 @@ div.csl-indent {
 </div>
 <section id="métodos-computacionales" class="level2">
 <h2 class="anchored" data-anchor-id="métodos-computacionales">Métodos Computacionales</h2>
+<p>Esta sección contiene una lista exhaustiva de ejercicios que requieren el uso de herramientas computacionales para resolver problemas que involucran una variedad de cálculos, como el cálculo de probabilidades y el cálculo de integrales. Se vuelve indispensable el uso de <code>R</code> y se promueve el uso de buenas prácticas de programación científica, como el uso de funciones compartimentar los componentes de un programa.</p>
 <ol type="1">
-<li><p>Sea <span class="math inline">\(X \sim \text{Normal}(\mu=3, \sigma=1.2)\)</span>.</p>
+<li><p><strong>¡A calcular probabilidades! (I)</strong></p>
+<p>Sea <span class="math inline">\(X \sim \text{Normal}(\mu=3, \sigma=1.2)\)</span>.</p>
 <ol type="i">
 <li>Elabore un gráfico que permita visualizar la función de densidad de probabilidad de <span class="math inline">\(X\)</span>.</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea menor a 2.5?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor a 4?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor 2 y menor 3?</li>
 </ol></li>
-<li><p>Sea <span class="math inline">\(X \sim \text{Beta}(\alpha=10, \beta=2)\)</span></p>
+<li><p><strong>¡A calcular probabilidades! (II)</strong></p>
+<p>Sea <span class="math inline">\(X \sim \text{Beta}(\alpha=10, \beta=2)\)</span></p>
 <ol type="i">
 <li>Elabore un gráfico que permita visualizar la función de densidad de probabilidad de <span class="math inline">\(X\)</span>.</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea menor a 0.5?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor a 0.8?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor 0.25 y menor 0.75?</li>
 </ol></li>
-<li><p>Responda los dos puntos anteriores sin evaluar la función de densidad ni la función de distribución de las variables aleatorias mencionadas. Para eso genere muestras que provengan de las correspondientes distribuciones y utilícelas para responder las preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un enfoque basado en la simulación para resolver problemas.</p></li>
-<li><p>Una variable aleatoria <span class="math inline">\(X\)</span> toma valores en el conjunto <span class="math inline">\(\{2, 4, 6, 8, 10\}\)</span> con igual probabilidad. Encuentre la media y el desvío estándar de las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y = 2X + 1\)</span>. <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal --></p></li>
-<li><p>En un problema determinado la distribución a posteriori de la parámetro de inteŕes <span class="math inline">\(\alpha\)</span> es <span class="math inline">\(\Gamma(k=3, \theta=1.5)\)</span>, donde <span class="math inline">\(k\)</span> es el parámetro de forma y <span class="math inline">\(\theta\)</span> es el parámetro de escala. Calcule la probabilidad de que <span class="math inline">\(\alpha^2\)</span> sea mayor a 10. <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable --></p></li>
-<li><p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> dos variables aleatorias independientes con distribución uniforme en el intervalo <span class="math inline">\([0, 1]\)</span>.</p>
+<li><p><strong>Magia blanca: Obtener probabilidades mediante simulación</strong></p>
+<p>Responda los dos puntos anteriores sin evaluar la función de densidad ni la función de distribución de las variables aleatorias mencionadas. Para eso genere muestras que provengan de las correspondientes distribuciones y utilícelas para responder las preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un enfoque basado en la simulación para resolver problemas.</p></li>
+<li><p><strong>Media y varianza de una variable aleatoria</strong></p>
+<p>Una variable aleatoria <span class="math inline">\(X\)</span> toma valores en el conjunto <span class="math inline">\(\{2, 4, 6, 8, 10\}\)</span> con igual probabilidad. Encuentre la media y el desvío estándar de las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y = 2X + 1\)</span>. <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal --></p></li>
+<li><p><strong>Probabilidades <em>a posteriori</em></strong></p>
+<p>En un problema determinado la distribución <em>a posteriori</em> de la parámetro de inteŕes <span class="math inline">\(\alpha\)</span> es <span class="math inline">\(\Gamma(k=3, \theta=1.5)\)</span>, donde <span class="math inline">\(k\)</span> es el parámetro de forma y <span class="math inline">\(\theta\)</span> es el parámetro de escala. Calcule la probabilidad de que <span class="math inline">\(\alpha^2\)</span> sea mayor a 10. <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable --></p></li>
+<li><p><strong>Probabilidades con dos variables aleatorias</strong></p>
+<p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> dos variables aleatorias independientes con distribución uniforme en el intervalo <span class="math inline">\([0, 1]\)</span>.</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X \le Y\)</span>?</li>
 <li>Grafique los puntos muestreados coloreando de acuerdo a si la muestra satisface el evento antes mencionado o no.</li>
 </ol></li>
-<li><p>Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar 14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la fotocopiadora entre la estudiante A y el estudiante B?</p></li>
-<li><p>Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. Ante una falla en cualquiera de estos componentes, la máquina se detiene. Las probabilidades de que estos elementos operen correctamente durante un día cualquiera son <span class="math inline">\(p_1 = 0.8\)</span>, <span class="math inline">\(p_2 = 0.9\)</span> y <span class="math inline">\(p_3 = 0.7\)</span>. Responda las siguientes preguntas utilizando técnicas de simulación:</p>
+<li><p><strong>Te veo en la fotocopiadora</strong></p>
+<p>Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar 14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la fotocopiadora entre la estudiante A y el estudiante B?</p></li>
+<li><p><strong>Armando celulares en Tierra del Fuego</strong></p>
+<p>Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. Ante una falla en cualquiera de estos componentes, la máquina se detiene. Las probabilidades de que estos elementos operen correctamente durante un día cualquiera son <span class="math inline">\(p_1 = 0.8\)</span>, <span class="math inline">\(p_2 = 0.9\)</span> y <span class="math inline">\(p_3 = 0.7\)</span>. Responda las siguientes preguntas utilizando técnicas de simulación:</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que la máquina falle en el primer día de uso?</li>
 <li>¿Cuál es la probabilidad de que la máquina siga funcionando luego de 10 días?</li>
 <li>¿Cuál es la probabilidad de que la máquina falle en el día 7 de uso?</li>
 <li>Sea <span class="math inline">\(T=\)</span> Cantidad de días que la máquina funciona ininterrumpidamente. Grafique la función de densidad de probabilidad de <span class="math inline">\(T\)</span>.</li>
 </ol></li>
-<li><p><a href="https://twitter.com/pgroisma/status/1616137795180822528">Este tuit</a> propone un problema muy interesante. Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional del mismo color. Se repite este proceso indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que repetimos más y más veces?</p>
+<li><p><strong>Bolas infinitas</strong></p>
+<p><a href="https://twitter.com/pgroisma/status/1616137795180822528">Este tuit</a> propone un problema muy interesante. Una urna contiene una bola azul y una amarilla. Se elije una bola al azar y se la vuelve a colocar junto con otra bola adicional del mismo color. Se repite este proceso indefinidamente. ¿Qué ocurre con la proporción de bolas azules en la urna a medida que repetimos más y más veces?</p>
 <ol type="i">
 <li>Tiende a 1/2</li>
 <li>Tiende a 0 ó a 1</li>
@@ -301,7 +311,7 @@ div.csl-indent {
 <li>Ninguna de las anteriores</li>
 </ol>
 <p>Escriba un programa en <code>R</code> para responder esta pregunta utilizando simulaciones. Genere gráficos que faciliten la comprensión del resultado.</p></li>
-<li><p>¿Cuánto vale <span class="math inline">\(\pi\)</span>?</p>
+<li><p><strong>Estimando el valor de</strong> <span class="math inline">\(\pi\)</span></p>
 <p>Imagine un círculo de radio <span class="math inline">\(r\)</span> y un cuadrado de lado <span class="math inline">\(2r\)</span>, ambos centrados en el mismo punto, que de manera arbitraria puede ser el punto <span class="math inline">\((0, 0)\)</span>. Obtenga muestras de una distribución uniforme en el plano <span class="math inline">\((x, y)\)</span>, cuyo dominio está acotado por el cuadrado antes mencionado. Para cada muestra extraida, determine si se encuentra dentro del círculo o no – todos las muestras se encontrarán dentro del cuadrado. Utilice esta información para estimar el valor de <span class="math inline">\(\pi\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -312,18 +322,19 @@ div.csl-indent {
 </div>
 </div>
 </div>
-<p>Datos útiles</p>
+<p>Algunos datos útiles</p>
 <ul>
 <li>Area de un círculo: <span class="math inline">\(\pi \cdot r^2\)</span>.</li>
 <li>Area de un cuadrado: <span class="math inline">\(a^2\)</span>, donde <span class="math inline">\(a\)</span> es la longitud del lado.</li>
 </ul></li>
-<li><p>Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?</p>
+<li><p><strong>Los puntos uniformes</strong></p>
+<p>Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?</p>
 <ol type="i">
-<li>Intentar hacer a mano?</li>
 <li>Resuelva el problema utilizando <code>R</code></li>
 <li>Elabore una visualización que facilite la comunicación de los resultados</li>
 </ol></li>
-<li><p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
+<li><p><strong>Sobre el histórico 7 a 1 del 2014</strong></p>
+<p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
 <ol type="i">
 <li>¿Cuál es la distribución <em>a posteriori</em> del tiempo entre goles de Alemania?</li>
 <li>¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?</li>
@@ -392,9 +403,9 @@ div.csl-indent {
 <li><p>¿Cuál es la distribución de muestreo aproximada al usar muestreo independiente para evaluar integrales? <!-- @Lambert2018 Capitulo 9 --></p></li>
 </ol>
 </section>
-<section id="método-de-la-grilla" class="level2">
-<h2 class="anchored" data-anchor-id="método-de-la-grilla">Método de la grilla</h2>
-<p>Podriamos encontrar un mejor nombre…</p>
+<section id="aproximación-de-una-distribución-mediante-una-grilla" class="level2">
+<h2 class="anchored" data-anchor-id="aproximación-de-una-distribución-mediante-una-grilla">Aproximación de una distribución mediante una grilla</h2>
+<p>En esta parte de la práctica se comienza a utilizar técnicas computacionales que se asocian directamente a la práctica de la estadística bayesiana. Los problemas tienen como objetivo la familiarización con el uso práctico de estas técnicas y la comprensión de sus características principales.</p>
 <ol type="1">
 <li><p><strong>Aproximación de grilla</strong></p>
 <p>Se tiene un experimento binomial donde <span class="math inline">\(n=80\)</span> y se observan <span class="math inline">\(y=7\)</span> éxitos. Considere que el <em>prior</em> de la probabilidad de éxito <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\text{Beta}(2, 10)\)</span>.</p>
@@ -477,11 +488,19 @@ Y      &amp;\sim \text{Normal}(\alpha + \beta X, 0.8)
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Modifique el código brindado para evaluar la función de densidad en hasta un máximo de 10 dimensiones. Concluya sobre el tiempo de ejecución, el consumo de memoria, y otras cantidades que se encuentren en la salida y crea adecuadas para el análisis.</p></li>
-<li><p>Grid approximation para una <em>skew-normal</em>. Estimar los parámetros <span class="math inline">\(\xi\)</span> (posición), <span class="math inline">\(\omega\)</span> (escala) y <span class="math inline">\(\alpha\)</span> (asimetría).</p>
-<p><span class="math display">\[
-f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
-\]</span> <!-- https://en.wikipedia.org/wiki/Skew_normal_distribution --></p></li>
 </ol>
+<!-- 
+TO DO
+
+1.  Grid approximation para una _skew-normal_. Estimar los parámetros $\xi$ (posición), 
+    $\omega$ (escala) y $\alpha$ (asimetría).
+    
+    $$
+    f(x) = \frac{2}{\omega} \phi\left(\frac{x-\xi}{\omega}\right)\Phi\left( \alpha \frac{x-\xi}{\omega} \right)
+    $$
+    https://en.wikipedia.org/wiki/Skew_normal_distribution 
+
+-->
 </section>
 <section id="sec-mh" class="level2">
 <h2 class="anchored" data-anchor-id="sec-mh"><strong>Metropolis-Hastings</strong></h2>
@@ -505,6 +524,7 @@ El algoritmo Metropolis es un caso especial del algoritmo general Metropolis-Has
 (Hoff, 2009). La principal diferencia es que el algoritmo Metropolis-Hastings no tiene el 
 requisito de distribución simétrica.
 -->
+<p>En esta sección, se profundiza en la práctica de uno de los algoritmos fundamentales de la inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.</p>
 <ol type="1">
 <li><p><strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (I)</strong></p>
 <p>Use el algoritmo de Metropolis-Hastings y una distribución de propuesta <span class="math inline">\(\text{Normal}(0, 0.1)\)</span> para obtener 5000 muestras de las siguientes distribuciones de probabilidad:</p>
@@ -590,15 +610,20 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\mathbf{0}_2, \mathbf{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
 <li><p><strong>Metropolis-Hastings para regresión</strong></p>
 <p>Repita el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> pero utilice Metropolis-Hastings para obtener muestras del <em>posterior</em> en vez del método de la grilla.</p></li>
-<li><p>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></p></li>
+<li><p><strong>Demostración sobre la distribución estacionaria</strong></p>
+<p>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></p></li>
 </ol>
-</section>
-<section id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts" class="level2">
-<h2 class="anchored" data-anchor-id="hamiltonian-monte-carlo-hmc-y-el-not-u-turn-sampler-nuts"><strong>Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)</strong></h2>
-<p>Tenemos que completarlo…</p>
+<!--
+TO DO
+
+## **Hamiltonian Monte Carlo (HMC) y el Not-U-Turn Sampler (NUTS)**
+
+Tenemos que completarlo...
+-->
 </section>
 <section id="diagnósticos" class="level2">
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
+<p>El uso de algoritmos de MCMC provee de un gran poder que conlleva una gran responsabilidad. En los ejercicios de esta sección ya se cuenta con un <em>posterior</em> y se busca evaluar la fiabilidad de las muestras utilizando diferentes medidas de diagnóstico análiticas y gráficas.</p>
 <ol type="1">
 <li><p><strong>Describir medidas de diagnóstico (I)</strong></p>
 <p>En sus propias palabras, explique que son <span class="math inline">\(\text{ESS}\)</span>, <span class="math inline">\(\hat{R}\)</span> y <span class="math inline">\(\text{MCSE}\)</span>. Considere:</p>
@@ -732,6 +757,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 </section>
 <section id="programación-probabilística---stan-y-rstan" class="level2">
 <h2 class="anchored" data-anchor-id="programación-probabilística---stan-y-rstan"><strong>Programación probabilística - Stan y RStan</strong></h2>
+<p>En esta sección se comienza a utilizar Stan para realizar los cálculos relacionados a la inferencia bayesiana. Stan es uno de los lenguajes de programación probabilística mas potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que deben ser resueltos con la interface de Stan a R, RStan.</p>
 <ol type="1">
 <li><p><strong>MCMC con RStan: Precalentamiento (I)</strong></p>
 <p>Utilice la información proporcionada para definir la estructura del modelo bayesiano utilizando RStan. No es necesario ejecutar nada, solo necesita proporcionar el código correcto.</p>
@@ -840,66 +866,85 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li>Grafique la curva de regresión junto a una banda de credibilidad del 95% en el plano de las variables originales y en el plano de las variables transformadas.</li>
 <li>Agregue a los gráficos anteriores una banda de credibilidad del 95% para la distribución predictiva <em>a posteriori</em>. Interprete los resultados.</li>
 </ol></li>
-<li><p>Considere la siguiente familia de distribuciones normales en 2D</p>
-<p><span class="math display">\[
-f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0})
-= \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
-\exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
-\]</span></p>
-<p>y las siguientes matrices de covarianza</p>
-<p><span class="math display">\[
-\begin{array}{cc}
-    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix} 1 &amp; 0.2 \\ 0.2 &amp; 1 \end{bmatrix}
-    \\ \\
-    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0.5 \\ 0.5 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix} 0.1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
-    \\ \\
-    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0.9 \\ 0.9 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix} 0.01 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
-\end{array}
-\]</span></p>
-<p>Que dan lugar a las siguientes funciones de densidad:</p>
-<div class="cell" data-layout-align="center" data-hash="practica_03_cache/html/plot-matrix-of-gaussians_2a7ceb711bec1c11d04af72ccfbea328">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="practica_03_files/figure-html/plot-matrix-of-gaussians-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Parte 1:</strong> Metropolis-Hastings</p>
-<ol type="i">
-<li>Utilice el algoritmo Metropolis-Hastings para obtener <span class="math inline">\(n=10000\)</span> muestras de cada una de las distribuciones.</li>
-<li>Calcule la probabilidad de aceptación.</li>
-<li>Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.</li>
-<li>Analice como varía la probabilidad de aceptación y la cantidad de muestras efectivas según las diferentes características de la distribución objetivo.</li>
-<li>¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según lo que puede concluir a partir de esta aplicación? Comente dificultades con las que se haya encontrado.</li>
 </ol>
-<p><strong>Parte 2:</strong> Hamiltonian Monte Carlo</p>
-<ol type="i">
-<li>Utilice el algoritmo HMC para obtener <span class="math inline">\(n=10000\)</span> muestras de cada una de las distribuciones.</li>
-<li>Calcule la probabilidad de aceptación.</li>
-<li>Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.</li>
-<li>Analice como varía la probabilidad de aceptación y la cantidad de muestras efectivas según las diferentes características de la distribución objetivo.</li>
-<li>¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según lo que puede concluir a partir de esta aplicación? Comente dificultades con las que se haya encontrado.</li>
-</ol>
-<!-- **To Do** Proveer valores para los parámetros 'mu' y 'sigma'--></li>
-</ol>
-<section id="ejercicios-que-faltan" class="level3">
-<h3 class="anchored" data-anchor-id="ejercicios-que-faltan">Ejercicios que faltan</h3>
-<ul>
-<li>Utilizar HMC para la normal multivariada con correlación moderada y alta correlación</li>
-<li>Utilizar HMC para los modelos donde se usó MH</li>
-<li>Algun caso donde los diagnosticos no den bien…
-<ul>
-<li>Puede ser cuando el HMC no esta bien tuneado</li>
-<li>Pensar algunos otros (deberia buscar en cosas que he hecho)</li>
-</ul></li>
-<li>Algo con brms?</li>
-</ul>
-<p><strong>Nota:</strong> Para los que dicen “utilizar HMC” estaria bueno que proveamos una funcion que use HMC, sin que tengan que usar Stan.</p>
+<!--
+TO DO: Mover a otro lado?
+
+1.  Considere la siguiente familia de distribuciones normales en 2D
+
+    $$
+    f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y las siguientes matrices de covarianza
+
+    $$
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+    \end{array}
+    $$
+
+    Que dan lugar a las siguientes funciones de densidad:
+
+
+    ::: {.cell layout-align="center" hash='practica_03_cache/html/plot-matrix-of-gaussians_2a7ceb711bec1c11d04af72ccfbea328'}
+    ::: {.cell-output-display}
+    ![](practica_03_files/figure-html/plot-matrix-of-gaussians-1.png){fig-align='center' width=768}
+    :::
+    :::
+
+
+    **Parte 1:** Metropolis-Hastings
+
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado. 
+
+    **Parte 2:** Hamiltonian Monte Carlo
+
+    i. Utilice el algoritmo HMC para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado. 
+
+    **To Do** Proveer valores para los parámetros 'mu' y 'sigma'
+
+-->
+<!--
+TO DO
+
+### Ejercicios que faltan
+
+* Utilizar HMC para la normal multivariada con correlación moderada y alta correlación
+* Utilizar HMC para los modelos donde se usó MH
+* Algun caso donde los diagnosticos no den bien...
+    * Puede ser cuando el HMC no esta bien tuneado
+    * Pensar algunos otros (deberia buscar en cosas que he hecho)
+* Algo con brms?
+
+**Nota:** Para los que dicen "utilizar HMC" estaria bueno que proveamos una funcion
+que use HMC, sin que tengan que usar Stan.
+-->
 <!-- 
 1. **La maldición de la dimensionalidad**
 
@@ -916,7 +961,6 @@ f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0})
 
 
 
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">

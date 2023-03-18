@@ -245,7 +245,7 @@ div.csl-indent {
 <p>La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen una distancia “caminable” suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre la denominación <em>galletitas</em> versus <em>masitas</em>. Un rosarino pone un <em>prior</em> <span class="math inline">\(\text{Beta}(20,2)\)</span> a la proporción de personas que dicen <em>galletitas</em>, mientras que un oriundo de una localidad del interior dirá que la credibilidad <em>a priori</em> es <span class="math inline">\(\text{Beta}(2,8)\)</span>.</p>
 <ol type="i">
 <li>Resuma ambas distribuciones <em>a priori</em> y explique con sus palabras lo que implican</li>
-<li>Con la información de sus compañerxs de curso, actualice ambas distribuciones <em>a priori</em>. ¿Es suficiente esa información para acercar ambas posturas?</li>
+<li>Con la información de sus compañeros de curso, actualice ambas distribuciones <em>a priori</em>. ¿Es suficiente esa información para acercar ambas posturas?</li>
 </ol></li>
 <li><p><strong>Mi primera huerta</strong></p>
 <p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, 8 de ellas germinaron. Sea <span class="math inline">\(\theta\)</span> la probabilidad de que una semilla de tomate germine y sea <span class="math inline">\(\text{Beta}(1, 1)\)</span> su distribución <em>a priori</em>.</p>
@@ -291,7 +291,17 @@ div.csl-indent {
 <ol type="i">
 <li>Halle la distribución <em>a posteriori</em> del número medio de insectos por unidad de área</li>
 <li>Halle la distribución predictiva <em>a posteriori</em> del número de insectos que se espera encontrar en una exploración de un área de 10 <span class="math inline">\(\text{m}^2\)</span></li>
-</ol></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/insectos.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Una gran variedad de insectos<br><a href="https://www.freepik.es/vector-gratis/errores-dibujos-animados-bebe-insecto-divertido-bicho-feliz-linda-mariquita_10722677.htm">Imágen de Freepik</a></figcaption><p></p>
+</figure>
+</div>
+</div>
+</div></li>
 <li><p><strong>Alter-ego</strong></p>
 <p>El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. Sus colegas les dijeron que el puntaje promedio en un examen final, <span class="math inline">\(\mu\)</span>, varía normalmente año a año con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes <span class="math inline">\(Y\)</span> varían normalmente alrededor de <span class="math inline">\(\mu\)</span> con una desviación estándar de 0.4</p>
 <ol type="i">
@@ -348,11 +358,11 @@ p(x) = \frac{1}{2a}I(x \in [-a, a])
 <p>El <em>prior</em> conjugado de la distribución uniforme es la distribución de Pareto.</p>
 <p>Si <span class="math inline">\(X \sim \text{Pareto}(\alpha, m)\)</span>, luego</p>
 <p><span class="math display">\[
-f(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
 \]</span></p>
 <p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es</p>
 <p><span class="math display">\[
-f(\theta, \mathbf{X})
+p(\theta, \mathbf{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
     \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
 \]</span></p>
@@ -373,7 +383,7 @@ p(\mathbf{X}) &amp;= \int_{M_x}^\infty
 <p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
 <p><span class="math display">\[
 \begin{array}{lcrr}
-f(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
+p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
 \end{array}
 \]</span></p>
 <ol type="i">
@@ -383,10 +393,10 @@ f(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \thet
 <li><p>Una experta del área sugiere que <span class="math inline">\(\theta\)</span> debe tener una distribución <em>a priori</em> que también sea exponencial. <span class="math display">\[
 \begin{aligned}
 \theta &amp;\sim \text{Exp}(\lambda) \\
-f(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
+p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
 \end{aligned}
 \]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\hat{\lambda}\)</span> para representar al valor.</p></li>
-<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(f(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
+<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
 <li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
@@ -421,13 +431,13 @@ Y\mid\theta \sim \text{BinomialNeg}(\theta,m) \\
 Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 \end{array}
 \]</span></p>
-<p>donde la función de densidad exponencial es <span class="math inline">\(f(y\mid\theta) = \theta e^{-\theta y}\)</span>.</p>
+<p>donde la función de densidad exponencial es <span class="math inline">\(p(y\mid\theta) = \theta e^{-\theta y}\)</span>.</p>
 <p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em> <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) --></p></li>
 </ol>
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
-<p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para comparar resultados, niveles de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
+<p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
 <li><p><strong>Entrada en calor</strong></p>
 <p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad</p>
@@ -511,8 +521,9 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 \alpha \cdot (|\pi - \delta|-\frac{1}{2}\alpha) \text{ en cualquier otro caso}
 \end{cases}
 \]</span></p></li>
-<li><p><strong>To Do</strong> Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, <span class="math inline">\({\theta_1,\theta_2,\dots,\theta_10}\)</span>. Se dan muestras de las distribuciones <em>a posteriori</em>, <span class="math inline">\(p(\theta_i\mid y)\)</span>. ¿Cuál de los tratamientos es mejor?</p></li>
 </ol>
+<!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
+    Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
 <!-- 
 ## Notas
 
