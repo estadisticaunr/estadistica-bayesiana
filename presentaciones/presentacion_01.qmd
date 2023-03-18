@@ -5,49 +5,252 @@ format:
     logo: /utils/imgs/logo.png
     footer: "Estadística Bayesiana -- 2023"
     background-transition: fade
+    transition: fade
     slide-number: true
     fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
 ---
 
 # Probabilidad
 
 ## Lógica deductiva
 
-## Razonamiento plausible
+$$A \Rightarrow B$$ $A$ es verdadero, **por lo tanto** $B$ es verdadero
 
-Es de naturaleza secuencial
+$B$ es falso, **por lo tanto** $A$ falso
 
-## Apuestas
+> $A$: Tom es un gato
+> 
+> $B$: Tom es un animal
 
-## Dutch book
+$B$ es verdadero, **por lo tanto**...
 
-::: {.callout-tip appearance="default" icon="false"}
-## Dutch book
+## 
 
-Un **Dutch book** es
+Pero este no es el tipo de razonamiento que utilizamos en la vida cotidiana:
+
+> $A$: *va a llover a las 10 de la mañana* 
+>
+> $B$: *se nubla antes de las 10 de la mañana*
+
+$B$ es verdadero, **por lo tanto** [$A$ se vuelve más *plausible*]{.fragment .fade-in}
+
+## {.smaller}
+
+> En una noche oscura, un policía camina por una calle
+> aparentemente desierta. De repente, se escucha la alarma de un local.
+> Se da vuelta y ve, en la vereda de enfrente, una joyería con la
+> vidriera rota. Un hombre con una máscara sale agachado a través
+> del vidrio roto, con una bolsa llena de joyas caras. El policía no
+> duda en concluir que el hombre no tiene buenas intenciones.
+
+El razonamiento del policía no fue una **deducción lógica**, ya que podría existir una explicación alternativa para lo ocurrido.
+
+Dada la evidencia, no podemos decir con seguridad que las intenciones del hombre no son buenas, pero sí que es extremadamente _plausible_ que no lo sean.
+
+## Razonamiento plausible {.smaller}
+
+El cerebro humano permanentemente determina si algo se vuelve más o menos _plausible_. Más aún, de alguna manera, evalúa el _grado de plausibilidad_ de una proposición.
+
+> La _plausibilidad_ de que llueva a las 10 de la mañana depende fuertemente de la oscuridad de las nubes a las 9:45.
+
+Este razonamiento hace uso de nuestra experiencia previa. Combina información _a priori_ con evidencia disponible. Esto da lugar a un proceso **secuencial**.
+
+## Apuestas {.smaller}
+
+::: {.callout-tip appearance="minimal" icon="false"}
+Páguese $1000 al portador de esta tarjeta si en este grupo hay **alguien** que tiene un loro como mascota
 :::
+
+::: {.callout-tip appearance="minimal" icon="false"}
+Páguese $1000 al portador de esta tarjeta si en este grupo **nadie** tiene un loro como mascota
+:::
+
+Tienen a su disposición estas tarjetas. Podemos comprarlas o venderlas. Al final de la clase develamos el misterio y, quien tenga la tarjeta, cobra. 
+
+¿Por cuál pagarían más? ¿Cuánto estarían dispuestos a pagar como máximo?
+
+Notar que el precio máximo que estarían dispuestos a pagar para comprarla es el precio mínimo por el que estarían dispuestos a venderla.
+
+##
+
+Todos pagaríamos $p\cdot\$ 1000$ con $0 \leq p \leq 1$.
+
+Decidimos cuánto apostar en función de nuestra incertidumbre
+en la ocurrencia de un evento (de lo plausible que lo consideremos).
+Decidimos apostar $p\cdot\$ 1000$ en favor de un evento, porque
+le asignamos una plausibilidad o credibilidad de grado $p$.
+
+##
+
+::: {.callout-tip appearance="minimal" icon="false"}
+Páguese $1000 al portador de esta tarjeta si el profe tiene una remera negra
+:::
+
+¿Cuánto están dispuestos a pagar para tener esta tarjeta? ¿Por cuánto venderían la tarjeta si la tuvieran?
+
+##
+
+::: {.callout-tip appearance="minimal" icon="false"}
+Páguese $1000 al portador de esta tarjeta si esta materia es la _mejor_ del cuatrimestre
+:::
+
+::: {.callout-tip appearance="minimal" icon="false"}
+Páguese $1000 al portador de esta tarjeta si esta materia no es la _mejor_ del cuatrimestre
+:::
+
+Por la primera pagarían como máximo $p\cdot\$ 1000$ y por la segunda, $q\cdot\$ 1000$. Es necesario que $p+q=1$. ¿Por qué?
+
+## Dutch book
+
+Supongamos que $p=0.3$ y $q=0.2$. Eso significa que:
+
+* Si no tienen las tarjetas, estarían dispuestos a comprar ambas por $\$500$. 
+* Si tienen las tarjetas, estarían dispuestos a vender ambas por $\$500$.
+
+. . .
+
+Sabemos que a fin de cuatrimestre, quien tenga las dos tarjetas ganará $\$1000$...
 
 ::: notes
 Speaker notes go here.
 :::
 
-## Probabilidad
+## Dutch Book
 
-Tres definiciones de probabilidad
+::: {.callout-tip appearance="default" icon="false"}
+### Dutch book
+El argumento del **Dutch book** dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas 
+:::
 
--   **Clásica**
--   **Frecuentista**
--   **Subjetiva**
+Los grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.
 
-## Probabilidad subjetiva
+##  {background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white"}
+
+Las probabilidades son la mejor
+herramienta disponible para cuantificar la
+incertidumbre y las leyes de la probabilidad,
+la mejor herramienta para operar con ella.
+
+## Probabilidad {.smaller}
+
+Tres ideas de probabilidad
+
+-   **Clásica**: si $n$ eventos son equiprobables, la probabilidad de uno de ellos es $1/n$. Además, la probabilidad de un evento se puede calcular como el número de casos favorables dividido el número de casos posibles.
+-   **Frecuentista**: la probabilidad de un evento se puede estimar observando su frecuencia relativa sobre un gran número de realizaciones o ensayos.
+-   **Subjetiva**: las probabilidades reflejan el grado de creencia o _plausibilidad_ que una persona le asigna a un evento.
+
+## Probabilidad subjetiva {.smaller}
+
+- Es la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)
+- Se utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición
+- Es personal
+- Depende del estado actual de conocimiento del mundo 
+
+Todos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos).
+
+## Elicitación de probabilidades
+
+
 
 ## Sesgos
 
 This is an [important sentence!]{.fragment .highlight-red}
 
-## Repaso de probabilidad
+# Repaso de probabilidad
 
-$$p(x)$$
+##
+
+Probabilidad de un evento
+$$\mathrm{Pr}(A)$$
+$$\mathrm{Pr}(\bar{A}) = 1-\mathrm{Pr}(A)$$
+$$\mathrm{Pr}(A)$$
+
+##
+
+Probabilidad de la conjunción:
+
+$$\mathrm{Pr}(A\wedge B) = \mathrm{Pr}(A,B)$$
+Si $A$ y $B$ son independientes, entonces
+
+$$\mathrm{Pr}(A\wedge B) = \mathrm{Pr}(A)\mathrm{Pr}(B)$$
+Probabilidad de la unión:
+$$\mathrm{Pr}(A \vee B) = \mathrm{Pr}(A) + \mathrm{Pr}(B) - \mathrm{Pr}(A,B)$$
+Donde, si $A$ y $B$ son mutuamente excluyentes,
+
+$$\mathrm{Pr}(A \vee B) = \mathrm{Pr}(A) + \mathrm{Pr}(B)$$
+
+##
+
+$$\mathrm{Pr}(B\mid A) = \frac{\mathrm{Pr}(A,B)}{\mathrm{Pr}(A)} $$
+siempre que $\mathrm{Pr}(A)>0$ (no se puede condicionar a eventos imposibles)
+
+## Variables aleatorias
+
+Una variable aleatoria (univariada) $X$ es una función que mapea elementos del espacio muestral $\mathcal{X}$ a la recta real $\mathbb{R}$ 
+
+-   Si $\mathcal{X}$ es finito o infinito numerable entonces $X$ es una variable aleatoria discreta
+-   Si $\mathcal{X}$ es cualquier valor en $\mathbb{R}$ entonces $X$ es una variable aleatoria continua
+
+## 
+
+Para el caso discreto:
+$$p(x) = \mathrm{Pr}(X=x) \quad \text{(pmf)}$$
+
+Para el caso continuo:
+$$P(x) = \mathrm{Pr}(X\leq x) \quad \text{(cdf)}$$
+$$ p(x) = \frac{d}{dx}P(x) \quad \text{(pdf)}$$
+
+## Caso discreto
+
+$$
+\begin{array}{c|cc}
+p(X,Y) & Y=0 & Y=1 \\
+\hline
+X=0 & 0.2 & 0.3 \\
+X=1 & 0.3 & 0.2 \\
+\end{array}
+$$
+
+## Caso continuo
+
+```{r grafico-distribucion2d}
+    #| warning: false
+    #| cache: true
+    #| echo: false
+    #| fig-align: center
+    #| fig-width:4
+    #| fig-dpi: 600
+
+library(dplyr)
+library(ggplot2)
+
+sigma_a <- 1.3
+sigma_b <- 1
+rho <- 0.4
+M <- matrix(c(sigma_a,0,0,sigma_b),nrow = 2) 
+K <- matrix(c(1,rho,rho,1),nrow = 2) 
+
+cov <- M %*% K %*% M
+
+data <- expand.grid(x1 = seq(-3,3,0.1),
+                        x2 = seq(-3,3,0.1))
+
+data |>
+  mutate(f = 2*
+           purrr::map2_dbl(x1,x2,~mvtnorm::dmvnorm(c(.x,.y),c(0,0),sigma=matrix(c(1.5,0.6,0.6,1.5),nrow = 2)))*
+           pnorm(x1*2+x2*0)) |>
+  ggplot() + 
+  scale_x_continuous("X",limits = c(-0.95,3.05), expand = c(0,0)) +
+  scale_y_continuous("Y",expand = c(0,0)) +
+  #geom_raster(aes(x=x1,y=x2,fill=f)) +
+  stat_contour(aes(x=x1,y=x2,z=f),col="white") + 
+  viridis::scale_fill_viridis(option="D") +
+  theme(axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        legend.position = "none") +
+  coord_fixed(0.66)
+```
 
 ## Regla de Bayes
 
