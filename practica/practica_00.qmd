@@ -1,6 +1,7 @@
 ---
 title: "Práctica - Unidad 0"
 nocite: "@Martin2021, @Reich2020, @Hoff2009"
+practica: "Práctica 0"
 ---
 
 ```{r}
@@ -21,21 +22,32 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
 [Descargar PDF](`r pdf_file`)
 :::
 
-1.  De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
+## Repaso de probabilidad
+
+El objetivo de los ejercicios de esta unidad es refrescar y consolidar los conocimientos 
+relacionados con el cálculo de probabilidades y la manipulación de distribuciones de 
+probabilidad.
+
+1.  **¡Argentina campeón!**
+
+    De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
     
-    i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeon})$
-    i. $P(\text{Argentina campeon})$
-    i. $P(\text{Argentina campeon}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$
-    i. $P(\text{Argentina campeon} | \text{Diciembre})$
-    i. $P(\text{Argentina campeon} | \text{18 de Diciembre de 2022})$
+    i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeón})$
+    i. $P(\text{Argentina campeón})$
+    i. $P(\text{Argentina campeón}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$
+    i. $P(\text{Argentina campeón} | \text{Diciembre})$
+    i. $P(\text{Argentina campeón} | \text{18 de Diciembre de 2022})$
     <!-- @Martin2021 -->
 
+1.  **De formulas a español**  
 
-1.  Enuncie con palabras cada una de las expresiones del punto anterior.
+    Enuncie con palabras cada una de las expresiones del punto anterior.
     <!-- @Martin2021 -->
 
-1.  Según la definición de probabilidad condicional
+1.  **Probabilidades condicionales**
+
+    Según la definición de probabilidad condicional
 
     i. ¿Cuál es el valor de $P(A | A)$?
     i. ¿Cuál es la probabilidad de $P(A, B)$?
@@ -45,24 +57,33 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     i. Es posible que $P(A | B) < P(A)$? Cuando?
     <!-- @Martin2021 -->
 
-1.  Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
-    Encuentre la constante $c$, en función de $\theta$, que haga que 
-    $f(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad válida.
-    <!-- @Reich2020 -->
+1.  **Amigarse con la función de densidad (I)**
 
-1.  Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$ 
-    y su función de densidad de probabilidad es $f(x) = 1 / (b - a)$ para todo $x \in \mathcal{S}$.
+    Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$ 
+    y su función de densidad de probabilidad es $p(x) = 1 / (b - a)$ para todo 
+    $x \in \mathcal{S}$.
     
-    i. Pruebe que $f(x)$ es una función de densidad de probabilidad válida.
+    i. Pruebe que $p(x)$ es una función de densidad de probabilidad válida.
     i. Encuentre la media y la varianza de $X$.
     <!-- @Reich2020 -->
 
-1.  Según personas expertas en un problema determinado, se indica que el valor de un parámetro 
-    debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y varianza
-    igual a 3. Encuentre una distribución que satisfaga estas condiciones.
+1.  **Amigarse con la función de densidad (II)**
+
+    Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
+    Encuentre la constante $c$, en función de $\theta$, que haga que 
+    $p(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad válida.
     <!-- @Reich2020 -->
 
-1.  Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
+1.  **En búsqueda de la distribución deseada**
+
+    Según personas expertas en un problema determinado, se indica que el valor de un 
+    parámetro  debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y
+    varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones.
+    <!-- @Reich2020 -->
+
+1.  **Distribución conjunta, marginal y condicional**
+
+    Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
     por la siguiente tabla
     
     <center>
@@ -85,7 +106,9 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     i. Obtenga la distribución condicional de $X_2$ dado $X_1$.
     <!-- @Reich2020 -->
 
-1.  Sean $X_1$ y $X_2$ tales que $(X_1, X_2)$ siguen una distribución normal bivariada
+1.  **Distribuciones marginal y condicional de una normal**
+
+    Sean $X_1$ y $X_2$ tales que $(X_1, X_2)$ siguen una distribución normal bivariada
     con $\mathbb{E}(X_1) = \mathbb{E}(X_1)$ = 0, $\text{Var}(X_1) = \text{Var}(X_2 = 1)$ y 
     $\text{cor}(X_1, X_2) = \rho$
 
@@ -93,7 +116,9 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
     <!-- @Reich2020 -->
 
-1.  Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
+1.  **De bolas, pesos y distribuciones de probabilidad**
+
+    Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
     urna $E$ contiene un 60% de bolas verdes y un 40% de bolas rojas.
     Una persona arroja una moneda de un peso argentino y selecciona una bola de una de 
     las dos urnas dependiendo de si la moneda en sol o escudo. 
@@ -128,22 +153,28 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     haya caido en escudo?
     <!-- @Hoff2009 -->
 
-    ```{r, echo=FALSE, out.width="40%", fig.align="center", fig.cap=captions[["un_peso"]]}
+    ```{r}
+    #| echo: false
+    #| out-width: 40%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["un_peso"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "un_peso.jpg"))
     ```
 
-1.  Las luces de giro en los automóviles se utilizan para indicar que se va a realizar
+1.  **Luces de giro**
+
+    Las luces de giro en los automóviles se utilizan para indicar que se va a realizar
     alguna acción determinada. La acción depende del escenario donde se conduzca 
     (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha). 
     En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se 
     va a girar en un sentido determinado. Sin embargo, esto no siempre se realiza.
     Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo gira.
-    Aunque menos frecuente, también se da que el vehículo colca la luz de giro, pero no gira. 
-    La probabilidad de girar dado que se colca la luz de giro es 0.87 y la probabilidad de 
-    girar dado que no se coloca la luz de giro es 0.21. Si observa que un vehículo coloca la 
-    luz de giro, ¿cuál es la probabilidad de que efectivamente doble?
+    Aunque menos frecuente, también se da que el vehículo coloca la luz de giro, pero no 
+    gira.  La probabilidad de girar dado que se coloca la luz de giro es 0.87 y la 
+    probabilidad de girar dado que no se coloca la luz de giro es 0.21. Si observa que un 
+    vehículo coloca la luz de giro, ¿cuál es la probabilidad de que efectivamente doble?
 
-1.  Problema del cumpleaños
+1.  **Problema del cumpleaños**
 
     Hay $k$ personas en una sala. Suponga que el cumpleaños de cada persona tiene la misma
     probabilidad de ocurrir en cualquiera de los 365 días del año (se excluye el 29 de Febrero)
@@ -153,7 +184,7 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     <!-- Blitzstein, Introdudction to Probability -->
 
 
-1.  Problema de concordancia de de Montmort
+1.  **Problema de concordancia de de Montmort**
 
     Considere un mazo de $n$ cartas bien mezcladas, etiquetadas con números del 1 a $n$.
     Se seleccionan las cartas de a una y se la da vuelta, diciendo en voz alta el número
@@ -164,10 +195,10 @@ captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
     <!-- Blitzstein, Introdudction to Probability -->
 
 
-1.  Problema de los dos sobres
+1.  **Problema de los dos sobres**
 
     Supongamos que te presentan dos sobres con dinero. Un sobre contiene el doble de 
-    dinero que el otro, pero a simple vista son indistinguibles. Se te pide que escogas
+    dinero que el otro, pero a simple vista son indistinguibles. Se te pide que escojas
     uno de los sobres. Antes de abrirlo se te ofrece la posibilidad de cambiarlo por el 
     otro. ¿Cambiarías el sobre? ¿Por qué?
     <!-- https://es.wikipedia.org/wiki/Paradoja_de_los_dos_sobres -->
