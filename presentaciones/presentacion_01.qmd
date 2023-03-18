@@ -9,46 +9,77 @@ format:
     fig-cap-location: top
 ---
 
-## Getting up
+# Probabilidad
 
--   Turn off alarm
--   Get out of bed
+## Lógica deductiva
 
-. . .
+## Razonamiento plausible
 
-::: {.callout-note appearance="default" icon=false}
+Es de naturaleza secuencial
 
-## Pay Attention
+## Apuestas
 
-Using callouts is an effective way to highlight content that your reader give special consideration or attention.
+## Dutch book
 
+::: {.callout-tip appearance="default" icon="false"}
+## Dutch book
+
+Un **Dutch book** es
 :::
 
-::: {.callout-important appearance="default" icon=false}
-
-## Pay Attention
-
-Using callouts is an effective way to highlight content that your reader give special consideration or attention.
-
-:::
-
-::: {.notes}
+::: notes
 Speaker notes go here.
 :::
 
-## Slide Title {background-color="#ffc13b"}
+## Probabilidad
 
-:::: {.columns}
+Tres definiciones de probabilidad
 
-::: {.column width="40%"}
-Left column
+-   **Clásica**
+-   **Frecuentista**
+-   **Subjetiva**
+
+## Probabilidad subjetiva
+
+## Sesgos
+
+This is an [important sentence!]{.fragment .highlight-red}
+
+## Repaso de probabilidad
+
+$$p(x)$$
+
+## Regla de Bayes
+
+## Historia de la Regla de Bayes
+
+::: columns
+::: {.column width="33%"}
+::: fragment
+Bayes
+:::
 :::
 
-::: {.column width="60%"}
-Right column
+::: {.column width="33%"}
+::: fragment
+Price
+:::
 :::
 
-::::
+::: {.column width="33%"}
+::: fragment
+Laplace
+:::
+:::
+:::
+
+## Ejemplos
+
+# Inferencia Bayesiana
+
+##  {background-color="#ffc13b" style="font-size: 2em; text-align: left; color=white"}
+
+La inferencia bayesiana es la realocación de la credibilidad del conjunto de parámetros de un modelo
 
 ## Slide 3 {.smaller}
 
