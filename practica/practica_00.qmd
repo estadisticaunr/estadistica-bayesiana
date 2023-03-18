@@ -11,11 +11,15 @@ pdf_file <- paste0(
     "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
     paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
 )
-
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
-captions <- list()
+source(here::here("scripts", "utils.R"))
+caption_data <- list(
+    "cumple" = list(author = "Adi Goldstein", handle = "adigold1", code = "Hli3R6LKibo")
+)
+captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
+captions[["argentina_campeon"]] <- "El festejo de los campeones del mundo"
 ```
 
 ::: {.content-visible when-format="html"}
@@ -39,6 +43,14 @@ probabilidad.
     i. $P(\text{Argentina campeón} | \text{Diciembre})$
     i. $P(\text{Argentina campeón} | \text{18 de Diciembre de 2022})$
     <!-- @Martin2021 -->
+
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["argentina_campeon"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "argentina_campeon.png"))
+    ```
 
 1.  **De formulas a español**  
 
@@ -182,6 +194,14 @@ probabilidad.
     ¿Cuál es la probabilidad de que al menos un par de personas en el grupo cumplan los
     años el mismo día?
     <!-- Blitzstein, Introdudction to Probability -->
+
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["cumple"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "cumple.jpg"))
+    ```
 
 
 1.  **Problema de concordancia de de Montmort**

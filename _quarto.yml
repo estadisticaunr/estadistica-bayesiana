@@ -54,7 +54,7 @@ website:
     - title: Teoría
       style: docked
       search: false
-      background: light
+      background: dark
       contents:
         - text: U1 - Introducción
           file: teoria/u1_teoria_01.qmd

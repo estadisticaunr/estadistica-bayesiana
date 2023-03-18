@@ -16,11 +16,14 @@ options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
 caption_data <- list(
     "bebe_panda" = list(author = "Stone Wang", handle = "stonewyq", code = "0wk7m5SVPsM"),
-    "colectivo" = list(author = "Markus Winkler", handle = "markuswinkler", code = "HII6PEEvLHw")
+    "colectivo" = list(author = "Markus Winkler", handle = "markuswinkler", code = "HII6PEEvLHw"),
+    "bosque" = list(author = "Sergei A", handle = "sakulich", code = "-heLWtuAN3c")
 )
 captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["crepusculo"]] <- "Robert Pattinson como Edward en Crepúsculo"
 captions[["ceibo"]] <- "Flor del Ceibo, la flor nacional"
+captions[["sherlock"]] <- "Sherlock Holmes, el detective privado"
+captions[["house_of_cards"]] <- "Robin Wright y Kevin Spacey, protagonistas de House of Cards"
 ```
 
 ::: {.content-visible when-format="html"}
@@ -55,8 +58,8 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     En una población dada, una de cada mil personas tiene una enfermedad.
     Se toma una persona al azar de la población, se le aplica un test para detectar dicha
     enfermedad, y el resultado es positivo.
-    El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la
-    enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.
+    El test se caracteriza por dar positivo el 99\% de las veces que una persona tiene la
+    enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5\%.
 
     - ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
     - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
@@ -68,10 +71,10 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 1.  **¿Es verdad que existen los vampiros? Versión Crepúsculo**
 
     Edward quiere probarle a Bella que los vampiros existen.
-    Según Bella, hay una probabilidad del 5% de que los vampiros existan.
+    Según Bella, hay una probabilidad del 5\% de que los vampiros existan.
     También cree que la probabilidad de que exista alguien con la piel brillante dado que
-    los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel 
-    rillante si los vampiros no existen es del 3%.
+    los vampiros existen es del 70\%, y que la probabilidad de que alguien tenga la piel 
+    rillante si los vampiros no existen es del 3\%.
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 
     ¿Cuál es la probabilidad que existan los vampiros?
     <!-- @Johnson2021 -->
@@ -89,10 +92,10 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
     incluyendo al jacarandá, ceibo, ombú, entre otros.
-    Lamentablemente, el 18% de los árboles del vivero estan infectados con moho.
-    Los árboles enfremos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de 
+    Lamentablemente, el 18\% de los árboles del vivero estan infectados con moho.
+    Los árboles enfremos se componen en un 15\% por jacarandás, 80\% de ceibos, y 5\% de 
     otras especies.
-    Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras 
+    Los árboles sanos se componen por un 20\% de jacarandás, 10\% de ceibos, y 70\% de otras 
     especies.
     Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
     trabaja en el vivero selecciona al azar uno de los árboles para testear.
@@ -118,11 +121,11 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual", tiene
     servicios que van desde Rosario hasta Wheelwright varias veces al día, 
     todos los días de la semana.
-    Un 30% de los viajes salen a la mañana, otro 30% salen a la tarde, y el restante 40%
+    Un 30\% de los viajes salen a la mañana, otro 30\% salen a la tarde, y el restante 40\%
     salen a la noche.
-    Los pasajeros suelen estar muy frustrados ya que un 25% de los viajes salen tarde.
-    De estos viajes demorados, el 40% corresponden a la mañana, un 50% suceden a la tarde,
-    y el 10% restante ocurre a la noche[^el_impuntual].
+    Los pasajeros suelen estar muy frustrados ya que un 25\% de los viajes salen tarde.
+    De estos viajes demorados, el 40\% corresponden a la mañana, un 50\% suceden a la tarde,
+    y el 10\% restante ocurre a la noche[^el_impuntual].
 
     Lucio y Franco son dos amigos del pueblo, y se volvieron a sus casas en colectivos diferentes.
 
@@ -147,8 +150,8 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Es más, lucen de la misma forma y comen la misma comida.
     Aún no existe una prueba genética que pueda diferenciarlos.
     Lo único que los diferencia es la cantidad de crías que suelen tener.
-    Las madres de la especie A dan luz a mellizos el 10% del tiempo.
-    Y las madres de la especie B dan a luz mellizos el 20% del tiempo.
+    Las madres de la especie A dan luz a mellizos el 10\% del tiempo.
+    Y las madres de la especie B dan a luz mellizos el 20\% del tiempo.
     En todos los otros casos, estas madres dan a luz un solo bebé panda.
 
     Usando un poco la imaginación, supongamos que somos la persona encargada de un 
@@ -170,46 +173,55 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 
-1. **Paraguas**
+1.  **Paraguas**
 
     Estás a punto de subir a un avión rumbo a Mendoza.
     Querés saber si tenés que llevar un paraguas o no.
     Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo.
-    Cada uno de ellos tiene una probabilidad de 2/3 de decirte la verdad y 1/3 de mentirte
+    Cada uno de ellos tiene una probabilidad de $2/3$ de decirte la verdad y $1/3$ de mentirte
     para hacerte una broma.
     Los tres responden que sí está lloviendo.
     ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza?
     Se puede asumir que en Mendoza llueve en 1 de cada 10 días.
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-1. **Sherlock**
+
+1.  **Sherlock**
 
     Dos personas dejaron rastros de sangre en la escena del crimen.
     La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo '0'.
     Los rastros de sangre de la escena son de tipo '0' (un tipo común en la población, 
-    presente en el 60% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia 
-    del 1% en la población).
+    presente en el 60\% de las personas) y de tipo 'AB' (un tipo raro, con una frecuencia 
+    del 1\% en la población).
     ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
-1. **Hijxs de la probabilidad**
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["sherlock"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "sherlock.png"))
+    ```
 
-    Nos encontramos con alguien en la calle y nos dice que tiene dos hijxs.
-    Le preguntamos si algunx de ellxs es mujer y nos responde que sí.
-    ¿Cuál es la probabilidad de que ambxs sean niñas?
+1.  **Hijos de la probabilidad**
+
+    Nos encontramos con alguien en la calle y nos dice que tiene dos hijos.
+    Le preguntamos si alguno de ellos es mujer y nos responde que sí.
+    ¿Cuál es la probabilidad de que ambos sean niñas?
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
-1. **Los Reyes del Rock**
+1.  **Los Reyes del Rock**
 
     Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al 
     poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo?
     Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanxs del 
-    mismo parto eran gemelxs y 2/3 mellizxs; además, la probabilidad de que dos mellizxs 
-    sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelxs son 
+    mismo parto eran gemelos y 2/3 mellizos; además, la probabilidad de que dos mellizos 
+    sean del mismo sexo biológico puede estimarse en 50\%, mientras que dos gemelos son 
     siempre del mismo sexo biológico.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
-1. **¿Alguien ordena las medias?**
+1.  **¿Alguien ordena las medias?**
 
     Dos cajones contienen medias.
     Uno de ellos tiene igual cantidad de medias blancas y negras.
@@ -219,7 +231,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Supóngase que sacar la primera media no altera las proporciones.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
     
-1. **La Falacia del Fiscal**
+1.  **La Falacia del Fiscal**
 
     Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión 
     perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, 
@@ -267,9 +279,9 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Los M&Ms azul fueron introducidos en el año 1995 ([antes había dos tipos de marrón](http://content.time.com/time/specials/packages/article/0,28804,2011482_2011480_2011460,00.html))
 
     - Antes de 1995, la mezcla de colores en una bolsa de M&Ms era: 
-    30% marron, 20% amarillo, 20% rojo, 10% verde, 10% naranja y 10% marrón *bronceado*.
-    - Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo,
-    13% rojo y 13% marrón.
+    30\% marron, 20\% amarillo, 20\% rojo, 10\% verde, 10\% naranja y 10\% marrón *bronceado*.
+    - Luego de 1995, la mezcla pasó a ser: 24\% azul, 20\% verde, 16\% naranja, 14\% amarillo,
+    13\% rojo y 13\% marrón.
 
     Un amigo tiene dos bolsas de M&M y nos dice que una bolsa es de 1994 y la otra es de 
     1996, pero no nos dice cuál es cuál.
@@ -316,7 +328,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
          c.  $\alpha = 2$ y $\theta = 0.9$
          
 
-1.  **Bosque**
+1.  **Que el árbol no tape el bosque**
 
     Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
     árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
@@ -348,8 +360,16 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en 
     (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
     ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
-    se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? 
+    se puede concluir con 95\% de confianza que la especie no se encuentra en el bosque? 
     <!-- @Reich2020 -->
+
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["bosque"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "bosque.jpg"))
+    ```
 
 1.  **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
 
@@ -418,11 +438,20 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Hay 538 miembros en el Congreso de Estados Unidos.
     Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron
     rendimientos por encima del mercado.
-    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de
+    Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50\% de
     tener rendimientos por encima del mercado, pero uno deshonesto que opera con
-    información confidencial tiene una chance del 90% de hacerlo.
+    información confidencial tiene una chance del 90\% de hacerlo.
     ¿Cuántos miembros del Congreso son honestos?
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
+
+    ```{r}
+    #| echo: false
+    #| out-width: 70%
+    #| fig-align: center
+    #| fig-cap: !expr captions[["house_of_cards"]]
+    if (is_html) knitr::include_graphics(file.path("imgs", "house_of_cards.png"))
+    ```
+
 
 1.  **Puede fallar...**
 
@@ -431,7 +460,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     o ceca y registra el resultado.
 
     Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error.
-    En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que 
+    En particular, la probabilidad de que clasificar mal es de 0.2 (20\% de las veces que 
     sale cara, el sistema dice ceca, y viceversa).
 
     Se arroja la moneda 250 veces y el sistema detecta 140 caras,
@@ -481,7 +510,7 @@ para interpretar estas visiones en diferentes escenarios.
 
 
 [^el_impuntual]: Hay gente que dice que "cada dos por tres" te deja a pata.
-    No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, ya que un 25% también es un montón!
+    No nos vamos a pelear explicándoles que estan siendo demasiado exigentes, ya que un 25\% también es un montón!
     
 [^bivalvas]: Una clase de molusco.
     El mejillón, la ostra y la almeja son bivalvos
