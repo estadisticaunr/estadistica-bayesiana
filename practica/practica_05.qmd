@@ -17,7 +17,18 @@ pdf_file <- paste0(
 [Descargar PDF](`r pdf_file`)
 :::
 
-1.  Considere un modelo para datos de conteo con un predictor $X$ que toma valores entre -3 y 50
+## Modelos de regresión avanzados
+
+En esta última unidad de la práctica se presentan ejercicios que requieren el desarrollo
+de modelos de regresión con un nivdel de complejidad mayor. La distribución 
+condicional de la respuesta ya no es necesariamente normal y la forma del predictor de la
+media incluye características que lo diferencian de un predictor lineal simple. Además,
+esta unidad presenta ejercicios con modelos jerárquicos.
+
+1.  **Regresión Poisson**
+
+    Considere el siguiente modelo para datos de conteo con un predictor $X$ que toma 
+    valores entre -3 y 50:
 
     $$
     \begin{aligned}
@@ -26,10 +37,17 @@ pdf_file <- paste0(
     \end{aligned}
     $$
     
-    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\lambda_i$ y los de $Y_i$. ¿Cómo es $\lambda$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$? ¿Qué ocurre con la varianza de $Y$ en función de $X$? ¿Cómo es la distribución marginal de $Y$?
-    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\lambda_i$ y $Y_i$. Compare los resultados.
+    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule 
+    los correspondientes valores de $\lambda_i$ y los de $Y_i$. ¿Cómo es $\lambda$ en 
+    función de $X$? ¿Es lineal la relación entre $X$ e $Y$? ¿Qué ocurre con la varianza de
+     $Y$ en función de $X$? ¿Cómo es la distribución marginal de $Y$?
+    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule 
+    nuevamente valores para $\lambda_i$ y $Y_i$. Compare los resultados.
     
-1.  Considere un modelo de clasificación con un predictor $X$ que toma valores entre -30 y 10
+1.  **Regresión logística**
+
+    Considere el siguiente modelo de clasificación con un predictor $X$ que toma valores 
+    entre -30 y 10:
 
     $$
     \begin{aligned}
@@ -38,10 +56,15 @@ pdf_file <- paste0(
     \end{aligned}
     $$
     
-    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule los correspondientes valores de $\theta_i$ y los de $Y_i$. ¿Cómo es $\theta$ en función de $X$? ¿Es lineal la relación entre $X$ e $Y$?
-    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
+    i. Genere 1000 valores de $X$, asuma un valor conocido (y fijo) para $\beta$, simule 
+    los correspondientes valores de $\theta_i$ y los de $Y_i$. ¿Cómo es $\theta$ en 
+    función de $X$? ¿Es lineal la relación entre $X$ e $Y$?
+    i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule 
+    nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
 
-1.  Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
+1.  **Modelo lineal para elecciones en Estados Unidos**
+
+    Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
     año 2016 que se provee en @Reich2020 (`rep_2012_2016`). Elabore un modelo de regresión
     lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el 
     porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo
@@ -56,9 +79,11 @@ pdf_file <- paste0(
     estos condados?
     <!-- 4.6.3 @Reich2020 sin efectos aleatorios -->
 
-1.  Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen
-    de un estudio transversal. Para el estado $i$, sea $Y_i$ el numero de homicios y $N_i$ el tamaño
-    de la población.
+1.  **Control de armas**
+
+    Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos
+    provienen de un estudio transversal. Para el estado $i$, sea $Y_i$ el numero de 
+    homicidios y $N_i$ el tamaño de la población.
 
     i. Ajuste el modelo $Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
     $\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
@@ -71,7 +96,9 @@ pdf_file <- paste0(
     i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
     -->
 
-1.  Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé 
+1.  **¿A cuántas Sofías conoces?**
+
+    Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé 
     llamado "Sophia" en cada año luego de 1950.
 
     ```{r}
@@ -85,8 +112,8 @@ pdf_file <- paste0(
     Y <- log(p / (1 - p))
     ```
 
-    Sea $Y_t$ el log-odds muestral en el año $t + 1950$. 
-    Ajuste el siguiente modelo auto-regresivo de orden 1:
+    Sea $Y_t$ el log-odds muestral en el año $t + 1950$.  Ajuste el siguiente modelo 
+    auto-regresivo de orden 1:
 
     $$
     \begin{aligned}
@@ -105,7 +132,9 @@ pdf_file <- paste0(
     i. Grafique la distribución predictiva a posteriori para $Y_t$ en el año 2020.
     <!-- @Reich2020 -->
 
-1.  En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
+1.  **Meta-análisis**
+
+    En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
     el resultado de varios estudios. Los datos provienen del paquete `{rmeta}` en `R`.
 
     ```{r}
@@ -149,7 +178,9 @@ pdf_file <- paste0(
     i. ¿Cuál modelo es el preferido para estos datos?
     <!-- @Reich2020 -->
 
-1.  Utilice el conjuto de datos `airquality` que viene con el paquete `{datasets}` que se 
+1.  **Comparando modelos normales**
+    
+    Utilice el conjuto de datos `airquality` que viene con el paquete `{datasets}` que se 
     carga automáticamente al crear una sesión de `R`.
     
     ```{r}
@@ -176,7 +207,7 @@ pdf_file <- paste0(
     \end{array}
     $$
 
-    Elija _priors_ para ambos modelos explicando su elección.
+    Elija _priors_ para los parámetros de ambos modelos explicando su elección.
     <!-- @Reich2020 -->
 
 1.  **Accidente del Challenger**
@@ -203,17 +234,14 @@ pdf_file <- paste0(
             66L, 70L, 69L, 68L, 67L, 72L, 73L, 70L, 57L, 63L, 70L, 78L, 67L, 53L, 67L, 75L, 
             70L, 81L, 76L, 79L, 75L,76L,58L
         ),
-        "Falla" = c(
+        "F" = c(
             0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 
             1L, 0L, 1L
         )
     )
-
-    knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> 
-        kableExtra::kable_styling(full_width = FALSE)
+    knitr::kable(t(challenger), col.names = NULL)
     ```
     
-
 1.  **Curvas de crecimiento de tiranosáuridos**
 
     Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de 

@@ -36,6 +36,14 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
 
 ## Regresión lineal
 
+El objetivo principal de esta unidad es la aplicación de modelos de regresión lineales 
+desde una perspectiva bayesiana, considerando a los parámetros del modelo como cantidades
+aleatorias que se corresponden con una distribución de probabilidad _a priori_. 
+A diferencia del enfoque frecuentista o máximo verosímil, el resultado de la inferencia 
+bayesiana es una distribución de probabilidad _a posteriori_, la cual se utiliza como 
+fuente de todas las conclusiones. Además, se emplean técnicas propias de la estadística
+bayesiana para evaluar la adecuación y comparar los modelos utilizados.
+
 1.  **Mi primer regresión bayesiana**
 
     El conjunto de datos `sales` contiene los montos semanales de inversión en publicidad 
@@ -61,8 +69,8 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     \begin{aligned}
     \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
     \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
-    \beta_0 &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
-    \beta_1 &\sim \text{Normal}(0, 0.5) \\
+    \beta_0  &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
+    \beta_1  &\sim \text{Normal}(0, 0.5) \\
     \sigma^2 &\sim \text{Normal}^+(5)
     \end{aligned}
     $$
@@ -177,7 +185,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     conocían las notas. Los datos se encuentran en el archivo `beauty`.
     
     i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
-    i. **To Do**?
+    <!-- i. **To Do**? -->
     
 1.  **Ingresos**
 
