@@ -258,15 +258,15 @@ div.csl-indent {
 <p>El conjunto de datos <code>weather_WU</code> datos climáticos correspondientes a 100 días en dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
 <p>Considere los siguientes cuatro modelos:</p>
 <ul>
-<li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code></li>
-<li><span class="math inline">\(m_2\)</span>: <code>temp3pm ~ location</code></li>
-<li><span class="math inline">\(m_3\)</span>: <code>temp3pm ~ temp9am + location</code></li>
-<li><span class="math inline">\(m_4\)</span>: <code>temp3pm ~ .</code></li>
+<li><span class="math inline">\(m_1\)</span>: <code>temp3pm ~ temp9am</code>;</li>
+<li><span class="math inline">\(m_2\)</span>: <code>temp3pm ~ location</code>;</li>
+<li><span class="math inline">\(m_3\)</span>: <code>temp3pm ~ temp9am + location</code>;</li>
+<li><span class="math inline">\(m_4\)</span>: <code>temp3pm ~ .</code>.</li>
 </ul>
 <ol type="i">
-<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
-<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
-<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em> <!-- Bayes Rules. Capítulo 11. --></li>
+<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos.</li>
+<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos.</li>
+<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em>. <!-- Bayes Rules. Capítulo 11. --></li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -281,27 +281,27 @@ div.csl-indent {
 <li><p><strong>Pingüinos</strong></p>
 <p>Considere el dataset de pingüinos de Palmer (<code>penguins</code>) y los siguientes modelos:</p>
 <ul>
-<li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code></li>
-<li><span class="math inline">\(m_2\)</span>: <code>body_mass_g ~ species</code></li>
-<li><span class="math inline">\(m_3\)</span>: <code>body_mass_g ~ flipper_length_mm + species</code></li>
-<li><span class="math inline">\(m_4\)</span>: <code>body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species</code></li>
-<li><span class="math inline">\(m_5\)</span>: <code>body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm</code></li>
+<li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code>;</li>
+<li><span class="math inline">\(m_2\)</span>: <code>body_mass_g ~ species</code>;</li>
+<li><span class="math inline">\(m_3\)</span>: <code>body_mass_g ~ flipper_length_mm + species</code>;</li>
+<li><span class="math inline">\(m_4\)</span>: <code>body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species</code>;</li>
+<li><span class="math inline">\(m_5\)</span>: <code>body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm</code>.</li>
 </ul>
 <ol type="i">
-<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos</li>
-<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos</li>
-<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em> <!-- Bayes Rules. Capítulo 11. --></li>
+<li>Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos.</li>
+<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos.</li>
+<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em>. <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
 <li><p><strong>De tal palo…</strong></p>
 <p>El dataset <code>child_iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio a luz.</p>
 <ol type="i">
 <li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre</li>
-<li>Considere ahora un modelo que incluya la educación de la madre</li>
+<li>Considere ahora un modelo que incluya la educación de la madre.</li>
 </ol></li>
 <li><p><strong>La pinta es lo de menos…</strong></p>
 <p>Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un curso y la belleza de los instructores. La determinación de la belleza se hizo a partir de las opiniones de seis estudiantes que no participaron de los cursos y no conocían las notas. Los datos se encuentran en el archivo <code>beauty</code>.</p>
 <ol type="i">
-<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code></li>
+<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code>.</li>
 <li><strong>To Do</strong>?</li>
 </ol></li>
 <li><p><strong>Ingresos</strong></p>
@@ -314,16 +314,16 @@ div.csl-indent {
 <p>El archivo <code>Howell1</code> contiene datos de un censo parcial realizado por Dobe Howell acerca de la población !Kung.</p>
 <p>Considere un modelo de altura en función del peso.</p>
 <ol type="i">
-<li>Determine e interprete las distribuciones <em>a posteriori</em> de los parámetros</li>
+<li>Determine e interprete las distribuciones <em>a posteriori</em> de los parámetros.</li>
 <li>Construya un gráfico de altura en función del peso, incluya las observaciones de los individuos, la recta de regresión MAP, el intervalo del 80% para la media y y el intervalo del 80% para la altura predicha.</li>
 <li>Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59 y 54.63. Calcule la altura esperada y el intervalo del 89%.</li>
 </ol></li>
 <li><p><strong>Zorros urbanos</strong></p>
 <p>Considere del conjunto de datos sobre zorros urbanos (<code>foxes</code>). Ajuste tres modelos:</p>
 <ul>
-<li><span class="math inline">\(m_1\)</span>: <code>weight ~ area</code></li>
-<li><span class="math inline">\(m_2\)</span>: <code>weight ~ groupsize</code></li>
-<li><span class="math inline">\(m_3\)</span>: <code>weight ~ area + groupsize</code></li>
+<li><span class="math inline">\(m_1\)</span>: <code>weight ~ area</code>;</li>
+<li><span class="math inline">\(m_2\)</span>: <code>weight ~ groupsize</code>;</li>
+<li><span class="math inline">\(m_3\)</span>: <code>weight ~ area + groupsize</code>.</li>
 </ul>
 <ol type="i">
 <li>Para los modelos <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span>, represente gráficamente los resultados, incluyendo la recta de regresión MAP, su intervalo del 89% y el intervalo de predicción del 89%. ¿Es alguna de las dos variables importantes para predecir la masa de un zorro?</li>
@@ -384,11 +384,11 @@ div.csl-indent {
 <p>Continuando con los datos del ejercicio anterior, El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
 <p>Considere los siguientes modelos</p>
 <ul>
-<li><span class="math inline">\(m_1\)</span>: <code>log(Weight) ~ 0 + Species</code></li>
-<li><span class="math inline">\(m_2\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1)</code></li>
-<li><span class="math inline">\(m_3\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species</code></li>
-<li><span class="math inline">\(m_4\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)</code></li>
-<li><span class="math inline">\(m_5\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species</code></li>
+<li><span class="math inline">\(m_1\)</span>: <code>log(Weight) ~ 0 + Species</code>;</li>
+<li><span class="math inline">\(m_2\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1)</code>;</li>
+<li><span class="math inline">\(m_3\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species</code>;</li>
+<li><span class="math inline">\(m_4\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)</code>;</li>
+<li><span class="math inline">\(m_5\)</span>: <code>log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species</code>.</li>
 </ul>
 <ol type="i">
 <li>Ajuste cada uno de los modelos.</li>
@@ -462,7 +462,7 @@ div.csl-indent {
 <p>El listado de variables se compone por: escuela del estudiante, sexo del estudiante, edad del estudiante, tipo de domicilio del estudiante, tamaño de la familia, estado de convivencia de los padres, educación de la madre, educación del padre, tiempo de viaje del hogar a la escuela, tiempo de estudio semanal, número de fracasos escolares pasados, apoyo educativo adicional, clases pagadas adicionales dentro de la materia del curso, actividades extracurriculares, si el estudiante asistió a una guardería, si el estudiante desea cursar estudios superiores, acceso a Internet en el hogar, si el estudiante tiene una relación romántica, calidad de las relaciones familiares, tiempo libre después de la escuela, si el estudiante sale con amigos, consumo de alcohol entre semana, consumo de alcohol los fines de semana, estado de salud actual y número de ausencias escolares.</p>
 <p><strong>Priors débilmente informativos</strong></p>
 <ol type="i">
-<li><p>Ajuste un modelo de regresión lineal utilizando todos los predictores luego de estandarizarlos y con los siguientes <em>priors</em> <span class="math display">\[
+<li><p>Ajuste un modelo de regresión lineal utilizando todos los predictores luego de estandarizarlos y con los siguientes <em>priors</em>: <span class="math display">\[
 \begin{aligned}
 \beta_k &amp;\sim \text{Normal}(0, 2.5) \\
 \sigma  &amp;\sim \text{Exponential}(1 / \text{std}(y))
@@ -476,7 +476,7 @@ div.csl-indent {
 <p><strong>Priors alternativos (I)</strong></p>
 <p>Si se asume que muchos predictores pueden tener poca relevancia, se pueden escalar los <em>priors</em> independientes para que la suma de la varianza de los <em>priors</em> se encuentre alrededor de un valor razonable. En este caso, se cuenta con 26 predictores y se podría suponer que la proporción de la varianza explicada por los predictores está alrededor de 0.3. Entonces, un enfoque simple consiste en asignar <em>priors</em> independientes a los coeficientes de regresión con media 0 y desviación estándar <span class="math inline">\(\sqrt{0.3/26}\text{sd}(y)\)</span> y un <em>prior</em> exponencial con media <span class="math inline">\(\sqrt{0.7}\text{sd}(y)\)</span> para <span class="math inline">\(\sigma\)</span>.</p>
 <ol type="i">
-<li>Ajuste el modelo nuevamente utilizando los siguientes priors <span class="math display">\[
+<li>Ajuste el modelo nuevamente utilizando los siguientes priors: <span class="math display">\[
 \begin{aligned}
 \beta_k &amp;\sim \text{Normal}(0, \sqrt{\frac{0.3}{26}}\text{sd}(y)) \\
 \sigma  &amp;\sim \text{Exponential}(1 / \sqrt{0.7}\text{sd}(y))

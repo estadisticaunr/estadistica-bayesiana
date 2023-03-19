@@ -289,14 +289,14 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li><p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
 <li>Utilice distribuciones <em>a priori</em> normales no informativas. Interprete las distribuciones <em>a posteriori</em> marginales de los coeficientes de regresión.</li>
-<li>Calcule los residuos <span class="math inline">\(\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}\)</span> donde <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> es la media a posteriori del vector de coeficientes de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados?</li>
-<li>To Do: Compartir datos de forma accesible <!-- 4.6.3 @Reich2020 sin efectos aleatorios --></li>
+<li>Calcule los residuos <span class="math inline">\(\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}\)</span> donde <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> es la media a posteriori del vector de coeficientes de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre estos condados? <!-- 4.6.3 @Reich2020 sin efectos aleatorios --></li>
 </ol></li>
 <li><p>Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen de un estudio transversal. Para el estado <span class="math inline">\(i\)</span>, sea <span class="math inline">\(Y_i\)</span> el numero de homicios y <span class="math inline">\(N_i\)</span> el tamaño de la población.</p>
 <ol type="i">
-<li>Ajuste el modelo <span class="math inline">\(Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones a priori no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\mathbf{X}_i\)</span>: el intercepto, los cinco <em>confounders</em> <span class="math inline">\(\mathbf{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>.</li>
-<li>To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan</li>
-<li>To Do: Ver como presentamos el tema de las variables a incorporar en el modelo</li>
+<li>Ajuste el modelo <span class="math inline">\(Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones a priori no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\mathbf{X}_i\)</span>: el intercepto, los cinco <em>confounders</em> <span class="math inline">\(\mathbf{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>. <!--
+i. To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan
+i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
+--></li>
 </ol></li>
 <li><p>Descargue el conjunto de datos <code>babynames</code> en <code>R</code> y calcule el log-odds de un bebé llamado “Sophia” en cada año luego de 1950.</p>
 <div class="cell">
@@ -321,10 +321,10 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 \]</span></p>
 <ol type="i">
 <li>Interprete los parámetros del modelo (<span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\beta\)</span>, <span class="math inline">\(\rho\)</span> y <span class="math inline">\(\sigma^2\)</span>)</li>
-<li>Ajuste el modelo utilizando <code>RStan</code> para <span class="math inline">\(t &gt; 1\)</span>. Verifique la convergencia y reporte la media a posteriori e intervalos del 95% para los parámetros.</li>
+<li>Ajuste el modelo utilizando <code>{RStan}</code> para <span class="math inline">\(t &gt; 1\)</span>. Verifique la convergencia y reporte la media a posteriori e intervalos del 95% para los parámetros.</li>
 <li>Grafique la distribución predictiva a posteriori para <span class="math inline">\(Y_t\)</span> en el año 2020. <!-- @Reich2020 --></li>
 </ol></li>
-<li><p>En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina el resultado de varios estudios. Los datos provienen del paquete <code>rmeta</code> en <code>R</code>.</p>
+<li><p>En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina el resultado de varios estudios. Los datos provienen del paquete <code>{rmeta}</code> en <code>R</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmeta)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cochrane)</span>
@@ -353,7 +353,7 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 <li>Discuta las ventajas y desventajas de ambos modelos.</li>
 <li>¿Cuál modelo es el preferido para estos datos? <!-- @Reich2020 --></li>
 </ol></li>
-<li><p>Utilice el conjuto de datos <code>airquality</code> que viene con el paquete <code>datasets</code> que se carga automáticamente al crear una sesión de <code>R</code>.</p>
+<li><p>Utilice el conjuto de datos <code>airquality</code> que viene con el paquete <code>{datasets}</code> que se carga automáticamente al crear una sesión de <code>R</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(airquality)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -372,10 +372,9 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 \end{array}
 \]</span></p>
 <p>Elija <em>priors</em> para ambos modelos explicando su elección. <!-- @Reich2020 --></p></li>
-<li><p>Accidente del Challenger</p>
+<li><p><strong>Accidente del Challenger</strong></p>
 <p>El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del Challenger explotó poco después del despegue. En el accidente murieron los siete tripulantes. La comisión que investigó el accidente concluyó que el accidente fue causado por una falla en un <em>o-ring</em> en una juntura de uno de los propulsores. Esta falla se debió a un diseño defectuoso que volvió al <em>o-ring</em> excesivamente sensible a factores externos, entre ellos la temperatura. De los veinticuatro vuelos previos, existía información de fallas de <em>o-rings</em> para veintitrés de ellos (el otro se perdió en el océano). Estos datos fueron discutidos la noche previa al incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron a la conclusión de que no había una evidencia clara.</p>
-<!-- @DavidsonPilon2015 --></li>
-</ol>
+<!-- @DavidsonPilon2015 -->
 <div class="cell">
 <div class="cell-output-display">
 
@@ -483,12 +482,11 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 </table>
 
 </div>
-</div>
-<ol type="1">
-<li><p>Curvas de crecimiento de tiranosáuridos</p>
+</div></li>
+<li><p><strong>Curvas de crecimiento de tiranosáuridos</strong></p>
 <p>Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. Los datos se toman de la Tabla 1 de <span class="citation" data-cites="Erickson2004">Erickson et&nbsp;al. (<a href="#ref-Erickson2004" role="doc-biblioref">2004</a>)</span> y se muestran en la <a href="#fig-dinos">Figura&nbsp;1</a>. El objetivo es determinar la curva de crecimiento, esto es, determinar el peso esperado por edad para todas las especies.</p>
 <p>En el panel izquierdo de la <a href="#fig-dinos">Figura&nbsp;1</a> se puede observar que hay una relación no lineal entre la edad y el peso. También se observan ciertos patrones comunes a las especies. Por ejemplo, la relación positiva entre las variables o el decrecimiento en la tasa de cambio conforme la edad es mayor.</p>
-<div class="cell" data-hash="practica_05_cache/html/fig-dinos_8ad95a2b21ce9764d6e68a6e5d2568cd">
+<div class="cell" data-hash="practica_05_cache/html/fig-dinos_f12a299341d0ed3c6590f54fd5e64f27">
 <div class="cell-output-display">
 <div id="fig-dinos" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -529,7 +527,7 @@ b_j &amp;\sim \text{Normal}(0, 10) \\
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con RStan.</li>
+<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con <code>{RStan}</code>.</li>
 <li>Analice los coeficientes del modelo y las curvas de crecimiento. Realice gráficos que permitan observar la curva ajustada y su incertidumbre para cada especie.</li>
 </ol>
 <p><strong>Modelo 2</strong></p>
@@ -546,7 +544,7 @@ b_j      &amp;\sim \text{Normal}(\mu_b, \sigma^2_b) \\
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con RStan.</li>
+<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con <code>{RStan}</code>.</li>
 <li>Analice los coeficientes del modelo y las curvas de crecimiento. Genere gráficos similares a los producidos en el punto anterior. Describa similitudes y diferencias respecto del modelo 1. Justifique su respuesta.</li>
 <li>¿Qué problemas detecta los modelos 1 y 2? Considere como evoluciona el peso conforme la edad según el modelo.</li>
 </ol>
@@ -557,17 +555,17 @@ f_j(X) = a_j + b_j \frac{\exp [d_j (\log(X) - c_j)]}{1 + \exp [d_j(\log(X) - c_j
 \]</span></p>
 <p>Este modelo tiene cuatro parámetros:</p>
 <ul>
-<li><span class="math inline">\(a_j\)</span> es el peso esperado cuando la edad es 0</li>
-<li><span class="math inline">\(b_j\)</span> es el peso máximo esperado (o la cota superior del peso)</li>
-<li><span class="math inline">\(\log (c_j)\)</span> es la edad a la que la especie <span class="math inline">\(j\)</span> alcanza la mitad del peso máximo</li>
-<li><span class="math inline">\(d_j &gt; 0\)</span> determina la tasa de crecimiento del peso conforme aumenta la edad</li>
+<li><span class="math inline">\(a_j\)</span> es el peso esperado cuando la edad es 0;</li>
+<li><span class="math inline">\(b_j\)</span> es el peso máximo esperado (o la cota superior del peso);</li>
+<li><span class="math inline">\(\log (c_j)\)</span> es la edad a la que la especie <span class="math inline">\(j\)</span> alcanza la mitad del peso máximo;</li>
+<li><span class="math inline">\(d_j &gt; 0\)</span> determina la tasa de crecimiento del peso conforme aumenta la edad.</li>
 </ul>
-<p>Para que la curva sea positiva y creciente para todas las edades, se debe cumplir que <span class="math inline">\(a_j &gt; 0\)</span>, <span class="math inline">\(b_j &gt; a_j\)</span> y <span class="math inline">\(d_j &gt; 0\)</span>. Se pueden satisfacer estas restricciones expresando los parámetros en función de parámetros cuyo dominio es <span class="math inline">\(\mathbb{R}\)</span>.</p>
+<p>Para que la curva sea positiva y creciente para todas las edades, se debe cumplir que <span class="math inline">\(a_j &gt; 0\)</span>, <span class="math inline">\(b_j &gt; a_j\)</span> y <span class="math inline">\(d_j &gt; 0\)</span>. Se pueden satisfacer estas restricciones expresando los parámetros en función de parámetros cuyo dominio es <span class="math inline">\(\mathbb{R}\)</span>:</p>
 <ul>
-<li><span class="math inline">\(a_j = \exp (\alpha_{j1})\)</span></li>
-<li><span class="math inline">\(b_j = \exp (\alpha_{j2})\)</span></li>
-<li><span class="math inline">\(c_j = \alpha_{j3}\)</span></li>
-<li><span class="math inline">\(d_j = \exp (\alpha_{j4})\)</span></li>
+<li><span class="math inline">\(a_j = \exp (\alpha_{j1})\)</span>;</li>
+<li><span class="math inline">\(b_j = \exp (\alpha_{j2})\)</span>;</li>
+<li><span class="math inline">\(c_j = \alpha_{j3}\)</span>;</li>
+<li><span class="math inline">\(d_j = \exp (\alpha_{j4})\)</span>.</li>
 </ul>
 <p>Considere las siguientes distribuciones <em>a priori</em> para los parámetros del modelo:</p>
 <p><span class="math display">\[
@@ -577,7 +575,7 @@ f_j(X) = a_j + b_j \frac{\exp [d_j (\log(X) - c_j)]}{1 + \exp [d_j(\log(X) - c_j
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con RStan.</li>
+<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con <code>{RStan}</code>.</li>
 <li>Analice los diagnósticos de la inferencia realizada.</li>
 <li>Grafique las curvas estimadas para cada especie junto a sus intervalos de credibilidad e interprete los resultados.</li>
 </ol>
@@ -592,12 +590,17 @@ f_j(X) = a_j + b_j \frac{\exp [d_j (\log(X) - c_j)]}{1 + \exp [d_j(\log(X) - c_j
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con RStan.</li>
+<li>Escriba un programa en Stan que implemente el modelo y obtenga el posterior con <code>{RStan}</code>.</li>
 <li>Analice los diagnósticos de la inferencia y compare con los resultados del modelo 3.</li>
 <li>Grafique las curvas estimadas para cada especie junto a sus intervalos de credibilidad e interprete los resultados. Compare con los resultados del modelo 3. ¿Qué diferencias observa? ¿Por qué se dan?</li>
 <li>Escriba una síntesis comparando todos los modelos desarrollados. Comente ventajas y desventajas de cada uno de ellos, explicando a que se deben en cada caso ¿Qué modelo resulta más conveniente para estimar la curva de crecimiento de los tiranosáuridos? Justifique su respuesta.</li>
 </ol>
-<p><strong>Nota:</strong> Queremos usar los priors del libro? O mejor usamos otra cosa? Estoy mirando los InvGamma por ejemplo. Ídem con la notación de varianza vs desvío estándar. <!-- https://www4.stat.ncsu.edu/~bjreich/BSMdata/T_rex.html --></p></li>
+<!--
+**Nota:** Queremos usar los priors del libro? O mejor usamos otra cosa?
+Estoy mirando los InvGamma por ejemplo. Ídem con la notación de varianza vs desvío 
+estándar.
+-->
+<!-- https://www4.stat.ncsu.edu/~bjreich/BSMdata/T_rex.html --></li>
 </ol>
 
 
