@@ -49,11 +49,11 @@ vida profesional.
     más influencia en el _posteriori_, o la creencia _a priori_ y los datos influyen de manera
     similar en la creencia _a posteriori_
 
-    i. _Prior_: $\pi \sim \text{Beta}(1,4)$, observaciones: $y=8$ éxitos en $n=10$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(20,3)$, observaciones: $y=0$ éxitos en $n=1$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(4,2)$, observaciones: $y=1$ éxitos en $n=3$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(3,10)$, observaciones: $y=10$ éxitos en $n=13$ ensayos
-    i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $y=10$ éxitos en $n=200$ ensayos
+    i. _Prior_: $\pi \sim \text{Beta}(1,4)$, observaciones: $y=8$ éxitos en $n=10$ ensayos.
+    i. _Prior_: $\pi \sim \text{Beta}(20,3)$, observaciones: $y=0$ éxitos en $n=1$ ensayos.
+    i. _Prior_: $\pi \sim \text{Beta}(4,2)$, observaciones: $y=1$ éxitos en $n=3$ ensayos.
+    i. _Prior_: $\pi \sim \text{Beta}(3,10)$, observaciones: $y=10$ éxitos en $n=13$ ensayos.
+    i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $y=10$ éxitos en $n=200$ ensayos.
 
 
 1.  **Más o menos certeza**
@@ -75,10 +75,10 @@ vida profesional.
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente:
 
-    i. Primera observación: éxito
-    i. Segunda observación: éxito
-    i. Tercera observación: fracaso
-    i. Cuarta observación: éxito
+    i. Primera observación: éxito.
+    i. Segunda observación: éxito.
+    i. Tercera observación: fracaso.
+    i. Cuarta observación: éxito.
     
 1.  **Pasitos tras pasitos**
 
@@ -86,10 +86,10 @@ vida profesional.
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente dados conjuntos
     de cinco observaciones:
 
-    i. Primeras observaciones: tres éxitos
-    i. Segundas observaciones: un éxito
-    i. Terceras observaciones: un éxito
-    i. Cuartas observaciónes: dos éxitos
+    i. Primeras observaciones: tres éxitos.
+    i. Segundas observaciones: un éxito.
+    i. Terceras observaciones: un éxito.
+    i. Cuartas observaciónes: dos éxitos.
     
 1.  **Diferentes observaciones, diferentes _posteriors_**
 
@@ -102,9 +102,9 @@ vida profesional.
     no cliquea el anuncio. El segundo lo prueba en 10 personas, de las cuales 3 cliquean el anuncio. El último
     lo prueba en 100 personas, 20 de las cuales cliquean el anuncio.
 
-    i. Describa el entendimiento _a priori_ que los empleados tienen sobre $\pi$
-    i. Especifique la distribución _a posteriori_ de cada uno de los empleados
-    i. Compare las distribuciones _a posteriori_ de cada empleado
+    i. Describa el entendimiento _a priori_ que los empleados tienen sobre $\pi$.
+    i. Especifique la distribución _a posteriori_ de cada uno de los empleados.
+    i. Compare las distribuciones _a posteriori_ de cada empleado.
     
 1. **¿Galletitas o masitas?**
 
@@ -114,7 +114,7 @@ vida profesional.
     de personas que dicen _galletitas_, mientras que un oriundo de una localidad del interior dirá que la credibilidad
     _a priori_ es $\text{Beta}(2,8)$.
     
-    i. Resuma ambas distribuciones _a priori_ y explique con sus palabras lo que implican
+    i. Resuma ambas distribuciones _a priori_ y explique con sus palabras lo que implican.
     i. Con la información de sus compañeros de curso, actualice ambas distribuciones _a priori_. 
     ¿Es suficiente esa información para acercar ambas posturas?
 
@@ -131,8 +131,8 @@ vida profesional.
     i. Calcule la media y el desvío estándar _a posteriori_ de $\theta$ a mano.
     i. Verifique el cálculo utilizando `R`.
     i. Obtenga un intervalo de credibilidad del 95% para $\theta$.
-         a. A mano
-         a. Usando `R`
+         a. A mano.
+         a. Utilizando `R`.
 
     ```{r}
     #| echo: false
@@ -198,7 +198,7 @@ vida profesional.
     media 0.50 y desvío estándar 0.25. En una investigación en 20 $\text{m}^2$ de área, se hallan 3, 2, 5, 1 y 2
     insectos en los primeros 5 $\text{m}^2$ y ninguno en la fracción de tierra restante.
     
-    i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área
+    i. Halle la distribución _a posteriori_ del número medio de insectos por unidad de área.
     i. Halle la distribución predictiva _a posteriori_ del número de insectos que se espera encontrar en una
     exploración de un área de 10 $\text{m}^2$
     
@@ -262,8 +262,8 @@ vida profesional.
     
     Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.
     
-    i. Graficar la verosimilitud de $\lambda$
-    i. Determinar la distribución _a posteriori_ de $\lambda$
+    i. Graficar la verosimilitud de $\lambda$.
+    i. Determinar la distribución _a posteriori_ de $\lambda$.
     i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10? 
     i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
 
@@ -337,7 +337,7 @@ vida profesional.
     \end{array}
     $$
 
-    i. Muestre que el estimador máximo verosímil (MV) es $\hat{\theta} = 1/\bar{x}$  
+    i. Muestre que el estimador máximo verosímil (MV) es $\hat{\theta} = 1/\bar{x}$.
     i. Suponga que se observan los siguientes tiempos de vida de tres máquinas 
     independientes $x_1 = 5$, $x_2 = 6$, $x_3 = 4$.
     ¿Cuál es el valor del estimador MV?
@@ -423,12 +423,12 @@ ambos enfoques.
 
     Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad
     
-    i. Intervalo del 95\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$
-    i. Intervalo del 60\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$
-    i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(1,8)$
-    i. Intervalo del 95\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(2,5)$
-    i. Intervalo del 81\% para $\mu$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(10,2^2)$
-    i. Intervalo del 99\% para $\pi$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)$
+    i. Intervalo del 95\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$.
+    i. Intervalo del 60\% para $\pi$ siendo $\pi\mid \mathbf{y} \sim \text{Beta}(4,5)$.
+    i. Intervalo del 89\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(1,8)$.
+    i. Intervalo del 95\% para $\lambda$ siendo $\lambda\mid \mathbf{y} \sim \text{Gamma}(2,5)$.
+    i. Intervalo del 81\% para $\mu$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(10,2^2)$.
+    i. Intervalo del 99\% para $\pi$ siendo $\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)$.
 
 1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
     
@@ -482,11 +482,11 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
     Comparar las siguientes distribuciones _a priori_.
 
-    - $\text{Beta}(0.5, 0.5)$
-    - $\text{Beta}(1, 1)$
-    - $\text{Beta}(1, 1)$
-    - $\text{Beta}(1, 4)$
-    - $\text{Beta}(5, 1.5)$
+    - $\text{Beta}(0.5, 0.5)$.
+    - $\text{Beta}(1, 1)$.
+    - $\text{Beta}(1, 1)$.
+    - $\text{Beta}(1, 4)$.
+    - $\text{Beta}(5, 1.5)$.
 
     i. ¿En qué se diferencian?
     i. ¿Cuál de ellas es más informativa?

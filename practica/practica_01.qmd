@@ -47,9 +47,9 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Para ello siga los siguientes pasos
 
     i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
-    ii. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
-    iii. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
-    iv. Junte las partes para formar la Regla de Bayes. 
+    i. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
+    i. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
+    i. Junte las partes para formar la Regla de Bayes. 
     <!-- @Hoff2009 -->
     <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
 
@@ -249,7 +249,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     determinara que el testimonio _experto_ de Meadows era equivocado. Dos mujeres, a las
     cuales el testimonio de Meadows había enviado a prisión, también fueron liberadas.
     
-    i. Identifica una falla en la probabilidad de $\frac{1}{73000000}$ dada por Meadows
+    i. Identifica una falla en la probabilidad de $\frac{1}{73000000}$ dada por Meadows.
     i. Incluso aceptando el número anterior como correcto, ¿cuál es el problema de 
     interpretar esa probabilidad como la probabilidad de inocencia de Clark?
     
@@ -267,11 +267,11 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
 
-    a.  Probabilidad de un parámetro dados los datos observados
-    b.  La distribución de probabilidad de los parámetros antes de ver los datos
-    c.  La verosimilitud de los datos para un valor dado de los parámetros
-    d.  La probabilidad de una observación nueva luego de observar los datos
-    e.  La probabilidad de una observación antes de ver los datos
+    a.  Probabilidad de un parámetro dados los datos observados.
+    b.  La distribución de probabilidad de los parámetros antes de ver los datos.
+    c.  La verosimilitud de los datos para un valor dado de los parámetros.
+    d.  La probabilidad de una observación nueva luego de observar los datos.
+    e.  La probabilidad de una observación antes de ver los datos.
     <!-- @Martin2021 -->
 
 1.  **Qué datazo me tiraste, rey**
@@ -312,9 +312,9 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     
     Además:
 
-    -   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$
-    -   Todas las letras tienen la misma probabilidad de producir un error de tipeo
-    -   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia
+    -   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$.
+    -   Todas las letras tienen la misma probabilidad de producir un error de tipeo.
+    -   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.
     -   Los errores son independientes a lo largo de una palabras.
 
     i. ¿Cuál es la probabilidad de escribir correctamente 'tarro'?
@@ -350,16 +350,16 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las 
     siguientes probabilidades:
 
-    i.  $P(X_1 = 0, X_2 = 0)$
-    ii. $P(X_1 = 0)$
-    iii. $P(X_2 = 0)$
-    iv. $P(X_1 = 0 | X_2 = 0)$
-    v.  $P(X_2 = 0 | X_1 = 0)$
-    vi. $P(X_1 = 0 | X_2 = 1)$
-    vii. $P(X_2 = 0 | X_1 = 1)$
-    viii. Explique de manera intuitiva cómo es que las probabilidades calculadas en 
+    i. $P(X_1 = 0, X_2 = 0)$.
+    i. $P(X_1 = 0)$.
+    i. $P(X_2 = 0)$.
+    i. $P(X_1 = 0 | X_2 = 0)$.
+    i. $P(X_2 = 0 | X_1 = 0)$.
+    i. $P(X_1 = 0 | X_2 = 1)$.
+    i. $P(X_2 = 0 | X_1 = 1)$.
+    i. Explique de manera intuitiva cómo es que las probabilidades calculadas en 
     (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
-    ix. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
+    i. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
     se puede concluir con 95\% de confianza que la especie no se encuentra en el bosque? 
     <!-- @Reich2020 -->
 

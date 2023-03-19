@@ -124,14 +124,14 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     
     Considere los siguientes cuatro modelos:
     
-    * $m_1$: `temp3pm ~ temp9am`
-    * $m_2$: `temp3pm ~ location`
-    * $m_3$: `temp3pm ~ temp9am + location`
-    * $m_4$: `temp3pm ~ .`
+    * $m_1$: `temp3pm ~ temp9am`;
+    * $m_2$: `temp3pm ~ location`;
+    * $m_3$: `temp3pm ~ temp9am + location`;
+    * $m_4$: `temp3pm ~ .`.
     
-    i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos
-    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
-    i. Compare los _ELPD_ de cada modelo utilizando _LOO_
+    i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros obtenidos.
+    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos.
+    i. Compare los _ELPD_ de cada modelo utilizando _LOO_.
     <!-- Bayes Rules. Capítulo 11. -->
     
     ```{r}
@@ -147,16 +147,16 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     Considere el dataset de pingüinos de Palmer (`penguins`) y los siguientes 
     modelos:
         
-    * $m_1$: `body_mass_g ~ flipper_length_mm`
-    * $m_2$: `body_mass_g ~ species`
-    * $m_3$: `body_mass_g ~ flipper_length_mm + species`
-    * $m_4$: `body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species`
-    * $m_5$: `body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm`
+    * $m_1$: `body_mass_g ~ flipper_length_mm`;
+    * $m_2$: `body_mass_g ~ species`;
+    * $m_3$: `body_mass_g ~ flipper_length_mm + species`;
+    * $m_4$: `body_mass_g ~ flipper_length_mm + species + flipper_length_mm:species`;
+    * $m_5$: `body_mass_g ~ flipper_length_mm + bill_length_mm + bill_depth_mm`.
     
     i. Ajuste cada uno de los modelos y construya gráficas para mostrar los parámetros 
-    obtenidos
-    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos
-    i. Compare los _ELPD_ de cada modelo utilizando _LOO_
+    obtenidos.
+    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos.
+    i. Compare los _ELPD_ de cada modelo utilizando _LOO_.
     <!-- Bayes Rules. Capítulo 11. -->
     
 1.  **De tal palo...**
@@ -167,7 +167,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     
     i. Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la 
     edad de la madre
-    i. Considere ahora un modelo que incluya la educación de la madre
+    i. Considere ahora un modelo que incluya la educación de la madre.
     
 1.  **La pinta es lo de menos...**
 
@@ -176,7 +176,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     partir de las opiniones de seis estudiantes que no participaron de los cursos y no
     conocían las notas. Los datos se encuentran en el archivo `beauty`.
     
-    i. Considere un modelo de regresión `courseevaluation ~ btystdave`
+    i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
     i. **To Do**?
     
 1.  **Ingresos**
@@ -200,7 +200,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     
     Considere un modelo de altura en función del peso.
     
-    i. Determine e interprete las distribuciones _a posteriori_ de los parámetros
+    i. Determine e interprete las distribuciones _a posteriori_ de los parámetros.
     i. Construya un gráfico de altura en función del peso, incluya las observaciones
     de los individuos, la recta de regresión MAP, el intervalo del 80\% para la media y
     y el intervalo del 80\% para la altura predicha.
@@ -211,9 +211,9 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
 
     Considere del conjunto de datos sobre zorros urbanos (`foxes`). Ajuste tres modelos:
 
-    * $m_1$: `weight ~ area`
-    * $m_2$: `weight ~ groupsize`
-    * $m_3$: `weight ~ area + groupsize`
+    * $m_1$: `weight ~ area`;
+    * $m_2$: `weight ~ groupsize`;
+    * $m_3$: `weight ~ area + groupsize`.
     
     i. Para los modelos $m_1$ y $m_2$, represente gráficamente los resultados, incluyendo
     la recta de regresión MAP, su intervalo del 89\% y el intervalo de predicción del 89\%.
@@ -304,11 +304,11 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
 
     Considere los siguientes modelos
 
-    * $m_1$: `log(Weight) ~ 0 + Species`
-    * $m_2$: `log(Weight) ~ 0 + Species + log(Length1)`
-    * $m_3$: `log(Weight) ~ 0 + Species + log(Length1):Species`
-    * $m_4$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)`
-    * $m_5$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species`
+    * $m_1$: `log(Weight) ~ 0 + Species`;
+    * $m_2$: `log(Weight) ~ 0 + Species + log(Length1)`;
+    * $m_3$: `log(Weight) ~ 0 + Species + log(Length1):Species`;
+    * $m_4$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height)`;
+    * $m_5$: `log(Weight) ~ 0 + Species + log(Length1):Species + log(Height):Species`.
     
     i. Ajuste cada uno de los modelos.
     i. Estime el _ELPD_ de cada modelo utilizando _LOO_ y seleccione el modelo más
@@ -385,7 +385,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     **Priors débilmente informativos**
 
     i. Ajuste un modelo de regresión lineal utilizando todos los predictores luego de
-    estandarizarlos y con los siguientes _priors_
+    estandarizarlos y con los siguientes _priors_:
     $$
     \begin{aligned}
     \beta_k &\sim \text{Normal}(0, 2.5) \\
@@ -414,7 +414,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
     $\sqrt{0.7}\text{sd}(y)$ para $\sigma$.
 
 
-    i. Ajuste el modelo nuevamente utilizando los siguientes priors
+    i. Ajuste el modelo nuevamente utilizando los siguientes priors:
     $$
     \begin{aligned}
     \beta_k &\sim \text{Normal}(0, \sqrt{\frac{0.3}{26}}\text{sd}(y)) \\

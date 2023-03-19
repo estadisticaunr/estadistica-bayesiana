@@ -37,11 +37,11 @@ probabilidad.
     De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
     
-    i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeón})$
-    i. $P(\text{Argentina campeón})$
-    i. $P(\text{Argentina campeón}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$
-    i. $P(\text{Argentina campeón} | \text{Diciembre})$
-    i. $P(\text{Argentina campeón} | \text{18 de Diciembre de 2022})$
+    i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeón})$.
+    i. $P(\text{Argentina campeón})$.
+    i. $P(\text{Argentina campeón}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$.
+    i. $P(\text{Argentina campeón} | \text{Diciembre})$.
+    i. $P(\text{Argentina campeón} | \text{18 de Diciembre de 2022})$.
     <!-- @Martin2021 -->
 
     ```{r}
@@ -64,9 +64,9 @@ probabilidad.
     i. ¿Cuál es el valor de $P(A | A)$?
     i. ¿Cuál es la probabilidad de $P(A, B)$?
     i. ¿Cuál es la probabilidad de $P(A, B)$ en el caso que $A$ y $B$ sean independientes?
-    i. Cuando se cumple que $P(A | B) = P(A)$?
-    i. Es posible que $P(A | B) > P(A)$? Cuando?
-    i. Es posible que $P(A | B) < P(A)$? Cuando?
+    i. ¿Cuándo se cumple que $P(A | B) = P(A)$?
+    i. ¿Es posible que $P(A | B) > P(A)$? ¿Cuándo?
+    i. ¿Es posible que $P(A | B) < P(A)$? ¿Cuándo?
     <!-- @Martin2021 -->
 
 1.  **Amigarse con la función de densidad (I)**
@@ -96,7 +96,7 @@ probabilidad.
 1.  **Distribución conjunta, marginal y condicional**
 
     Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
-    por la siguiente tabla
+    por la siguiente tabla:
     
     <center>
     <div style="width:50%" class="table-practica">

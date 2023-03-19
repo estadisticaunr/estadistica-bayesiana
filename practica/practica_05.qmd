@@ -54,7 +54,6 @@ pdf_file <- paste0(
     de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué 
     condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre 
     estos condados?
-    i. To Do: Compartir datos de forma accesible
     <!-- 4.6.3 @Reich2020 sin efectos aleatorios -->
 
 1.  Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen
@@ -67,11 +66,13 @@ pdf_file <- paste0(
     _confounders_ $\mathbf{Z}_i$, y el número de leyes relacionadas a armas. 
     Justifique que el _sampler_ ha convergido y explorado suficientemente la distribución a 
     posteriori y resuma la distribución a posteriori de $\boldsymbol{\beta}$.
+    <!--
     i. To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan
     i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
+    -->
 
-1.  Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé llamado
-    "Sophia" en cada año luego de 1950.
+1.  Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé 
+    llamado "Sophia" en cada año luego de 1950.
 
     ```{r}
     #| eval: false
@@ -99,13 +100,13 @@ pdf_file <- paste0(
     $$
 
     i. Interprete los parámetros del modelo ($\alpha$, $\beta$, $\rho$ y $\sigma^2$)
-    i. Ajuste el modelo utilizando `RStan` para $t > 1$. Verifique la convergencia y reporte
+    i. Ajuste el modelo utilizando `{RStan}` para $t > 1$. Verifique la convergencia y reporte
     la media a posteriori e intervalos del 95% para los parámetros.
     i. Grafique la distribución predictiva a posteriori para $Y_t$ en el año 2020.
     <!-- @Reich2020 -->
 
 1.  En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
-    el resultado de varios estudios. Los datos provienen del paquete `rmeta` en `R`.
+    el resultado de varios estudios. Los datos provienen del paquete `{rmeta}` en `R`.
 
     ```{r}
     #| eval: false
@@ -148,8 +149,8 @@ pdf_file <- paste0(
     i. ¿Cuál modelo es el preferido para estos datos?
     <!-- @Reich2020 -->
 
-1.  Utilice el conjuto de datos `airquality` que viene con el paquete `datasets` que se carga
-    automáticamente al crear una sesión de `R`.
+1.  Utilice el conjuto de datos `airquality` que viene con el paquete `{datasets}` que se 
+    carga automáticamente al crear una sesión de `R`.
     
     ```{r}
     #| eval: false
@@ -178,32 +179,42 @@ pdf_file <- paste0(
     Elija _priors_ para ambos modelos explicando su elección.
     <!-- @Reich2020 -->
 
-1.  Accidente del Challenger
+1.  **Accidente del Challenger**
 
-    El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del        Challenger explotó poco después del despegue. En el accidente murieron los siete tripulantes. La comisión que investigó el accidente concluyó que el accidente fue         causado por una falla en un _o-ring_ en una juntura de uno de los propulsores. Esta falla se debió a un diseño defectuoso que volvió al _o-ring_ excesivamente sensible     a factores externos, entre ellos la temperatura. De los veinticuatro vuelos previos, existía información de fallas de _o-rings_ para veintitrés de ellos (el otro se       perdió en el océano). Estos datos fueron discutidos la noche previa al incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron a la     conclusión de que no había una evidencia clara. 
+    El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de 
+    trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del 
+    Challenger explotó poco después del despegue. En el accidente murieron los siete 
+    tripulantes. La comisión que investigó el accidente concluyó que el accidente fue 
+    causado por una falla en un _o-ring_ en una juntura de uno de los propulsores. 
+    Esta falla se debió a un diseño defectuoso que volvió al _o-ring_ excesivamente 
+    sensible a factores externos, entre ellos la temperatura. De los veinticuatro vuelos
+    previos, existía información de fallas de _o-rings_ para veintitrés de ellos 
+    (el otro se perdió en el océano). Estos datos fueron discutidos la noche previa al 
+    incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron 
+    a la conclusión de que no había una evidencia clara. 
     
     <!-- @DavidsonPilon2015 -->
     
-```{r tabla-challenger}
-#| warning: false
-#| echo: false
-challenger <- data.frame(
-    "T" = c(
-        66L, 70L, 69L, 68L, 67L, 72L, 73L, 70L, 57L, 63L, 70L, 78L, 67L, 53L, 67L, 75L, 
-        70L, 81L, 76L, 79L, 75L,76L,58L
-    ),
-    "Falla" = c(
-        0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 
-        1L, 0L, 1L
+    ```{r tabla-challenger}
+    #| warning: false
+    #| echo: false
+    challenger <- data.frame(
+        "T" = c(
+            66L, 70L, 69L, 68L, 67L, 72L, 73L, 70L, 57L, 63L, 70L, 78L, 67L, 53L, 67L, 75L, 
+            70L, 81L, 76L, 79L, 75L,76L,58L
+        ),
+        "Falla" = c(
+            0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 1L, 0L, 0L, 0L, 0L, 0L, 0L, 
+            1L, 0L, 1L
+        )
     )
-)
 
-knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> 
-    kableExtra::kable_styling(full_width = FALSE)
-```
+    knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |> 
+        kableExtra::kable_styling(full_width = FALSE)
+    ```
     
 
-1.  Curvas de crecimiento de tiranosáuridos
+1.  **Curvas de crecimiento de tiranosáuridos**
 
     Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de 
     crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 
@@ -220,7 +231,10 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     #| warning: false
     #| cache: true
     #| echo: false
-    #| fig-cap: "(Izquierda) Edad (años) vs Peso (kilogramos). (Derecha) Los mismos datos luego de aplicar la transformación logarítmica a ambas variables."
+    #| fig-cap: 
+    #|    (Izquierda) Edad (años) vs Peso (kilogramos). 
+    #|    (Derecha) Los mismos datos luego de aplicar la transformación logarítmica a 
+    #|    ambas variables.
     #| fig-width: 9
     #| fig-height: 5
     #| label: fig-dinos
@@ -325,7 +339,7 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     $$
 
     i. Escriba un programa en Stan que implemente el modelo y obtenga el posterior 
-    con RStan.
+    con `{RStan}`.
     i. Analice los coeficientes del modelo y las curvas de crecimiento. Realice gráficos
     que permitan observar la curva ajustada y su incertidumbre para cada especie.
    
@@ -348,7 +362,7 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     $$
 
     i. Escriba un programa en Stan que implemente el modelo y obtenga el posterior 
-    con RStan.
+    con `{RStan}`.
     i. Analice los coeficientes del modelo y las curvas de crecimiento. 
     Genere gráficos similares a los producidos en el punto anterior. 
     Describa similitudes y diferencias respecto del modelo 1. Justifique su respuesta.
@@ -366,19 +380,19 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
 
     Este modelo tiene cuatro parámetros:
 
-    * $a_j$ es el peso esperado cuando la edad es 0
-    * $b_j$ es el peso máximo esperado (o la cota superior del peso)
-    * $\log (c_j)$ es la edad a la que la especie $j$ alcanza la mitad del peso máximo
-    * $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad
+    * $a_j$ es el peso esperado cuando la edad es 0;
+    * $b_j$ es el peso máximo esperado (o la cota superior del peso);
+    * $\log (c_j)$ es la edad a la que la especie $j$ alcanza la mitad del peso máximo;
+    * $d_j > 0$ determina la tasa de crecimiento del peso conforme aumenta la edad.
 
     Para que la curva sea positiva y creciente para todas las edades, se debe cumplir que
     $a_j > 0$, $b_j > a_j$ y $d_j > 0$. Se pueden satisfacer estas restricciones
-    expresando los parámetros en función de parámetros cuyo dominio es $\mathbb{R}$.
+    expresando los parámetros en función de parámetros cuyo dominio es $\mathbb{R}$:
 
-    * $a_j = \exp (\alpha_{j1})$
-    * $b_j = \exp (\alpha_{j2})$
-    * $c_j = \alpha_{j3}$
-    * $d_j = \exp (\alpha_{j4})$
+    * $a_j = \exp (\alpha_{j1})$;
+    * $b_j = \exp (\alpha_{j2})$;
+    * $c_j = \alpha_{j3}$;
+    * $d_j = \exp (\alpha_{j4})$.
 
     Considere las siguientes distribuciones _a priori_ para los parámetros del modelo:
 
@@ -390,7 +404,7 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     $$
 
     i. Escriba un programa en Stan que implemente el modelo y obtenga el posterior 
-    con RStan.
+    con `{RStan}`.
     i. Analice los diagnósticos de la inferencia realizada. 
     i. Grafique las curvas estimadas para cada especie junto a sus intervalos de 
     credibilidad e interprete los resultados.
@@ -411,7 +425,7 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     $$
 
     i. Escriba un programa en Stan que implemente el modelo y obtenga el posterior 
-    con RStan.
+    con `{RStan}`.
     i. Analice los diagnósticos de la inferencia y compare con los resultados del modelo 3.
     i. Grafique las curvas estimadas para cada especie junto a sus intervalos de 
     credibilidad e interprete los resultados. Compare con los resultados del modelo 3. 
@@ -420,8 +434,10 @@ knitr::kable(challenger, col.names = c("T (°F)", "Falla")) |>
     y desventajas de cada uno de ellos, explicando a que se deben en cada caso 
     ¿Qué modelo resulta más conveniente para estimar la curva de crecimiento de los 
     tiranosáuridos? Justifique su respuesta.
-
+    
+    <!--
     **Nota:** Queremos usar los priors del libro? O mejor usamos otra cosa?
     Estoy mirando los InvGamma por ejemplo. Ídem con la notación de varianza vs desvío 
     estándar.
+    -->
     <!-- https://www4.stat.ncsu.edu/~bjreich/BSMdata/T_rex.html -->
