@@ -199,6 +199,7 @@ div.csl-indent {
 </div>
 <section id="regresión-lineal" class="level2">
 <h2 class="anchored" data-anchor-id="regresión-lineal">Regresión lineal</h2>
+<p>El objetivo principal de esta unidad es la aplicación de modelos de regresión lineales desde una perspectiva bayesiana, considerando a los parámetros del modelo como cantidades aleatorias que se corresponden con una distribución de probabilidad <em>a priori</em>. A diferencia del enfoque frecuentista o máximo verosímil, el resultado de la inferencia bayesiana es una distribución de probabilidad <em>a posteriori</em>, la cual se utiliza como fuente de todas las conclusiones. Además, se emplean técnicas propias de la estadística bayesiana para evaluar la adecuación y comparar los modelos utilizados.</p>
 <ol type="1">
 <li><p><strong>Mi primer regresión bayesiana</strong></p>
 <p>El conjunto de datos <code>sales</code> contiene los montos semanales de inversión en publicidad y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión lineal simple:</p>
@@ -217,8 +218,8 @@ div.csl-indent {
 \begin{aligned}
 \mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
 \text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
-\beta_0 &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
-\beta_1 &amp;\sim \text{Normal}(0, 0.5) \\
+\beta_0  &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
+\beta_1  &amp;\sim \text{Normal}(0, 0.5) \\
 \sigma^2 &amp;\sim \text{Normal}^+(5)
 \end{aligned}
 \]</span></p>
@@ -301,8 +302,7 @@ div.csl-indent {
 <li><p><strong>La pinta es lo de menos…</strong></p>
 <p>Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un curso y la belleza de los instructores. La determinación de la belleza se hizo a partir de las opiniones de seis estudiantes que no participaron de los cursos y no conocían las notas. Los datos se encuentran en el archivo <code>beauty</code>.</p>
 <ol type="i">
-<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code>.</li>
-<li><strong>To Do</strong>?</li>
+<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code>. <!-- i. **To Do**? --></li>
 </ol></li>
 <li><p><strong>Ingresos</strong></p>
 <p>El dataset <code>earnings</code> contiene los resultados de la encuesta realizada por Ross sobre Trabajo, Familia y Bienestar.</p>
