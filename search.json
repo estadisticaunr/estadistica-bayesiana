@@ -172,25 +172,25 @@
     "href": "presentaciones/presentacion_01.html",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[A \\Rightarrow B\\] \\(A\\) es verdadero, por lo tanto \\(B\\) es verdadero\n\\(B\\) es falso, por lo tanto \\(A\\) falso\n\n\\(A\\): Tom es un gato\n\\(B\\): Tom es un animal\n\n\\(B\\) es verdadero, por lo tanto…\n\n\n\nPero este no es el tipo de razonamiento que utilizamos en la vida cotidiana:\n\n\\(A\\): va a llover a las 10 de la mañana\n\\(B\\): se nubla antes de las 10 de la mañana\n\n\\(B\\) es verdadero, por lo tanto \\(A\\) se vuelve más plausible\n\n\n\n\nEn una noche oscura, un policía camina por una calle aparentemente desierta. De repente, se escucha la alarma de un local. Se da vuelta y ve, en la vereda de enfrente, una joyería con la vidriera rota. Un hombre con una máscara sale agachado a través del vidrio roto, con una bolsa llena de joyas caras. El policía no duda en concluir que el hombre no tiene buenas intenciones.\n\nEl razonamiento del policía no fue una deducción lógica, ya que podría existir una explicación alternativa para lo ocurrido.\nDada la evidencia, no podemos decir con seguridad que las intenciones del hombre no son buenas, pero sí que es extremadamente plausible que no lo sean.\n\n\n\nEl cerebro humano permanentemente determina si algo se vuelve más o menos plausible. Más aún, de alguna manera, evalúa el grado de plausibilidad de una proposición.\n\nLa plausibilidad de que llueva a las 10 de la mañana depende fuertemente de la oscuridad de las nubes a las 9:45.\n\nEste razonamiento hace uso de nuestra experiencia previa. Combina información a priori con evidencia disponible. Esto da lugar a un proceso secuencial.\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo hay alguien que tiene un loro como mascota\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo nadie tiene un loro como mascota\n\n\n\nTienen a su disposición estas tarjetas. Podemos comprarlas o venderlas. Al final de la clase develamos el misterio y, quien tenga la tarjeta, cobra.\n¿Por cuál pagarían más? ¿Cuánto estarían dispuestos a pagar como máximo?\nNotar que el precio máximo que estarían dispuestos a pagar para comprarla es el precio mínimo por el que estarían dispuestos a venderla.\n\n\n\nTodos pagaríamos \\(p\\cdot\\$ 1000\\) con \\(0 \\leq p \\leq 1\\).\nDecidimos cuánto apostar en función de nuestra incertidumbre en la ocurrencia de un evento (de lo plausible que lo consideremos). Decidimos apostar \\(p\\cdot\\$ 1000\\) en favor de un evento, porque le asignamos una plausibilidad o credibilidad de grado \\(p\\).\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si el profe tiene una remera negra\n\n\n\n¿Cuánto están dispuestos a pagar para tener esta tarjeta? ¿Por cuánto venderían la tarjeta si la tuvieran?\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia es la mejor del cuatrimestre\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia no es la mejor del cuatrimestre\n\n\n\nPor la primera pagarían como máximo \\(p\\cdot\\$ 1000\\) y por la segunda, \\(q\\cdot\\$ 1000\\). Es necesario que \\(p+q=1\\). ¿Por qué?\n\n\n\nSupongamos que \\(p=0.3\\) y \\(q=0.2\\). Eso significa que:\n\nSi no tienen las tarjetas, estarían dispuestos a comprar ambas por \\(\\$500\\).\nSi tienen las tarjetas, estarían dispuestos a vender ambas por \\(\\$500\\).\n\n\nSabemos que a fin de cuatrimestre, quien tenga las dos tarjetas ganará \\(\\$1000\\)…\n\nSpeaker notes go here.\n\n\n\n\n\n\n\n\n\n\n\nDutch book\n\n\n\nEl argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.\n\n\n\nLas probabilidades son la mejor herramienta disponible para cuantificar la incertidumbre y las leyes de la probabilidad, la mejor herramienta para operar con ella.\n\n\n\nTres ideas de probabilidad\n\nClásica: si \\(n\\) eventos son equiprobables, la probabilidad de uno de ellos es \\(1/n\\). Además, la probabilidad de un evento se puede calcular como el número de casos favorables dividido el número de casos posibles.\nFrecuentista: la probabilidad de un evento se puede estimar observando su frecuencia relativa sobre un gran número de realizaciones o ensayos.\nSubjetiva: las probabilidades reflejan el grado de creencia o plausibilidad que una persona le asigna a un evento.\n\n\n\n\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos).\n\n\n\n\n\n\nThis is an important sentence!"
-  },
-  {
-    "objectID": "presentaciones/presentacion_01.html#section-6",
-    "href": "presentaciones/presentacion_01.html#section-6",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Probabilidad de un evento \\[\\mathrm{Pr}(A)\\] \\[\\mathrm{Pr}(\\bar{A}) = 1-\\mathrm{Pr}(A)\\] \\[\\mathrm{Pr}(A)\\]"
+    "text": "\\[A \\Rightarrow B\\] \\(A\\) es verdadero, por lo tanto \\(B\\) es verdadero\n\\(B\\) es falso, por lo tanto \\(A\\) falso\n\n\\(A\\): Tom es un gato\n\\(B\\): Tom es un animal\n\n\\(B\\) es verdadero, por lo tanto…\n\n\n\nPero este no es el tipo de razonamiento que utilizamos en la vida cotidiana:\n\n\\(A\\): va a llover a las 10 de la mañana\n\\(B\\): se nubla antes de las 10 de la mañana\n\n\\(B\\) es verdadero, por lo tanto \\(A\\) se vuelve más plausible\n\n\n\n\nEn una noche oscura, un policía camina por una calle aparentemente desierta. De repente, se escucha la alarma de un local. Se da vuelta y ve, en la vereda de enfrente, una joyería con la vidriera rota. Un hombre con una máscara sale agachado a través del vidrio roto, con una bolsa llena de joyas caras. El policía no duda en concluir que el hombre no tiene buenas intenciones.\n\nEl razonamiento del policía no fue una deducción lógica, ya que podría existir una explicación alternativa para lo ocurrido.\n\nDada la evidencia, no podemos decir con seguridad que las intenciones del hombre no son buenas, pero sí que es extremadamente plausible que no lo sean.\n\n\n\n\nEl cerebro humano permanentemente determina si algo se vuelve más o menos plausible. Más aún, de alguna manera, evalúa el grado de plausibilidad de una proposición.\n\n\nLa plausibilidad de que llueva a las 10 de la mañana depende fuertemente de la oscuridad de las nubes a las 9:45.\n\n\n\nEste razonamiento hace uso de nuestra experiencia previa. Combina información a priori con evidencia disponible. Esto da lugar a un proceso secuencial.\n\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo hay alguien que tiene un loro como mascota\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo nadie tiene un loro como mascota\n\n\n\n\nTienen a su disposición estas tarjetas. Podemos comprarlas o venderlas. Al final de la clase develamos el misterio y, quien tenga la tarjeta, cobra.\n\n\n¿Por cuál pagarían más? ¿Cuánto estarían dispuestos a pagar como máximo?\n\n\nNotar que el precio máximo que estarían dispuestos a pagar para comprarla es el precio mínimo por el que estarían dispuestos a venderla.\n\n\n\n\nTodos pagaríamos \\(p\\cdot\\$ 1000\\) con \\(0 \\leq p \\leq 1\\).\n\nDecidimos cuánto apostar en función de nuestra incertidumbre en la ocurrencia de un evento (de lo plausible que lo consideremos). Decidimos apostar \\(p\\cdot\\$ 1000\\) en favor de un evento, porque le asignamos una plausibilidad o credibilidad de grado \\(p\\).\n\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si el profe tiene una remera negra\n\n\n\n¿Cuánto están dispuestos a pagar para tener esta tarjeta? ¿Por cuánto venderían la tarjeta si la tuvieran?\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia es la mejor del cuatrimestre\n\n\n\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia no es la mejor del cuatrimestre\n\n\n\n\nPor la primera pagarían como máximo \\(p\\cdot\\$ 1000\\) y por la segunda, \\(q\\cdot\\$ 1000\\). Es necesario que \\(p+q=1\\). ¿Por qué?\n\n\n\n\nSupongamos que \\(p=0.7\\) y \\(q=0.5\\). Eso significa que:\n\nSi no tienen las tarjetas, estarían dispuestos a comprar ambas por \\(\\$1200\\).\n\nSupongamos que \\(p=0.3\\) y \\(q=0.2\\). Eso significa que:\n\nSi tienen las tarjetas, estarían dispuestos a vender ambas por \\(\\$500\\).\n\n\nSabemos que a fin de cuatrimestre, quien tenga las dos tarjetas ganará \\(\\$1000\\)…\n\nThe canonical way to measure degrees of belief appeals to the notion of fair odds.\nThe degree of belief that a given epistemic agent—let’s say it’s you—has in this proposition A can be determined by what you deem to be the fair price of this lottery. Here the “fair price” is the price at which you are willing to either buy or sell the lottery ticket.\n\n\n\n\n\n\n\n\n\n\n\nDutch book\n\n\n\nUn Dutch book es un conjunto de apuestas que aseguran una pérdida. El argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.\n\n\nSe puede asignar un valor de probabilidad a cualquier proposición.\n\n\n\n\nLas probabilidades son la mejor herramienta disponible para cuantificar la incertidumbre y las leyes de la probabilidad, la mejor herramienta para operar con ella.\n\n\n\nTres ideas de probabilidad\n\nClásica: si \\(n\\) eventos son equiprobables, la probabilidad de uno de ellos es \\(1/n\\). Además, la probabilidad de un evento se puede calcular como el número de casos favorables dividido el número de casos posibles.\nFrecuentista: la probabilidad de un evento se puede estimar observando su frecuencia relativa sobre un gran número de realizaciones o ensayos.\nSubjetiva: las probabilidades reflejan el grado de creencia o plausibilidad que una persona le asigna a un evento.\n\n\n\n\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos).\n\n\n\n\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica\nIncertidumbre aleatoria\n\n\n\nLo retomaremos a lo largo del curso.\n\n\n\n\nConsideremos la siguiente proposición:\n\nVoy a aprobar todas las materias de este cuatrimestre (\\(W\\))\n\n\nUna caja con 5 bolas azules y 5 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul\n\n\n\n\\(A_1\\): $1000 si \\(W\\)\n\\(A_2\\): $1000 si \\(A\\)\n\n\n\nSi prefieren \\(A_1\\) entonces… 8 bolas azules y 2 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul.\n\n\n\n\\(A_3\\): $1000 si \\(W\\)\n\\(A_4\\): $1000 si \\(A\\)\n\n\n\n\n\nInterludio…\n\n¿Qué es más probable?\n\nQue el PSG le gane al Lyon\nQue el PSG le gane al Lyon y Messi haga un gol\n\n\n\n\n\nLos seres humanos no estamos optimizados para operar con probabilidades (al menos no intuitivamente)."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-7",
     "href": "presentaciones/presentacion_01.html#section-7",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Probabilidad de la conjunción:\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A,B)\\] Si \\(A\\) y \\(B\\) son independientes, entonces\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A)\\mathrm{Pr}(B)\\] Probabilidad de la unión: \\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B) - \\mathrm{Pr}(A,B)\\] Donde, si \\(A\\) y \\(B\\) son mutuamente excluyentes,\n\\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B)\\]"
+    "text": "Probabilidad de un evento \\[\\mathrm{Pr}(A)\\] \\[\\mathrm{Pr}(\\bar{A}) = 1-\\mathrm{Pr}(A)\\]"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-8",
     "href": "presentaciones/presentacion_01.html#section-8",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Probabilidad de la conjunción:\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A,B)\\] Si \\(A\\) y \\(B\\) son independientes, entonces\n\\[\\mathrm{Pr}(A\\wedge B) = \\mathrm{Pr}(A)\\mathrm{Pr}(B)\\] Probabilidad de la unión: \\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B) - \\mathrm{Pr}(A,B)\\] Donde, si \\(A\\) y \\(B\\) son mutuamente excluyentes,\n\\[\\mathrm{Pr}(A \\vee B) = \\mathrm{Pr}(A) + \\mathrm{Pr}(B)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-9",
+    "href": "presentaciones/presentacion_01.html#section-9",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "\\[\\mathrm{Pr}(B\\mid A) = \\frac{\\mathrm{Pr}(A,B)}{\\mathrm{Pr}(A)} \\] siempre que \\(\\mathrm{Pr}(A)>0\\) (no se puede condicionar a eventos imposibles)"
@@ -203,60 +203,151 @@
     "text": "Variables aleatorias\nUna variable aleatoria (univariada) \\(X\\) es una función que mapea elementos del espacio muestral \\(\\mathcal{X}\\) a la recta real \\(\\mathbb{R}\\)\n\nSi \\(\\mathcal{X}\\) es finito o infinito numerable entonces \\(X\\) es una variable aleatoria discreta\nSi \\(\\mathcal{X}\\) es cualquier valor en \\(\\mathbb{R}\\) entonces \\(X\\) es una variable aleatoria continua"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-9",
-    "href": "presentaciones/presentacion_01.html#section-9",
+    "objectID": "presentaciones/presentacion_01.html#section-10",
+    "href": "presentaciones/presentacion_01.html#section-10",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el caso discreto: \\[p(x) = \\mathrm{Pr}(X=x) \\quad \\text{(pmf)}\\]\nPara el caso continuo: \\[P(x) = \\mathrm{Pr}(X\\leq x) \\quad \\text{(cdf)}\\] \\[ p(x) = \\frac{d}{dx}P(x) \\quad \\text{(pdf)}\\]"
+    "text": "Para el caso discreto: \\[p(x) = \\mathrm{Pr}(X=x) \\quad \\text{(pmf)}\\]\nPara el caso continuo: \\[P(x) = \\mathrm{Pr}(X\\leq x) \\quad \\text{(cdf)}\\] \\[ p(x) = \\frac{d}{dx}P(x) \\quad \\text{(pdf)}\\]\n\\[\\mathrm{Pr}(x\\leq X\\leq x+dx) = p(x)dx\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#caso-discreto",
-    "href": "presentaciones/presentacion_01.html#caso-discreto",
+    "objectID": "presentaciones/presentacion_01.html#distribuciones-conjuntas",
+    "href": "presentaciones/presentacion_01.html#distribuciones-conjuntas",
     "title": "Estadística Bayesiana",
-    "section": "Caso discreto",
-    "text": "Caso discreto\n\\[\n\\begin{array}{c|cc}\np(X,Y) & Y=0 & Y=1 \\\\\n\\hline\nX=0 & 0.2 & 0.3 \\\\\nX=1 & 0.3 & 0.2 \\\\\n\\end{array}\n\\]"
+    "section": "Distribuciones conjuntas",
+    "text": "Distribuciones conjuntas\nCaso discreto\n\\[\n\\begin{array}{c|cc}\np(X,Y) & Y=0 & Y=1 \\\\\n\\hline\nX=0 & 0.2 & 0.3 \\\\\nX=1 & 0.3 & 0.2 \\\\\n\\end{array}\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#caso-continuo",
-    "href": "presentaciones/presentacion_01.html#caso-continuo",
+    "objectID": "presentaciones/presentacion_01.html#section-11",
+    "href": "presentaciones/presentacion_01.html#section-11",
     "title": "Estadística Bayesiana",
-    "section": "Caso continuo",
-    "text": "Caso continuo"
+    "section": "",
+    "text": "Distribución marginal\n\\[p(x)=\\sum_y p(x,y)\\]\n\\[p(y)=\\sum_x p(x,y)\\]\nSe conoce como marginalizar (en inglés también integrate out)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-12",
+    "href": "presentaciones/presentacion_01.html#section-12",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Caso continuo\n\\[p(x,y)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-13",
+    "href": "presentaciones/presentacion_01.html#section-13",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Distribución marginal\n\\[p(x)=\\int p(x,y) dy\\]\n\\[p(y)=\\int p(x,y) dx\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#distribución-condicional",
+    "href": "presentaciones/presentacion_01.html#distribución-condicional",
+    "title": "Estadística Bayesiana",
+    "section": "Distribución condicional",
+    "text": "Distribución condicional\n\\[p(x \\mid y) = \\frac{p(x,y)}{p(y)}\\]\n\\[p(y \\mid x) = \\frac{p(x,y)}{p(x)}\\]\n\\(p(x)\\) normaliza a \\(p(x,y)\\) (una función de \\(y\\) ya que \\(x\\) tomó un valor fijo).\n\nimagine a circular dart board, split into 20 equal sections, labelled from 1 to 20. Randy, a dart thrower, hits any one of the 20 sections uniformly at random. Hence the probability that a dart thrown by Randy occurs in any one of the 20 regions is p(region i) = 1=20. A friend of Randy tells him that he hasn’t hit the 20 region. What is the probability that Randy has hit the 5 region?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#regla-del-producto",
+    "href": "presentaciones/presentacion_01.html#regla-del-producto",
+    "title": "Estadística Bayesiana",
+    "section": "Regla del producto",
+    "text": "Regla del producto\nTambién conocida como regla de la cadena. Recobramos la distribución conjunta haciendo\n\\[p(x,y) = p(x\\mid y) p(y)\\]\n\\[p(x,y) = p(y\\mid x) p(x)\\]\n\\[p(x,y,z) = p(z) p(y\\mid z) p(x\\mid y,z)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#regla-de-la-probabilidad-total",
+    "href": "presentaciones/presentacion_01.html#regla-de-la-probabilidad-total",
+    "title": "Estadística Bayesiana",
+    "section": "Regla de la probabilidad total",
+    "text": "Regla de la probabilidad total\n\\[p(x) = \\int p(x\\mid y) p(y) dy\\] \\[p(y) = \\int p(y\\mid x) p(x) dy\\]\n\nLa probabilidad marginal de \\(x\\) (una función de \\(x\\)) se obtiene ponderando todos los posibles \\(p(x\\mid y)\\) (una función de \\(x\\) para cada valor de \\(y\\)) según la probabilidad de \\(p(y)\\). Y viceversa."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#regla-de-bayes",
     "href": "presentaciones/presentacion_01.html#regla-de-bayes",
     "title": "Estadística Bayesiana",
     "section": "Regla de Bayes",
-    "text": "Regla de Bayes"
+    "text": "Regla de Bayes\n\\[p(x\\mid y) = \\frac{p(y\\mid x) p(x)}{p(y)}\\]\n\nAsí expresada no nos dice mucho.\n\n\nRecordemos que utilizamos las probabilidades para expresar nuestra incertidumbre. La mejor forma de actualizar nuestro grado de creencia sobre alguna hipótesis \\(\\mathcal{H}\\) frente a nueva información \\(E\\) es utilizar la Regla de Bayes.\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#historia-de-la-regla-de-bayes",
     "href": "presentaciones/presentacion_01.html#historia-de-la-regla-de-bayes",
     "title": "Estadística Bayesiana",
     "section": "Historia de la Regla de Bayes",
-    "text": "Historia de la Regla de Bayes\n\n\n\nBayes\n\n\n\nPrice\n\n\n\nLaplace"
+    "text": "Historia de la Regla de Bayes\n\n\n\nBayes\n\n\n\nRichard Price publicó el resultado del Teorema de la Probabilidad Inversa de Bayes en An Essay Towards Solving a Problem in the Doctrine of Chances (1763)\n\n\n\nPierre-Simon Laplace llegó al mismo resultado que Bayes y lo publicó en Memoire sur la Probabilité des Causes par les Évenements (1774)\n\n\n\n\n\nBayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#ejemplos",
     "href": "presentaciones/presentacion_01.html#ejemplos",
     "title": "Estadística Bayesiana",
     "section": "Ejemplos",
-    "text": "Ejemplos"
+    "text": "Ejemplos\nVamos a trabajar con un conjunto de ejemplos que consisten en la aplicación de la regla de Bayes, acercándonos de a poco a forma en la que se usa en la estadística bayesiana."
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#section-10",
-    "href": "presentaciones/presentacion_01.html#section-10",
+    "objectID": "presentaciones/presentacion_01.html#ejemplo-1",
+    "href": "presentaciones/presentacion_01.html#ejemplo-1",
+    "title": "Estadística Bayesiana",
+    "section": "Ejemplo 1",
+    "text": "Ejemplo 1\nNos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que tenga dos niñas?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-14",
+    "href": "presentaciones/presentacion_01.html#section-14",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La inferencia bayesiana es la realocación de la credibilidad del conjunto de parámetros de un modelo"
+    "text": "¿Cómo lo escribimos con símbolos?"
   },
   {
-    "objectID": "presentaciones/presentacion_01.html#slide-3",
-    "href": "presentaciones/presentacion_01.html#slide-3",
+    "objectID": "presentaciones/presentacion_01.html#ejemplo-2",
+    "href": "presentaciones/presentacion_01.html#ejemplo-2",
     "title": "Estadística Bayesiana",
-    "section": "Slide 3",
-    "text": "Slide 3\n\n\n\n\n\nProbando\n\n\n\n\nEstadística Bayesiana – 2023\n\n\nSome additional commentary of more peripheral interest."
+    "section": "Ejemplo 2",
+    "text": "Ejemplo 2\nUn taxi se vio involucrado en una accidente nocturno y se dio a la fuga. En la ciudad hay dos empresas de taxis, la Verde y la Azul. Sobre el accidente se tienen los siguientes datos:\n\n85% de los taxis de la ciudad son de la empresa Verde y 15% de la Azul\nUn testigo identificó el taxi como azul. La corte evaluó la confiabilidad del testigo en las circunstancias del accidente y concluyó que es capaz de identificar correctamente el color en un 80% de los casos.\n\n\n¿Cuál es la probabilidad de que el taxi haya sido azul, de acuerdo a la declaración del testigo?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-15",
+    "href": "presentaciones/presentacion_01.html#section-15",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A)}\\]\n\n\\[p(A\\mid T_A) = \\frac{p(T_A\\mid A) p(A)}{p(T_A\\mid A)p(A) + p(T_A\\mid V)p(V)}\\]\n\n\n\\[P(A\\mid T_A) = \\frac{0.80\\cdot 0.15}{0.80\\cdot 0.15 + 0.2\\cdot 0.85}\\]\n\\[p(A\\mid T_A) = 0.414\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#ejemplo-3",
+    "href": "presentaciones/presentacion_01.html#ejemplo-3",
+    "title": "Estadística Bayesiana",
+    "section": "Ejemplo 3",
+    "text": "Ejemplo 3\nSe realiza un test de hipótesis que tiene una potencia \\(1-\\beta = 80\\%\\). Se fija el nivel de significación en \\(\\alpha = 5\\%\\). Se testea \\(H_0\\) versus una hipótesis alternativa \\(H_1:\\text{ no }H_0\\).\n\nSi se supone que la probabilidad de que \\(H_0\\) sea cierta es de \\(50\\%\\), ¿cuál es la probabilidad de que \\(H_1\\) sea cierta luego de observar un resultado estadísticamente significativo?\nSi la hipótesis alternativa es muy rara (digamos \\(10\\%\\)), ¿cuál es la probabilidad de que \\(H_1\\) sea cierta luego de observar un resultado estadísticamente significativo?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-17",
+    "href": "presentaciones/presentacion_01.html#section-17",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{p(\\text{rechazo }H_0 \\mid H_1)p(H_1)}{p(\\text{rechazo }H_0)}\\]\n\nSi en el denominador enumeramos exhaustivamente las formas de rechazar \\(H_0\\):\n\n\n\\[p(H_1 \\mid \\text{rechazo }H_0) = \\frac{(1-\\beta)p(H_1)}{\\alpha p(H_0) + (1-\\beta) p(H_1)}\\]\nPara el primer caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\ {0.50}}{{0.05}\\ {0.50} + {0.80}\\ {0.50}} = {0.94}\\)\nPara el segundo caso: \\(p(H_1 \\mid \\text{rechazo }H_0) = \\frac{{0.80}\\ {0.10}}{{0.05}\\ {0.90} + {0.80}\\ {0.10}} = {0.64}\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#el-problema-de-las-urnas",
+    "href": "presentaciones/presentacion_01.html#el-problema-de-las-urnas",
+    "title": "Estadística Bayesiana",
+    "section": "El problema de las urnas",
+    "text": "El problema de las urnas\n\nSe cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas negras y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azulez y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-18",
+    "href": "presentaciones/presentacion_01.html#section-18",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-19",
+    "href": "presentaciones/presentacion_01.html#section-19",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Conociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-20",
+    "href": "presentaciones/presentacion_01.html#section-20",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\(p(u\\mid n_A, N)\\) es una función de \\(u\\): es la credibilidad de los valores de \\(u\\) luego de observar los datos (habiendo observado \\(n_A=3\\))\n\n\n\nEstadística Bayesiana – 2023"
   },
   {
     "objectID": "index.html",
@@ -452,28 +543,28 @@
     "href": "presentaciones/presentacion_01.html#section-1",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "En una noche oscura, un policía camina por una calle aparentemente desierta. De repente, se escucha la alarma de un local. Se da vuelta y ve, en la vereda de enfrente, una joyería con la vidriera rota. Un hombre con una máscara sale agachado a través del vidrio roto, con una bolsa llena de joyas caras. El policía no duda en concluir que el hombre no tiene buenas intenciones.\n\nEl razonamiento del policía no fue una deducción lógica, ya que podría existir una explicación alternativa para lo ocurrido.\nDada la evidencia, no podemos decir con seguridad que las intenciones del hombre no son buenas, pero sí que es extremadamente plausible que no lo sean."
+    "text": "En una noche oscura, un policía camina por una calle aparentemente desierta. De repente, se escucha la alarma de un local. Se da vuelta y ve, en la vereda de enfrente, una joyería con la vidriera rota. Un hombre con una máscara sale agachado a través del vidrio roto, con una bolsa llena de joyas caras. El policía no duda en concluir que el hombre no tiene buenas intenciones.\n\nEl razonamiento del policía no fue una deducción lógica, ya que podría existir una explicación alternativa para lo ocurrido.\n\nDada la evidencia, no podemos decir con seguridad que las intenciones del hombre no son buenas, pero sí que es extremadamente plausible que no lo sean."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#razonamiento-plausible",
     "href": "presentaciones/presentacion_01.html#razonamiento-plausible",
     "title": "Estadística Bayesiana",
     "section": "Razonamiento plausible",
-    "text": "Razonamiento plausible\nEl cerebro humano permanentemente determina si algo se vuelve más o menos plausible. Más aún, de alguna manera, evalúa el grado de plausibilidad de una proposición.\n\nLa plausibilidad de que llueva a las 10 de la mañana depende fuertemente de la oscuridad de las nubes a las 9:45.\n\nEste razonamiento hace uso de nuestra experiencia previa. Combina información a priori con evidencia disponible. Esto da lugar a un proceso secuencial."
+    "text": "Razonamiento plausible\nEl cerebro humano permanentemente determina si algo se vuelve más o menos plausible. Más aún, de alguna manera, evalúa el grado de plausibilidad de una proposición.\n\n\nLa plausibilidad de que llueva a las 10 de la mañana depende fuertemente de la oscuridad de las nubes a las 9:45.\n\n\n\nEste razonamiento hace uso de nuestra experiencia previa. Combina información a priori con evidencia disponible. Esto da lugar a un proceso secuencial."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#apuestas",
     "href": "presentaciones/presentacion_01.html#apuestas",
     "title": "Estadística Bayesiana",
     "section": "Apuestas",
-    "text": "Apuestas\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo hay alguien que tiene un loro como mascota\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo nadie tiene un loro como mascota\n\n\n\nTienen a su disposición estas tarjetas. Podemos comprarlas o venderlas. Al final de la clase develamos el misterio y, quien tenga la tarjeta, cobra.\n¿Por cuál pagarían más? ¿Cuánto estarían dispuestos a pagar como máximo?\nNotar que el precio máximo que estarían dispuestos a pagar para comprarla es el precio mínimo por el que estarían dispuestos a venderla."
+    "text": "Apuestas\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo hay alguien que tiene un loro como mascota\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si en este grupo nadie tiene un loro como mascota\n\n\n\n\nTienen a su disposición estas tarjetas. Podemos comprarlas o venderlas. Al final de la clase develamos el misterio y, quien tenga la tarjeta, cobra.\n\n\n¿Por cuál pagarían más? ¿Cuánto estarían dispuestos a pagar como máximo?\n\n\nNotar que el precio máximo que estarían dispuestos a pagar para comprarla es el precio mínimo por el que estarían dispuestos a venderla."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-2",
     "href": "presentaciones/presentacion_01.html#section-2",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Todos pagaríamos \\(p\\cdot\\$ 1000\\) con \\(0 \\leq p \\leq 1\\).\nDecidimos cuánto apostar en función de nuestra incertidumbre en la ocurrencia de un evento (de lo plausible que lo consideremos). Decidimos apostar \\(p\\cdot\\$ 1000\\) en favor de un evento, porque le asignamos una plausibilidad o credibilidad de grado \\(p\\)."
+    "text": "Todos pagaríamos \\(p\\cdot\\$ 1000\\) con \\(0 \\leq p \\leq 1\\).\n\nDecidimos cuánto apostar en función de nuestra incertidumbre en la ocurrencia de un evento (de lo plausible que lo consideremos). Decidimos apostar \\(p\\cdot\\$ 1000\\) en favor de un evento, porque le asignamos una plausibilidad o credibilidad de grado \\(p\\)."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-3",
@@ -487,21 +578,21 @@
     "href": "presentaciones/presentacion_01.html#section-4",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Páguese $1000 al portador de esta tarjeta si esta materia es la mejor del cuatrimestre\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia no es la mejor del cuatrimestre\n\n\n\nPor la primera pagarían como máximo \\(p\\cdot\\$ 1000\\) y por la segunda, \\(q\\cdot\\$ 1000\\). Es necesario que \\(p+q=1\\). ¿Por qué?"
+    "text": "Páguese $1000 al portador de esta tarjeta si esta materia es la mejor del cuatrimestre\n\n\n\n\n\n\nPáguese $1000 al portador de esta tarjeta si esta materia no es la mejor del cuatrimestre\n\n\n\n\nPor la primera pagarían como máximo \\(p\\cdot\\$ 1000\\) y por la segunda, \\(q\\cdot\\$ 1000\\). Es necesario que \\(p+q=1\\). ¿Por qué?"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#dutch-book",
     "href": "presentaciones/presentacion_01.html#dutch-book",
     "title": "Estadística Bayesiana",
     "section": "Dutch book",
-    "text": "Dutch book\nSupongamos que \\(p=0.3\\) y \\(q=0.2\\). Eso significa que:\n\nSi no tienen las tarjetas, estarían dispuestos a comprar ambas por \\(\\$500\\).\nSi tienen las tarjetas, estarían dispuestos a vender ambas por \\(\\$500\\).\n\n\nSabemos que a fin de cuatrimestre, quien tenga las dos tarjetas ganará \\(\\$1000\\)…\n\nSpeaker notes go here."
+    "text": "Dutch book\nSupongamos que \\(p=0.7\\) y \\(q=0.5\\). Eso significa que:\n\nSi no tienen las tarjetas, estarían dispuestos a comprar ambas por \\(\\$1200\\).\n\nSupongamos que \\(p=0.3\\) y \\(q=0.2\\). Eso significa que:\n\nSi tienen las tarjetas, estarían dispuestos a vender ambas por \\(\\$500\\).\n\n\nSabemos que a fin de cuatrimestre, quien tenga las dos tarjetas ganará \\(\\$1000\\)…\n\nThe canonical way to measure degrees of belief appeals to the notion of fair odds.\nThe degree of belief that a given epistemic agent—let’s say it’s you—has in this proposition A can be determined by what you deem to be the fair price of this lottery. Here the “fair price” is the price at which you are willing to either buy or sell the lottery ticket."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#dutch-book-1",
     "href": "presentaciones/presentacion_01.html#dutch-book-1",
     "title": "Estadística Bayesiana",
     "section": "Dutch Book",
-    "text": "Dutch Book\n\n\n\nDutch book\n\n\nEl argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad."
+    "text": "Dutch Book\n\n\n\nDutch book\n\n\nUn Dutch book es un conjunto de apuestas que aseguran una pérdida. El argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.\n\n\nSe puede asignar un valor de probabilidad a cualquier proposición."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-5",
@@ -522,20 +613,34 @@
     "href": "presentaciones/presentacion_01.html#probabilidad-subjetiva",
     "title": "Estadística Bayesiana",
     "section": "Probabilidad subjetiva",
-    "text": "Probabilidad subjetiva\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos)."
+    "text": "Probabilidad subjetiva\n\nEs la forma más general de interpretar la probabilidad (eventos no equiprobables y eventos que no pueden repetirse)\nSe utiliza para cuantificar la incertidumbre o ignorancia (o certidumbre o conocimiento) acerca de un evento o proposición\nEs personal\nDepende del estado actual de conocimiento del mundo\n\n\nTodos los métodos estadísticos son subjetivos en el sentido que se basan en idealizaciones matemáticas de la realidad (modelos)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#incertidumbre",
+    "href": "presentaciones/presentacion_01.html#incertidumbre",
+    "title": "Estadística Bayesiana",
+    "section": "Incertidumbre",
+    "text": "Incertidumbre\nDistinguimos dos tipos de incertidumbre:\n\n\nIncertidumbre epistémica\nIncertidumbre aleatoria\n\n\n\nLo retomaremos a lo largo del curso."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#elicitación-de-probabilidades",
     "href": "presentaciones/presentacion_01.html#elicitación-de-probabilidades",
     "title": "Estadística Bayesiana",
     "section": "Elicitación de probabilidades",
-    "text": "Elicitación de probabilidades"
+    "text": "Elicitación de probabilidades\nConsideremos la siguiente proposición:\n\nVoy a aprobar todas las materias de este cuatrimestre (\\(W\\))\n\n\nUna caja con 5 bolas azules y 5 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul\n\n\n\n\\(A_1\\): $1000 si \\(W\\)\n\\(A_2\\): $1000 si \\(A\\)\n\n\n\nSi prefieren \\(A_1\\) entonces… 8 bolas azules y 2 bolas rojas. Se extrae una bola al azar. \\(A\\) es el evento extraer una bola azul.\n\n\n\n\\(A_3\\): $1000 si \\(W\\)\n\\(A_4\\): $1000 si \\(A\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_01.html#section-6",
+    "href": "presentaciones/presentacion_01.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Interludio…\n\n¿Qué es más probable?\n\nQue el PSG le gane al Lyon\nQue el PSG le gane al Lyon y Messi haga un gol"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#sesgos",
     "href": "presentaciones/presentacion_01.html#sesgos",
     "title": "Estadística Bayesiana",
     "section": "Sesgos",
-    "text": "Sesgos\nThis is an important sentence!"
+    "text": "Sesgos\nLos seres humanos no estamos optimizados para operar con probabilidades (al menos no intuitivamente)."
   }
 ]
