@@ -403,12 +403,12 @@ Recordemos que **utilizamos las probabilidades para expresar nuestra incertidumb
 
 $$p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}$$
 
-## Historia de la Regla de Bayes {.smaller}
+## Orígenes de la Regla de Bayes {.smaller}
 
 ::: columns
 ::: {.column width="33%"}
 ::: fragment
-Bayes
+Alrededor de 1740, **Thomas Bayes** propone una versión de la regla pero no la publica (¿su descubrimiento era inútil? ¿era muy modesto?). Propuso el experimento imaginario de un juego con bolitas. Asignó iguales probabilidades _a priori_
 :::
 :::
 
@@ -424,15 +424,19 @@ Doctrine of Chances_ (1763)
 ::: {.column width="33%"}
 ::: fragment
 **Pierre-Simon Laplace** llegó al mismo resultado
-que Bayes y lo publicó en _Memoire sur la
-Probabilité des Causes par les Évenements_ (1774)
+que Bayes (algo que llamó _la probabilidad de las causas_) y lo publicó en _Memoire sur la Probabilité des Causes par les Évenements_ (1774). Se asemeja más a lo que hoy conocemos. Reconoció que Bayes había descubierto algo similar.
 :::
 :::
 :::
+
+##
+
+
+> _Bayes's rule is a mistake, perhaps the only mistake to which the mathematical world has so deeply committed itself_ (Fisher, ~1920)
 
 . . .
 
-> _Bayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry_
+> _Bayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry_ (Savage, ~1950)
 
 ## Ejemplos
 
