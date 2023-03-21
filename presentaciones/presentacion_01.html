@@ -668,12 +668,12 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p><span class="math display">\[p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}\]</span></p>
 </div>
 </section>
-<section id="historia-de-la-regla-de-bayes" class="slide level2 smaller">
-<h2>Historia de la Regla de Bayes</h2>
+<section id="orígenes-de-la-regla-de-bayes" class="slide level2 smaller">
+<h2>Orígenes de la Regla de Bayes</h2>
 <div class="columns">
 <div class="column" style="width:33%;">
 <div class="fragment">
-<p>Bayes</p>
+<p>Alrededor de 1740, <strong>Thomas Bayes</strong> propone una versión de la regla pero no la publica (¿su descubrimiento era inútil? ¿era muy modesto?). Propuso el experimento imaginario de un juego con bolitas. Asignó iguales probabilidades <em>a priori</em></p>
 </div>
 </div><div class="column" style="width:33%;">
 <div class="fragment">
@@ -681,13 +681,19 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 </div>
 </div><div class="column" style="width:33%;">
 <div class="fragment">
-<p><strong>Pierre-Simon Laplace</strong> llegó al mismo resultado que Bayes y lo publicó en <em>Memoire sur la Probabilité des Causes par les Évenements</em> (1774)</p>
+<p><strong>Pierre-Simon Laplace</strong> llegó al mismo resultado que Bayes (algo que llamó <em>la probabilidad de las causas</em>) y lo publicó en <em>Memoire sur la Probabilité des Causes par les Évenements</em> (1774). Se asemeja más a lo que hoy conocemos. Reconoció que Bayes había descubierto algo similar.</p>
 </div>
 </div>
 </div>
+</section>
+<section id="section-14" class="slide level2">
+<h2></h2>
+<blockquote>
+<p><em>Bayes’s rule is a mistake, perhaps the only mistake to which the mathematical world has so deeply committed itself</em> (Fisher, ~1920)</p>
+</blockquote>
 <div class="fragment">
 <blockquote>
-<p><em>Bayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry</em></p>
+<p><em>Bayes’s theorem is to the theory of probability what Pythagoras’s theorem is to geometry</em> (Savage, ~1950)</p>
 </blockquote>
 </div>
 </section>
@@ -699,7 +705,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <h2>Ejemplo 1</h2>
 <p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que tenga dos niñas?</p>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -726,7 +732,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p>¿Cuál es la probabilidad de que el taxi haya sido azul, de acuerdo a la declaración del testigo?</p>
 </div>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[p(A\mid T_A) = \frac{p(T_A\mid A) p(A)}{p(T_A)}\]</span></p>
 <div class="fragment">
@@ -745,11 +751,11 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <li class="fragment">Si la hipótesis alternativa es muy rara (digamos <span class="math inline">\(10\%\)</span>), ¿cuál es la probabilidad de que <span class="math inline">\(H_1\)</span> sea cierta luego de observar un resultado estadísticamente significativo?</li>
 </ul>
 </section>
-<section id="section-16" class="slide level2 smaller">
+<section id="section-17" class="slide level2 smaller">
 <h2></h2>
 
 <img data-src="imgs/testhipotesis.png" class="r-stretch quarto-figure-center"></section>
-<section id="section-17" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
 <p><span class="math display">\[p(H_1 \mid \text{rechazo }H_0) = \frac{p(\text{rechazo }H_0 \mid H_1)p(H_1)}{p(\text{rechazo }H_0)}\]</span></p>
 <div class="fragment">
@@ -772,7 +778,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p>Se cuenta con 11 urnas etiquetadas según <span class="math inline">\(u = 0,1,\dots,10\)</span>, que contienen diez bolas cada una. La urna <span class="math inline">\(u\)</span> contiene <span class="math inline">\(u\)</span> bolas negras y <span class="math inline">\(10-u\)</span> bolas blancas. Fede elige una urna <span class="math inline">\(u\)</span> al azar y extrae con reposición <span class="math inline">\(N\)</span> bolas, obteniendo <span class="math inline">\(n_A\)</span> azulez y <span class="math inline">\(N-n_A\)</span> blancas. Nico, el amigo de Fede, observa atentamente. Si después de <span class="math inline">\(N=10\)</span> extracciones resulta <span class="math inline">\(n_A = 3\)</span>, ¿cuál es la probabilidad de que la urna que Fede está usando sea la <span class="math inline">\(u\)</span>?</p>
 </blockquote>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2></h2>
 <p>La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: <strong>probabilidad hacia adelante</strong></p>
 <div class="fragment">
@@ -782,7 +788,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 <p><span class="math display">\[p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}\]</span></p>
 </div>
 </section>
-<section id="section-19" class="slide level2 smaller">
+<section id="section-20" class="slide level2 smaller">
 <h2></h2>
 <p>Conociendo <span class="math inline">\(N\)</span>, si conociéramos <span class="math inline">\(u\)</span> podríamos calcular las probabilidades de los diferentes <span class="math inline">\(n_A\)</span>: <strong>probabilidad hacia adelante</strong>.</p>
 <div class="fragment">
@@ -799,7 +805,7 @@ X=1 &amp; 0.3 &amp; 0.2 \\
 </ul>
 </div>
 </section>
-<section id="section-20" class="slide level2">
+<section id="section-21" class="slide level2">
 <h2></h2>
 <p><span class="math inline">\(p(u\mid n_A, N)\)</span> es una función de <span class="math inline">\(u\)</span>: es la credibilidad de los valores de <span class="math inline">\(u\)</span> luego de observar los datos (habiendo observado <span class="math inline">\(n_A=3\)</span>)</p>
 
