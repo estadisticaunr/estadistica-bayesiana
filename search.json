@@ -147,25 +147,32 @@
     "text": "Variables aleatorias\n\nDiscretas\nContinuas\n\nCDF\nPDF\nDistribucion conjunta\nDistribucion marginal\nDistribucion condicional\nIndependencia e independencia condicional\nMomentos de una distribucion\nRegla de Bayes\nDistribuciones de probabilidad frecuentemente utilizadas\nTransformacion de variables aleatorias\n\nPropiedades de transformaciones lineales\n\n\nEste listado esta sacado del capitulo 2 de Murphy (2022)\nTambien hay cosas interesantes en capitulo 3 de Murphy (2022)\n\nUncorrelated does not imply independent\nCorrelation does not imply causation\n\n\nPairwise independence does not imply mutual independence\nWe say that two random variables are pairwise independent if \\(p(X_2|X_1) = p(X_2)\\) and hence \\(p(X_2, X_1) = p(X_1)p(X_2|X_1) = p(X_1)p(X_2)\\)\nWe say that \\(n\\) random variables are mutually independent if \\(p(Xi|XS) = p(Xi)\\) \\(\\forall S \\subseteq \\{1, \\cdots , n\\}\\) and hence \\(\\displaystyle p(X_{1:n}) = \\prod_{i=1}^{n} p(X_i)\\)\nShow that pairwise independence between all pairs of variables does not necessarily imply mutual independence. It suffices to give a counter example.\nExercise 2.5 Murphy (2022)\nExercise 2.6 Murphy (2022)\nExercise 3.5 [Gaussian vs jointly Gaussian ]\n\n\n\n\n\nReferencias\n\nMurphy, Kevin P. 2022. Probabilistic Machine Learning: An Introduction. 1st edition. The MIT Press. https://probml.ai/."
   },
   {
-    "objectID": "computo/instalacion.html#rstan",
-    "href": "computo/instalacion.html#rstan",
+    "objectID": "computo/instalacion.html#instalar-rstudio",
+    "href": "computo/instalacion.html#instalar-rstudio",
     "title": "Instalación de herramientas computacionales",
-    "section": "RStan",
-    "text": "RStan\n\nWindows\n\n\nUbuntu\n\n\nMac OS\n\n\nVerificación"
+    "section": "Instalar RStudio",
+    "text": "Instalar RStudio\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
   },
   {
-    "objectID": "computo/instalacion.html#librerias-adicionales",
-    "href": "computo/instalacion.html#librerias-adicionales",
+    "objectID": "computo/instalacion.html#instalar-quarto",
+    "href": "computo/instalacion.html#instalar-quarto",
     "title": "Instalación de herramientas computacionales",
-    "section": "Librerias adicionales",
-    "text": "Librerias adicionales\n\n{brms}\n{ggplot2}\n{dplyr}\n**Estaria bueno pinear las dependencias usando {here} o algo similar\n\n\nVerificación"
+    "section": "Instalar Quarto",
+    "text": "Instalar Quarto\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
   },
   {
-    "objectID": "computo/instalacion.html#dependencias-optativas",
-    "href": "computo/instalacion.html#dependencias-optativas",
+    "objectID": "computo/instalacion.html#instalar-rstan-y-brms",
+    "href": "computo/instalacion.html#instalar-rstan-y-brms",
     "title": "Instalación de herramientas computacionales",
-    "section": "Dependencias optativas",
-    "text": "Dependencias optativas\n\nQuarto\n… ?"
+    "section": "Instalar RStan y brms",
+    "text": "Instalar RStan y brms\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
+  },
+  {
+    "objectID": "computo/instalacion.html#instalar-otras-librerías",
+    "href": "computo/instalacion.html#instalar-otras-librerías",
+    "title": "Instalación de herramientas computacionales",
+    "section": "Instalar otras librerías",
+    "text": "Instalar otras librerías\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
   },
   {
     "objectID": "presentaciones/presentacion_01.html",
@@ -368,7 +375,7 @@
     "href": "index.html#profesores",
     "title": "Estadística Bayesiana",
     "section": "Profesores",
-    "text": "Profesores\n\n\nNacho Evangelista\n\n   evangelistaignacio@gmail.com\n   Consultas\n\n\n\nTomás Capretto\n\n   tomicapretto@gmail.com\n   Consultas"
+    "text": "Profesores\n\n\nNacho Evangelista\n\n   evangelistaignacio@gmail.com\n   Consultas\n\n\n\nTomás Capretto\n\n   tomicapretto@gmail.com\n   Consultas: Jueves 9:00"
   },
   {
     "objectID": "practica/practica_03.html",
