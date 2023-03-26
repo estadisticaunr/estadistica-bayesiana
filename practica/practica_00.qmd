@@ -35,7 +35,8 @@ probabilidad.
 1.  **¡Argentina campeón!**
 
     De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
-    "la probabilidad de que Argentina gane la copa del mundo el 18 de Diciembre de 2022"?
+    "la probabilidad de que Argentina gane la copa del mundo dado que es 18 de Diciembre 
+    de 2022"?
     
     i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeón})$.
     i. $P(\text{Argentina campeón})$.
@@ -52,7 +53,7 @@ probabilidad.
     if (is_html) knitr::include_graphics(file.path("imgs", "argentina_campeon.png"))
     ```
 
-1.  **De formulas a español**  
+1.  **De formulas al español**  
 
     Enuncie con palabras cada una de las expresiones del punto anterior.
     <!-- @Martin2021 -->
@@ -105,7 +106,7 @@ probabilidad.
     |:-------------:|:---------:|:---------:|
     |    $X_1=0$    |   $0.15$  |   $0.15$  |
     |    $X_1=1$    |   $0.15$  |   $0.20$  |
-    |    $X_2=2$    |   $0.15$  |   $0.20$  |
+    |    $X_1=2$    |   $0.15$  |   $0.20$  |
 
     </div>
     </center>
