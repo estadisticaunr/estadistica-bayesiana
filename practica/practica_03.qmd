@@ -125,6 +125,7 @@ programa.
 
     Escriba un programa en `R` para responder esta pregunta utilizando simulaciones.
     Genere gráficos que faciliten la comprensión del resultado.
+    <!-- https://twitter.com/pgroisma/status/1616820135313932288 -->
 
 1.  **Estimando el valor de** $\pi$
 

@@ -181,11 +181,13 @@ probabilidad.
     (urbano, ruta, rotonda, etc.) y la luz que se encienda (izquierda o derecha). 
     En el uso urbano, se debe colocar la luz de giro correspondiente para indicar que se 
     va a girar en un sentido determinado. Sin embargo, esto no siempre se realiza.
-    Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo gira.
+    Muchas veces sucede que un vehículo no muestra luz de giro, y sin embargo, gira.
     Aunque menos frecuente, también se da que el vehículo coloca la luz de giro, pero no 
-    gira.  La probabilidad de girar dado que se coloca la luz de giro es 0.87 y la 
-    probabilidad de girar dado que no se coloca la luz de giro es 0.21. Si observa que un 
-    vehículo coloca la luz de giro, ¿cuál es la probabilidad de que efectivamente doble?
+    gira.  Un estudio reveló un vehículo gira en una de cada diez intersecciones que cruza,
+    que la probabilidad de colocar la luz de giro cuando se va a doblar es de 0.87 y que 
+    la probabilidad de que se coloque la luz de giro cuando no se va a doblar es de 0.04.
+    Si observa que un vehículo coloca la luz de giro, ¿cuál es la probabilidad de que 
+    efectivamente doble?
 
 1.  **Problema del cumpleaños**
 
@@ -207,7 +209,7 @@ probabilidad.
 
 1.  **Problema de concordancia de de Montmort**
 
-    Considere un mazo de $n$ cartas bien mezcladas, etiquetadas con números del 1 a $n$.
+    Considere un mazo de $n$ cartas bien mezcladas, etiquetadas con números de 1 a $n$.
     Se seleccionan las cartas de a una y se la da vuelta, diciendo en voz alta el número
     de cartas dadas vueltas desde 1 a $n$. Para ganar el juego tiene que coincidir el 
     número que se dice en voz alta con el número de la carta que se está dando vuelta --
@@ -225,3 +227,4 @@ probabilidad.
     <!-- https://es.wikipedia.org/wiki/Paradoja_de_los_dos_sobres -->
     <!-- https://twitter.com/pgroisma/status/1614242343510589441 -->
     <!-- https://twitter.com/pgroisma/status/1614686037351010306 -->
+    <!-- https://twitter.com/pgroisma/status/1614813051559071744 -->
