@@ -539,6 +539,8 @@ Por el contrario, muchas veces estamos interesados en realizar inferencias sobre
 
 $$p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}$$
 
+$$p(\mathcal{H}\mid E) \propto p(E\mid\mathcal{H}) p(\mathcal{H})$$
+
 ## {.smaller}
 
 Conociendo $N$, si conociéramos $u$ podríamos calcular las probabilidades de los diferentes $n_A$: **probabilidad hacia adelante**.

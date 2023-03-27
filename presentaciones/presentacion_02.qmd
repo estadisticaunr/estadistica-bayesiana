@@ -1,0 +1,95 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    transition: fade
+    slide-number: true
+    fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
+---
+
+# Inferencia Bayesiana
+
+## El problema de las urnas
+
+> Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas negras y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azulez y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
+
+## {.smaller}
+
+Conociendo $N$, si conociéramos $u$ podríamos calcular las probabilidades de los diferentes $n_A$: **probabilidad hacia adelante**.
+
+. . .
+
+Aquí observamos un $n_A$ y queremos calcular las probabilidades de los posibles valores de $u$: **probabilidad inversa**.
+
+. . .
+
+$$p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_N\mid N)}$$
+
+. . .
+
+- $N$ es una cantidad fija
+- $n_A$ es otra cantidad fija: lo que observamos al realizar el experimento
+- $u$ es la cantidad desconocida
+
+
+## Intolerancia al gluten {.smaller}
+
+> ¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.
+
+Supongamos que una persona alérgica al gluten tiene una probabilidad de $0.90$ de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de $0.40$.
+
+## {.smaller}
+
+Llamemos:
+
+- $N$ a la cantidad total de personas en el ensayo
+- $N_a$ al número de personas alérgicas al gluten
+- $\pi_a$ a la probabilidad de que un alérgico identifique correctamente
+- $\pi_f$ a la probabilidad de que un no alérgico identifique correctamente
+- $n_i$ al número de identificaciones correctas
+
+¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?
+
+## Vocabulario limitado {.smaller}
+
+> Supongamos que existe un idioma con seis palabras:
+> $$ \text{\{perro, parra, farra, carro, corro, tarro\}} $$
+
+###
+
+-   Todas las palabras son igualmente probables, excepto por 'perro', que es $\alpha$ veces más
+probable que las otras.
+-   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$.
+-   Todas las letras tienen la misma probabilidad de producir un error de tipeo.
+-   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.
+-   Los errores son independientes a lo largo de una palabra.
+
+##
+
+i. ¿Cuál es la probabilidad de escribir correctamente 'tarro'?
+i. ¿Cuál es la probabilidad de tipear 'cerro' o 'curro' al querer escribir 'carro'?
+i. Desarrollar un corrector gramatical para esta lengua: para las palabras tipeadas 'farra', 'birra' y 'locos', ¿cuál es la palabra que se quiso escribir?
+
+
+##  {background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white"}
+
+La inferencia bayesiana es la realocación de la 
+credibilidad del conjunto de parámetros de un modelo, 
+una vez observado un conjunto de datos.
+
+## Pequeño mundo
+
+> Se desea estimar la proporción de agua que cubre el planeta Tierra. 
+> Para ello se arroja hacia arriba un "globo terráqueo antiestrés" y 
+> se registra la posición del dedo índice al volver a tomarlo.
+
+> Se arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia:
+> $$TAAATTAATAA$$
+
+
+
+

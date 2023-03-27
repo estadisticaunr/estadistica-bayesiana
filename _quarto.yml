@@ -58,6 +58,8 @@ website:
       contents:
         - text: U1 - Introducción
           file: teoria/u1_teoria_01.qmd
+        - text: U1 - Inferencia Bayesiana
+          file: teoria/u1_teoria_02.qmd
     - title: Práctica
       style: docked
       search: false
