@@ -100,7 +100,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
     trabaja en el vivero selecciona al azar uno de los árboles para testear.
 
-    - ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
+    - ¿Cuál es la probabilidad a priori de que el árbol tenga moho?
     - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
     seleccionado un ceibo?
     - ¿Cuál es la probabilidad _a posteriori_ de que el ceibo seleccionado tenga moho?
