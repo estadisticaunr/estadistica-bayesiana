@@ -93,7 +93,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
     incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18\% de los árboles del vivero estan infectados con moho.
-    Los árboles enfremos se componen en un 15\% por jacarandás, 80\% de ceibos, y 5\% de 
+    Los árboles enfermos se componen en un 15\% por jacarandás, 80\% de ceibos, y 5\% de 
     otras especies.
     Los árboles sanos se componen por un 20\% de jacarandás, 10\% de ceibos, y 70\% de otras 
     especies.
