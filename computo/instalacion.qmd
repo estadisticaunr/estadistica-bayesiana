@@ -2,7 +2,7 @@
 title: "Instalación de herramientas computacionales"
 ---
 
-## R
+## Instalar R
 
 ### Windows
 
@@ -10,9 +10,8 @@ title: "Instalación de herramientas computacionales"
 
 ### Mac OS
 
-### Verificación
 
-## RStan
+## Instalar RStudio
 
 ### Windows
 
@@ -20,19 +19,28 @@ title: "Instalación de herramientas computacionales"
 
 ### Mac OS
 
-### Verificación
+## Instalar Quarto
 
-## Librerias adicionales
+### Windows
 
-* `{brms}`
-* `{ggplot2}`
-* `{dplyr}`
+### Ubuntu
 
-* **Estaria bueno pinear las dependencias usando `{here}` o algo similar
+### Mac OS
 
-### Verificación
+## Instalar RStan y brms
 
-## Dependencias optativas
+### Windows
 
-* Quarto
-* ... ?
+### Ubuntu
+
+### Mac OS
+
+<!-- https://glennwilliams.me/ds-psych/99d_installing-bayesian-software.html -->
+
+## Instalar otras librerías
+
+### Windows
+
+### Ubuntu
+
+### Mac OS

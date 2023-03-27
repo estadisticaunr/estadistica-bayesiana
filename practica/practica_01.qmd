@@ -93,14 +93,14 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
     incluyendo al jacarandá, ceibo, ombú, entre otros.
     Lamentablemente, el 18\% de los árboles del vivero estan infectados con moho.
-    Los árboles enfremos se componen en un 15\% por jacarandás, 80\% de ceibos, y 5\% de 
+    Los árboles enfermos se componen en un 15\% por jacarandás, 80\% de ceibos, y 5\% de 
     otras especies.
     Los árboles sanos se componen por un 20\% de jacarandás, 10\% de ceibos, y 70\% de otras 
     especies.
     Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
     trabaja en el vivero selecciona al azar uno de los árboles para testear.
 
-    - ¿Cuál es la probabilidad a priori de que el árbolo tenga moho?
+    - ¿Cuál es la probabilidad a priori de que el árbol tenga moho?
     - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
     seleccionado un ceibo?
     - ¿Cuál es la probabilidad _a posteriori_ de que el ceibo seleccionado tenga moho?
