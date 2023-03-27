@@ -56,7 +56,7 @@ course-logo: utils/imgs/logo.png
 ### Nacho Evangelista
 
 * {{< fa envelope >}} &nbsp; [evangelistaignacio@gmail.com](mailto:evangelistaignacio@gmail.com)
-* {{< fa calendar >}} &nbsp; [Consultas: martes 14:00|14:45](https://calendar.app.google/VgFTvneiTiXBJ7Xx6)
+* {{< fa calendar >}} &nbsp; [Consultas: Martes 14:00|14:45](https://calendar.app.google/VgFTvneiTiXBJ7Xx6)
 
 :::
 

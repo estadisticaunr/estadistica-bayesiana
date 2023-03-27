@@ -525,7 +525,7 @@ Para el segundo caso: $p(H_1 \mid \text{rechazo }H_0) = \frac{{0.80}\ {0.10}}{{0
 
 ## El problema de las urnas
 
-> Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas negras y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azulez y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
+> Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas azules y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azules y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
 
 ## 
 
