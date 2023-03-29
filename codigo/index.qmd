@@ -1,0 +1,40 @@
+---
+title: "Código"
+---
+
+Esta sección contiene _scripts_ de R que son de utilidad para el curso.
+
+
+```{r}
+#| echo: false
+library(stringr)
+make_entries <- function(file_names) {
+    entries <- vapply(file_names, make_formatted_entry, character(1))
+    paste(entries, collapse = "<br>")
+}
+
+make_formatted_entry <- function(file_name) {
+    title <- extract_title_qmd(file_name)
+    file_name_r <- str_replace(file_name, ".html", ".R")
+    href <- basename(file_name)
+    entry <- paste0("<a href=", href, ">", title,"</a>")
+    return(entry)
+}
+
+extract_title_qmd <- function(file_name) {
+    file_lines <- readLines(file_name, warn = FALSE)
+    title_line <- file_lines[str_detect(file_lines, "title")]
+    title <- str_replace_all(str_extract(title_line, '"(.*?)"'), '"', "")
+    return(title)
+}
+```
+
+```{r}
+#| results: asis
+#| echo: false
+file_names <- list.files(here::here("codigo"))
+file_names <- file_names[str_detect(file_names, "\\.qmd")]
+file_names <- file_names[file_names != "index.qmd"]
+entries <- make_entries(file_names)
+cat(entries)
+```

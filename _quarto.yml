@@ -27,6 +27,8 @@ website:
       #   file: computo/instalacion.qmd
       # - text: Material complementario
       #   file: complementario/probabilidad.qmd
+      - text: Código
+        file: codigo/index.qmd
       - icon: github
         href: "https://github.com/estadisticaunr/estadistica-bayesiana"
 

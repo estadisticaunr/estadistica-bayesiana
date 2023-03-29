@@ -1,0 +1,12 @@
+---
+title: "Rocklets discretos"
+---
+
+Este _script_ fue utilizado en la primer clase de práctica en el laboratorio para
+mostrar como resolver el ejercicio de los Rocklets utilizando código.
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/rocklets_grilla.R
+```
