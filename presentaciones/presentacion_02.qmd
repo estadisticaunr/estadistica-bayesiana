@@ -11,11 +11,89 @@ format:
     theme: [default, style_presentaciones.scss]
 ---
 
+```{r setup}
+#| echo: false
+#| include: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+
+theme_set(theme_bw() +
+          theme(legend.position = "none",
+                panel.grid = element_blank(),
+                #strip.background = element_rect(fill="#ade658"),
+                text = element_text(size=20)))
+
+dbeta2 <- function(x, mu, phi, ncp = 0, log = FALSE){
+  var <- mu*(1-mu)/(1+phi)
+  shape1 <- mu * (mu*(1-mu)/var - 1)
+  shape2 <- (1-mu)*(mu*(1-mu)/var - 1)
+  return(dbeta(x, shape1, shape2, ncp, log))
+}
+
+plot_bayes <- function(data){
+  data %>%
+    pivot_longer(cols = c(prior,likelihood,starts_with("posterior"))) %>%
+    arrange(name,x) %>%
+    separate(name,into = c("facet","color"),sep="_") %>%
+    mutate(color = ifelse(is.na(color),facet,color)) %>%
+    mutate(alpha = as.factor(paste0(facet,color))) %>% 
+    mutate(color = factor(color,
+                          levels = c("prior","likelihood","posterior"),
+                          labels = c("prior","likelihood","posterior")),
+           facet = factor(facet,
+                          levels = c("prior","likelihood","posterior"),
+                          labels = c("prior","likelihood","posterior"))) %>%
+    ggplot() +
+    geom_line(aes(x=x,y=value,col=color,group=color,alpha=alpha),size=1) +
+    geom_ribbon(aes(x=x,ymin=0,ymax=value,fill=color,group=color,alpha=alpha)) + 
+    scale_color_manual(values = c("#56CBF9","#21dbbc","#FF729F")) +
+    scale_fill_manual(values = c("#56CBF9","#21dbbc","#FF729F")) +
+    scale_alpha_manual(values = c(0.6,0.2,0.7,0.2,0.6)) +
+    facet_wrap(.~facet) +
+    ylab("credibilidad") +
+    xlab("parámetro") +
+    theme(axis.text.y = element_blank(),
+          axis.ticks.y = element_blank(),
+          axis.text.x = element_blank())
+}
+```
+
+
+```{r ejemplo-urna}
+#| echo: false
+#| include: false
+data <- crossing(u=0:10,nN = 0:10)
+N <- 10
+
+data <- data %>%
+  mutate(prior = 1/11,
+         likelihood = choose(10,nN)*(u/10)^nN*(1-u/10)^(N-nN),
+         joint = prior*likelihood) 
+```
+
+
 # Inferencia Bayesiana
 
 ## El problema de las urnas
 
-> Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas negras y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azulez y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
+> Se cuenta con 11 urnas etiquetadas según $u = 0,1,\dots,10$, que contienen diez bolas cada una. La urna $u$ contiene $u$ bolas azules y $10-u$ bolas blancas. Fede elige una urna $u$ al azar y extrae con reposición $N$ bolas, obteniendo $n_A$ azules y $N-n_A$ blancas. Nico, el amigo de Fede, observa atentamente. Si después de $N=10$ extracciones resulta $n_A = 3$, ¿cuál es la probabilidad de que la urna que Fede está usando sea la $u$?
+
+## 
+
+La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: **probabilidad hacia adelante**
+
+. . .
+
+Por el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: **probabilidad inversa**.
+
+. . .
+
+$$p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}$$
+
+$$p(\mathcal{H}\mid E) \propto p(E\mid\mathcal{H}) p(\mathcal{H})$$
 
 ## {.smaller}
 
@@ -29,22 +107,187 @@ Aquí observamos un $n_A$ y queremos calcular las probabilidades de los posibles
 
 $$p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_N\mid N)}$$
 
-. . .
-
 - $N$ es una cantidad fija
 - $n_A$ es otra cantidad fija: lo que observamos al realizar el experimento
 - $u$ es la cantidad desconocida
+
+##
+
+Probabilidad conjunta de las cantidades observables (datos) y cantidades no observables (parámetros):
+
+. . .
+
+$$
+p(u,n_A\mid N) = p(n_A\mid u, N) p(u)
+$$
+
+. . .
+
+Podemos escribir la probabilidad de $u$ condicionada a $n_A$:
+
+$$
+\begin{array}{ccl}
+p(u\mid n_A,N) & = & \frac{p(u,n_A\mid N)}{p(n_A\mid N)} \\
+ & = & \frac{p(n_A\mid u, N) p(u)}{p(n_A\mid N)}
+\end{array}
+$$
+
+. . .
+
+Es la probabilidad de cada valor de $u$ luego de haber observado $n_A = 3$ bolas azules
+
+##
+
+La probabilidad marginal de $u$ es
+
+. . .
+
+$$p(u) = \frac{1}{11}$$
+
+Es la probabilidad inicial de haber tomado la urna $u$
+
+##
+
+La probabilidad de $n_A$ dado $u$ (y $N$) es:
+
+. . .
+
+$$p(n_A\mid u,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A}$$
+
+. . .
+
+Como $n_A=3$ es fijo (¡son los datos observados!), $p(n_A\mid u,N)$ es una función de $u$. Indica qué tan compatibles son los datos
+observados con los distintos valores de $u$
+
+##
+
+El denominador, $p(n_A\mid N) = p(n_A)$, es
+
+. . .
+
+$$
+\begin{array}{ccl}
+p(n_A\mid N) & = & \sum_u p(u,n_A\mid N) \\
+ & = & \sum_u p(n_A\mid u, N) p(u) \\
+ & = & \frac{1}{11} \sum_u p(n_A\mid u, N)
+\end{array}
+$$
+
+## {.smaller}
+
+Finalmente, la probabilidad de interés $p(u\mid n_A,N)$ es
+
+. . .
+
+$$
+p(u\mid n_A,N) = \frac{p(n_A\mid u,N)p(u)}{p(n_A\mid N)}
+$$
+
+. . .
+
+$$
+p(u\mid n_A,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11} \frac{1}{p(n_A\mid N)}
+$$
+
+. . .
+
+- $N$ es una cantidad fija
+- $n_N$ es 3, otra cantidad fija: lo que observamos al realizar el experimento
+- $u$ es la cantidad desconocida
+
+. . .
+
+$p(u\mid n_A,N)$ es una función de $u$: es la credibilidad de los valores de $u$ luego de observar los datos (es decir, condicionada a $n_A=3$).
+
+##
+
+Gráficamente...
+
+```{r plot-conjunta-urna}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+data %>% 
+  filter(joint>0) %>%
+  ggplot() +
+  geom_point(aes(x=nN,y=u,size=joint),shape='square') +
+  scale_size(range=c(0,10)) +
+  scale_x_continuous(name = expression(n[N]),breaks=c(0:10)) +
+  scale_y_continuous(breaks=c(0:10)) +
+  coord_fixed()
+```
+
+##
+
+Gráficamente...
+
+```{r plot-conjunta-urna-cond}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+data %>% 
+  filter(joint>0) %>%
+  ggplot() +
+  geom_point(aes(x=nN,y=u,size=joint),shape='square') +
+  scale_size(range=c(0,10)) +
+  scale_x_continuous(name = expression(n[N]),breaks=c(0:10)) +
+  scale_y_continuous(breaks=c(0:10)) +
+  geom_point(data = filter(data,joint>0,nN==3),aes(x=nN,y=u,size=joint),shape='square',col="#21dbbc") +
+  coord_fixed()
+```
+
+##
+
+Pasamos de una credibilidad _a priori_ antes de observar los datos, a una _a posteriori_ luego de observar $n_A = 3$
+
+```{r plot-urna-prior-posterior}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 12
+  #| fig-height: 8
+  #| fig-align: center
+
+posterior <- data %>%
+  filter(nN == 3) %>%
+  mutate(posterior = joint/sum(joint)) %>%
+  select(u,prior,posterior)
+
+p1 <- posterior %>%
+  ggplot() +
+  geom_segment(aes(x=u,xend=u,y=0,yend=prior),size=1,col="#56CBF9") +
+  scale_y_continuous(limits = c(0,0.3),name = "P(u)") +
+  scale_x_continuous("u",breaks=0:10)
+
+p2 <- posterior %>%
+  ggplot() +
+  geom_segment(aes(x=u,xend=u,y=0,yend=posterior),size=1,col="#FF729F") +
+  scale_y_continuous(limits = c(0,0.3),name = expression("P(u|"*n[N]*",N)")) +
+  scale_x_continuous("u",breaks=0:10)
+
+p1+p2
+```
+
 
 
 ## Intolerancia al gluten {.smaller}
 
 > ¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.
+>
+> Incluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas... Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?
 
-Supongamos que una persona alérgica al gluten tiene una probabilidad de $0.90$ de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de $0.40$.
+. . .
+
+Supongamos que una persona alérgica al gluten tiene una probabilidad de $0.90$ de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de $0.40$ (y con una probabilidad de $0.6$ se equivoca o no sabe decir).
 
 ## {.smaller}
 
 Llamemos:
+
+. . .
 
 - $N$ a la cantidad total de personas en el ensayo
 - $N_a$ al número de personas alérgicas al gluten
@@ -52,18 +295,137 @@ Llamemos:
 - $\pi_f$ a la probabilidad de que un no alérgico identifique correctamente
 - $n_i$ al número de identificaciones correctas
 
+. . .
+
 ¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?
+
+##
+
+Conociendo $N$, $\pi_a$ y $\pi_f$, si conociéramos $N_a$ podríamos calcular las probabilidades de los diferentes $n_i$: **probabilidad hacia adelante**
+
+. . .
+
+Aquí observamos $n_i$ y queremos realizar inferencias sobre $N_a$: **probabilidad inversa**
+
+##
+
+Digamos que _a priori_ cualquier número de $N_a$ es igualmente probable o esperable:
+
+. . .
+
+$$p(N_a) = \frac{1}{36}$$
+
+## {.smaller}
+
+¿Cómo construimos la verosimilitud de los diferentes valores de $N_a$ $p(n_i\mid N_a)$?
+
+. . .
+
+Pensemos de forma **generativa** (con el modelo de **probabilidad hacia adelante**). Imaginemos que conocemos $N_a$ (además de $N$, $\pi_a$ y $\pi_f$), ¿podríamos escribir un programa que simule diferentes valores de $n_i$?
+
+## {.smaller}
+
+El número de identificaciones correctas $n_i$ es la suma de las identificaciones correctas entre los $N_a$ alérgicos ($n_{ia}$) y los $N-N_a$ no alérgicos ($n_{if}$). ¿Cuántas identificaciones habrá en cada grupo?
+
+. . .
+
+$$n_{ia} \sim Bi(N_a,\pi_a)$$
+$$n_{if} \sim Bi(N-N_a,\pi_f)$$
+$$n_i = n_{ia} + n_{if}$$
+
+. . .
+
+```{r gluten-sim}
+#| echo: true
+
+N <- 35
+pi_a <- 0.9
+pi_f <- 0.4
+N_a <- 10 # lo suponemos conocido para simular
+
+n_ia <- rbinom(1, N_a, pi_a)
+n_if <- rbinom(1, N-N_a, pi_f)
+
+n_i <- n_ia + n_if
+```
+
+
+. . .
+
+Sabríamos calcular las probabilidades de los diferentes valores de $n_{ia}$ y $n_{if}$, ¿no?.
+
+## {.smaller}
+
+Recordemos que no conocemos $N_a$. En nuestro caso, la verosimilitud de cada valor de $N_a$ 
+es la probabilidad de observar $n_i=12$ para ese valor de $N_a$.
+
+. . .
+
+$$
+\begin{array}{lll}
+p(n_i=12\mid N_a) & = & p(n_{ia}=0\mid N_a)p(n_{ia}=12\mid N_a) \\ 
+& & \quad + p(n_{ia}=1\mid N_a)p(n_{ia}=11\mid N_a) + \dots
+\end{array}
+$$ 
+
+. . .
+
+Queda como ejercicio calcular a mano $p(n_i\mid N_a)$ o, mejor aún, escribir un programita que calcule $p(n_i\mid N_a)$
+
+##
+
+Finalmente,
+
+$$p(N_a\mid n_i) = \frac{p(n_i\mid N_a) p(N_a)}{p(n_i)}$$
+
+##
+
+```{r plot-gluten-prior-posterior}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 12
+  #| fig-height: 8
+  #| fig-align: center
+
+posterior <- 
+expand.grid(N_a = 0:35,
+            n_ia = 0:35,
+            n_if = 0:35) |>
+  mutate(n_i = n_ia + n_if,
+         prob_ia = dbinom(n_ia,N_a,0.95),
+         prob_if = dbinom(n_if,N-N_a,0.4),
+         prob = prob_ia*prob_if) |>
+  filter(n_i == 12) |>
+  group_by(N_a) |>
+  summarise(likelihood = sum(prob)) |>
+  mutate(prior = 1/36,
+         posterior_ = likelihood*prior,
+         posterior = posterior_/sum(posterior_))
+
+p1 <- posterior %>%
+  ggplot() +
+  geom_segment(aes(x=N_a,xend=N_a,y=0,yend=prior),size=1,col="#56CBF9") +
+  scale_y_continuous(limits = c(0,0.3),name = expression("P("*N[a]*")")) +
+  scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, ""))
+
+p2 <- posterior %>%
+  ggplot() +
+  geom_segment(aes(x=N_a,xend=N_a,y=0,yend=posterior),size=1,col="#FF729F") +
+  scale_y_continuous(limits = c(0,0.3),name = expression("P("*N[a]*"|"*n[i]*")")) +
+  scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, ""))
+
+p1 + p2
+```
+
 
 ## Vocabulario limitado {.smaller}
 
 > Supongamos que existe un idioma con seis palabras:
 > $$ \text{\{perro, parra, farra, carro, corro, tarro\}} $$
 
-###
-
--   Todas las palabras son igualmente probables, excepto por 'perro', que es $\alpha$ veces más
+-   Todas las palabras son igualmente probables, excepto por 'perro', que es $\alpha=3$ veces más
 probable que las otras.
--   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\theta$.
+-   Cuando se tipean, un caracter se introduce erróneamente con probabilidad $\pi=0.1$.
 -   Todas las letras tienen la misma probabilidad de producir un error de tipeo.
 -   Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.
 -   Los errores son independientes a lo largo de una palabra.
@@ -74,22 +436,613 @@ i. ¿Cuál es la probabilidad de escribir correctamente 'tarro'?
 i. ¿Cuál es la probabilidad de tipear 'cerro' o 'curro' al querer escribir 'carro'?
 i. Desarrollar un corrector gramatical para esta lengua: para las palabras tipeadas 'farra', 'birra' y 'locos', ¿cuál es la palabra que se quiso escribir?
 
+##
+
+i. La probabilidad de escribir correctamente 'tarro' es $(1-\pi)^5$
+i. La probabilidad de escribir correctamente 'cerro' o 'curro' al querer escribir 'carro' es $\pi(1-\pi)^4 $
+i. Allá vamos...
+
+##
+
+Estas son las probabilidades _a priori_ de cada una de las palabras del vocabulario
+
+```{r plot-vocabulario-prior}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+vocabulario <- as.factor(c("perro","parra","farra","carro","corro","tarro"))
+probs_ <- c(3,1,1,1,1,1)
+probs <- probs_/sum(probs_)
+
+data.frame(vocabulario,probs) |>
+  ggplot() +
+  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=probs),size=3,col="#56CBF9") +
+  scale_y_continuous(limits = c(0,0.8),name = expression("p(palabra)")) +
+  xlab("palabra")
+```
+
+##
+
+Alguien escribe 'farra', ¿qué quiso escribir?
+
+. . .
+
+¿Qué sería en este caso la verosimilitud?
+
+. . .
+
+La verosimilitud de 'perro' es qué tan probable es escribir 'farra' cuando se quería escribir 'perro': $p(\mathrm{farra}\mid\mathrm{perro})=\pi^3(1-\pi)^2$
+
+. . .
+
+##
+
+```{r plot-vocabulario-likelihood}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+palabra <- "farra"
+pi <- 0.1
+likelihood <- c(pi^2*(1-pi)^3,
+                pi^1*(1-pi)^4,
+                pi^0*(1-pi)^5,
+                pi^2*(1-pi)^3,
+                pi^3*(1-pi)^2,
+                pi^2*(1-pi)^3)
+
+data.frame(vocabulario,likelihood) |>
+  ggplot() +
+  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=likelihood),size=3,col="#21dbbc") +
+  scale_y_continuous(limits = c(0,0.8),name = expression("p(farra|palabra)")) +
+  xlab("palabra")
+```
+
+## 
+
+Para obtener la probabilidad _a posteriori_ de cada palabra, necesitamos combinar la información _a priori_ con los datos (¿cuáles son los datos?). Aplicamos la Regla de Bayes:
+
+$$p(\mathrm{palabra}\mid \mathrm{farra}) = \frac{p(\mathrm{farra}\mid \mathrm{palabra})p(\mathrm{palabra})}{p(\mathrm{farra})}$$
+
+##
+
+```{r plot-vocabulario-posterior}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+
+data.frame(vocabulario,likelihood,probs) |>
+  mutate(posterior_ = likelihood*probs,
+         posterior = posterior_/sum(posterior_)) |>
+  ggplot() +
+  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=posterior),size=3,col="#FF729F") +
+  scale_y_continuous(limits = c(0,0.9),name = expression("p(palabra|farra)")) +
+  xlab("palabra")
+```
+
 
 ##  {background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white"}
 
 La inferencia bayesiana es la realocación de la 
-credibilidad del conjunto de parámetros de un modelo, 
-una vez observado un conjunto de datos.
+credibilidad del conjunto de cantidades desconocidas (parámetros)
+de un modelo, una vez observado un conjunto de datos.
+
 
 ## Pequeño mundo
 
 > Se desea estimar la proporción de agua que cubre el planeta Tierra. 
 > Para ello se arroja hacia arriba un "globo terráqueo antiestrés" y 
 > se registra la posición del dedo índice al volver a tomarlo.
-
+>
 > Se arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia:
 > $$TAAATTAATAA$$
 
+##
+
+Llamemos:
+
+. . .
+
+- $\pi$ a la proporción de agua en el planeta Tierra
+- $N$ al número de tiradas
+- $y$ al número de veces que salió agua
+
+. . .
+
+$\pi$ es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.
+
+## {.smaller}
+
+### _Prior_
+
+¿Cómo asignamos una credibilidad _a priori_ para los valores de $\pi_a$? . . . Con una distribución de probabilidad.
+
+. . .
+
+$$
+\pi \sim \mathrm{Beta}(a,b)
+$$
+
+. . .
+
+$$
+p(\pi\mid a,b) = p(\pi) = \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}
+$$
+
+. . .
+
+$$
+B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+$$
+
+. . .
+
+$$
+\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
+$$
+
+## 
+
+### La distribución beta
+
+```{r plot-beta-1}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+a <- 1
+b <- seq(1,20,5)
+
+dv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>
+  mutate(p = dbeta(x,a,b))
+
+dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
+
+dv |>
+  ggplot() +
+  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
+  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  xlab(expression(pi[a])) +
+  theme(legend.title = element_blank())
+```
+
+##
+
+### La distribución beta
+
+```{r plot-beta-2}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+a <- 6
+b <- seq(1,20,5)
+
+dv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>
+  mutate(p = dbeta(x,a,b))
+
+dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
+
+dv |>
+  ggplot() +
+  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
+  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  xlab(expression(pi[a])) +
+  theme(legend.title = element_blank())
+```
+
+## 
+
+Una posible elección de valores para la distribución _a priori_ es $Beta(2,2)$
+
+```{r plot-beta-prior}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 6
+  #| fig-height: 8
+  #| fig-align: center
+
+a <- 2
+b <- 2
+
+dv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>
+  mutate(p = dbeta(x,a,b))
+
+dv$beta <- paste0("a = ", dv$a, ", b = ", dv$b )
+
+dv |>
+  ggplot() +
+  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +
+  scale_y_continuous(name = expression("P("*pi[a]*")")) +
+  xlab(expression(pi[a])) +
+  theme(legend.title = element_blank())
+```
 
 
+##
 
+### _Likelihood_
+
+¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?
+
+. . .
+
+$$ y \mid \pi, N \sim Bi(N,\pi) $$
+
+$$p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)$$
+
+##
+
+### _Posterior_
+
+$$p(\pi\mid y) = \frac{p(y\mid \pi)p(\pi)}{p(y)}$$
+
+. . .
+
+$$p(\pi\mid y) = \frac{{N \choose y }\pi^y (1-\pi)^{N-y}  \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}}{\int p(y\mid\pi) p(\pi) d \pi}$$
+
+. . .
+
+La integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable _intractable_ (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.
+
+## {.smaller}
+
+Recordando que:
+$$
+\mathrm{posterior} \propto \mathrm{prior}\times\mathrm{likelihood}
+$$
+
+. . .
+
+Resulta
+$$p(\pi\mid y) \propto p(y\mid\pi) p(\pi)$$
+
+. . .
+
+$$p(\pi\mid y) \propto {N \choose y }\pi^x (1-\pi)^{N-y} \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \pi^{a-1}(1-\pi)^{b-1}$$ 
+
+. . .
+
+$$p(\pi\mid y) \propto {N \choose y } \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}$$
+
+. . .
+
+$$p(\pi\mid y) = K C  \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}$$ 
+
+. . .
+
+$$p(\pi\mid y) = K^* \pi^{(x+a)-1} (1-\pi)^{(N-x+b)-1}$$ 
+
+
+##
+
+Para que $\int_0^1 p(\pi\mid x) d \pi = 1$, debe ser
+
+. . .
+
+$$K^* = \frac{1}{B(y+a,N-y+b)} = \frac{\Gamma\left[(y+a)+(N-y+b)\right]}{\Gamma(y+a)\Gamma(N-y+b)}$$
+
+. . .
+
+Por lo tanto, resulta que la distribución _a posteriori_ es Beta de parámetros $y+a$ y $N-y+b$
+
+$$
+p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
+$$
+
+$$
+\pi\mid y \sim  Beta(y+a,N-y+b)
+$$
+
+## ¿Qué hicimos?
+
+. . .
+
+Nos las arreglamos para encontrar la solución exacta al problema de inferir el parámetro de una distribución binomial a partir del número de éxitos observados. 
+
+. . .
+
+El _prior_ y el _posterior_ tienen la misma forma distribucional. Esto ocurre por la elección del _prior_ y el _likelihood_.
+
+##  {background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white"}
+
+Una distribución $\mathcal{F}$ se dice conjugada de una verosimilitud $\mathcal{L}$ 
+si cuando la distribución _a priori_ es $\mathcal{F}$, 
+la distribución _a posteriori_ también es $\mathcal{F}$
+
+## Pequeño mundo {.smaller}
+
+> Se desea estimar la proporción de agua que cubre el planeta Tierra. 
+> Para ello se arroja hacia arriba un "globo terráqueo antiestrés" y 
+> se registra la posición del dedo índice al volver a tomarlo.
+>
+> Se arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia:
+> $$TAAATTAATAA$$
+
+. . .
+
+$$
+\begin{align*}
+    y\mid\pi & \sim  Bi(N,\pi)\\
+    \pi & \sim  Beta(a,b)
+\end{align*}
+$$
+
+##
+
+con $N=11$, $a=2$ y $b=2$.
+
+Al observar $y=7$ resulta
+
+$$\pi\mid y \sim Beta(a+y,b+N-y)$$
+$$p(\pi\mid y) = Beta(2+7,2+4)$$ 
+
+##
+
+```{r plot-water}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+posterior <- data.frame(x=seq(0,1,0.01)) |>
+  mutate(prior = dbeta(x,2,2),
+         likelihood = dbinom(7,11,x),
+         posterior = dbeta(x,9,6))
+
+p1 <- posterior %>%
+  ggplot() +
+  geom_line(aes(x=x,y=prior/sum(prior)),size=1,col="#56CBF9") +
+  scale_y_continuous(name = expression("P("*pi*")")) +
+  scale_x_continuous(expression(pi)) +
+  theme(axis.text.y = element_blank())
+
+p2 <- posterior %>%
+  ggplot() +
+  geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,col="#21dbbc") +
+  scale_y_continuous(name = expression("P("*pi*")")) +
+  scale_x_continuous(expression(pi)) +
+  theme(axis.text.y = element_blank())
+
+p3 <- posterior %>%
+  ggplot() +
+  geom_line(aes(x=x,y=posterior/sum(posterior)),size=1,col="#FF729F") +
+  scale_y_continuous(name = expression("P("*pi*"|"*y*")")) +
+  scale_x_continuous(expression(pi)) +
+  theme(axis.text.y = element_blank())
+
+p1 + p2 + p3
+```
+
+## Más ejemplos {.smaller}
+
+Queremos estimar la probabilidad $\pi$ de que salga cara al arrojar una moneda.
+
+. . .
+
+Credibilidad _a priori_: $Beta(2,2)$
+
+. . .
+
+¿Cómo cambia nuestra creencia si...
+
+1. ...realizamos 6 tiradas y observamos 4 caras?
+1. ...realizamos 60 tiradas y observamos 40 caras?
+1. ...realizamos 2 tiradas y observamos 2 caras?
+1. ...realizamos 40 tiradas y observamos 40 caras?
+1. ...realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?
+
+##
+
+1. $\pi \mid y \sim Beta(2+4,2+2)$
+1. $\pi \mid y \sim Beta(2+40,2+20)$
+1. $\pi \mid y \sim Beta(2+2,2+0)$
+1. $\pi \mid y \sim Beta(2+40,2+0)$
+1. $\pi \mid y \sim Beta((2+3)+1,(2+1)+1)$
+
+##
+
+4 caras en 6 tiradas
+
+```{r plot-ejemplo1}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbinom(4,6,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>% 
+  plot_bayes()
+```
+
+##
+
+40 caras en 60 tiradas
+
+```{r plot-ejemplo2}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbinom(40,60,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+2 caras en 2 tiradas
+
+```{r plot-ejemplo3}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbinom(2,2,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+40 caras en 40 tiradas
+
+```{r plot-ejemplo4}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbinom(40,40,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+3 caras en 4 tiradas, luego 1 cara en 2 tiradas
+
+```{r plot-ejemplo5}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 10
+  #| fig-align: center
+
+p6.1 <- tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbinom(3,4,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+
+p6.2 <- tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,5,3),
+       likelihood = dbinom(1,2,x),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+
+p6.1/p6.2
+```
+
+## Características generales
+
+La inferencia bayesiana presenta ciertas características que se repiten
+independientemente de las distribuciones elegidas.
+
+## Compromiso
+
+Vamos a formalizar lo que observamos en el ejemplo para el modelo Beta--Binomial. Para esto será útil el siguiente resultado:
+
+$$\text{Si } X\sim Beta(a,b)$$
+
+$$\mathbb{E}({X}) = \frac{a}{a+b}$$
+
+## {.smaller}
+
+La distribución _a priori_ es $Beta(a,b)$ y la distribución _a posteriori_ es $Beta(y+a,N-y+b)$. \pause La media del \textit{posterior} es:
+
+$$
+\begin{align*}
+\mathbb{E}[{p(\pi\mid y)}] & = \frac{y+a}{a+b+N} \\
+& = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
+& = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
+& = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[P(\pi)]}
+\end{align*}
+$$
+
+
+## 
+
+La distribución _a posteriori_ representa un balance (promedio ponderado o _combinación convexa_) entre la proporción observada y la proporción esperada _a priori_. Hay un _shrinkage_ hacia la media del _prior_.
+
+## Secuencialidad {.smaller}
+
+Si primero observamos $y_1$ en $N_1$ y luego observamos $y_2$ en $N_2$... Con el primer conjunto de datos pasamos del _prior_ al _posterior_ y luego esa distribución se convierte en el nuevo _prior_: 
+
+. . .
+
+$$Beta(a,b) \rightarrow Beta(y_1 + a, N_1 - y_1 + b)$$
+
+. . .
+
+$$Beta(y_1 + a, N_1 - y_1 + b) \rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)$$
+
+. . .
+
+$$Beta(a,b) \rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)$$
+
+. . .
+
+Es idéntico a observar $y_1+y_2$ en $N_1+N_2$
+
+## {background-color="#ffc13b" style="font-size: 1.4em; text-align: left; color=white"}
+
+La Regla de Bayes permite combinar dos
+fuentes de información: la información _a priori_ 
+(lo que sabemos hasta el momento), y
+la nueva información (representada por la
+verosimilitud). La distribución _a posteriori_
+representa un compromiso entre la
+verosimilitud de los datos y la credibilidad _a priori_.
