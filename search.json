@@ -179,7 +179,7 @@
     "href": "presentaciones/presentacion_02.html",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Se cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas negras y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azulez y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?\n\n\n\n\nConociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida\n\n\n\n\n\n\n¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\n\nSupongamos que una persona alérgica al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\).\n\n\n\nLlamemos:\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas alérgicas al gluten\n\\(\\pi_a\\) a la probabilidad de que un alérgico identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no alérgico identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?\n\n\n\n\nSupongamos que existe un idioma con seis palabras: \\[ \\text{\\{perro, parra, farra, carro, corro, tarro\\}} \\]\n\n\n\n\nTodas las palabras son igualmente probables, excepto por ‘perro’, que es \\(\\alpha\\) veces más probable que las otras.\nCuando se tipean, un caracter se introduce erróneamente con probabilidad \\(\\theta\\).\nTodas las letras tienen la misma probabilidad de producir un error de tipeo.\nSi una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.\nLos errores son independientes a lo largo de una palabra.\n\n\n\n\n\n\n¿Cuál es la probabilidad de escribir correctamente ‘tarro’?\n¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?\nDesarrollar un corrector gramatical para esta lengua: para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, ¿cuál es la palabra que se quiso escribir?\n\n\n\n\nLa inferencia bayesiana es la realocación de la credibilidad del conjunto de parámetros de un modelo, una vez observado un conjunto de datos.\n\n\n\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\n\n\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]"
+    "text": "Se cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas azules y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azules y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?\n\n\n\n\nLa teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]\n\n\n\n\nConociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida\n\n\n\n\n\nProbabilidad conjunta de las cantidades observables (datos) y cantidades no observables (parámetros):\n\n\\[\np(u,n_A\\mid N) = p(n_A\\mid u, N) p(u)\n\\]\n\n\nPodemos escribir la probabilidad de \\(u\\) condicionada a \\(n_A\\):\n\\[\n\\begin{array}{ccl}\np(u\\mid n_A,N) & = & \\frac{p(u,n_A\\mid N)}{p(n_A\\mid N)} \\\\\n& = & \\frac{p(n_A\\mid u, N) p(u)}{p(n_A\\mid N)}\n\\end{array}\n\\]\n\n\nEs la probabilidad de cada valor de \\(u\\) luego de haber observado \\(n_A = 3\\) bolas azules\n\n\n\n\nLa probabilidad marginal de \\(u\\) es\n\n\\[p(u) = \\frac{1}{11}\\]\nEs la probabilidad inicial de haber tomado la urna \\(u\\)\n\n\n\n\nLa probabilidad de \\(n_A\\) dado \\(u\\) (y \\(N\\)) es:\n\n\\[p(n_A\\mid u,N) = {N \\choose n_A} \\left( \\frac{u}{10} \\right)^{n_A} \\left( 1 - \\frac{u}{10} \\right)^{N-n_A}\\]\n\n\nComo \\(n_A=3\\) es fijo (¡son los datos observados!), \\(p(n_A\\mid u,N)\\) es una función de \\(u\\). Indica qué tan compatibles son los datos observados con los distintos valores de \\(u\\)\n\n\n\n\nEl denominador, \\(p(n_A\\mid N) = p(n_A)\\), es\n\n\\[\n\\begin{array}{ccl}\np(n_A\\mid N) & = & \\sum_u p(u,n_A\\mid N) \\\\\n& = & \\sum_u p(n_A\\mid u, N) p(u) \\\\\n& = & \\frac{1}{11} \\sum_u p(n_A\\mid u, N)\n\\end{array}\n\\]\n\n\n\n\nFinalmente, la probabilidad de interés \\(p(u\\mid n_A,N)\\) es\n\n\\[\np(u\\mid n_A,N) = \\frac{p(n_A\\mid u,N)p(u)}{p(n_A\\mid N)}\n\\]\n\n\n\\[\np(u\\mid n_A,N) = {N \\choose n_A} \\left( \\frac{u}{10} \\right)^{n_A} \\left( 1 - \\frac{u}{10} \\right)^{N-n_A} \\frac{1}{11} \\frac{1}{p(n_A\\mid N)}\n\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_N\\) es 3, otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida\n\n\n\n\\(p(u\\mid n_A,N)\\) es una función de \\(u\\): es la credibilidad de los valores de \\(u\\) luego de observar los datos (es decir, condicionada a \\(n_A=3\\)).\n\n\n\n\nGráficamente…\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 8\n  #| fig-height: 8\n  #| fig-align: center\ndata %>% \n  filter(joint>0) %>%\n  ggplot() +\n  geom_point(aes(x=nN,y=u,size=joint),shape='square') +\n  scale_size(range=c(0,10)) +\n  scale_x_continuous(name = expression(n[N]),breaks=c(0:10)) +\n  scale_y_continuous(breaks=c(0:10)) +\n  coord_fixed()\n\n\n\n\n\n\n\nGráficamente…\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 8\n  #| fig-height: 8\n  #| fig-align: center\ndata %>% \n  filter(joint>0) %>%\n  ggplot() +\n  geom_point(aes(x=nN,y=u,size=joint),shape='square') +\n  scale_size(range=c(0,10)) +\n  scale_x_continuous(name = expression(n[N]),breaks=c(0:10)) +\n  scale_y_continuous(breaks=c(0:10)) +\n  geom_point(data = filter(data,joint>0,nN==3),aes(x=nN,y=u,size=joint),shape='square',col=\"#21dbbc\") +\n  coord_fixed()\n\n\n\n\n\n\n\nPasamos de una credibilidad a priori antes de observar los datos, a una a posteriori luego de observar \\(n_A = 3\\)\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 12\n  #| fig-height: 8\n  #| fig-align: center\n\nposterior <- data %>%\n  filter(nN == 3) %>%\n  mutate(posterior = joint/sum(joint)) %>%\n  select(u,prior,posterior)\n\np1 <- posterior %>%\n  ggplot() +\n  geom_segment(aes(x=u,xend=u,y=0,yend=prior),size=1,col=\"#56CBF9\") +\n  scale_y_continuous(limits = c(0,0.3),name = \"P(u)\") +\n  scale_x_continuous(\"u\",breaks=0:10)\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\np2 <- posterior %>%\n  ggplot() +\n  geom_segment(aes(x=u,xend=u,y=0,yend=posterior),size=1,col=\"#FF729F\") +\n  scale_y_continuous(limits = c(0,0.3),name = expression(\"P(u|\"*n[N]*\",N)\")) +\n  scale_x_continuous(\"u\",breaks=0:10)\n\np1+p2\n\n\n\n\n\n\n\n\n¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\nIncluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?\n\n\nSupongamos que una persona alérgica al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\) (y con una probabilidad de \\(0.6\\) se equivoca o no sabe decir).\n\n\n\n\nLlamemos:\n\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas alérgicas al gluten\n\\(\\pi_a\\) a la probabilidad de que un alérgico identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no alérgico identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?\n\n\n\n\nConociendo \\(N\\), \\(\\pi_a\\) y \\(\\pi_f\\), si conociéramos \\(N_a\\) podríamos calcular las probabilidades de los diferentes \\(n_i\\): probabilidad hacia adelante\n\nAquí observamos \\(n_i\\) y queremos realizar inferencias sobre \\(N_a\\): probabilidad inversa\n\n\n\n\nDigamos que a priori cualquier número de \\(N_a\\) es igualmente probable o esperable:\n\n\\[p(N_a) = \\frac{1}{36}\\]\n\n\n\n\n¿Cómo construimos la verosimilitud de los diferentes valores de \\(N_a\\) \\(p(n_i\\mid N_a)\\)?\n\nPensemos de forma generativa (con el modelo de probabilidad hacia adelante). Imaginemos que conocemos \\(N_a\\) (además de \\(N\\), \\(\\pi_a\\) y \\(\\pi_f\\)), ¿podríamos escribir un programa que simule diferentes valores de \\(n_i\\)?\n\n\n\n\nEl número de identificaciones correctas \\(n_i\\) es la suma de las identificaciones correctas entre los \\(N_a\\) alérgicos (\\(n_{ia}\\)) y los \\(N-N_a\\) no alérgicos (\\(n_{if}\\)). ¿Cuántas identificaciones habrá en cada grupo?\n\n\\[n_{ia} \\sim Bi(N_a,\\pi_a)\\] \\[n_{if} \\sim Bi(N-N_a,\\pi_f)\\] \\[n_i = n_{ia} + n_{if}\\]\n\n\n\nN <- 35\npi_a <- 0.9\npi_f <- 0.4\nN_a <- 10 # lo suponemos conocido para simular\n\nn_ia <- rbinom(1, N_a, pi_a)\nn_if <- rbinom(1, N-N_a, pi_f)\n\nn_i <- n_ia + n_if\n\n\n\nSabríamos calcular las probabilidades de los diferentes valores de \\(n_{ia}\\) y \\(n_{if}\\), ¿no?.\n\n\n\n\nRecordemos que no conocemos \\(N_a\\). En nuestro caso, la verosimilitud de cada valor de \\(N_a\\) es la probabilidad de observar \\(n_i=12\\) para ese valor de \\(N_a\\).\n\n\\[\n\\begin{array}{lll}\np(n_i=12\\mid N_a) & = & p(n_{ia}=0\\mid N_a)p(n_{ia}=12\\mid N_a) \\\\\n& & \\quad + p(n_{ia}=1\\mid N_a)p(n_{ia}=11\\mid N_a) + \\dots\n\\end{array}\n\\]\n\n\nQueda como ejercicio calcular a mano \\(p(n_i\\mid N_a)\\) o, mejor aún, escribir un programita que calcule \\(p(n_i\\mid N_a)\\)\n\n\n\n\nFinalmente,\n\\[p(N_a\\mid n_i) = \\frac{p(n_i\\mid N_a) p(N_a)}{p(n_i)}\\]\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 12\n  #| fig-height: 8\n  #| fig-align: center\n\nposterior <- \nexpand.grid(N_a = 0:35,\n            n_ia = 0:35,\n            n_if = 0:35) |>\n  mutate(n_i = n_ia + n_if,\n         prob_ia = dbinom(n_ia,N_a,0.95),\n         prob_if = dbinom(n_if,N-N_a,0.4),\n         prob = prob_ia*prob_if) |>\n  filter(n_i == 12) |>\n  group_by(N_a) |>\n  summarise(likelihood = sum(prob)) |>\n  mutate(prior = 1/36,\n         posterior_ = likelihood*prior,\n         posterior = posterior_/sum(posterior_))\n\np1 <- posterior %>%\n  ggplot() +\n  geom_segment(aes(x=N_a,xend=N_a,y=0,yend=prior),size=1,col=\"#56CBF9\") +\n  scale_y_continuous(limits = c(0,0.3),name = expression(\"P(\"*N[a]*\")\")) +\n  scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, \"\"))\n\np2 <- posterior %>%\n  ggplot() +\n  geom_segment(aes(x=N_a,xend=N_a,y=0,yend=posterior),size=1,col=\"#FF729F\") +\n  scale_y_continuous(limits = c(0,0.3),name = expression(\"P(\"*N[a]*\"|\"*n[i]*\")\")) +\n  scale_x_continuous(expression(N[a]),breaks=0:35,labels=ifelse(0:35 %% 5 == 0, 0:35, \"\"))\n\np1 + p2\n\n\n\n\n\n\n\n\nSupongamos que existe un idioma con seis palabras: \\[ \\text{\\{perro, parra, farra, carro, corro, tarro\\}} \\]\n\n\nTodas las palabras son igualmente probables, excepto por ‘perro’, que es \\(\\alpha=3\\) veces más probable que las otras.\nCuando se tipean, un caracter se introduce erróneamente con probabilidad \\(\\pi=0.1\\).\nTodas las letras tienen la misma probabilidad de producir un error de tipeo.\nSi una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.\nLos errores son independientes a lo largo de una palabra.\n\n\n\n\n\n¿Cuál es la probabilidad de escribir correctamente ‘tarro’?\n¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?\nDesarrollar un corrector gramatical para esta lengua: para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, ¿cuál es la palabra que se quiso escribir?\n\n\n\n\n\nLa probabilidad de escribir correctamente ‘tarro’ es \\((1-\\pi)^5\\)\nLa probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es $(1-)^4 $\nAllá vamos…\n\n\n\n\nEstas son las probabilidades a priori de cada una de las palabras del vocabulario\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\nvocabulario <- as.factor(c(\"perro\",\"parra\",\"farra\",\"carro\",\"corro\",\"tarro\"))\nprobs_ <- c(3,1,1,1,1,1)\nprobs <- probs_/sum(probs_)\n\ndata.frame(vocabulario,probs) |>\n  ggplot() +\n  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=probs),size=3,col=\"#56CBF9\") +\n  scale_y_continuous(limits = c(0,0.8),name = expression(\"p(palabra)\")) +\n  xlab(\"palabra\")\n\n\n\n\n\n\n\nAlguien escribe ‘farra’, ¿qué quiso escribir?\n\n¿Qué sería en este caso la verosimilitud?\n\n\nLa verosimilitud de ‘perro’ es qué tan probable es escribir ‘farra’ cuando se quería escribir ‘perro’: \\(p(\\mathrm{farra}\\mid\\mathrm{perro})=\\pi^3(1-\\pi)^2\\)\n\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\npalabra <- \"farra\"\npi <- 0.1\nlikelihood <- c(pi^2*(1-pi)^3,\n                pi^1*(1-pi)^4,\n                pi^0*(1-pi)^5,\n                pi^2*(1-pi)^3,\n                pi^3*(1-pi)^2,\n                pi^2*(1-pi)^3)\n\ndata.frame(vocabulario,likelihood) |>\n  ggplot() +\n  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=likelihood),size=3,col=\"#21dbbc\") +\n  scale_y_continuous(limits = c(0,0.8),name = expression(\"p(farra|palabra)\")) +\n  xlab(\"palabra\")\n\n\n\n\n\n\n\nPara obtener la probabilidad a posteriori de cada palabra, necesitamos combinar la información a priori con los datos (¿cuáles son los datos?). Aplicamos la Regla de Bayes:\n\\[p(\\mathrm{palabra}\\mid \\mathrm{farra}) = \\frac{p(\\mathrm{farra}\\mid \\mathrm{palabra})p(\\mathrm{palabra})}{p(\\mathrm{farra})}\\]\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\n\ndata.frame(vocabulario,likelihood,probs) |>\n  mutate(posterior_ = likelihood*probs,\n         posterior = posterior_/sum(posterior_)) |>\n  ggplot() +\n  geom_segment(aes(x=vocabulario,xend=vocabulario,y=0,yend=posterior),size=3,col=\"#FF729F\") +\n  scale_y_continuous(limits = c(0,0.9),name = expression(\"p(palabra|farra)\")) +\n  xlab(\"palabra\")\n\n\n\n\n\n\n\nLa inferencia bayesiana es la realocación de la credibilidad del conjunto de cantidades desconocidas (parámetros) de un modelo, una vez observado un conjunto de datos.\n\n\n\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\n\nLlamemos:\n\n\n\\(\\pi\\) a la proporción de agua en el planeta Tierra\n\\(N\\) al número de tiradas\n\\(y\\) al número de veces que salió agua\n\n\n\n\\(\\pi\\) es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.\n\n\n\n\n\n\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi_a\\)? . . . Con una distribución de probabilidad.\n\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n\n\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n\n\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\n\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]\n\n\n\n\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\na <- 1\nb <- seq(1,20,5)\n\ndv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>\n  mutate(p = dbeta(x,a,b))\n\ndv$beta <- paste0(\"a = \", dv$a, \", b = \", dv$b )\n\ndv |>\n  ggplot() +\n  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +\n  scale_y_continuous(name = expression(\"P(\"*pi[a]*\")\")) +\n  xlab(expression(pi[a])) +\n  theme(legend.title = element_blank())\n\n\n\n\n\n\n\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\na <- 6\nb <- seq(1,20,5)\n\ndv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>\n  mutate(p = dbeta(x,a,b))\n\ndv$beta <- paste0(\"a = \", dv$a, \", b = \", dv$b )\n\ndv |>\n  ggplot() +\n  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +\n  scale_y_continuous(name = expression(\"P(\"*pi[a]*\")\")) +\n  xlab(expression(pi[a])) +\n  theme(legend.title = element_blank())\n\n\n\n\n\n\n\n\nUna posible elección de valores para la distribución a priori es \\(Beta(2,2)\\)\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 6\n  #| fig-height: 8\n  #| fig-align: center\n\na <- 2\nb <- 2\n\ndv <- expand.grid(a=a,b=b,x=seq(0,1,0.01)) |>\n  mutate(p = dbeta(x,a,b))\n\ndv$beta <- paste0(\"a = \", dv$a, \", b = \", dv$b )\n\ndv |>\n  ggplot() +\n  geom_line(aes(x=x,y=p,col=beta,group=beta),size=1) +\n  scale_y_continuous(name = expression(\"P(\"*pi[a]*\")\")) +\n  xlab(expression(pi[a])) +\n  theme(legend.title = element_blank())\n\n\n\n\n\n\n\n\n\n¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?\n\n\\[ y \\mid \\pi, N \\sim Bi(N,\\pi) \\]\n\\[p(y\\mid \\pi, N) = {N \\choose y }\\pi^y (1-\\pi)^{N-y} = p(y\\mid \\pi)\\]\n\n\n\n\n\n\n\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n\n\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable intractable (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.\n\n\n\n\n\nRecordando que: \\[\n\\mathrm{posterior} \\propto \\mathrm{prior}\\times\\mathrm{likelihood}\n\\]\n\nResulta \\[p(\\pi\\mid y) \\propto p(y\\mid\\pi) p(\\pi)\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y }\\pi^x (1-\\pi)^{N-y} \\frac{\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)} \\pi^{a-1}(1-\\pi)^{b-1}\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y } \\frac{\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)} \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K C  \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K^* \\pi^{(x+a)-1} (1-\\pi)^{(N-x+b)-1}\\]\n\n\n\n\nPara que \\(\\int_0^1 p(\\pi\\mid x) d \\pi = 1\\), debe ser\n\n\\[K^* = \\frac{1}{B(y+a,N-y+b)} = \\frac{\\Gamma\\left[(y+a)+(N-y+b)\\right]}{\\Gamma(y+a)\\Gamma(N-y+b)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Beta de parámetros \\(y+a\\) y \\(N-y+b\\)\n\\[\np(\\pi\\mid y) = \\frac{\\pi^{(y+a)-1}(1-\\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}\n\\]\n\\[\n\\pi\\mid y \\sim  Beta(y+a,N-y+b)\n\\]\n\n\n\n\n\nNos las arreglamos para encontrar la solución exacta al problema de inferir el parámetro de una distribución binomial a partir del número de éxitos observados.\n\n\nEl prior y el posterior tienen la misma forma distribucional. Esto ocurre por la elección del prior y el likelihood.\n\n\n\n\nUna distribución \\(\\mathcal{F}\\) se dice conjugada de una verosimilitud \\(\\mathcal{L}\\) si cuando la distribución a priori es \\(\\mathcal{F}\\), la distribución a posteriori también es \\(\\mathcal{F}\\)\n\n\n\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  Bi(N,\\pi)\\\\\n    \\pi & \\sim  Beta(a,b)\n\\end{align*}\n\\]\n\n\n\n\ncon \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim Beta(a+y,b+N-y)\\] \\[p(\\pi\\mid y) = Beta(2+7,2+4)\\]\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\nposterior <- data.frame(x=seq(0,1,0.01)) |>\n  mutate(prior = dbeta(x,2,2),\n         likelihood = dbinom(7,11,x),\n         posterior = dbeta(x,9,6))\n\np1 <- posterior %>%\n  ggplot() +\n  geom_line(aes(x=x,y=prior/sum(prior)),size=1,col=\"#56CBF9\") +\n  scale_y_continuous(name = expression(\"P(\"*pi*\")\")) +\n  scale_x_continuous(expression(pi)) +\n  theme(axis.text.y = element_blank())\n\np2 <- posterior %>%\n  ggplot() +\n  geom_line(aes(x=x,y=likelihood/sum(likelihood)),size=1,col=\"#21dbbc\") +\n  scale_y_continuous(name = expression(\"P(\"*pi*\")\")) +\n  scale_x_continuous(expression(pi)) +\n  theme(axis.text.y = element_blank())\n\np3 <- posterior %>%\n  ggplot() +\n  geom_line(aes(x=x,y=posterior/sum(posterior)),size=1,col=\"#FF729F\") +\n  scale_y_continuous(name = expression(\"P(\"*pi*\"|\"*y*\")\")) +\n  scale_x_continuous(expression(pi)) +\n  theme(axis.text.y = element_blank())\n\np1 + p2 + p3\n\n\n\n\n\n\n\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(Beta(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?\n\n\n\n\n\n\n\\(\\pi \\mid y \\sim Beta(2+4,2+2)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+20)\\)\n\\(\\pi \\mid y \\sim Beta(2+2,2+0)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+0)\\)\n\\(\\pi \\mid y \\sim Beta((2+3)+1,(2+1)+1)\\)\n\n\n\n\n4 caras en 6 tiradas\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\ntibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,2,2),\n       likelihood = dbinom(4,6,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>% \n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\n\n\n\n\n\n\n\n40 caras en 60 tiradas\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\ntibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,2,2),\n       likelihood = dbinom(40,60,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>%\n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\n\n\n\n\n\n\n\n2 caras en 2 tiradas\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\ntibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,2,2),\n       likelihood = dbinom(2,2,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>%\n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\n\n\n\n\n\n\n\n40 caras en 40 tiradas\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\ntibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,2,2),\n       likelihood = dbinom(40,40,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>%\n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\n\n\n\n\n\n\n\n3 caras en 4 tiradas, luego 1 cara en 2 tiradas\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 10\n  #| fig-align: center\n\np6.1 <- tibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,2,2),\n       likelihood = dbinom(3,4,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>%\n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\np6.2 <- tibble(x = seq(0,1,length.out = 500),\n       prior = dbeta(x,5,3),\n       likelihood = dbinom(1,2,x),\n       posterior_posterior = prior*likelihood) %>%\n  mutate(prior = prior/sum(prior),\n         likelihood = likelihood/sum(likelihood),\n         posterior_posterior = posterior_posterior/sum(posterior_posterior),\n         posterior_likelihood = likelihood,\n         posterior_prior = prior) %>%\n  plot_bayes()\n\nWarning: Expected 2 pieces. Missing pieces filled with `NA` in 1000 rows [1, 2, 3, 4, 5,\n6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].\n\np6.1/p6.2\n\n\n\n\n\n\n\nLa inferencia bayesiana presenta ciertas características que se repiten independientemente de las distribuciones elegidas.\n\n\n\nVamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:\n\\[\\text{Si } X\\sim Beta(a,b)\\]\n\\[\\mathbb{E}({X}) = \\frac{a}{a+b}\\]\n\n\n\nLa distribución a priori es \\(Beta(a,b)\\) y la distribución a posteriori es \\(Beta(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{align*}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[P(\\pi)]}\n\\end{align*}\n\\]\n\n\n\nLa distribución a posteriori representa un balance (promedio ponderado o combinación convexa) entre la proporción observada y la proporción esperada a priori. Hay un shrinkage hacia la media del prior.\n\n\n\nSi primero observamos \\(y_1\\) en \\(N_1\\) y luego observamos \\(y_2\\) en \\(N_2\\)… Con el primer conjunto de datos pasamos del prior al posterior y luego esa distribución se convierte en el nuevo prior:\n\n\\[Beta(a,b) \\rightarrow Beta(y_1 + a, N_1 - y_1 + b)\\]\n\n\n\\[Beta(y_1 + a, N_1 - y_1 + b) \\rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\\]\n\n\n\\[Beta(a,b) \\rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\\]\n\n\nEs idéntico a observar \\(y_1+y_2\\) en \\(N_1+N_2\\)\n\n\n\n\nLa Regla de Bayes permite combinar dos fuentes de información: la información a priori (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución a posteriori representa un compromiso entre la verosimilitud de los datos y la credibilidad a priori."
   },
   {
     "objectID": "presentaciones/presentacion_01.html",
@@ -354,21 +354,7 @@
     "href": "presentaciones/presentacion_01.html#section-19",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]"
-  },
-  {
-    "objectID": "presentaciones/presentacion_01.html#section-20",
-    "href": "presentaciones/presentacion_01.html#section-20",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Conociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida"
-  },
-  {
-    "objectID": "presentaciones/presentacion_01.html#section-21",
-    "href": "presentaciones/presentacion_01.html#section-21",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "\\(p(u\\mid n_A, N)\\) es una función de \\(u\\): es la credibilidad de los valores de \\(u\\) luego de observar los datos (habiendo observado \\(n_A=3\\))\n\n\n\nEstadística Bayesiana – 2023"
+    "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]\n\n\n\nEstadística Bayesiana – 2023"
   },
   {
     "objectID": "index.html",
@@ -557,56 +543,371 @@
     "href": "presentaciones/presentacion_02.html#el-problema-de-las-urnas",
     "title": "Estadística Bayesiana",
     "section": "El problema de las urnas",
-    "text": "El problema de las urnas\n\nSe cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas negras y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azulez y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?"
+    "text": "El problema de las urnas\n\nSe cuenta con 11 urnas etiquetadas según \\(u = 0,1,\\dots,10\\), que contienen diez bolas cada una. La urna \\(u\\) contiene \\(u\\) bolas azules y \\(10-u\\) bolas blancas. Fede elige una urna \\(u\\) al azar y extrae con reposición \\(N\\) bolas, obteniendo \\(n_A\\) azules y \\(N-n_A\\) blancas. Nico, el amigo de Fede, observa atentamente. Si después de \\(N=10\\) extracciones resulta \\(n_A = 3\\), ¿cuál es la probabilidad de que la urna que Fede está usando sea la \\(u\\)?"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section",
     "href": "presentaciones/presentacion_02.html#section",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Conociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#intolerancia-al-gluten",
-    "href": "presentaciones/presentacion_02.html#intolerancia-al-gluten",
-    "title": "Estadística Bayesiana",
-    "section": "Intolerancia al gluten",
-    "text": "Intolerancia al gluten\n\n¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\n\nSupongamos que una persona alérgica al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\)."
+    "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-1",
     "href": "presentaciones/presentacion_02.html#section-1",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Llamemos:\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas alérgicas al gluten\n\\(\\pi_a\\) a la probabilidad de que un alérgico identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no alérgico identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?"
+    "text": "Conociendo \\(N\\), si conociéramos \\(u\\) podríamos calcular las probabilidades de los diferentes \\(n_A\\): probabilidad hacia adelante.\n\nAquí observamos un \\(n_A\\) y queremos calcular las probabilidades de los posibles valores de \\(u\\): probabilidad inversa.\n\n\n\\[p(u\\mid n_A, N) = \\frac{p(n_A\\mid u, N)p(u)}{p(n_N\\mid N)}\\]\n\n\\(N\\) es una cantidad fija\n\\(n_A\\) es otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#vocabulario-limitado",
-    "href": "presentaciones/presentacion_02.html#vocabulario-limitado",
+    "objectID": "presentaciones/presentacion_02.html#section-2",
+    "href": "presentaciones/presentacion_02.html#section-2",
     "title": "Estadística Bayesiana",
-    "section": "Vocabulario limitado",
-    "text": "Vocabulario limitado\n\nSupongamos que existe un idioma con seis palabras: \\[ \\text{\\{perro, parra, farra, carro, corro, tarro\\}} \\]\n\n\n\nTodas las palabras son igualmente probables, excepto por ‘perro’, que es \\(\\alpha\\) veces más probable que las otras.\nCuando se tipean, un caracter se introduce erróneamente con probabilidad \\(\\theta\\).\nTodas las letras tienen la misma probabilidad de producir un error de tipeo.\nSi una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.\nLos errores son independientes a lo largo de una palabra."
+    "section": "",
+    "text": "Probabilidad conjunta de las cantidades observables (datos) y cantidades no observables (parámetros):\n\n\\[\np(u,n_A\\mid N) = p(n_A\\mid u, N) p(u)\n\\]\n\n\nPodemos escribir la probabilidad de \\(u\\) condicionada a \\(n_A\\):\n\\[\n\\begin{array}{ccl}\np(u\\mid n_A,N) & = & \\frac{p(u,n_A\\mid N)}{p(n_A\\mid N)} \\\\\n& = & \\frac{p(n_A\\mid u, N) p(u)}{p(n_A\\mid N)}\n\\end{array}\n\\]\n\n\nEs la probabilidad de cada valor de \\(u\\) luego de haber observado \\(n_A = 3\\) bolas azules"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-3",
     "href": "presentaciones/presentacion_02.html#section-3",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "¿Cuál es la probabilidad de escribir correctamente ‘tarro’?\n¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?\nDesarrollar un corrector gramatical para esta lengua: para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, ¿cuál es la palabra que se quiso escribir?"
+    "text": "La probabilidad marginal de \\(u\\) es\n\n\\[p(u) = \\frac{1}{11}\\]\nEs la probabilidad inicial de haber tomado la urna \\(u\\)"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-4",
     "href": "presentaciones/presentacion_02.html#section-4",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La inferencia bayesiana es la realocación de la credibilidad del conjunto de parámetros de un modelo, una vez observado un conjunto de datos."
+    "text": "La probabilidad de \\(n_A\\) dado \\(u\\) (y \\(N\\)) es:\n\n\\[p(n_A\\mid u,N) = {N \\choose n_A} \\left( \\frac{u}{10} \\right)^{n_A} \\left( 1 - \\frac{u}{10} \\right)^{N-n_A}\\]\n\n\nComo \\(n_A=3\\) es fijo (¡son los datos observados!), \\(p(n_A\\mid u,N)\\) es una función de \\(u\\). Indica qué tan compatibles son los datos observados con los distintos valores de \\(u\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-5",
+    "href": "presentaciones/presentacion_02.html#section-5",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El denominador, \\(p(n_A\\mid N) = p(n_A)\\), es\n\n\\[\n\\begin{array}{ccl}\np(n_A\\mid N) & = & \\sum_u p(u,n_A\\mid N) \\\\\n& = & \\sum_u p(n_A\\mid u, N) p(u) \\\\\n& = & \\frac{1}{11} \\sum_u p(n_A\\mid u, N)\n\\end{array}\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-6",
+    "href": "presentaciones/presentacion_02.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Finalmente, la probabilidad de interés \\(p(u\\mid n_A,N)\\) es\n\n\\[\np(u\\mid n_A,N) = \\frac{p(n_A\\mid u,N)p(u)}{p(n_A\\mid N)}\n\\]\n\n\n\\[\np(u\\mid n_A,N) = {N \\choose n_A} \\left( \\frac{u}{10} \\right)^{n_A} \\left( 1 - \\frac{u}{10} \\right)^{N-n_A} \\frac{1}{11} \\frac{1}{p(n_A\\mid N)}\n\\]\n\n\n\n\\(N\\) es una cantidad fija\n\\(n_N\\) es 3, otra cantidad fija: lo que observamos al realizar el experimento\n\\(u\\) es la cantidad desconocida\n\n\n\n\\(p(u\\mid n_A,N)\\) es una función de \\(u\\): es la credibilidad de los valores de \\(u\\) luego de observar los datos (es decir, condicionada a \\(n_A=3\\))."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-7",
+    "href": "presentaciones/presentacion_02.html#section-7",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Gráficamente…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-8",
+    "href": "presentaciones/presentacion_02.html#section-8",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Gráficamente…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-9",
+    "href": "presentaciones/presentacion_02.html#section-9",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Pasamos de una credibilidad a priori antes de observar los datos, a una a posteriori luego de observar \\(n_A = 3\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#intolerancia-al-gluten",
+    "href": "presentaciones/presentacion_02.html#intolerancia-al-gluten",
+    "title": "Estadística Bayesiana",
+    "section": "Intolerancia al gluten",
+    "text": "Intolerancia al gluten\n\n¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.\nIncluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?\n\n\nSupongamos que una persona alérgica al gluten tiene una probabilidad de \\(0.90\\) de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de \\(0.40\\) (y con una probabilidad de \\(0.6\\) se equivoca o no sabe decir)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-10",
+    "href": "presentaciones/presentacion_02.html#section-10",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Llamemos:\n\n\n\\(N\\) a la cantidad total de personas en el ensayo\n\\(N_a\\) al número de personas alérgicas al gluten\n\\(\\pi_a\\) a la probabilidad de que un alérgico identifique correctamente\n\\(\\pi_f\\) a la probabilidad de que un no alérgico identifique correctamente\n\\(n_i\\) al número de identificaciones correctas\n\n\n\n¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-11",
+    "href": "presentaciones/presentacion_02.html#section-11",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Conociendo \\(N\\), \\(\\pi_a\\) y \\(\\pi_f\\), si conociéramos \\(N_a\\) podríamos calcular las probabilidades de los diferentes \\(n_i\\): probabilidad hacia adelante\n\nAquí observamos \\(n_i\\) y queremos realizar inferencias sobre \\(N_a\\): probabilidad inversa"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-12",
+    "href": "presentaciones/presentacion_02.html#section-12",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Digamos que a priori cualquier número de \\(N_a\\) es igualmente probable o esperable:\n\n\\[p(N_a) = \\frac{1}{36}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-13",
+    "href": "presentaciones/presentacion_02.html#section-13",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Cómo construimos la verosimilitud de los diferentes valores de \\(N_a\\) \\(p(n_i\\mid N_a)\\)?\n\nPensemos de forma generativa (con el modelo de probabilidad hacia adelante). Imaginemos que conocemos \\(N_a\\) (además de \\(N\\), \\(\\pi_a\\) y \\(\\pi_f\\)), ¿podríamos escribir un programa que simule diferentes valores de \\(n_i\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-14",
+    "href": "presentaciones/presentacion_02.html#section-14",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El número de identificaciones correctas \\(n_i\\) es la suma de las identificaciones correctas entre los \\(N_a\\) alérgicos (\\(n_{ia}\\)) y los \\(N-N_a\\) no alérgicos (\\(n_{if}\\)). ¿Cuántas identificaciones habrá en cada grupo?\n\n\\[n_{ia} \\sim Bi(N_a,\\pi_a)\\] \\[n_{if} \\sim Bi(N-N_a,\\pi_f)\\] \\[n_i = n_{ia} + n_{if}\\]\n\n\n\nN <- 35\npi_a <- 0.9\npi_f <- 0.4\nN_a <- 10 # lo suponemos conocido para simular\n\nn_ia <- rbinom(1, N_a, pi_a)\nn_if <- rbinom(1, N-N_a, pi_f)\n\nn_i <- n_ia + n_if\n\n\n\nSabríamos calcular las probabilidades de los diferentes valores de \\(n_{ia}\\) y \\(n_{if}\\), ¿no?."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-15",
+    "href": "presentaciones/presentacion_02.html#section-15",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Recordemos que no conocemos \\(N_a\\). En nuestro caso, la verosimilitud de cada valor de \\(N_a\\) es la probabilidad de observar \\(n_i=12\\) para ese valor de \\(N_a\\).\n\n\\[\n\\begin{array}{lll}\np(n_i=12\\mid N_a) & = & p(n_{ia}=0\\mid N_a)p(n_{ia}=12\\mid N_a) \\\\\n& & \\quad + p(n_{ia}=1\\mid N_a)p(n_{ia}=11\\mid N_a) + \\dots\n\\end{array}\n\\]\n\n\nQueda como ejercicio calcular a mano \\(p(n_i\\mid N_a)\\) o, mejor aún, escribir un programita que calcule \\(p(n_i\\mid N_a)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-16",
+    "href": "presentaciones/presentacion_02.html#section-16",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Finalmente,\n\\[p(N_a\\mid n_i) = \\frac{p(n_i\\mid N_a) p(N_a)}{p(n_i)}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#vocabulario-limitado",
+    "href": "presentaciones/presentacion_02.html#vocabulario-limitado",
+    "title": "Estadística Bayesiana",
+    "section": "Vocabulario limitado",
+    "text": "Vocabulario limitado\n\nSupongamos que existe un idioma con seis palabras: \\[ \\text{\\{perro, parra, farra, carro, corro, tarro\\}} \\]\n\n\nTodas las palabras son igualmente probables, excepto por ‘perro’, que es \\(\\alpha=3\\) veces más probable que las otras.\nCuando se tipean, un caracter se introduce erróneamente con probabilidad \\(\\pi=0.1\\).\nTodas las letras tienen la misma probabilidad de producir un error de tipeo.\nSi una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.\nLos errores son independientes a lo largo de una palabra."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-18",
+    "href": "presentaciones/presentacion_02.html#section-18",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Cuál es la probabilidad de escribir correctamente ‘tarro’?\n¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?\nDesarrollar un corrector gramatical para esta lengua: para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, ¿cuál es la palabra que se quiso escribir?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-19",
+    "href": "presentaciones/presentacion_02.html#section-19",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La probabilidad de escribir correctamente ‘tarro’ es \\((1-\\pi)^5\\)\nLa probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es $(1-)^4 $\nAllá vamos…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-20",
+    "href": "presentaciones/presentacion_02.html#section-20",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Estas son las probabilidades a priori de cada una de las palabras del vocabulario"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-21",
+    "href": "presentaciones/presentacion_02.html#section-21",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Alguien escribe ‘farra’, ¿qué quiso escribir?\n\n¿Qué sería en este caso la verosimilitud?\n\n\nLa verosimilitud de ‘perro’ es qué tan probable es escribir ‘farra’ cuando se quería escribir ‘perro’: \\(p(\\mathrm{farra}\\mid\\mathrm{perro})=\\pi^3(1-\\pi)^2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-23",
+    "href": "presentaciones/presentacion_02.html#section-23",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Para obtener la probabilidad a posteriori de cada palabra, necesitamos combinar la información a priori con los datos (¿cuáles son los datos?). Aplicamos la Regla de Bayes:\n\\[p(\\mathrm{palabra}\\mid \\mathrm{farra}) = \\frac{p(\\mathrm{farra}\\mid \\mathrm{palabra})p(\\mathrm{palabra})}{p(\\mathrm{farra})}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-25",
+    "href": "presentaciones/presentacion_02.html#section-25",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La inferencia bayesiana es la realocación de la credibilidad del conjunto de cantidades desconocidas (parámetros) de un modelo, una vez observado un conjunto de datos."
   },
   {
     "objectID": "presentaciones/presentacion_02.html#pequeño-mundo",
     "href": "presentaciones/presentacion_02.html#pequeño-mundo",
     "title": "Estadística Bayesiana",
     "section": "Pequeño mundo",
-    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\n\n\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\n\nEstadística Bayesiana – 2023"
+    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-26",
+    "href": "presentaciones/presentacion_02.html#section-26",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Llamemos:\n\n\n\\(\\pi\\) a la proporción de agua en el planeta Tierra\n\\(N\\) al número de tiradas\n\\(y\\) al número de veces que salió agua\n\n\n\n\\(\\pi\\) es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-27",
+    "href": "presentaciones/presentacion_02.html#section-27",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Prior\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi_a\\)? . . . Con una distribución de probabilidad.\n\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n\n\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n\n\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\n\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-28",
+    "href": "presentaciones/presentacion_02.html#section-28",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La distribución beta"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-29",
+    "href": "presentaciones/presentacion_02.html#section-29",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La distribución beta"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-30",
+    "href": "presentaciones/presentacion_02.html#section-30",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Una posible elección de valores para la distribución a priori es \\(Beta(2,2)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-31",
+    "href": "presentaciones/presentacion_02.html#section-31",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Likelihood\n¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?\n\n\\[ y \\mid \\pi, N \\sim Bi(N,\\pi) \\]\n\\[p(y\\mid \\pi, N) = {N \\choose y }\\pi^y (1-\\pi)^{N-y} = p(y\\mid \\pi)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-32",
+    "href": "presentaciones/presentacion_02.html#section-32",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Posterior\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n\n\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable intractable (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-33",
+    "href": "presentaciones/presentacion_02.html#section-33",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Recordando que: \\[\n\\mathrm{posterior} \\propto \\mathrm{prior}\\times\\mathrm{likelihood}\n\\]\n\nResulta \\[p(\\pi\\mid y) \\propto p(y\\mid\\pi) p(\\pi)\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y }\\pi^x (1-\\pi)^{N-y} \\frac{\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)} \\pi^{a-1}(1-\\pi)^{b-1}\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y } \\frac{\\Gamma(a+b)}{\\Gamma(a)\\Gamma(b)} \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K C  \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K^* \\pi^{(x+a)-1} (1-\\pi)^{(N-x+b)-1}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-34",
+    "href": "presentaciones/presentacion_02.html#section-34",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Para que \\(\\int_0^1 p(\\pi\\mid x) d \\pi = 1\\), debe ser\n\n\\[K^* = \\frac{1}{B(y+a,N-y+b)} = \\frac{\\Gamma\\left[(y+a)+(N-y+b)\\right]}{\\Gamma(y+a)\\Gamma(N-y+b)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Beta de parámetros \\(y+a\\) y \\(N-y+b\\)\n\\[\np(\\pi\\mid y) = \\frac{\\pi^{(y+a)-1}(1-\\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}\n\\]\n\\[\n\\pi\\mid y \\sim  Beta(y+a,N-y+b)\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#qué-hicimos",
+    "href": "presentaciones/presentacion_02.html#qué-hicimos",
+    "title": "Estadística Bayesiana",
+    "section": "¿Qué hicimos?",
+    "text": "¿Qué hicimos?\n\nNos las arreglamos para encontrar la solución exacta al problema de inferir el parámetro de una distribución binomial a partir del número de éxitos observados.\n\n\nEl prior y el posterior tienen la misma forma distribucional. Esto ocurre por la elección del prior y el likelihood."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-35",
+    "href": "presentaciones/presentacion_02.html#section-35",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Una distribución \\(\\mathcal{F}\\) se dice conjugada de una verosimilitud \\(\\mathcal{L}\\) si cuando la distribución a priori es \\(\\mathcal{F}\\), la distribución a posteriori también es \\(\\mathcal{F}\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#pequeño-mundo-1",
+    "href": "presentaciones/presentacion_02.html#pequeño-mundo-1",
+    "title": "Estadística Bayesiana",
+    "section": "Pequeño mundo",
+    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  Bi(N,\\pi)\\\\\n    \\pi & \\sim  Beta(a,b)\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-36",
+    "href": "presentaciones/presentacion_02.html#section-36",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "con \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim Beta(a+y,b+N-y)\\] \\[p(\\pi\\mid y) = Beta(2+7,2+4)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#más-ejemplos",
+    "href": "presentaciones/presentacion_02.html#más-ejemplos",
+    "title": "Estadística Bayesiana",
+    "section": "Más ejemplos",
+    "text": "Más ejemplos\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(Beta(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-38",
+    "href": "presentaciones/presentacion_02.html#section-38",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\(\\pi \\mid y \\sim Beta(2+4,2+2)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+20)\\)\n\\(\\pi \\mid y \\sim Beta(2+2,2+0)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+0)\\)\n\\(\\pi \\mid y \\sim Beta((2+3)+1,(2+1)+1)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-39",
+    "href": "presentaciones/presentacion_02.html#section-39",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "4 caras en 6 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-40",
+    "href": "presentaciones/presentacion_02.html#section-40",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "40 caras en 60 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-41",
+    "href": "presentaciones/presentacion_02.html#section-41",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "2 caras en 2 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-42",
+    "href": "presentaciones/presentacion_02.html#section-42",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "40 caras en 40 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-43",
+    "href": "presentaciones/presentacion_02.html#section-43",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "3 caras en 4 tiradas, luego 1 cara en 2 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#características-generales",
+    "href": "presentaciones/presentacion_02.html#características-generales",
+    "title": "Estadística Bayesiana",
+    "section": "Características generales",
+    "text": "Características generales\nLa inferencia bayesiana presenta ciertas características que se repiten independientemente de las distribuciones elegidas."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#compromiso",
+    "href": "presentaciones/presentacion_02.html#compromiso",
+    "title": "Estadística Bayesiana",
+    "section": "Compromiso",
+    "text": "Compromiso\nVamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:\n\\[\\text{Si } X\\sim Beta(a,b)\\]\n\\[\\mathbb{E}({X}) = \\frac{a}{a+b}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-44",
+    "href": "presentaciones/presentacion_02.html#section-44",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La distribución a priori es \\(Beta(a,b)\\) y la distribución a posteriori es \\(Beta(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{align*}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[P(\\pi)]}\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-45",
+    "href": "presentaciones/presentacion_02.html#section-45",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La distribución a posteriori representa un balance (promedio ponderado o combinación convexa) entre la proporción observada y la proporción esperada a priori. Hay un shrinkage hacia la media del prior."
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#secuencialidad",
+    "href": "presentaciones/presentacion_02.html#secuencialidad",
+    "title": "Estadística Bayesiana",
+    "section": "Secuencialidad",
+    "text": "Secuencialidad\nSi primero observamos \\(y_1\\) en \\(N_1\\) y luego observamos \\(y_2\\) en \\(N_2\\)… Con el primer conjunto de datos pasamos del prior al posterior y luego esa distribución se convierte en el nuevo prior:\n\n\\[Beta(a,b) \\rightarrow Beta(y_1 + a, N_1 - y_1 + b)\\]\n\n\n\\[Beta(y_1 + a, N_1 - y_1 + b) \\rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\\]\n\n\n\\[Beta(a,b) \\rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\\]\n\n\nEs idéntico a observar \\(y_1+y_2\\) en \\(N_1+N_2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-46",
+    "href": "presentaciones/presentacion_02.html#section-46",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La Regla de Bayes permite combinar dos fuentes de información: la información a priori (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución a posteriori representa un compromiso entre la verosimilitud de los datos y la credibilidad a priori.\n\n\n\nEstadística Bayesiana – 2023"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#lógica-deductiva",
@@ -675,8 +976,8 @@
     "objectID": "presentaciones/presentacion_01.html#dutch-book-1",
     "href": "presentaciones/presentacion_01.html#dutch-book-1",
     "title": "Estadística Bayesiana",
-    "section": "Dutch Book",
-    "text": "Dutch Book\n\n\n\nDutch book\n\n\nUn Dutch book es un conjunto de apuestas que aseguran una pérdida. El argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.\n\n\nSe puede asignar un valor de probabilidad a cualquier proposición."
+    "section": "Dutch book",
+    "text": "Dutch book\n\n\n\nDutch book\n\n\nUn Dutch book es un conjunto de apuestas que aseguran una pérdida. El argumento del Dutch book dice que una persona que tiene creencias inconsistentes actúa irracionalmente y puede ser llevado a una pérdida segura en un juego de apuestas\n\n\n\n\nLos grados de plausibilidad o grados de creencia que una persona le asigna a un conjunto de eventos deben respetar los axiomas de probabilidad.\n\n\nSe puede asignar un valor de probabilidad a cualquier proposición."
   },
   {
     "objectID": "presentaciones/presentacion_01.html#section-5",
