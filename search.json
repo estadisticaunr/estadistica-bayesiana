@@ -539,6 +539,20 @@
     "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
   },
   {
+    "objectID": "codigo/rocklets_grilla.html",
+    "href": "codigo/rocklets_grilla.html",
+    "title": "Rocklets discretos",
+    "section": "",
+    "text": "Este script fue utilizado en la primer clase de práctica en el laboratorio para mostrar como resolver el ejercicio de los Rocklets utilizando código.\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Utilizando un prior elicitado grupalmente\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n# Determinar grilla de puntos\npi_grid <- seq(0, 1, length.out = 11)\nprint(pi_grid)\n\n# Obtener prior\nprior_ <- c(0, 1, 2, 2, 1, 0.5, 0.25, 0.125, 0.05, 0.005, 0)\nprior <- prior_ / sum(prior_)\n\n# Graficar prior\nplot(\n  pi_grid, \n  prior, \n  xlab = \"pi\", \n  ylab = \"probabilidad\",\n  main = \"prior\"\n)\nlines(pi_grid, prior)\naxis(1, at = pi_grid)\n\n# Recolectar datos\ncantidad_de_rocklets <- 43 # n\ncantidad_de_rocklets_azules <- 11 # y\n\n# Calcular verosimilitud para cada valor de \"pi\" en la grilla\nlikelihood <- dbinom(\n  cantidad_de_rocklets_azules, \n  cantidad_de_rocklets, \n  pi_grid\n)\n\n# Obtener posterior\nposterior_ <- prior * likelihood\nposterior <- posterior_ / sum(posterior_)\n\n# Graficar posterior\nplot(\n  pi_grid, \n  posterior, \n  xlab = \"pi\", \n  ylab = \"probabilidad\",\n  main = \"posterior\"\n)\nlines(pi_grid, posterior)\naxis(1, at = pi_grid)\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Utilizando un prior Beta\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n# Determinar grilla de puntos\npi_grid <- seq(0, 1, length.out = 50)\n\n# Obtener prior\nprior_ <- dbeta(pi_grid, 2.5, 10)\nprior <- prior_ / sum(prior_)\n\n# Graficar prior\nplot(\n  pi_grid, \n  prior, \n  xlab = \"pi\", \n  ylab = \"probabilidad\",\n  main = \"prior\"\n)\nlines(pi_grid, prior)\naxis(1, at = pi_grid)\n\n# Calcular verosimilitud para cada valor de \"pi\"\nlikelihood <- dbinom(\n  cantidad_de_rocklets_azules, \n  cantidad_de_rocklets, \n  pi_grid\n)\n\n# Obtener posterior \nposterior_ <- prior * likelihood\nposterior <- posterior_ / sum(posterior_)\n\n# Graficar posterior\nplot(\n  pi_grid, \n  posterior, \n  xlab = \"pi\", \n  ylab = \"probabilidad\",\n  main = \"posterior\"\n)\nlines(pi_grid, posterior)\naxis(1, at = pi_grid)\n\n# Q: Que pasa con el prior si incrementamos el 'n'?\n# Q: Que pasa con el posterior si incrementamos el 'n'?"
+  },
+  {
+    "objectID": "codigo/index.html",
+    "href": "codigo/index.html",
+    "title": "Código",
+    "section": "",
+    "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n\n\n\nRocklets discretos"
+  },
+  {
     "objectID": "presentaciones/presentacion_02.html#el-problema-de-las-urnas",
     "href": "presentaciones/presentacion_02.html#el-problema-de-las-urnas",
     "title": "Estadística Bayesiana",
