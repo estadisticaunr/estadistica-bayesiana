@@ -221,7 +221,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <p>En una población dada, una de cada mil personas tiene una enfermedad. Se toma una persona al azar de la población, se le aplica un test para detectar dicha enfermedad, y el resultado es positivo. El test se caracteriza por dar positivo el 99% de las veces que una persona tiene la enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5%.</p>
 <ul>
 <li>¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?</li>
-<li>Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
+<li>Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo,
 <ul>
 <li>¿Cuál seria la probabilidad que el paciente esté enfermo?</li>
 <li>¿Y si diera negativo?</li>
@@ -229,7 +229,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </ul></li>
 </ul></li>
 <li><p><strong>¿Es verdad que existen los vampiros? Versión Crepúsculo</strong></p>
-<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel rillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros? <!-- @Johnson2021 --></p>
+<p>Edward quiere probarle a Bella que los vampiros existen. Según Bella, hay una probabilidad del 5% de que los vampiros existan. También cree que la probabilidad de que exista alguien con la piel brillante dado que los vampiros existen es del 70%, y que la probabilidad de que alguien tenga la piel brillante si los vampiros no existen es del 3%. Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 ¿Cuál es la probabilidad que existan los vampiros? <!-- @Johnson2021 --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -243,7 +243,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li><p><strong>Árboles enfermos</strong></p>
 <p>Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, incluyendo al jacarandá, ceibo, ombú, entre otros. Lamentablemente, el 18% de los árboles del vivero estan infectados con moho. Los árboles enfermos se componen en un 15% por jacarandás, 80% de ceibos, y 5% de otras especies. Los árboles sanos se componen por un 20% de jacarandás, 10% de ceibos, y 70% de otras especies. Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que trabaja en el vivero selecciona al azar uno de los árboles para testear.</p>
 <ul>
-<li>¿Cuál es la probabilidad a priori de que el árbol tenga moho?</li>
+<li>¿Cuál es la probabilidad <em>a priori</em> de que el árbol tenga moho?</li>
 <li>Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?</li>
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que el ceibo seleccionado tenga moho?</li>
 <li>Compare las probabilidades a priori y <em>a posteriori</em> de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo? <!-- @Johnson2021 --></li>
@@ -368,9 +368,9 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li>Los errores son independientes a lo largo de una palabras.</li>
 </ul>
 <ol type="i">
-<li>¿Cuál es la probabilidad de escribir correctamente ‘tarro’?</li>
-<li>¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?</li>
-<li>Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua. Para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, hallar la probabilidad de que cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar las siguientes combinaciones de parámetros:
+<li><p>¿Cuál es la probabilidad de escribir correctamente ‘tarro’?</p></li>
+<li><p>¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?</p></li>
+<li><p>Utilizando la Regla de Bayes, desarrollar un corrector gramatical para esta lengua. Para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, hallar la probabilidad de que cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar las siguientes combinaciones de parámetros:</p>
 <ol type="a">
 <li><span class="math inline">\(\alpha = 2\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
 <li><span class="math inline">\(\alpha = 50\)</span> y <span class="math inline">\(\theta = 0.1\)</span></li>
@@ -421,7 +421,7 @@ Y_t | \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
 <li><p><strong>Es negocio…</strong></p>
 <p>Sea <span class="math inline">\(n\)</span> la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera. El número de clientes que realizan una compra es <span class="math inline">\(Y\)</span> y se cumple que</p>
 <p><span class="math display">\[
-Y | n \sim \text{Binomial}(n, \theta)
+Y | \theta, n \sim \text{Binomial}(n, \theta)
 \]</span></p>
 <p>donde <span class="math inline">\(\theta\)</span> es la probabilidad de compra, dado que se produce la visita a la tienda. La distribución <em>a priori</em> de <span class="math inline">\(n\)</span> es <span class="math inline">\(n \sim \text{Poisson}(5)\)</span>. Bajo el supuesto que <span class="math inline">\(\theta\)</span> es conocido y que <span class="math inline">\(n\)</span> es desconocido, graficar la distribución <em>a posteriori</em> de <span class="math inline">\(n\)</span> para todas las combinaciones de <span class="math inline">\(Y \in \{0, 5, 10 \}\)</span> y <span class="math inline">\(\theta \in \{0.2, 0.5\}\)</span>. Explique cual es del efecto de cambiar <span class="math inline">\(Y\)</span> y <span class="math inline">\(\theta\)</span> sobre la distribución <em>a posteriori</em>. <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 --></p></li>
 <li><p><strong>Con amigos así, quién necesita enemigos</strong></p>
