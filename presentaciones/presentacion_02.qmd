@@ -11,6 +11,8 @@ format:
     theme: [default, style_presentaciones.scss]
 ---
 
+# Inferencia Bayesiana
+
 ```{r setup}
 #| echo: false
 #| include: false
@@ -74,8 +76,6 @@ data <- data %>%
          joint = prior*likelihood) 
 ```
 
-
-# Inferencia Bayesiana
 
 ## El problema de las urnas
 
