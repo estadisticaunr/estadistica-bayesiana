@@ -345,7 +345,7 @@ vida profesional.
     que también sea exponencial.
     $$
     \begin{aligned}
-        \theta &\sim \text{Exp}(\lambda) \\
+        \theta|\lambda &\sim \text{Exp}(\lambda) \\
         p(\theta | \lambda) &= \lambda e^{-\lambda \theta}
     \end{aligned}
     $$
@@ -381,10 +381,10 @@ vida profesional.
     Considere el siguiente modelo:
     
     $$
-    \begin{array}{l}
-    Y\mid\theta \sim \text{BinomialNeg}(\theta,m) \\
-    \theta \sim \text{Beta}(\alpha,\beta)
-    \end{array}
+    \begin{aligned}
+    Y\mid\theta &\sim \text{BinomialNeg}(\theta, m) \\
+    \theta &\sim \text{Beta}(\alpha,\beta)
+    \end{aligned}
     $$
     
     donde la función de densidad de la distribución binomial negativa es 

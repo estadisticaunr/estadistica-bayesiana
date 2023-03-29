@@ -62,7 +62,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     enfermedad. Además, dicho test tiene una tasa de falsos positivos del 5\%.
 
     - ¿Cuál es la probabilidad de que la persona tenga efectivamente la enfermedad?
-    - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo
+    - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo,
         - ¿Cuál seria la probabilidad que el paciente esté enfermo?
         - ¿Y si diera negativo?
         - ¿Es el _prior_ el mismo para el segundo análisis que para el primero? 
@@ -74,7 +74,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Según Bella, hay una probabilidad del 5\% de que los vampiros existan.
     También cree que la probabilidad de que exista alguien con la piel brillante dado que
     los vampiros existen es del 70\%, y que la probabilidad de que alguien tenga la piel 
-    rillante si los vampiros no existen es del 3\%.
+    brillante si los vampiros no existen es del 3\%.
     Edward lleva a Bella al bosque y le muestra que de hecho su piel brilla como un 💎 
     ¿Cuál es la probabilidad que existan los vampiros?
     <!-- @Johnson2021 -->
@@ -100,7 +100,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Con el objetivo de monitorear cuanto se propagó la enfermedad, una de las personas que
     trabaja en el vivero selecciona al azar uno de los árboles para testear.
 
-    - ¿Cuál es la probabilidad a priori de que el árbol tenga moho?
+    - ¿Cuál es la probabilidad _a priori_ de que el árbol tenga moho?
     - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
     seleccionado un ceibo?
     - ¿Cuál es la probabilidad _a posteriori_ de que el ceibo seleccionado tenga moho?
@@ -293,9 +293,9 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Hay dos monedas en una caja.
     Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.
 
-    i.  Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la 
+    i. Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la 
     probabilidad de que la moneda elegida sea la falsa?
-    ii. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres 
+    i. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres 
     caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
     
 1.  **Vocabulario limitado**
@@ -323,9 +323,10 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Para las palabras tipeadas 'farra', 'birra' y 'locos', hallar la probabilidad de que
     cada palabra del diccionario sea la palabra que se había querido escribir. Utilizar
     las siguientes combinaciones de parámetros:
-         a.  $\alpha = 2$ y $\theta = 0.1$
-         b.  $\alpha = 50$ y $\theta = 0.1$
-         c.  $\alpha = 2$ y $\theta = 0.9$
+
+         a. $\alpha = 2$ y $\theta = 0.1$
+         a. $\alpha = 50$ y $\theta = 0.1$
+         a. $\alpha = 2$ y $\theta = 0.9$
          
 
 1.  **Que el árbol no tape el bosque**
@@ -397,7 +398,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     El número de clientes que realizan una compra es $Y$ y se cumple que
 
     $$
-    Y | n \sim \text{Binomial}(n, \theta)
+    Y | \theta, n \sim \text{Binomial}(n, \theta)
     $$
 
     donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.

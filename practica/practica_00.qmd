@@ -122,7 +122,7 @@ probabilidad.
 1.  **Distribuciones marginal y condicional de una normal**
 
     Sean $X_1$ y $X_2$ tales que $(X_1, X_2)$ siguen una distribución normal bivariada
-    con $\mathbb{E}(X_1) = \mathbb{E}(X_2)$ = 0, $\text{Var}(X_1) = \text{Var}(X_2) = 1$ y 
+    con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$, $\text{Var}(X_1) = \text{Var}(X_2) = 1$ y 
     $\text{cor}(X_1, X_2) = \rho$
 
     i. Encuentre la distribución marginal de $X_1$.
