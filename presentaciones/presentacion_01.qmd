@@ -137,7 +137,7 @@ The canonical way to measure degrees of belief appeals to the notion of fair odd
 The degree of belief that a given epistemic agent—let’s say it’s you—has in this proposition A can be determined by what you deem to be the fair price of this lottery. Here the “fair price” is the price at which you are willing to either buy or sell the lottery ticket.
 :::
 
-## Dutch Book
+## Dutch book
 
 ::: {.callout-tip appearance="default" icon="false"}
 ### Dutch book
@@ -540,25 +540,3 @@ Por el contrario, muchas veces estamos interesados en realizar inferencias sobre
 $$p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}$$
 
 $$p(\mathcal{H}\mid E) \propto p(E\mid\mathcal{H}) p(\mathcal{H})$$
-
-## {.smaller}
-
-Conociendo $N$, si conociéramos $u$ podríamos calcular las probabilidades de los diferentes $n_A$: **probabilidad hacia adelante**.
-
-. . .
-
-Aquí observamos un $n_A$ y queremos calcular las probabilidades de los posibles valores de $u$: **probabilidad inversa**.
-
-. . .
-
-$$p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_N\mid N)}$$
-
-. . .
-
-- $N$ es una cantidad fija
-- $n_A$ es otra cantidad fija: lo que observamos al realizar el experimento
-- $u$ es la cantidad desconocida
-
-##
-
-$p(u\mid n_A, N)$ es una función de $u$: es la credibilidad de los valores de $u$ luego de observar los datos (habiendo observado $n_A=3$)
