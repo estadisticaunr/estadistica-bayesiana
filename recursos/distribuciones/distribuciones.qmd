@@ -1,0 +1,115 @@
+# Distribuciones de probabilidad
+
+🚧 Trabajo en progreso! 🚧
+
+## Normal
+
+$$
+X \sim \text{Normal}(\mu, \sigma)
+$$
+
+$$
+p(x \mid \mu, \sigma) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x - \mu) ^ 2}{2\sigma^2}}
+$$
+
+$$
+P(X \le x) = \int_{-\infty}^{x}{p(x | \mu, \sigma) dx}
+$$
+
+o también
+
+$$
+P(X \le x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
+$$
+
+con
+
+$$
+\text{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^{x} {e^{-t^2}dt}
+$$
+
+* $X \in \mathbb{R}$
+* $\mu \in \mathbb{R}$
+* $\sigma > 0$
+
+## Gamma
+
+### Parametrización 1
+
+$$
+X \sim \text{Gamma}(k, \theta)
+$$
+
+$$
+p(x \mid k, \theta) = \frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-\frac{x}{\theta}}
+$$
+
+$$
+P(X \le x) = \frac{1}{\Gamma(k)} \gamma \left(k, \frac{x}{\theta}\right)
+$$
+
+* $X > 0$
+* $k > 0$
+* $\theta > 0$
+
+### Parametrización 2
+
+$$
+X \sim \text{Gamma}(\alpha, \beta)
+$$
+
+
+$$
+p(x | \alpha, \beta) = \frac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\beta^\alpha
+$$
+
+$$
+P(X \le x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)
+$$
+
+* $X > 0$
+* $\alpha > 0$
+* $\beta > 0$
+
+## Beta
+
+$$
+X \sim \text{Beta}(\alpha, \beta)
+$$
+
+$$
+p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
+$$
+
+$$
+B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+$$
+
+$$
+\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
+$$
+
+* $X \in [0, 1]$ si $\alpha \ge 1$ y $\beta \ge 1$
+* $X \in (0, 1)$ si $\alpha < 1$ y $\beta < 1$
+
+<!-- 
+## Cauchy
+
+## Student T
+
+## Poisson
+
+$X \sim \text{Poisson}(\lambda)$
+
+$X \in \{0, 1, 2, \cdots}$
+
+## Binomial
+
+$X \sim \text{Binomial}(\theta, n)$
+
+$X \in \{0, 1, 2, \cdots, n\}$
+
+## Binomial Negativa
+
+$X \sim \text{BN}(\lambda)$ 
+-->

@@ -8,6 +8,7 @@ website:
   description: "Página del curso Estadística Bayesiana - Licenciatura en Estadística (UNR)."
   site-url: "https://estadisticaunr.github.io/estadistica-bayesiana/"
   favicon: utils/imgs/favicon.png
+  page-navigation: true
 
   navbar:
     pinned: true
@@ -15,20 +16,14 @@ website:
     right:
       - text: Información
         file: info/programa.qmd
-      # - text: Apuntes
-      #   file: apuntes/introduccion.qmd
       - text: Teoría
         file: teoria/u1_teoria_01.qmd
       - text: Práctica
         file: practica/practica_00.qmd
       - text: Trabajos Prácticos
         file: trabajos_practicos/descripcion.qmd
-      # - text: Cómputo
-      #   file: computo/instalacion.qmd
-      # - text: Material complementario
-      #   file: complementario/probabilidad.qmd
-      - text: Código
-        file: codigo/index.qmd
+      - text: Recursos
+        file: recursos/codigo/index.qmd
       - icon: github
         href: "https://github.com/estadisticaunr/estadistica-bayesiana"
 
@@ -38,6 +33,7 @@ website:
       style: docked
       search: false
       background: dark
+      header: Información
       contents:
         - text: Programa
           file: info/programa.qmd
@@ -45,18 +41,13 @@ website:
           file: info/aprobacion.qmd
         - text: Bibliografia
           file: info/bibliografia.qmd
-        #- text: Docentes
-        #  file: info/docentes.qmd
         - text: Calendario
           file: info/calendario.qmd
-        # - text: Enlaces útiles
-        #   file: info/enlaces_utiles.qmd
-        # - text: Preguntas frecuentes
-        #   file: info/faq.qmd
     - title: Teoría
       style: docked
       search: false
       background: dark
+      header: Teoría
       contents:
         - text: U1 - Introducción
           file: teoria/u1_teoria_01.qmd
@@ -66,6 +57,7 @@ website:
       style: docked
       search: false
       background: dark
+      header: Práctica
       contents:
         - text: Unidad 0
           file: practica/practica_00.qmd
@@ -83,6 +75,7 @@ website:
       style: docked
       search: false
       background: dark
+      header: Trabajos Prácticos
       contents:
         - text: Generalidades
           file: trabajos_practicos/descripcion.qmd
@@ -92,13 +85,18 @@ website:
           file: trabajos_practicos/02_tp2.qmd
         - text: TP 3
           file: trabajos_practicos/03_tp3.qmd
-    - title: Cómputo
+    - title: Recursos
       style: docked
       search: false
       background: dark
+      header: Recursos
       contents:
-        - text: Instalación
-          file: computo/instalacion.qmd
+        - text: Código
+          file: recursos/codigo/index.qmd
+          contents:
+            - auto: recursos/codigo/*.qmd
+        - text: Distribuciones
+          file: recursos/distribuciones/distribuciones.qmd
     - title: Material complementario
       style: docked
       search: false
@@ -111,6 +109,9 @@ website:
 
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
+    border: false
+    background: dark
+    foreground: "#cacccd"
 
 bibliography: references.bib
 csl: chicago-author-date.csl

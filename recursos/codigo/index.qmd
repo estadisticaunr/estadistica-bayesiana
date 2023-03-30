@@ -32,7 +32,7 @@ extract_title_qmd <- function(file_name) {
 ```{r}
 #| results: asis
 #| echo: false
-file_names <- list.files(here::here("codigo"))
+file_names <- list.files(here::here("recursos", "codigo"))
 file_names <- file_names[str_detect(file_names, "\\.qmd")]
 file_names <- file_names[file_names != "index.qmd"]
 entries <- make_entries(file_names)
