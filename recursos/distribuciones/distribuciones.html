@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana – faq</title>
+<title>Estadística Bayesiana – distribuciones</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +23,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../recursos/codigo/rocklets_grilla.html" rel="prev">
+<link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,17 +60,18 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Estadística Bayesiana</span>
     </a>
   </div>
@@ -79,23 +81,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../info/programa.html">
+    <a class="nav-link" href="../../info/programa.html">
  <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teoria/u1_teoria_01.html">
+    <a class="nav-link" href="../../teoria/u1_teoria_01.html">
  <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../practica/practica_00.html">
+    <a class="nav-link" href="../../practica/practica_00.html">
  <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../trabajos_practicos/descripcion.html">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html">
  <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../recursos/codigo/index.html">
+    <a class="nav-link active" href="../../recursos/codigo/index.html" aria-current="page">
  <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
@@ -108,10 +110,46 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p>Recursos</p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../recursos/codigo/index.html" class="sidebar-item-text sidebar-link">Código</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/rocklets_grilla.html" class="sidebar-item-text sidebar-link">Rocklets discretos</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link active">Distribuciones</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -119,14 +157,113 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="preguntas-frecuentes" class="level1">
-<h1>Preguntas frecuentes</h1>
+<section id="distribuciones-de-probabilidad" class="level1">
+<h1>Distribuciones de probabilidad</h1>
+<p>🚧 Trabajo en progreso! 🚧</p>
+<section id="normal" class="level2">
+<h2 class="anchored" data-anchor-id="normal">Normal</h2>
+<p><span class="math display">\[
+X \sim \text{Normal}(\mu, \sigma)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid \mu, \sigma) = \frac{1}{\sqrt{2\pi} \sigma}e^{-\frac{(x - \mu) ^ 2}{2\sigma^2}}
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = \int_{-\infty}^{x}{p(x | \mu, \sigma) dx}
+\]</span></p>
+<p>o también</p>
+<p><span class="math display">\[
+P(X \le x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma\sqrt{2}} \right) \right]
+\]</span></p>
+<p>con</p>
+<p><span class="math display">\[
+\text{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^{x} {e^{-t^2}dt}
+\]</span></p>
 <ul>
-<li><p><strong>Pertenezo al plan 2003 de la carrera, ¿puedo participar de las clases?</strong></p>
-<p>Si, podés asistir a las clases como oyente y también realizar los trabajos prácticos. Sin embargo, los profesores no se comprometen a realizar devoluciones o correcciones sobre los trabajos de estudiantes que asistan en calidad de oyente.</p></li>
+<li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
+<li><span class="math inline">\(\mu \in \mathbb{R}\)</span></li>
+<li><span class="math inline">\(\sigma &gt; 0\)</span></li>
 </ul>
+</section>
+<section id="gamma" class="level2">
+<h2 class="anchored" data-anchor-id="gamma">Gamma</h2>
+<section id="parametrización-1" class="level3">
+<h3 class="anchored" data-anchor-id="parametrización-1">Parametrización 1</h3>
+<p><span class="math display">\[
+X \sim \text{Gamma}(k, \theta)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid k, \theta) = \frac{1}{\Gamma(k)\theta^k}x^{k-1}e^{-\frac{x}{\theta}}
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = \frac{1}{\Gamma(k)} \gamma \left(k, \frac{x}{\theta}\right)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X &gt; 0\)</span></li>
+<li><span class="math inline">\(k &gt; 0\)</span></li>
+<li><span class="math inline">\(\theta &gt; 0\)</span></li>
+</ul>
+</section>
+<section id="parametrización-2" class="level3">
+<h3 class="anchored" data-anchor-id="parametrización-2">Parametrización 2</h3>
+<p><span class="math display">\[
+X \sim \text{Gamma}(\alpha, \beta)
+\]</span></p>
+<p><span class="math display">\[
+p(x | \alpha, \beta) = \frac{1}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}\beta^\alpha
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X &gt; 0\)</span></li>
+<li><span class="math inline">\(\alpha &gt; 0\)</span></li>
+<li><span class="math inline">\(\beta &gt; 0\)</span></li>
+</ul>
+</section>
+</section>
+<section id="beta" class="level2">
+<h2 class="anchored" data-anchor-id="beta">Beta</h2>
+<p><span class="math display">\[
+X \sim \text{Beta}(\alpha, \beta)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
+\]</span></p>
+<p><span class="math display">\[
+B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+\]</span></p>
+<p><span class="math display">\[
+\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X \in [0, 1]\)</span> si <span class="math inline">\(\alpha \ge 1\)</span> y <span class="math inline">\(\beta \ge 1\)</span></li>
+<li><span class="math inline">\(X \in (0, 1)\)</span> si <span class="math inline">\(\alpha &lt; 1\)</span> y <span class="math inline">\(\beta &lt; 1\)</span></li>
+</ul>
+<!-- 
+## Cauchy
+
+## Student T
+
+## Poisson
+
+$X \sim \text{Poisson}(\lambda)$
+
+$X \in \{0, 1, 2, \cdots}$
+
+## Binomial
+
+$X \sim \text{Binomial}(\theta, n)$
+
+$X \in \{0, 1, 2, \cdots, n\}$
+
+## Binomial Negativa
+
+$X \sim \text{BN}(\lambda)$ 
+-->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -263,6 +400,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../recursos/codigo/rocklets_grilla.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Rocklets discretos</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

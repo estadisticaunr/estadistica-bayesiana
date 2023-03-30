@@ -417,7 +417,7 @@
 <p>Aquí observamos un <span class="math inline">\(n_A\)</span> y queremos calcular las probabilidades de los posibles valores de <span class="math inline">\(u\)</span>: <strong>probabilidad inversa</strong>.</p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_N\mid N)}\]</span></p>
+<p><span class="math display">\[p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_A\mid N)}\]</span></p>
 <ul>
 <li class="fragment"><span class="math inline">\(N\)</span> es una cantidad fija</li>
 <li class="fragment"><span class="math inline">\(n_A\)</span> es otra cantidad fija: lo que observamos al realizar el experimento</li>
@@ -761,21 +761,21 @@ B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamm
 <p>Resulta <span class="math display">\[p(\pi\mid y) \propto p(y\mid\pi) p(\pi)\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y }\pi^x (1-\pi)^{N-y} \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \pi^{a-1}(1-\pi)^{b-1}\]</span></p>
+<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y }\pi^y (1-\pi)^{N-y} \frac{1}{B(a,b)} \pi^{a-1}(1-\pi)^{b-1}\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y } \frac{\Gamma(a+b)}{\Gamma(a)\Gamma(b)} \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
+<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y } \frac{1}{B(a,b)} \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[p(\pi\mid y) = K C  \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) = K^* \pi^{(x+a)-1} (1-\pi)^{(N-x+b)-1}\]</span></p>
+<p><span class="math display">\[p(\pi\mid y) = K^* \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
 </div>
 </section>
 <section id="section-34" class="slide level2">
 <h2></h2>
-<p>Para que <span class="math inline">\(\int_0^1 p(\pi\mid x) d \pi = 1\)</span>, debe ser</p>
+<p>Para que <span class="math inline">\(\int_0^1 p(\pi\mid y) d \pi = 1\)</span>, debe ser</p>
 <div class="fragment">
 <p><span class="math display">\[K^* = \frac{1}{B(y+a,N-y+b)} = \frac{\Gamma\left[(y+a)+(N-y+b)\right]}{\Gamma(y+a)\Gamma(N-y+b)}\]</span></p>
 </div>
