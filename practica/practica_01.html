@@ -250,7 +250,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li>¿Cuál es la probabilidad <em>a priori</em> de que el árbol tenga moho?</li>
 <li>Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber seleccionado un ceibo?</li>
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que el ceibo seleccionado tenga moho?</li>
-<li>Compare las probabilidades a priori y <em>a posteriori</em> de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo? <!-- @Johnson2021 --></li>
+<li>Compare las probabilidades <em>a priori</em> y <em>a posteriori</em> de que el árbol tenga moho. ¿Cómo afecta el análisis el saber que el árbol es un ceibo? <!-- @Johnson2021 --></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -386,7 +386,7 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <p>El modelo luego es</p>
 <p><span class="math display">\[
 \begin{array}{lc}
-X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) &amp; \text{con} \ \lambda \in [0, 1]
+X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) &amp; \text{con} \ \lambda \in [0, 1]
 \end{array}
 \]</span></p>
 <p><span class="math inline">\(\lambda\)</span> representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.</p>
@@ -425,7 +425,7 @@ Y_t | \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
 <li><p><strong>Es negocio…</strong></p>
 <p>Sea <span class="math inline">\(n\)</span> la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera. El número de clientes que realizan una compra es <span class="math inline">\(Y\)</span> y se cumple que</p>
 <p><span class="math display">\[
-Y | \theta, n \sim \text{Binomial}(n, \theta)
+Y | \theta, n \sim \text{Binomial}(\theta, n)
 \]</span></p>
 <p>donde <span class="math inline">\(\theta\)</span> es la probabilidad de compra, dado que se produce la visita a la tienda. La distribución <em>a priori</em> de <span class="math inline">\(n\)</span> es <span class="math inline">\(n \sim \text{Poisson}(5)\)</span>. Bajo el supuesto que <span class="math inline">\(\theta\)</span> es conocido y que <span class="math inline">\(n\)</span> es desconocido, graficar la distribución <em>a posteriori</em> de <span class="math inline">\(n\)</span> para todas las combinaciones de <span class="math inline">\(Y \in \{0, 5, 10 \}\)</span> y <span class="math inline">\(\theta \in \{0.2, 0.5\}\)</span>. Explique cual es del efecto de cambiar <span class="math inline">\(Y\)</span> y <span class="math inline">\(\theta\)</span> sobre la distribución <em>a posteriori</em>. <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 --></p></li>
 <li><p><strong>Con amigos así, quién necesita enemigos</strong></p>
