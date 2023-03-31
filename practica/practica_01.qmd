@@ -104,7 +104,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     - Resulta que el árbol seleccionado es un ceibo. ¿Cuál es la probabilidad de haber
     seleccionado un ceibo?
     - ¿Cuál es la probabilidad _a posteriori_ de que el ceibo seleccionado tenga moho?
-    - Compare las probabilidades a priori y _a posteriori_ de que el árbol tenga moho. 
+    - Compare las probabilidades _a priori_ y _a posteriori_ de que el árbol tenga moho. 
     ¿Cómo afecta el análisis el saber que el árbol es un ceibo? 
     <!-- @Johnson2021 -->
 
@@ -333,7 +333,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
     árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
-    probabilidad *a priori* de que la especie se encuentre en el bosque.
+    probabilidad _a priori_ de que la especie se encuentre en el bosque.
     Una investigadora selecciona una muestra de $n$ árboles del bosque y encuentra que 
     $X_2$ de ellas pertenecen a la especie de interés.
 
@@ -341,7 +341,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     $$
     \begin{array}{lc}
-    X_2|X_1 \sim \text{Binomial}(n, \lambda X_1) & \text{con} \ \lambda \in [0, 1]
+    X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) & \text{con} \ \lambda \in [0, 1]
     \end{array}
     $$
 
@@ -398,11 +398,11 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     El número de clientes que realizan una compra es $Y$ y se cumple que
 
     $$
-    Y | \theta, n \sim \text{Binomial}(n, \theta)
+    Y | \theta, n \sim \text{Binomial}(\theta, n)
     $$
 
     donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.
-    La distribución *a priori* de $n$ es $n \sim \text{Poisson}(5)$.
+    La distribución _a priori_ de $n$ es $n \sim \text{Poisson}(5)$.
     Bajo el supuesto que $\theta$ es conocido y que $n$ es desconocido, graficar la 
     distribución _a posteriori_ de $n$ para todas las combinaciones de 
     $Y \in \{0, 5, 10 \}$ y $\theta \in \{0.2, 0.5\}$.

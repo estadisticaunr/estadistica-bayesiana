@@ -131,8 +131,6 @@ vida profesional.
     i. Calcule la media y el desvío estándar _a posteriori_ de $\theta$ a mano.
     i. Verifique el cálculo utilizando `R`.
     i. Obtenga un intervalo de credibilidad del 95% para $\theta$.
-         a. A mano.
-         a. Utilizando `R`.
 
     ```{r}
     #| echo: false
