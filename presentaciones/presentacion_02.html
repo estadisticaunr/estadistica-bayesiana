@@ -592,8 +592,8 @@ p(u\mid n_A,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \f
 <div class="fragment">
 <p><span class="math display">\[
 \begin{array}{lll}
-p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{ia}=12\mid N_a) \\
-&amp; &amp; \quad + p(n_{ia}=1\mid N_a)p(n_{ia}=11\mid N_a) + \dots
+p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\
+&amp; &amp; \quad + p(n_{ia}=1\mid N_a)p(n_{if}=11\mid N_a) + \dots
 \end{array}
 \]</span></p>
 </div>
@@ -924,6 +924,92 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <section id="section-46" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.4em; text-align: left; color=white">
 <h2></h2>
 <p>La Regla de Bayes permite combinar dos fuentes de información: la información <em>a priori</em> (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución <em>a posteriori</em> representa un compromiso entre la verosimilitud de los datos y la credibilidad <em>a priori</em>.</p>
+</section></section>
+<section>
+<section id="más-ejemplos-1" class="title-slide slide level1 center">
+<h1>Más ejemplos</h1>
+
+<img data-src="presentacion_02_files/figure-revealjs/prior-plano-1.png" width="960" class="r-stretch"></section>
+<section id="section-47" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
+<section id="section-48" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
+<section id="section-49" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
+<section id="section-50" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
+<section id="section-51" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
+<section id="section-52" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="section-53" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="section-54" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
+<section id="section-55" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
+<section id="predicciones" class="slide level2 smaller">
+<h2>Predicciones</h2>
+<p>Distribución predictiva <em>a posteriori</em> (también distribución posterior predictiva) (en inglés <em>posterior predictive distribution</em>): queremos predecir un valor futuro de la variable de interés, <span class="math inline">\(\tilde{y}\)</span>. Más aún, interesa la distribución de <span class="math inline">\(\tilde{y}\)</span> <em>a posteriori</em>, es decir, luego de observar los datos <span class="math inline">\(y\)</span>: <span class="math inline">\(\tilde{y}\mid y\)</span></p>
+<p><span class="math display">\[
+p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
+\]</span></p>
+</section>
+<section id="section-56" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment"><span class="math inline">\(\tilde{y}\)</span> tiene una distribución de probabilidad</li>
+<li class="fragment">Si <span class="math inline">\(\pi\)</span> fuera fijo, la distribución de <span class="math inline">\(\tilde{y}\)</span> viene dada por <span class="math inline">\(p(\tilde{y}\mid\pi)\)</span> (la verosimilitud, aunque ahora es función de <span class="math inline">\(\tilde{y}\)</span>)</li>
+<li class="fragment">Pero ahora hay incertidumbre en <span class="math inline">\(\pi\)</span> (tiene una distribución <em>a posteriori</em>), por lo tanto se hace una ponderación para los distintos valores de <span class="math inline">\(\pi\)</span> (<span class="math inline">\(\pi\)</span> varía en la integral anterior)</li>
+<li class="fragment">Combinamos lo que no sabemos porque es aleatorio <em>per se</em>, con aquello que desconocemos (aunque podemos reducir nuestra incertidumbre recolectando más información)</li>
+</ul>
+</section>
+<section id="section-57" class="slide level2">
+<h2></h2>
+<p>Para el caso binomial que venimos estudiando, consideramos una realización más. ¿Cuál es la probabilidad de obtener <span class="math inline">\(A\)</span> (agua)?</p>
+<p><span class="math display">\[
+\begin{align*}
+P(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\theta\mid x) d \pi = \mathbb{E}[{p(\theta\mid x)}] \\
+&amp; = \frac{y+a}{y+a+N-x+b} = \frac{y+a}{N+a+b} \\
+\end{align*}
+\]</span></p>
+</section>
+<section id="section-58" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,a<span class="sc">+</span>y,b<span class="sc">+</span>N<span class="sc">-</span>y) <span class="co"># muestras del posterior</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>x_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">1</span>,muestras_pi) <span class="co"># predicciones para cada valor de pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-59" class="slide level2">
+<h2></h2>
+<p>Consideremos un caso particular:</p>
+<blockquote>
+<p>En una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?</p>
+</blockquote>
+<p><span class="math display">\[p(\tilde{y}\mid y) = \frac{y+1}{N+2}\]</span></p>
+</section>
+<section id="section-60" class="slide level2">
+<h2></h2>
+<p>Los parámetros tienen una distribución de probabilidad. Incorporar la incertidumbre en el valor de <span class="math inline">\(\pi\)</span> nos permite no entusiasmarnos tanto con los datos, hacer predicciones más conservadoras con a pocos datos, regularizar.</p>
 
 
 <img src="../utils/imgs/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
