@@ -315,7 +315,7 @@ vida profesional.
                      d\theta \\
     &=  \begin{cases}
         \frac{\alpha}{(n+\alpha)m^n} & \text{Si } M_x \le m \\
-        \frac{\alpha m^\alpha}{(n+\alpha)m^{n+\alpha}} & \text{Si } M_x > m \\
+        \frac{\alpha m^\alpha}{(n+\alpha)M_x^{n+\alpha}} & \text{Si } M_x > m \\
         \end{cases}
     \end{aligned}
     $$
