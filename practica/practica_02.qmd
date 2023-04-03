@@ -268,11 +268,10 @@ vida profesional.
 
 1.  **Inferencia sobre una distribución Uniforme**
 
-    Considere una distribución uniforme crentrada en $0$ y rango $2a$. 
-    La función de densidad de probabilidad es
+    Considere una distribución $\text{Uniforme}(0, \theta)$. La función de densidad de probabilidad es
 
     $$
-    p(x) = \frac{1}{2a}I(x \in [-a, a])
+    p(x) = \frac{1}{\theta}I(x \in [0, \theta])
     $$
 
     Sea $\mathbf{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes
@@ -280,9 +279,9 @@ vida profesional.
 
     **Inferencia máximo-verosímil**
 
-    i. ¿Cuál es el estimador máximo verosímil de $a$ (llámelo $\hat{a}_{\text{MV}}$)?
+    i. ¿Cuál es el estimador máximo verosímil de $\theta$ (llámelo $\hat{\theta}_{\text{MV}}$)?
     i. ¿Qué probabilidad le asigna el modelo a una nueva observación $x_{n + 1}$
-    usando $\hat{a}_{\text{MV}}$?
+    usando $\hat{\theta}_{\text{MV}}$?
     i. ¿Observa algún problema con el resultado anterior? Si es así, sugiera una 
     alternativa mejor.
 
