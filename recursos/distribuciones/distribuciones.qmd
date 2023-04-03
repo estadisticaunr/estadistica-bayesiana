@@ -31,6 +31,8 @@ $$
 * $X \in \mathbb{R}$
 * $\mu \in \mathbb{R}$
 * $\sigma > 0$
+* $\mathbb{E}(X) = \mu$
+* $\mathbb{V}(X) = \sigma^2$
 
 ## Gamma
 
@@ -51,6 +53,8 @@ $$
 * $X > 0$
 * $k > 0$
 * $\theta > 0$
+* $\mathbb{E}(X) = k\theta$
+* $\mathbb{V}(X) = k\theta^2$
 
 ### Parametrización 2
 
@@ -70,6 +74,30 @@ $$
 * $X > 0$
 * $\alpha > 0$
 * $\beta > 0$
+* $\mathbb{E}(X) = \alpha/\beta$
+* $\mathbb{V}(X) = \alpha/\beta^2$
+
+## Exponencial
+
+$$
+X \sim \text{Exponencial}(\lambda)
+$$
+
+$$
+p(x \mid \lambda) = \lambda e^{-\lambda x}
+$$
+
+$$
+P(X \le x) = 1 - e^{-\lambda x}
+$$
+
+
+* $X > 0$
+* $\lambda > 0$
+* $\mathbb{E}(X) = 1 / \lambda$
+* $\mathbb{V}(X) = 1 / \lambda ^ 2$
+
+Es un caso particular de $\text{Gamma}(\alpha, \beta)$ con $\alpha = 1$ y $\beta = \lambda$
 
 ## Beta
 
@@ -82,7 +110,7 @@ p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
 $$
 
 $$
-B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+B(a, b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
 $$
 
 $$
@@ -91,23 +119,53 @@ $$
 
 * $X \in [0, 1]$ si $\alpha \ge 1$ y $\beta \ge 1$
 * $X \in (0, 1)$ si $\alpha < 1$ y $\beta < 1$
+* $\displaystyle \mathbb{E}(X) = \frac{\alpha}{\alpha + \beta}$
+* $\displaystyle \mathbb{V}(X) = \frac{\alpha\beta}{(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}$
+
+## Binomial
+
+$$
+X \sim \text{Binomial}(\theta, n)
+$$
+
+$$
+p(x \mid \theta, n) = {n \choose x} \theta^x (1 - \theta)^{(n - x)}
+$$
+
+$$
+P(X \le x) = \sum_{i = 0} ^ {x} {n \choose i} \theta^i (1 - \theta)^{(n - i)}
+$$
+
+
+* $X \in \{0, 1, 2, \cdots, n\}$
+* $\theta \in [0, 1]$
+* $n \in \{0, 1, 2, \cdots \}$
+* $\mathbb{E}(X) = n \theta$
+* $\mathbb{V}(X) = n \theta (1 - \theta)$
+
+## Poisson
+
+$$
+X \sim \text{Poisson}(\lambda)
+$$
+
+$$
+p(x \mid \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
+$$
+
+$$
+P(X \le x) = e^{-\lambda} \sum_{i = 0} ^ {x} \frac{\lambda^i}{i!}
+$$
+
+* $X \in \{0, 1, 2, \cdots\}$
+* $\lambda > 0$
+* $\mathbb{E}(X) = \lambda$
+* $\mathbb{V}(X) = \lambda$
 
 <!-- 
 ## Cauchy
 
 ## Student T
-
-## Poisson
-
-$X \sim \text{Poisson}(\lambda)$
-
-$X \in \{0, 1, 2, \cdots}$
-
-## Binomial
-
-$X \sim \text{Binomial}(\theta, n)$
-
-$X \in \{0, 1, 2, \cdots, n\}$
 
 ## Binomial Negativa
 
