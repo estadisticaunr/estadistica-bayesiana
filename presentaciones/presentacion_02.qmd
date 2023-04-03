@@ -363,8 +363,8 @@ es la probabilidad de observar $n_i=12$ para ese valor de $N_a$.
 
 $$
 \begin{array}{lll}
-p(n_i=12\mid N_a) & = & p(n_{ia}=0\mid N_a)p(n_{ia}=12\mid N_a) \\ 
-& & \quad + p(n_{ia}=1\mid N_a)p(n_{ia}=11\mid N_a) + \dots
+p(n_i=12\mid N_a) & = & p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\ 
+& & \quad + p(n_{ia}=1\mid N_a)p(n_{if}=11\mid N_a) + \dots
 \end{array}
 $$ 
 
@@ -1017,6 +1017,7 @@ $$
 
 La distribución _a posteriori_ representa un balance (promedio ponderado o _combinación convexa_) entre la proporción observada y la proporción esperada _a priori_. Hay un _shrinkage_ hacia la media del _prior_.
 
+
 ## Secuencialidad {.smaller}
 
 Si primero observamos $y_1$ en $N_1$ y luego observamos $y_2$ en $N_2$... Con el primer conjunto de datos pasamos del _prior_ al _posterior_ y luego esa distribución se convierte en el nuevo _prior_: 
@@ -1046,3 +1047,285 @@ la nueva información (representada por la
 verosimilitud). La distribución _a posteriori_
 representa un compromiso entre la
 verosimilitud de los datos y la credibilidad _a priori_.
+
+# Más ejemplos
+
+```{r prior-plano}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+# prior plano
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,1,1),
+       likelihood = dbeta(x,2,5),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+# el prior desconfía de valores extremos del parámetro
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,2,2),
+       likelihood = dbeta(x,2,5),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,5,5),
+       likelihood = dbeta(x,2,5),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,10,10),
+       likelihood = dbeta(x,2,5),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,5,3),
+       likelihood = dbeta(x,2,2),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,5,3),
+       likelihood = dbeta2(x,mu = 0.2,phi = 10),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+            prior = dbeta(x,5,3),
+            likelihood = dbeta2(x,mu = 0.2,phi = 20),
+            posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,5,3),
+       likelihood = dbeta2(x,mu = 0.2,phi = 30),
+       posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,3,2),
+       likelihood = dbeta2(x,mu = 0.6,phi = 15)) %>%
+  mutate(prior = ifelse(x>0.5 & x<0.7,0,prior),
+         posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+tibble(x = seq(0,1,length.out = 500),
+       prior = dbeta(x,1,1),
+       likelihood = dbeta2(x,mu = 0.6,phi = 5)) %>%
+  mutate(prior = ifelse(x>0.5,0,prior),
+         posterior_posterior = prior*likelihood) %>%
+  mutate(prior = prior/sum(prior),
+         likelihood = likelihood/sum(likelihood),
+         posterior_posterior = posterior_posterior/sum(posterior_posterior),
+         posterior_likelihood = likelihood,
+         posterior_prior = prior) %>%
+  plot_bayes()
+```
+
+## Predicciones {.smaller}
+
+Distribución predictiva _a posteriori_ (también distribución posterior predictiva) (en inglés _posterior predictive distribution_): queremos predecir un valor futuro de la variable de interés, $\tilde{y}$. Más aún, interesa la distribución de $\tilde{y}$ _a posteriori_, es decir, luego de observar los datos $y$: $\tilde{y}\mid y$
+
+$$
+p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
+$$
+
+##
+
+- $\tilde{y}$ tiene una distribución de probabilidad
+- Si $\pi$ fuera fijo, la distribución de $\tilde{y}$ viene dada por $p(\tilde{y}\mid\pi)$ (la verosimilitud, aunque ahora es función de $\tilde{y}$)
+- Pero ahora hay incertidumbre en $\pi$ (tiene una distribución _a posteriori_), por lo tanto
+se hace una ponderación para los distintos valores de $\pi$ ($\pi$ varía en la integral anterior)
+- Combinamos lo que no sabemos porque es aleatorio _per se_, con aquello que desconocemos (aunque podemos reducir nuestra incertidumbre recolectando más información)
+
+##
+
+Para el caso binomial que venimos estudiando, consideramos una realización más. ¿Cuál es la probabilidad de obtener $A$ (agua)?
+
+$$
+\begin{align*}
+P(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\theta\mid x) d \pi = \mathbb{E}[{p(\theta\mid x)}] \\
+& = \frac{y+a}{y+a+N-x+b} = \frac{y+a}{N+a+b} \\
+\end{align*}
+$$
+
+##
+
+```{r sim}
+#| echo: true
+#| eval: false
+
+muestras_pi <- rbeta(2000,a+y,b+N-y) # muestras del posterior
+x_new <- rbinom(2000,1,muestras_pi) # predicciones para cada valor de pi
+```
+
+##
+
+Consideremos un caso particular:
+
+> En una bolsa hay bolitas negras y blancas, queremos saber cuál
+> es la probabilidad de sacar una bolita negra. A priori no sabemos
+> nada. Sacamos (con reposición) tres veces una bolita. Las tres
+> veces sale negra. ¿Cuál es la probabilidad de que la próxima
+> bolita sea negra?
+
+$$p(\tilde{y}\mid y) = \frac{y+1}{N+2}$$
+
+##
+
+Los parámetros tienen una distribución de probabilidad. Incorporar
+la incertidumbre en el valor de $\pi$ nos permite no entusiasmarnos
+tanto con los datos, hacer predicciones más conservadoras
+con a pocos datos, regularizar.
