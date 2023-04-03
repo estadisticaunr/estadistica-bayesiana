@@ -319,7 +319,7 @@ div.csl-indent {
 <p>La distribución de masa de probabilidad Poisson se define como</p>
 <p><span class="math display">\[
 \begin{array}{lcr}
-\displaystyle p(x | \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
+\displaystyle p(x \mid \lambda) = \frac{e^{-\lambda}\lambda^x}{x!} &amp;
 \text{con} &amp;
 x \in \{0, 1, 2, \cdots \}
 \end{array}
@@ -327,10 +327,10 @@ x \in \{0, 1, 2, \cdots \}
 <p>donde <span class="math inline">\(\lambda &gt; 0\)</span> es la cantidad promedio de veces que ocurre el evento de interés en un periodo o espacio determinado.</p>
 <ol type="i">
 <li>Derive el estimador de máxima verosimilitud del parámetro <span class="math inline">\(\lambda\)</span>.</li>
-<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda|D)\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(p(\lambda) = \text{Gamma}(\lambda | a, b) \propto \lambda^{\alpha-1}e^{-\lambda b}\)</span>.<br>
+<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda \mid \mathbf{X})\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\text{Gamma}(\lambda \mid \alpha, \beta)\)</span> con <span class="math inline">\(p(\lambda \mid \alpha, \beta) = \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}\)</span>.<br>
 Ayuda: El <em>posterior</em> también es una distribución Gamma.</li>
-<li>¿A qué valor tiende la media a <em>posteriori</em> cuando <span class="math inline">\(a \to 0\)</span> y <span class="math inline">\(b \to 0\)</span>?<br>
-Recuerde que la media de una distribución <span class="math inline">\(\text{Gamma}(a, b)\)</span> es <span class="math inline">\(a/b\)</span>. <!-- @Murphy2012 --></li>
+<li>¿A qué valor tiende la media a <em>posteriori</em> cuando <span class="math inline">\(\alpha \to 0\)</span> y <span class="math inline">\(\beta \to 0\)</span>?<br>
+Recuerde que la media de una distribución <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> es <span class="math inline">\(\alpha/\beta\)</span>. <!-- @Murphy2012 --></li>
 </ol></li>
 <li><p><strong>El modelo Gamma-Poisson</strong></p>
 <p>Sea <span class="math inline">\(\lambda\)</span> la tasa de mensajes de WhatsApp que una persona recibe en una hora. Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5 con desvío estándar de 0.25 mensajes.</p>
@@ -354,8 +354,8 @@ p(x) = \frac{1}{2a}I(x \in [-a, a])
 <p>Sea <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
 <p><strong>Inferencia máximo-verosímil</strong></p>
 <ol type="i">
-<li>¿Cuál es el estimador máximo verosímil de <span class="math inline">\(a\)</span> (llámelo <span class="math inline">\(\hat{a}\)</span>)?</li>
-<li>¿Qué probabilidad le asigna el modelo a una nueva observación <span class="math inline">\(x_{n + 1}\)</span> usando <span class="math inline">\(\hat{a}\)</span>?</li>
+<li>¿Cuál es el estimador máximo verosímil de <span class="math inline">\(a\)</span> (llámelo <span class="math inline">\(\hat{a}_{\text{MV}}\)</span>)?</li>
+<li>¿Qué probabilidad le asigna el modelo a una nueva observación <span class="math inline">\(x_{n + 1}\)</span> usando <span class="math inline">\(\hat{a}_{\text{MV}}\)</span>?</li>
 <li>¿Observa algún problema con el resultado anterior? Si es así, sugiera una alternativa mejor.</li>
 </ol>
 <p><strong>Inferencia Bayesiana</strong></p>
@@ -391,17 +391,17 @@ p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \thet
 \end{array}
 \]</span></p>
 <ol type="i">
-<li><p>Muestre que el estimador máximo verosímil (MV) es <span class="math inline">\(\hat{\theta} = 1/\bar{x}\)</span>.</p></li>
+<li><p>Muestre que el estimador máximo verosímil (MV) es <span class="math inline">\(\hat{\theta}_\text{MV} = 1/\bar{x}\)</span>.</p></li>
 <li><p>Suponga que se observan los siguientes tiempos de vida de tres máquinas independientes <span class="math inline">\(x_1 = 5\)</span>, <span class="math inline">\(x_2 = 6\)</span>, <span class="math inline">\(x_3 = 4\)</span>. ¿Cuál es el valor del estimador MV?</p></li>
 <li><p>Una experta del área sugiere que <span class="math inline">\(\theta\)</span> debe tener una distribución <em>a priori</em> que también sea exponencial. <span class="math display">\[
 \begin{aligned}
-\theta|\lambda &amp;\sim \text{Exp}(\lambda) \\
-p(\theta | \lambda) &amp;= \lambda e^{-\lambda \theta}
+\theta \mid \lambda &amp;\sim \text{Exp}(\lambda) \\
+p(\theta \mid \lambda) &amp;= \lambda e^{-\lambda \theta}
 \end{aligned}
-\]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\hat{\lambda}\)</span> para representar al valor.</p></li>
-<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta | \mathbf{X}, \hat{\lambda})\)</span>?</p></li>
+\]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\lambda_0\)</span> para representar al valor.</p></li>
+<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta \mid \mathbf{X}, \lambda_0)\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
-<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta | \mathbf{X}, \hat{\lambda})\)</span></p></li>
+<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta \mid \mathbf{X}, \lambda_0)\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
 <li><p><strong>Otras distribuciones conjugadas (I)</strong></p>
@@ -453,7 +453,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)\)</span>.</li>
 </ol></li>
 <li><p><strong>Propiedades frecuentistas de inferencias bayesianas (!!)</strong></p>
-<p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y | \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
+<p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% para <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
 <li><p><strong>¿Te preguntaste alguna vez cuál es la distribución de un <em>p-value</em>?</strong></p>
 <p>Considere un problema conocido. Se desean comparar dos muestras independientes de tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.</p>
 <ol type="i">

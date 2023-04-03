@@ -183,6 +183,8 @@ P(X \le x) = \frac{1}{2} \left[1 + \text{erf}\left(\frac{x - \mu}{\sigma\sqrt{2}
 <li><span class="math inline">\(X \in \mathbb{R}\)</span></li>
 <li><span class="math inline">\(\mu \in \mathbb{R}\)</span></li>
 <li><span class="math inline">\(\sigma &gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = \mu\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = \sigma^2\)</span></li>
 </ul>
 </section>
 <section id="gamma" class="level2">
@@ -202,6 +204,8 @@ P(X \le x) = \frac{1}{\Gamma(k)} \gamma \left(k, \frac{x}{\theta}\right)
 <li><span class="math inline">\(X &gt; 0\)</span></li>
 <li><span class="math inline">\(k &gt; 0\)</span></li>
 <li><span class="math inline">\(\theta &gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = k\theta\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = k\theta^2\)</span></li>
 </ul>
 </section>
 <section id="parametrización-2" class="level3">
@@ -219,8 +223,29 @@ P(X \le x) = \frac{1}{\Gamma(\alpha)} \gamma(\alpha, \beta x)
 <li><span class="math inline">\(X &gt; 0\)</span></li>
 <li><span class="math inline">\(\alpha &gt; 0\)</span></li>
 <li><span class="math inline">\(\beta &gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = \alpha/\beta\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = \alpha/\beta^2\)</span></li>
 </ul>
 </section>
+</section>
+<section id="exponencial" class="level2">
+<h2 class="anchored" data-anchor-id="exponencial">Exponencial</h2>
+<p><span class="math display">\[
+X \sim \text{Exponencial}(\lambda)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid \lambda) = \lambda e^{-\lambda x}
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = 1 - e^{-\lambda x}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X &gt; 0\)</span></li>
+<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = 1 / \lambda\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = 1 / \lambda ^ 2\)</span></li>
+</ul>
+<p>Es un caso particular de <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> con <span class="math inline">\(\alpha = 1\)</span> y <span class="math inline">\(\beta = \lambda\)</span></p>
 </section>
 <section id="beta" class="level2">
 <h2 class="anchored" data-anchor-id="beta">Beta</h2>
@@ -231,7 +256,7 @@ X \sim \text{Beta}(\alpha, \beta)
 p(x \mid a, b) = \frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}
 \]</span></p>
 <p><span class="math display">\[
-B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
+B(a, b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
 \]</span></p>
 <p><span class="math display">\[
 \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
@@ -239,23 +264,50 @@ B(a,b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)
 <ul>
 <li><span class="math inline">\(X \in [0, 1]\)</span> si <span class="math inline">\(\alpha \ge 1\)</span> y <span class="math inline">\(\beta \ge 1\)</span></li>
 <li><span class="math inline">\(X \in (0, 1)\)</span> si <span class="math inline">\(\alpha &lt; 1\)</span> y <span class="math inline">\(\beta &lt; 1\)</span></li>
+<li><span class="math inline">\(\displaystyle \mathbb{E}(X) = \frac{\alpha}{\alpha + \beta}\)</span></li>
+<li><span class="math inline">\(\displaystyle \mathbb{V}(X) = \frac{\alpha\beta}{(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}\)</span></li>
+</ul>
+</section>
+<section id="binomial" class="level2">
+<h2 class="anchored" data-anchor-id="binomial">Binomial</h2>
+<p><span class="math display">\[
+X \sim \text{Binomial}(\theta, n)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid \theta, n) = {n \choose x} \theta^x (1 - \theta)^{(n - x)}
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = \sum_{i = 0} ^ {x} {n \choose i} \theta^i (1 - \theta)^{(n - i)}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X \in \{0, 1, 2, \cdots, n\}\)</span></li>
+<li><span class="math inline">\(\theta \in [0, 1]\)</span></li>
+<li><span class="math inline">\(n \in \{0, 1, 2, \cdots \}\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = n \theta\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = n \theta (1 - \theta)\)</span></li>
+</ul>
+</section>
+<section id="poisson" class="level2">
+<h2 class="anchored" data-anchor-id="poisson">Poisson</h2>
+<p><span class="math display">\[
+X \sim \text{Poisson}(\lambda)
+\]</span></p>
+<p><span class="math display">\[
+p(x \mid \lambda) = \frac{\lambda^x e^{-\lambda}}{x!}
+\]</span></p>
+<p><span class="math display">\[
+P(X \le x) = e^{-\lambda} \sum_{i = 0} ^ {x} \frac{\lambda^i}{i!}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(X \in \{0, 1, 2, \cdots\}\)</span></li>
+<li><span class="math inline">\(\lambda &gt; 0\)</span></li>
+<li><span class="math inline">\(\mathbb{E}(X) = \lambda\)</span></li>
+<li><span class="math inline">\(\mathbb{V}(X) = \lambda\)</span></li>
 </ul>
 <!-- 
 ## Cauchy
 
 ## Student T
-
-## Poisson
-
-$X \sim \text{Poisson}(\lambda)$
-
-$X \in \{0, 1, 2, \cdots}$
-
-## Binomial
-
-$X \sim \text{Binomial}(\theta, n)$
-
-$X \in \{0, 1, 2, \cdots, n\}$
 
 ## Binomial Negativa
 
