@@ -1292,7 +1292,7 @@ se hace una ponderación para los distintos valores de $\pi$ ($\pi$ varía en la
 
 ##
 
-Para el caso binomial que venimos estudiando, consideramos una realización más. ¿Cuál es la probabilidad de obtener $A$ (agua)?
+Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener $A$ (agua)?
 
 $$
 \begin{align*}
@@ -1321,7 +1321,7 @@ Consideremos un caso particular:
 > veces sale negra. ¿Cuál es la probabilidad de que la próxima
 > bolita sea negra?
 
-$$p(\tilde{y}\mid y) = \frac{y+1}{N+2}$$
+$$p(\tilde{y}=1\mid y) = \frac{y+1}{N+2}$$
 
 ##
 

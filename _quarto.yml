@@ -53,6 +53,8 @@ website:
           file: teoria/u1_teoria_01.qmd
         - text: U1 - Inferencia Bayesiana
           file: teoria/u1_teoria_02.qmd
+        - text: U2 - Distribuciones Conjugadas
+          file: teoria/u2_teoria_03.qmd
     - title: Práctica
       style: docked
       search: false

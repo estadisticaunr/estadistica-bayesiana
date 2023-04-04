@@ -1,0 +1,798 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    transition: fade
+    slide-number: true
+    fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
+---
+
+# Distribuciones Conjugadas
+
+```{r setup}
+#| echo: false
+#| include: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+library(purrr)
+
+theme_set(theme_bw() +
+          theme(legend.position = "none",
+                panel.grid = element_blank(),
+                #strip.background = element_rect(fill="#ade658"),
+                text = element_text(size=20)))
+```
+
+```{r genero-variables-ejemplo-normal}
+#| echo: false
+#| include: false
+
+mu_prior <- 2
+sigma_prior <- 1
+muestra <- rnorm(10,1.5,1)
+y_bar <- mean(muestra)
+n <- length(muestra)
+sigma <- 2
+sigma_likelihood <- sigma/sqrt(n)
+
+# ========== Distribución a priori ==============
+
+dv <- tibble(x = seq(-3,6,length.out = 500),
+       prior = dnorm(x,mu_prior,sigma_prior),
+       likelihood = dnorm(x,y_bar,sigma_likelihood),
+       posterior_posterior = dnorm(x,mu_prior*(sigma^2/(n*sigma_prior^2+sigma^2)) + y_bar * (n*sigma_prior^2/(n*sigma_prior^2+sigma^2)),
+                                   sqrt(sigma_prior^2*sigma^2/(n*sigma_prior^2+sigma^2)))) %>%
+  mutate(prior = prior,
+         likelihood = likelihood,
+         posterior_posterior = posterior_posterior,
+         posterior_likelihood = likelihood,
+         posterior_prior = prior)
+
+# posibles valores que puede tomar mu
+
+# en la distribucion a priori
+p1 <- ggplot(dv) +
+  geom_line(aes(x=x,y=prior),col="#56CBF9",size=1) +
+  geom_ribbon(aes(x=x,ymin=0,ymax=prior),fill = "#56CBF9", alpha=0.6) +
+  xlab(expression(mu)) +
+  ylab(expression("P("*mu*")")) +
+  geom_point(data=tibble(x=c(0,2.1,3.2),y=c(0,0,0)),
+             aes(x=x,y=y),
+             inherit.aes = F,
+             shape = "cross",
+             stroke=2)
+
+#en los datos
+dv2 <- tibble(mu=c(0,2.1,3.2),x=list(dv$x),prob=dnorm(mu,mu_prior,sigma_prior)) %>%
+  mutate(y = purrr::map(mu,~dnorm(dv$x,.x,sigma))) %>%
+  unnest(cols = c(x,y))
+
+p2 <- ggplot() +
+  geom_line(data=dv2,aes(x=x,y=y,group=mu,alpha=prob),size=1.1, col = "#56CBF9") +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank())
+
+# posibles distribuciones a priori
+
+p3 <- tibble(mu=rnorm(100,mu_prior,sigma_prior),
+       x=list(dv$x)) %>%
+  mutate(y = purrr::map(mu,~dnorm(dv$x,.x,sigma))) %>%
+  unnest(cols = c(x,y)) %>%
+  ggplot() +
+  geom_line(aes(x=x,y=y,group=mu),col = "#56CBF9",alpha=0.2,size=0.8) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+
+# ========== Distribución a posteriori ==============
+
+# posibles distribuciones a posteriori
+p4 <- tibble(mu=rnorm(50,
+                mu_prior*(sigma^2/(n*sigma_prior^2+sigma^2)) + y_bar * (n*sigma_prior^2/(n*sigma_prior^2+sigma^2)),
+                sqrt(sigma_prior^2*sigma^2/(n*sigma_prior^2+sigma^2))),
+       x=list(dv$x)) %>%
+  mutate(y = purrr::map(mu,~dnorm(dv$x,.x,sigma))) %>%
+  unnest(cols = c(x,y)) %>%
+  ggplot() +
+  geom_line(aes(x=x,y=y,group=mu),col = "#FF729F",alpha=0.2,size=1) +
+  geom_point(data = tibble(x = muestra,
+                           y = 0),
+             aes(x=x,y=y),
+             size=2,
+             alpha=0.6) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+
+
+# posterior
+p5 <- ggplot(dv) +
+  geom_line(aes(x=x,y=posterior_posterior),col="#FF729F",size=1) +
+  geom_ribbon(aes(x=x,ymin=0,ymax=posterior_posterior),fill = "#FF729F", alpha=0.6) +
+  xlab(expression(mu)) +
+  ylab(expression("P("*mu*"|y)"))
+```
+
+## Gamma-Poisson
+
+Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo Poisson, es decir:
+
+$$y_i \sim \mathrm{Poisson}(\lambda)$$
+
+Interesa realizar una inferencia sobre el valor de $\lambda$
+
+. . .
+
+¿Cómo asignamos una credibilidad _a priori_ para $\lambda$?
+
+##
+
+$$
+\lambda \sim \mathrm{Gamma}(r,s)
+$$
+
+$$
+p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} x^{s-1}e^{-rx}
+$$
+
+::: {.callout-warning icon="true"}
+## Cuidado
+$\mathrm{Gamma}(r,s)$ en R es `dgamma(x, shape = s, scale = 1/r)`
+:::
+
+## {.smaller}
+
+El modelo propuesto es
+$$
+\begin{align*}
+    y_i\mid\lambda & \sim  Po(\lambda)\\
+    \lambda & \sim  \mathrm{Gamma}(s,r)
+\end{align*}
+$$
+
+El _likelihood_ es Poisson:
+$$p(y_i\mid \lambda) = \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} \rightarrow p(\mathbf{y}\mid \lambda) = \prod_i \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} = \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!}$$
+
+El _prior_ es Gamma:
+$$p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}$$
+
+Interesa hallar $p(\lambda\mid \mathbf{y})$
+
+##
+
+$$p(\lambda\mid \mathbf{y}) \propto p(\mathbf{y}\mid\lambda) p(\lambda)$$
+
+. . .
+
+$$p(\lambda \mid \mathbf{y}) \propto \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!} \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}$$ \pause
+$$p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}$$
+
+. . .
+
+$$p(\lambda \mid \mathbf{y}) = K C \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}$$
+
+. . .
+
+$$p(\lambda \mid \mathbf{y}) = K^* \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}$$
+
+## 
+
+Para que $\int_0^\infty p(\lambda\mid \mathbf{y})d \lambda = 1$, debe ser
+
+. . .
+
+$$K^* = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)}$$
+
+. . .
+
+Por lo tanto, resulta que la distribución _a posteriori_ es Gamma de parámetros $n+r$ y $\sum_i y_i + s$
+
+. . .
+
+$$
+p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)} \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}
+$$
+
+$$
+\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(n+r,\sum_i y_i + s)
+$$
+
+## Normal-normal
+
+Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo normal con varianza conocida $\sigma^2$, es decir:
+
+$$y_i \sim \mathcal{N}(\mu,\sigma^2)$$
+
+Interesa realizar una inferencia sobre el valor de $\mu$
+
+. . .
+
+¿Cómo asignamos una credibilidad _a priori_ para $\mu$?
+
+## {.smaller}
+
+El modelo propuesto es
+$$
+\begin{align*}
+    y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2)\\
+    \mu & \sim \mathrm{Gamma}(\theta,\tau^2)
+\end{align*}
+$$
+
+El _likelihood_ es normal:
+$$p(y_i\mid \mu) = \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ p(\mathbf{y}\mid \mu) = \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}$$
+
+El _prior_ es normal:
+$$p(\mu) = \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+
+Interesa hallar $p(\lambda\mid \mathbf{y})$
+
+## {.smaller}
+
+$$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$ \pause
+$$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+
+$$
+\begin{align*}
+p(\mu \mid \mathbf{y}) & \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
+&  \propto  e^{-\left[\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}+\frac{(\mu-\theta)^2}{2\tau^2}\right]} \\
+& \propto e^{-\left[ \frac{\bar{y}^2 - 2\bar{y} \mu + \mu^2}{2\sigma^2/n} + \frac{\mu^2 - 2\mu\theta^2 + \theta^2}{2\tau^2} \right]} \\
+& \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta^2}{2\tau^2} \right]} \\
+& \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta^2)\sigma^2}{2\sigma^2\tau^2} \right]}
+\end{align*}
+$$
+
+##
+
+$$
+    \begin{align*}
+P(\mu \mid \mathbf{y}) & \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
+& \propto e^{\frac{-\mu^2 + 2\mu \left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)}{2\tau^2\sigma^2/(n\tau^2 + \sigma^2)}} e^{-\left(\frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\right)^2} \\
+& \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
+    \end{align*}
+$$
+$$p(\mu\mid\mathbf{y}) = K^* e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}$$
+
+##
+
+Por lo tanto, resulta que la distribución _a posteriori_ es normal de parámetros $\theta_n$ y $\tau_n^2$
+
+. . .
+
+$$
+\begin{align*}
+\mu\mid \mathbf{y} & \sim  \mathcal{N}\left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2},\frac{\tau^2\sigma^2}{n\tau^2+\sigma^2} \right) \\
+& \sim \mathcal{N}\left( \theta_n,\tau_n^2 \right)
+\end{align*}
+$$
+
+##
+
+Reflexionemos...
+
+$$
+\begin{align*}
+    y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu & \sim  \mathcal{N}(\theta,\tau^2) \\
+    \mu \mid \mathbf{y} & \sim \mathcal{N}(\theta_n,\tau_n^2)
+\end{align*}
+$$
+
+¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del _prior_? ¿Forma del _posterior_? ¿Qué son $\theta_n$ y $\tau_n^2$?
+
+##
+
+```{r normal-ejemplo-1}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p1 + p2 
+```
+
+## {.smaller}
+
+¿Puedo representar los datos en el gráfico de la izquierda? 
+
+::: {.fragment}
+No, es el mundo de los parámetros
+:::
+
+. . .
+
+¿Qué representan los valores marcados con $\mathbf{\times}$?
+
+::: {.fragment}
+Posibles valores de $\mu$ que podrían esperarse _a priori_.
+:::
+
+. . .
+
+¿Media y varianza de la normal de la izquierda? 
+
+::: {.fragment}
+$\theta$ y $\tau^2$
+:::
+
+. . .
+
+¿Media y varianza de las normales de la derecha? 
+
+::: {.fragment}
+$\mu$ y $\sigma^2$
+:::
+
+
+
+##
+
+¿Qué estamos viendo?
+
+```{r normal-ejemplo-2}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 7
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p3
+```
+
+
+## {.smaller}
+
+_A posteriori_ (luego de observar los datos)... ¿qué ocurre con la plausibilidad
+de los valores de $\mu$?
+
+```{r normal-ejemplo-3}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p5 + p4
+```
+
+##
+
+¿Media y varianza de la normal de la izquierda? 
+
+::: {.fragment}
+$\theta_n$ y $\tau_n^2$
+:::
+
+¿Media y varianza de las normales de la derecha? 
+
+::: {.fragment}
+$\mu$ y $\sigma^2$
+:::
+
+## {.smaller}
+
+### Compromiso 
+
+$$\mathbb{E}[p(\mu\mid \mathbf{y})] = \theta_n = \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}$$
+$$\mathbb{E}[p(\mu\mid \mathbf{y})] =  \theta\frac{\sigma^2}{n\tau^2 + \sigma^2} + \bar{y}\frac{n\tau^2}{n\tau^2 + \sigma^2}$$
+
+. . .
+
+Representa un balance (promedio ponderado o \textit{combinación convexa}) entre la media muestral y la media esperada \textit{a priori}.
+
+. . .
+
+$$\mathbb{V}[p(\mu\mid \mathbf{y})] = \tau_n^2 = \frac{\tau^2\sigma^2}{n\tau^2+\sigma^2}$$
+
+$$\mathbb{V}[p(\mu\mid \mathbf{y})] = \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2}}$$
+$$\frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}$$
+
+La precisión _a posteriori_ es la suma de las precisiones del _prior_ y la muestra.
+
+## 
+
+### Distribución predictiva _a posteriori_
+
+$$p(\tilde{y}\mid \mathbf{y}) = \int p(\tilde{y}\mid \mu) p(\mu\mid \mathbf{y})d\mu$$
+El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.
+
+##
+
+Demostración poco formal...
+
+_A posteriori_ vale
+$$
+\begin{array}{ccc}
+y & = & (y-\mu) + \mu \\
+y-\mu \mid \mu & \sim & \mathcal{N}(0,\sigma^2) \\
+\mu \mid \mathbf{y} & \sim & \mathcal{N}(\theta_n,\tau_n^2)
+\end{array}
+$$
+
+Resulta
+
+$$p(\tilde{y}\mid \mathbf{y}) = \mathcal{N}(\mu_n,\sigma^2 + \tau_n^2)$$
+
+##
+
+La varianza predictiva $\sigma^2 + \tau_n^2$ es una medida de la incertidumbre _a posteriori_ respecto a una observación nueva $\tilde{y}$. 
+
+. . .
+
+La incertidumbre en $\tilde{y}$ proviene de la variabilidad debida al azar ($\sigma$) y de la variabilidad debida al desconocimiento de $\mu$ ($\tau_n$)
+
+. . .
+
+En otras palabras, si supiéramos que $\mu = 2$, toda la variabilidad provendría de $\sigma$, ¡pero no sabemos cuánto vale $\mu$! Puede ser $2$ o $1,98$ o $1.43$... Por lo que hay una componente adicional de varianza.
+
+## {.smaller}
+
+No se entendió nada. _Simular para creer_.
+
+. . .
+
+¿Cómo obtenemos una observación nueva si sabemos que $\mu = 2$ (sabiendo que $\sigma = 1,2$)? . . . Directamente tomamos una muestra $\tilde{y}$ de $\mathcal{N}\left(\mu=2,\sigma^2= 1.2^2\right)$  
+
+```{r sim1}
+#| echo: true
+#| eval: false
+
+y_new <- rnorm(1, mean = 2, sd = 1.2)
+```
+
+. . .
+
+Pero en estadística bayesiana $\mu$ tiene una distribución de probabilidad (por ejemplo $\mathcal{N}\left(\theta_n=2,\tau_n^2=1.8^2\right)$), ¿cómo hacemos la simulación?
+
+. . .
+
+1. Tomamos una muestra $\mu^{(s)}$ de la distribución de $\mu$
+2. Obtenemos $\tilde{y}$ a partir de $\mathcal{N}(\mu=\mu^{(s)},\sigma^2=1.2^2)$
+
+. . .
+
+```{r sim2}
+#| echo: true
+#| eval: false
+
+mu_s <- rnorm(1, mean = 2, sd = 1.8)
+y_new <- rnorm(1, mean = mu_s, sd = 1.2)
+```
+
+. . .
+
+¿Qué va a pasar en cada caso si construimos la distribución de $\tilde{y}$?
+
+##
+
+```{r predictive-distribution}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+x <- seq(-4,8,0.01)
+y <- dnorm(x,2,1.8)
+
+dv1 <- tibble(x = rnorm(4000,mean=2,sd=1.2))
+
+dv2 <- tibble(mu = rnorm(4000,2,1.8), x = rnorm(4000,mu,1.2))
+
+p1<-ggplot(dv1) +
+  geom_histogram(aes(x=x),fill="#FFC099",col="#FFA770") +
+  xlim(-6,10) +
+  xlab(expression(tilde(y))) +
+  ylim(c(0,800)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+p2<-ggplot(dv2) +
+  geom_histogram(aes(x=x),fill="#FFC099",col="#FFA770") +
+  xlim(-6,10) +
+  xlab(expression(tilde(y))) +
+  ylim(c(0,800)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+p3<-ggplot() +
+  geom_vline(xintercept=2, col = "#FF729F", size=1) +
+  xlim(c(2-6,2+6)) +
+  xlab(expression(mu))
+
+
+p4 <- ggplot() +
+  geom_line(data=tibble(x,y),aes(x=x,y=y),col="#FF729F",size=1) +
+  geom_ribbon(data=tibble(x,y),aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=.7) +
+  xlim(c(2-6,2+6)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank()) +
+  xlab(expression(mu))
+
+(p3 + p1) / (p4 + p2)
+```
+
+La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio ($\sigma$) y la incertidumbre en el parámetro $\mu$.
+
+## Normal -- normal-gamma-inversa
+
+Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo normal con varianza desconocida $\sigma^2$, es decir:
+
+$$y_i \sim \mathcal{N}(\mu,\sigma^2)$$
+
+E interesa realizar una inferencia sobre el valor de $\mu$ y el valor de $\sigma$
+
+. . .
+
+¿Cómo asignamos una credibilidad _a priori_ para $\mu$ y $\sigma$? ¡Con una distribución en dos dimensiones!
+
+## {.smaller}
+
+El modelo es
+
+$$
+\begin{align*}
+    X_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu,\sigma^2 & \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
+\end{align*}
+$$
+
+$\mu$ y $\sigma^2$ tienen **distribución conjunta** normal-gamma-inversa:
+
+$$(\mu,\sigma^2) = \frac{\sqrt{\tau}}{\sqrt{2\pi\sigma^2}} \frac{\beta^\alpha}{\Gamma(\alpha)} \left( \frac{1}{\sigma^2} \right)^{\alpha+1} e^{-\frac{2\beta + \tau(\mu-\theta)^2}{2\sigma^2}}$$
+
+Si anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros $\mu$ y $\sigma^2$), ¿qué podemos decir de la distribución _a posteriori_ (conjunta) de $\mu$ y $\sigma^2$
+
+## {.smaller}
+
+Efectivamente, se puede probar que:
+
+$$
+\begin{align*}
+\mu,\sigma^2 \mid \mathbf{y} & \sim  \mathcal{N}GI(\theta_n,\tau_n,\alpha_n,\beta_n)
+\end{align*}
+$$
+con
+
+$$
+\begin{cases}
+\theta_n = \frac{\tau\theta + n \bar{y}}{\tau+n}\\
+\tau_n = \tau + n\\
+\alpha_n = \alpha + \frac{n}{2}\\
+\beta_n = \beta + \frac{1}{2} \sum_i (y_i - \bar{y})^2 + \frac{n\tau}{\tau + n} \frac{(\bar{y}-\theta)^2}{2}
+\end{cases}
+$$
+
+¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del
+espacio de parámetros? ¿Constantes de ajuste del _prior_? ¿Forma
+del _posterior_?
+
+##
+
+```{r genero-variables-ejemplo-ngi}
+#| echo: false
+#| include: false
+
+alpha <- 1
+beta <- 0.5
+mean <- 2
+lambda <- 0.5
+
+dninvgamma <- function(mu, sigma2, alpha, beta, mean, lambda){
+ f <- (sqrt(lambda)/sqrt(2*pi*sigma2)) * (beta^alpha/gamma(alpha)) * ((1/sigma2)^(alpha+1)) * (exp(-(2*beta + lambda * (mu - mean)^2)/(2*sigma2)))
+ return(f)
+}
+
+# ========== Distribución a priori ==============
+dv <- tidyr::crossing(mu = seq(-1,5,0.005), 
+                      sigma2 = seq(0.01,2,0.005)) %>%
+  mutate(f = purrr::map2_dbl(mu,sigma2,~dninvgamma(.x,.y,alpha,beta,mean,lambda)))
+
+# a priori
+
+# posibles combinaciones de mu y sigma
+
+p1 <- dv %>%
+  ggplot() +
+  geom_raster(aes(x=mu,y=sigma2,fill=f),) +
+  scale_fill_steps(low = "#56CBF9", high = "white",n.breaks = 16) +
+  #scale_fill_gradient(low = "#56CBF9", high = "white",) +
+  scale_x_continuous(expression(mu),expand = c(0,0)) +
+  scale_y_continuous(expression(sigma^2),expand = c(0,0)) +
+  geom_point(data = tibble(mu = c(1,2.1,3.6),
+                           sigma2 = c(0.4,0.75,1)),
+             aes(x=mu,y=sigma2),
+             shape = "cross",
+             stroke=2)
+
+# tres normales posibles
+dv2 <- tibble(mu = c(1,2.1,3.6),
+              sigma2 = c(0.4,0.75,1),
+              x=list(seq(-3,6,length.out = 500)),
+              prob=dninvgamma(mu,sigma2,alpha,beta,mean,lambda)) %>%
+  mutate(y = purrr::map2(mu,sigma2,~dnorm(seq(-3,6,length.out = 500),.x,sqrt(.y)))) %>%
+  unnest(cols = c(x,y))
+
+p2 <- ggplot() +
+  geom_line(data=dv2,aes(x=x,y=y,group=mu,alpha=prob),size=1.1, col = "#56CBF9") +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank(),
+        axis.ticks.y = element_blank())
+
+# muchas normales posibles
+sigma2 <- rgamma(100,shape = alpha, rate = beta)
+mu <- rnorm(100,mean = mean, sd = sqrt(sigma2/lambda))
+
+p3 <- tibble(sigma2,
+       mu,
+       x=list(seq(-3,6,length.out = 500))) %>%
+  mutate(y = purrr::map2(mu,sigma2,~dnorm(seq(-3,6,length.out = 500),.x,sqrt(.y)))) %>%
+  unnest(cols = c(x,y)) %>%
+  ggplot() +
+  geom_line(aes(x=x,y=y,group=mu),col = "#56CBF9",alpha=0.2,size=0.8) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+
+#posterior
+y_bar
+n
+nu <- lambda
+alpha_p <- alpha + n/2
+beta_p <- beta + 0.5+sum((muestra - y_bar)^2) + n*nu/(nu+n)*(y_bar-mean)^2/2
+mean_p <- (nu*mean + n*y_bar)/(nu+n)
+nu_p <- lambda + n
+lambda_p <- nu_p
+
+dv_p <- tidyr::crossing(mu = seq(-1,5,0.005), 
+                      sigma2 = seq(0.01,2,0.005)) %>%
+  mutate(f = purrr::map2_dbl(mu,sigma2,~dninvgamma(.x,.y,alpha_p,beta_p,mean_p,lambda_p)))
+
+p4 <- dv_p %>%
+  ggplot() +
+  geom_raster(aes(x=mu,y=sigma2,fill=f)) +
+  scale_fill_steps(low = "#FF729F", high = "white",n.breaks = 16) +
+  scale_x_continuous(expression(mu),expand = c(0,0)) +
+  scale_y_continuous(expression(sigma^2),expand = c(0,0))
+
+sigma2 <- rgamma(100,shape = alpha_p, rate = beta_p)
+mu <- rnorm(100,mean = mean_p, sd = sqrt(sigma2/lambda_p))
+
+p5 <- tibble(sigma2,
+       mu,
+       x=list(seq(-3,6,length.out = 500))) %>%
+  mutate(y = purrr::map2(mu,sigma2,~dnorm(seq(-3,6,length.out = 500),.x,sqrt(.y)))) %>%
+  unnest(cols = c(x,y)) %>%
+  ggplot() +
+  geom_line(aes(x=x,y=y,group=mu),col = "#FF729F",alpha=0.2,size=1) +
+  geom_point(data = tibble(x = muestra,
+                           y = 0),
+             aes(x=x,y=y),
+             size=2,
+             alpha=0.6) +
+  theme(axis.text.y = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+
+Reflexionemos...
+
+$$
+\begin{align*}
+    y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu & \sim  \mathcal{N}(\theta,\tau^2) \\
+    \mu \mid \mathbf{y} & \sim \mathcal{N}(\theta_n,\tau_n^2)
+\end{align*}
+$$
+
+¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del _prior_? ¿Forma del _posterior_? ¿Qué son $\theta_n$ y $\tau_n^2$?
+
+##
+
+```{r ngi-ejemplo-1}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p1 + p2 
+```
+
+## {.smaller}
+
+¿Puedo representar los datos en el gráfico de la izquierda? 
+
+::: {.fragment}
+No, es el mundo de los parámetros
+:::
+
+. . .
+
+¿Qué representan los valores marcados con $\mathbf{\times}$? 
+
+::: {.fragment}
+Posibles valores de $\mu$ y $\sigma^2$ que podrían esperarse _a priori_.
+:::
+
+
+. . .
+
+¿Qué le da forma a la distribución de la izquierda?
+
+::: {.fragment}
+$\theta$, $\tau$, $\alpha$ y $\beta$
+:::
+
+. . .
+
+¿Media y varianza de las normales de la derecha? 
+
+::: {.fragment}
+$\mu$ y $\sigma^2$
+:::
+
+##
+
+¿Qué estamos viendo?
+
+```{r ngi-ejemplo-2}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 9
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p3
+```
+
+
+## {.smaller}
+
+_A posteriori_ (luego de observar los datos)... ¿qué ocurre con la plausibilidad
+de los valores de $\mu$ y $\sigma^2$?
+
+```{r ngi-ejemplo-3}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 18
+  #| fig-height: 6
+  #| fig-align: center
+  #| cache: true
+
+p4 + p5
+```
+
+##
+
+¿Parámetros de la distribución de la izquierda? 
+
+::: {.fragment}
+$\theta_n$, $\tau_n$, $\alpha_n$ y $\beta_n$
+:::
+
+. . .
+
+¿Media y varianza de las normales de la derecha? 
+
+::: {.fragment}
+$\mu$ y $\sigma^2$
+:::
