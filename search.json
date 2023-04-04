@@ -277,7 +277,7 @@
     "href": "presentaciones/presentacion_02.html#section-57",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más. ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\nP(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\theta\\mid x) d \\pi = \\mathbb{E}[{p(\\theta\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-x+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
+    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\nP(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\theta\\mid x) d \\pi = \\mathbb{E}[{p(\\theta\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-x+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-58",
@@ -291,7 +291,7 @@
     "href": "presentaciones/presentacion_02.html#section-59",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Consideremos un caso particular:\n\nEn una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?\n\n\\[p(\\tilde{y}\\mid y) = \\frac{y+1}{N+2}\\]"
+    "text": "Consideremos un caso particular:\n\nEn una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?\n\n\\[p(\\tilde{y}=1\\mid y) = \\frac{y+1}{N+2}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-60",
@@ -476,6 +476,13 @@
     "text": "La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: probabilidad hacia adelante\n\nPor el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: probabilidad inversa.\n\n\n\\[p(\\mathcal{H}\\mid E) = \\frac{p(E\\mid\\mathcal{H}) p(\\mathcal{H})}{p(E)}\\]\n\\[p(\\mathcal{H}\\mid E) \\propto p(E\\mid\\mathcal{H}) p(\\mathcal{H})\\]\n\n\n\nEstadística Bayesiana – 2023"
   },
   {
+    "objectID": "presentaciones/presentacion_03.html",
+    "href": "presentaciones/presentacion_03.html",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Sea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo Poisson, es decir:\n\\[y_i \\sim \\mathrm{Poisson}(\\lambda)\\]\nInteresa realizar una inferencia sobre el valor de \\(\\lambda\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\lambda\\)?\n\n\n\n\n\\[\n\\lambda \\sim \\mathrm{Gamma}(r,s)\n\\]\n\\[\np(\\lambda \\mid r,s) = p(\\lambda) = \\frac{r^s}{\\Gamma(s)} x^{s-1}e^{-rx}\n\\]\n\n\n\n\n\n\nCuidado\n\n\n\n\\(\\mathrm{Gamma}(r,s)\\) en R es dgamma(x, shape = s, scale = 1/r)\n\n\n\n\n\nEl modelo propuesto es \\[\n\\begin{align*}\n    y_i\\mid\\lambda & \\sim  Po(\\lambda)\\\\\n    \\lambda & \\sim  \\mathrm{Gamma}(s,r)\n\\end{align*}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)\n\n\n\n\\[p(\\lambda\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\lambda) p(\\lambda)\\]\n\n\\[p(\\lambda \\mid \\mathbf{y}) \\propto \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!} \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\] \\[p(\\lambda \\mid \\mathbf{y}) \\propto \\frac{r^s}{\\Gamma(s)\\prod_i y_i!} \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K C \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K^* \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\\]\n\n\n\n\nPara que \\(\\int_0^\\infty p(\\lambda\\mid \\mathbf{y})d \\lambda = 1\\), debe ser\n\n\\[K^* = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Gamma de parámetros \\(n+r\\) y \\(\\sum_i y_i + s\\)\n\n\n\\[\np(\\lambda\\mid \\mathbf{y}) = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)} \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\n\\]\n\\[\n\\lambda\\mid \\mathbf{y} \\sim  \\mathrm{Gamma}(n+r,\\sum_i y_i + s)\n\\]\n\n\n\n\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo normal con varianza conocida \\(\\sigma^2\\), es decir:\n\\[y_i \\sim \\mathcal{N}(\\mu,\\sigma^2)\\]\nInteresa realizar una inferencia sobre el valor de \\(\\mu\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\mu\\)?\n\n\n\n\nEl modelo propuesto es \\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n    \\mu & \\sim \\mathrm{Gamma}(\\theta,\\tau^2)\n\\end{align*}\n\\]\nEl likelihood es normal: \\[p(y_i\\mid \\mu) = \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\ p(\\mathbf{y}\\mid \\mu) = \\left(\\frac{1}{2\\pi\\sigma}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\\]\nEl prior es normal: \\[p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)\n\n\n\n\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] \\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\n\\[\n\\begin{align*}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta^2)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{align*}\n\\]\n\n\n\n\\[\n    \\begin{align*}\nP(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{align*}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]\n\n\n\nPor lo tanto, resulta que la distribución a posteriori es normal de parámetros \\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n\\[\n\\begin{align*}\n\\mu\\mid \\mathbf{y} & \\sim  \\mathcal{N}\\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2},\\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2} \\right) \\\\\n& \\sim \\mathcal{N}\\left( \\theta_n,\\tau_n^2 \\right)\n\\end{align*}\n\\]\n\n\n\n\nReflexionemos…\n\\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np1 + p2 \n\n\n\n\n\n\n\n¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) que podrían esperarse a priori.\n\n\n\n¿Media y varianza de la normal de la izquierda?\n\n\\(\\theta\\) y \\(\\tau^2\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)\n\n\n\n\n\n¿Qué estamos viendo?\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 7\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np3\n\n\n\n\n\n\n\nA posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\)?\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np5 + p4\n\n\n\n\n\n\n\n¿Media y varianza de la normal de la izquierda?\n\n\\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)\n\n\n\n\n\n\n\\[\\mathbb{E}[p(\\mu\\mid \\mathbf{y})] = \\theta_n = \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\] \\[\\mathbb{E}[p(\\mu\\mid \\mathbf{y})] =  \\theta\\frac{\\sigma^2}{n\\tau^2 + \\sigma^2} + \\bar{y}\\frac{n\\tau^2}{n\\tau^2 + \\sigma^2}\\]\n\nRepresenta un balance (promedio ponderado o ) entre la media muestral y la media esperada .\n\n\n\\[\\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\tau_n^2 = \\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2}\\]\n\\[\\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\frac{1}{\\frac{n}{\\sigma^2}+\\frac{1}{\\tau^2}}\\] \\[\\frac{1}{\\mathbb{V}[p(\\mu\\mid \\mathbf{y})]} =  \\frac{n}{\\sigma^2} + \\frac{1}{\\tau^2}\\]\nLa precisión a posteriori es la suma de las precisiones del prior y la muestra.\n\n\n\n\n\n\n\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\int p(\\tilde{y}\\mid \\mu) p(\\mu\\mid \\mathbf{y})d\\mu\\] El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.\n\n\n\n\nDemostración poco formal…\nA posteriori vale \\[\n\\begin{array}{ccc}\ny & = & (y-\\mu) + \\mu \\\\\ny-\\mu \\mid \\mu & \\sim & \\mathcal{N}(0,\\sigma^2) \\\\\n\\mu \\mid \\mathbf{y} & \\sim & \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{array}\n\\]\nResulta\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\mathcal{N}(\\mu_n,\\sigma^2 + \\tau_n^2)\\]\n\n\n\nLa varianza predictiva \\(\\sigma^2 + \\tau_n^2\\) es una medida de la incertidumbre a posteriori respecto a una observación nueva \\(\\tilde{y}\\).\n\nLa incertidumbre en \\(\\tilde{y}\\) proviene de la variabilidad debida al azar (\\(\\sigma\\)) y de la variabilidad debida al desconocimiento de \\(\\mu\\) (\\(\\tau_n\\))\n\n\nEn otras palabras, si supiéramos que \\(\\mu = 2\\), toda la variabilidad provendría de \\(\\sigma\\), ¡pero no sabemos cuánto vale \\(\\mu\\)! Puede ser \\(2\\) o \\(1,98\\) o \\(1.43\\)… Por lo que hay una componente adicional de varianza.\n\n\n\n\nNo se entendió nada. Simular para creer.\n\n¿Cómo obtenemos una observación nueva si sabemos que \\(\\mu = 2\\) (sabiendo que \\(\\sigma = 1,2\\))? . . . Directamente tomamos una muestra \\(\\tilde{y}\\) de \\(\\mathcal{N}\\left(\\mu=2,\\sigma^2= 1.2^2\\right)\\)\n\ny_new <- rnorm(1, mean = 2, sd = 1.2)\n\n\n\nPero en estadística bayesiana \\(\\mu\\) tiene una distribución de probabilidad (por ejemplo \\(\\mathcal{N}\\left(\\theta_n=2,\\tau_n^2=1.8^2\\right)\\)), ¿cómo hacemos la simulación?\n\n\n\nTomamos una muestra \\(\\mu^{(s)}\\) de la distribución de \\(\\mu\\)\nObtenemos \\(\\tilde{y}\\) a partir de \\(\\mathcal{N}(\\mu=\\mu^{(s)},\\sigma^2=1.2^2)\\)\n\n\n\n\nmu_s <- rnorm(1, mean = 2, sd = 1.8)\ny_new <- rnorm(1, mean = mu_s, sd = 1.2)\n\n\n\n¿Qué va a pasar en cada caso si construimos la distribución de \\(\\tilde{y}\\)?\n\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\nx <- seq(-4,8,0.01)\ny <- dnorm(x,2,1.8)\n\ndv1 <- tibble(x = rnorm(4000,mean=2,sd=1.2))\n\ndv2 <- tibble(mu = rnorm(4000,2,1.8), x = rnorm(4000,mu,1.2))\n\np1<-ggplot(dv1) +\n  geom_histogram(aes(x=x),fill=\"#FFC099\",col=\"#FFA770\") +\n  xlim(-6,10) +\n  xlab(expression(tilde(y))) +\n  ylim(c(0,800)) +\n  theme(axis.text.y = element_blank(),\n        axis.title.y = element_blank(),\n        axis.ticks.y = element_blank())\n\np2<-ggplot(dv2) +\n  geom_histogram(aes(x=x),fill=\"#FFC099\",col=\"#FFA770\") +\n  xlim(-6,10) +\n  xlab(expression(tilde(y))) +\n  ylim(c(0,800)) +\n  theme(axis.text.y = element_blank(),\n        axis.title.y = element_blank(),\n        axis.ticks.y = element_blank())\n\np3<-ggplot() +\n  geom_vline(xintercept=2, col = \"#FF729F\", size=1) +\n  xlim(c(2-6,2+6)) +\n  xlab(expression(mu))\n\n\np4 <- ggplot() +\n  geom_line(data=tibble(x,y),aes(x=x,y=y),col=\"#FF729F\",size=1) +\n  geom_ribbon(data=tibble(x,y),aes(x=x,ymin=0,ymax=y),fill=\"#FF729F\",alpha=.7) +\n  xlim(c(2-6,2+6)) +\n  theme(axis.text.y = element_blank(),\n        axis.title.y = element_blank(),\n        axis.ticks.y = element_blank()) +\n  xlab(expression(mu))\n\n(p3 + p1) / (p4 + p2)\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 2 rows containing missing values (`geom_bar()`).\n\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\nWarning: Removed 1 rows containing non-finite values (`stat_bin()`).\nRemoved 2 rows containing missing values (`geom_bar()`).\n\n\n\n\n\nLa distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (\\(\\sigma\\)) y la incertidumbre en el parámetro \\(\\mu\\).\n\n\n\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo normal con varianza desconocida \\(\\sigma^2\\), es decir:\n\\[y_i \\sim \\mathcal{N}(\\mu,\\sigma^2)\\]\nE interesa realizar una inferencia sobre el valor de \\(\\mu\\) y el valor de \\(\\sigma\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\mu\\) y \\(\\sigma\\)? ¡Con una distribución en dos dimensiones!\n\n\n\n\nEl modelo es\n\\[\n\\begin{align*}\n    X_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{align*}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[(\\mu,\\sigma^2) = \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}} \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1} e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)\n\n\n\nEfectivamente, se puede probar que:\n\\[\n\\begin{align*}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{align*}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?\n\n\n\nReflexionemos…\n\\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?\n\n\n\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np1 + p2 \n\n\n\n\n\n\n\n¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) y \\(\\sigma^2\\) que podrían esperarse a priori.\n\n\n\n¿Qué le da forma a la distribución de la izquierda?\n\n\\(\\theta\\), \\(\\tau\\), \\(\\alpha\\) y \\(\\beta\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)\n\n\n\n\n\n¿Qué estamos viendo?\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 9\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np3\n\n\n\n\n\n\n\nA posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\) y \\(\\sigma^2\\)?\n\n  #| warning: false\n  #| echo: false\n  #| fig-width: 18\n  #| fig-height: 6\n  #| fig-align: center\n  #| cache: true\n\np4 + p5\n\n\n\n\n\n\n\n¿Parámetros de la distribución de la izquierda?\n\n\\(\\theta_n\\), \\(\\tau_n\\), \\(\\alpha_n\\) y \\(\\beta_n\\)\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Estadística Bayesiana",
@@ -654,6 +661,13 @@
     "objectID": "teoria/u1_teoria_01.html",
     "href": "teoria/u1_teoria_01.html",
     "title": "Unidad 1 - Introducción",
+    "section": "",
+    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
+  },
+  {
+    "objectID": "teoria/u2_teoria_03.html",
+    "href": "teoria/u2_teoria_03.html",
+    "title": "Unidad 2 - Distribuciones Conjugadas",
     "section": "",
     "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
   },
@@ -1146,5 +1160,208 @@
     "title": "Estadística Bayesiana",
     "section": "Sesgos",
     "text": "Sesgos\nLos seres humanos no estamos optimizados para operar con probabilidades (al menos no intuitivamente)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#gamma-poisson",
+    "href": "presentaciones/presentacion_03.html#gamma-poisson",
+    "title": "Estadística Bayesiana",
+    "section": "Gamma-Poisson",
+    "text": "Gamma-Poisson\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo Poisson, es decir:\n\\[y_i \\sim \\mathrm{Poisson}(\\lambda)\\]\nInteresa realizar una inferencia sobre el valor de \\(\\lambda\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\lambda\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section",
+    "href": "presentaciones/presentacion_03.html#section",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[\n\\lambda \\sim \\mathrm{Gamma}(r,s)\n\\]\n\\[\np(\\lambda \\mid r,s) = p(\\lambda) = \\frac{r^s}{\\Gamma(s)} x^{s-1}e^{-rx}\n\\]\n\n\n\n\n\n\nCuidado\n\n\n\\(\\mathrm{Gamma}(r,s)\\) en R es dgamma(x, shape = s, scale = 1/r)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-1",
+    "href": "presentaciones/presentacion_03.html#section-1",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El modelo propuesto es \\[\n\\begin{align*}\n    y_i\\mid\\lambda & \\sim  Po(\\lambda)\\\\\n    \\lambda & \\sim  \\mathrm{Gamma}(s,r)\n\\end{align*}\n\\]\nEl likelihood es Poisson: \\[p(y_i\\mid \\lambda) = \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} \\rightarrow p(\\mathbf{y}\\mid \\lambda) = \\prod_i \\frac{\\lambda^{y_i}e^{-\\lambda}}{y_i!} = \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!}\\]\nEl prior es Gamma: \\[p(\\lambda) = \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-2",
+    "href": "presentaciones/presentacion_03.html#section-2",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[p(\\lambda\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\lambda) p(\\lambda)\\]\n\n\\[p(\\lambda \\mid \\mathbf{y}) \\propto \\frac{\\lambda^{\\sum_i y_i}e^{-n\\lambda}}{\\prod_{i}y_i!} \\frac{r^s}{\\Gamma(s)} \\lambda^{s-1}e^{-r\\lambda}\\] \\[p(\\lambda \\mid \\mathbf{y}) \\propto \\frac{r^s}{\\Gamma(s)\\prod_i y_i!} \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K C \\lambda^{\\sum_iy_i+s-1} e^{-n\\lambda - r \\lambda}\\]\n\n\n\\[p(\\lambda \\mid \\mathbf{y}) = K^* \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-3",
+    "href": "presentaciones/presentacion_03.html#section-3",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Para que \\(\\int_0^\\infty p(\\lambda\\mid \\mathbf{y})d \\lambda = 1\\), debe ser\n\n\\[K^* = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Gamma de parámetros \\(n+r\\) y \\(\\sum_i y_i + s\\)\n\n\n\\[\np(\\lambda\\mid \\mathbf{y}) = \\frac{(n + r )^{\\sum_i y_i + s}}{\\Gamma(\\sum_i y_i + s)} \\lambda^{\\sum_iy_i+s-1} e^{-(n + r)\\lambda}\n\\]\n\\[\n\\lambda\\mid \\mathbf{y} \\sim  \\mathrm{Gamma}(n+r,\\sum_i y_i + s)\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#normal-normal",
+    "href": "presentaciones/presentacion_03.html#normal-normal",
+    "title": "Estadística Bayesiana",
+    "section": "Normal-normal",
+    "text": "Normal-normal\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo normal con varianza conocida \\(\\sigma^2\\), es decir:\n\\[y_i \\sim \\mathcal{N}(\\mu,\\sigma^2)\\]\nInteresa realizar una inferencia sobre el valor de \\(\\mu\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\mu\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-4",
+    "href": "presentaciones/presentacion_03.html#section-4",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El modelo propuesto es \\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2)\\\\\n    \\mu & \\sim \\mathrm{Gamma}(\\theta,\\tau^2)\n\\end{align*}\n\\]\nEl likelihood es normal: \\[p(y_i\\mid \\mu) = \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i-\\mu)^2}{2\\sigma^2}} \\rightarrow \\\\ p(\\mathbf{y}\\mid \\mu) = \\left(\\frac{1}{2\\pi\\sigma}\\right)^{n/2}  e^{-\\frac{\\sum_i(y_i-\\mu)^2}{2\\sigma^2}} \\propto e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}}\\]\nEl prior es normal: \\[p(\\mu) = \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\nInteresa hallar \\(p(\\lambda\\mid \\mathbf{y})\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-5",
+    "href": "presentaciones/presentacion_03.html#section-5",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[p(\\mu\\mid \\mathbf{y}) \\propto p(\\mathbf{y}\\mid\\mu) p(\\mu)\\] \\[p(\\mu \\mid \\mathbf{y}) \\propto   e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} \\frac{1}{\\sqrt{2\\pi\\tau}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}}\\]\n\\[\n\\begin{align*}\np(\\mu \\mid \\mathbf{y}) & \\propto  e^{-\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}} e^{-\\frac{(\\mu-\\theta)^2}{2\\tau^2}} \\\\\n&  \\propto  e^{-\\left[\\frac{(\\bar{y}-\\mu)^2}{2\\sigma^2/n}+\\frac{(\\mu-\\theta)^2}{2\\tau^2}\\right]} \\\\\n& \\propto e^{-\\left[ \\frac{\\bar{y}^2 - 2\\bar{y} \\mu + \\mu^2}{2\\sigma^2/n} + \\frac{\\mu^2 - 2\\mu\\theta^2 + \\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{ 2\\bar{y} \\mu - \\mu^2}{2\\sigma^2/n} + \\frac{-\\mu^2 + 2\\mu\\theta^2}{2\\tau^2} \\right]} \\\\\n& \\propto e^{\\left[ \\frac{(2\\bar{y} \\mu - \\mu^2)n\\tau^2 + (-\\mu^2 + 2\\mu\\theta^2)\\sigma^2}{2\\sigma^2\\tau^2} \\right]}\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-6",
+    "href": "presentaciones/presentacion_03.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[\n    \\begin{align*}\nP(\\mu \\mid \\mathbf{y}) & \\propto e^{\\frac{2\\mu(\\theta\\sigma^2+ \\bar{y}n\\tau^2)-\\mu^2(n\\tau^2+\\sigma^2)}{2\\tau^2\\sigma^2}} \\\\\n& \\propto e^{\\frac{-\\mu^2 + 2\\mu \\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)}{2\\tau^2\\sigma^2/(n\\tau^2 + \\sigma^2)}} e^{-\\left(\\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\right)^2} \\\\\n& \\propto e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\n    \\end{align*}\n\\] \\[p(\\mu\\mid\\mathbf{y}) = K^* e^{-\\frac{\\left(\\mu -  \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2} \\right)^2}{2\\tau^2\\sigma^2/(n\\tau^2+\\sigma^2)}}\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-7",
+    "href": "presentaciones/presentacion_03.html#section-7",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Por lo tanto, resulta que la distribución a posteriori es normal de parámetros \\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n\\[\n\\begin{align*}\n\\mu\\mid \\mathbf{y} & \\sim  \\mathcal{N}\\left( \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2},\\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2} \\right) \\\\\n& \\sim \\mathcal{N}\\left( \\theta_n,\\tau_n^2 \\right)\n\\end{align*}\n\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-8",
+    "href": "presentaciones/presentacion_03.html#section-8",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Reflexionemos…\n\\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-10",
+    "href": "presentaciones/presentacion_03.html#section-10",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) que podrían esperarse a priori.\n\n\n\n¿Media y varianza de la normal de la izquierda?\n\n\\(\\theta\\) y \\(\\tau^2\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-11",
+    "href": "presentaciones/presentacion_03.html#section-11",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Qué estamos viendo?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-12",
+    "href": "presentaciones/presentacion_03.html#section-12",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "A posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-13",
+    "href": "presentaciones/presentacion_03.html#section-13",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Media y varianza de la normal de la izquierda?\n\n\\(\\theta_n\\) y \\(\\tau_n^2\\)\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-14",
+    "href": "presentaciones/presentacion_03.html#section-14",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Compromiso\n\\[\\mathbb{E}[p(\\mu\\mid \\mathbf{y})] = \\theta_n = \\frac{\\theta\\sigma^2 + \\bar{y}n\\tau^2}{n\\tau^2 + \\sigma^2}\\] \\[\\mathbb{E}[p(\\mu\\mid \\mathbf{y})] =  \\theta\\frac{\\sigma^2}{n\\tau^2 + \\sigma^2} + \\bar{y}\\frac{n\\tau^2}{n\\tau^2 + \\sigma^2}\\]\n\nRepresenta un balance (promedio ponderado o ) entre la media muestral y la media esperada .\n\n\n\\[\\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\tau_n^2 = \\frac{\\tau^2\\sigma^2}{n\\tau^2+\\sigma^2}\\]\n\\[\\mathbb{V}[p(\\mu\\mid \\mathbf{y})] = \\frac{1}{\\frac{n}{\\sigma^2}+\\frac{1}{\\tau^2}}\\] \\[\\frac{1}{\\mathbb{V}[p(\\mu\\mid \\mathbf{y})]} =  \\frac{n}{\\sigma^2} + \\frac{1}{\\tau^2}\\]\nLa precisión a posteriori es la suma de las precisiones del prior y la muestra."
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-15",
+    "href": "presentaciones/presentacion_03.html#section-15",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Distribución predictiva a posteriori\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\int p(\\tilde{y}\\mid \\mu) p(\\mu\\mid \\mathbf{y})d\\mu\\] El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal."
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-16",
+    "href": "presentaciones/presentacion_03.html#section-16",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Demostración poco formal…\nA posteriori vale \\[\n\\begin{array}{ccc}\ny & = & (y-\\mu) + \\mu \\\\\ny-\\mu \\mid \\mu & \\sim & \\mathcal{N}(0,\\sigma^2) \\\\\n\\mu \\mid \\mathbf{y} & \\sim & \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{array}\n\\]\nResulta\n\\[p(\\tilde{y}\\mid \\mathbf{y}) = \\mathcal{N}(\\mu_n,\\sigma^2 + \\tau_n^2)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-17",
+    "href": "presentaciones/presentacion_03.html#section-17",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La varianza predictiva \\(\\sigma^2 + \\tau_n^2\\) es una medida de la incertidumbre a posteriori respecto a una observación nueva \\(\\tilde{y}\\).\n\nLa incertidumbre en \\(\\tilde{y}\\) proviene de la variabilidad debida al azar (\\(\\sigma\\)) y de la variabilidad debida al desconocimiento de \\(\\mu\\) (\\(\\tau_n\\))\n\n\nEn otras palabras, si supiéramos que \\(\\mu = 2\\), toda la variabilidad provendría de \\(\\sigma\\), ¡pero no sabemos cuánto vale \\(\\mu\\)! Puede ser \\(2\\) o \\(1,98\\) o \\(1.43\\)… Por lo que hay una componente adicional de varianza."
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-18",
+    "href": "presentaciones/presentacion_03.html#section-18",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "No se entendió nada. Simular para creer.\n\n¿Cómo obtenemos una observación nueva si sabemos que \\(\\mu = 2\\) (sabiendo que \\(\\sigma = 1,2\\))? . . . Directamente tomamos una muestra \\(\\tilde{y}\\) de \\(\\mathcal{N}\\left(\\mu=2,\\sigma^2= 1.2^2\\right)\\)\n\ny_new <- rnorm(1, mean = 2, sd = 1.2)\n\n\n\nPero en estadística bayesiana \\(\\mu\\) tiene una distribución de probabilidad (por ejemplo \\(\\mathcal{N}\\left(\\theta_n=2,\\tau_n^2=1.8^2\\right)\\)), ¿cómo hacemos la simulación?\n\n\n\nTomamos una muestra \\(\\mu^{(s)}\\) de la distribución de \\(\\mu\\)\nObtenemos \\(\\tilde{y}\\) a partir de \\(\\mathcal{N}(\\mu=\\mu^{(s)},\\sigma^2=1.2^2)\\)\n\n\n\n\nmu_s <- rnorm(1, mean = 2, sd = 1.8)\ny_new <- rnorm(1, mean = mu_s, sd = 1.2)\n\n\n\n¿Qué va a pasar en cada caso si construimos la distribución de \\(\\tilde{y}\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-19",
+    "href": "presentaciones/presentacion_03.html#section-19",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (\\(\\sigma\\)) y la incertidumbre en el parámetro \\(\\mu\\)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#normal-normal-gamma-inversa",
+    "href": "presentaciones/presentacion_03.html#normal-normal-gamma-inversa",
+    "title": "Estadística Bayesiana",
+    "section": "Normal – normal-gamma-inversa",
+    "text": "Normal – normal-gamma-inversa\nSea una muestra \\(\\mathbf{y} = (y_1,y_2,\\dots,y_n)\\) obtenida de un modelo normal con varianza desconocida \\(\\sigma^2\\), es decir:\n\\[y_i \\sim \\mathcal{N}(\\mu,\\sigma^2)\\]\nE interesa realizar una inferencia sobre el valor de \\(\\mu\\) y el valor de \\(\\sigma\\)\n\n¿Cómo asignamos una credibilidad a priori para \\(\\mu\\) y \\(\\sigma\\)? ¡Con una distribución en dos dimensiones!"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-20",
+    "href": "presentaciones/presentacion_03.html#section-20",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "El modelo es\n\\[\n\\begin{align*}\n    X_i\\mid\\mu,\\sigma^2 & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu,\\sigma^2 & \\sim  \\mathcal{N}GI(\\theta,\\tau,\\alpha,\\beta)\n\\end{align*}\n\\]\n\\(\\mu\\) y \\(\\sigma^2\\) tienen distribución conjunta normal-gamma-inversa:\n\\[(\\mu,\\sigma^2) = \\frac{\\sqrt{\\tau}}{\\sqrt{2\\pi\\sigma^2}} \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} \\left( \\frac{1}{\\sigma^2} \\right)^{\\alpha+1} e^{-\\frac{2\\beta + \\tau(\\mu-\\theta)^2}{2\\sigma^2}}\\]\nSi anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros \\(\\mu\\) y \\(\\sigma^2\\)), ¿qué podemos decir de la distribución a posteriori (conjunta) de \\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-21",
+    "href": "presentaciones/presentacion_03.html#section-21",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Efectivamente, se puede probar que:\n\\[\n\\begin{align*}\n\\mu,\\sigma^2 \\mid \\mathbf{y} & \\sim  \\mathcal{N}GI(\\theta_n,\\tau_n,\\alpha_n,\\beta_n)\n\\end{align*}\n\\] con\n\\[\n\\begin{cases}\n\\theta_n = \\frac{\\tau\\theta + n \\bar{y}}{\\tau+n}\\\\\n\\tau_n = \\tau + n\\\\\n\\alpha_n = \\alpha + \\frac{n}{2}\\\\\n\\beta_n = \\beta + \\frac{1}{2} \\sum_i (y_i - \\bar{y})^2 + \\frac{n\\tau}{\\tau + n} \\frac{(\\bar{y}-\\theta)^2}{2}\n\\end{cases}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-22",
+    "href": "presentaciones/presentacion_03.html#section-22",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Reflexionemos…\n\\[\n\\begin{align*}\n    y_i\\mid\\mu & \\sim  \\mathcal{N}(\\mu,\\sigma^2) \\\\\n    \\mu & \\sim  \\mathcal{N}(\\theta,\\tau^2) \\\\\n    \\mu \\mid \\mathbf{y} & \\sim \\mathcal{N}(\\theta_n,\\tau_n^2)\n\\end{align*}\n\\]\n¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del prior? ¿Forma del posterior? ¿Qué son \\(\\theta_n\\) y \\(\\tau_n^2\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-24",
+    "href": "presentaciones/presentacion_03.html#section-24",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Puedo representar los datos en el gráfico de la izquierda?\n\nNo, es el mundo de los parámetros\n\n\n¿Qué representan los valores marcados con \\(\\mathbf{\\times}\\)?\n\nPosibles valores de \\(\\mu\\) y \\(\\sigma^2\\) que podrían esperarse a priori.\n\n\n\n¿Qué le da forma a la distribución de la izquierda?\n\n\\(\\theta\\), \\(\\tau\\), \\(\\alpha\\) y \\(\\beta\\)\n\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-25",
+    "href": "presentaciones/presentacion_03.html#section-25",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Qué estamos viendo?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-26",
+    "href": "presentaciones/presentacion_03.html#section-26",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "A posteriori (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de \\(\\mu\\) y \\(\\sigma^2\\)?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_03.html#section-27",
+    "href": "presentaciones/presentacion_03.html#section-27",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Parámetros de la distribución de la izquierda?\n\n\\(\\theta_n\\), \\(\\tau_n\\), \\(\\alpha_n\\) y \\(\\beta_n\\)\n\n\n¿Media y varianza de las normales de la derecha?\n\n\\(\\mu\\) y \\(\\sigma^2\\)\n\n\n\n\nEstadística Bayesiana – 2023"
   }
 ]

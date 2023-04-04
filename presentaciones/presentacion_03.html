@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.475">
 
-  <title>Estadística Bayesiana – presentacion_02</title>
+  <title>Estadística Bayesiana – presentacion_03</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -389,631 +389,383 @@
 
 
 <section>
-<section id="inferencia-bayesiana" class="title-slide slide level1 center">
-<h1>Inferencia Bayesiana</h1>
+<section id="distribuciones-conjugadas" class="title-slide slide level1 center">
+<h1>Distribuciones Conjugadas</h1>
 
 </section>
-<section id="el-problema-de-las-urnas" class="slide level2">
-<h2>El problema de las urnas</h2>
-<blockquote>
-<p>Se cuenta con 11 urnas etiquetadas según <span class="math inline">\(u = 0,1,\dots,10\)</span>, que contienen diez bolas cada una. La urna <span class="math inline">\(u\)</span> contiene <span class="math inline">\(u\)</span> bolas azules y <span class="math inline">\(10-u\)</span> bolas blancas. Fede elige una urna <span class="math inline">\(u\)</span> al azar y extrae con reposición <span class="math inline">\(N\)</span> bolas, obteniendo <span class="math inline">\(n_A\)</span> azules y <span class="math inline">\(N-n_A\)</span> blancas. Nico, el amigo de Fede, observa atentamente. Si después de <span class="math inline">\(N=10\)</span> extracciones resulta <span class="math inline">\(n_A = 3\)</span>, ¿cuál es la probabilidad de que la urna que Fede está usando sea la <span class="math inline">\(u\)</span>?</p>
-</blockquote>
+<section id="gamma-poisson" class="slide level2">
+<h2>Gamma-Poisson</h2>
+<p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo Poisson, es decir:</p>
+<p><span class="math display">\[y_i \sim \mathrm{Poisson}(\lambda)\]</span></p>
+<p>Interesa realizar una inferencia sobre el valor de <span class="math inline">\(\lambda\)</span></p>
+<div class="fragment">
+<p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\lambda\)</span>?</p>
+</div>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>La teoría de las probabilidades permite predecir una distribución sobre posibles valores de un resultado dado cierto conocimiento (o estado) del universo: <strong>probabilidad hacia adelante</strong></p>
-<div class="fragment">
-<p>Por el contrario, muchas veces estamos interesados en realizar inferencias sobre el estado del universo a partir de observaciones: <strong>probabilidad inversa</strong>.</p>
+<p><span class="math display">\[
+\lambda \sim \mathrm{Gamma}(r,s)
+\]</span></p>
+<p><span class="math display">\[
+p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} x^{s-1}e^{-rx}
+\]</span></p>
+<div class="callout callout-warning callout-captioned callout-style-default">
+<div class="callout-body">
+<div class="callout-caption">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="fragment">
-<p><span class="math display">\[p(\mathcal{H}\mid E) = \frac{p(E\mid\mathcal{H}) p(\mathcal{H})}{p(E)}\]</span></p>
-<p><span class="math display">\[p(\mathcal{H}\mid E) \propto p(E\mid\mathcal{H}) p(\mathcal{H})\]</span></p>
+<p><strong>Cuidado</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math inline">\(\mathrm{Gamma}(r,s)\)</span> en R es <code>dgamma(x, shape = s, scale = 1/r)</code></p>
+</div>
+</div>
 </div>
 </section>
 <section id="section-1" class="slide level2 smaller">
 <h2></h2>
-<p>Conociendo <span class="math inline">\(N\)</span>, si conociéramos <span class="math inline">\(u\)</span> podríamos calcular las probabilidades de los diferentes <span class="math inline">\(n_A\)</span>: <strong>probabilidad hacia adelante</strong>.</p>
-<div class="fragment">
-<p>Aquí observamos un <span class="math inline">\(n_A\)</span> y queremos calcular las probabilidades de los posibles valores de <span class="math inline">\(u\)</span>: <strong>probabilidad inversa</strong>.</p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[p(u\mid n_A, N) = \frac{p(n_A\mid u, N)p(u)}{p(n_A\mid N)}\]</span></p>
-<ul>
-<li class="fragment"><span class="math inline">\(N\)</span> es una cantidad fija</li>
-<li class="fragment"><span class="math inline">\(n_A\)</span> es otra cantidad fija: lo que observamos al realizar el experimento</li>
-<li class="fragment"><span class="math inline">\(u\)</span> es la cantidad desconocida</li>
-</ul>
-</div>
+<p>El modelo propuesto es <span class="math display">\[
+\begin{align*}
+    y_i\mid\lambda &amp; \sim  Po(\lambda)\\
+    \lambda &amp; \sim  \mathrm{Gamma}(s,r)
+\end{align*}
+\]</span></p>
+<p>El <em>likelihood</em> es Poisson: <span class="math display">\[p(y_i\mid \lambda) = \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} \rightarrow p(\mathbf{y}\mid \lambda) = \prod_i \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} = \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!}\]</span></p>
+<p>El <em>prior</em> es Gamma: <span class="math display">\[p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}\]</span></p>
+<p>Interesa hallar <span class="math inline">\(p(\lambda\mid \mathbf{y})\)</span></p>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<p>Probabilidad conjunta de las cantidades observables (datos) y cantidades no observables (parámetros):</p>
+<p><span class="math display">\[p(\lambda\mid \mathbf{y}) \propto p(\mathbf{y}\mid\lambda) p(\lambda)\]</span></p>
 <div class="fragment">
-<p><span class="math display">\[
-p(u,n_A\mid N) = p(n_A\mid u, N) p(u)
-\]</span></p>
+<p><span class="math display">\[p(\lambda \mid \mathbf{y}) \propto \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!} \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}\]</span> <span class="math display">\[p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}\]</span></p>
 </div>
 <div class="fragment">
-<p>Podemos escribir la probabilidad de <span class="math inline">\(u\)</span> condicionada a <span class="math inline">\(n_A\)</span>:</p>
-<p><span class="math display">\[
-\begin{array}{ccl}
-p(u\mid n_A,N) &amp; = &amp; \frac{p(u,n_A\mid N)}{p(n_A\mid N)} \\
-&amp; = &amp; \frac{p(n_A\mid u, N) p(u)}{p(n_A\mid N)}
-\end{array}
-\]</span></p>
+<p><span class="math display">\[p(\lambda \mid \mathbf{y}) = K C \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}\]</span></p>
 </div>
 <div class="fragment">
-<p>Es la probabilidad de cada valor de <span class="math inline">\(u\)</span> luego de haber observado <span class="math inline">\(n_A = 3\)</span> bolas azules</p>
+<p><span class="math display">\[p(\lambda \mid \mathbf{y}) = K^* \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}\]</span></p>
 </div>
 </section>
 <section id="section-3" class="slide level2">
 <h2></h2>
-<p>La probabilidad marginal de <span class="math inline">\(u\)</span> es</p>
+<p>Para que <span class="math inline">\(\int_0^\infty p(\lambda\mid \mathbf{y})d \lambda = 1\)</span>, debe ser</p>
 <div class="fragment">
-<p><span class="math display">\[p(u) = \frac{1}{11}\]</span></p>
-<p>Es la probabilidad inicial de haber tomado la urna <span class="math inline">\(u\)</span></p>
-</div>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<p>La probabilidad de <span class="math inline">\(n_A\)</span> dado <span class="math inline">\(u\)</span> (y <span class="math inline">\(N\)</span>) es:</p>
-<div class="fragment">
-<p><span class="math display">\[p(n_A\mid u,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A}\]</span></p>
+<p><span class="math display">\[K^* = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)}\]</span></p>
 </div>
 <div class="fragment">
-<p>Como <span class="math inline">\(n_A=3\)</span> es fijo (¡son los datos observados!), <span class="math inline">\(p(n_A\mid u,N)\)</span> es una función de <span class="math inline">\(u\)</span>. Indica qué tan compatibles son los datos observados con los distintos valores de <span class="math inline">\(u\)</span></p>
-</div>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<p>El denominador, <span class="math inline">\(p(n_A\mid N) = p(n_A)\)</span>, es</p>
-<div class="fragment">
-<p><span class="math display">\[
-\begin{array}{ccl}
-p(n_A\mid N) &amp; = &amp; \sum_u p(u,n_A\mid N) \\
-&amp; = &amp; \sum_u p(n_A\mid u, N) p(u) \\
-&amp; = &amp; \frac{1}{11} \sum_u p(n_A\mid u, N)
-\end{array}
-\]</span></p>
-</div>
-</section>
-<section id="section-6" class="slide level2 smaller">
-<h2></h2>
-<p>Finalmente, la probabilidad de interés <span class="math inline">\(p(u\mid n_A,N)\)</span> es</p>
-<div class="fragment">
-<p><span class="math display">\[
-p(u\mid n_A,N) = \frac{p(n_A\mid u,N)p(u)}{p(n_A\mid N)}
-\]</span></p>
+<p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es Gamma de parámetros <span class="math inline">\(n+r\)</span> y <span class="math inline">\(\sum_i y_i + s\)</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
-p(u\mid n_A,N) = {N \choose n_A} \left( \frac{u}{10} \right)^{n_A} \left( 1 - \frac{u}{10} \right)^{N-n_A} \frac{1}{11} \frac{1}{p(n_A\mid N)}
+p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)} \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}
+\]</span></p>
+<p><span class="math display">\[
+\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(n+r,\sum_i y_i + s)
 \]</span></p>
 </div>
+</section>
+<section id="normal-normal" class="slide level2">
+<h2>Normal-normal</h2>
+<p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo normal con varianza conocida <span class="math inline">\(\sigma^2\)</span>, es decir:</p>
+<p><span class="math display">\[y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
+<p>Interesa realizar una inferencia sobre el valor de <span class="math inline">\(\mu\)</span></p>
 <div class="fragment">
-<ul>
-<li class="fragment"><span class="math inline">\(N\)</span> es una cantidad fija</li>
-<li class="fragment"><span class="math inline">\(n_N\)</span> es 3, otra cantidad fija: lo que observamos al realizar el experimento</li>
-<li class="fragment"><span class="math inline">\(u\)</span> es la cantidad desconocida</li>
-</ul>
+<p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\mu\)</span>?</p>
 </div>
-<div class="fragment">
-<p><span class="math inline">\(p(u\mid n_A,N)\)</span> es una función de <span class="math inline">\(u\)</span>: es la credibilidad de los valores de <span class="math inline">\(u\)</span> luego de observar los datos (es decir, condicionada a <span class="math inline">\(n_A=3\)</span>).</p>
-</div>
+</section>
+<section id="section-4" class="slide level2 smaller">
+<h2></h2>
+<p>El modelo propuesto es <span class="math display">\[
+\begin{align*}
+    y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2)\\
+    \mu &amp; \sim \mathrm{Gamma}(\theta,\tau^2)
+\end{align*}
+\]</span></p>
+<p>El <em>likelihood</em> es normal: <span class="math display">\[p(y_i\mid \mu) = \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ p(\mathbf{y}\mid \mu) = \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}\]</span></p>
+<p>El <em>prior</em> es normal: <span class="math display">\[p(\mu) = \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}\]</span></p>
+<p>Interesa hallar <span class="math inline">\(p(\lambda\mid \mathbf{y})\)</span></p>
+</section>
+<section id="section-5" class="slide level2 smaller">
+<h2></h2>
+<p><span class="math display">\[p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)\]</span> <span class="math display">\[p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}\]</span></p>
+<p><span class="math display">\[
+\begin{align*}
+p(\mu \mid \mathbf{y}) &amp; \propto  e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}} \\
+&amp;  \propto  e^{-\left[\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}+\frac{(\mu-\theta)^2}{2\tau^2}\right]} \\
+&amp; \propto e^{-\left[ \frac{\bar{y}^2 - 2\bar{y} \mu + \mu^2}{2\sigma^2/n} + \frac{\mu^2 - 2\mu\theta^2 + \theta^2}{2\tau^2} \right]} \\
+&amp; \propto e^{\left[ \frac{ 2\bar{y} \mu - \mu^2}{2\sigma^2/n} + \frac{-\mu^2 + 2\mu\theta^2}{2\tau^2} \right]} \\
+&amp; \propto e^{\left[ \frac{(2\bar{y} \mu - \mu^2)n\tau^2 + (-\mu^2 + 2\mu\theta^2)\sigma^2}{2\sigma^2\tau^2} \right]}
+\end{align*}
+\]</span></p>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[
+    \begin{align*}
+P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^2)-\mu^2(n\tau^2+\sigma^2)}{2\tau^2\sigma^2}} \\
+&amp; \propto e^{\frac{-\mu^2 + 2\mu \left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)}{2\tau^2\sigma^2/(n\tau^2 + \sigma^2)}} e^{-\left(\frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\right)^2} \\
+&amp; \propto e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}
+    \end{align*}
+\]</span> <span class="math display">\[p(\mu\mid\mathbf{y}) = K^* e^{-\frac{\left(\mu -  \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2} \right)^2}{2\tau^2\sigma^2/(n\tau^2+\sigma^2)}}\]</span></p>
 </section>
 <section id="section-7" class="slide level2">
 <h2></h2>
-<p>Gráficamente…</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-conjunta-urna-1.png" width="960" class="r-stretch"></section>
-<section id="section-8" class="slide level2">
-<h2></h2>
-<p>Gráficamente…</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-conjunta-urna-cond-1.png" width="960" class="r-stretch"></section>
-<section id="section-9" class="slide level2">
-<h2></h2>
-<p>Pasamos de una credibilidad <em>a priori</em> antes de observar los datos, a una <em>a posteriori</em> luego de observar <span class="math inline">\(n_A = 3\)</span></p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-urna-prior-posterior-1.png" width="960" class="r-stretch"></section>
-<section id="intolerancia-al-gluten" class="slide level2 smaller">
-<h2>Intolerancia al gluten</h2>
-<blockquote>
-<p>¿Pueden las personas alérgicas al gluten distinguir harina común de harina sin gluten en un ensayo ciego? En un experimento, de 35 sujetos, 12 identificaron correctamente la harina común y 23 se equivocaron o no supieron decir de qué harina se trataba.</p>
-<p>Incluso si no hubiera alérgicos al gluten en el experimento, esperaríamos encontrar algunas identificaciones correctas… Basándonos en el número de identificaciones correctas, ¿cuántos de los sujetos son alérgicos al gluten y cuántos estaban adivinando?</p>
-</blockquote>
+<p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es normal de parámetros <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span></p>
 <div class="fragment">
-<p>Supongamos que una persona alérgica al gluten tiene una probabilidad de <span class="math inline">\(0.90\)</span> de detectar la harina común mientras que una persona sin alergia detecta harina común con una probabilidad de <span class="math inline">\(0.40\)</span> (y con una probabilidad de <span class="math inline">\(0.6\)</span> se equivoca o no sabe decir).</p>
+<p><span class="math display">\[
+\begin{align*}
+\mu\mid \mathbf{y} &amp; \sim  \mathcal{N}\left( \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2},\frac{\tau^2\sigma^2}{n\tau^2+\sigma^2} \right) \\
+&amp; \sim \mathcal{N}\left( \theta_n,\tau_n^2 \right)
+\end{align*}
+\]</span></p>
 </div>
 </section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<p>Reflexionemos…</p>
+<p><span class="math display">\[
+\begin{align*}
+    y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu &amp; \sim  \mathcal{N}(\theta,\tau^2) \\
+    \mu \mid \mathbf{y} &amp; \sim \mathcal{N}(\theta_n,\tau_n^2)
+\end{align*}
+\]</span></p>
+<p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>? ¿Qué son <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span>?</p>
+</section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-1-1.png" width="960" class="r-stretch"></section>
 <section id="section-10" class="slide level2 smaller">
 <h2></h2>
-<p>Llamemos:</p>
+<p>¿Puedo representar los datos en el gráfico de la izquierda?</p>
 <div class="fragment">
-<ul>
-<li class="fragment"><span class="math inline">\(N\)</span> a la cantidad total de personas en el ensayo</li>
-<li class="fragment"><span class="math inline">\(N_a\)</span> al número de personas alérgicas al gluten</li>
-<li class="fragment"><span class="math inline">\(\pi_a\)</span> a la probabilidad de que un alérgico identifique correctamente</li>
-<li class="fragment"><span class="math inline">\(\pi_f\)</span> a la probabilidad de que un no alérgico identifique correctamente</li>
-<li class="fragment"><span class="math inline">\(n_i\)</span> al número de identificaciones correctas</li>
-</ul>
+<p>No, es el mundo de los parámetros</p>
 </div>
 <div class="fragment">
-<p>¿Cuáles son las cantidades conocidas? ¿Cuáles son las cantidades desconocidas? ¿Cómo es el modelo de probabilidad hacia adelante? ¿Cómo es el problema inverso?</p>
+<p>¿Qué representan los valores marcados con <span class="math inline">\(\mathbf{\times}\)</span>?</p>
+<div class="fragment">
+<p>Posibles valores de <span class="math inline">\(\mu\)</span> que podrían esperarse <em>a priori</em>.</p>
+</div>
+</div>
+<div class="fragment">
+<p>¿Media y varianza de la normal de la izquierda?</p>
+<div class="fragment">
+<p><span class="math inline">\(\theta\)</span> y <span class="math inline">\(\tau^2\)</span></p>
+</div>
+</div>
+<div class="fragment">
+<p>¿Media y varianza de las normales de la derecha?</p>
+<div class="fragment">
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
+</div>
 </div>
 </section>
 <section id="section-11" class="slide level2">
 <h2></h2>
-<p>Conociendo <span class="math inline">\(N\)</span>, <span class="math inline">\(\pi_a\)</span> y <span class="math inline">\(\pi_f\)</span>, si conociéramos <span class="math inline">\(N_a\)</span> podríamos calcular las probabilidades de los diferentes <span class="math inline">\(n_i\)</span>: <strong>probabilidad hacia adelante</strong></p>
-<div class="fragment">
-<p>Aquí observamos <span class="math inline">\(n_i\)</span> y queremos realizar inferencias sobre <span class="math inline">\(N_a\)</span>: <strong>probabilidad inversa</strong></p>
-</div>
-</section>
-<section id="section-12" class="slide level2">
+<p>¿Qué estamos viendo?</p>
+
+<img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-2-1.png" width="960" class="r-stretch"></section>
+<section id="section-12" class="slide level2 smaller">
 <h2></h2>
-<p>Digamos que <em>a priori</em> cualquier número de <span class="math inline">\(N_a\)</span> es igualmente probable o esperable:</p>
-<div class="fragment">
-<p><span class="math display">\[p(N_a) = \frac{1}{36}\]</span></p>
-</div>
-</section>
-<section id="section-13" class="slide level2 smaller">
+<p><em>A posteriori</em> (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de <span class="math inline">\(\mu\)</span>?</p>
+
+<img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-3-1.png" width="960" class="r-stretch"></section>
+<section id="section-13" class="slide level2">
 <h2></h2>
-<p>¿Cómo construimos la verosimilitud de los diferentes valores de <span class="math inline">\(N_a\)</span> <span class="math inline">\(p(n_i\mid N_a)\)</span>?</p>
+<p>¿Media y varianza de la normal de la izquierda?</p>
 <div class="fragment">
-<p>Pensemos de forma <strong>generativa</strong> (con el modelo de <strong>probabilidad hacia adelante</strong>). Imaginemos que conocemos <span class="math inline">\(N_a\)</span> (además de <span class="math inline">\(N\)</span>, <span class="math inline">\(\pi_a\)</span> y <span class="math inline">\(\pi_f\)</span>), ¿podríamos escribir un programa que simule diferentes valores de <span class="math inline">\(n_i\)</span>?</p>
+<p><span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span></p>
+</div>
+<p>¿Media y varianza de las normales de la derecha?</p>
+<div class="fragment">
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
 </div>
 </section>
 <section id="section-14" class="slide level2 smaller">
 <h2></h2>
-<p>El número de identificaciones correctas <span class="math inline">\(n_i\)</span> es la suma de las identificaciones correctas entre los <span class="math inline">\(N_a\)</span> alérgicos (<span class="math inline">\(n_{ia}\)</span>) y los <span class="math inline">\(N-N_a\)</span> no alérgicos (<span class="math inline">\(n_{if}\)</span>). ¿Cuántas identificaciones habrá en cada grupo?</p>
+<h3 id="compromiso">Compromiso</h3>
+<p><span class="math display">\[\mathbb{E}[p(\mu\mid \mathbf{y})] = \theta_n = \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}\]</span> <span class="math display">\[\mathbb{E}[p(\mu\mid \mathbf{y})] =  \theta\frac{\sigma^2}{n\tau^2 + \sigma^2} + \bar{y}\frac{n\tau^2}{n\tau^2 + \sigma^2}\]</span></p>
 <div class="fragment">
-<p><span class="math display">\[n_{ia} \sim Bi(N_a,\pi_a)\]</span> <span class="math display">\[n_{if} \sim Bi(N-N_a,\pi_f)\]</span> <span class="math display">\[n_i = n_{ia} + n_{if}\]</span></p>
+<p>Representa un balance (promedio ponderado o ) entre la media muestral y la media esperada .</p>
 </div>
 <div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>N <span class="ot">&lt;-</span> <span class="dv">35</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>pi_a <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>pi_f <span class="ot">&lt;-</span> <span class="fl">0.4</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>N_a <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># lo suponemos conocido para simular</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a></span>
-<span id="cb1-6"><a href="#cb1-6"></a>n_ia <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, N_a, pi_a)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>n_if <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, N<span class="sc">-</span>N_a, pi_f)</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a>n_i <span class="ot">&lt;-</span> n_ia <span class="sc">+</span> n_if</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="fragment">
-<p>Sabríamos calcular las probabilidades de los diferentes valores de <span class="math inline">\(n_{ia}\)</span> y <span class="math inline">\(n_{if}\)</span>, ¿no?.</p>
+<p><span class="math display">\[\mathbb{V}[p(\mu\mid \mathbf{y})] = \tau_n^2 = \frac{\tau^2\sigma^2}{n\tau^2+\sigma^2}\]</span></p>
+<p><span class="math display">\[\mathbb{V}[p(\mu\mid \mathbf{y})] = \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2}}\]</span> <span class="math display">\[\frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}\]</span></p>
+<p>La precisión <em>a posteriori</em> es la suma de las precisiones del <em>prior</em> y la muestra.</p>
 </div>
 </section>
-<section id="section-15" class="slide level2 smaller">
+<section id="section-15" class="slide level2">
 <h2></h2>
-<p>Recordemos que no conocemos <span class="math inline">\(N_a\)</span>. En nuestro caso, la verosimilitud de cada valor de <span class="math inline">\(N_a\)</span> es la probabilidad de observar <span class="math inline">\(n_i=12\)</span> para ese valor de <span class="math inline">\(N_a\)</span>.</p>
-<div class="fragment">
-<p><span class="math display">\[
-\begin{array}{lll}
-p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\
-&amp; &amp; \quad + p(n_{ia}=1\mid N_a)p(n_{if}=11\mid N_a) + \dots
-\end{array}
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Queda como ejercicio calcular a mano <span class="math inline">\(p(n_i\mid N_a)\)</span> o, mejor aún, escribir un programita que calcule <span class="math inline">\(p(n_i\mid N_a)\)</span></p>
-</div>
+<h3 id="distribución-predictiva-a-posteriori">Distribución predictiva <em>a posteriori</em></h3>
+<p><span class="math display">\[p(\tilde{y}\mid \mathbf{y}) = \int p(\tilde{y}\mid \mu) p(\mu\mid \mathbf{y})d\mu\]</span> El integrando es el producto de dos normales: una normal bivariada. Por lo tanto toda la integral es una distribución marginal de una normal: otra normal.</p>
 </section>
 <section id="section-16" class="slide level2">
 <h2></h2>
-<p>Finalmente,</p>
-<p><span class="math display">\[p(N_a\mid n_i) = \frac{p(n_i\mid N_a) p(N_a)}{p(n_i)}\]</span></p>
+<p>Demostración poco formal…</p>
+<p><em>A posteriori</em> vale <span class="math display">\[
+\begin{array}{ccc}
+y &amp; = &amp; (y-\mu) + \mu \\
+y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
+\mu \mid \mathbf{y} &amp; \sim &amp; \mathcal{N}(\theta_n,\tau_n^2)
+\end{array}
+\]</span></p>
+<p>Resulta</p>
+<p><span class="math display">\[p(\tilde{y}\mid \mathbf{y}) = \mathcal{N}(\mu_n,\sigma^2 + \tau_n^2)\]</span></p>
 </section>
 <section id="section-17" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-gluten-prior-posterior-1.png" width="960" class="r-stretch"></section>
-<section id="vocabulario-limitado" class="slide level2 smaller">
-<h2>Vocabulario limitado</h2>
-<blockquote>
-<p>Supongamos que existe un idioma con seis palabras: <span class="math display">\[ \text{\{perro, parra, farra, carro, corro, tarro\}} \]</span></p>
-</blockquote>
-<ul>
-<li class="fragment">Todas las palabras son igualmente probables, excepto por ‘perro’, que es <span class="math inline">\(\alpha=3\)</span> veces más probable que las otras.</li>
-<li class="fragment">Cuando se tipean, un caracter se introduce erróneamente con probabilidad <span class="math inline">\(\pi=0.1\)</span>.</li>
-<li class="fragment">Todas las letras tienen la misma probabilidad de producir un error de tipeo.</li>
-<li class="fragment">Si una letra se tipeó mal, la probabilidad de cometer un error en otro caracter no cambia.</li>
-<li class="fragment">Los errores son independientes a lo largo de una palabra.</li>
-</ul>
+<p>La varianza predictiva <span class="math inline">\(\sigma^2 + \tau_n^2\)</span> es una medida de la incertidumbre <em>a posteriori</em> respecto a una observación nueva <span class="math inline">\(\tilde{y}\)</span>.</p>
+<div class="fragment">
+<p>La incertidumbre en <span class="math inline">\(\tilde{y}\)</span> proviene de la variabilidad debida al azar (<span class="math inline">\(\sigma\)</span>) y de la variabilidad debida al desconocimiento de <span class="math inline">\(\mu\)</span> (<span class="math inline">\(\tau_n\)</span>)</p>
+</div>
+<div class="fragment">
+<p>En otras palabras, si supiéramos que <span class="math inline">\(\mu = 2\)</span>, toda la variabilidad provendría de <span class="math inline">\(\sigma\)</span>, ¡pero no sabemos cuánto vale <span class="math inline">\(\mu\)</span>! Puede ser <span class="math inline">\(2\)</span> o <span class="math inline">\(1,98\)</span> o <span class="math inline">\(1.43\)</span>… Por lo que hay una componente adicional de varianza.</p>
+</div>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
-<ol type="i">
-<li class="fragment">¿Cuál es la probabilidad de escribir correctamente ‘tarro’?</li>
-<li class="fragment">¿Cuál es la probabilidad de tipear ‘cerro’ o ‘curro’ al querer escribir ‘carro’?</li>
-<li class="fragment">Desarrollar un corrector gramatical para esta lengua: para las palabras tipeadas ‘farra’, ‘birra’ y ‘locos’, ¿cuál es la palabra que se quiso escribir?</li>
+<p>No se entendió nada. <em>Simular para creer</em>.</p>
+<div class="fragment">
+<p>¿Cómo obtenemos una observación nueva si sabemos que <span class="math inline">\(\mu = 2\)</span> (sabiendo que <span class="math inline">\(\sigma = 1,2\)</span>)? . . . Directamente tomamos una muestra <span class="math inline">\(\tilde{y}\)</span> de <span class="math inline">\(\mathcal{N}\left(\mu=2,\sigma^2= 1.2^2\right)\)</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>y_new <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>Pero en estadística bayesiana <span class="math inline">\(\mu\)</span> tiene una distribución de probabilidad (por ejemplo <span class="math inline">\(\mathcal{N}\left(\theta_n=2,\tau_n^2=1.8^2\right)\)</span>), ¿cómo hacemos la simulación?</p>
+</div>
+<div class="fragment">
+<ol type="1">
+<li class="fragment">Tomamos una muestra <span class="math inline">\(\mu^{(s)}\)</span> de la distribución de <span class="math inline">\(\mu\)</span></li>
+<li class="fragment">Obtenemos <span class="math inline">\(\tilde{y}\)</span> a partir de <span class="math inline">\(\mathcal{N}(\mu=\mu^{(s)},\sigma^2=1.2^2)\)</span></li>
 </ol>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>mu_s <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">2</span>, <span class="at">sd =</span> <span class="fl">1.8</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>y_new <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> mu_s, <span class="at">sd =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<p>¿Qué va a pasar en cada caso si construimos la distribución de <span class="math inline">\(\tilde{y}\)</span>?</p>
+</div>
 </section>
 <section id="section-19" class="slide level2">
 <h2></h2>
-<ol type="i">
-<li class="fragment">La probabilidad de escribir correctamente ‘tarro’ es <span class="math inline">\((1-\pi)^5\)</span></li>
-<li class="fragment">La probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es $(1-)^4 $</li>
-<li class="fragment">Allá vamos…</li>
-</ol>
-</section>
-<section id="section-20" class="slide level2">
-<h2></h2>
-<p>Estas son las probabilidades <em>a priori</em> de cada una de las palabras del vocabulario</p>
 
-<img data-src="presentacion_02_files/figure-revealjs/plot-vocabulario-prior-1.png" width="960" class="r-stretch"></section>
-<section id="section-21" class="slide level2">
+<img data-src="presentacion_03_files/figure-revealjs/predictive-distribution-1.png" width="960" class="r-stretch"><p>La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (<span class="math inline">\(\sigma\)</span>) y la incertidumbre en el parámetro <span class="math inline">\(\mu\)</span>.</p>
+</section>
+<section id="normal-normal-gamma-inversa" class="slide level2">
+<h2>Normal – normal-gamma-inversa</h2>
+<p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo normal con varianza desconocida <span class="math inline">\(\sigma^2\)</span>, es decir:</p>
+<p><span class="math display">\[y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
+<p>E interesa realizar una inferencia sobre el valor de <span class="math inline">\(\mu\)</span> y el valor de <span class="math inline">\(\sigma\)</span></p>
+<div class="fragment">
+<p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>? ¡Con una distribución en dos dimensiones!</p>
+</div>
+</section>
+<section id="section-20" class="slide level2 smaller">
 <h2></h2>
-<p>Alguien escribe ‘farra’, ¿qué quiso escribir?</p>
-<div class="fragment">
-<p>¿Qué sería en este caso la verosimilitud?</p>
-</div>
-<div class="fragment">
-<p>La verosimilitud de ‘perro’ es qué tan probable es escribir ‘farra’ cuando se quería escribir ‘perro’: <span class="math inline">\(p(\mathrm{farra}\mid\mathrm{perro})=\pi^3(1-\pi)^2\)</span></p>
-</div>
+<p>El modelo es</p>
+<p><span class="math display">\[
+\begin{align*}
+    X_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu,\sigma^2 &amp; \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
+\end{align*}
+\]</span></p>
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> tienen <strong>distribución conjunta</strong> normal-gamma-inversa:</p>
+<p><span class="math display">\[(\mu,\sigma^2) = \frac{\sqrt{\tau}}{\sqrt{2\pi\sigma^2}} \frac{\beta^\alpha}{\Gamma(\alpha)} \left( \frac{1}{\sigma^2} \right)^{\alpha+1} e^{-\frac{2\beta + \tau(\mu-\theta)^2}{2\sigma^2}}\]</span></p>
+<p>Si anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>), ¿qué podemos decir de la distribución <em>a posteriori</em> (conjunta) de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
+</section>
+<section id="section-21" class="slide level2 smaller">
+<h2></h2>
+<p>Efectivamente, se puede probar que:</p>
+<p><span class="math display">\[
+\begin{align*}
+\mu,\sigma^2 \mid \mathbf{y} &amp; \sim  \mathcal{N}GI(\theta_n,\tau_n,\alpha_n,\beta_n)
+\end{align*}
+\]</span> con</p>
+<p><span class="math display">\[
+\begin{cases}
+\theta_n = \frac{\tau\theta + n \bar{y}}{\tau+n}\\
+\tau_n = \tau + n\\
+\alpha_n = \alpha + \frac{n}{2}\\
+\beta_n = \beta + \frac{1}{2} \sum_i (y_i - \bar{y})^2 + \frac{n\tau}{\tau + n} \frac{(\bar{y}-\theta)^2}{2}
+\end{cases}
+\]</span></p>
+<p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>?</p>
 </section>
 <section id="section-22" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-vocabulario-likelihood-1.png" width="960" class="r-stretch"></section>
+<p>Reflexionemos…</p>
+<p><span class="math display">\[
+\begin{align*}
+    y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu &amp; \sim  \mathcal{N}(\theta,\tau^2) \\
+    \mu \mid \mathbf{y} &amp; \sim \mathcal{N}(\theta_n,\tau_n^2)
+\end{align*}
+\]</span></p>
+<p>¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del <em>prior</em>? ¿Forma del <em>posterior</em>? ¿Qué son <span class="math inline">\(\theta_n\)</span> y <span class="math inline">\(\tau_n^2\)</span>?</p>
+</section>
 <section id="section-23" class="slide level2">
 <h2></h2>
-<p>Para obtener la probabilidad <em>a posteriori</em> de cada palabra, necesitamos combinar la información <em>a priori</em> con los datos (¿cuáles son los datos?). Aplicamos la Regla de Bayes:</p>
-<p><span class="math display">\[p(\mathrm{palabra}\mid \mathrm{farra}) = \frac{p(\mathrm{farra}\mid \mathrm{palabra})p(\mathrm{palabra})}{p(\mathrm{farra})}\]</span></p>
-</section>
-<section id="section-24" class="slide level2">
-<h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/plot-vocabulario-posterior-1.png" width="960" class="r-stretch"></section>
-<section id="section-25" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
+<img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-1-1.png" width="960" class="r-stretch"></section>
+<section id="section-24" class="slide level2 smaller">
 <h2></h2>
-<p>La inferencia bayesiana es la realocación de la credibilidad del conjunto de cantidades desconocidas (parámetros) de un modelo, una vez observado un conjunto de datos.</p>
-</section>
-<section id="pequeño-mundo" class="slide level2">
-<h2>Pequeño mundo</h2>
-<blockquote>
-<p>Se desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.</p>
-<p>Se arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: <span class="math display">\[TAAATTAATAA\]</span></p>
-</blockquote>
-</section>
-<section id="section-26" class="slide level2">
-<h2></h2>
-<p>Llamemos:</p>
+<p>¿Puedo representar los datos en el gráfico de la izquierda?</p>
 <div class="fragment">
-<ul>
-<li class="fragment"><span class="math inline">\(\pi\)</span> a la proporción de agua en el planeta Tierra</li>
-<li class="fragment"><span class="math inline">\(N\)</span> al número de tiradas</li>
-<li class="fragment"><span class="math inline">\(y\)</span> al número de veces que salió agua</li>
-</ul>
+<p>No, es el mundo de los parámetros</p>
 </div>
 <div class="fragment">
-<p><span class="math inline">\(\pi\)</span> es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.</p>
-</div>
-</section>
-<section id="section-27" class="slide level2 smaller">
-<h2></h2>
-<h3 id="prior"><em>Prior</em></h3>
-<p>¿Cómo asignamos una credibilidad <em>a priori</em> para los valores de <span class="math inline">\(\pi_a\)</span>? . . . Con una distribución de probabilidad.</p>
+<p>¿Qué representan los valores marcados con <span class="math inline">\(\mathbf{\times}\)</span>?</p>
 <div class="fragment">
-<p><span class="math display">\[
-\pi \sim \mathrm{Beta}(a,b)
-\]</span></p>
+<p>Posibles valores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span> que podrían esperarse <em>a priori</em>.</p>
+</div>
 </div>
 <div class="fragment">
-<p><span class="math display">\[
-p(\pi\mid a,b) = p(\pi) = \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}
-\]</span></p>
+<p>¿Qué le da forma a la distribución de la izquierda?</p>
+<div class="fragment">
+<p><span class="math inline">\(\theta\)</span>, <span class="math inline">\(\tau\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span></p>
+</div>
 </div>
 <div class="fragment">
-<p><span class="math display">\[
-B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
-\]</span></p>
-</div>
+<p>¿Media y varianza de las normales de la derecha?</p>
 <div class="fragment">
-<p><span class="math display">\[
-\Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
-\]</span></p>
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
+</div>
 </div>
 </section>
-<section id="section-28" class="slide level2">
+<section id="section-25" class="slide level2">
 <h2></h2>
-<h3 id="la-distribución-beta">La distribución beta</h3>
+<p>¿Qué estamos viendo?</p>
 
-<img data-src="presentacion_02_files/figure-revealjs/plot-beta-1-1.png" width="960" class="r-stretch"></section>
-<section id="section-29" class="slide level2">
+<img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-2-1.png" width="960" class="r-stretch"></section>
+<section id="section-26" class="slide level2 smaller">
 <h2></h2>
-<h3 id="la-distribución-beta-1">La distribución beta</h3>
+<p><em>A posteriori</em> (luego de observar los datos)… ¿qué ocurre con la plausibilidad de los valores de <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span>?</p>
 
-<img data-src="presentacion_02_files/figure-revealjs/plot-beta-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-30" class="slide level2">
+<img data-src="presentacion_03_files/figure-revealjs/ngi-ejemplo-3-1.png" width="960" class="r-stretch"></section>
+<section id="section-27" class="slide level2">
 <h2></h2>
-<p>Una posible elección de valores para la distribución <em>a priori</em> es <span class="math inline">\(Beta(2,2)\)</span></p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-beta-prior-1.png" width="960" class="r-stretch"></section>
-<section id="section-31" class="slide level2">
-<h2></h2>
-<h3 id="likelihood"><em>Likelihood</em></h3>
-<p>¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?</p>
+<p>¿Parámetros de la distribución de la izquierda?</p>
 <div class="fragment">
-<p><span class="math display">\[ y \mid \pi, N \sim Bi(N,\pi) \]</span></p>
-<p><span class="math display">\[p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)\]</span></p>
-</div>
-</section>
-<section id="section-32" class="slide level2">
-<h2></h2>
-<h3 id="posterior"><em>Posterior</em></h3>
-<p><span class="math display">\[p(\pi\mid y) = \frac{p(y\mid \pi)p(\pi)}{p(y)}\]</span></p>
-<div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) = \frac{{N \choose y }\pi^y (1-\pi)^{N-y}  \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}}{\int p(y\mid\pi) p(\pi) d \pi}\]</span></p>
+<p><span class="math inline">\(\theta_n\)</span>, <span class="math inline">\(\tau_n\)</span>, <span class="math inline">\(\alpha_n\)</span> y <span class="math inline">\(\beta_n\)</span></p>
 </div>
 <div class="fragment">
-<p>La integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable <em>intractable</em> (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.</p>
-</div>
-</section>
-<section id="section-33" class="slide level2 smaller">
-<h2></h2>
-<p>Recordando que: <span class="math display">\[
-\mathrm{posterior} \propto \mathrm{prior}\times\mathrm{likelihood}
-\]</span></p>
+<p>¿Media y varianza de las normales de la derecha?</p>
 <div class="fragment">
-<p>Resulta <span class="math display">\[p(\pi\mid y) \propto p(y\mid\pi) p(\pi)\]</span></p>
+<p><span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma^2\)</span></p>
 </div>
-<div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y }\pi^y (1-\pi)^{N-y} \frac{1}{B(a,b)} \pi^{a-1}(1-\pi)^{b-1}\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) \propto {N \choose y } \frac{1}{B(a,b)} \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) = K C  \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[p(\pi\mid y) = K^* \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
-</div>
-</section>
-<section id="section-34" class="slide level2">
-<h2></h2>
-<p>Para que <span class="math inline">\(\int_0^1 p(\pi\mid y) d \pi = 1\)</span>, debe ser</p>
-<div class="fragment">
-<p><span class="math display">\[K^* = \frac{1}{B(y+a,N-y+b)} = \frac{\Gamma\left[(y+a)+(N-y+b)\right]}{\Gamma(y+a)\Gamma(N-y+b)}\]</span></p>
-</div>
-<div class="fragment">
-<p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es Beta de parámetros <span class="math inline">\(y+a\)</span> y <span class="math inline">\(N-y+b\)</span></p>
-<p><span class="math display">\[
-p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
-\]</span></p>
-<p><span class="math display">\[
-\pi\mid y \sim  Beta(y+a,N-y+b)
-\]</span></p>
-</div>
-</section>
-<section id="qué-hicimos" class="slide level2">
-<h2>¿Qué hicimos?</h2>
-<div class="fragment">
-<p>Nos las arreglamos para encontrar la solución exacta al problema de inferir el parámetro de una distribución binomial a partir del número de éxitos observados.</p>
-</div>
-<div class="fragment">
-<p>El <em>prior</em> y el <em>posterior</em> tienen la misma forma distribucional. Esto ocurre por la elección del <em>prior</em> y el <em>likelihood</em>.</p>
-</div>
-</section>
-<section id="section-35" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
-<h2></h2>
-<p>Una distribución <span class="math inline">\(\mathcal{F}\)</span> se dice conjugada de una verosimilitud <span class="math inline">\(\mathcal{L}\)</span> si cuando la distribución <em>a priori</em> es <span class="math inline">\(\mathcal{F}\)</span>, la distribución <em>a posteriori</em> también es <span class="math inline">\(\mathcal{F}\)</span></p>
-</section>
-<section id="pequeño-mundo-1" class="slide level2 smaller">
-<h2>Pequeño mundo</h2>
-<blockquote>
-<p>Se desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.</p>
-<p>Se arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: <span class="math display">\[TAAATTAATAA\]</span></p>
-</blockquote>
-<div class="fragment">
-<p><span class="math display">\[
-\begin{align*}
-    y\mid\pi &amp; \sim  Bi(N,\pi)\\
-    \pi &amp; \sim  Beta(a,b)
-\end{align*}
-\]</span></p>
-</div>
-</section>
-<section id="section-36" class="slide level2">
-<h2></h2>
-<p>con <span class="math inline">\(N=11\)</span>, <span class="math inline">\(a=2\)</span> y <span class="math inline">\(b=2\)</span>.</p>
-<p>Al observar <span class="math inline">\(y=7\)</span> resulta</p>
-<p><span class="math display">\[\pi\mid y \sim Beta(a+y,b+N-y)\]</span> <span class="math display">\[p(\pi\mid y) = Beta(2+7,2+4)\]</span></p>
-</section>
-<section id="section-37" class="slide level2">
-<h2></h2>
 
-<img data-src="presentacion_02_files/figure-revealjs/plot-water-1.png" width="960" class="r-stretch"></section>
-<section id="más-ejemplos" class="slide level2 smaller">
-<h2>Más ejemplos</h2>
-<p>Queremos estimar la probabilidad <span class="math inline">\(\pi\)</span> de que salga cara al arrojar una moneda.</p>
-<div class="fragment">
-<p>Credibilidad <em>a priori</em>: <span class="math inline">\(Beta(2,2)\)</span></p>
-</div>
-<div class="fragment">
-<p>¿Cómo cambia nuestra creencia si…</p>
-<ol type="1">
-<li class="fragment">…realizamos 6 tiradas y observamos 4 caras?</li>
-<li class="fragment">…realizamos 60 tiradas y observamos 40 caras?</li>
-<li class="fragment">…realizamos 2 tiradas y observamos 2 caras?</li>
-<li class="fragment">…realizamos 40 tiradas y observamos 40 caras?</li>
-<li class="fragment">…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?</li>
-</ol>
-</div>
-</section>
-<section id="section-38" class="slide level2">
-<h2></h2>
-<ol type="1">
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+4,2+2)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+40,2+20)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+2,2+0)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+40,2+0)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta((2+3)+1,(2+1)+1)\)</span></li>
-</ol>
-</section>
-<section id="section-39" class="slide level2">
-<h2></h2>
-<p>4 caras en 6 tiradas</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo1-1.png" width="960" class="r-stretch"></section>
-<section id="section-40" class="slide level2">
-<h2></h2>
-<p>40 caras en 60 tiradas</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo2-1.png" width="960" class="r-stretch"></section>
-<section id="section-41" class="slide level2">
-<h2></h2>
-<p>2 caras en 2 tiradas</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo3-1.png" width="960" class="r-stretch"></section>
-<section id="section-42" class="slide level2">
-<h2></h2>
-<p>40 caras en 40 tiradas</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo4-1.png" width="960" class="r-stretch"></section>
-<section id="section-43" class="slide level2">
-<h2></h2>
-<p>3 caras en 4 tiradas, luego 1 cara en 2 tiradas</p>
-
-<img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo5-1.png" width="960" class="r-stretch"></section>
-<section id="características-generales" class="slide level2">
-<h2>Características generales</h2>
-<p>La inferencia bayesiana presenta ciertas características que se repiten independientemente de las distribuciones elegidas.</p>
-</section>
-<section id="compromiso" class="slide level2">
-<h2>Compromiso</h2>
-<p>Vamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:</p>
-<p><span class="math display">\[\text{Si } X\sim Beta(a,b)\]</span></p>
-<p><span class="math display">\[\mathbb{E}({X}) = \frac{a}{a+b}\]</span></p>
-</section>
-<section id="section-44" class="slide level2 smaller">
-<h2></h2>
-<p>La distribución <em>a priori</em> es <span class="math inline">\(Beta(a,b)\)</span> y la distribución <em>a posteriori</em> es <span class="math inline">\(Beta(y+a,N-y+b)\)</span>. La media del es:</p>
-<p><span class="math display">\[
-\begin{align*}
-\mathbb{E}[{p(\pi\mid y)}] &amp; = \frac{y+a}{a+b+N} \\
-&amp; = \frac{y}{a+b+N} + \frac{a}{a+b+N} \\
-&amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \frac{a}{a+b} \\
-&amp; = \frac{N}{a+b+N}\frac{y}{N} + \frac{a+b}{a+b+N} \mathbb{E}{[P(\pi)]}
-\end{align*}
-\]</span></p>
-</section>
-<section id="section-45" class="slide level2">
-<h2></h2>
-<p>La distribución <em>a posteriori</em> representa un balance (promedio ponderado o <em>combinación convexa</em>) entre la proporción observada y la proporción esperada <em>a priori</em>. Hay un <em>shrinkage</em> hacia la media del <em>prior</em>.</p>
-</section>
-<section id="secuencialidad" class="slide level2 smaller">
-<h2>Secuencialidad</h2>
-<p>Si primero observamos <span class="math inline">\(y_1\)</span> en <span class="math inline">\(N_1\)</span> y luego observamos <span class="math inline">\(y_2\)</span> en <span class="math inline">\(N_2\)</span>… Con el primer conjunto de datos pasamos del <em>prior</em> al <em>posterior</em> y luego esa distribución se convierte en el nuevo <em>prior</em>:</p>
-<div class="fragment">
-<p><span class="math display">\[Beta(a,b) \rightarrow Beta(y_1 + a, N_1 - y_1 + b)\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[Beta(y_1 + a, N_1 - y_1 + b) \rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[Beta(a,b) \rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\]</span></p>
-</div>
-<div class="fragment">
-<p>Es idéntico a observar <span class="math inline">\(y_1+y_2\)</span> en <span class="math inline">\(N_1+N_2\)</span></p>
-</div>
-</section>
-<section id="section-46" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.4em; text-align: left; color=white">
-<h2></h2>
-<p>La Regla de Bayes permite combinar dos fuentes de información: la información <em>a priori</em> (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución <em>a posteriori</em> representa un compromiso entre la verosimilitud de los datos y la credibilidad <em>a priori</em>.</p>
-</section></section>
-<section>
-<section id="más-ejemplos-1" class="title-slide slide level1 center">
-<h1>Más ejemplos</h1>
-
-<img data-src="presentacion_02_files/figure-revealjs/prior-plano-1.png" width="960" class="r-stretch"></section>
-<section id="section-47" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="section-48" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-49" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="section-50" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="section-51" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="section-52" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="section-53" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
-<section id="section-54" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="section-55" class="slide level2">
-<h2></h2>
-
-<img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
-<section id="predicciones" class="slide level2 smaller">
-<h2>Predicciones</h2>
-<p>Distribución predictiva <em>a posteriori</em> (también distribución posterior predictiva) (en inglés <em>posterior predictive distribution</em>): queremos predecir un valor futuro de la variable de interés, <span class="math inline">\(\tilde{y}\)</span>. Más aún, interesa la distribución de <span class="math inline">\(\tilde{y}\)</span> <em>a posteriori</em>, es decir, luego de observar los datos <span class="math inline">\(y\)</span>: <span class="math inline">\(\tilde{y}\mid y\)</span></p>
-<p><span class="math display">\[
-p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
-\]</span></p>
-</section>
-<section id="section-56" class="slide level2">
-<h2></h2>
-<ul>
-<li class="fragment"><span class="math inline">\(\tilde{y}\)</span> tiene una distribución de probabilidad</li>
-<li class="fragment">Si <span class="math inline">\(\pi\)</span> fuera fijo, la distribución de <span class="math inline">\(\tilde{y}\)</span> viene dada por <span class="math inline">\(p(\tilde{y}\mid\pi)\)</span> (la verosimilitud, aunque ahora es función de <span class="math inline">\(\tilde{y}\)</span>)</li>
-<li class="fragment">Pero ahora hay incertidumbre en <span class="math inline">\(\pi\)</span> (tiene una distribución <em>a posteriori</em>), por lo tanto se hace una ponderación para los distintos valores de <span class="math inline">\(\pi\)</span> (<span class="math inline">\(\pi\)</span> varía en la integral anterior)</li>
-<li class="fragment">Combinamos lo que no sabemos porque es aleatorio <em>per se</em>, con aquello que desconocemos (aunque podemos reducir nuestra incertidumbre recolectando más información)</li>
-</ul>
-</section>
-<section id="section-57" class="slide level2">
-<h2></h2>
-<p>Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener <span class="math inline">\(A\)</span> (agua)?</p>
-<p><span class="math display">\[
-\begin{align*}
-P(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\theta\mid x) d \pi = \mathbb{E}[{p(\theta\mid x)}] \\
-&amp; = \frac{y+a}{y+a+N-x+b} = \frac{y+a}{N+a+b} \\
-\end{align*}
-\]</span></p>
-</section>
-<section id="section-58" class="slide level2">
-<h2></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,a<span class="sc">+</span>y,b<span class="sc">+</span>N<span class="sc">-</span>y) <span class="co"># muestras del posterior</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>x_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">1</span>,muestras_pi) <span class="co"># predicciones para cada valor de pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="section-59" class="slide level2">
-<h2></h2>
-<p>Consideremos un caso particular:</p>
-<blockquote>
-<p>En una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?</p>
-</blockquote>
-<p><span class="math display">\[p(\tilde{y}=1\mid y) = \frac{y+1}{N+2}\]</span></p>
-</section>
-<section id="section-60" class="slide level2">
-<h2></h2>
-<p>Los parámetros tienen una distribución de probabilidad. Incorporar la incertidumbre en el valor de <span class="math inline">\(\pi\)</span> nos permite no entusiasmarnos tanto con los datos, hacer predicciones más conservadoras con a pocos datos, regularizar.</p>
-
-
-<img src="../utils/imgs/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
+<p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
 <p>Estadística Bayesiana – 2023</p>
+</div>
 </div>
 </section></section>
     </div>
