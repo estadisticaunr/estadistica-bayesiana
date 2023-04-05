@@ -8,5 +8,5 @@ mostrar como resolver el ejercicio de los Rocklets utilizando código.
 ```{r}
 #| echo: true
 #| eval: false 
-#| file: scripts/rocklets_grilla.R
+#| file: scripts/01_rocklets_grilla.R
 ```

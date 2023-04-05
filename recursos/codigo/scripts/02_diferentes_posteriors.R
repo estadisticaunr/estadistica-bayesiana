@@ -1,0 +1,27 @@
+library(ggplot2)
+
+# Crear grilla para los valores de "pi"
+grid_n <- 200
+pi_grid <- seq(0, 1, length.out = grid_n)
+
+# Evaluar la funcion de densidad del posterior de cada trabajador
+# en cada uno de los puntos de "pi_grid"
+posterior1 <- dbeta(pi_grid, 4, 4)
+posterior2 <- dbeta(pi_grid, 7, 10)
+posterior3 <- dbeta(pi_grid, 24, 83)
+
+# Crear un data.frame, necesario para trabajar con ggplot2
+datos <- data.frame(
+  pi = rep(pi_grid, times = 3),
+  posterior = c(posterior1, posterior2, posterior3),
+  trabajador = rep(c("T1", "T2", "T3"), each = grid_n)
+)
+
+# Crear el grafico con ggplot2 con los siguientes mapeos
+# * Los valores del eje horizontal "x" salen de "pi"
+# * Los valores de la altura en el eje vertical "y" salen de "posterior"
+# * Los colores se mapean a cada uno de los valores de "trabajador"
+# * Las areas tienen un color de relleno distinto para cada valor en "trabajador"
+ggplot(datos, aes(x = pi, y = posterior, color = trabajador)) +
+  geom_line() + 
+  geom_area(aes(fill = trabajador), alpha = 0.5, position = "identity")
