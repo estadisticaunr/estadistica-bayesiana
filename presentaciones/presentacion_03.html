@@ -408,7 +408,7 @@
 \lambda \sim \mathrm{Gamma}(r,s)
 \]</span></p>
 <p><span class="math display">\[
-p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} x^{s-1}e^{-rx}
+p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
 \]</span></p>
 <div class="callout callout-warning callout-captioned callout-style-default">
 <div class="callout-body">
@@ -428,8 +428,8 @@ p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} x^{s-1}e^{-rx}
 <h2></h2>
 <p>El modelo propuesto es <span class="math display">\[
 \begin{align*}
-    y_i\mid\lambda &amp; \sim  Po(\lambda)\\
-    \lambda &amp; \sim  \mathrm{Gamma}(s,r)
+    y_i \mid \lambda &amp; \sim  Po(\lambda)\\
+    \lambda &amp; \sim  \mathrm{Gamma}(s, r)
 \end{align*}
 \]</span></p>
 <p>El <em>likelihood</em> es Poisson: <span class="math display">\[p(y_i\mid \lambda) = \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} \rightarrow p(\mathbf{y}\mid \lambda) = \prod_i \frac{\lambda^{y_i}e^{-\lambda}}{y_i!} = \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!}\]</span></p>
@@ -481,7 +481,7 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 <p>El modelo propuesto es <span class="math display">\[
 \begin{align*}
     y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2)\\
-    \mu &amp; \sim \mathrm{Gamma}(\theta,\tau^2)
+    \mu &amp; \sim \mathcal{N}(\theta,\tau^2)
 \end{align*}
 \]</span></p>
 <p>El <em>likelihood</em> es normal: <span class="math display">\[p(y_i\mid \mu) = \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ p(\mathbf{y}\mid \mu) = \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}\]</span></p>
@@ -538,7 +538,7 @@ P(\mu \mid \mathbf{y}) &amp; \propto e^{\frac{2\mu(\theta\sigma^2+ \bar{y}n\tau^
 <section id="section-9" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-1-1.png" width="960" class="r-stretch"></section>
+<img data-src="presentacion_03_files/figure-revealjs/normal-ejemplo-1-1.png" width="1728" class="r-stretch quarto-figure-center"></section>
 <section id="section-10" class="slide level2 smaller">
 <h2></h2>
 <p>¿Puedo representar los datos en el gráfico de la izquierda?</p>
@@ -657,7 +657,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <section id="section-19" class="slide level2">
 <h2></h2>
 
-<img data-src="presentacion_03_files/figure-revealjs/predictive-distribution-1.png" width="960" class="r-stretch"><p>La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (<span class="math inline">\(\sigma\)</span>) y la incertidumbre en el parámetro <span class="math inline">\(\mu\)</span>.</p>
+<img data-src="presentacion_03_files/figure-revealjs/predictive-distribution-1.png" width="1152" class="r-stretch quarto-figure-center"><p>La distribución predictiva contiene la variabilidad inherente al fenómeno en estudio (<span class="math inline">\(\sigma\)</span>) y la incertidumbre en el parámetro <span class="math inline">\(\mu\)</span>.</p>
 </section>
 <section id="normal-normal-gamma-inversa" class="slide level2">
 <h2>Normal – normal-gamma-inversa</h2>
