@@ -12,9 +12,9 @@ prior <- prior_ / sum(prior_)
 
 # Graficar prior
 plot(
-  pi_grid, 
-  prior, 
-  xlab = "pi", 
+  pi_grid,
+  prior,
+  xlab = "pi",
   ylab = "probabilidad",
   main = "prior"
 )

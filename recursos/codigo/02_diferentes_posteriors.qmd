@@ -1,0 +1,12 @@
+---
+title: "Diferentes observaciones, diferentes posteriors"
+---
+
+Este programa obtiene la distribución _a posteriori_ para los diferentes trabajadores
+del ejercicio **Diferentes observaciones, diferentes _posteriors_** de la Práctica 2.
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/02_diferentes_posteriors.R
+```

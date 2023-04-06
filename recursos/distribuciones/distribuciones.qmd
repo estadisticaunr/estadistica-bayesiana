@@ -1,7 +1,5 @@
 # Distribuciones de probabilidad
 
-🚧 Trabajo en progreso! 🚧
-
 ## Normal
 
 $$
@@ -33,6 +31,36 @@ $$
 * $\sigma > 0$
 * $\mathbb{E}(X) = \mu$
 * $\mathbb{V}(X) = \sigma^2$
+
+
+## T-Student
+
+
+$$
+X \sim \text{StudentT}(\nu)
+$$
+
+$$
+p(x \mid \nu) =
+    \frac{\Gamma(\frac{\nu + 1}{2})}{\Gamma(\frac{\nu}{2})}
+    \left(\frac{1}{\pi\nu}\right) ^ {\frac{1}{2}}
+    \left[1 + \frac{x^2}{\nu}\right]^{-\frac{\nu + 1}{2}}
+$$
+
+$$
+P(X \le x) = \frac{1}{2} + x \Gamma\left(\frac{\nu + 1}{2}\right) 
+             \frac{{}_2F_1\left(\frac{1}{2}, \frac{v + 1}{2}, \frac{3}{2}, \frac{-x^2}{\nu} \right)}
+             {\sqrt{\pi \nu} \Gamma(\frac{\nu}{2})}
+$$
+
+
+donde ${}_2F_1$ es la [función hipergeométrica](https://es.wikipedia.org/wiki/Funci%C3%B3n_hipergeom%C3%A9trica).
+
+
+* $X \in \mathbb{R}$
+* $\nu > 0$
+* $\mathbb{E}(X) = 0$ si $\nu > 1$
+* $\mathbb{V}(X) = \nu / (\nu - 2)$ si $\nu > 2$
 
 ## Gamma
 
@@ -162,12 +190,23 @@ $$
 * $\mathbb{E}(X) = \lambda$
 * $\mathbb{V}(X) = \lambda$
 
-<!-- 
-## Cauchy
-
-## Student T
-
 ## Binomial Negativa
 
-$X \sim \text{BN}(\lambda)$ 
+$$
+X \sim \text{BinomialNegativa}(r, p)
+$$
+
+$$
+p(x \mid k, p)= \binom{x     + r - 1}{x}(1 - p)^x p^r
+$$
+
+* $X \in \{0, 1, 2, \cdots \}$
+* $r \in \{1, 2, 3, \cdots \}$
+* $p \in [0, 1]$
+* $\mathbb{E}(X) = r(1 - p) / p$
+* $\mathbb{V}(X) = r(1 - p) / p^2$
+
+
+<!-- 
+## Student T
 -->
