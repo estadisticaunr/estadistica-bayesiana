@@ -1296,8 +1296,8 @@ Para el caso binomial que venimos estudiando, consideramos una realización más
 
 $$
 \begin{align*}
-P(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\theta\mid x) d \pi = \mathbb{E}[{p(\theta\mid x)}] \\
-& = \frac{y+a}{y+a+N-x+b} = \frac{y+a}{N+a+b} \\
+P(\tilde{y} = 1\mid y) & = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \pi = \mathbb{E}[{p(\pi\mid x)}] \\
+& = \frac{y+a}{y+a+N-y+b} = \frac{y+a}{N+a+b} \\
 \end{align*}
 $$
 

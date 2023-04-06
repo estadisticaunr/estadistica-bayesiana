@@ -16,6 +16,10 @@ logo: ../templates/logo.png
 ```{r}
 #| echo: false
 #| include: false
+
+library(ggplot2)
+library(patchwork)
+
 pdf_file <- paste0(
     "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
     paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
@@ -35,8 +39,7 @@ captions[["dirichlet"]] <- "Como los valores posibles del vector aleatorio tridi
 
 En 2017 comenzó una revolución gastronómica en Rosario. La experiencia de tomar café pasó
 a otro nivel. Comenzaron a aparecer cafeterías con una característica particular: ofrecer
-café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos al
-café.
+café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos a la cafeína.
 
 Una cafetería de especialidad es una cafetería en donde el café es lo más importante de 
 todo, preparado por baristas, con granos de café de distintas partes del mundo 
@@ -58,7 +61,7 @@ Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando lo
 subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió
 [**Orlan**](https://www.instagram.com/cafeorlan/?hl=es) (Dorrego 1670).
 
-En enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ 
+A enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ 
 (en 750 *reviews*) y **Orlan**, una puntuación de 4.9⭐ (en 95 *reviews*). 
 Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es
 una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
@@ -67,9 +70,53 @@ una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una re
 #| echo: false
 #| include: false
 # cantidad de califaciones para cada número de estrellas
-arto <- data.frame(s = 1:5, r = c(530, 150, 40, 10, 20))
-orlan <- data.frame(s = 1:5, r = c(89, 3, 1, 0, 2))
+arto <- data.frame(s = seq(5,1,-1), r = c(526, 149, 39, 12, 24))
+orlan <- data.frame(s = seq(5,1,-1), r = c(89, 3, 1, 0, 2))
 ```
+
+```{r plot-stars}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 12
+  #| fig-height: 6
+  #| fig-align: center
+  #| fig-cap: !expr captions[["cafe"]]
+
+p1 <- 
+arto |>
+  ggplot(aes(x=s,y=r)) +
+  geom_bar(stat = "identity", 
+           fill = "#FFC000", 
+           width = 0.5) +
+  geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
+  coord_flip() +
+  theme_minimal() +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0),limits = c(0,max(arto$r*1.15))) +
+  theme(axis.title = element_blank(),
+        axis.text.y = element_text(size=15),
+        axis.text.x = element_blank(),
+        panel.grid = element_blank())
+
+p2 <- 
+orlan |>
+  ggplot(aes(x=s,y=r)) +
+  geom_bar(stat = "identity", 
+           fill = "#FFC000", 
+           width = 0.5) +
+  geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
+  coord_flip() +
+  theme_minimal() +
+  scale_x_continuous(expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0),limits = c(0,max(orlan$r*1.15))) +
+  theme(axis.title = element_blank(),
+        axis.text.y = element_text(size=15),
+        axis.text.x = element_blank(),
+        panel.grid = element_blank())
+
+p1+p2
+```
+
 
 En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto 
 inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su 
@@ -109,6 +156,7 @@ Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de **A
 7.  Con los datos de la introducción, obtenga la distribución *a posteriori* de $\sigma$ 
     para cada cafetería.
 8.  ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
+9.  ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos de _reviews_?
 
 <!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
 
