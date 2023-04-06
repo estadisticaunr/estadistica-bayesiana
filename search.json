@@ -473,7 +473,7 @@
     "href": "presentaciones/presentacion_02.html#section-57",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\nP(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\theta\\mid x) d \\pi = \\mathbb{E}[{p(\\theta\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-x+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
+    "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\nP(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\pi\\mid x) d \\pi = \\mathbb{E}[{p(\\pi\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-58",
