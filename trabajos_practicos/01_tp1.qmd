@@ -77,10 +77,11 @@ orlan <- data.frame(s = seq(5,1,-1), r = c(89, 3, 1, 0, 2))
 ```{r plot-stars}
   #| warning: false
   #| echo: false
+  #| include: false
   #| fig-width: 12
-  #| fig-height: 6
+  #| fig-height: 5
   #| fig-align: center
-  #| fig-cap: !expr captions[["cafe"]]
+  #| fig-cap: "Reviews para cada cafetería"
 
 p1 <- 
 arto |>
