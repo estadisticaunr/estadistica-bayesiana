@@ -529,7 +529,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <section id="otros" class="level2">
 <h2 class="anchored" data-anchor-id="otros">Otros</h2>
 <ol type="1">
-<li><p><strong>Distribución predictiva a posteriori a mano</strong></p>
+<li><p><strong>Distribución predictiva a posteriori (a mano)</strong></p>
 <p>Considere un modelo <span class="math inline">\(y\mid \theta \sim \mathrm{Bin}(\theta,n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la Figura.</p>
 <p>Se desea obtener la distribución predictiva <em>a posteriori</em> para el número de éxitos <span class="math inline">\(\tilde{y}\)</span> en <span class="math inline">\(n=5\)</span> nuevas realizaciones del experimento. Cada valor de <span class="math inline">\(\theta\)</span> da lugar a una posible distribución de <span class="math inline">\(\tilde{y}\)</span> de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la Figura.</p></li>
 </ol>
@@ -542,9 +542,15 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 </div>
 </div>
 </div>
-<pre><code>i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.
-i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
-i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?</code></pre>
+<pre><code>i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de
+$\theta$ y compruebe que los gráficos de la parte inferior de la
+Figura son correctos.
+i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las
+probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para
+obtener la distribución predictiva _a posteriori_
+i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por
+ejemplo, la de $\theta=0.5$) con la varianza de la distribución
+predictiva _a posteriori_ ¿qué observa?</code></pre>
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
     Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
 <!-- 
