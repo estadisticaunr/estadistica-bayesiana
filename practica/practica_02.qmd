@@ -605,15 +605,10 @@ p1 + p2 +
 ```
 
 
-    i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de
-    $\theta$ y compruebe que los gráficos de la parte inferior de la
-    Figura son correctos.
-    i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las
-    probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para
-    obtener la distribución predictiva _a posteriori_
-    i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por
-    ejemplo, la de $\theta=0.5$) con la varianza de la distribución
-    predictiva _a posteriori_ ¿qué observa?
+  i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.
+  i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
+  i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?
+  i. A partir de $p(\theta\mid y)$ y de la verosimilitud binomial, obtenga muestras de $p(\tilde{y}\mid y)$ y grafique su distribución.
     
 
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
