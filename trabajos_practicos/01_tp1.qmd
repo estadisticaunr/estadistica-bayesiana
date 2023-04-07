@@ -70,18 +70,19 @@ una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una re
 #| echo: false
 #| include: false
 # cantidad de califaciones para cada número de estrellas
+
 arto <- data.frame(s = seq(5,1,-1), r = c(526, 149, 39, 12, 24))
 orlan <- data.frame(s = seq(5,1,-1), r = c(89, 3, 1, 0, 2))
 ```
 
 ```{r plot-stars}
-  #| warning: false
-  #| echo: false
-  #| include: false
-  #| fig-width: 12
-  #| fig-height: 5
-  #| fig-align: center
-  #| fig-cap: "Reviews para cada cafetería"
+#| warning: false
+#| echo: false
+#| include: false
+#| fig-width: 12
+#| fig-height: 5
+#| fig-align: center
+#| fig-cap: "Reviews para cada cafetería"
 
 p1 <- 
 arto |>
@@ -157,7 +158,7 @@ Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de **A
 7.  Con los datos de la introducción, obtenga la distribución *a posteriori* de $\sigma$ 
     para cada cafetería.
 8.  ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
-9.  ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos de _reviews_?
+9.  ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos _reviews_?
 
 <!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
 
