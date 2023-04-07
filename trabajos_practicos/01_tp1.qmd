@@ -279,6 +279,8 @@ $$
 Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de 
 **Arto** y **Orlan**.
 
+Para obtener muestras de una distribución Dirichlet, puede utilizar la función `rdirichlet` de alguno de los siguientes paquetes: `{LaplacesDemon}`, `{rBeta2009}`, `{gtools}`.
+
 7.  Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los 
     parámetros de esa distribución multinomial? ¿Qué distribución *a priori* sería 
     conveniente utilizar? ¿Cómo está parametrizada esa distribución *a priori*?
@@ -288,6 +290,7 @@ Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones 
 9.  Con los datos de la introducción, obtenga la distribución *a posteriori* de los $p_i$ 
     para cada cafetería.
 10. ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
+11. ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos _reviews_?
 
 <!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
 <!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
