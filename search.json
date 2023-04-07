@@ -217,6 +217,13 @@
     "text": "Teoría de la Decisión\n\nDada la distribución a posteriori \\(p(\\theta \\mid y)\\), probar que el estimador de Bayes que minimiza la función de pérdida \\(L_1\\) es la mediana de \\(p(\\theta \\mid y)\\). \nSuponga que la distribución a posteriori de \\(\\pi\\), \\(p(\\pi \\mid y)\\), es \\(\\text{Beta}(12,4)\\). Determine mediante simulación el estimador que minimiza la pérdida de Huber: \\[\n\\mathcal{L}(\\delta,\\pi) =\n\\begin{cases}\n\\frac{1}{2} (\\pi - \\delta)^2 \\text{ si } |\\pi - \\delta| \\leq \\alpha \\\\\n\\alpha \\cdot (|\\pi - \\delta|-\\frac{1}{2}\\alpha) \\text{ en cualquier otro caso}\n\\end{cases}\n\\]"
   },
   {
+    "objectID": "practica/practica_02.html#otros",
+    "href": "practica/practica_02.html#otros",
+    "title": "Práctica - Unidad 2",
+    "section": "Otros",
+    "text": "Otros\n\nDistribución predictiva a posteriori a mano\nConsidere un modelo \\(y\\mid \\theta \\sim \\mathrm{Bin}(\\theta,n)\\), donde \\(\\theta\\) puede tomar valores discretos \\(0,\\ 0.1,\\ 0.2,\\ \\dots,\\ 1\\). Se realizaron inferencias sobre \\(\\theta\\) y se obtuvo la distribución a posteriori que se muestra en la parte superior de la Figura.\nSe desea obtener la distribución predictiva a posteriori para el número de éxitos \\(\\tilde{y}\\) en \\(n=5\\) nuevas realizaciones del experimento. Cada valor de \\(\\theta\\) da lugar a una posible distribución de \\(\\tilde{y}\\) de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la Figura.\n\n\n\n\n\n\n\n\n\n\ni. Calcule $p(\\tilde{y}\\mid\\theta)$ para cada valor posible de $\\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.\ni. Combine los $p(\\tilde{y}\\mid\\theta)$ ponderando por las probabilidades _a posteriori_ de $\\theta$, $p(\\theta\\mid y)$ para obtener la distribución predictiva _a posteriori_\ni. Compare la varianza de una de las $p(\\tilde{y}\\mid\\theta)$ (por ejemplo, la de $\\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?"
+  },
+  {
     "objectID": "practica/practica_03.html",
     "href": "practica/practica_03.html",
     "title": "Práctica - Unidad 3",
