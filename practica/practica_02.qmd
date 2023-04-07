@@ -7,6 +7,11 @@ practica: "Práctica 2"
 ```{r}
 #| echo: false
 #| include: false
+
+library(ggplot2)
+library(dplyr)
+library(patchwork)
+
 pdf_file <- paste0(
     "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
     paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
@@ -543,6 +548,66 @@ de probabilidad como herramienta para reflejar información de un problema deter
     \end{cases}
     $$
 
+## Otros
+
+1.  **Distribución predictiva a posteriori a mano**
+
+    Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la Figura.
+
+    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la Figura.
+    
+```{r}
+#| warning: false
+#| echo: false
+#| fig-width: 12
+#| fig-height: 6
+#| fig-align: center
+
+dv <- 
+tibble(theta = c(0.3,0.4,0.5,0.6,0.7),
+       post = c(0.1,0.2,0.5,0.1,0.1)) |>
+  tidyr::crossing(y=0:5) |>
+  mutate(prob = dbinom(y,5,theta))
+
+p1 <- 
+dv |>
+  distinct(theta,post) |>
+  ggplot() +
+  geom_segment(aes(x=theta,xend=theta,y=0,yend=post),size=2,lineend="round") +
+  xlab("θ") +
+  ylab("p(θ|y)") +
+  scale_x_continuous(limits = c(0,1),breaks = seq(0,1,0.1), expand=c(0,0)) +
+  scale_y_continuous(expand=c(0,0,0,0.05)) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank(),
+        plot.margin = unit(c(0.1,0.2,0.1,0.1), "npc"))
+
+p2 <- 
+dv |>
+  ggplot() +
+  geom_segment(aes(x=y,xend=y,y=0,yend=prob), size=1.5, lineend="round") +
+  facet_grid(.~paste0("θ = ",theta)) +
+  scale_y_continuous(expand=c(0,0,0,0.05)) +
+  xlab(expression(tilde(y))) +
+  ylab(expression("p("*tilde(y)*"|"*theta*")")) +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank(),
+        panel.grid.major.x = element_blank())
+
+layout <- "
+#AAAA#
+BBBBBB
+"
+
+p1 + p2 + 
+  plot_layout(design = layout)
+```
+
+    i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.
+    i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
+    i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?
+    
 
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
     Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
