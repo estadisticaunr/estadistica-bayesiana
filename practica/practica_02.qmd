@@ -550,7 +550,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 ## Otros
 
-1.  **Distribución predictiva a posteriori a mano**
+1.  **Distribución predictiva a posteriori (a mano)**
 
     Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la Figura.
 
@@ -604,9 +604,16 @@ p1 + p2 +
   plot_layout(design = layout)
 ```
 
-    i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.
-    i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
-    i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?
+
+    i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de
+    $\theta$ y compruebe que los gráficos de la parte inferior de la
+    Figura son correctos.
+    i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las
+    probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para
+    obtener la distribución predictiva _a posteriori_
+    i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por
+    ejemplo, la de $\theta=0.5$) con la varianza de la distribución
+    predictiva _a posteriori_ ¿qué observa?
     
 
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
