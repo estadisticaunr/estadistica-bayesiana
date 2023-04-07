@@ -279,11 +279,13 @@ f(x_1,x_2,\dots,x_k \mid \alpha_1, \alpha_2,\dots,\alpha_K) =
 <li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
 </ol>
 <p>Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
+<p>Para obtener muestras de una distribución Dirichlet, puede utilizar la función <code>rdirichlet</code> de alguno de los siguientes paquetes: <code>{LaplacesDemon}</code>, <code>{rBeta2009}</code>, <code>{gtools}</code>.</p>
 <ol start="7" type="1">
 <li>Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los parámetros de esa distribución multinomial? ¿Qué distribución <em>a priori</em> sería conveniente utilizar? ¿Cómo está parametrizada esa distribución <em>a priori</em>?</li>
 <li>Elija los parámetros de la distribución <em>a priori</em> de modo tal que la creencia inicial sea uniforme sobre los posibles valores de los <span class="math inline">\(p_i\)</span>. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida?</li>
 <li>Con los datos de la introducción, obtenga la distribución <em>a posteriori</em> de los <span class="math inline">\(p_i\)</span> para cada cafetería.</li>
 <li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
+<li>¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos <em>reviews</em>?</li>
 </ol>
 <!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
 <!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
