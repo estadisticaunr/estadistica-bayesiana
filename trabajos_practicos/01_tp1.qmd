@@ -90,12 +90,14 @@ arto |>
            width = 0.5) +
   geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
   coord_flip() +
+  labs(title = "Arto") +
   theme_minimal() +
   scale_x_continuous(expand=c(0,0)) +
   scale_y_continuous(expand=c(0,0),limits = c(0,max(arto$r*1.15))) +
   theme(axis.title = element_blank(),
-        axis.text.y = element_text(size=15),
+        axis.text.y = element_text(size = 15),
         axis.text.x = element_blank(),
+        plot.title = element_text(size = 20),
         panel.grid = element_blank())
 
 p2 <- 
@@ -106,12 +108,14 @@ orlan |>
            width = 0.5) +
   geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
   coord_flip() +
+  labs(title = "Orlan") +
   theme_minimal() +
   scale_x_continuous(expand=c(0,0)) +
   scale_y_continuous(expand=c(0,0),limits = c(0,max(orlan$r*1.15))) +
   theme(axis.title = element_blank(),
-        axis.text.y = element_text(size=15),
+        axis.text.y = element_text(size = 15),
         axis.text.x = element_blank(),
+        plot.title = element_text(size = 20),
         panel.grid = element_blank())
 
 p1+p2

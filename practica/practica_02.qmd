@@ -552,9 +552,9 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 1.  **Distribución predictiva a posteriori (a mano)**
 
-    Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la Figura.
+    Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la @fig-ppd.
 
-    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la Figura.
+    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la @fig-ppd.
     
 ```{r}
 #| warning: false
@@ -562,6 +562,8 @@ de probabilidad como herramienta para reflejar información de un problema deter
 #| fig-width: 12
 #| fig-height: 6
 #| fig-align: center
+#| fig-cap: Distribución _a posteriori_ y distribución predictiva _a posteriori_
+#| label: fig-ppd
 
 dv <- 
 tibble(theta = c(0.3,0.4,0.5,0.6,0.7),
@@ -600,12 +602,13 @@ layout <- "
 BBBBBB
 "
 
+
 p1 + p2 + 
   plot_layout(design = layout)
 ```
 
 
-  i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la Figura son correctos.
+  i. Calcule $p(\tilde{y}\mid\theta)$ para cada valor posible de $\theta$ y compruebe que los gráficos de la parte inferior de la @fig-ppd son correctos.
   i. Combine los $p(\tilde{y}\mid\theta)$ ponderando por las probabilidades _a posteriori_ de $\theta$, $p(\theta\mid y)$ para obtener la distribución predictiva _a posteriori_
   i. Compare la varianza de una de las $p(\tilde{y}\mid\theta)$ (por ejemplo, la de $\theta=0.5$) con la varianza de la distribución predictiva _a posteriori_ ¿qué observa?
   i. A partir de $p(\theta\mid y)$ y de la verosimilitud binomial, obtenga muestras de $p(\tilde{y}\mid y)$ y grafique su distribución.
