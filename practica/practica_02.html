@@ -530,20 +530,21 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <h2 class="anchored" data-anchor-id="otros">Otros</h2>
 <ol type="1">
 <li><p><strong>Distribución predictiva a posteriori (a mano)</strong></p>
-<p>Considere un modelo <span class="math inline">\(y\mid \theta \sim \mathrm{Bin}(\theta,n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la Figura.</p>
-<p>Se desea obtener la distribución predictiva <em>a posteriori</em> para el número de éxitos <span class="math inline">\(\tilde{y}\)</span> en <span class="math inline">\(n=5\)</span> nuevas realizaciones del experimento. Cada valor de <span class="math inline">\(\theta\)</span> da lugar a una posible distribución de <span class="math inline">\(\tilde{y}\)</span> de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la Figura.</p></li>
+<p>Considere un modelo <span class="math inline">\(y\mid \theta \sim \mathrm{Bin}(\theta,n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la <a href="#fig-ppd">Figura&nbsp;1</a>.</p>
+<p>Se desea obtener la distribución predictiva <em>a posteriori</em> para el número de éxitos <span class="math inline">\(\tilde{y}\)</span> en <span class="math inline">\(n=5\)</span> nuevas realizaciones del experimento. Cada valor de <span class="math inline">\(\theta\)</span> da lugar a una posible distribución de <span class="math inline">\(\tilde{y}\)</span> de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la <a href="#fig-ppd">Figura&nbsp;1</a>.</p></li>
 </ol>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-ppd" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="practica_02_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1152"></p>
+<p><img src="practica_02_files/figure-html/fig-ppd-1.png" class="img-fluid figure-img" width="1152"></p>
+<p></p><figcaption class="figure-caption">Figura&nbsp;1: Distribución <em>a posteriori</em> y distribución predictiva <em>a posteriori</em></figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
 <ol type="i">
-<li>Calcule <span class="math inline">\(p(\tilde{y}\mid\theta)\)</span> para cada valor posible de <span class="math inline">\(\theta\)</span> y compruebe que los gráficos de la parte inferior de la Figura son correctos.</li>
+<li>Calcule <span class="math inline">\(p(\tilde{y}\mid\theta)\)</span> para cada valor posible de <span class="math inline">\(\theta\)</span> y compruebe que los gráficos de la parte inferior de la <a href="#fig-ppd">Figura&nbsp;1</a> son correctos.</li>
 <li>Combine los <span class="math inline">\(p(\tilde{y}\mid\theta)\)</span> ponderando por las probabilidades <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, <span class="math inline">\(p(\theta\mid y)\)</span> para obtener la distribución predictiva <em>a posteriori</em></li>
 <li>Compare la varianza de una de las <span class="math inline">\(p(\tilde{y}\mid\theta)\)</span> (por ejemplo, la de <span class="math inline">\(\theta=0.5\)</span>) con la varianza de la distribución predictiva <em>a posteriori</em> ¿qué observa?</li>
 <li>A partir de <span class="math inline">\(p(\theta\mid y)\)</span> y de la verosimilitud binomial, obtenga muestras de <span class="math inline">\(p(\tilde{y}\mid y)\)</span> y grafique su distribución.</li>
