@@ -116,7 +116,7 @@
     "href": "recursos/codigo/index.html",
     "title": "Código",
     "section": "",
-    "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n\n\n\nRocklets discretosDiferentes observaciones, diferentes posteriors"
+    "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n\n\n\nRocklets discretosDiferentes observaciones, diferentes posteriorsFunción de verosimilitud Poisson"
   },
   {
     "objectID": "recursos/codigo/01_rocklets_grilla.html",
@@ -131,6 +131,13 @@
     "title": "Diferentes observaciones, diferentes posteriors",
     "section": "",
     "text": "Este programa obtiene la distribución a posteriori para los diferentes trabajadores del ejercicio Diferentes observaciones, diferentes posteriors de la Práctica 2.\n\nlibrary(ggplot2)\n\n# Crear grilla para los valores de \"pi\"\ngrid_n <- 200\npi_grid <- seq(0, 1, length.out = grid_n)\n\n# Evaluar la funcion de densidad del posterior de cada trabajador\n# en cada uno de los puntos de \"pi_grid\"\nposterior1 <- dbeta(pi_grid, 4, 4)\nposterior2 <- dbeta(pi_grid, 7, 10)\nposterior3 <- dbeta(pi_grid, 24, 83)\n\n# Crear un data.frame, necesario para trabajar con ggplot2\ndatos <- data.frame(\n  pi = rep(pi_grid, times = 3),\n  posterior = c(posterior1, posterior2, posterior3),\n  trabajador = rep(c(\"T1\", \"T2\", \"T3\"), each = grid_n)\n)\n\n# Crear el grafico con ggplot2 con los siguientes mapeos\n# * Los valores del eje horizontal \"x\" salen de \"pi\"\n# * Los valores de la altura en el eje vertical \"y\" salen de \"posterior\"\n# * Los colores se mapean a cada uno de los valores de \"trabajador\"\n# * Las areas tienen un color de relleno distinto para cada valor en \"trabajador\"\nggplot(datos, aes(x = pi, y = posterior, color = trabajador)) +\n  geom_line() + \n  geom_area(aes(fill = trabajador), alpha = 0.5, position = \"identity\")"
+  },
+  {
+    "objectID": "recursos/codigo/03_likelihood_poisson.html",
+    "href": "recursos/codigo/03_likelihood_poisson.html",
+    "title": "Función de verosimilitud Poisson",
+    "section": "",
+    "text": "Este programa grafica la función de verosimilitud cuando se obtiene una muestra de \\(n\\) realizaciones independientes de una distribución Poisson. Se utiliza en el ejercicio El modelo Gamma-Poisson de la Práctica 2.\n\\[\n\\begin{array}{lcc}\nX \\sim \\text{Poisson}(\\lambda), & \\lambda > 0, & X \\in \\{0, 1, 2, \\cdots \\}\n\\end{array}\n\\]\n\\[\np(x \\mid \\lambda) = \\frac{e^{-\\lambda} \\lambda^x}{x!}\n\\]\n\\[\n\\ell(\\theta \\mid x_1, x_2, \\cdots, x_n) = p(\\mathbf{x} \\mid \\theta)\n    = \\prod_{i=1}^{n} p(x_i \\mid \\lambda)\n    = \\prod_{i=1}^{n} \\frac{e^{-\\lambda} \\lambda^{x_i}}{x_i!}\n    = \\frac{e^{- n \\lambda} \\lambda^{\\sum_i x_i}}{\\prod_i x_i!}\n\\]\n\n# Cantidad de mensajes observados\nmensajes <- c(7, 3, 8, 9, 10, 12)\n\n# Opción 1: Escribiendo la función de verosimilitud analíticamente\nn <- length(mensajes)\ntotal <- sum(mensajes)\nproducto_factoriales <- prod(factorial(mensajes))\n\n# Grilla de valores para 'lambda'\n# Teoréticamente, el soporte del parámetro es (0, infty). Lo acotamos en 20.\nlambda <- seq(0, 20, length.out = 200)\n\n# Cálculo de la verosimilitud\nverosimilitud <- exp(-n * lambda) * lambda ^ total / producto_factoriales\n\n# Visualización de la verosimilitud para los valores de lambda en la grilla\nplot(lambda, verosimilitud, type = \"l\")\n\n# Opción 2: Utilizando 'dpois'.\n# Para cada valor observado, se evalúa la pmf de la Poisson en una grilla\n# de valores de lambda.\n# Luego se multiplican los resultados de la pmf en los valores observados,\n# para cada valor de lambda.\n# Nota: Hay que verificar bien que R está reciclando los argumentos de\n# la manera esperada\nmensajes_matriz <- matrix(rep(mensajes, 200), nrow = 200, byrow = TRUE)\npmf <- dpois(mensajes_matriz, lambda)\nverosimilitud <- apply(pmf, 1, prod)\nplot(lambda, verosimilitud, type = \"l\")"
   },
   {
     "objectID": "recursos/computo/instalacion.html#instalar-rstudio",
