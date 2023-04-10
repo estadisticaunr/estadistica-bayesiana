@@ -65,7 +65,8 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     - Si realizamos el mismo análisis una segunda vez sobre el mismo paciente y obtenemos nuevamente positivo,
         - ¿Cuál seria la probabilidad que el paciente esté enfermo?
         - ¿Y si diera negativo?
-        - ¿Es el _prior_ el mismo para el segundo análisis que para el primero? 
+        - ¿Es el _prior_ el mismo cuando se analiza el resultado del segundo análisis que 
+        cuando solo se analiza el primero?
     <!-- @Martin2021 -->
 
 1.  **¿Es verdad que existen los vampiros? Versión Crepúsculo**
