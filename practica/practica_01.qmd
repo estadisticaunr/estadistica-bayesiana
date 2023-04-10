@@ -44,12 +44,12 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     $$
 
     donde $A$ es un evento cualquiera y $\{B_1, \cdots, B_K\}$ forman una partición.
-    Para ello siga los siguientes pasos
+    <!-- Para ello siga los siguientes pasos -->
 
-    i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$.
-    i. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$.
-    i. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$.
-    i. Junte las partes para formar la Regla de Bayes. 
+    <!-- i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$. -->
+    <!-- i. Demuestre que $P(A) = P(A \cap B_1) + P(A \cap \{\cup_{k=2}^{K}B_j\})$. -->
+    <!-- i. Demuestre que $P(A) = \sum_{k=1}^{K} P(A \cap B_j)$. -->
+    <!-- i. Junte las partes para formar la Regla de Bayes. -->
     <!-- @Hoff2009 -->
     <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
 
