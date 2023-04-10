@@ -130,7 +130,7 @@ Es un caso particular de $\text{Gamma}(\alpha, \beta)$ con $\alpha = 1$ y $\beta
 ## Beta
 
 $$
-X \sim \text{Beta}(\alpha, \beta)
+X \sim \text{Beta}(a, b)
 $$
 
 $$
