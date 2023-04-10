@@ -1,0 +1,31 @@
+---
+title: "Función de verosimilitud Poisson"
+---
+
+Este programa grafica la función de verosimilitud cuando se obtiene una muestra
+de $n$ realizaciones independientes de una distribución Poisson. Se utiliza en el 
+ejercicio **El modelo Gamma-Poisson** de la Práctica 2.
+
+
+$$
+\begin{array}{lcc}
+X \sim \text{Poisson}(\lambda), & \lambda > 0, & X \in \{0, 1, 2, \cdots \}
+\end{array}
+$$
+
+$$
+p(x \mid \lambda) = \frac{e^{-\lambda} \lambda^x}{x!}
+$$
+
+$$
+\ell(\theta \mid x_1, x_2, \cdots, x_n) = p(\mathbf{x} \mid \theta) 
+    = \prod_{i=1}^{n} p(x_i \mid \lambda) 
+    = \prod_{i=1}^{n} \frac{e^{-\lambda} \lambda^{x_i}}{x_i!}
+    = \frac{e^{- n \lambda} \lambda^{\sum_i x_i}}{\prod_i x_i!}
+$$
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/03_likelihood_poisson.R
+```
