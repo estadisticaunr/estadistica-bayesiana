@@ -182,7 +182,8 @@ vida profesional.
 1.  **La regla del tres**
 
     Una estudiante de Licenciatura en Estadística está releyendo su
-    tesina antes de entregarla. Si en 20 páginas encontrase 5 _typos_,
+    tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas
+    con al menos un _typo_,
     sería _razonable_ estimar que la probabilidad de que una página
     contenga un _typo_ es $\frac{5}{20} = \frac{1}{4}$.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
