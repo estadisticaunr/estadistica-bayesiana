@@ -148,9 +148,16 @@ vida profesional.
 1.  **¿Quién dijo que el fútbol siempre da revancha?**
 
     En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
-    4 a 2. En función de este resultado,
+    4 a 2. Conside que el número de goles que un equipo hace en un partido puede modelizarse
+    con una distribución de Poisson. Suponga un parámetro $\lambda_F$ para Francia y uno $\lambda_C$
+    para Croacia. Elija una distribución Gamma _a priori_ para el número medio de goles por partido
+    (es decir, $\lambda_F$ y $\lambda_C$ compartirán la distribución _a priori_). $\lambda_F$ da una idea de
+    la capacidad de Francia de hacer goles ($\lambda_C$ lo mismo, pero para Croacia).
+    
+    En función del resultado del partido, obtenga las distribuciones _a posteriori_ de 
+    $\lambda_F$ y $\lambda_C$ y responda utilizando R:
 
-    i. ¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?
+    i. ¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia? 
     i. Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella 
     oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
@@ -175,14 +182,17 @@ vida profesional.
 1.  **La regla del tres**
 
     Una estudiante de Licenciatura en Estadística está releyendo su
-    tesina antes de entregarla. Si en 20 páginas encontrara 5 _typos_,
-    sería _razonable_ estimar $\frac{5}{20} = \frac{1}{4}$ _typos_ por página.
+    tesina antes de entregarla. Si en 20 páginas encontrase 5 _typos_,
+    sería _razonable_ estimar que la probabilidad de que una página
+    contenga un _typo_ es $\frac{5}{20} = \frac{1}{4}$.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
     
     Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación 
-    razonable para $\tau$ (la tasa de _typos_ por página), siendo $N$ el número de páginas.
-    Para ello, hallar la probabilidad de que $\tau > \frac{3}{N}$ para diferentes valores
-    de $N$. 
+    razonable para $\tau$ (la probabilidad de que una página contenga un _typo_), 
+    siendo $N$ el número de páginas. Para ello, grafique la distribución _a priori_
+    que se obtiene al haber observado 0 _typos_ en 10 páginas y luego halle 
+    la probabilidad de que $\tau < \frac{3}{N}$ para diferentes valores de 
+    $N$ (10, 100, 1000, 10000). 
     <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
 
 1.  **¿Tenés alguien para recomendar?**
