@@ -148,7 +148,7 @@ vida profesional.
 1.  **¿Quién dijo que el fútbol siempre da revancha?**
 
     En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
-    4 a 2. Conside que el número de goles que un equipo hace en un partido puede modelizarse
+    4 a 2. Considere que el número de goles que un equipo hace en un partido puede modelizarse
     con una distribución de Poisson. Suponga un parámetro $\lambda_F$ para Francia y uno $\lambda_C$
     para Croacia. Elija una distribución Gamma _a priori_ para el número medio de goles por partido
     (es decir, $\lambda_F$ y $\lambda_C$ compartirán la distribución _a priori_). $\lambda_F$ da una idea de
