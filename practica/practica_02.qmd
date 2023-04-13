@@ -256,15 +256,9 @@ vida profesional.
     en un periodo o espacio determinado.
 
     i. Derive el estimador de máxima verosimilitud del parámetro $\lambda$.
-<<<<<<< HEAD
     i. Derive el _posterior_ $p(\lambda \mid \mathbf{x})$ suponiendo que el _prior_ sobre 
     $\lambda$ es $\text{Gamma}(\lambda \mid \alpha, \beta)$ con 
     $p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}$.  
-=======
-    i. Derive el _posterior_ $p(\lambda \mid \mathbf{X})$ suponiendo que el _prior_ sobre 
-    $\lambda$ es $\text{Gamma}(\alpha, \beta)$ con 
-    $p(\lambda \mid \alpha, \beta) =  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}$.  
->>>>>>> f89d9b8554dd668eced72a33a87737ba5041049d
     Ayuda: El _posterior_ también es una distribución Gamma.
     i. ¿A qué valor tiende la media a _posteriori_ cuando $\alpha \to 0$ y $\beta \to 0$?  
     Recuerde que la media de una distribución $\text{Gamma}(\alpha, \beta)$ es $\alpha/\beta$.
