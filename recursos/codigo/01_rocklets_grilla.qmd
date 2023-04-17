@@ -1,5 +1,5 @@
 ---
-title: "Rocklets discretos"
+title: "01 - Rocklets discretos"
 ---
 
 Este _script_ fue utilizado en la primer clase de práctica en el laboratorio para

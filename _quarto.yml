@@ -97,6 +97,7 @@ website:
           file: recursos/codigo/index.qmd
           contents:
             - auto: recursos/codigo/*.qmd
+            - sort-ui: false
         - text: Distribuciones
           file: recursos/distribuciones/distribuciones.qmd
     - title: Material complementario

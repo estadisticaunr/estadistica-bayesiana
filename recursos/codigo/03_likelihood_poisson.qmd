@@ -1,5 +1,5 @@
 ---
-title: "Función de verosimilitud Poisson"
+title: "03 - Función de verosimilitud Poisson"
 ---
 
 Este programa grafica la función de verosimilitud cuando se obtiene una muestra

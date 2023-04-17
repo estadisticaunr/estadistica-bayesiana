@@ -1,5 +1,5 @@
 ---
-title: "Diferentes observaciones, diferentes posteriors"
+title: "02 - Diferentes observaciones, diferentes posteriors"
 ---
 
 Este programa obtiene la distribución _a posteriori_ para los diferentes trabajadores
