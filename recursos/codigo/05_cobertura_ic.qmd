@@ -1,0 +1,12 @@
+---
+title: "05 - Propiedades frecuentistas de inferencias bayesianas"
+---
+
+El siguiente programa sirve para responder al ejercicio **Propiedades frecuentistas de 
+inferencias bayesianas** de la Práctica 2.
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/05_cobertura_ic.R
+```
