@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/codigo/01_rocklets_grilla.html" rel="prev">
+<link href="../../recursos/codigo/04_dirichlet.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -137,17 +137,22 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/02_diferentes_posteriors.html" class="sidebar-item-text sidebar-link">Diferentes observaciones, diferentes posteriors</a>
+  <a href="../../recursos/codigo/01_rocklets_grilla.html" class="sidebar-item-text sidebar-link">01 - Rocklets discretos</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/03_likelihood_poisson.html" class="sidebar-item-text sidebar-link">Función de verosimilitud Poisson</a>
+  <a href="../../recursos/codigo/02_diferentes_posteriors.html" class="sidebar-item-text sidebar-link">02 - Diferentes observaciones, diferentes posteriors</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/01_rocklets_grilla.html" class="sidebar-item-text sidebar-link">Rocklets discretos</a>
+  <a href="../../recursos/codigo/03_likelihood_poisson.html" class="sidebar-item-text sidebar-link">03 - Función de verosimilitud Poisson</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/04_dirichlet.html" class="sidebar-item-text sidebar-link">04 - Distribución de Dirichlet</a>
   </div>
 </li>
       </ul>
@@ -295,10 +300,9 @@ B(a, b) = \int_0^1 x^{a-1} (1-x)^{b-1} dx = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b
 \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
 \]</span></p>
 <ul>
-<li><span class="math inline">\(X \in [0, 1]\)</span> si <span class="math inline">\(\alpha \ge 1\)</span> y <span class="math inline">\(\beta \ge 1\)</span></li>
-<li><span class="math inline">\(X \in (0, 1)\)</span> si <span class="math inline">\(\alpha &lt; 1\)</span> y <span class="math inline">\(\beta &lt; 1\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{E}(X) = \frac{\alpha}{\alpha + \beta}\)</span></li>
-<li><span class="math inline">\(\displaystyle \mathbb{V}(X) = \frac{\alpha\beta}{(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}\)</span></li>
+<li><span class="math inline">\(X \in (0, 1)\)</span></li>
+<li><span class="math inline">\(\displaystyle \mathbb{E}(X) = \frac{a}{a + b}\)</span></li>
+<li><span class="math inline">\(\displaystyle \mathbb{V}(X) = \frac{ab}{(a + b) ^ 2 (a + b + 1)}\)</span></li>
 </ul>
 </section>
 <section id="binomial" class="level2">
@@ -344,7 +348,7 @@ P(X \le x) = e^{-\lambda} \sum_{i = 0} ^ {x} \frac{\lambda^i}{i!}
 X \sim \text{BinomialNegativa}(r, p)
 \]</span></p>
 <p><span class="math display">\[
-p(x \mid k, p)= \binom{x     + r - 1}{x}(1 - p)^x p^r
+p(x \mid k, p)= \binom{x + r - 1}{x}(1 - p)^x p^r
 \]</span></p>
 <ul>
 <li><span class="math inline">\(X \in \{0, 1, 2, \cdots \}\)</span></li>
@@ -497,8 +501,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/codigo/01_rocklets_grilla.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Rocklets discretos</span>
+      <a href="../../recursos/codigo/04_dirichlet.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">04 - Distribución de Dirichlet</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
