@@ -498,7 +498,6 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
     - $\text{Beta}(0.5, 0.5)$.
     - $\text{Beta}(1, 1)$.
-    - $\text{Beta}(1, 1)$.
     - $\text{Beta}(1, 4)$.
     - $\text{Beta}(5, 1.5)$.
 
@@ -537,10 +536,10 @@ de probabilidad como herramienta para reflejar información de un problema deter
     $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para 
     explorar los efectos de las siguientes elecciones de distribuciones _a priori_
     
-    i. Si $\theta \sim \text{Uniforme}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
-    i. Si $\theta \sim \text{Beta}(0,1)$, ¿cuál es el _prior_ inducido para $\gamma$?
-    i. Si $\gamma \sim \text{Uniforme}(0,100)$, ¿cuál es el _prior_ inducido para $\theta$?
-    i. Si $\gamma \sim \text{Gamma}(1,1)$, ¿cuál es el _prior_ inducido para $\theta$? 
+    i. Si $\theta \sim \text{Uniforme}(0, 1)$, ¿cuál es el _prior_ inducido para $\gamma$?
+    i. Si $\theta \sim \text{Beta}(5, 5)$, ¿cuál es el _prior_ inducido para $\gamma$?
+    i. Si $\gamma \sim \text{Uniforme}(0, 100)$, ¿cuál es el _prior_ inducido para $\theta$?
+    i. Si $\gamma \sim \text{Gamma}(1, 1)$, ¿cuál es el _prior_ inducido para $\theta$? 
     
     
 ## Teoría de la Decisión
