@@ -446,9 +446,9 @@ ambos enfoques.
 
 1.  **Propiedades frecuentistas de inferencias bayesianas (!!)**
     
-    Sea una variable $Y$ tal que $Y  \theta \sim \text{Binomial}(n, \theta)$ y 
+    Sea una variable $Y$ tal que $Y \mid \theta \sim \text{Binomial}(n, \theta)$ y 
     $\theta \sim \text{Beta}(1/2, 1/2)$. Mediante un estudio de simulación calcule la 
-    cobertura empírica del intervalo de credibilidad del 95% para $n \in \{1, 5, 10, 25\}$ 
+    cobertura empírica del intervalo de credibilidad del 95% con $n \in \{1, 5, 10, 25\}$ 
     y $\theta \in \{0.05, 0.10, \dots, 0.50 \}$. Describa las propiedades frecuentistas
     del intervalo de credibilidad bayesiano.
     <!-- @Reich2020 -->
