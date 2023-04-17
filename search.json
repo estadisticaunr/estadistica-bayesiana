@@ -116,7 +116,14 @@
     "href": "recursos/codigo/index.html",
     "title": "Código",
     "section": "",
-    "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n\n\n\n01 - Rocklets discretos02 - Diferentes observaciones, diferentes posteriors03 - Función de verosimilitud Poisson04 - Distribución de Dirichlet"
+    "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n\n\n\n01 - Rocklets discretos02 - Diferentes observaciones, diferentes posteriors03 - Función de verosimilitud Poisson04 - Distribución de Dirichlet05 - Propiedades frecuentistas de inferencias bayesianas"
+  },
+  {
+    "objectID": "recursos/codigo/05_cobertura_ic.html",
+    "href": "recursos/codigo/05_cobertura_ic.html",
+    "title": "05 - Propiedades frecuentistas de inferencias bayesianas",
+    "section": "",
+    "text": "El siguiente programa sirve para responder al ejercicio Propiedades frecuentistas de inferencias bayesianas de la Práctica 2.\n\nlibrary(ggplot2)\n\nset.seed(1234)\n\n# Definir cantidad de repeticiones\nreps_n <- 10000\n\n# Definir valores de 'n'\nn_vector <- c(1, 5, 10, 25)\n\n# Definir valores de 'theta'\ntheta_vector <- seq(0.05, 0.5, by = 0.05)\n\n# Definir hiperparámetros del prior\na_prior <- 0.5\nb_prior <- 0.5\n\n# Crear matriz para almacenar las coberturas empíricas\ncoberturas <- matrix(\n    nrow = length(n_vector),\n    ncol = length(theta_vector)\n)\n\nfor (i in seq_along(n_vector)) {\n    for (j in seq_along(theta_vector)) {\n        n <- n_vector[i]\n        theta <- theta_vector[j]\n        y_rvs <- rbinom(reps_n, n, theta)\n        a_posterior <- a_prior + y_rvs\n        b_posterior <- b_prior + (n - y_rvs)\n        ic_lower <- qbeta(0.025, a_posterior, b_posterior)\n        ic_upper <- qbeta(0.975, a_posterior, b_posterior)\n        cobertura <- mean(theta > ic_lower & theta < ic_upper)\n        cat(\"n=\", n, \"theta=\", theta, \"cobertura=\", cobertura, \"\\n\")\n        coberturas[i, j] <- cobertura\n    }\n}\n\n# Crear combinaciones entre los valores de 'n' y 'theta'\ndatos <- as.data.frame(expand.grid(n_vector, theta_vector))\n\n# Asignar nombres de columnas mas claros\ncolnames(datos) <- c(\"n\", \"theta\")\n\n# Transformar matriz en vector y guardar como columna del data frame\ndatos$cobertura <- as.vector(coberturas)\n\n# Graficar con ggplot2\nggplot(datos, aes(x = theta, y = cobertura)) +\n    geom_line() +\n    geom_point() +\n    geom_hline(yintercept = 0.95, linetype = \"dashed\") +\n    facet_wrap(~ as.factor(n))"
   },
   {
     "objectID": "recursos/codigo/04_dirichlet.html",
