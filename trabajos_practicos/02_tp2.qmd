@@ -20,6 +20,9 @@ pdf_file <- paste0(
     "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
     paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
 )
+library(patchwork)
+library(ggplot2)
+library(dplyr)
 ```
 
 ::: {.content-visible when-format="html"}
@@ -28,16 +31,16 @@ pdf_file <- paste0(
 
 # Metropolis-Hastings en 1D
 
-El algoritmo de Metropolis-Hastings permite obtener muestras de una distribución de 
+El algoritmo de Metropolis-Hastings (MH) permite obtener muestras de una distribución de 
 probabilidad $f^*(\theta)$, incluso aunque esta sea impropia (es decir, incluso aunque sea
 desconocida la constante de normalización que hace que la integral en el soporte de la 
 función sea igual a uno). Basta con que se pueda evaluar $f^*(\theta)$ en cualquier valor
 de $\theta$.
 
-1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
+1.  Escriba una función que implemente el algoritmo de MH para tomar 
 muestras de una función de probabilidad unidimensional dada. Separe en funciones cada uno 
 de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir 
-diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta 
+diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta 
 de una determinada concentración.
 
 2.  Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por
@@ -52,25 +55,24 @@ de una determinada concentración.
 
     Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de 
     transición: tres normales de varianzas diferentes y tres betas de concentración 
-    diferente. Compare utilizando histogramas y funciones de autocorrelación. 
-    Elegir como punto inicial...**To Do**
+    diferente. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación. 
+    Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.
 
 3.  Utilizando cada una de las seis cadenas anteriores, compute la media de la 
     distribución, los percentiles 5 y 95, y la esperanza de $\sqrt{X}$ sabiendo que $X$ 
     se distribuye según $g^*(x)$
 
-4.  Estimar el MCSE de los valores de $\mathbb{E}(X)$ para cada una de las seis cadenas 
-    anteriores.
+4.  Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (ESS). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
 
-5.  Calcular el estadístico de Gelman-Rubin
+5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin $\hat{R}$
 
     <!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
 
 6.  Elija la mejor distribución de probabilidad para transiciones que le permita tomar 
-    muestras de la función **To Do**
+    muestras de la función de densidad:
 
     $$
-    h^*(x) = 
+    h^*(x) = e^{-\frac{4}{10} (x - \frac{4}{10})^2 - \frac{2}{25}x^4}
     $$
 
 7.  Considere un experimento binomial a partir del cual se quiere determinar la 
@@ -163,8 +165,48 @@ casos:
 * $\sigma_1 = \sigma_2$ y $\rho > 0$
 * $\sigma_1 = \sigma_2$ y $\rho < 0$
 
+```{r plot-matrix-of-gaussians}
+    #| warning: false
+    #| cache: true
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 12
+    #| fig.align: center
+    data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
+    Mu <- replicate(6, c(0, 0), simplify = FALSE)
+    Sigma <- list(
+        matrix(c(1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.2, 0.2, 1), nrow = 2),
+        matrix(c(1, 0.5, 0.5, 1), nrow = 2),
+        matrix(c(0.1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.9, 0.9, 1), nrow = 2),
+        matrix(c(0.01, 0, 0, 1), nrow = 2)
+    )
 
-**TO DO:** Hacer gráficos
+    index <- 1
+    plot_list <- purrr::map2(Mu, Sigma, function(x, y) {
+        title_str <- paste0("$\\Sigma_", index, "$")
+        plt <- data |>
+            mutate(f = mvtnorm::dmvnorm(data, x, y)) |>
+            ggplot() +
+            geom_raster(aes(x = x1, y = x2, fill = f)) +
+            stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
+            viridis::scale_fill_viridis() +
+            labs(title = latex2exp::TeX(title_str)) + 
+            theme(
+                legend.position = "none", 
+                plot.title = element_text(hjust = 0.5, size = 18)
+            )
+        index <<- index + 1
+        return(plt)
+    })
+
+    plt <- Reduce(`+`, plot_list) + 
+    plot_layout(ncol = 2)
+    plt
+    ```
+
+**TO DO:** Revisar gráficos
 
 2.  Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas 
     por las cadenas al obtener muestras de $f(x)$.
