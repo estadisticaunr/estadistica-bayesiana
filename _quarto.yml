@@ -55,6 +55,8 @@ website:
           file: teoria/u1_teoria_02.qmd
         - text: U2 - Distribuciones Conjugadas
           file: teoria/u2_teoria_03.qmd
+        - text: U2 - Teoría de la Decisión
+          file: teoria/u2_teoria_04.qmd
     - title: Práctica
       style: docked
       search: false

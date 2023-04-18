@@ -1,0 +1,400 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    transition: fade
+    slide-number: true
+    fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
+---
+
+# Teoría de la Decisión
+
+```{r setup}
+#| echo: false
+#| include: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+
+theme_set(theme_bw() +
+          theme(legend.position = "none",
+                panel.grid = element_blank(),
+                #strip.background = element_rect(fill="#ade658"),
+                text = element_text(size=26)))
+```
+
+## {.small}
+
+>  Un meteorólogo estima, con un 95% de confianza, que la probabilidad de que el huracán *no* llegue a la ciudad está entre 99% y 100%. Muy feliz con su precisión y su modelo, aconseja que la evacuación de la ciudad no es necesaria. Desafortunadamente, el huracán llega a la ciudad produciendo una grave inundación.
+
+_"I would rather be vaguely right than very wrong."_
+
+## {.small}
+
+> Con el clima, las personas tienden a notar un error más que otro. Cuando llueve sin estar anunciado, se tiende a insultar al servicio meteorológico mientras que la ausencia de lluvia a pesar del pronóstico se toma con buena cara. 
+
+> El Weather Channel exagera ligeramente la probabilidad de lluvia cuando es poco probable que ocurra: dicen que es de 20% cuando en realidad es de 5% o 10%
+
+## {.small}
+
+En la estadística bayesiana, la distribución _a posteriori_ es la base
+de todas inferencia: combina el conocimiento _a priori_ con la
+información provista por los datos. Contiene todo lo que se
+sabe y no se sabe sobre un parámetro desconocido.
+
+La respuesta a los problemas es toda la distribución _a posteriori_
+de los parámetros (y de otras cantidades de interés).
+
+## {.smaller}
+
+No obstante, puede ser de utilidad (o incluso necesario) tomar decisiones concretas o resumir la distribución _a posteriori_.
+
+$a$ es la acción que tomamos (intervenir o no intervenir quirúrgicamente a una persona) o la respuesta que damos (ganancia de una campaña de marketing). 
+
+Puede ser una estimación puntual $\hat{\theta}$: dada una inferencia sobre la ganancia de una campaña de marketing, es necesario informar un valor puntual (quizás con un intervalo)
+
+##
+
+Tratamos a los parámetros sobre los que realizamos inferencias como variables aleatorias. Una muestra de la distribución _a posteriori_ es una posible realización del verdadero valor del parámetro. 
+
+Al dar una respuesta (o resumir la información _a posteriori_), podemos incurrir en un error (grande o chico) según se den los eventos posibles.
+
+¿Qué es un error? ¿Cómo definimos si el error es grande o chico? ¿Cómo definimos si el error es relevante o no?
+
+## Funciones de pérdida
+
+$$L(\theta,\hat{\theta}) = f(\theta,\hat{\theta})$$
+es una **función de pérdida**, qué tanto pierdo por usar $\hat{\theta}$ para estimar $\theta$.
+
+## {.smaller}
+
+Por ejemplo:
+
+$$L_2 = (\theta - \hat{\theta})^2$$
+
+$$L_1 = |\theta - \hat{\theta}|$$
+
+$$L_{0/1} = 
+\begin{cases}
+0 \text{ si } \hat{\theta} = \theta  \\
+1 \text{ si } \hat{\theta} \neq \theta
+\end{cases}$$
+
+$$L( \theta, \hat{\theta} ) = \begin{cases} ( \theta -  \hat{\theta} )^2 & \hat{\theta} \lt \theta \\\\ c( \theta -  \hat{\theta} )^2 & \hat{\theta} \ge \theta, \;\; 0\lt c \lt 1 \end{cases}$$
+
+##
+
+Buscamos elegir $\hat{\theta}$ de manera tal que minimice $L$. El problema es que no conocemos $\theta$ y por lo tanto no podemos calcular $L(\theta,\hat{\theta})$.
+
+¿Sabemos algo sobre $\theta$ que nos pueda ayudar? Conocemos su distribución _a posteriori_
+
+Podemos promediar $L$ para los valores posibles de $\theta$ (ponderando según la distribución _a posteriori_)
+
+##
+
+El riesgo _a posteriori_ (_posterior risk_ o _posterior expected loss_) es la
+pérdida esperada ponderada por los valores de $\theta$ (y su distribución
+_a posteriori_).
+
+$$R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int L(\theta,\hat\theta) p(\theta\mid y) d\theta$$
+
+Es una función de los posibles valores que puede tomar $\hat\theta$.
+
+Podemos obtener el $\hat\theta$ que minimice $R(\hat\theta)$. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir $p(\theta\mid y)$:
+$$\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right]$$
+
+##
+
+Simulemos...
+
+Supongamos que $\theta\mid y \sim \mathrm{Beta}(2,9)$
+
+-   $R$ es una función de $\hat\theta$ (los distintos valores que podemos usar para resumir $p(\theta\mid y)$)
+-   Para distintos valores de $\hat\theta$ voy a tomar muestras de $p(\theta\mid y)$ y calcular la pérdida $L$
+-   Para cada valor de $\hat\theta$ voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad _a posteriori_ de $\theta$)
+
+##
+
+```{r posterior_risk}
+#| echo: true
+#| eval: true
+
+L_2 <- function(theta,theta_hat) (theta-theta_hat)^2
+
+loss <- data.frame(theta_hat = double(),
+                   theta = double(),
+                   L = double())
+
+for(theta_hat in seq(0,1,0.008)){
+  theta <- rbeta(2000, shape1 = 2, shape2 = 9)
+  L <- L_2(theta,theta_hat)
+  loss <- bind_rows(loss,data.frame(theta_hat,theta,L))
+}
+
+expected.loss <- loss |>
+  group_by(theta_hat) |>
+  summarise(loss.mean = mean(L))
+```
+
+##
+
+```{r posterior_risk_plots}
+#| warning: false
+#| echo: false
+#| fig-width: 18
+#| fig-height: 10
+#| fig-align: center
+
+L_1 <- function(theta,a) abs(theta-a)
+L_K <- function(theta,a,K) ifelse(abs(theta-a)<K,0,1)
+
+a <- 2
+b <- 9
+mean <- a/(a+b)
+median <- (a-1/3)/(a+b-2/3)
+mode <- (a-1)/(a+b-2)
+
+p1 <- ggplot(expected.loss) +
+  geom_line(aes(x=theta_hat,y=loss.mean),size=1) +
+  ylab("R") +
+  xlab("") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  geom_vline(xintercept=mean,color = "orange",size=0.8) +
+  geom_vline(xintercept=median,color = "blue",size=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",size=0.8)
+
+loss <- tibble(theta_hat=double(),
+               theta=double(),
+               L=double())
+
+for(theta_hat in seq(0,1,0.02)){
+  theta <- rbeta(2000, shape1 = 2, shape2 = 9)
+  L <- L_1(theta,theta_hat)
+  loss <- bind_rows(loss,
+                    tibble(theta_hat,theta,L))
+}
+
+expected.loss <- loss %>%
+  group_by(theta_hat) %>%
+  summarise(loss.mean = mean(L))
+
+p2 <- ggplot(expected.loss) +
+  geom_line(aes(x=theta_hat,y=loss.mean),size=1) +
+  ylab("R") +
+  xlab("") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  geom_vline(xintercept=mean,color = "orange",size=0.8) +
+  geom_vline(xintercept=median,color = "blue",size=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",size=0.8)
+
+loss <- tibble(theta_hat=double(),
+               theta=double(),
+               L=double())
+
+for(theta_hat in seq(0,1,0.005)){
+  theta <- rbeta(6000, shape1 = 2, shape2 = 9)
+  L <- L_K(theta,theta_hat,0.05)
+  loss <- bind_rows(loss,
+                    tibble(theta_hat,theta,L))
+}
+
+expected.loss <- loss %>%
+  group_by(theta_hat) %>%
+  summarise(loss.mean = mean(L))
+
+p3 <- ggplot(expected.loss) +
+  geom_line(aes(x=theta_hat,y=loss.mean),size=1) +
+  xlab(expression(hat(theta))) +
+  ylab("R") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank()) +
+  geom_vline(xintercept=mean,color = "orange",size=0.8) +
+  geom_vline(xintercept=median,color = "blue",size=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",size=0.8)
+
+p <- tibble(x=seq(0,1,0.008),y=dbeta(x,2,9)) %>%
+  ggplot() + 
+  geom_line(aes(x=x,y=y),size=1,col="#FF729F") +
+  geom_ribbon(aes(x=x,ymin=0,ymax=y),alpha=0.6,fill="#FF729F") +
+  ylab(expression("p("*theta*"|y)")) +
+  xlab(expression(theta)) +
+  geom_vline(xintercept=mean,color = "orange",size=0.8) +
+  geom_vline(xintercept=median,color = "blue",size=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",size=0.8) +
+  theme(axis.text.y = element_blank())
+
+p/p1/p2/p3
+```
+
+##
+
+Si deseamos resumir la distribución _a posteriori_ con un único valor (¡perdiendo información!), puede usarse:
+    
+
+-   La <span style="color:orange;">**media**</span>: minimiza la pérdida cuadrática esperada _a posteriori_
+-   La <span style="color:blue;">**mediana**</span>: minimiza la pérdida absoluta esperada _a posteriori_
+-   La <span style="color:green;">**moda**</span> (también llamado MAP por _maximum a posteriori_ o estimador generalizado de máxima verosimilitud): minimiza la pérdida $0/1$ esperada _a posteriori_
+
+## 
+
+Una prueba más formal para el caso de la **media**...
+
+Sea la pérdida cuadrática $L(\theta,\hat\theta)=(\theta-\hat\theta)^2$, el riesgo (_posterior expected loss_) es:
+
+$$
+\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \mathbb{E}_{\theta\mid y}[\theta^2] - 2 \hat{\theta}\mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
+$$
+
+derivando respecto a $\hat{\theta}$ e igualando a cero se obtiene que $\underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right] = \mathbb{E}_{\theta\mid y}[\theta] = \mathbb{E}[p(\theta\mid y)]$ 
+
+## {.smaller}
+
+Una prueba más formal para el caso de la **mediana**...
+
+Sea la pérdida absoluta $L(\theta,\hat\theta)=|\theta-\hat\theta|$, el riesgo (_posterior expected loss_) es:
+
+$$
+\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int_{-\infty}^\infty |\theta-\hat\theta| p(\theta\mid y)d\theta
+$$
+
+$$
+\int_{-\infty}^\hat{\theta} (\hat\theta-\theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\hat{\infty} (\theta-\hat\theta) p(\theta\mid y)d\theta
+$$
+
+Para derivar, se utiliza la regla integral de Leibniz:
+
+$$\frac{d}{d\hat\theta}\int_{-\infty}^{\hat\theta} g(\hat\theta,\theta)d\theta = g(\hat\theta,\hat\theta) + \int_{-\infty}^\hat\theta \frac{\partial}{\partial\hat\theta}g(\hat\theta,\theta)d\theta$$
+
+Se puede probar que $\int_{-\infty}^\hat\theta p(\theta\mid y)d\theta = \frac{1}{2}$, por lo que el $\hat\theta$ que minimiza la expresión es la mediana.
+
+## Intervalos de Credibilidad {.smaller}
+
+También llamados: intervalos de probabilidad, intervalo de confianza
+bayesiano, región de credibilidad. Es una región del dominio
+del parámetro que tiene alta probabilidad de contenerlo.
+Se utiliza para resumir el posterior.
+
+Un intervalo de credibilidad es una región $C$ tal que la probabilidad de que contenga al parámetro sea al menos $1 - \alpha$:
+
+$$p(\theta \in C \mid y) = \int_C p(\theta\mid y) d\theta = 1-\alpha$$
+en el caso discreto es ($\geq 1-\alpha$)
+
+Decimos: _la probabilidad de que $\theta$ esté contenido en $C$, dados los datos (y el modelo) es de  $1-\alpha$_
+
+##
+
+```{r credibleintervals}
+#| warning: false
+#| echo: false
+#| fig-width: 18
+#| fig-height: 9
+#| fig-align: center
+
+x <- seq(0,1,length.out = 2000)
+y <- dbeta(x,2,9)
+dv <- tibble(x,y)
+
+p.l <- qbeta(0.055,2,9)
+p.h <- qbeta(1-0.055,2,9)
+
+hpdi.lower <- 0.0138108
+hpdi.higher <- 0.3400824
+
+p1 <- ggplot() +
+  geom_ribbon(data=dv%>%filter(x>p.l & x<p.h), aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=0.7) +
+  geom_line(data=dv,aes(x=x,y=y),size=1,col="#FF729F") +
+  geom_segment(aes(x=p.l,xend=p.h,y=0,yend=0),size=1.2) +
+  ylab(expression("p("*theta*"|y)")) +
+  xlab(expression(theta))
+  
+p2 <- ggplot() +
+  geom_ribbon(data=dv%>%filter(x>hpdi.lower & x<hpdi.higher), aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=0.7) +
+  geom_line(data=dv,aes(x=x,y=y),size=1,col="#FF729F") +
+  geom_hline(yintercept = 1.100891,linetype="dashed") +
+  geom_segment(aes(x=hpdi.lower,xend=hpdi.higher,y=0,yend=0),size=1.2) +
+  ylab(expression("p("*theta*"|y)")) +
+  xlab(expression(theta))
+
+p1+p2
+```
+
+##
+
+En el análisis de datos bayesiano, es habitual resumir los hallazgos reportando:
+
+-   Un gráfico de la distribución _a posteriori_
+-   Algún medida de centralidad de la distribución _a posteriori_
+-   Percentiles relevantes de la distribución _a posteriori_
+-   Probabilidades _a posteriori_ de interés $p(\theta>c\mid y)$ para algún $c$ interesante, por ejemplo $c=0$
+
+## Simulaciones
+
+Para interpretar los resultados de la inferencia bayesiana podemos simplemente realizar simulaciones a partir del _posterior_ y estimar probabilidades contando. 
+
+-   los parámetros
+-   funciones de los parámetros
+-   la variable respuesta (predicciones)
+    
+##
+
+Un nuevo ejemplo del modelo beta--Binomial: partimos de $\mathrm{Beta}(2,2)$, observamos $4$ caras en $6$ tiradas y nuestra creencia _a posteriori_ pasa a ser $Beta(6,4)$.
+    
+##
+
+### Parámetros
+
+¿Cuál es la probabilidad _a posteriori_ de que $\pi$ sea mayor a $0.50$? ¿y de que sea mayor a \num{0.80}?
+
+
+```{r sim_parametros}
+#| echo: true
+#| eval: false
+
+muestras_theta <- rbeta(2000,6,4)
+mean(muestras_theta > 0.5)
+mean(muestras_theta > 0.8)
+```
+
+##
+
+### Funciones de los parámetros
+
+¿Cuál es la distribución _a posteriori_ de la chance de obtener cara $\frac{\theta}{1-\theta}$? 
+
+```{r sim_funciones}
+#| echo: true
+#| eval: false
+
+muestras_theta <- rbeta(2000,6,4)
+muestras_odds <- muestras_theta/(1-muestras_theta)
+```
+
+##
+
+### Predicciones
+
+Si se arroja la moneda 11 veces más ¿cuál es la distribución de probabilidad de la cantidad de caras? (es la distribución predictiva _a posteriori_)
+
+```{r sim_predicciones}
+#| echo: true
+#| eval: false
+
+muestras_theta <- rbeta(2000,6,4)
+y_new <- rbinom(2000,11,muestras_theta)
+```
+
+
+##  {background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white"}
+
+Toda cantidad que dependa de los parámetros tiene una distribución _a posteriori_: una incertidumbre asociada.
+
+
+
