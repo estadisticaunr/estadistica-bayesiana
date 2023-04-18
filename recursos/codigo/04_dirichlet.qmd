@@ -1,0 +1,13 @@
+---
+title: "04 - Distribución de Dirichlet"
+---
+
+Este programa muestra como utilizar obtener muestras de la distribución de Dirichlet
+en 3 dimensiones utilizando `rdirichlet` del paquete `{gtools}` y como graficar estos
+puntos en el simplex mediante el paquete `{ggsimplex}`.
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/04_dirichlet.R
+```

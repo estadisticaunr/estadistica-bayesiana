@@ -145,10 +145,9 @@ $$
 \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
 $$
 
-* $X \in [0, 1]$ si $\alpha \ge 1$ y $\beta \ge 1$
-* $X \in (0, 1)$ si $\alpha < 1$ y $\beta < 1$
-* $\displaystyle \mathbb{E}(X) = \frac{\alpha}{\alpha + \beta}$
-* $\displaystyle \mathbb{V}(X) = \frac{\alpha\beta}{(\alpha + \beta) ^ 2 (\alpha + \beta + 1)}$
+* $X \in (0, 1)$
+* $\displaystyle \mathbb{E}(X) = \frac{a}{a + b}$
+* $\displaystyle \mathbb{V}(X) = \frac{ab}{(a + b) ^ 2 (a + b + 1)}$
 
 ## Binomial
 
@@ -197,7 +196,7 @@ X \sim \text{BinomialNegativa}(r, p)
 $$
 
 $$
-p(x \mid k, p)= \binom{x     + r - 1}{x}(1 - p)^x p^r
+p(x \mid k, p)= \binom{x + r - 1}{x}(1 - p)^x p^r
 $$
 
 * $X \in \{0, 1, 2, \cdots \}$
