@@ -10,7 +10,7 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.475">
 
-  <title>Estadística Bayesiana – presentacion_04</title>
+  <title>Estadística Bayesiana – presentacion_05</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -389,261 +389,268 @@
 
 
 <section>
-<section id="teoría-de-la-decisión" class="title-slide slide level1 center">
-<h1>Teoría de la Decisión</h1>
+<section id="métodos-computacionales" class="title-slide slide level1 center">
+<h1>Métodos Computacionales</h1>
 
 </section>
-<section id="section" class="slide level2 small">
-<h2></h2>
-<blockquote>
-<p>Un meteorólogo estima, con un 95% de confianza, que la probabilidad de que el huracán <em>no</em> llegue a la ciudad está entre 99% y 100%. Muy feliz con su precisión y su modelo, aconseja que la evacuación de la ciudad no es necesaria. Desafortunadamente, el huracán llega a la ciudad produciendo una grave inundación.</p>
-</blockquote>
-<div class="fragment">
-<p><em>“I would rather be vaguely right than very wrong.”</em></p>
-</div>
+<section id="el-problema" class="slide level2">
+<h2>El Problema</h2>
+<p>Típicamente interesa resolver los siguientes problemas:</p>
+<ul>
+<li class="fragment">Calcular integrales de la forma <span class="math inline">\(\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x\)</span> (<em>law of the unconscious statistician</em>)</li>
+<li class="fragment">Generar <span class="math inline">\(S\)</span> muestras independientes <span class="math inline">\(x^{(s)}\)</span> de una distribución de probabilidad <span class="math inline">\(p(x)\)</span></li>
+</ul>
+<p>En la estadística bayesiana, <span class="math inline">\(x\)</span> es <span class="math inline">\(\theta\)</span>, el parámetro desconocido de alguna distribución de probabilidad y <span class="math inline">\(p(x)\)</span> es el <em>posterior</em></p>
 </section>
-<section id="section-1" class="slide level2 small">
+<section id="métodos-de-montecarlo" class="slide level2">
+<h2>Métodos de Montecarlo</h2>
+
+<img data-src="imgs/montecarlo2.jpg" class="r-stretch quarto-figure-center"></section>
+<section id="section" class="slide level2 smaller">
 <h2></h2>
-<blockquote>
-<p>Con el clima, las personas tienden a notar un error más que otro. Cuando llueve sin estar anunciado, se tiende a insultar al servicio meteorológico mientras que la ausencia de lluvia a pesar del pronóstico se toma con buena cara.</p>
-</blockquote>
-<div class="fragment">
-<blockquote>
-<p>El Weather Channel exagera ligeramente la probabilidad de lluvia cuando es poco probable que ocurra: dicen que es de 20% cuando en realidad es de 5% o 10%</p>
-</blockquote>
-</div>
+<p>Para el primer problema, sabemos que si <span class="math inline">\(X_i \sim p(x)\)</span>, bajo ciertas condiciones podemos aproximar</p>
+<p><span class="math display">\[\mathbb{E}[X] \approx \frac{1}{N} \sum_{i=1}^N x_i\]</span></p>
+<p>Si <span class="math inline">\(X\)</span> es una variable aleatoria, entonces para funciones continuas <span class="math inline">\(\phi\)</span> tenemos que <span class="math inline">\(\phi(X)\)</span> también es una variable aleatoria y por lo tanto</p>
+<p><span class="math display">\[\mathbb{E}[\phi(X)] = \int\phi(x)p(x)dx \approx \frac{1}{N} \sum_{i=1}^N \phi(x_i)\]</span></p>
+<p>Es decir, si los <span class="math inline">\(x_i\)</span> son muestras de <span class="math inline">\(p(x)\)</span>, entonces la integral <span class="math inline">\(\int\phi(x)p(x)dx\)</span> puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N \phi(x_i)\)</span>.</p>
 </section>
-<section id="section-2" class="slide level2 small">
+<section id="section-1" class="slide level2 smaller">
 <h2></h2>
-<p>En la estadística bayesiana, la distribución <em>a posteriori</em> es la base de todas inferencia: combina el conocimiento <em>a priori</em> con la información provista por los datos. Contiene todo lo que se sabe y no se sabe sobre un parámetro desconocido.</p>
-<div class="fragment">
-<p>La respuesta a los problemas es toda la distribución <em>a posteriori</em> de los parámetros (y de otras cantidades de interés).</p>
-</div>
+<p>Esto ya lo hemos hecho</p>
+<ul>
+<li class="fragment">La distribución predictiva <em>a posteriori</em> es <span class="math inline">\(\int p(y\mid \theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N p(y\mid \theta_i)\)</span></li>
+<li class="fragment">El riesgo bayesiano es <span class="math inline">\(\int L(\theta,\hat\theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)\)</span></li>
+<li class="fragment">Si consideramos la integral <span class="math inline">\(\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta\)</span> es la probabilidad de que <span class="math inline">\(\theta\)</span> esté en <span class="math inline">\(A\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}\)</span></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2 smaller">
+<h2></h2>
+<p>Teniendo muestras de <span class="math inline">\(p(x)\)</span> es fácil estimar las integrales <span class="math inline">\(\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x\)</span> por lo que nos centraremos en el problema de cómo obtener muestras de <span class="math inline">\(p(x)\)</span>.</p>
+<p>Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función <code>rbinom</code>, <code>rbeta</code>, <code>rnorm</code>, <code>rpoiss</code>, etc.</p>
 </section>
 <section id="section-3" class="slide level2 smaller">
 <h2></h2>
-<p>No obstante, puede ser de utilidad (o incluso necesario) tomar decisiones concretas o resumir la distribución <em>a posteriori</em>.</p>
-<div class="fragment">
-<p><span class="math inline">\(a\)</span> es la acción que tomamos (intervenir o no intervenir quirúrgicamente a una persona) o la respuesta que damos (ganancia de una campaña de marketing).</p>
-</div>
-<div class="fragment">
-<p>Puede ser una estimación puntual <span class="math inline">\(\hat{\theta}\)</span>: dada una inferencia sobre la ganancia de una campaña de marketing, es necesario informar un valor puntual (quizás con un intervalo)</p>
-</div>
+<p>Tomar muestras de una distribución de probabilidad <span class="math inline">\(p(x)\)</span> implica obtener valores que provienen, con mayor frecuencia, de regiones donde <span class="math inline">\(p(x)\)</span> es grande. ¿Por qué es difícil tomar muestras de una distribución de probabilidad?</p>
+<p>En estadística bayesiana tenemos <span class="math inline">\(p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)\)</span> por lo que en general llegamos a <span class="math inline">\(p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)\)</span></p>
+<ul>
+<li class="fragment">La determinación de <span class="math inline">\(Z\)</span> implica resolver una integral (potencialmente multivariada) que puede no tener solución analítica (<em>intractability of the integral</em>)</li>
+<li class="fragment">Aún conociendo <span class="math inline">\(Z\)</span>, no hay una manera determinada de obtener muestras de <span class="math inline">\(p(\theta\mid y)\)</span></li>
+<li class="fragment">Tomar muestras de distribuciones discretas es <em>más fácil</em> que hacerlo de distribuciones continuas</li>
+</ul>
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
-<p>Tratamos a los parámetros sobre los que realizamos inferencias como variables aleatorias. Una muestra de la distribución <em>a posteriori</em> es una posible realización del verdadero valor del parámetro.</p>
-<div class="fragment">
-<p>Al dar una respuesta (o resumir la información <em>a posteriori</em>), podemos incurrir en un error (grande o chico) según se den los eventos posibles.</p>
-</div>
-<div class="fragment">
-<p>¿Qué es un error? ¿Cómo definimos si el error es grande o chico? ¿Cómo definimos si el error es relevante o no?</p>
-</div>
-</section>
-<section id="funciones-de-pérdida" class="slide level2">
-<h2>Funciones de pérdida</h2>
-<p><span class="math display">\[L(\theta,\hat{\theta}) = f(\theta,\hat{\theta})\]</span> es una <strong>función de pérdida</strong>, qué tanto pierdo por usar <span class="math inline">\(\hat{\theta}\)</span> para estimar <span class="math inline">\(\theta\)</span>.</p>
-</section>
-<section id="section-5" class="slide level2 smaller">
+<p>¿Cómo tomamos muestras de una distribución discreta?</p>
+
+<img data-src="presentacion_05_files/figure-revealjs/discretesampling-1.png" width="1728" class="r-stretch quarto-figure-center"></section>
+<section id="grid-approximation" class="slide level2 smaller">
+<h2>Grid approximation</h2>
+<p>Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos <span class="math inline">\(Z\)</span>. Conocemos <span class="math inline">\(p^*(x) = \frac{1}{Z} p(x)\)</span> (izquierda) y pasamos a una discreta <span class="math inline">\(\tilde{p}^*(x) = \frac{1}{\tilde{Z}} \tilde{p}(x)\)</span> (centro).</p>
+<p>Evaluando <span class="math inline">\(\tilde{p}\)</span> en todos los posibles <span class="math inline">\(x_i\)</span> de la grilla podemos calcular <span class="math inline">\(Z=\sum_{i} \tilde{p}^*(x_i)\)</span>. Luego tomamos muestras de <span class="math inline">\(\tilde{p}(x)\)</span> (derecha).</p>
+
+<img data-src="presentacion_05_files/figure-revealjs/gridapproximation-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
+<section id="section-5" class="slide level2">
 <h2></h2>
-<p>Por ejemplo:</p>
-<p><span class="math display">\[L_2 = (\theta - \hat{\theta})^2\]</span></p>
-<p><span class="math display">\[L_1 = |\theta - \hat{\theta}|\]</span></p>
-<p><span class="math display">\[L_{0/1} =
-\begin{cases}
-0 \text{ si } \hat{\theta} = \theta  \\
-1 \text{ si } \hat{\theta} \neq \theta
-\end{cases}\]</span></p>
-<p><span class="math display">\[L( \theta, \hat{\theta} ) = \begin{cases} ( \theta -  \hat{\theta} )^2 &amp; \hat{\theta} \lt \theta \\\\ c( \theta -  \hat{\theta} )^2 &amp; \hat{\theta} \ge \theta, \;\; 0\lt c \lt 1 \end{cases}\]</span></p>
+<p>En código:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>prob <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>(<span class="fu">exp</span>(<span class="fl">0.4</span><span class="sc">*</span>(x<span class="fl">-0.4</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">-</span> <span class="fl">0.08</span><span class="sc">*</span>x<span class="sc">^</span><span class="dv">4</span>)) <span class="co"># sabemos evaluar p</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">4.5</span>, <span class="fl">4.5</span>, <span class="fl">0.5</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>p_ <span class="ot">&lt;-</span> <span class="fu">prob</span>(x) <span class="co"># ~p*</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>Z <span class="ot">&lt;-</span> <span class="fu">sum</span>(p_)</span>
+<span id="cb1-5"><a href="#cb1-5"></a>p_rulito <span class="ot">&lt;-</span> p_<span class="sc">/</span>Z <span class="co"># ~p</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> p_rulito)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="section-6" class="slide level2">
 <h2></h2>
-<p>Buscamos elegir <span class="math inline">\(\hat{\theta}\)</span> de manera tal que minimice <span class="math inline">\(L\)</span>. El problema es que no conocemos <span class="math inline">\(\theta\)</span> y por lo tanto no podemos calcular <span class="math inline">\(L(\theta,\hat{\theta})\)</span>.</p>
-<div class="fragment">
-<p>¿Sabemos algo sobre <span class="math inline">\(\theta\)</span> que nos pueda ayudar? Conocemos su distribución <em>a posteriori</em></p>
-</div>
-<div class="fragment">
-<p>Podemos promediar <span class="math inline">\(L\)</span> para los valores posibles de <span class="math inline">\(\theta\)</span> (ponderando según la distribución <em>a posteriori</em>)</p>
-</div>
+<p>¿Cómo se aplica esto en estadística bayesiana?</p>
+<p>El <em>posterior</em> es <span class="math inline">\(\frac{1}{Z} p(\theta\mid y) p(\theta)\)</span>. Sabemos calcular el valor del <em>posterior</em> (sin normalizar) para cualquier valor de <span class="math inline">\(\theta\)</span>: haciendo el producto del <em>prior</em> por el <em>likelihood</em>.</p>
+<p>Podemos considerar una grilla de valores del parámetro (o los parámetros), computar el <em>posterior</em> sin normalizar para cada valor de la grilla, normalizarlo y tomar muestras de él.</p>
+<p>Escala muy mal con el número de parámetros…</p>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-7" class="slide level2 smaller">
 <h2></h2>
-<p>El riesgo <em>a posteriori</em> (<em>posterior risk</em> o <em>posterior expected loss</em>) es la pérdida esperada ponderada por los valores de <span class="math inline">\(\theta\)</span> (y su distribución <em>a posteriori</em>).</p>
-<div class="fragment">
-<p><span class="math display">\[R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int L(\theta,\hat\theta) p(\theta\mid y) d\theta\]</span></p>
+<h3 id="ejemplo">Ejemplo</h3>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>Queremos realizar inferencias sobre la media y la varianza de una normal. Para eso proponemos el siguiente modelo: <span class="math display">\[    
+\begin{align*}
+    y_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu,\sigma^2 &amp; \sim  \frac{1}{K} \frac{e^{-\sigma^2}}{\eta} e^{-\frac{(\mu - \xi)^2}{2\psi^2}}
+\end{align*}
+\]</span> (¿Cuáles son las constantes que ajustan el <em>prior</em>)</p>
 </div>
-<div class="fragment">
-<p>Es una función de los posibles valores que puede tomar <span class="math inline">\(\hat\theta\)</span>.</p>
+<div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="presentacion_05_files/figure-revealjs/rejection1-1.png" width="864"></p>
+</figure>
 </div>
-<div class="fragment">
-<p>Podemos obtener el <span class="math inline">\(\hat\theta\)</span> que minimice <span class="math inline">\(R(\hat\theta)\)</span>. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir <span class="math inline">\(p(\theta\mid y)\)</span>: <span class="math display">\[\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right]\]</span></p>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="section-8" class="slide level2">
 <h2></h2>
-<p>Simulemos…</p>
-<div class="fragment">
-<p>Supongamos que <span class="math inline">\(\theta\mid y \sim \mathrm{Beta}(2,9)\)</span></p>
-</div>
-<div class="fragment">
-<ul>
-<li class="fragment"><span class="math inline">\(R\)</span> es una función de <span class="math inline">\(\hat\theta\)</span> (los distintos valores que podemos usar para resumir <span class="math inline">\(p(\theta\mid y)\)</span>)</li>
-<li class="fragment">Para distintos valores de <span class="math inline">\(\hat\theta\)</span> voy a tomar muestras de <span class="math inline">\(p(\theta\mid y)\)</span> y calcular la pérdida <span class="math inline">\(L\)</span></li>
-<li class="fragment">Para cada valor de <span class="math inline">\(\hat\theta\)</span> voy a calcular la pérdida promedio (ya va a estar ponderada por la probabilidad <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>)</li>
-</ul>
-</div>
+<ol type="1">
+<li class="fragment">Deberíamos tomar valores de <span class="math inline">\(\mu\)</span> en el intervalo <span class="math inline">\((-4,4)\)</span> y valores de <span class="math inline">\(\sigma\)</span> en el intervalo <span class="math inline">\((0,3)\)</span> y construir una grilla de valores.</li>
+<li class="fragment">Para cada valor de la grilla podríamos calular el <em>posterior</em> sin normalizar haciendo el producto del <em>prior</em> por el <em>likelihood</em> (necesitamos la muestra).</li>
+</ol>
 </section>
+<section id="rejection-sampling" class="slide level2 smaller">
+<h2>Rejection sampling</h2>
+<p>Se basa en buscar una distribución de probabilidad <em>candidata</em> <span class="math inline">\(q(x)\)</span> tal que <span class="math inline">\(Cq(x)\geq p^*(x)\)</span>. Se toma una muestra de <span class="math inline">\(q(x)\)</span>. Luego se toma una muestra <span class="math inline">\(u\)</span> de <span class="math inline">\(\mathrm{Unif}(0,Cq(x))\)</span>. La muestra de <span class="math inline">\(q(x)\)</span> se retiene si <span class="math inline">\(u&lt;p^*(x)\)</span>.</p>
+
+<img data-src="presentacion_05_files/figure-revealjs/rejection2-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
 <section id="section-9" class="slide level2">
 <h2></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>L_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(theta,theta_hat) (theta<span class="sc">-</span>theta_hat)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>loss <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">theta_hat =</span> <span class="fu">double</span>(),</span>
-<span id="cb1-4"><a href="#cb1-4"></a>                   <span class="at">theta =</span> <span class="fu">double</span>(),</span>
-<span id="cb1-5"><a href="#cb1-5"></a>                   <span class="at">L =</span> <span class="fu">double</span>())</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="cf">for</span>(theta_hat <span class="cf">in</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="fl">0.008</span>)){</span>
-<span id="cb1-8"><a href="#cb1-8"></a>  theta <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>, <span class="at">shape1 =</span> <span class="dv">2</span>, <span class="at">shape2 =</span> <span class="dv">9</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  L <span class="ot">&lt;-</span> <span class="fu">L_2</span>(theta,theta_hat)</span>
-<span id="cb1-10"><a href="#cb1-10"></a>  loss <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(loss,<span class="fu">data.frame</span>(theta_hat,theta,L))</span>
-<span id="cb1-11"><a href="#cb1-11"></a>}</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a>expected.loss <span class="ot">&lt;-</span> loss <span class="sc">|&gt;</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">group_by</span>(theta_hat) <span class="sc">|&gt;</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">summarise</span>(<span class="at">loss.mean =</span> <span class="fu">mean</span>(L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+
+<img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-2-1.png" width="1536" class="r-stretch quarto-figure-center"><p>Necesitamos elegir con cuidado <span class="math inline">\(q(x)\)</span></p>
+</section>
+<section id="markov-chain-monte-carlo" class="slide level2 smaller">
+<h2>Markov chain Monte-Carlo</h2>
+<p>Queremos obtener muestras de <span class="math inline">\(p(x)\)</span>. Vamos a hacer un viaje por los distintos valores de <span class="math inline">\(x\)</span> tratando de pasar más tiempo (más iteraciones) en los puntos donde <span class="math inline">\(p(x)\)</span> es grande.</p>
+<p>Idea general:</p>
+<ol type="1">
+<li class="fragment">Visitar los distintos valores posibles de <span class="math inline">\(x\)</span></li>
+<li class="fragment">Generar una secuencia de iteraciones: <span class="math inline">\(\{x^{(1)},x^{(2)},\dots,x^{(S)}\}\)</span></li>
+<li class="fragment">En general, para obtener <span class="math inline">\(x^{(i+1)}\)</span> usamos <span class="math inline">\(x^{(i)}\)</span></li>
+</ol>
+<ul>
+<li class="fragment">En nuestro caso tenemos <span class="math inline">\(p(\theta) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)\)</span> (<em>unnormalized posterior</em>)</li>
+<li class="fragment">¿Qué necesitamos? Poder evaluar el <em>prior</em> y poder evaluar el <em>likelihood</em> para cualquier valor de <span class="math inline">\(\theta\)</span></li>
+</ul>
+</section>
+<section id="metropolis-hastings-mh" class="slide level2" style="font-size: 0.75em; text-align: left">
+<h2>Metropolis-Hastings (MH)</h2>
+<p>El algoritmo de Metropolis–Hastings (1953)</p>
+<ol type="1">
+<li class="fragment">Estamos la iteración <span class="math inline">\(i\)</span> estamos en el valor del parámetro <span class="math inline">\(\theta^{(i)}\)</span></li>
+<li class="fragment">En función del valor de parámetro actual <span class="math inline">\(\theta^{(i)}=\theta\)</span>, proponemos un nuevo valor <span class="math inline">\(\theta'\)</span> en función de <span class="math inline">\(q(\theta'\mid\theta)\)</span></li>
+<li class="fragment">Decidimos si vamos a la nueva ubicación <span class="math inline">\(\theta^{(i+1)} = \theta'\)</span> o si nos quedamos <span class="math inline">\(\theta^{(i+1)} = \theta\)</span>:
+<ul>
+<li class="fragment">Calcular la probabilidad de salto: <span class="math display">\[\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}\]</span></li>
+<li class="fragment">Pasar a <span class="math inline">\(\theta'\)</span> con probabilidad <span class="math inline">\(\alpha\)</span>: <span class="math display">\[\theta^{(i+1)} =
+\begin{cases}
+\theta' \text{ con probabilidad } \alpha \\
+\theta \text{ con probabilidad } (1-\alpha)
+\end{cases}\]</span></li>
+</ul></li>
+</ol>
 </section>
 <section id="section-10" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_04_files/figure-revealjs/posterior_risk_plots-1.png" width="1728" class="r-stretch quarto-figure-center"></section>
+<p><span class="math inline">\(q(\theta'\mid\theta)\)</span> se llama distribución de proposición o de salto propuesto. Todo lo que necesitamos saber es dónde estamos <span class="math inline">\(f(\theta)\)</span> y hacia donde queremos ir <span class="math inline">\(f(\theta')\)</span>.</p>
+<p>Puede probarse que para cualquier <span class="math inline">\(q(\theta'\mid\theta)\)</span>, cuando <span class="math inline">\(s\to \infty\)</span> la distribución de probabilidad de la secuencia <span class="math inline">\(\left\{\theta^{(s)} \right\}_{s=1}^S\)</span> tiende a <span class="math inline">\(p(\theta)\)</span>. No sabemos nada sobre la rapidez con la que lo hace.</p>
+<p>En infinitos pasos, cualquier cadena dará muestras de la distribución <span class="math inline">\(p(\theta)\)</span>, en la práctica hay que tener algunos cuidados.</p>
+</section>
 <section id="section-11" class="slide level2">
 <h2></h2>
-<p>Si deseamos resumir la distribución <em>a posteriori</em> con un único valor (¡perdiendo información!), puede usarse:</p>
+<div class="cell">
+
+</div>
+<div class="r-stack">
 <div class="fragment">
-<ul>
-<li class="fragment">La <span style="color:orange;"><strong>media</strong></span>: minimiza la pérdida cuadrática esperada <em>a posteriori</em></li>
-<li class="fragment">La <span style="color:blue;"><strong>mediana</strong></span>: minimiza la pérdida absoluta esperada <em>a posteriori</em></li>
-<li class="fragment">La <span style="color:green;"><strong>moda</strong></span> (también llamado MAP por <em>maximum a posteriori</em> o estimador generalizado de máxima verosimilitud): minimiza la pérdida <span class="math inline">\(0/1\)</span> esperada <em>a posteriori</em></li>
-</ul>
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-4-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-6-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output-display">
+<p><img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="section-12" class="slide level2">
 <h2></h2>
-<p>Una prueba más formal para el caso de la <strong>media</strong>…</p>
-<div class="fragment">
-<p>Sea la pérdida cuadrática <span class="math inline">\(L(\theta,\hat\theta)=(\theta-\hat\theta)^2\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \mathbb{E}_{\theta\mid y}[\theta^2] - 2 \hat{\theta}\mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
-\]</span></p>
-</div>
-<div class="fragment">
-<p>derivando respecto a <span class="math inline">\(\hat{\theta}\)</span> e igualando a cero se obtiene que <span class="math inline">\(\underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right] = \mathbb{E}_{\theta\mid y}[\theta] = \mathbb{E}[p(\theta\mid y)]\)</span></p>
-</div>
+<ol type="1">
+<li class="fragment">Necesitamos muestras de <span class="math inline">\(p(\theta)\)</span></li>
+<li class="fragment">Tomamos un punto inicial</li>
+<li class="fragment">Elegimos una distribución de saltos posibles <span class="math inline">\(q(\theta'\mid\theta)\)</span></li>
+<li class="fragment">Proponemos un salto</li>
+<li class="fragment">¿Saltamos?</li>
+</ol>
 </section>
 <section id="section-13" class="slide level2 smaller">
 <h2></h2>
-<p>Una prueba más formal para el caso de la <strong>mediana</strong>…</p>
-<div class="fragment">
-<p>Sea la pérdida absoluta <span class="math inline">\(L(\theta,\hat\theta)=|\theta-\hat\theta|\)</span>, el riesgo (<em>posterior expected loss</em>) es:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>theta <span class="ot">&lt;-</span> <span class="fu">double</span>()</span>
+<span id="cb2-2"><a href="#cb2-2"></a>theta[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>    </span>
+<span id="cb2-3"><a href="#cb2-3"></a>i <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>propuesta <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> theta[i], <span class="at">sd =</span> <span class="fl">0.8</span>)</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>f_actual <span class="ot">&lt;-</span> <span class="fu">fx</span>(theta[i])</span>
+<span id="cb2-8"><a href="#cb2-8"></a>f_propuesta <span class="ot">&lt;-</span> <span class="fu">fx</span>(propuesta)</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>alpha <span class="ot">&lt;-</span> <span class="fu">min</span>(<span class="fu">c</span>(<span class="dv">1</span>,f_propuesta<span class="sc">/</span>f_actual))</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>quehacemos <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"salto"</span>,<span class="st">"no salto"</span>), </span>
+<span id="cb2-13"><a href="#cb2-13"></a>                    <span class="at">size =</span> <span class="dv">1</span>, </span>
+<span id="cb2-14"><a href="#cb2-14"></a>                    <span class="at">prob =</span> <span class="fu">c</span>(alpha,<span class="dv">1</span><span class="sc">-</span>alpha))</span>
+<span id="cb2-15"><a href="#cb2-15"></a></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="cf">if</span>(quehacemos<span class="sc">==</span><span class="st">"salto"</span>) {</span>
+<span id="cb2-17"><a href="#cb2-17"></a>  theta[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> propuesta </span>
+<span id="cb2-18"><a href="#cb2-18"></a>} <span class="cf">else</span> {</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  theta[i<span class="sc">+</span><span class="dv">1</span>] <span class="ot">&lt;-</span> theta[i]</span>
+<span id="cb2-20"><a href="#cb2-20"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<p><span class="math display">\[
-\mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int_{-\infty}^\infty |\theta-\hat\theta| p(\theta\mid y)d\theta
-\]</span></p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[
-\int_{-\infty}^\hat{\theta} (\hat\theta-\theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\hat{\infty} (\theta-\hat\theta) p(\theta\mid y)d\theta
-\]</span></p>
-</div>
-<div class="fragment">
-<p>Para derivar, se utiliza la regla integral de Leibniz:</p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[\frac{d}{d\hat\theta}\int_{-\infty}^{\hat\theta} g(\hat\theta,\theta)d\theta = g(\hat\theta,\hat\theta) + \int_{-\infty}^\hat\theta \frac{\partial}{\partial\hat\theta}g(\hat\theta,\theta)d\theta\]</span></p>
-</div>
-<div class="fragment">
-<p>Se puede probar que <span class="math inline">\(\int_{-\infty}^\hat\theta p(\theta\mid y)d\theta = \frac{1}{2}\)</span>, por lo que el <span class="math inline">\(\hat\theta\)</span> que minimiza la expresión es la mediana.</p>
-</div>
-</section>
-<section id="intervalos-de-credibilidad" class="slide level2 smaller">
-<h2>Intervalos de Credibilidad</h2>
-<p>También llamados: intervalos de probabilidad, intervalo de confianza bayesiano, región de credibilidad. Es una región del dominio del parámetro que tiene alta probabilidad de contenerlo. Se utiliza para resumir el posterior.</p>
-<div class="fragment">
-<p>Un intervalo de credibilidad es una región <span class="math inline">\(C\)</span> tal que la probabilidad de que contenga al parámetro sea al menos <span class="math inline">\(1 - \alpha\)</span>:</p>
-</div>
-<div class="fragment">
-<p><span class="math display">\[p(\theta \in C \mid y) = \int_C p(\theta\mid y) d\theta = 1-\alpha\]</span> en el caso discreto es (<span class="math inline">\(\geq 1-\alpha\)</span>)</p>
-</div>
-<div class="fragment">
-<p>Decimos: <em>la probabilidad de que <span class="math inline">\(\theta\)</span> esté contenido en <span class="math inline">\(C\)</span>, dados los datos (y el modelo) es de <span class="math inline">\(1-\alpha\)</span></em></p>
-</div>
+<p>Debe repetirse el proceso en un <code>for</code></p>
 </section>
 <section id="section-14" class="slide level2">
 <h2></h2>
-
-<img data-src="presentacion_04_files/figure-revealjs/credibleintervals-1.png" width="1728" class="r-stretch quarto-figure-center"></section>
+<div class="r-stack">
+<div class="fragment fade-in-then-out" data-fragment-index="1">
+<p><img data-src="imgs/mcmc_1000_sigma08.png"> <span class="math display">\[\sigma = 0.8\]</span></p>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="2">
+<p><img data-src="imgs/mcmc_1000_sigma01.png"> <span class="math display">\[\sigma = 0.1\]</span></p>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="3">
+<p><img data-src="imgs/mcmc_1000_sigma06.png"> <span class="math display">\[\sigma = 0.6\]</span></p>
+</div>
+<div class="fragment fade-in-then-out" data-fragment-index="4">
+<p><img data-src="imgs/mcmc_1000_sigma48.png"> <span class="math display">\[\sigma = 4.8\]</span></p>
+</div>
+</div>
+</section>
 <section id="section-15" class="slide level2">
 <h2></h2>
-<p>En el análisis de datos bayesiano, es habitual resumir los hallazgos reportando:</p>
-<div class="fragment">
+<p>¿Qué esperamos de nuestra <em>cadena</em>?</p>
 <ul>
-<li class="fragment">Un gráfico de la distribución <em>a posteriori</em></li>
-<li class="fragment">Algún medida de centralidad de la distribución <em>a posteriori</em></li>
-<li class="fragment">Percentiles relevantes de la distribución <em>a posteriori</em></li>
-<li class="fragment">Probabilidades <em>a posteriori</em> de interés <span class="math inline">\(p(\theta&gt;c\mid y)\)</span> para algún <span class="math inline">\(c\)</span> interesante, por ejemplo <span class="math inline">\(c=0\)</span></li>
+<li class="fragment">Representatividad: haber explorado el rango completo de la distribución <em>a posteriori</em>, independientemente de las condiciones iniciales</li>
+<li class="fragment">Precisión y estabilidad: a lo largo de diferentes cadenas (distintas condiciones iniciales)</li>
+<li class="fragment">Eficiencia: esperamos requerir la menor cantidad posible de muestras</li>
 </ul>
-</div>
-</section>
-<section id="simulaciones" class="slide level2">
-<h2>Simulaciones</h2>
-<p>Para interpretar los resultados de la inferencia bayesiana podemos simplemente realizar simulaciones a partir del <em>posterior</em> y estimar probabilidades contando.</p>
-<div class="fragment">
-<ul>
-<li class="fragment">los parámetros</li>
-<li class="fragment">funciones de los parámetros</li>
-<li class="fragment">la variable respuesta (predicciones)</li>
-</ul>
-</div>
-</section>
-<section id="section-16" class="slide level2">
-<h2></h2>
-<p>Un nuevo ejemplo del modelo beta–Binomial: partimos de <span class="math inline">\(\mathrm{Beta}(2,2)\)</span>, observamos <span class="math inline">\(4\)</span> caras en <span class="math inline">\(6\)</span> tiradas y nuestra creencia <em>a posteriori</em> pasa a ser <span class="math inline">\(Beta(6,4)\)</span>.</p>
-</section>
-<section id="section-17" class="slide level2">
-<h2></h2>
-<h3 id="parámetros">Parámetros</h3>
-<p>¿Cuál es la probabilidad <em>a posteriori</em> de que <span class="math inline">\(\pi\)</span> sea mayor a <span class="math inline">\(0.50\)</span>? ¿y de que sea mayor a ?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">mean</span>(muestras_pi <span class="sc">&gt;</span> <span class="fl">0.8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="section-18" class="slide level2">
-<h2></h2>
-<h3 id="funciones-de-los-parámetros">Funciones de los parámetros</h3>
-<p>¿Cuál es la distribución <em>a posteriori</em> de la chance de obtener cara <span class="math inline">\(\frac{\pi}{1-\pi}\)</span>?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb3-2"><a href="#cb3-2"></a>muestras_odds <span class="ot">&lt;-</span> muestras_pi<span class="sc">/</span>(<span class="dv">1</span><span class="sc">-</span>muestras_pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="section-19" class="slide level2">
-<h2></h2>
-<h3 id="predicciones">Predicciones</h3>
-<p>Si se arroja la moneda 11 veces más ¿cuál es la distribución de probabilidad de la cantidad de caras? (es la distribución predictiva <em>a posteriori</em>)</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,<span class="dv">6</span>,<span class="dv">4</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>y_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">11</span>,muestras_pi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="section-20" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
-<h2></h2>
-<p>Toda cantidad que dependa de los parámetros tiene una distribución <em>a posteriori</em>: una incertidumbre asociada.</p>
 
 
 <img src="../utils/imgs/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
