@@ -57,6 +57,8 @@ website:
           file: teoria/u2_teoria_03.qmd
         - text: U2 - Teoría de la Decisión
           file: teoria/u2_teoria_04.qmd
+        - text: U3 - Métodos Computacionales
+          file: teoria/u3_teoria_05.qmd
     - title: Práctica
       style: docked
       search: false

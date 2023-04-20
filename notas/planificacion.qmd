@@ -127,6 +127,7 @@ editor_options:
 -   Problemas: determinación de probabilidades, cálculo de integrales,
     determinación de la distribución *a posteriori* (dos problemas:
     integrales analíticas y dimensiones de esa integral)
+-   Me gustaría hablar algo más de la maldición de dimensionalidad (ver Theoridis o MacKay)
 -   Determinación de probabilidades (ya lo hemos trabajado en la
     Práctica 2)
 -   Ejercicios Simulación (Práctica 3)

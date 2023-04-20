@@ -33,20 +33,25 @@ theme_set(theme_bw() +
 
 >  Un meteorólogo estima, con un 95% de confianza, que la probabilidad de que el huracán *no* llegue a la ciudad está entre 99% y 100%. Muy feliz con su precisión y su modelo, aconseja que la evacuación de la ciudad no es necesaria. Desafortunadamente, el huracán llega a la ciudad produciendo una grave inundación.
 
+. . .
+
 _"I would rather be vaguely right than very wrong."_
 
 ## {.small}
 
 > Con el clima, las personas tienden a notar un error más que otro. Cuando llueve sin estar anunciado, se tiende a insultar al servicio meteorológico mientras que la ausencia de lluvia a pesar del pronóstico se toma con buena cara. 
 
+. . .
+
 > El Weather Channel exagera ligeramente la probabilidad de lluvia cuando es poco probable que ocurra: dicen que es de 20% cuando en realidad es de 5% o 10%
 
 ## {.small}
 
-En la estadística bayesiana, la distribución _a posteriori_ es la base
-de todas inferencia: combina el conocimiento _a priori_ con la
+En la estadística bayesiana, la distribución _a posteriori_ es la base de todas inferencia: combina el conocimiento _a priori_ con la
 información provista por los datos. Contiene todo lo que se
 sabe y no se sabe sobre un parámetro desconocido.
+
+. . .
 
 La respuesta a los problemas es toda la distribución _a posteriori_
 de los parámetros (y de otras cantidades de interés).
@@ -55,7 +60,11 @@ de los parámetros (y de otras cantidades de interés).
 
 No obstante, puede ser de utilidad (o incluso necesario) tomar decisiones concretas o resumir la distribución _a posteriori_.
 
+. . .
+
 $a$ es la acción que tomamos (intervenir o no intervenir quirúrgicamente a una persona) o la respuesta que damos (ganancia de una campaña de marketing). 
+
+. . .
 
 Puede ser una estimación puntual $\hat{\theta}$: dada una inferencia sobre la ganancia de una campaña de marketing, es necesario informar un valor puntual (quizás con un intervalo)
 
@@ -63,7 +72,11 @@ Puede ser una estimación puntual $\hat{\theta}$: dada una inferencia sobre la g
 
 Tratamos a los parámetros sobre los que realizamos inferencias como variables aleatorias. Una muestra de la distribución _a posteriori_ es una posible realización del verdadero valor del parámetro. 
 
+. . .
+
 Al dar una respuesta (o resumir la información _a posteriori_), podemos incurrir en un error (grande o chico) según se den los eventos posibles.
+
+. . .
 
 ¿Qué es un error? ¿Cómo definimos si el error es grande o chico? ¿Cómo definimos si el error es relevante o no?
 
@@ -92,19 +105,28 @@ $$L( \theta, \hat{\theta} ) = \begin{cases} ( \theta -  \hat{\theta} )^2 & \hat{
 
 Buscamos elegir $\hat{\theta}$ de manera tal que minimice $L$. El problema es que no conocemos $\theta$ y por lo tanto no podemos calcular $L(\theta,\hat{\theta})$.
 
+. . .
+
 ¿Sabemos algo sobre $\theta$ que nos pueda ayudar? Conocemos su distribución _a posteriori_
+
+. . .
 
 Podemos promediar $L$ para los valores posibles de $\theta$ (ponderando según la distribución _a posteriori_)
 
 ##
 
-El riesgo _a posteriori_ (_posterior risk_ o _posterior expected loss_) es la
-pérdida esperada ponderada por los valores de $\theta$ (y su distribución
+El riesgo _a posteriori_ (_posterior risk_ o _posterior expected loss_) es la pérdida esperada ponderada por los valores de $\theta$ (y su distribución
 _a posteriori_).
+
+. . .
 
 $$R(\hat{\theta}) = \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int L(\theta,\hat\theta) p(\theta\mid y) d\theta$$
 
+. . .
+
 Es una función de los posibles valores que puede tomar $\hat\theta$.
+
+. . .
 
 Podemos obtener el $\hat\theta$ que minimice $R(\hat\theta)$. Es decir, buscamos un valor (un estimador) que minimice la pérdida esperada al usarlo para resumir $p(\theta\mid y)$:
 $$\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right]$$
@@ -113,7 +135,11 @@ $$\hat{\theta} = \underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \r
 
 Simulemos...
 
+. . .
+
 Supongamos que $\theta\mid y \sim \mathrm{Beta}(2,9)$
+
+. . .
 
 -   $R$ es una función de $\hat\theta$ (los distintos valores que podemos usar para resumir $p(\theta\mid y)$)
 -   Para distintos valores de $\hat\theta$ voy a tomar muestras de $p(\theta\mid y)$ y calcular la pérdida $L$
@@ -238,6 +264,7 @@ p/p1/p2/p3
 
 Si deseamos resumir la distribución _a posteriori_ con un único valor (¡perdiendo información!), puede usarse:
     
+. . .    
 
 -   La <span style="color:orange;">**media**</span>: minimiza la pérdida cuadrática esperada _a posteriori_
 -   La <span style="color:blue;">**mediana**</span>: minimiza la pérdida absoluta esperada _a posteriori_
@@ -247,11 +274,17 @@ Si deseamos resumir la distribución _a posteriori_ con un único valor (¡perdi
 
 Una prueba más formal para el caso de la **media**...
 
+. . .
+
 Sea la pérdida cuadrática $L(\theta,\hat\theta)=(\theta-\hat\theta)^2$, el riesgo (_posterior expected loss_) es:
+
+. . .
 
 $$
 \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \mathbb{E}_{\theta\mid y}[\theta^2] - 2 \hat{\theta}\mathbb{E}_{\theta\mid y}[\theta] + {\hat{\theta}}^2
 $$
+
+. . .
 
 derivando respecto a $\hat{\theta}$ e igualando a cero se obtiene que $\underset{\hat\theta}{\mathrm{arg\,min}}\left[ R(\hat\theta) \right] = \mathbb{E}_{\theta\mid y}[\theta] = \mathbb{E}[p(\theta\mid y)]$ 
 
@@ -259,19 +292,31 @@ derivando respecto a $\hat{\theta}$ e igualando a cero se obtiene que $\underset
 
 Una prueba más formal para el caso de la **mediana**...
 
+. . .
+
 Sea la pérdida absoluta $L(\theta,\hat\theta)=|\theta-\hat\theta|$, el riesgo (_posterior expected loss_) es:
+
+. . .
 
 $$
 \mathbb{E}_{\theta\mid y}[L(\theta,\hat\theta)] = \int_{-\infty}^\infty |\theta-\hat\theta| p(\theta\mid y)d\theta
 $$
 
+. . .
+
 $$
 \int_{-\infty}^\hat{\theta} (\hat\theta-\theta) p(\theta\mid y)d\theta + \int_{\hat{\theta}}^\hat{\infty} (\theta-\hat\theta) p(\theta\mid y)d\theta
 $$
 
+. . .
+
 Para derivar, se utiliza la regla integral de Leibniz:
 
+. . .
+
 $$\frac{d}{d\hat\theta}\int_{-\infty}^{\hat\theta} g(\hat\theta,\theta)d\theta = g(\hat\theta,\hat\theta) + \int_{-\infty}^\hat\theta \frac{\partial}{\partial\hat\theta}g(\hat\theta,\theta)d\theta$$
+
+. . .
 
 Se puede probar que $\int_{-\infty}^\hat\theta p(\theta\mid y)d\theta = \frac{1}{2}$, por lo que el $\hat\theta$ que minimiza la expresión es la mediana.
 
@@ -282,10 +327,16 @@ bayesiano, región de credibilidad. Es una región del dominio
 del parámetro que tiene alta probabilidad de contenerlo.
 Se utiliza para resumir el posterior.
 
+. . .
+
 Un intervalo de credibilidad es una región $C$ tal que la probabilidad de que contenga al parámetro sea al menos $1 - \alpha$:
+
+. . .
 
 $$p(\theta \in C \mid y) = \int_C p(\theta\mid y) d\theta = 1-\alpha$$
 en el caso discreto es ($\geq 1-\alpha$)
+
+. . .
 
 Decimos: _la probabilidad de que $\theta$ esté contenido en $C$, dados los datos (y el modelo) es de  $1-\alpha$_
 
@@ -330,6 +381,8 @@ p1+p2
 
 En el análisis de datos bayesiano, es habitual resumir los hallazgos reportando:
 
+. . .
+
 -   Un gráfico de la distribución _a posteriori_
 -   Algún medida de centralidad de la distribución _a posteriori_
 -   Percentiles relevantes de la distribución _a posteriori_
@@ -338,6 +391,8 @@ En el análisis de datos bayesiano, es habitual resumir los hallazgos reportando
 ## Simulaciones
 
 Para interpretar los resultados de la inferencia bayesiana podemos simplemente realizar simulaciones a partir del _posterior_ y estimar probabilidades contando. 
+
+. . .
 
 -   los parámetros
 -   funciones de los parámetros
@@ -358,23 +413,23 @@ Un nuevo ejemplo del modelo beta--Binomial: partimos de $\mathrm{Beta}(2,2)$, ob
 #| echo: true
 #| eval: false
 
-muestras_theta <- rbeta(2000,6,4)
-mean(muestras_theta > 0.5)
-mean(muestras_theta > 0.8)
+muestras_pi <- rbeta(2000,6,4)
+mean(muestras_pi > 0.5)
+mean(muestras_pi > 0.8)
 ```
 
 ##
 
 ### Funciones de los parámetros
 
-¿Cuál es la distribución _a posteriori_ de la chance de obtener cara $\frac{\theta}{1-\theta}$? 
+¿Cuál es la distribución _a posteriori_ de la chance de obtener cara $\frac{\pi}{1-\pi}$? 
 
 ```{r sim_funciones}
 #| echo: true
 #| eval: false
 
-muestras_theta <- rbeta(2000,6,4)
-muestras_odds <- muestras_theta/(1-muestras_theta)
+muestras_pi <- rbeta(2000,6,4)
+muestras_odds <- muestras_pi/(1-muestras_pi)
 ```
 
 ##
@@ -387,8 +442,8 @@ Si se arroja la moneda 11 veces más ¿cuál es la distribución de probabilidad
 #| echo: true
 #| eval: false
 
-muestras_theta <- rbeta(2000,6,4)
-y_new <- rbinom(2000,11,muestras_theta)
+muestras_pi <- rbeta(2000,6,4)
+y_new <- rbinom(2000,11,muestras_pi)
 ```
 
 

@@ -1,0 +1,457 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    transition: fade
+    slide-number: true
+    fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
+---
+
+# Métodos Computacionales
+
+```{r setup}
+#| echo: false
+#| include: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+
+theme_set(theme_bw() +
+          theme(legend.position = "none",
+                panel.grid = element_blank(),
+                #strip.background = element_rect(fill="#ade658"),
+                text = element_text(size=26)))
+```
+
+## El Problema
+
+Típicamente interesa resolver los siguientes problemas:
+
+-   Calcular integrales de la forma $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ (_law of the unconscious statistician_) 
+-   Generar $S$ muestras independientes $x^{(s)}$ de una distribución de probabilidad $p(x)$
+
+En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de alguna distribución de probabilidad y $p(x)$ es el _posterior_
+
+## Métodos de Montecarlo
+
+![](imgs/montecarlo2.jpg){fig-align="center"}
+
+## {.smaller}
+
+Para el primer problema, sabemos que si $X_i \sim p(x)$, bajo ciertas condiciones podemos aproximar
+
+$$\mathbb{E}[X] \approx \frac{1}{N} \sum_{i=1}^N x_i$$
+
+Si $X$ es una variable aleatoria, entonces para funciones continuas $\phi$ tenemos que $\phi(X)$ también es una variable aleatoria y por lo tanto
+
+$$\mathbb{E}[\phi(X)] = \int\phi(x)p(x)dx \approx \frac{1}{N} \sum_{i=1}^N \phi(x_i)$$
+
+Es decir, si los $x_i$ son muestras de $p(x)$, entonces la integral $\int\phi(x)p(x)dx$ puede aproximarse por $\frac{1}{N} \sum_{i=1}^N \phi(x_i)$.
+
+## {.smaller}
+
+Esto ya lo hemos hecho
+
+-   La distribución predictiva _a posteriori_ es $\int p(y\mid \theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N p(y\mid \theta_i)$
+-   El riesgo bayesiano es $\int L(\theta,\hat\theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)$
+-   Si consideramos la integral $\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta$ es la probabilidad de que $\theta$ esté en $A$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}$
+
+## {.smaller}
+
+Teniendo muestras de $p(x)$ es fácil estimar las integrales $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ por lo que nos centraremos en el problema de cómo obtener muestras de $p(x)$.
+
+Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función `rbinom`, `rbeta`, `rnorm`, `rpoiss`, etc.
+
+## {.smaller}
+
+Tomar muestras de una distribución de probabilidad $p(x)$ implica obtener valores que provienen, con mayor frecuencia, de regiones donde $p(x)$ es grande. ¿Por qué es difícil tomar muestras de una distribución de probabilidad? 
+
+En estadística bayesiana tenemos $p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)$ por lo que en general llegamos a $p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)$
+
+-   La determinación de $Z$ implica resolver una integral (potencialmente multivariada) que puede no tener solución analítica (_intractability of the integral_)
+-   Aún conociendo $Z$, no hay una manera determinada de obtener muestras de $p(\theta\mid y)$
+-   Tomar muestras de distribuciones discretas es _más fácil_ que hacerlo de distribuciones continuas
+
+##
+
+¿Cómo tomamos muestras de una distribución discreta?
+
+```{r discretesampling}
+#| warning: false
+#| echo: false
+#| fig-width: 18
+#| fig-height: 9
+#| fig-align: center
+
+data <- tibble(x = c(0,1:6,10), p_ = c(0,1,3,2,1,4,5,0), p=p_/sum(p_), F = cumsum(p))
+
+p1 <- ggplot(data) +
+  geom_segment(aes(x=x,xend=x,y=0,yend=p),size=1.2) +
+  scale_x_continuous("x", breaks=0:6) +
+  scale_y_continuous("p(x)", expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(0.5,6.5))
+
+p2 <- ggplot(data) +
+  geom_step(aes(x=x, y=F), size=0.5, col="gray60", linetype="dashed") +
+  geom_segment(aes(x=x,xend=lead(x),y=F,yend=F), size=1.2) +
+  scale_x_continuous("x",breaks=0:6) +
+  scale_y_continuous("F(x)", expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(0.5,6.5)) +
+  geom_hline(yintercept=0.62,linetype="dashed")
+
+p1+p2
+```
+
+
+## Grid approximation {.smaller}
+
+Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos $Z$. Conocemos $p^*(x) = \frac{1}{Z} p(x)$ (izquierda) y pasamos a una discreta $\tilde{p}^*(x) = \frac{1}{\tilde{Z}} \tilde{p}(x)$ (centro).
+
+Evaluando $\tilde{p}$ en todos los posibles $x_i$ de la grilla podemos calcular $Z=\sum_{i} \tilde{p}^*(x_i)$. Luego tomamos muestras de $\tilde{p}(x)$ (derecha).
+
+```{r gridapproximation}
+#| warning: false
+#| echo: false
+#| fig-width: 22
+#| fig-height: 9
+#| fig-align: center
+
+prob_bimod <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4))
+
+p1 <- tibble(x = seq(-4.5,4.5,0.01)) |>
+  mutate(p = prob_bimod(x)) |>
+  ggplot() +
+  geom_line(aes(x=x,y=p), size=1.2) +
+  scale_x_continuous("x") +
+  scale_y_continuous("p*(x)", expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(-4,4))
+
+p2 <- tibble(x = seq(-4.5,4.5,0.5)) |>
+  mutate(p = prob_bimod(x)) |>
+  ggplot() +
+  geom_segment(aes(x=x,xend=x,y=0,yend=p), size=1.2) +
+  scale_x_continuous("x") +
+  scale_y_continuous(expression(tilde(p)*"*(x)"), expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(-4,4))
+
+p3 <- tibble(x = seq(-4.5,4.5,0.5)) |>
+  mutate(p_ = prob_bimod(x),
+         p = p_/(sum(p_))) |>
+  ggplot() +
+  geom_segment(aes(x=x,xend=x,y=0,yend=p), size=1.2) +
+  scale_x_continuous("x") +
+  scale_y_continuous(expression(tilde(p)*"(x)"), expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(-4,4))
+
+
+p1 + p2 + p3
+```
+
+##
+
+En código:
+
+```{r}
+#| echo: true
+#| eval: false
+
+prob <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4)) # sabemos evaluar p
+x <- seq(-4.5, 4.5, 0.5)
+p_ <- prob(x) # ~p*
+Z <- sum(p_)
+p_rulito <- p_/Z # ~p
+sample(x, replace = TRUE, prob = p_rulito)
+```
+
+##
+
+¿Cómo se aplica esto en estadística bayesiana?
+
+El _posterior_ es $\frac{1}{Z} p(\theta\mid y) p(\theta)$. Sabemos calcular el valor del _posterior_ (sin normalizar) para cualquier valor de $\theta$: haciendo el producto del _prior_ por el _likelihood_.
+
+Podemos considerar una grilla de valores del parámetro (o los parámetros), computar el _posterior_ sin normalizar para cada valor de la grilla, normalizarlo y tomar muestras de él.
+
+Escala muy mal con el número de parámetros...
+
+## {.smaller}
+
+### Ejemplo
+
+::: {layout-ncol=2}
+Queremos realizar inferencias sobre la media y la varianza de una normal. Para eso proponemos el siguiente modelo:
+$$    
+\begin{align*}
+    y_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    \mu,\sigma^2 & \sim  \frac{1}{K} \frac{e^{-\sigma^2}}{\eta} e^{-\frac{(\mu - \xi)^2}{2\psi^2}}
+\end{align*}
+$$
+(¿Cuáles son las constantes que ajustan el _prior_)
+
+
+```{r rejection1}
+#| warning: false
+#| echo: false
+#| fig-width: 9
+#| fig-height: 9
+#| fig-align: center
+
+dv <- expand.grid(mu = seq(-4, 4, 0.05),
+                  sigma = seq(0, 3, 0.05))
+
+xi <- 0
+psi <- 0.5
+eta <- 0.1
+
+dv$prior <- exp(-dv$sigma^2)/eta * exp(-(dv$mu-xi)^2/2*psi^2)
+
+ggplot(dv) +
+  geom_raster(aes(x=mu,y=sigma,fill=prior)) +
+  scale_fill_steps(low = "#56CBF9", high = "white",n.breaks = 16) +
+  scale_x_continuous(expression(mu),expand=c(0,0)) +
+  scale_y_continuous(expression(sigma),expand=c(0,0)) +
+  coord_fixed(2.2)
+```
+:::
+
+##
+
+1.  Deberíamos tomar valores de $\mu$ en el intervalo $(-4,4)$ y valores de $\sigma$ en el intervalo $(0,3)$ y construir una grilla de valores.
+2.  Para cada valor de la grilla podríamos calular el _posterior_ sin normalizar haciendo el producto del _prior_ por el _likelihood_ (necesitamos la muestra).
+
+## Rejection sampling {.smaller}
+
+Se basa en buscar una distribución de probabilidad _candidata_ $q(x)$ tal que $Cq(x)\geq p^*(x)$. Se toma una muestra de $q(x)$. Luego se toma una muestra $u$ de $\mathrm{Unif}(0,Cq(x))$. La muestra de $q(x)$ se retiene si $u<p^*(x)$.
+
+```{r rejection2}
+#| warning: false
+#| echo: false
+#| fig-width: 22
+#| fig-height: 9
+#| fig-align: center
+
+prob_bimod <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4))
+
+data <- tibble(x = seq(-4.5,4.5,0.01)) |>
+  mutate(p = prob_bimod(x),
+         Cq = dnorm(x,-1,2)*18)
+
+p1 <- data |>
+  ggplot() +
+  geom_line(aes(x=x,y=p), size=1.2) +
+  scale_x_continuous("x") +
+  scale_y_continuous("p*(x)", limits = c(0,4), expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(-4,4))
+
+p2 <- data |>
+  ggplot() +
+  geom_line(aes(x=x,y=Cq), size=1.2, col="maroon1") +
+  scale_x_continuous("x") +
+  scale_y_continuous("Cq(x)", limits = c(0,4), expand=c(0,0,0.05,0)) +
+  coord_cartesian(xlim=c(-4,4))
+
+p1+p2
+```
+
+##
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig-width: 16
+#| fig-height: 12
+#| fig-align: center
+
+data |>
+  ggplot() +
+  geom_line(aes(x=x,y=p), size=1.2) +
+  geom_line(aes(x=x,y=Cq), size=1.2, col = "maroon1") +
+  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=0,yend=p), col = "forestgreen", size=1.2, alpha=0.5) +
+  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=p,yend=Cq), col = "red", size=1.2, alpha=0.5) +
+  scale_x_continuous("x",breaks = seq(-4,4,2), expand = c(0,0)) +
+  scale_y_continuous("", limits = c(0,4), expand = c(0,0,0.05,0))
+```
+
+Necesitamos elegir con cuidado $q(x)$
+
+## Markov chain Monte-Carlo {.smaller}
+
+Queremos obtener muestras de $p(x)$. Vamos a hacer un viaje por los distintos valores de $x$ tratando de pasar más tiempo (más iteraciones) en los puntos donde $p(x)$ es grande.
+
+Idea general:
+
+1.    Visitar los distintos valores posibles de $x$
+1.    Generar una secuencia de iteraciones: $\{x^{(1)},x^{(2)},\dots,x^{(S)}\}$
+1.    En general, para obtener $x^{(i+1)}$ usamos $x^{(i)}$
+
+-    En nuestro caso tenemos $p(\theta) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)$ (_unnormalized posterior_)
+-    ¿Qué necesitamos? Poder evaluar el _prior_ y poder evaluar el _likelihood_ para cualquier valor de $\theta$
+
+## Metropolis-Hastings (MH) {style="font-size: 0.75em; text-align: left"}
+
+El algoritmo de Metropolis--Hastings (1953)
+
+1.    Estamos la iteración $i$ estamos en el valor del parámetro $\theta^{(i)}$
+1.    En función del valor de parámetro actual $\theta^{(i)}=\theta$, proponemos un nuevo valor $\theta'$ en función de $q(\theta'\mid\theta)$
+1.    Decidimos si vamos a la nueva ubicación $\theta^{(i+1)} = \theta'$ o si nos quedamos $\theta^{(i+1)} = \theta$:
+      -   Calcular la probabilidad de salto:
+          $$\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}$$
+      -   Pasar a $\theta'$ con probabilidad $\alpha$:
+          $$\theta^{(i+1)} = 
+          \begin{cases}
+          \theta' \text{ con probabilidad } \alpha \\
+          \theta \text{ con probabilidad } (1-\alpha)
+          \end{cases}$$
+          
+## 
+
+$q(\theta'\mid\theta)$ se llama distribución de proposición o de salto propuesto. Todo lo que necesitamos saber es dónde estamos $f(\theta)$ y hacia donde queremos ir $f(\theta')$.
+
+
+Puede probarse que para cualquier $q(\theta'\mid\theta)$, cuando $s\to \infty$ la distribución de probabilidad de la secuencia $\left\{\theta^{(s)} \right\}_{s=1}^S$ tiende a $p(\theta)$. No sabemos nada sobre la rapidez con la que lo hace.
+
+
+En infinitos pasos, cualquier cadena dará muestras de la distribución $p(\theta)$, en la práctica hay que tener algunos cuidados.
+
+##
+
+```{r}
+x <- seq(-4,4,0.01)
+f <- exp(0.4*(x-0.4)^2-0.08*x^4)
+
+p1 <- ggplot(tibble(x,f)) +
+  geom_line(aes(x=x,y=f),size=1,col="#FFD400") +
+  geom_ribbon(aes(x=x,ymin=0,ymax=f),alpha=0.6,fill="#FFD400") +
+  xlab(expression(theta)) +
+  theme(axis.title.y = element_blank())
+
+p2 <- p1 +
+  geom_point(aes(x=-1,y=0),shape="square",size=2) 
+
+p3 <- p2 +
+  geom_line(data=tibble(x=seq(-4,2,0.01),y=dnorm(x,-1,0.8)),
+            aes(x=x,y=y), col="#0C7C59") +
+  geom_ribbon(data=tibble(x=seq(-4,2,0.01),y=dnorm(x,-1,0.8)),
+              aes(x=x,ymin=0,ymax=y), fill="#0C7C59",alpha=0.6)
+
+p4 <- p3 +
+  geom_curve(aes(x=-1,xend=0.4,y=0,yend=0),
+             curvature = -0.5,
+             arrow = arrow(length = unit(0.02, "npc"),type="closed"),
+             col="#215097")
+
+p5 <- p4 +
+  geom_segment(aes(x=0.4,xend=0.4,y=0,yend=exp(0.4*(0.4-0.4)^2-0.08*(0.4)^4)),linetype="dashed") +
+  geom_segment(aes(x=-1,xend=-1,y=0,yend=exp(0.4*(-1-0.4)^2-0.08*(-1)^4)),linetype="dashed") +
+  geom_segment(aes(x=-1,xend=-4,y=exp(0.4*(-1-0.4)^2-0.08*(-1)^4),yend=exp(0.4*(-1-0.4)^2-0.08*(-1)^4)),linetype="dotted") +
+  geom_segment(aes(x=0.4,xend=-4,y=exp(0.4*(0.4-0.4)^2-0.08*(0.4)^4),yend=exp(0.4*(0.4-0.4)^2-0.08*(0.4)^4)),linetype="dotted")
+```
+
+::: {.r-stack}
+::: {.fragment}
+```{r}
+p1
+```
+:::
+
+::: {.fragment}
+```{r}
+p2
+```
+:::
+
+::: {.fragment}
+```{r}
+p3
+```
+:::
+
+::: {.fragment}
+```{r}
+p4
+```
+:::
+
+::: {.fragment}
+```{r}
+p5
+```
+:::
+:::
+
+## 
+
+1.    Necesitamos muestras de $p(\theta)$
+1.    Tomamos un punto inicial
+1.    Elegimos una distribución de saltos posibles $q(\theta'\mid\theta)$
+1.    Proponemos un salto
+1.    ¿Saltamos?
+
+## {.smaller}
+
+```{r}
+#| echo: true
+#| eval: false
+
+theta <- double()
+theta[1] <- -1    
+i <- 1
+
+propuesta <- rnorm(1, mean = theta[i], sd = 0.8)
+
+f_actual <- fx(theta[i])
+f_propuesta <- fx(propuesta)
+
+alpha <- min(c(1,f_propuesta/f_actual))
+
+quehacemos <- sample(c("salto","no salto"), 
+                    size = 1, 
+                    prob = c(alpha,1-alpha))
+
+if(quehacemos=="salto") {
+  theta[i+1] <- propuesta 
+} else {
+  theta[i+1] <- theta[i]
+  }
+```
+
+Debe repetirse el proceso en un `for`
+
+## 
+
+::: {.r-stack}
+::: {.fragment .fade-in-then-out fragment-index=1}
+![](imgs/mcmc_1000_sigma08.png)
+$$\sigma = 0.8$$
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=2}
+![](imgs/mcmc_1000_sigma01.png)
+$$\sigma = 0.1$$
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=3}
+![](imgs/mcmc_1000_sigma06.png)
+$$\sigma = 0.6$$
+:::
+
+::: {.fragment .fade-in-then-out fragment-index=4}
+![](imgs/mcmc_1000_sigma48.png)
+$$\sigma = 4.8$$
+:::
+:::
+
+
+##
+
+¿Qué esperamos de nuestra _cadena_?
+
+-   Representatividad: haber explorado el rango completo de la distribución _a posteriori_, independientemente de las condiciones iniciales
+-   Precisión y estabilidad: a lo largo de diferentes cadenas (distintas condiciones iniciales)
+-   Eficiencia: esperamos requerir la menor cantidad posible de muestras
+
