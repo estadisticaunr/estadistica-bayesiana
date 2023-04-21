@@ -1,0 +1,12 @@
+---
+title: "06 - Te veo en la fotocopiadora"
+---
+
+El siguiente programa sirve para responder al ejercicio **Te veo en la fotocopiadora** 
+de la Práctica 3.
+
+```{r}
+#| echo: true
+#| eval: false 
+#| file: scripts/06_encuentro_fotocopiadora.R
+```
