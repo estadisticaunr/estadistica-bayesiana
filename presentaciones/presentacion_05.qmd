@@ -27,14 +27,43 @@ theme_set(theme_bw() +
                 panel.grid = element_blank(),
                 #strip.background = element_rect(fill="#ade658"),
                 text = element_text(size=26)))
+
+fx <- function(x) exp(0.4*(x-0.4)^2-0.08*x^4)
+
+mh <- function(N,sd){
+theta <- double()
+quehacemos <- character()
+theta[1] <- -1
+for(i in 1:1000){
+  propuesta <- rnorm(1, mean = theta[i], sd = sd)
+  f_actual <- fx(theta[i])
+  f_propuesta <- fx(propuesta)
+  
+  alpha <- min(c(1,f_propuesta/f_actual))
+  
+  quehacemos[i] <- sample(c("salto","no salto"), 
+                       size = 1, 
+                       prob = c(alpha,1-alpha))
+  
+  if(quehacemos[i]=="salto") 
+    theta[i+1] <- propuesta 
+  else
+    theta[i+1] <- theta[i]
+}
+return(list(theta=theta,prop_aceptada=sum(quehacemos=="salto")/N))
+}
 ```
 
 ## El Problema
 
 Típicamente interesa resolver los siguientes problemas:
 
+. . .
+
 -   Calcular integrales de la forma $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ (_law of the unconscious statistician_) 
 -   Generar $S$ muestras independientes $x^{(s)}$ de una distribución de probabilidad $p(x)$
+
+. . .
 
 En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de alguna distribución de probabilidad y $p(x)$ es el _posterior_
 
@@ -46,17 +75,27 @@ En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de algu
 
 Para el primer problema, sabemos que si $X_i \sim p(x)$, bajo ciertas condiciones podemos aproximar
 
+. . .
+
 $$\mathbb{E}[X] \approx \frac{1}{N} \sum_{i=1}^N x_i$$
+
+. . .
 
 Si $X$ es una variable aleatoria, entonces para funciones continuas $\phi$ tenemos que $\phi(X)$ también es una variable aleatoria y por lo tanto
 
+. . .
+
 $$\mathbb{E}[\phi(X)] = \int\phi(x)p(x)dx \approx \frac{1}{N} \sum_{i=1}^N \phi(x_i)$$
+
+. . .
 
 Es decir, si los $x_i$ son muestras de $p(x)$, entonces la integral $\int\phi(x)p(x)dx$ puede aproximarse por $\frac{1}{N} \sum_{i=1}^N \phi(x_i)$.
 
 ## {.smaller}
 
 Esto ya lo hemos hecho
+
+. . .
 
 -   La distribución predictiva _a posteriori_ es $\int p(y\mid \theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N p(y\mid \theta_i)$
 -   El riesgo bayesiano es $\int L(\theta,\hat\theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)$
@@ -66,13 +105,19 @@ Esto ya lo hemos hecho
 
 Teniendo muestras de $p(x)$ es fácil estimar las integrales $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ por lo que nos centraremos en el problema de cómo obtener muestras de $p(x)$.
 
+. . .
+
 Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no siempre existe una función `rbinom`, `rbeta`, `rnorm`, `rpoiss`, etc.
 
 ## {.smaller}
 
 Tomar muestras de una distribución de probabilidad $p(x)$ implica obtener valores que provienen, con mayor frecuencia, de regiones donde $p(x)$ es grande. ¿Por qué es difícil tomar muestras de una distribución de probabilidad? 
 
+. . .
+
 En estadística bayesiana tenemos $p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)$ por lo que en general llegamos a $p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)$
+
+. . .
 
 -   La determinación de $Z$ implica resolver una integral (potencialmente multivariada) que puede no tener solución analítica (_intractability of the integral_)
 -   Aún conociendo $Z$, no hay una manera determinada de obtener muestras de $p(\theta\mid y)$
@@ -113,7 +158,9 @@ p1+p2
 
 Una solución puede ser discretizar la variable. Esta solución vale incluso si no conocemos $Z$. Conocemos $p^*(x) = \frac{1}{Z} p(x)$ (izquierda) y pasamos a una discreta $\tilde{p}^*(x) = \frac{1}{\tilde{Z}} \tilde{p}(x)$ (centro).
 
-Evaluando $\tilde{p}$ en todos los posibles $x_i$ de la grilla podemos calcular $Z=\sum_{i} \tilde{p}^*(x_i)$. Luego tomamos muestras de $\tilde{p}(x)$ (derecha).
+. . .
+
+Evaluando $\tilde{p}$ en **todos los posibles $x_i$ de la grilla** podemos calcular $Z=\sum_{i} \tilde{p}^*(x_i)$. Luego tomamos muestras de $\tilde{p}(x)$ (derecha).
 
 ```{r gridapproximation}
 #| warning: false
@@ -173,9 +220,15 @@ sample(x, replace = TRUE, prob = p_rulito)
 
 ¿Cómo se aplica esto en estadística bayesiana?
 
+. . .
+
 El _posterior_ es $\frac{1}{Z} p(\theta\mid y) p(\theta)$. Sabemos calcular el valor del _posterior_ (sin normalizar) para cualquier valor de $\theta$: haciendo el producto del _prior_ por el _likelihood_.
 
+. . .
+
 Podemos considerar una grilla de valores del parámetro (o los parámetros), computar el _posterior_ sin normalizar para cada valor de la grilla, normalizarlo y tomar muestras de él.
+
+. . .
 
 Escala muy mal con el número de parámetros...
 
@@ -219,7 +272,7 @@ ggplot(dv) +
 ```
 :::
 
-##
+## {.smaller}
 
 1.  Deberíamos tomar valores de $\mu$ en el intervalo $(-4,4)$ y valores de $\sigma$ en el intervalo $(0,3)$ y construir una grilla de valores.
 2.  Para cada valor de la grilla podríamos calular el _posterior_ sin normalizar haciendo el producto del _prior_ por el _likelihood_ (necesitamos la muestra).
@@ -283,6 +336,8 @@ Necesitamos elegir con cuidado $q(x)$
 
 Queremos obtener muestras de $p(x)$. Vamos a hacer un viaje por los distintos valores de $x$ tratando de pasar más tiempo (más iteraciones) en los puntos donde $p(x)$ es grande.
 
+. . .
+
 Idea general:
 
 1.    Visitar los distintos valores posibles de $x$
@@ -312,9 +367,11 @@ El algoritmo de Metropolis--Hastings (1953)
 
 $q(\theta'\mid\theta)$ se llama distribución de proposición o de salto propuesto. Todo lo que necesitamos saber es dónde estamos $f(\theta)$ y hacia donde queremos ir $f(\theta')$.
 
+. . .
 
 Puede probarse que para cualquier $q(\theta'\mid\theta)$, cuando $s\to \infty$ la distribución de probabilidad de la secuencia $\left\{\theta^{(s)} \right\}_{s=1}^S$ tiende a $p(\theta)$. No sabemos nada sobre la rapidez con la que lo hace.
 
+. . .
 
 En infinitos pasos, cualquier cadena dará muestras de la distribución $p(\theta)$, en la práctica hay que tener algunos cuidados.
 
@@ -447,7 +504,7 @@ $$\sigma = 4.8$$
 :::
 
 
-##
+## {.smaller}
 
 ¿Qué esperamos de nuestra _cadena_?
 
@@ -455,3 +512,103 @@ $$\sigma = 4.8$$
 -   Precisión y estabilidad: a lo largo de diferentes cadenas (distintas condiciones iniciales)
 -   Eficiencia: esperamos requerir la menor cantidad posible de muestras
 
+Ningún objetivo se alcanza absolutamente, existen chequeos gráficos y numéricos para saber si las cadenas de MCMC están sanas.
+
+## Trace Plots
+
+Graficar los valores que toma el algoritmo como función del tiempo (lo que típicamente llamamos la cadena). Se tiene que
+ver como un _fuzzy caterpillar_ (buen mixing). Para los impresionables: ruido blanco sin ningún patrón particular.
+
+![](imgs/caterpillar.jpg){fig-align="center"}
+
+## Autocorrelación {.smaller}
+
+Las muestras tienen que ser independientes. La dependencia de valores
+anteriores tiene que desaparecer rápido . Podemos medirlo con
+la autocorrelación.
+
+Para cada valor de lag $k$ se calcula la correlación de la serie consigo
+misma originando la función de autocorrelación ($ACF(k)$)
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig-width: 30
+#| fig-height: 10
+#| fig-align: center
+
+theta <- mh(1000, 1)
+dv <- tibble(i=1:61,x=theta[[1]][400:460],y=lag(x))
+
+p1 <- ggplot(dv) +
+  geom_line(aes(x=i,y=x), col = "#550C18") +
+  geom_line(aes(x=i,y=y), col = "#0C7C59", alpha=0.5) +
+  ylab(expression(theta))
+
+p2 <- ggplot(dv) +
+  geom_segment(aes(x=x,xend=x,y=-10,yend=y), col = "#550C18",alpha=0.3) +
+  geom_segment(aes(x=-10,xend=x,y=y,yend=y), col = "#0C7C59",alpha=0.3) +
+  coord_fixed(xlim=c(-2.5,2.5),ylim=c(-2.5,2.5)) +
+  geom_point(aes(x=x,y=y),size=2) +
+  xlab(expression(theta*"(i)")) +
+  ylab(expression(theta*"(i-1)"))
+
+p1 + p2 + plot_layout(widths = c(2, 1))
+```
+
+
+##
+
+::: {layout-nrow=2}
+
+![](imgs/cadena_acf_buena.png){.fragment}
+
+![](imgs/cadena_acf_mala.png){.fragment}
+:::
+
+## Número efectivo de muestras
+
+Las muestras no son independientes. ¿A cuántas muestras independientes equivalen nuestras $S$ muestras? $N_{eff}$ es el número de muestras independientes
+que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas (el error de estimación es proporcional a $\frac{1}{\sqrt{N_{eff}}}$)
+
+$$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
+
+## $\hat{R}$
+
+El estadístico de Rubin--Gelman $\hat{R}$ es un indicador de convergencia. Si múltiples cadenas se establizaron en un muestreo representativo del _posterior_, la diferencia promedio entre cadenas debe ser similar a la diferencia promedio en la cadena.
+
+
+$$\hat{R} = \sqrt{\frac{\frac{S-1}{S} W  +  \frac{1}{S}  B}{W}}$$
+
+El valor 1 indica convergencia. Si una cadena se perdió/divergió,
+el $\hat{R}$ será mucho mayor a 1.
+
+## {.smaller}
+
+Si tenemos $M$ cadenas, $\theta_m$, cada una de las cuales tiene $S$ muestras $\theta_m^{(s)}$. La _varianza entre cadenas_ ($B$) es:
+
+$$B = \frac{S}{M-1} \sum_{m=1}^M (\bar{\theta}^{(\bullet)}_{m} - \bar{\theta}^{(\bullet)}_{\bullet})^2$$
+
+$$\bar{\theta}_m^{(\bullet)} = \frac{1}{S} \sum_{s = 1}^S \theta_m^{(s)}$$
+
+$$\bar{\theta}^{(\bullet)}_{\bullet} = \frac{1}{M} \, \sum_{m=1}^M \bar{\theta}_m^{(\bullet)}$$
+
+La _varianza intra cadena_ ($W$) es:
+
+$$W = \frac{1}{M} \, \sum_{m=1}^M s_m^2$$
+
+$$ s_m^2 = \frac{1}{S-1} \, \sum_{s=1}^S (\theta^{(s)}_m - \bar{\theta}^{(\bullet)}_m)^2$$
+
+## 
+
+El estimador de la varianza total
+
+$$\widehat{\mbox{var}}^{+}\!(\theta|y) = \frac{N-1}{N}\, W \, + \, \frac{1}{N} \, B$$
+
+$$\hat{R} \, = \, \sqrt{\frac{\widehat{\mbox{var}}^{+}\!(\theta|y)}{W}}$$
+
+##
+
+![](imgs/r_hat.png){fig-align="center"}
+
+## Hamiltonian Montecarlo
