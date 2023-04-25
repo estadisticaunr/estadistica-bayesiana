@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.475">
+<meta name="generator" content="quarto-1.3.340">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,14 +17,15 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -38,8 +39,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -94,81 +94,90 @@ div.csl-indent {
     <span class="navbar-title">Estadística Bayesiana</span>
     </a>
   </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Buscar"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navegación de palanca" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="../info/programa.html" aria-current="page">
+    <a class="nav-link active" href="../info/programa.html" rel="" target="" aria-current="page">
  <span class="menu-text">Información</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../teoria/u1_teoria_01.html">
+    <a class="nav-link" href="../teoria/u1_teoria_01.html" rel="" target="">
  <span class="menu-text">Teoría</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../practica/practica_00.html">
+    <a class="nav-link" href="../practica/practica_00.html" rel="" target="">
  <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../trabajos_practicos/descripcion.html">
+    <a class="nav-link" href="../trabajos_practicos/descripcion.html" rel="" target="">
  <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../recursos/codigo/index.html">
+    <a class="nav-link" href="../recursos/codigo/index.html" rel="" target="">
  <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/estadisticaunr/estadistica-bayesiana"><i class="bi bi-github" role="img">
+    <a class="nav-link" href="https://github.com/estadisticaunr/estadistica-bayesiana" rel="" target=""><i class="bi bi-github" role="img">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
+            <div class="quarto-navbar-tools">
+</div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Bibliografía</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../info/bibliografia.html">Bibliografia</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
     </div>
   </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
 <p>Información</p>
 </div></div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/programa.html" class="sidebar-item-text sidebar-link">Programa</a>
+  <a href="../info/programa.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programa</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/aprobacion.html" class="sidebar-item-text sidebar-link">Condiciones de aprobación</a>
+  <a href="../info/aprobacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Condiciones de aprobación</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/bibliografia.html" class="sidebar-item-text sidebar-link active">Bibliografia</a>
+  <a href="../info/bibliografia.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Bibliografia</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../info/calendario.html" class="sidebar-item-text sidebar-link">Calendario</a>
+  <a href="../info/calendario.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Calendario</span></a>
   </div>
 </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -176,7 +185,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Bibliografía</h1>
+<h1 class="title">Bibliografía</h1>
 </div>
 
 
@@ -196,20 +205,20 @@ div.csl-indent {
 <div style="visibility: hidden; height: 0;">
 <p><span class="citation" data-cites="Johnson2021">Johnson, Ott, y Dogucu (<a href="#ref-Johnson2021" role="doc-biblioref">2022</a>)</span> <span class="citation" data-cites="McElreath2020">McElreath (<a href="#ref-McElreath2020" role="doc-biblioref">2020</a>)</span> <span class="citation" data-cites="Gelman2006">Gelman y Hill (<a href="#ref-Gelman2006" role="doc-biblioref">2006</a>)</span> <span class="citation" data-cites="Kruschke2014">Kruschke (<a href="#ref-Kruschke2014" role="doc-biblioref">2014</a>)</span> <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span></p>
 </div>
-<div id="refs-1" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Gelman2006" class="csl-entry" role="doc-biblioentry">
+<div id="refs-1" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Gelman2006" class="csl-entry" role="listitem">
 Gelman, Andrew, y Jennifer Hill. 2006. <em>Data Analysis Using Regression and Multilevel-Hierarchical Models</em>. 1st edition. Cambridge University Press.
 </div>
-<div id="ref-Johnson2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Johnson2021" class="csl-entry" role="listitem">
 Johnson, Alicia A., Miles Q. Ott, y Mine Dogucu. 2022. <em>Bayes Rules! An Introduction to Bayesian Modeling</em>. 1st edition. Chapman; Hall/CRC. <a href="https://www.bayesrulesbook.com/">https://www.bayesrulesbook.com/</a>.
 </div>
-<div id="ref-Kruschke2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Kruschke2014" class="csl-entry" role="listitem">
 Kruschke, John. 2014. <em>Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan</em>. 2nd edition. Academic Press.
 </div>
-<div id="ref-McElreath2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-McElreath2020" class="csl-entry" role="listitem">
 McElreath, Richard. 2020. <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>. 2nd edition. Chapman; Hall/CRC.
 </div>
-<div id="ref-Reich2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Reich2020" class="csl-entry" role="listitem">
 Reich, Brian J., y Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 1st edition. Chapman; Hall/CRC.
 </div>
 </div>
@@ -221,59 +230,59 @@ Reich, Brian J., y Sujit K. Ghosh. 2019. <em>Bayesian Statistical Methods</em>. 
 </div>
 
 
-<div id="refs-2" class="references csl-bib-body hanging-indent" role="doc-bibliography">
-<div id="ref-Barr2021" class="csl-entry" role="doc-biblioentry">
+<div id="refs-2" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Barr2021" class="csl-entry" role="listitem">
 Barr, Dale J. 2021. <em>Learning statistical models through simulation in R: An interactive textbook</em>. 1st edition. <a href="https://psyteachr.github.io/stat-models-v1/">https://psyteachr.github.io/stat-models-v1/</a>.
 </div>
-<div id="ref-Bishop2006" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Bishop2006" class="csl-entry" role="listitem">
 Bishop, Christopher M. 2006. <em>Pattern Recognition and Machine Learning</em>. 1st edition. Springer.
 </div>
-<div id="ref-Carlin2008" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Carlin2008" class="csl-entry" role="listitem">
 Carlin, Bradley P., y Thomas A. Louis. 2008. <em>Bayesian Methods for Data Analysis</em>. 3rd edition. Chapman; Hall/CRC.
 </div>
-<div id="ref-Clyde2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Clyde2022" class="csl-entry" role="listitem">
 Clyde, Merlise, Mine Çetinkaya-Rundel, Colin Rundel, David Banks, Christine Chai, y Lizzy Huang. 2022. <em>An Introduction to Bayesian Thinking</em>. 1st edition. <a href="https://statswithr.github.io/book/">https://statswithr.github.io/book/</a>.
 </div>
-<div id="ref-DavidsonPilon2015" class="csl-entry" role="doc-biblioentry">
+<div id="ref-DavidsonPilon2015" class="csl-entry" role="listitem">
 Davidson-Pilon, Cameron. 2015. <em>Bayesian Methods for Hackers: Probabilistic Programming and Bayesian Inference</em>. 1st edition. Addison-Wesley Data; Analytics Series.
 </div>
-<div id="ref-Downey2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Downey2021" class="csl-entry" role="listitem">
 Downey, Allen B. 2021. <em>Think Bayes: Bayesian Statistics in Python</em>. 2nd edition. O’Reilly Media. <a href="http://allendowney.github.io/ThinkBayes2/">http://allendowney.github.io/ThinkBayes2/</a>.
 </div>
-<div id="ref-Gelman2013" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Gelman2013" class="csl-entry" role="listitem">
 Gelman, Andrew, John B. Carlin, Hal S. Stern, David B. Dunson, Aki Vehtari, y Donald B. Rubin. 2013. <em>Bayesian Data Analysis</em>. 3rd edition. Chapman; Hall/CRC.
 </div>
-<div id="ref-Gelman2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Gelman2021" class="csl-entry" role="listitem">
 Gelman, Andrew, Jennifer Hill, y Aki Vehtari. 2021. <em>Regression and Other Stories</em>. 1st edition. Cambridge University Press. <a href="https://users.aalto.fi/~ave/ROS.pdf">https://users.aalto.fi/~ave/ROS.pdf</a>.
 </div>
-<div id="ref-Hoff2009" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Hoff2009" class="csl-entry" role="listitem">
 Hoff, Peter D. 2009. <em>A First Course in Bayesian Statistical Methods</em>. 1st edition. Springer.
 </div>
-<div id="ref-Lambert2018" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Lambert2018" class="csl-entry" role="listitem">
 Lambert, Ben. 2018. <em>A Student’s Guide to Bayesian Statistics</em>. 1st edition. SAGE Publications Ltd.
 </div>
-<div id="ref-Lee2014" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Lee2014" class="csl-entry" role="listitem">
 Lee, Michael D., y Eric-Jan Wagenmakers. 2014. <em>Bayesian Cognitive Modeling: A Practical Course</em>. 1st edition. Cambridge University Press.
 </div>
-<div id="ref-Ma2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Ma2022" class="csl-entry" role="listitem">
 Ma, Wei Ji, Konrad P. Kording, y Daniel Goldreich. 2022. <em>Bayesian Models of Perception and Action: An Introduction</em>. 3rd edition. <a href="http://www.cns.nyu.edu/malab/bayesianbook.html">http://www.cns.nyu.edu/malab/bayesianbook.html</a>.
 </div>
-<div id="ref-MacKay2003" class="csl-entry" role="doc-biblioentry">
+<div id="ref-MacKay2003" class="csl-entry" role="listitem">
 MacKay, David J. C. 2003. <em>Information Theory, Inference and Learning Algorithms</em>. 1st edition. Cambridge University Press.
 </div>
-<div id="ref-Martin2021" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Martin2021" class="csl-entry" role="listitem">
 Martin, Osvaldo A., Ravin Kumar, y Junpeng Lao. 2021. <em>Bayesian Modeling and Computation in Python</em>. 1st edition. Chapman; Hall/CRC.
 </div>
-<div id="ref-Murphy2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Murphy2022" class="csl-entry" role="listitem">
 Murphy, Kevin P. 2022. <em>Probabilistic Machine Learning: An Introduction</em>. 1st edition. The MIT Press. <a href="https://probml.ai/">https://probml.ai/</a>.
 </div>
-<div id="ref-Murphy2023" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Murphy2023" class="csl-entry" role="listitem">
 Murphy, Kevin P. 2023. <em>Probabilistic Machine Learning: Advanced Topics</em>. 1st edition. The MIT Press. <a href="https://probml.ai/">https://probml.ai/</a>.
 </div>
-<div id="ref-Nicenboim2022" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Nicenboim2022" class="csl-entry" role="listitem">
 Nicenboim, Bruno, Daniel Schad, y Shravan Vasishth. 2022. <em>An Introduction to Bayesian Data Analysis for Cognitive Science</em>. <a href="https://vasishth.github.io/bayescogsci/book/">https://vasishth.github.io/bayescogsci/book/</a>.
 </div>
-<div id="ref-Theoridis2020" class="csl-entry" role="doc-biblioentry">
+<div id="ref-Theoridis2020" class="csl-entry" role="listitem">
 Theoridis, Sergios. 2020. <em>Machine Learning: A Bayesian and Optimization Perspective</em>. 2nd edition. Academic Press.
 </div>
 </div>
@@ -307,9 +316,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -374,6 +397,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
@@ -428,6 +537,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</div>
   </div>
 </footer>
