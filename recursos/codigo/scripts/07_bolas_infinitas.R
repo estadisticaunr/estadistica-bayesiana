@@ -1,0 +1,61 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Parte 1
+# Se ejecutan 10000 pasos de este proceso una sola vez
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Inicializar urna con una bola azul y otra amarilla
+urna <- c("azul", "amarillo")
+
+# Realizar 10000 pasos del proceso
+for (i in seq_len(10000)) {
+    # Seleccionar uno de los elementos de la urna
+    muestra <- sample(urna, 1)
+    # Agregar otro elemento igual al extraido
+    urna <- c(urna, muestra)
+
+    # Cada 500 iteraciones imprimir la proporción de bolas azules
+    if (i %% 500 == 0) {
+        cat("Proporcion de bolas azules", round(mean(urna == "azul"), 4), "\n")
+    }
+}
+
+# Mostrar la proporción de bolas azules
+mean(urna == "azul")
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Parte 2
+# Se ejecutan 10000 pasos de este proceso diez veces
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+# Crear vector vacío que contendrá las proporciones de azules a medida que
+# se realizan pasos del experimento. 
+proporciones <- numeric(0)
+
+# Realizar 10 iteraciones independientes (utilizando 10 bolsas independientes)
+for (j in 1:10) {
+    urna <- c("azul", "amarillo")
+    for (i in 1:1000) {
+        muestra <- sample(urna, 1)
+        urna <- c(urna, muestra)
+    }
+    # Calcular la proporción de azules conforme se avanza en el experimento
+    proporcion <- cumsum(urna == "azul") / seq_along(urna)
+    # Descartar el primer valor, que siempre es 0.5
+    proporcion <- proporcion[2:length(proporcion)]
+    # Guardar el vector producido en el vector 'proporciones'
+    proporciones <- c(proporciones, proporcion)
+}
+
+# Generar un data.frame para graficar con ggplot2
+# x: Los pasos del experimento
+# y: Las proporciones conforme se realizan pasos del experimento
+# prueba: Indica la prueba. Sirve para graficar una línea para cada prueba
+datos <- data.frame(
+    x = rep(seq_along(proporcion), 10),
+    y = proporciones,
+    prueba = as.factor(rep(1:10, each = length(proporcion)))
+)
+
+library(ggplot2)
+
+ggplot(datos) +
+    geom_line(aes(x = x, y = y, color = prueba))
