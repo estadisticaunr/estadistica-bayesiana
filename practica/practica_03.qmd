@@ -388,8 +388,8 @@ características principales.
     distribución.
     i. Obtenga el _posterior_ marginal de $\alpha$ y grafíquelo.
     i. Obtenga el _posterior_ marginal de $\beta$ y grafíquelo.
-    i. Calcule la probabilidad de que el intercepto sea mayor a 0.5.
-    i. Calcule la probabilidad de que la pendiente sea menor a -3.
+    i. Calcule la probabilidad de que el intercepto sea mayor a 0.95.
+    i. Calcule la probabilidad de que la pendiente sea menor a -2.
     
     Para responder las consignas utilice los datos simulados que se obtienen con el 
     siguiente bloque de código:
