@@ -218,8 +218,7 @@ programa.
 
 1.  **¡Qué casualidad!**
     
-    Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus 
-    A330-300
+    Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300. Considere que el Airbus A330-300 tiene 30 filas de 2-4-2 asientos.
 
     i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
     i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
