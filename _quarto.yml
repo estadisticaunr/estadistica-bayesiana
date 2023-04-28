@@ -130,3 +130,4 @@ format:
       - styles.scss
     toc: false
     lang: es
+    format-links: false

@@ -31,17 +31,79 @@ library(dplyr)
 
 # Metropolis-Hastings en 1D
 
-El algoritmo de Metropolis-Hastings (MH) permite obtener muestras de una distribución de 
-probabilidad $f^*(\theta)$, incluso aunque esta sea impropia (es decir, incluso aunque sea
+El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a 
+partir de una distribución de probabilidad $P$ que no necesariamente pertence a una 
+familia de distribuciones conocida. El único requisito es que se pueda evaluar la función
+de densidad (o de masa de probabilidad) $p^*(\theta)$ en cualquier valor de $\theta$,
+incluso cuando $p^*(\theta)$ sea impropia (es decir, incluso aunque sea
 desconocida la constante de normalización que hace que la integral en el soporte de la 
-función sea igual a uno). Basta con que se pueda evaluar $f^*(\theta)$ en cualquier valor
-de $\theta$.
+función sea igual a uno).
+
+
+<!-- ::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+::: -->
+
 
 1.  Escriba una función que implemente el algoritmo de MH para tomar 
-muestras de una función de probabilidad unidimensional dada. Separe en funciones cada uno 
-de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir 
-diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta 
-de una determinada concentración.
+muestras de una distribución de probabilidad unidimensional a partir de su función de 
+densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de 
+propuesta de transición: normal de una varianza dada y beta de una determinada 
+concentración.
 
 2.  Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por
 
@@ -54,19 +116,25 @@ de una determinada concentración.
     $$
 
     Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de 
-    transición: tres normales de varianzas diferentes y tres betas de concentración 
-    diferente. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación. 
-    Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.
+    transición: tres normales de varianzas diferentes y tres betas de concentraciones 
+    diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones
+    de autocorrelación. 
+    Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y 
+    busque un punto conveniente.
 
 3.  Utilizando cada una de las seis cadenas anteriores, compute la media de la 
     distribución, los percentiles 5 y 95, y la esperanza de $\sqrt{X}$ sabiendo que $X$ 
     se distribuye según $g^*(x)$
 
-4.  Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (ESS). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
+4.  Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra 
+    (ESS). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
 
-5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin $\hat{R}$
+5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas
+    que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en
+    caso de ser necesario, descarte muetras iniciales. 
+    Calcule el estadístico de Gelman-Rubin $\hat{R}$
 
-    <!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
+<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
 
 6.  Elija la mejor distribución de probabilidad para transiciones que le permita tomar 
     muestras de la función de densidad:
@@ -165,7 +233,39 @@ casos:
 * $\sigma_1 = \sigma_2$ y $\rho > 0$
 * $\sigma_1 = \sigma_2$ y $\rho < 0$
 
-```{r plot-matrix-of-gaussians}
+2.  Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas 
+    por las cadenas al obtener muestras de $f(x)$.
+
+
+3.  Considere la familia de distribucion normal bivariada en dos dimensiones
+    $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
+    covarianza
+
+    $$
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_3 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_5 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+    \end{array}
+    $$
+
+    La función de densidad está dada por
+
+    $$
+    f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y se puede visualizar para las diferentes matrices de covarianza en el siguiente
+    gráfico
+
+    ```{r plot-matrix-of-gaussians}
     #| warning: false
     #| cache: true
     #| echo: false
@@ -206,9 +306,16 @@ casos:
     plt
     ```
 
-**TO DO:** Revisar gráficos
+    Responda a las siguientes consignas:
 
-2.  Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas 
-    por las cadenas al obtener muestras de $f(x)$.
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación en cada uno de los casos.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado. 
 
-## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?
+<!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
