@@ -318,45 +318,57 @@ f(\mathbf{x}) =
 <li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span></li>
 </ul>
 <ol start="2" type="1">
-<li><p>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</p></li>
-<li><p>Considere la familia de distribucion normal bivariada en dos dimensiones <span class="math inline">\(\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})\)</span> y las siguientes matrices de covarianza</p>
-<p><span class="math display">\[
-\begin{array}{cc}
-    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_2 = \begin{bmatrix} 1 &amp; 0.2 \\ 0.2 &amp; 1 \end{bmatrix}
-    \\ \\
-    \pmb{\Sigma}_3 = \begin{bmatrix} 1 &amp; 0.5 \\ 0.5 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
-    \\ \\
-    \pmb{\Sigma}_5 = \begin{bmatrix} 1 &amp; 0.9 \\ 0.9 &amp; 1 \end{bmatrix} &amp;
-    \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
-\end{array}
-\]</span></p>
-<p>La función de densidad está dada por</p>
-<p><span class="math display">\[
-f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma})
-= \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
-\exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
-\]</span></p>
-<p>y se puede visualizar para las diferentes matrices de covarianza en el siguiente gráfico</p>
-<div class="cell" data-layout-align="center" data-hash="02_tp2_cache/html/plot-matrix-of-gaussians_656bea3d65223236fb580564bf92801f">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png" class="img-fluid figure-img" width="768"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Responda a las siguientes consignas:</p>
-<ol type="i">
-<li>Utilice el algoritmo Metropolis-Hastings para obtener <span class="math inline">\(n=10000\)</span> muestras de cada una de las distribuciones.</li>
-<li>Calcule la probabilidad de aceptación en cada uno de los casos.</li>
-<li>Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.</li>
-<li>Analice como varía la probabilidad de aceptación y la cantidad de muestras efectivas según las diferentes características de la distribución objetivo.</li>
-<li>¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según lo que puede concluir a partir de esta aplicación? Comente dificultades con las que se haya encontrado.</li>
-</ol></li>
+<li>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
 </ol>
+<!-- 3.  Considere la familia de distribucion normal bivariada en dos dimensiones
+    $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
+    covarianza
+
+    $$
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_3 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_5 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+    \end{array}
+    $$
+
+    La función de densidad está dada por
+
+    $$
+    f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y se puede visualizar para las diferentes matrices de covarianza en el siguiente
+    gráfico
+
+
+
+    ::: {.cell layout-align="center" hash='02_tp2_cache/html/plot-matrix-of-gaussians_656bea3d65223236fb580564bf92801f'}
+    ::: {.cell-output-display}
+    ![](02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png){fig-align='center' width=768}
+    :::
+    :::
+
+
+
+    Responda a las siguientes consignas:
+
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación en cada uno de los casos.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado.  -->
 <!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
 
 
