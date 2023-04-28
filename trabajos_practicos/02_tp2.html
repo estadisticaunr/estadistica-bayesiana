@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -100,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -196,8 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <div class="quarto-alternate-formats"><h2>Otros formatos</h2><ul><li><a href="02_tp2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -221,9 +186,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/02_tp2.pdf">Descargar PDF</a></p>
 <section id="metropolis-hastings-en-1d" class="level1">
 <h1>Metropolis-Hastings en 1D</h1>
-<p>El algoritmo de Metropolis-Hastings (MH) permite obtener muestras de una distribución de probabilidad <span class="math inline">\(f^*(\theta)\)</span>, incluso aunque esta sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno). Basta con que se pueda evaluar <span class="math inline">\(f^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>.</p>
+<p>El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> que no necesariamente pertence a una familia de distribuciones conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de probabilidad) <span class="math inline">\(p^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>, incluso cuando <span class="math inline">\(p^*(\theta)\)</span> sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno).</p>
+<!-- ::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+::: -->
 <ol type="1">
-<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una función de probabilidad unidimensional dada. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
+<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
 <li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
 <p><span class="math display">\[
 g^*(x) =
@@ -232,11 +254,13 @@ g^*(x) =
     0 &amp; \text{si } x&lt;0
 \end{cases}
 \]</span></p>
-<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentración diferente. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación. Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
+<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación. Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
 <li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
 <li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (ESS). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p></li>
-<li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p>
-<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html --></li>
+<li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p></li>
+</ol>
+<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
+<ol start="6" type="1">
 <li><p>Elija la mejor distribución de probabilidad para transiciones que le permita tomar muestras de la función de densidad:</p>
 <p><span class="math display">\[
 h^*(x) = e^{-\frac{4}{10} (x - \frac{4}{10})^2 - \frac{2}{25}x^4}
@@ -293,56 +317,47 @@ f(\mathbf{x}) =
 <li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &gt; 0\)</span></li>
 <li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| warning: false</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| cache: true</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| echo: false</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| fig.width: 8</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| fig.height: 12</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#| fig.align: center</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    data <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">crossing</span>(<span class="at">x1 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">0.1</span>), <span class="at">x2 =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">3</span>, <span class="dv">3</span>, <span class="fl">0.1</span>))</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    Mu <span class="ot">&lt;-</span> <span class="fu">replicate</span>(<span class="dv">6</span>, <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>), <span class="at">simplify =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    Sigma <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.9</span>, <span class="fl">0.9</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="fl">0.01</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    index <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    plot_list <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map2</span>(Mu, Sigma, <span class="cf">function</span>(x, y) {</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        title_str <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"$</span><span class="sc">\\</span><span class="st">Sigma_"</span>, index, <span class="st">"$"</span>)</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        plt <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mutate</span>(<span class="at">f =</span> mvtnorm<span class="sc">::</span><span class="fu">dmvnorm</span>(data, x, y)) <span class="sc">|&gt;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>            <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">fill =</span> f)) <span class="sc">+</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>            <span class="fu">stat_contour</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">z =</span> f), <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>            viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>() <span class="sc">+</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>            <span class="fu">labs</span>(<span class="at">title =</span> latex2exp<span class="sc">::</span><span class="fu">TeX</span>(title_str)) <span class="sc">+</span> </span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>            <span class="fu">theme</span>(</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>                <span class="at">legend.position =</span> <span class="st">"none"</span>, </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>                <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">18</span>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        index <span class="ot">&lt;&lt;-</span> index <span class="sc">+</span> <span class="dv">1</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(plt)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    plt <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(<span class="st">`</span><span class="at">+</span><span class="st">`</span>, plot_list) <span class="sc">+</span> </span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot_layout</span>(<span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    plt</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p><strong>TO DO:</strong> Revisar gráficos</p>
 <ol start="2" type="1">
-<li>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
+<li><p>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</p></li>
+<li><p>Considere la familia de distribucion normal bivariada en dos dimensiones <span class="math inline">\(\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})\)</span> y las siguientes matrices de covarianza</p>
+<p><span class="math display">\[
+\begin{array}{cc}
+    \pmb{\Sigma}_1 = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_2 = \begin{bmatrix} 1 &amp; 0.2 \\ 0.2 &amp; 1 \end{bmatrix}
+    \\ \\
+    \pmb{\Sigma}_3 = \begin{bmatrix} 1 &amp; 0.5 \\ 0.5 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+    \\ \\
+    \pmb{\Sigma}_5 = \begin{bmatrix} 1 &amp; 0.9 \\ 0.9 &amp; 1 \end{bmatrix} &amp;
+    \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}
+\end{array}
+\]</span></p>
+<p>La función de densidad está dada por</p>
+<p><span class="math display">\[
+f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma})
+= \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+\exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+\]</span></p>
+<p>y se puede visualizar para las diferentes matrices de covarianza en el siguiente gráfico</p>
+<div class="cell" data-layout-align="center" data-hash="02_tp2_cache/html/plot-matrix-of-gaussians_656bea3d65223236fb580564bf92801f">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png" class="img-fluid figure-img" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Responda a las siguientes consignas:</p>
+<ol type="i">
+<li>Utilice el algoritmo Metropolis-Hastings para obtener <span class="math inline">\(n=10000\)</span> muestras de cada una de las distribuciones.</li>
+<li>Calcule la probabilidad de aceptación en cada uno de los casos.</li>
+<li>Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.</li>
+<li>Analice como varía la probabilidad de aceptación y la cantidad de muestras efectivas según las diferentes características de la distribución objetivo.</li>
+<li>¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según lo que puede concluir a partir de esta aplicación? Comente dificultades con las que se haya encontrado.</li>
+</ol></li>
 </ol>
-</section>
-<section id="aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu" class="level2">
-<h2 class="anchored" data-anchor-id="aplicación-tiempo-de-reacción-humano-proponer-un-prior-para-sigma-y-uno-para-mu">Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu?</h2>
+<!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
 
 
 </section>
