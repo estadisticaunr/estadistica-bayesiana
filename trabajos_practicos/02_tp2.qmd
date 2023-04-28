@@ -237,7 +237,7 @@ casos:
     por las cadenas al obtener muestras de $f(x)$.
 
 
-3.  Considere la familia de distribucion normal bivariada en dos dimensiones
+<!-- 3.  Considere la familia de distribucion normal bivariada en dos dimensiones
     $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
     covarianza
 
@@ -316,6 +316,6 @@ casos:
     efectivas según las diferentes características de la distribución objetivo.
     i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
     lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
-    se haya encontrado. 
+    se haya encontrado.  -->
 
 <!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
