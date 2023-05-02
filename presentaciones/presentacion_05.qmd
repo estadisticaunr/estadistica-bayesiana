@@ -611,4 +611,130 @@ $$\hat{R} \, = \, \sqrt{\frac{\widehat{\mbox{var}}^{+}\!(\theta|y)}{W}}$$
 
 ![](imgs/r_hat.png){fig-align="center"}
 
-## Hamiltonian Montecarlo
+## Hamiltonian Montecarlo {.smaller}
+
+-   Metropolis-Hastings (MG) es una exploración _a ciegas_ del espacio de parámetros
+-   La distribución de propuesta de salto es fija 
+-   En las colas de la distribución, se proponen tanto saltos que se acercan al grueso (_bulk_) de la distribución como saltos que se alejan. Se rechazan _muchos_ saltos propuestos.
+-   Hamiltonian-Montecarlo (HMC) es una variante más eficiente de MCMC. Para lograr la eficiencia, los saltos propuestos se adaptan a la forma del _posterior_.
+-   La forma del _posterior_ está en su gradiente
+
+## {.smaller}
+
+-   HMC trata de aprovechar la geometría local del _posterior_ para decidir dónde ir en la próxima iteración.
+-   Si bien MH no ignora por completo la forma del _posterior_, HMC utiliza más información (el gradiente)
+-   Para entender conceptualmente HMC se necesita un poco de imaginación y entender algo de Física
+
+## {.smaller}
+
+-   $p*(\theta\mid y)$ es el _posterior_ sin normalizar. Consideraremos $-\log[p*(\theta\mid y)]$.
+-   Los puntos de alta densidad de probabilidad (máximos locales de $p*(\theta\mid y)$) se convierten en mínimos locales de $-\log[p*(\theta\mid y)]$
+-   La lógica es la misma que en MH (después de todo, se trata de un algoritmo de MCMC): estamos en algún punto del espacio de parámetros y decidimos movernos a otro... Aquí cambia cómo proponemos un salto.
+-   Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por $-\log[p*(\theta\mid y)]$
+
+## {.smaller}
+
+-   Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de $-\log[p*(\theta\mid y)]$ por efecto de la gravedad. E irá cada vez más rápido.
+-   Está bueno que el trineo deslice hacia los mínimos de $-\log[p*(\theta\mid y)]$ pues son zonas de alta densidad de probabilidad
+-   Quisiéramos que nuestro trineo explore otras zonas del _posterior_, para eso en lugar de _soltar el trineo_ le damos un impulso inicial (velocidad inicial o _momento_).
+-   Este impulso inicial será aleatorio
+
+## {.smaller}
+
+-   Conociendo la posición inicial del trineo y el impulso que se le da (la velocidad inicial), la Física permite calcular cuál será su trayectoria (y por ende su posición después de un tiempo)
+-   La posición final después de un tiempo será el nuevo $\theta$ propuesto. Es decir: mientras que en MH proponíamos un salto con la distribución $q(\theta'\mid\theta)$, aquí lo hacemos con un momento inicial y estudiando la posición del trineo.
+-   Luego se acepta o se rechaza el salto propuesto
+
+##
+
+![](imgs/hmc_impulsos_iniciales.png){fig-align="center"}
+
+##
+
+![](imgs/hmc_proposals.png){fig-align="center"}
+
+## {.smaller}
+
+-   HMC propone nuevos saltos de manera más sofisticada que MH
+-   Busca que los saltos propuestos sean hacia valores del parámetro más prometedores
+
+## {.smaller}
+
+Cómo calcular la trayectoria del trineo es una de las cuestiones claves del algoritmo. Planteamos la conservación de la energía:
+
+$$\mathcal{H}(\theta,v) = U(\theta) + K(v)$$
+
+$\mathcal{H}$ se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial $U(\theta)$ (función de la posición $\theta$) y la energía cinética $K(v)$ (función de la velocidad $v$).
+
+Se toma $U(\theta) = -\log[p*(\theta\mid y)]$ y $K(v) = \frac{1}{2} m v^2$
+
+## {.smaller}
+
+Las ecuaciones de Hamilton describen el cambio de $\theta$ y de $v$ en función del tiempo
+
+$$\frac{d\theta}{dt} = \frac{\partial \mathcal{H}}{\partial v}$$
+$$\frac{dv}{dt} = -\frac{\partial \mathcal{H}}{\partial \theta}$$
+
+## {.smaller}
+
+Es necesario resolver estas ecuaciones... Queremos hallar la posición ($\theta$) del trineo tras un tiempo. No se pueden resolver analíticamente. Discretizamos el tiempo estudiando $L$ pequeños intervalitos de duración $\varepsilon$
+
+##
+
+Se tiene:
+
+$$\frac{dv}{dt} \approx \frac{v_{t+\varepsilon} - v_{t}}{\varepsilon} = \frac{v_{t_2} - v_{t_1}}{\varepsilon}$$
+
+$$\frac{d\theta}{dt} \approx \frac{\theta_{t+\varepsilon} - \theta_{t}}{\varepsilon} = \frac{\theta_{t_2} - \theta_{t_1}}{\varepsilon}$$
+
+con lo cual
+
+$$v_{t_2} = v_{t_1} + \varepsilon \frac{dv}{dt} = v_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}$$
+
+$$\theta_{t_2} = \theta_{t_1} + \varepsilon \frac{d\theta}{dt} = \theta_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}$$
+
+Estas aproximaciones no son buenas...
+
+## Leapfrog integrator {.smaller}
+
+Se parte de $t$ y se busca $v$ en $t+\frac{\varepsilon}{2}$. Luego se busca $\theta$ en $t+\varepsilon$ usando el resultado anterior $v$ en $\frac{\varepsilon}{2}$.
+
+$$v(t+\frac{\varepsilon}{2}) = v(t) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_t$$
+
+$$\theta(t+\varepsilon) = \theta(t) + \varepsilon \frac{\partial \mathcal{H}}{\partial v}\rvert_{t+\frac{\varepsilon}{2}}$$
+
+$$v(t+\varepsilon) = v(t+\frac{varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}$$
+
+##
+
+![](imgs/hmc_leapfrogs.png){fig-align="center"}
+
+## {.smaller}
+
+La elección de $\varepsilon$ es clave para el algoritmo. Si $L\cdot\varepsilon$ es pequeño, tomará mucho tiempo explorar el _posterior_. Con un valor muy grande, ocurrirán giros en U.
+
+![](imgs/hmc_discretisation_length.png){fig-align="center"}
+
+##
+
+![](imgs/hmc_divergent.png){fig-align="center"}
+
+
+## {.smaller}
+
+1.    Propuesta: A partir de $\theta^{(i)}$ disparar una bolita en alguna dirección aleatoria, con una velocidad (_momento lineal_) aleatoria
+2.    _Leapfrog integration_: Calcular una serie de $L$ pasos (_leapfrog steps_) de duración fija $\varepsilon$ (_step size_): instantes dónde vamos a sacar una foto de la posición de la partícula
+3.    Aceptación: Obtener la posición final $\theta^{(i+1)}$ como la posición final luego de $L$ _steps_ siempre y cuando la aproximación haya sido buena (la energía se haya conservado)
+
+. . .
+
+Un $\varepsilon$ pequeño da más resolución sobre la trayectoria, permitiendo que la bolita gire ángulos pronunciados (¿pero?).
+
+. . .
+
+Un $\varepsilon$ grande hará que los saltos sean largos y podemos saltear el punto donde la partícula iba a girar (_divergent transition_).  
+
+##
+
+
+
