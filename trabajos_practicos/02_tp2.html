@@ -245,7 +245,7 @@ Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una f
 simétrica alrededor de su media.
 ::: -->
 <ol type="1">
-<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada concentración.</p></li>
+<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada moda y concentración (es decir, utilizando <a href="https://en.wikipedia.org/wiki/Beta_distribution#Mode_and_concentration">esta parametrización</a>).</p></li>
 <li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
 <p><span class="math display">\[
 g^*(x) =
@@ -254,9 +254,23 @@ g^*(x) =
     0 &amp; \text{si } x&lt;0
 \end{cases}
 \]</span></p>
-<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación. Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
+<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
 <li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
-<li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (ESS). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p></li>
+<li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Montecarlo standard error (MCSE)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Por el Teorema Central del Límite sabemos que, si <span class="math inline">\(\bar{X}_N\)</span> es el promedio de <span class="math inline">\(N\)</span> observaciones independientes e idénticamente distribuidas, entonces <span class="math inline">\(\sqrt{N}(\bar{X}_N-\mu)\)</span> converge en distribución a <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> cuando <span class="math inline">\(N\)</span> tiende a infinito, donde <span class="math inline">\(\mu\)</span> es la media de la distribución de las <span class="math inline">\(X_i\)</span> y <span class="math inline">\(\sigma\)</span> es su desvío estándar. Si <span class="math inline">\(\sigma\)</span> se estima por <span class="math inline">\(\hat{\sigma}\)</span>, el término <span class="math inline">\(\frac{\sigma}{\sqrt{N}}\)</span> se conoce como error estándar.</p>
+<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}{X}\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[MCSE = \frac{\hat{\sigma}}{N_{eff}}\]</span></p>
+</div>
+</div></li>
 <li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p></li>
 </ol>
 <!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
@@ -302,7 +316,7 @@ f(\mathbf{x}) =
 <ol type="1">
 <li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</li>
 </ol>
-<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings. Se explorará el efecto de diferentes distribuciones de probabilidad para el salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si se representa a <span class="math inline">\(\mathbf{\Sigma}\)</span> de la siguiente manera</p>
+<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>. Se explorará el efecto de diferentes distribuciones de probabilidad para el salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si se representa a <span class="math inline">\(\mathbf{\Sigma}\)</span> de la siguiente manera</p>
 <p><span class="math display">\[
 \mathbf{\Sigma} =
     \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}

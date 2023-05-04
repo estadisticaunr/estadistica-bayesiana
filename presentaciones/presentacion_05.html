@@ -772,17 +772,17 @@
 <section id="section-21" class="slide level2 smaller">
 <h2></h2>
 <ul>
-<li class="fragment"><span class="math inline">\(p*(\theta\mid y)\)</span> es el <em>posterior</em> sin normalizar. Consideraremos <span class="math inline">\(-\log[p*(\theta\mid y)]\)</span>.</li>
-<li class="fragment">Los puntos de alta densidad de probabilidad (máximos locales de <span class="math inline">\(p*(\theta\mid y)\)</span>) se convierten en mínimos locales de <span class="math inline">\(-\log[p*(\theta\mid y)]\)</span></li>
+<li class="fragment"><span class="math inline">\(p^*(\theta\mid y)\)</span> es el <em>posterior</em> sin normalizar. Consideraremos <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span>.</li>
+<li class="fragment">Los puntos de alta densidad de probabilidad (máximos locales de <span class="math inline">\(p^*(\theta\mid y)\)</span>) se convierten en mínimos locales de <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span></li>
 <li class="fragment">La lógica es la misma que en MH (después de todo, se trata de un algoritmo de MCMC): estamos en algún punto del espacio de parámetros y decidimos movernos a otro… Aquí cambia cómo proponemos un salto.</li>
-<li class="fragment">Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por <span class="math inline">\(-\log[p*(\theta\mid y)]\)</span></li>
+<li class="fragment">Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span></li>
 </ul>
 </section>
 <section id="section-22" class="slide level2 smaller">
 <h2></h2>
 <ul>
-<li class="fragment">Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de <span class="math inline">\(-\log[p*(\theta\mid y)]\)</span> por efecto de la gravedad. E irá cada vez más rápido.</li>
-<li class="fragment">Está bueno que el trineo deslice hacia los mínimos de <span class="math inline">\(-\log[p*(\theta\mid y)]\)</span> pues son zonas de alta densidad de probabilidad</li>
+<li class="fragment">Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span> por efecto de la gravedad. E irá cada vez más rápido.</li>
+<li class="fragment">Está bueno que el trineo deslice hacia los mínimos de <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span> pues son zonas de alta densidad de probabilidad</li>
 <li class="fragment">Quisiéramos que nuestro trineo explore otras zonas del <em>posterior</em>, para eso en lugar de <em>soltar el trineo</em> le damos un impulso inicial (velocidad inicial o <em>momento</em>).</li>
 <li class="fragment">Este impulso inicial será aleatorio</li>
 </ul>
@@ -815,7 +815,7 @@
 <p>Cómo calcular la trayectoria del trineo es una de las cuestiones claves del algoritmo. Planteamos la conservación de la energía:</p>
 <p><span class="math display">\[\mathcal{H}(\theta,v) = U(\theta) + K(v)\]</span></p>
 <p><span class="math inline">\(\mathcal{H}\)</span> se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial <span class="math inline">\(U(\theta)\)</span> (función de la posición <span class="math inline">\(\theta\)</span>) y la energía cinética <span class="math inline">\(K(v)\)</span> (función de la velocidad <span class="math inline">\(v\)</span>).</p>
-<p>Se toma <span class="math inline">\(U(\theta) = -\log[p*(\theta\mid y)]\)</span> y <span class="math inline">\(K(v) = \frac{1}{2} m v^2\)</span></p>
+<p>Se toma <span class="math inline">\(U(\theta) = -\log[p^*(\theta\mid y)]\)</span> y <span class="math inline">\(K(v) = \frac{1}{2} m v^2\)</span></p>
 </section>
 <section id="section-28" class="slide level2 smaller">
 <h2></h2>
@@ -841,7 +841,7 @@
 <p>Se parte de <span class="math inline">\(t\)</span> y se busca <span class="math inline">\(v\)</span> en <span class="math inline">\(t+\frac{\varepsilon}{2}\)</span>. Luego se busca <span class="math inline">\(\theta\)</span> en <span class="math inline">\(t+\varepsilon\)</span> usando el resultado anterior <span class="math inline">\(v\)</span> en <span class="math inline">\(\frac{\varepsilon}{2}\)</span>.</p>
 <p><span class="math display">\[v(t+\frac{\varepsilon}{2}) = v(t) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_t\]</span></p>
 <p><span class="math display">\[\theta(t+\varepsilon) = \theta(t) + \varepsilon \frac{\partial \mathcal{H}}{\partial v}\rvert_{t+\frac{\varepsilon}{2}}\]</span></p>
-<p><span class="math display">\[v(t+\varepsilon) = v(t+\frac{varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}\]</span></p>
+<p><span class="math display">\[v(t+\varepsilon) = v(t+\frac{\varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}\]</span></p>
 </section>
 <section id="section-31" class="slide level2">
 <h2></h2>
