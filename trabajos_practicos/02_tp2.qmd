@@ -102,8 +102,8 @@ simétrica alrededor de su media.
 1.  Escriba una función que implemente el algoritmo de MH para tomar 
 muestras de una distribución de probabilidad unidimensional a partir de su función de 
 densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de 
-propuesta de transición: normal de una varianza dada y beta de una determinada 
-concentración.
+propuesta de transición: normal de una varianza dada y beta de una determinada moda y 
+concentración (es decir, utilizando [esta parametrización](https://en.wikipedia.org/wiki/Beta_distribution#Mode_and_concentration)).
 
 2.  Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por
 
@@ -118,7 +118,7 @@ concentración.
     Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de 
     transición: tres normales de varianzas diferentes y tres betas de concentraciones 
     diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones
-    de autocorrelación. 
+    de autocorrelación (puede utilizar la función `acf` o escribir una función propia). 
     Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y 
     busque un punto conveniente.
 
@@ -127,7 +127,21 @@ concentración.
     se distribuye según $g^*(x)$
 
 4.  Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra 
-    (ESS). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
+    ($ESS$ o $N_{eff}$). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
+    
+    ::: {.callout-tip}
+    ## Montecarlo standard error (MCSE)
+    
+    Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
+    independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
+    a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
+    de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
+    $\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
+    
+    Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}{X}$ con $N_{eff}$ muestras dependientes
+    que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
+    $$MCSE = \frac{\hat{\sigma}}{N_{eff}}$$
+    :::
 
 5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas
     que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en
@@ -212,7 +226,8 @@ data |>
     argumento la matriz de covarianza de la probabilidad de transición.
 
 Se utilizará una normal bivariada para proponer un salto en el algoritmo de 
-Metropolis-Hastings. Se explorará el efecto de diferentes distribuciones de probabilidad 
+Metropolis-Hastings (utilizar para ello la función `rmvnorm` del paquete `{mvtnorm}`. 
+Se explorará el efecto de diferentes distribuciones de probabilidad 
 para el salto, en función de diferentes matrices de covarianza $\mathbf{\Sigma}$. 
 Si se representa a $\mathbf{\Sigma}$ de la siguiente manera
 

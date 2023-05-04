@@ -627,15 +627,15 @@ $$\hat{R} \, = \, \sqrt{\frac{\widehat{\mbox{var}}^{+}\!(\theta|y)}{W}}$$
 
 ## {.smaller}
 
--   $p*(\theta\mid y)$ es el _posterior_ sin normalizar. Consideraremos $-\log[p*(\theta\mid y)]$.
--   Los puntos de alta densidad de probabilidad (máximos locales de $p*(\theta\mid y)$) se convierten en mínimos locales de $-\log[p*(\theta\mid y)]$
+-   $p^*(\theta\mid y)$ es el _posterior_ sin normalizar. Consideraremos $-\log[p^*(\theta\mid y)]$.
+-   Los puntos de alta densidad de probabilidad (máximos locales de $p^*(\theta\mid y)$) se convierten en mínimos locales de $-\log[p^*(\theta\mid y)]$
 -   La lógica es la misma que en MH (después de todo, se trata de un algoritmo de MCMC): estamos en algún punto del espacio de parámetros y decidimos movernos a otro... Aquí cambia cómo proponemos un salto.
--   Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por $-\log[p*(\theta\mid y)]$
+-   Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por $-\log[p^*(\theta\mid y)]$
 
 ## {.smaller}
 
--   Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de $-\log[p*(\theta\mid y)]$ por efecto de la gravedad. E irá cada vez más rápido.
--   Está bueno que el trineo deslice hacia los mínimos de $-\log[p*(\theta\mid y)]$ pues son zonas de alta densidad de probabilidad
+-   Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de $-\log[p^*(\theta\mid y)]$ por efecto de la gravedad. E irá cada vez más rápido.
+-   Está bueno que el trineo deslice hacia los mínimos de $-\log[p^*(\theta\mid y)]$ pues son zonas de alta densidad de probabilidad
 -   Quisiéramos que nuestro trineo explore otras zonas del _posterior_, para eso en lugar de _soltar el trineo_ le damos un impulso inicial (velocidad inicial o _momento_).
 -   Este impulso inicial será aleatorio
 
@@ -666,7 +666,7 @@ $$\mathcal{H}(\theta,v) = U(\theta) + K(v)$$
 
 $\mathcal{H}$ se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial $U(\theta)$ (función de la posición $\theta$) y la energía cinética $K(v)$ (función de la velocidad $v$).
 
-Se toma $U(\theta) = -\log[p*(\theta\mid y)]$ y $K(v) = \frac{1}{2} m v^2$
+Se toma $U(\theta) = -\log[p^*(\theta\mid y)]$ y $K(v) = \frac{1}{2} m v^2$
 
 ## {.smaller}
 
@@ -703,7 +703,7 @@ $$v(t+\frac{\varepsilon}{2}) = v(t) - \frac{\varepsilon}{2} \frac{\partial \math
 
 $$\theta(t+\varepsilon) = \theta(t) + \varepsilon \frac{\partial \mathcal{H}}{\partial v}\rvert_{t+\frac{\varepsilon}{2}}$$
 
-$$v(t+\varepsilon) = v(t+\frac{varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}$$
+$$v(t+\varepsilon) = v(t+\frac{\varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}$$
 
 ##
 
