@@ -20,7 +20,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -257,18 +276,24 @@ g^*(x) =
 <p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
 <li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
 <li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p>
+<pre><code>::: {.callout-tip}</code></pre>
+<h2 id="effective-sample-size-ess" class="anchored" data-anchor-id="metropolis-hastings-en-1d"><em>Effective sample size</em> (ESS)</h2>
+<p>El número efectivo de muestras <span class="math inline">\(N_{eff}\)</span> es el número de muestras independientes que tienen el mismo <em>poder de estimación</em> que <span class="math inline">\(S\)</span> muestras correlacionadas.</p>
+<p>Este valor puede aproximarse por:</p>
+<p><span class="math display">\[N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}\]</span></p>
+<p>Notar que la suma infinita del denominador empieza en <span class="math inline">\(k=1\)</span> (y no en <span class="math inline">\(k=0\)</span>, donde <span class="math inline">\(ACF(0)=1\)</span>). Además, en la práctica, una regla para truncar la <span class="math inline">\(ACF\)</span> es hacerlo a partir del primer <span class="math inline">\(k\)</span> valor donde <span class="math inline">\(ACF(k)&lt;0.05\)</span> <span class="citation" data-cites="Kruschke2014">(<a href="#ref-Kruschke2014" role="doc-biblioref">Kruschke 2014, 184</a>)</span>. :::</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Montecarlo standard error (MCSE)
+<em>Montecarlo standard error</em> (MCSE)
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Por el Teorema Central del Límite sabemos que, si <span class="math inline">\(\bar{X}_N\)</span> es el promedio de <span class="math inline">\(N\)</span> observaciones independientes e idénticamente distribuidas, entonces <span class="math inline">\(\sqrt{N}(\bar{X}_N-\mu)\)</span> converge en distribución a <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> cuando <span class="math inline">\(N\)</span> tiende a infinito, donde <span class="math inline">\(\mu\)</span> es la media de la distribución de las <span class="math inline">\(X_i\)</span> y <span class="math inline">\(\sigma\)</span> es su desvío estándar. Si <span class="math inline">\(\sigma\)</span> se estima por <span class="math inline">\(\hat{\sigma}\)</span>, el término <span class="math inline">\(\frac{\sigma}{\sqrt{N}}\)</span> se conoce como error estándar.</p>
-<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}{X}\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[MCSE = \frac{\hat{\sigma}}{N_{eff}}\]</span></p>
+<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}{X}\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}\]</span></p>
 </div>
 </div></li>
 <li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p></li>
@@ -386,10 +411,15 @@ f(\mathbf{x}) =
 <!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
 
 
+
 </section>
 </section>
 
-</main> <!-- /main -->
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Kruschke2014" class="csl-entry" role="listitem">
+Kruschke, John. 2014. <em>Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan</em>. 2nd edition. Academic Press.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
