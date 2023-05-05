@@ -121,6 +121,8 @@ concentración (es decir, utilizando [esta parametrización](https://en.wikipedi
     de autocorrelación (puede utilizar la función `acf` o escribir una función propia). 
     Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y 
     busque un punto conveniente.
+    
+    
 
 3.  Utilizando cada una de las seis cadenas anteriores, compute la media de la 
     distribución, los percentiles 5 y 95, y la esperanza de $\sqrt{X}$ sabiendo que $X$ 
@@ -130,7 +132,19 @@ concentración (es decir, utilizando [esta parametrización](https://en.wikipedi
     ($ESS$ o $N_{eff}$). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
     
     ::: {.callout-tip}
-    ## Montecarlo standard error (MCSE)
+    ## _Effective sample size_ (ESS)
+    
+    El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
+    
+    Este valor puede aproximarse por:
+    
+    $$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
+    
+    Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
+    :::
+    
+    ::: {.callout-tip}
+    ## _Montecarlo standard error_ (MCSE)
     
     Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
     independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
@@ -140,7 +154,7 @@ concentración (es decir, utilizando [esta parametrización](https://en.wikipedi
     
     Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}{X}$ con $N_{eff}$ muestras dependientes
     que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
-    $$MCSE = \frac{\hat{\sigma}}{N_{eff}}$$
+    $$MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}$$
     :::
 
 5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas
