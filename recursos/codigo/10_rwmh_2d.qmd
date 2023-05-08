@@ -1,0 +1,14 @@
+---
+title: "10 - Random-Walk Metropolis-Hastings en 2 dimensiones"
+---
+
+El siguiente código es de utilidad para resolver con `R` el ejercicio
+**Metropolis-Hastings multivariado** de la Práctica 3.
+
+```{r}
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| file: scripts/10_rwmh_2d.R 
+```

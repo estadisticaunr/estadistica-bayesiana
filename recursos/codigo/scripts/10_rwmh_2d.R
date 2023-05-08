@@ -1,0 +1,64 @@
+library(ggplot2)
+library(mvtnorm)
+
+# Cantidad de muestras a obtener
+n <- 5000
+
+# Parámetros de la distribución a muestrear
+Mu_objetivo <- c(1.2, 0.8)
+Sigma_objetivo <- matrix(c(3, 0.2, 0.2, 2), ncol = 2)
+
+# Matriz de dimensión (n, 2) que va a contener las muestras
+muestras <- matrix(NA, nrow = n, ncol = 2)
+
+# El punto inicial es el (0, 0)
+muestras[1, ] <- c(0, 0)
+
+# Matriz de varianza de la distribución de propuesta
+Sigma_propuesta <- diag(2) * 0.2
+
+for (i in 2:n) {
+    # Proponer un nuevo valor
+    propuesta <- rmvnorm(1, mean = muestras[i - 1, ], sigma = Sigma_propuesta)
+    
+    # Evaluar la función de densidad en el valor actual y en el propuesto
+    f_propuesta <- dmvnorm(propuesta, Mu_objetivo, Sigma_objetivo)
+    f_actual <- dmvnorm(muestras[i - 1, ], Mu_objetivo, Sigma_objetivo)
+    
+    # Calcular probabilidad de aceptación
+    alpha <- min(c(1, f_propuesta / f_actual))
+    
+    # Determinar aceptación de propuesta
+    aceptar <- rbinom(1, 1, alpha)
+
+    # Seleccionar nueva muestras 
+    if (aceptar) {
+        muestras[i, ] <- propuesta
+    } else {
+        muestras[i, ] <- muestras[i - 1, ]
+    }
+}
+
+# Obtener las muestras como data.frame
+df <- as.data.frame(muestras)
+colnames(df) <- c("y1", "y2")
+df$x <- 1:n
+
+# Graficar muestras en el plano
+ggplot(df) +
+    geom_point(aes(x = y1, y = y2), alpha = 0.6)
+
+# Obtener una visualización de la densidad empírica
+ggplot(df, aes(x = y1, y = y2)) + 
+    stat_density2d(
+        geom = "raster",
+        aes(fill = after_stat(density)),
+        contour = FALSE
+    ) + 
+    scale_fill_viridis_c()
+
+# Graficar las trazas de ambas variables
+tidyr::pivot_longer(df, c("y1", "y2"), names_to = "variable") |>
+    ggplot() + 
+        geom_line(aes(x = x, y = value, color = variable)) + 
+        facet_wrap(~ variable, ncol = 1)

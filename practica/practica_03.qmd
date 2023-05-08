@@ -664,8 +664,8 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     \end{aligned}
     $$
 
-    Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique la convergencia
-    de las cadenas de Markov.
+    Ajuste el modelo utilizando Metropolis-Hastings y verifique la convergencia de las 
+    cadenas de Markov.
     <!-- @Reich2020 3.10/3.11  -->
 
 1.  **Metropolis-Hastings multivariado**
@@ -689,10 +689,10 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     Metropolis-Hastings para obtener muestras del _posterior_ en vez del método de
     la grilla.
 
-1.  **Demostración sobre la distribución estacionaria**
+<!-- 1.  **Demostración sobre la distribución estacionaria**
     
     Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
-    la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$
+    la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$ -->
 
 <!--
 TO DO

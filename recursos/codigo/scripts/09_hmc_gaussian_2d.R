@@ -45,7 +45,7 @@ leapfrog <- function(p, q, neg_dlogp, path_length, step_size) {
   q <- q + step_size * p
   p <- p - step_size * neg_dlogp(q) / 2
   
-  # momentum flip at end
+  # Flip del momentum 
   return(list(q = q, p = -p, leap_q = leap_q, leap_p = leap_p))
 }
 
