@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/distribuciones/distribuciones.html" rel="next">
+<link href="../../recursos/codigo/09_hmc_gaussian_2d.html" rel="next">
 <link href="../../recursos/codigo/07_bolas_infinitas.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -224,6 +224,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">08 - Aproximación de grilla en 2 dimensiones</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/09_hmc_gaussian_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09 - Hamiltonian Monte Carlo para normal bivariada</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -258,7 +264,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>El siguiente programa sirve para responder al ejercicio <strong>Bolas infinitas</strong> de la Práctica 3.</p>
+<p>El siguiente programa muestra como se puede resolver en <code>R</code> el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> de la Práctica 3.</p>
 <div class="cell" data-layout-align="center" data-file="scripts/08_grid_2d.R">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -325,8 +331,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-</div>
-<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>posterior_a_df <span class="ot">&lt;-</span> grid_df <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(a) <span class="sc">|&gt;</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">p =</span> <span class="fu">sum</span>(posterior))</span>
@@ -338,13 +342,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="08_grid_2d_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="08_grid_2d_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Distribución marginal de <span class="math inline">\(\alpha\)</span>.</figcaption>
 </figure>
 </div>
 </div>
-</div>
-<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>posterior_b_df <span class="ot">&lt;-</span> grid_df <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(b) <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">p =</span> <span class="fu">sum</span>(posterior))</span>
@@ -356,22 +358,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="08_grid_2d_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="08_grid_2d_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Distribución marginal de <span class="math inline">\(\beta\)</span>.</figcaption>
 </figure>
 </div>
 </div>
-</div>
-<p>La probabilidad de que <span class="math inline">\(\alpha &gt; 0.95\)</span>…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_a_df<span class="sc">$</span>p[posterior_a_df<span class="sc">$</span>a <span class="sc">&gt;</span> <span class="fl">0.95</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(alpha &gt; 0.95)</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_a_df<span class="sc">$</span>p[posterior_a_df<span class="sc">$</span>a <span class="sc">&gt;</span> <span class="fl">0.95</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.7292537</code></pre>
 </div>
-</div>
-<p>La probabilidad de que <span class="math inline">\(\beta &lt; -2\)</span>…</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_b_df<span class="sc">$</span>p[posterior_b_df<span class="sc">$</span>b <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># P(beta &lt; -2)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(posterior_b_df<span class="sc">$</span>p[posterior_b_df<span class="sc">$</span>b <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1204088</code></pre>
 </div>
@@ -620,8 +618,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/distribuciones/distribuciones.html" class="pagination-link">
-        <span class="nav-page-text">Distribuciones</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/09_hmc_gaussian_2d.html" class="pagination-link">
+        <span class="nav-page-text">09 - Hamiltonian Monte Carlo para normal bivariada</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
