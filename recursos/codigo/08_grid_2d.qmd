@@ -1,0 +1,60 @@
+---
+title: "08 - Aproximación de grilla en 2 dimensiones"
+---
+
+El siguiente programa sirve para responder al ejercicio **Bolas infinitas** 
+de la Práctica 3.
+
+```{r}
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| fig-cap: Distribución a posteriori evaluada en una grilla de 50×50 puntos.<br>
+#|  El punto indica los valores de $\alpha$ y $\beta$ utilizados para generar los datos.
+#| file: scripts/08_grid_2d.R
+```
+
+```{r}
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| fig-cap: Distribución marginal de $\alpha$.
+posterior_a_df <- grid_df |>
+    group_by(a) |>
+    summarise(p = sum(posterior))
+
+ggplot(posterior_a_df) +
+    geom_segment(aes(x = a, xend = a, y = 0, yend = p)) +
+    geom_point(aes(x = a, y = p)) +
+    labs(x = expression(alpha), y = "p(α | y)")
+```
+
+```{r}
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| fig-cap: Distribución marginal de $\beta$.
+posterior_b_df <- grid_df |>
+    group_by(b) |>
+    summarise(p = sum(posterior))
+
+ggplot(posterior_b_df) +
+    geom_segment(aes(x = b, xend = b, y = 0, yend = p)) +
+    geom_point(aes(x = b, y = p)) +
+    labs(x = expression(beta), y = "p(β | y)")
+```
+
+La probabilidad de que $\alpha > 0.95$...
+
+```{r}
+sum(posterior_a_df$p[posterior_a_df$a > 0.95])
+```
+
+La probabilidad de que $\beta < -2$...
+
+```{r}
+sum(posterior_b_df$p[posterior_b_df$b < -2])
+```
