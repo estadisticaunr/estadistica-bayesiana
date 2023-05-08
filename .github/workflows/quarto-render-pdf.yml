@@ -24,6 +24,7 @@ jobs:
           packages: |
             any::dplyr
             any::ggplot2
+            any::ggquiver
             any::here
             any::kableExtra
             any::knitr
