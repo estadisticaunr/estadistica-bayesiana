@@ -55,3 +55,28 @@ ggplot(grid_df, aes(x = a, y = b)) +
     theme(legend.position = "none") +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0))
+
+posterior_a_df <- grid_df |>
+    group_by(a) |>
+    summarise(p = sum(posterior))
+
+ggplot(posterior_a_df) +
+    geom_segment(aes(x = a, xend = a, y = 0, yend = p)) +
+    geom_point(aes(x = a, y = p)) +
+    labs(x = expression(alpha), y = "p(α | y)")
+
+
+posterior_b_df <- grid_df |>
+    group_by(b) |>
+    summarise(p = sum(posterior))
+
+ggplot(posterior_b_df) +
+    geom_segment(aes(x = b, xend = b, y = 0, yend = p)) +
+    geom_point(aes(x = b, y = p)) +
+    labs(x = expression(beta), y = "p(β | y)")
+
+# P(alpha > 0.95)
+sum(posterior_a_df$p[posterior_a_df$a > 0.95])
+
+# P(beta < -2)
+sum(posterior_b_df$p[posterior_b_df$b < -2])
