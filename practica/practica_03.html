@@ -581,7 +581,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \beta      &amp;\sim \text{Normal}(0, 10^2)
 \end{aligned}
 \]</span></p>
-<p>Ajuste el siguiente modelo utilizando Metropolis-Hastings y verifique la convergencia de las cadenas de Markov. <!-- @Reich2020 3.10/3.11  --></p></li>
+<p>Ajuste el modelo utilizando Metropolis-Hastings y verifique la convergencia de las cadenas de Markov. <!-- @Reich2020 3.10/3.11  --></p></li>
 <li><p><strong>Metropolis-Hastings multivariado</strong></p>
 <p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\pmb{\mu}, \pmb{\Sigma})\)</span> donde</p>
 <p><span class="math display">\[
@@ -593,9 +593,11 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\mathbf{0}_2, \mathbf{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
 <li><p><strong>Metropolis-Hastings para regresión</strong></p>
 <p>Repita el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> pero utilice Metropolis-Hastings para obtener muestras del <em>posterior</em> en vez del método de la grilla.</p></li>
-<li><p><strong>Demostración sobre la distribución estacionaria</strong></p>
-<p>Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es la distribución objetivo <span class="math inline">\(p(\pmb{\theta} | \mathbf{y})\)</span></p></li>
 </ol>
+<!-- 1.  **Demostración sobre la distribución estacionaria**
+    
+    Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
+    la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$ -->
 <!--
 TO DO
 
