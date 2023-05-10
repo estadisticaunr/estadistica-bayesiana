@@ -728,6 +728,90 @@
     "text": "Propuesta: A partir de \\(\\theta^{(i)}\\) disparar una bolita en alguna dirección aleatoria, con una velocidad (momento lineal) aleatoria\nLeapfrog integration: Calcular una serie de \\(L\\) pasos (leapfrog steps) de duración fija \\(\\varepsilon\\) (step size): instantes dónde vamos a sacar una foto de la posición de la partícula\nAceptación: Obtener la posición final \\(\\theta^{(i+1)}\\) como la posición final luego de \\(L\\) steps siempre y cuando la aproximación haya sido buena (la energía se haya conservado)\n\n\nUn \\(\\varepsilon\\) pequeño da más resolución sobre la trayectoria, permitiendo que la bolita gire ángulos pronunciados (¿pero?).\n\n\nUn \\(\\varepsilon\\) grande hará que los saltos sean largos y podemos saltear el punto donde la partícula iba a girar (divergent transition)."
   },
   {
+    "objectID": "presentaciones/presentacion_06.html",
+    "href": "presentaciones/presentacion_06.html",
+    "title": "Modelos Lineales",
+    "section": "",
+    "text": "Para modelizar la relación entre una variable dependiente \\(y\\) y ciertos predictores \\(x_l\\) asumimos un modelo de la forma\n\\[y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\dots + \\beta_p x_p + \\eta\\]\nEn realidad tenemos \\(N\\) observaciones y por lo tanto para cada observación \\((y_i,\\mathbf{x}_i)\\) tenemos\n\\[y_i = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i} + \\eta\\]\nO bien, matricialmente\n\\[y_i = \\boldsymbol{\\beta}^T \\mathbf{x}_i + \\eta\\]\nEl error \\(\\eta\\) es desconocido y, en principio, no es necesario asumir nada sobre este.\n\n\n\nPara predecir valores de \\(y_i\\) es necesario estimar \\(\\boldsymbol{\\beta}\\) por \\(\\hat{\\boldsymbol{\\beta}}\\) dando lugar al siguiente modelo predictivo:\n\\[\\hat{y}_i = \\hat\\beta_0 + \\hat\\beta_1 x_{1_i} + \\hat\\beta_2 x_{2_i} + \\dots + \\hat\\beta_p x_{p_i} = \\hat{\\boldsymbol{\\beta}}^T \\mathbf{x}_i\\]\nUna forma de estimar \\(\\boldsymbol{\\beta}\\) es minimizar alguna función del error de aproximar \\(y\\) por \\(\\hat{y}_i\\):\n\\[\\hat{\\boldsymbol{\\beta}} = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ J(\\boldsymbol\\beta) \\right] = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ \\sum_{i=1}^N \\left(y_i - \\boldsymbol\\beta^T \\mathbf{x}_i\\right)^2 \\right]\\]\nEl \\(\\boldsymbol{\\beta}\\) que minimiza el error cuadrático se conoce como estimador de mínimos cuadrados. Esto es lo que se conoce como enfoque de optimización.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAsumiendo un modelo probabilístico para el error, \\(\\eta \\sim \\mathcal{N}(0,\\sigma^2)\\) se puede obtener el estimador de máxima verosimilitud de \\(\\boldsymbol\\beta\\).\nLa función de verosimilitud viene dada por el producto de las funciones de densidad normales:\n\\[\\ell(\\boldsymbol\\beta,\\sigma|\\mathbf{y}) = \\prod_{i=1}^N p(y_i|\\mathbf{x_i},\\boldsymbol\\beta^T,\\sigma^2) = \\prod_{i=1}^N \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i - \\boldsymbol\\beta^T\\mathbf{x}_i)^2}{2\\sigma^2}}\\]\nMaximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud \\(\\mathcal{L}(\\boldsymbol\\beta,\\sigma|\\mathbf{y}) = \\log(\\ell(\\boldsymbol\\beta,\\sigma|\\mathbf{y}))\\)\n\\[\\hat{\\boldsymbol{\\beta}}_{ML} = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ - \\sum_{i=1}^N \\left( \\frac{1}{2\\pi\\sigma^2} \\right)^{1/2} e^{-\\frac{(y_i - \\boldsymbol\\beta^T\\mathbf{x}_i)^2}{2\\sigma^2}} \\right]\\]\nLa expresión anterior puede minimizarse primero respecto de \\(\\boldsymbol\\beta\\) y luego respecto de \\(\\sigma\\). Resulta que maximizar la verosimilitud respecto de \\(\\boldsymbol\\beta\\) equivale a minimizar el error cuadrático.\n\n\n\nEn estadística bayesiana, consideramos a los parámetros como variables aleatorias y les asignamos una distribución a priori.\nAdemás, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los datos? Es una decisión de la modelización.\nAquí asumimos:\n\\[Y_i \\mid \\boldsymbol\\beta,\\sigma \\sim \\mathcal{N}(\\boldsymbol\\beta^T \\mathbf{x}_i, \\sigma^2)\\]\no bien decimos\n\\[\n\\begin{align*}\n    Y_i & \\sim  \\mathcal{N}(\\mu_i, \\sigma^2) \\\\\n    \\mu_i & = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i}\n\\end{align*}\n\\]\nY completamos el modelo especificando una distribución a priori \\(p(\\boldsymbol\\beta,\\sigma)\\)\n\n\n\nLa estimación se hace siempre de la misma manera\n\\(p(\\boldsymbol\\beta,\\sigma\\mid\\mathbf{y}) \\propto p(\\mathbf{y}|\\boldsymbol\\beta,\\sigma)p(\\boldsymbol\\beta,\\sigma)\\)\n\n\n\nObservando un dato…\n\n\n\n\n\n\n\n\n\n\n\n\nObservando el dato que sigue…\n\n\n\n\n\n\n\n\n\n\n\n\nObservando dos puntos juntos…\n\n\n\n\n\n\n\n\n\n\n\n\nComparemos con un prior más fuerte…\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\mu\\) depende de los parámetros (y por supuesto del valor de \\(x\\)), por lo que tiene una distribución de probabilidad asociada\n\n\n\n\n\n\n\n\n\n\n\n\nPor supuesto, las predicciones para \\(y\\) también son probabilísticas…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#optimización",
+    "href": "presentaciones/presentacion_06.html#optimización",
+    "title": "Estadística Bayesiana",
+    "section": "Optimización",
+    "text": "Optimización\nPara modelizar la relación entre una variable dependiente \\(y\\) y ciertos predictores \\(x_l\\) asumimos un modelo de la forma\n\\[y = \\beta_0 + \\beta_1 x_1 + \\beta_2 x_2 + \\dots + \\beta_p x_p + \\eta\\]\nEn realidad tenemos \\(N\\) observaciones y por lo tanto para cada observación \\((y_i,\\mathbf{x}_i)\\) tenemos\n\\[y_i = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i} + \\eta\\]\nO bien, matricialmente\n\\[y_i = \\boldsymbol{\\beta}^T \\mathbf{x}_i + \\eta\\]\nEl error \\(\\eta\\) es desconocido y, en principio, no es necesario asumir nada sobre este."
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section",
+    "href": "presentaciones/presentacion_06.html#section",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Para predecir valores de \\(y_i\\) es necesario estimar \\(\\boldsymbol{\\beta}\\) por \\(\\hat{\\boldsymbol{\\beta}}\\) dando lugar al siguiente modelo predictivo:\n\\[\\hat{y}_i = \\hat\\beta_0 + \\hat\\beta_1 x_{1_i} + \\hat\\beta_2 x_{2_i} + \\dots + \\hat\\beta_p x_{p_i} = \\hat{\\boldsymbol{\\beta}}^T \\mathbf{x}_i\\]\nUna forma de estimar \\(\\boldsymbol{\\beta}\\) es minimizar alguna función del error de aproximar \\(y\\) por \\(\\hat{y}_i\\):\n\\[\\hat{\\boldsymbol{\\beta}} = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ J(\\boldsymbol\\beta) \\right] = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ \\sum_{i=1}^N \\left(y_i - \\boldsymbol\\beta^T \\mathbf{x}_i\\right)^2 \\right]\\]\nEl \\(\\boldsymbol{\\beta}\\) que minimiza el error cuadrático se conoce como estimador de mínimos cuadrados. Esto es lo que se conoce como enfoque de optimización."
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#estadística-clásica",
+    "href": "presentaciones/presentacion_06.html#estadística-clásica",
+    "title": "Estadística Bayesiana",
+    "section": "Estadística clásica",
+    "text": "Estadística clásica\nAsumiendo un modelo probabilístico para el error, \\(\\eta \\sim \\mathcal{N}(0,\\sigma^2)\\) se puede obtener el estimador de máxima verosimilitud de \\(\\boldsymbol\\beta\\).\nLa función de verosimilitud viene dada por el producto de las funciones de densidad normales:\n\\[\\ell(\\boldsymbol\\beta,\\sigma|\\mathbf{y}) = \\prod_{i=1}^N p(y_i|\\mathbf{x_i},\\boldsymbol\\beta^T,\\sigma^2) = \\prod_{i=1}^N \\frac{1}{\\sqrt{2\\pi\\sigma}} e^{-\\frac{(y_i - \\boldsymbol\\beta^T\\mathbf{x}_i)^2}{2\\sigma^2}}\\]\nMaximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud \\(\\mathcal{L}(\\boldsymbol\\beta,\\sigma|\\mathbf{y}) = \\log(\\ell(\\boldsymbol\\beta,\\sigma|\\mathbf{y}))\\)\n\\[\\hat{\\boldsymbol{\\beta}}_{ML} = \\underset{\\boldsymbol\\beta}{\\mathrm{arg\\,min}}\\left[ - \\sum_{i=1}^N \\left( \\frac{1}{2\\pi\\sigma^2} \\right)^{1/2} e^{-\\frac{(y_i - \\boldsymbol\\beta^T\\mathbf{x}_i)^2}{2\\sigma^2}} \\right]\\]\nLa expresión anterior puede minimizarse primero respecto de \\(\\boldsymbol\\beta\\) y luego respecto de \\(\\sigma\\). Resulta que maximizar la verosimilitud respecto de \\(\\boldsymbol\\beta\\) equivale a minimizar el error cuadrático."
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#estadística-bayesiana",
+    "href": "presentaciones/presentacion_06.html#estadística-bayesiana",
+    "title": "Estadística Bayesiana",
+    "section": "Estadística bayesiana",
+    "text": "Estadística bayesiana\nEn estadística bayesiana, consideramos a los parámetros como variables aleatorias y les asignamos una distribución a priori.\nAdemás, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los datos? Es una decisión de la modelización.\nAquí asumimos:\n\\[Y_i \\mid \\boldsymbol\\beta,\\sigma \\sim \\mathcal{N}(\\boldsymbol\\beta^T \\mathbf{x}_i, \\sigma^2)\\]\no bien decimos\n\\[\n\\begin{align*}\n    Y_i & \\sim  \\mathcal{N}(\\mu_i, \\sigma^2) \\\\\n    \\mu_i & = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots + \\beta_p x_{p_i}\n\\end{align*}\n\\]\nY completamos el modelo especificando una distribución a priori \\(p(\\boldsymbol\\beta,\\sigma)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-2",
+    "href": "presentaciones/presentacion_06.html#section-2",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "La estimación se hace siempre de la misma manera\n\\(p(\\boldsymbol\\beta,\\sigma\\mid\\mathbf{y}) \\propto p(\\mathbf{y}|\\boldsymbol\\beta,\\sigma)p(\\boldsymbol\\beta,\\sigma)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-3",
+    "href": "presentaciones/presentacion_06.html#section-3",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Observando un dato…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-4",
+    "href": "presentaciones/presentacion_06.html#section-4",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Observando el dato que sigue…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-5",
+    "href": "presentaciones/presentacion_06.html#section-5",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Observando dos puntos juntos…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-6",
+    "href": "presentaciones/presentacion_06.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Comparemos con un prior más fuerte…"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-8",
+    "href": "presentaciones/presentacion_06.html#section-8",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\(\\mu\\) depende de los parámetros (y por supuesto del valor de \\(x\\)), por lo que tiene una distribución de probabilidad asociada"
+  },
+  {
+    "objectID": "presentaciones/presentacion_06.html#section-9",
+    "href": "presentaciones/presentacion_06.html#section-9",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Por supuesto, las predicciones para \\(y\\) también son probabilísticas…\n\n\n\n\n\n\n\n\n\n\n\n\nEstadística Bayesiana – 2023"
+  },
+  {
     "objectID": "presentaciones/presentacion_04.html",
     "href": "presentaciones/presentacion_04.html",
     "title": "Teoría de la Decisión",
@@ -1872,6 +1956,13 @@
     "objectID": "teoria/u1_teoria_01.html",
     "href": "teoria/u1_teoria_01.html",
     "title": "Unidad 1 - Introducción",
+    "section": "",
+    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
+  },
+  {
+    "objectID": "teoria/u4_teoria_06.html",
+    "href": "teoria/u4_teoria_06.html",
+    "title": "Unidad 4 - Modelos Lineales",
     "section": "",
     "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
   },
