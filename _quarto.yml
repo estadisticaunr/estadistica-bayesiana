@@ -59,6 +59,8 @@ website:
           file: teoria/u2_teoria_04.qmd
         - text: U3 - Métodos Computacionales
           file: teoria/u3_teoria_05.qmd
+        - text: U4 - Modelos Lineales
+          file: teoria/u4_teoria_06.qmd
     - title: Práctica
       style: docked
       search: false
