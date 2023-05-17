@@ -9,7 +9,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.340">
+  <meta name="generator" content="quarto-1.3.353">
 
   <title>Estadística Bayesiana – presentacion_06</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -330,7 +330,7 @@
 <h1>Modelos Lineales</h1>
 
 </section>
-<section id="optimización" class="slide level2">
+<section id="optimización" class="slide level2 smaller">
 <h2>Optimización</h2>
 <p>Para modelizar la relación entre una variable dependiente <span class="math inline">\(y\)</span> y ciertos predictores <span class="math inline">\(x_l\)</span> asumimos un modelo de la forma</p>
 <p><span class="math display">\[y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \eta\]</span></p>
@@ -340,7 +340,7 @@
 <p><span class="math display">\[y_i = \boldsymbol{\beta}^T \mathbf{x}_i + \eta\]</span></p>
 <p>El error <span class="math inline">\(\eta\)</span> es desconocido y, en principio, no es necesario asumir nada sobre este.</p>
 </section>
-<section id="section" class="slide level2">
+<section id="section" class="slide level2 smaller">
 <h2></h2>
 <p>Para predecir valores de <span class="math inline">\(y_i\)</span> es necesario estimar <span class="math inline">\(\boldsymbol{\beta}\)</span> por <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span> dando lugar al siguiente modelo predictivo:</p>
 <p><span class="math display">\[\hat{y}_i = \hat\beta_0 + \hat\beta_1 x_{1_i} + \hat\beta_2 x_{2_i} + \dots + \hat\beta_p x_{p_i} = \hat{\boldsymbol{\beta}}^T \mathbf{x}_i\]</span></p>
@@ -357,14 +357,20 @@
 <p>Asumiendo un modelo probabilístico para el error, <span class="math inline">\(\eta \sim \mathcal{N}(0,\sigma^2)\)</span> se puede obtener el estimador de máxima verosimilitud de <span class="math inline">\(\boldsymbol\beta\)</span>.</p>
 <p>La función de verosimilitud viene dada por el producto de las funciones de densidad normales:</p>
 <p><span class="math display">\[\ell(\boldsymbol\beta,\sigma|\mathbf{y}) = \prod_{i=1}^N p(y_i|\mathbf{x_i},\boldsymbol\beta^T,\sigma^2) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}}\]</span></p>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
 <p>Maximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud <span class="math inline">\(\mathcal{L}(\boldsymbol\beta,\sigma|\mathbf{y}) = \log(\ell(\boldsymbol\beta,\sigma|\mathbf{y}))\)</span></p>
-<p><span class="math display">\[\hat{\boldsymbol{\beta}}_{ML} = \underset{\boldsymbol\beta}{\mathrm{arg\,min}}\left[ - \sum_{i=1}^N \left( \frac{1}{2\pi\sigma^2} \right)^{1/2} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}} \right]\]</span></p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}}_{ML} = \underset{\boldsymbol\beta}{\mathrm{arg\,min}}\left[ - \sum_{i=1}^N \log \left( \left( \frac{1}{2\pi\sigma^2} \right)^{1/2} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}} \right) \right]\]</span></p>
 <p>La expresión anterior puede minimizarse primero respecto de <span class="math inline">\(\boldsymbol\beta\)</span> y luego respecto de <span class="math inline">\(\sigma\)</span>. Resulta que maximizar la verosimilitud respecto de <span class="math inline">\(\boldsymbol\beta\)</span> equivale a minimizar el error cuadrático.</p>
 </section>
 <section id="estadística-bayesiana" class="slide level2 smaller">
 <h2>Estadística bayesiana</h2>
 <p>En estadística bayesiana, consideramos a los parámetros como variables aleatorias y les asignamos una distribución <em>a priori</em>.</p>
-<p>Además, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los datos? Es una decisión de la modelización.</p>
+<p>Además, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los parámetros? Es una decisión de la modelización.</p>
+</section>
+<section id="section-3" class="slide level2 smaller">
+<h2></h2>
 <p>Aquí asumimos:</p>
 <p><span class="math display">\[Y_i \mid \boldsymbol\beta,\sigma \sim \mathcal{N}(\boldsymbol\beta^T \mathbf{x}_i, \sigma^2)\]</span></p>
 <p>o bien decimos</p>
@@ -376,55 +382,143 @@
 \]</span></p>
 <p>Y completamos el modelo especificando una distribución <em>a priori</em> <span class="math inline">\(p(\boldsymbol\beta,\sigma)\)</span></p>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <p>La estimación se hace siempre de la misma manera</p>
 <p><span class="math inline">\(p(\boldsymbol\beta,\sigma\mid\mathbf{y}) \propto p(\mathbf{y}|\boldsymbol\beta,\sigma)p(\boldsymbol\beta,\sigma)\)</span></p>
 </section>
-<section id="section-3" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <p>Observando un dato…</p>
 
 <img data-src="presentacion_06_files/figure-revealjs/bayesian1-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
-<section id="section-4" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <p>Observando el dato que sigue…</p>
 
 <img data-src="presentacion_06_files/figure-revealjs/bayesian2-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
-<section id="section-5" class="slide level2">
+<section id="section-7" class="slide level2">
 <h2></h2>
 <p>Observando dos puntos juntos…</p>
 
 <img data-src="presentacion_06_files/figure-revealjs/bayesian3-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
-<section id="section-6" class="slide level2">
+<section id="section-8" class="slide level2">
 <h2></h2>
 <p>Comparemos con un <em>prior</em> más fuerte…</p>
 
 <img data-src="presentacion_06_files/figure-revealjs/bayesian4-1.png" width="2112" class="r-stretch quarto-figure-center"></section>
-<section id="section-7" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-1-1.png" width="1920" class="r-stretch quarto-figure-center"></section>
-<section id="section-8" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <p><span class="math inline">\(\mu\)</span> depende de los parámetros (y por supuesto del valor de <span class="math inline">\(x\)</span>), por lo que tiene una distribución de probabilidad asociada</p>
 
 <img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-2-1.png" width="1920" class="r-stretch quarto-figure-center"></section>
-<section id="section-9" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <p>Por supuesto, las predicciones para <span class="math inline">\(y\)</span> también son probabilísticas…</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-3-1.png" width="1920"></p>
-</figure>
-</div>
-</div>
-</div>
 
-<p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
+<img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-3-1.png" width="1920" class="r-stretch quarto-figure-center"></section>
+<section id="resumen" class="slide level2 smaller">
+<h2>Resumen</h2>
+<ul>
+<li class="fragment">Tenemos una distribución de probabilidad para los parámetros. Es decir, tenemos incertidumbre en los valores de los parámetros</li>
+<li class="fragment">Tenemos que trabajar con todo el <em>posterior</em> (a través de muestras) y no con estimaciones puntuales</li>
+<li class="fragment">No confundir predicción de la media (también llamado predictor lineal) con distribución predictiva (para las observaciones)</li>
+<li class="fragment">A medida que aumenta el tamaño de muestra, los coeficientes de la regresión se estiman cada vez con mayor precisión y la incertidumbre del predictor lineal desaparece. No obstante, la incertidumbre en la distribución predictiva no desaparece (siempre quedará <span class="math inline">\(\sigma\)</span>)</li>
+</ul>
+</section>
+<section id="validación-interna" class="slide level2 smaller">
+<h2>Validación interna</h2>
+<ul>
+<li class="fragment">El modo fundamental de validar el ajuste de un modelo bayesiano es generar réplicas del conjunto de datos (utilizando el modelo ajustado) y compararlas con los datos reales. Esto es lo que se conoce como <strong>validación interna</strong>.</li>
+<li class="fragment">Para cada muestra de parámetros del <em>posterior</em> podemos generar un dataset <span class="math display">\[
+\left[
+\begin{array}{l|l|l|l}
+Y_1^{(1)} &amp; Y_2^{(1)} &amp; \cdots &amp; Y_{N}^{(1)} \\
+Y_1^{(2)} &amp; Y_2^{(2)} &amp; \cdots &amp; Y_{N}^{(2)} \\
+\vdots &amp; \vdots &amp;  &amp; \vdots \\
+Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
+\end{array}
+\right]
+\]</span></li>
+<li class="fragment">Esta práctica da lugar a los <em>posterior predictive checks</em> (PPC)</li>
+</ul>
+</section>
+<section id="section-12" class="slide level2">
+<h2></h2>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="imgs/ppc_wrong.png" class="fragment"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img data-src="imgs/ppc_good.png" class="fragment"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-13" class="slide level2">
+<h2></h2>
+
+<img data-src="imgs/ppc_predictions.png" class="r-stretch"></section>
+<section id="validación-externa" class="slide level2">
+<h2>Validación externa</h2>
+<ul>
+<li class="fragment">Idealmente quisiéramos ver si nuestro modelo tiene capacidad predictiva para datos nuevos (no usados para ajustarlo)</li>
+<li class="fragment">Antes de preocuparnos por los datos nuevos, pensemos en las predicciones… Las predicciones son probabilísticas</li>
+<li class="fragment">No podemos simplemente comparar <span class="math inline">\(y\)</span> con <span class="math inline">\(\hat{y}\)</span></li>
+<li class="fragment">Debemos utilizar toda la distribución <em>a posteriori</em> para evaluar el ajuste y (la capacidad predictiva) del modelo</li>
+</ul>
+</section>
+<section id="section-14" class="slide level2 smaller">
+<h2></h2>
+<p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asociaba, <span class="math inline">\(\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\)</span>. El <em>score</em> predictivo total (para todas las posibles observaciones) es la <em>log-posterior pointwise predictive density</em></p>
+<p><span class="math display">\[
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+\]</span></p>
+<p><span class="math display">\[
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
+\]</span></p>
+<p>A mayor <span class="math inline">\(\mathrm{lppd}\)</span>, mejor es el modelo para realizar predicciones</p>
+</section>
+<section id="section-15" class="slide level2">
+<h2></h2>
+<p>La <strong>deviance</strong> de un modelo es</p>
+<p><span class="math display">\[D = -2 \mathrm{lppd}\]</span></p>
+<ul>
+<li class="fragment">La deviance (o la <span class="math inline">\(\mathrm{lppd}\)</span>) evalúa las predicciones de un modelo (el ajuste), no nos dice qué tan correcto es…</li>
+<li class="fragment">Son medidas que siempre mejoran con más parámetros y en realidad nos importa cómo se desempeña el modelo con datos nuevos.</li>
+</ul>
+</section>
+<section id="section-16" class="slide level2 smaller">
+<h2></h2>
+<p>La <span class="math inline">\(\mathrm{lppd}\)</span> predice el <span class="math inline">\(i\)</span>-ésimo valor con un <em>posterior</em> que usa todos los datos, incluido el <span class="math inline">\(i\)</span>. Más que la <span class="math inline">\(\mathrm{lppd}\)</span> nos interesa su valor esperado en datos nuevos (<span class="math inline">\(\mathrm{elpd}\)</span>). Por supuesto, no conocemos datos nuevos. Podemos aproximar o estimar <span class="math inline">\(\mathrm{elpd}\)</span> haciendo <em>cross-validation</em> (CV) o, en particular, <em>leave-one-out cross-validation</em> (LOO-CV).</p>
+<p><span class="math display">\[\mathrm{elpd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)\]</span></p>
+<p>donde los <span class="math inline">\(\theta_{-i}^{(s)}\)</span> son muestras del <em>posterior</em> de <span class="math inline">\(\theta\)</span> obtenido sin considerar la <span class="math inline">\(i\)</span>-ésima observación.</p>
+<p>El problema de hacer LOO-CV es que, si tenemos 1000 observaciones, hay que calcular 1000 distribuciones <em>a posteriori</em>.</p>
+</section>
+<section id="section-17" class="slide level2">
+<h2></h2>
+<p>No contamos con muestras de <span class="math inline">\(P(\theta\mid \mathbf{Y}_{-i})\)</span> sino simplemente de <span class="math inline">\(P(\theta\mid \mathbf{Y})\)</span>. No sabemos la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> sin considerar la observación <span class="math inline">\(i\)</span>. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la “importancia” de cada observación en el <em>posterior</em>. Esto da lugar a una técnica que se conoce como <em>Pareto-smoothed importance sampling cross-validation</em> (PSIS)</p>
+</section>
+<section id="section-18" class="slide level2">
+<h2></h2>
+<p>Históricamente se han desarrollado los llamados <strong>criterios de información</strong> que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.</p>
+</section>
+<section id="section-19" class="slide level2 smaller">
+<h2></h2>
+<p>El <strong>AIC</strong> (<em>Akaike information criterion</em>) es <span class="math display">\[AIC = D + 2p = -2\ lppd + 2p\]</span> donde <span class="math inline">\(p\)</span> es el número de parámetros del modelo y <span class="math inline">\(D=-2\ \mathrm{lppd}\)</span> se conoce como <strong>deviance</strong>. Penalizamos el <span class="math inline">\(\mathrm{lppd}\)</span> con la tendencia (o capacidad) del modelo de sobreajustar. ##</p>
+<p>El <strong>WAIC</strong> (<em>widely applicable information criterion</em>) es un criterio más general que el AIC (y un poquitito más difícil de calcular):</p>
+<p><span class="math display">\[WAIC = - 2\left(\mathrm{lppd} - \sum_{i=1}^N \mathbb{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\right)\]</span></p>
+<p><span class="math inline">\(\sum_{i=1}^N \mathrm{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\)</span> es un término de penalización que se suele llamar “número efectivo de parámetros”. Es la suma de las varianzas en la log-probabilidad de cada observación <span class="math inline">\(i\)</span> (o sea, la varianza total). Si, para un determinado dato <span class="math inline">\(i\)</span>, las diferentes muestras del <em>posterior</em> <span class="math inline">\(\theta_{(s)}\)</span> dan como resultado predicciones muy diferentes, es porque el modelo tiene mucha incertidumbre (y es posiblemente muy flexible).</p>
+
+
+<img src="../utils/imgs/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>Estadística Bayesiana – 2023</p>
 </div>
 </section></section>
