@@ -479,7 +479,7 @@ Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
 <h2></h2>
 <p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asociaba, <span class="math inline">\(\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\)</span>. El <em>score</em> predictivo total (para todas las posibles observaciones) es la <em>log-posterior pointwise predictive density</em></p>
 <p><span class="math display">\[
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \right)
 \]</span></p>
 <p><span class="math display">\[
 \mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
