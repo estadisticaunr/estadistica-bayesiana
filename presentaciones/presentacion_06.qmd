@@ -585,7 +585,7 @@ dv1 %>%
 Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asociaba, $\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})$. El _score_ predictivo total (para todas las posibles observaciones) es la _log-posterior pointwise predictive density_
 
 $$
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \right)
 $$
 
 $$
