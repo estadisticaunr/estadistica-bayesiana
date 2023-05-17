@@ -48,7 +48,7 @@ data <- tibble(x = runif(50, -3, 3),
        y = rnorm(50, mean = w0 + w1*x, sd = 0.8))
 ```
 
-## Optimización
+## Optimización {.smaller}
 
 Para modelizar la relación entre una variable dependiente $y$ y ciertos predictores $x_l$ asumimos un modelo de la forma 
 
@@ -64,7 +64,7 @@ $$y_i = \boldsymbol{\beta}^T \mathbf{x}_i + \eta$$
 
 El error $\eta$ es desconocido y, en principio, no es necesario asumir nada sobre este.
 
-##
+## {.smaller}
 
 Para predecir valores de $y_i$ es necesario estimar $\boldsymbol{\beta}$ por $\hat{\boldsymbol{\beta}}$ dando lugar al siguiente modelo predictivo:
 
@@ -127,9 +127,11 @@ La función de verosimilitud viene dada por el producto de las funciones de dens
 
 $$\ell(\boldsymbol\beta,\sigma|\mathbf{y}) = \prod_{i=1}^N p(y_i|\mathbf{x_i},\boldsymbol\beta^T,\sigma^2) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}}$$
 
+##
+
 Maximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud $\mathcal{L}(\boldsymbol\beta,\sigma|\mathbf{y}) = \log(\ell(\boldsymbol\beta,\sigma|\mathbf{y}))$
 
-$$\hat{\boldsymbol{\beta}}_{ML} = \underset{\boldsymbol\beta}{\mathrm{arg\,min}}\left[ - \sum_{i=1}^N \left( \frac{1}{2\pi\sigma^2} \right)^{1/2} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}} \right]$$
+$$\hat{\boldsymbol{\beta}}_{ML} = \underset{\boldsymbol\beta}{\mathrm{arg\,min}}\left[ - \sum_{i=1}^N \log \left( \left( \frac{1}{2\pi\sigma^2} \right)^{1/2} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}} \right) \right]$$
 
 La expresión anterior puede minimizarse primero respecto de $\boldsymbol\beta$ y luego respecto de $\sigma$. Resulta que maximizar la verosimilitud respecto de $\boldsymbol\beta$ equivale a minimizar el error cuadrático.
 
@@ -137,7 +139,9 @@ La expresión anterior puede minimizarse primero respecto de $\boldsymbol\beta$ 
 
 En estadística bayesiana, consideramos a los parámetros como variables aleatorias y les asignamos una distribución _a priori_.
 
-Además, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los datos? Es una decisión de la modelización.
+Además, contamos con un modelo generativo (probabilístico) para las observaciones: ¿cómo obtendríamos observaciones si conociéramos los parámetros? Es una decisión de la modelización.
+
+## {.smaller}
 
 Aquí asumimos:
 
@@ -533,3 +537,100 @@ dv1 %>%
 
 ```
 
+## Resumen {.smaller}
+
+-   Tenemos una distribución de probabilidad para los parámetros. Es decir, tenemos incertidumbre en los valores de los parámetros
+-   Tenemos que trabajar con todo el _posterior_ (a través de muestras) y no con estimaciones puntuales
+-   No confundir predicción de la media (también llamado predictor lineal) con distribución predictiva (para las observaciones)
+-   A medida que aumenta el tamaño de muestra, los coeficientes de la regresión se estiman cada vez con mayor precisión y la incertidumbre
+    del predictor lineal desaparece. No obstante, la incertidumbre en la distribución predictiva no desaparece (siempre quedará $\sigma$)
+    
+## Validación interna {.smaller}
+
+-   El modo fundamental de validar el ajuste de un modelo bayesiano es generar réplicas del conjunto de datos (utilizando el modelo ajustado) y compararlas con los datos reales. Esto es lo que se conoce como **validación interna**.
+-   Para cada muestra de parámetros del _posterior_ podemos generar un dataset
+    $$
+    \left[
+    \begin{array}{l|l|l|l} 
+    Y_1^{(1)} & Y_2^{(1)} & \cdots & Y_{N}^{(1)} \\
+    Y_1^{(2)} & Y_2^{(2)} & \cdots & Y_{N}^{(2)} \\
+    \vdots & \vdots &  & \vdots \\
+    Y_1^{(S)} & Y_2^{(S)} & \cdots & Y_{N}^{(S)} \\
+    \end{array}
+    \right]
+    $$
+-   Esta práctica da lugar a los _posterior predictive checks_ (PPC)
+
+##
+
+::: {layout-nrow=2}
+![](imgs/ppc_wrong.png){.fragment}
+
+![](imgs/ppc_good.png){.fragment}
+:::
+
+##
+
+![](imgs/ppc_predictions.png)
+
+## Validación externa
+
+-   Idealmente quisiéramos ver si nuestro modelo tiene capacidad predictiva para datos nuevos (no usados para ajustarlo)
+-   Antes de preocuparnos por los datos nuevos, pensemos en las predicciones... Las predicciones son probabilísticas
+-   No podemos simplemente comparar $y$ con $\hat{y}$
+-   Debemos utilizar toda la distribución _a posteriori_ para evaluar el ajuste y (la capacidad predictiva) del modelo
+
+## {.smaller}
+
+Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asociaba, $\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})$. El _score_ predictivo total (para todas las posibles observaciones) es la _log-posterior pointwise predictive density_
+
+$$
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p_{post}(\theta) d\theta \right)
+$$
+
+$$
+\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
+$$
+
+A mayor $\mathrm{lppd}$, mejor es el modelo para realizar predicciones
+
+## 
+
+La **deviance** de un modelo es
+
+$$D = -2 \mathrm{lppd}$$
+
+-   La deviance (o la $\mathrm{lppd}$) evalúa las predicciones de un modelo (el ajuste), no nos dice qué tan correcto es...
+-   Son medidas que siempre mejoran con más parámetros y en realidad nos importa cómo se desempeña el modelo con datos nuevos. 
+
+## {.smaller}
+
+La $\mathrm{lppd}$ predice el $i$-ésimo valor con un _posterior_ que usa todos los datos, incluido el $i$. Más que la $\mathrm{lppd}$ nos interesa su valor esperado en datos nuevos ($\mathrm{elpd}$). Por supuesto, no conocemos datos nuevos. Podemos aproximar o estimar $\mathrm{elpd}$ haciendo _cross-validation_ (CV) o, en particular, _leave-one-out cross-validation_ (LOO-CV).
+
+$$\mathrm{elpd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)$$
+
+donde los $\theta_{-i}^{(s)}$ son muestras del _posterior_ de $\theta$ obtenido sin considerar la $i$-ésima observación.
+
+El problema de hacer LOO-CV es que, si tenemos 1000 observaciones, hay que calcular 1000 distribuciones _a posteriori_.
+
+## 
+
+No contamos con muestras de $P(\theta\mid \mathbf{Y}_{-i})$ sino simplemente de $P(\theta\mid \mathbf{Y})$. No sabemos la distribución _a posteriori_ de $\theta$ sin considerar la observación $i$. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la "importancia" de cada observación en el _posterior_. Esto da lugar a una técnica que se conoce como _Pareto-smoothed importance sampling cross-validation_ (PSIS)
+
+## 
+
+Históricamente se han desarrollado los llamados **criterios de información** que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.
+
+## {.smaller}
+
+El **AIC** (_Akaike information criterion_) es 
+$$AIC = D + 2p = -2\ lppd + 2p$$
+donde $p$ es el número de parámetros del modelo y $D=-2\ \mathrm{lppd}$ se conoce como **deviance**. Penalizamos el $\mathrm{lppd}$ con la tendencia (o capacidad) del modelo de sobreajustar. 
+##
+
+El **WAIC** (_widely applicable information criterion_) es un criterio más general que el AIC (y un poquitito más difícil de calcular): 
+
+$$WAIC = - 2\left(\mathrm{lppd} - \sum_{i=1}^N \mathbb{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\right)$$
+
+$\sum_{i=1}^N \mathrm{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]$ es un término de penalización que se suele llamar "número efectivo de parámetros". Es la suma de las varianzas en la log-probabilidad de cada observación $i$ (o sea, la varianza total). Si, para un determinado dato $i$, las diferentes muestras del _posterior_ $\theta_{(s)}$ dan como resultado predicciones muy diferentes, es porque el modelo tiene mucha incertidumbre (y es posiblemente muy flexible).
+  
