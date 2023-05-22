@@ -50,9 +50,9 @@ data <- tibble(x = runif(50, -3, 3),
 
 ## Optimización {.smaller}
 
-Para modelizar la relación entre una variable dependiente $y$ y ciertos predictores $x_l$ asumimos un modelo de la forma 
+Para modelizar la relación entre una variable dependiente $Y$ y ciertos predictores $X_l$ asumimos un modelo de la forma 
 
-$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \eta$$
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \eta$$
 
 En realidad tenemos $N$ observaciones y por lo tanto para cada observación $(y_i,\mathbf{x}_i)$ tenemos
 
