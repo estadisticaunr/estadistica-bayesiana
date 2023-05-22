@@ -304,18 +304,27 @@ div.csl-indent {
 <li><p><strong>De tal palo…</strong></p>
 <p>El dataset <code>child_iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio a luz.</p>
 <ol type="i">
-<li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre</li>
-<li>Considere ahora un modelo que incluya la educación de la madre.</li>
-</ol></li>
-<li><p><strong>La pinta es lo de menos…</strong></p>
-<p>Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en un curso y la belleza de los instructores. La determinación de la belleza se hizo a partir de las opiniones de seis estudiantes que no participaron de los cursos y no conocían las notas. Los datos se encuentran en el archivo <code>beauty</code>.</p>
-<ol type="i">
-<li>Considere un modelo de regresión <code>courseevaluation ~ btystdave</code>. <!-- i. **To Do**? --></li>
-</ol></li>
+<li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre.</li>
+<li>Ajsute ahora un modelo que incluya la educación de la madre.</li>
+<li>Construya gráficas para mostrar los parámetros obtenidos.</li>
+<li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos.</li>
+<li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em>.</li>
+</ol>
+<!-- 1.  **La pinta es lo de menos...**
+
+Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en 
+un curso y la belleza de los instructores. La determinación de la belleza se hizo a 
+partir de las opiniones de seis estudiantes que no participaron de los cursos y no
+conocían las notas. Los datos se encuentran en el archivo `beauty`.
+
+i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
+**To Do**? --></li>
 <li><p><strong>Ingresos</strong></p>
 <p>El dataset <code>earnings</code> contiene los resultados de la encuesta realizada por Ross sobre Trabajo, Familia y Bienestar.</p>
 <ol type="i">
-<li>Ajuste un modelo que prediga ingreso en función de altura. ¿Qué transformación sería necesaria para interpretar el intercepto como el ingreso promedio de una persona con altura promedio?</li>
+<li>Ajuste un modelo que prediga ingreso en función de altura e interprete los parámetros.</li>
+<li>¿Qué transformación sería necesaria para interpretar el intercepto como el ingreso promedio de una persona con altura promedio?</li>
+<li>Ajuste un nuevo modelo utilizando la transformación propuesta en el punto anterior y compare los <em>posteriors</em> de los coeficientes.</li>
 </ol></li>
 <li><p><strong>!Kung</strong></p>
 <p>Los !Kung son un pueblo que habita en el desierto de Kalahari entre Botsuana, Namibia y Angola. Hablan la lengua !Kung, que se destaca por su amplio uso de consonantes clic (chasquido consonántico). El !K del nombre ǃKung es un sonido como cuando sale un corcho de una botella.</p>
