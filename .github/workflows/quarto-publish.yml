@@ -45,7 +45,9 @@ jobs:
             any::viridis
 
       - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2    
+        uses: quarto-dev/quarto-actions/setup@v2   
+        with:
+          version: 1.2.280 
       
       # Ver: https://github.com/quarto-dev/quarto-actions/issues/41
       # Importante renderizar las presentaciones, luego son linkeadas en la página
