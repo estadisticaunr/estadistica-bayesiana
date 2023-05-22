@@ -71,7 +71,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
     \beta_0  &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
     \beta_1  &\sim \text{Normal}(0, 0.5) \\
-    \sigma^2 &\sim \text{Normal}^+(5)
+    \sigma &\sim \text{Normal}^+(5)
     \end{aligned}
     $$
 
