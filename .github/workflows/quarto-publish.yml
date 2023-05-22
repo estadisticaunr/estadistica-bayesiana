@@ -29,6 +29,7 @@ jobs:
         with:
           cache-version: 1
           packages: |
+            any::brms
             any::dplyr
             any::ggplot2
             any::ggquiver
