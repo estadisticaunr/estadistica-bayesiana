@@ -61,6 +61,8 @@ website:
           file: teoria/u3_teoria_05.qmd
         - text: U4 - Modelos Lineales
           file: teoria/u4_teoria_06.qmd
+        - text: U5 - Modelos Avanzados
+          file: teoria/u5_teoria_07.qmd
     - title: Práctica
       style: docked
       search: false
