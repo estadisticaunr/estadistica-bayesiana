@@ -1,0 +1,28 @@
+---
+title: "11 - Regresión lineal simple con `{brms}`"
+---
+
+El siguiente programa muestra el código necesario para con `R` los ejercicios 
+**Mi primer regresión bayesiana** y **Mejorando mi regresión bayesiana** de la Práctica 4.
+
+```{r regresion-lineal-brms}
+#| cache: false
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| file: scripts/11_regresion_lineal_brms.R 
+```
+
+Algunas otras visualizaciones que se pueden generar
+
+```{r}
+#| eval: false
+mcmc_plot(modelo_2, type = "hist")
+mcmc_plot(modelo_2, type = "neff")
+mcmc_plot(modelo_2, type = "rhat")
+mcmc_plot(modelo_2, type = "trace")
+mcmc_plot(modelo_2, type = "dens_overlay")
+mcmc_plot(modelo_2, type = "acf_bar")
+```

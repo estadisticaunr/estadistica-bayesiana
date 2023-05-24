@@ -71,7 +71,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
     \beta_0  &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
     \beta_1  &\sim \text{Normal}(0, 0.5) \\
-    \sigma^2 &\sim \text{Normal}^+(5)
+    \sigma &\sim \text{Normal}^+(5)
     \end{aligned}
     $$
 
@@ -174,10 +174,13 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     a luz.
     
     i. Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la 
-    edad de la madre
-    i. Considere ahora un modelo que incluya la educación de la madre.
-    
-1.  **La pinta es lo de menos...**
+    edad de la madre.
+    i. Ajsute ahora un modelo que incluya la educación de la madre.
+    i. Construya gráficas para mostrar los parámetros obtenidos.
+    i. Realice pruebas predictivas _a posteriori_ para comparar los modelos.
+    i. Compare los _ELPD_ de cada modelo utilizando _LOO_.
+
+    <!-- 1.  **La pinta es lo de menos...**
 
     Hamermesh y Parker estudiaron la relación entre los resultados de los estudiantes en 
     un curso y la belleza de los instructores. La determinación de la belleza se hizo a 
@@ -185,16 +188,19 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     conocían las notas. Los datos se encuentran en el archivo `beauty`.
     
     i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
-    <!-- i. **To Do**? -->
+    **To Do**? -->
     
 1.  **Ingresos**
 
     El dataset `earnings` contiene los resultados de la encuesta realizada por Ross sobre
     Trabajo, Familia y Bienestar.
     
-    i. Ajuste un modelo que prediga ingreso en función de altura. ¿Qué transformación 
-    sería necesaria para interpretar el intercepto como el ingreso promedio de una 
-    persona con altura promedio?
+    i. Ajuste un modelo que prediga ingreso en función de altura e interprete los 
+    parámetros. 
+    i. ¿Qué transformación sería necesaria para interpretar el intercepto como el ingreso
+    promedio de una persona con altura promedio?
+    i. Ajuste un nuevo modelo utilizando la transformación propuesta en el punto anterior
+    y compare los _posteriors_ de los coeficientes.
     
 1.  **!Kung**
 

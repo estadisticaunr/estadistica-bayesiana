@@ -22,6 +22,7 @@ jobs:
         with:
           cache-version: 1
           packages: |
+            any::brms
             any::dplyr
             any::ggplot2
             any::ggquiver
@@ -37,7 +38,9 @@ jobs:
             any::viridis
 
       - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
+        uses: quarto-dev/quarto-actions/setup@v2   
+        with:
+          version: 1.2.280 
 
       - name: Install TinyTex.   
         run: quarto install tinytex
