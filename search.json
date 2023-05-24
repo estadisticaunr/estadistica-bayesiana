@@ -25,7 +25,7 @@
     "href": "recursos/codigo/11_regresion_lineal_brms.html",
     "title": "11 - Regresión lineal simple con {brms}",
     "section": "",
-    "text": "El siguiente programa muestra el código necesario para con R los ejercicios Mi primer regresión bayesiana y Mejorando mi regresión bayesiana de la Práctica 4.\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Cargar librerías necesarias\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \nlibrary(brms)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(readr)\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Ejercicio 1\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n# Leer los datos desde el repositorio\ndf_sales <- read_csv(\n    \"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/sales.csv\"\n)\n\n# Explorar los datos\nggplot(df_sales) +\n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Crear modelo con brms\n# refresh = 0 es para que no muestre los mensajes del sampler\nmodelo_1 <- brm(y ~ x, df_sales, refresh = 0)\n\n# Mostrar salida por defecto\nmodelo_1\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: y ~ x \n   Data: df_sales (Number of observations: 52) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nPopulation-Level Effects: \n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     5.43      0.48     4.47     6.37 1.00     3913     2725\nx             0.29      0.04     0.21     0.37 1.00     3970     2691\n\nFamily Specific Parameters: \n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     1.20      0.12     0.99     1.47 1.00     3353     3188\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1).\n\n# Obtener las muestras del posterior como un data frame\ndf_draws_1 <- as_draws_df(modelo_1)\n\n# Calcular la media a posteriori del intercepto y la pendiente\nintercept_mean <- mean(df_draws_1$b_Intercept)\nslope_mean <- mean(df_draws_1$b_x)\n\n# Utilizar estos dos valores para graficar la media de la recta de regresión\nggplot(df_sales) + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  geom_abline(\n    intercept = intercept_mean, \n    slope = slope_mean, \n    linewidth = 1, \n    color = \"red\"\n  ) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Graficar rectas utilizando algunas muestras del posterior\n# Da una idea de la variabilidad en la estimación\nggplot(df_sales) +\n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  geom_abline(\n    aes(intercept = b_Intercept, slope = b_x),\n    alpha = 0.3,\n    color = \"gray30\",\n    data = df_draws_1[sample(nrow(df_draws_1), 40), ]\n  ) +\n  geom_abline(\n    intercept = intercept_mean, \n    slope = slope_mean, \n    linewidth = 1, \n    color = \"red\"\n  ) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Lo siguiente es un enfoque posible, y bastante manual, para graficar\n# los posteriors marginales del intercepto y la pendiente\ndf_draws_long_1 <- df_draws_1 |>\n  select(b_Intercept, b_x) |>\n  tidyr::pivot_longer(c(\"b_Intercept\", \"b_x\"), names_to = \"parametro\")\n\nggplot(df_draws_long_1) +\n  geom_histogram(aes(x = value, y = after_stat(density)), bins = 40) +\n  facet_wrap(~ parametro, scales = \"free\")\n\n\n\n\n\n\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Ejercicio 2\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nmean_y <- mean(df_sales$y) # ~ 8.75\n\n# Especificar los priors\npriors <- c(\n  prior(normal(8.75, 10), class = \"Intercept\"),\n  prior(normal(0, 0.5), class = \"b\", coef = \"x\"),\n  prior(normal(0, 5), class = \"sigma\") # Opcional: lb = 0\n)\n\n# Especificar y ajustar el modelo\nmodelo_2 <- brm(y ~ x, df_sales, prior = priors, refresh = 0)\nmodelo_2\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: y ~ x \n   Data: df_sales (Number of observations: 52) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nPopulation-Level Effects: \n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     5.46      0.48     4.52     6.41 1.00     3136     2142\nx             0.29      0.04     0.21     0.37 1.00     3314     2135\n\nFamily Specific Parameters: \n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     1.20      0.12     0.99     1.48 1.00     3416     2637\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1).\n\n# Lo siguiente permite obtener un resumen de los priors utilizados\nprior_summary(modelo_2)\n\n            prior     class coef group resp dpar nlpar lb ub  source\n           (flat)         b                                  default\n   normal(0, 0.5)         b    x                                user\n normal(8.75, 10) Intercept                                     user\n     normal(0, 5)     sigma                             0       user\n\n# {brms} provee funciones para generar visualizaciones frecuentemente utilizadas\n# Muestra los posteriors marginales y las trazas de las cadenas\nplot(modelo_2)\n\n\n\n\n\n\n\n# Muestra los posteriors marginales y graficos de dispersión\n# para evaluar la relación entre los parámetros\npairs(modelo_2, off_diag_args = list(size = 1/3, alpha = 1/3))\n\n\n\n\n\n\n\n# Crear nuevo conjunto de datos para obtener predicciones (y visualizaciones)\nx_min <- min(df_sales$x)\nx_max <- max(df_sales$x)\ndf_new <- data.frame(x = seq(x_min, x_max, length.out = 100))\n\n# Predecir la media (obtener posterior de mu)\ndf_new_mean <- fitted(modelo_2, newdata = df_new) |>\n  as.data.frame() |>\n  bind_cols(df_new) |>\n  select(estimate = Estimate, lower = Q2.5, upper = Q97.5, x)\n\n# Mostrar el intervalo de credibilidad para la recta de regresión\nggplot(df_new_mean) + \n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper), \n    fill = \"grey80\", \n    alpha = 0.8\n  ) +\n  geom_line(aes(x = x, y = estimate), linewidth = 1, color = \"red\") + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2, data = df_sales) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Predecir nuevas observaciones (obtener predictiva a posteriori)\ndf_new_predict <- predict(modelo_2, newdata = df_new) |>\n  as.data.frame() |>\n  bind_cols(df_new) |>\n  select(estimate = Estimate, lower = Q2.5, upper = Q97.5, x)\n\n# Mostrar el intervalo de credibilidad para la recta de regresión \n# y para nuevas observaciones\nggplot(df_new_mean) + \n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper),\n    fill = \"grey80\",\n    data = df_new_predict\n  ) +\n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper), \n    fill = \"grey50\", \n    alpha = 0.8\n  ) +\n  geom_line(aes(x = x, y = estimate), linewidth = 1, color = \"red\") + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2, data = df_sales) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n\nAlgunas otras visualizaciones que se pueden generar\n\nmcmc_plot(modelo_2, type = \"hist\")\nmcmc_plot(modelo_2, type = \"neff\")\nmcmc_plot(modelo_2, type = \"rhat\")\nmcmc_plot(modelo_2, type = \"trace\")\nmcmc_plot(modelo_2, type = \"dens_overlay\")\nmcmc_plot(modelo_2, type = \"acf_bar\")"
+    "text": "El siguiente programa muestra el código necesario para con R los ejercicios Mi primer regresión bayesiana y Mejorando mi regresión bayesiana de la Práctica 4.\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Cargar librerías necesarias\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \nlibrary(brms)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(readr)\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Ejercicio 1\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n# Leer los datos desde el repositorio\ndf_sales <- read_csv(\n    \"https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/sales.csv\"\n)\n\n# Explorar los datos\nggplot(df_sales) +\n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Crear modelo con brms\n# refresh = 0 es para que no muestre los mensajes del sampler\nmodelo_1 <- brm(y ~ x, df_sales, refresh = 0)\n\n# Mostrar salida por defecto\nmodelo_1\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: y ~ x \n   Data: df_sales (Number of observations: 52) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nPopulation-Level Effects: \n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     5.44      0.48     4.49     6.37 1.00     3638     2750\nx             0.29      0.04     0.21     0.37 1.00     3652     2745\n\nFamily Specific Parameters: \n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     1.20      0.13     0.98     1.47 1.00     3139     2646\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1).\n\n# Obtener las muestras del posterior como un data frame\ndf_draws_1 <- as_draws_df(modelo_1)\n\n# Calcular la media a posteriori del intercepto y la pendiente\nintercept_mean <- mean(df_draws_1$b_Intercept)\nslope_mean <- mean(df_draws_1$b_x)\n\n# Utilizar estos dos valores para graficar la media de la recta de regresión\nggplot(df_sales) + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  geom_abline(\n    intercept = intercept_mean, \n    slope = slope_mean, \n    linewidth = 1, \n    color = \"red\"\n  ) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Graficar rectas utilizando algunas muestras del posterior\n# Da una idea de la variabilidad en la estimación\nggplot(df_sales) +\n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2) +\n  geom_abline(\n    aes(intercept = b_Intercept, slope = b_x),\n    alpha = 0.3,\n    color = \"gray30\",\n    data = df_draws_1[sample(nrow(df_draws_1), 40), ]\n  ) +\n  geom_abline(\n    intercept = intercept_mean, \n    slope = slope_mean, \n    linewidth = 1, \n    color = \"red\"\n  ) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Lo siguiente es un enfoque posible, y bastante manual, para graficar\n# los posteriors marginales del intercepto y la pendiente\ndf_draws_long_1 <- df_draws_1 |>\n  select(b_Intercept, b_x) |>\n  tidyr::pivot_longer(c(\"b_Intercept\", \"b_x\"), names_to = \"parametro\")\n\nggplot(df_draws_long_1) +\n  geom_histogram(aes(x = value, y = after_stat(density)), bins = 40) +\n  facet_wrap(~ parametro, scales = \"free\")\n\n\n\n\n\n\n\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n# Ejercicio 2\n# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\nmean_y <- mean(df_sales$y) # ~ 8.75\n\n# Especificar los priors\npriors <- c(\n  prior(normal(8.75, 10), class = \"Intercept\"),\n  prior(normal(0, 0.5), class = \"b\", coef = \"x\"),\n  prior(normal(0, 5), class = \"sigma\") # Opcional: lb = 0\n)\n\n# Especificar y ajustar el modelo\nmodelo_2 <- brm(y ~ x, df_sales, prior = priors, refresh = 0)\nmodelo_2\n\n Family: gaussian \n  Links: mu = identity; sigma = identity \nFormula: y ~ x \n   Data: df_sales (Number of observations: 52) \n  Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;\n         total post-warmup draws = 4000\n\nPopulation-Level Effects: \n          Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nIntercept     5.46      0.48     4.54     6.37 1.00     3523     2887\nx             0.29      0.04     0.21     0.36 1.00     3606     3266\n\nFamily Specific Parameters: \n      Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS\nsigma     1.20      0.12     0.99     1.47 1.00     3334     2967\n\nDraws were sampled using sampling(NUTS). For each parameter, Bulk_ESS\nand Tail_ESS are effective sample size measures, and Rhat is the potential\nscale reduction factor on split chains (at convergence, Rhat = 1).\n\n# Lo siguiente permite obtener un resumen de los priors utilizados\nprior_summary(modelo_2)\n\n            prior     class coef group resp dpar nlpar lb ub  source\n           (flat)         b                                  default\n   normal(0, 0.5)         b    x                                user\n normal(8.75, 10) Intercept                                     user\n     normal(0, 5)     sigma                             0       user\n\n# {brms} provee funciones para generar visualizaciones frecuentemente utilizadas\n# Muestra los posteriors marginales y las trazas de las cadenas\nplot(modelo_2)\n\n\n\n\n\n\n\n# Muestra los posteriors marginales y graficos de dispersión\n# para evaluar la relación entre los parámetros\npairs(modelo_2, off_diag_args = list(size = 1/3, alpha = 1/3))\n\n\n\n\n\n\n\n# Crear nuevo conjunto de datos para obtener predicciones (y visualizaciones)\nx_min <- min(df_sales$x)\nx_max <- max(df_sales$x)\ndf_new <- data.frame(x = seq(x_min, x_max, length.out = 100))\n\n# Predecir la media (obtener posterior de mu)\ndf_new_mean <- fitted(modelo_2, newdata = df_new) |>\n  as.data.frame() |>\n  bind_cols(df_new) |>\n  select(estimate = Estimate, lower = Q2.5, upper = Q97.5, x)\n\n# Mostrar el intervalo de credibilidad para la recta de regresión\nggplot(df_new_mean) + \n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper), \n    fill = \"grey80\", \n    alpha = 0.8\n  ) +\n  geom_line(aes(x = x, y = estimate), linewidth = 1, color = \"red\") + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2, data = df_sales) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n# Predecir nuevas observaciones (obtener predictiva a posteriori)\ndf_new_predict <- predict(modelo_2, newdata = df_new) |>\n  as.data.frame() |>\n  bind_cols(df_new) |>\n  select(estimate = Estimate, lower = Q2.5, upper = Q97.5, x)\n\n# Mostrar el intervalo de credibilidad para la recta de regresión \n# y para nuevas observaciones\nggplot(df_new_mean) + \n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper),\n    fill = \"grey80\",\n    data = df_new_predict\n  ) +\n  geom_ribbon(\n    aes(x = x, ymin = lower, ymax = upper), \n    fill = \"grey50\", \n    alpha = 0.8\n  ) +\n  geom_line(aes(x = x, y = estimate), linewidth = 1, color = \"red\") + \n  geom_point(aes(x = x, y = y), alpha = 0.6, size = 2, data = df_sales) +\n  labs(x = \"publicidad\", y = \"ventas\")\n\n\n\n\n\n\n\n\nAlgunas otras visualizaciones que se pueden generar\n\nmcmc_plot(modelo_2, type = \"hist\")\nmcmc_plot(modelo_2, type = \"neff\")\nmcmc_plot(modelo_2, type = \"rhat\")\nmcmc_plot(modelo_2, type = \"trace\")\nmcmc_plot(modelo_2, type = \"dens_overlay\")\nmcmc_plot(modelo_2, type = \"acf_bar\")"
   },
   {
     "objectID": "recursos/codigo/09_hmc_gaussian_2d.html",
@@ -143,6 +143,13 @@
     "objectID": "teoria/u1_teoria_01.html",
     "href": "teoria/u1_teoria_01.html",
     "title": "Unidad 1 - Introducción",
+    "section": "",
+    "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
+  },
+  {
+    "objectID": "teoria/u5_teoria_07.html",
+    "href": "teoria/u5_teoria_07.html",
+    "title": "Unidad 5 - Modelos Avanzados",
     "section": "",
     "text": "Instrucciones para guardar como PDF\n\nHacer clic acá\nAbrir la ventana de impresión del navegador con CTRL+P\nSi es necesario, cambiar el “Destino” a “Guardar como PDF”\nCliquear en “Guardar”\nElegir el nombre del archivo de destino\n¡Listo! 🎉"
   },
@@ -523,6 +530,13 @@
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Los parámetros tienen una distribución de probabilidad. Incorporar la incertidumbre en el valor de \\(\\pi\\) nos permite no entusiasmarnos tanto con los datos, hacer predicciones más conservadoras con a pocos datos, regularizar.\n\n\n\nEstadística Bayesiana – 2023"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html",
+    "href": "presentaciones/presentacion_07.html",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "En un problema de regresión, no siempre la respuesta (condicionada) es normal\nA veces, la respuesta ni siquiera es cuantitativa\n\n\n\n\nSupongamos que nos interesa modelizar las siguientes variables:\n\nSi una persona vota o no por un determinado candidato\nSi un estudiante aprueba o no un examen\nSi mañana lloverá o no\n\nEs decir, nos interesa modelizar una variable \\(Y\\), una variable respuesta categórica binaria:\n\\[Y = \\begin{cases}\n1 \\text{ si mañana llueve} \\\\\n0 \\text{ en caso contrario}\n\\end{cases}\\]\nen función de ciertas variables explicativas potenciales…\nEn otros contextos se habla de un problema de clasificación\n\n\n\nSegún los valores que puede tomar \\(Y\\), ¿qué modelo de probabilidad podemos asumir?\n\\[Y_i \\mid \\pi_i \\sim \\mathrm{Bern}(\\pi_i)\\]\n\\[\\mathbb{E}(Y_i) = \\pi_i\\]\n\n\n\nEn la regresión normal que conocíamos, teníamos\n\\[Y_i \\mid \\mu_i \\sim \\mathcal{N}(\\mu_i,\\sigma^2)\\]\n\\[\\mathbb{E}(Y_i) = \\mu_i\\]\nPor analogía, ¿podemos hacer \\(\\pi_i = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\)?\n¿Qué problemas identificamos?\n\n\n\nTendremos que hacer\n\\[g(\\pi_i) = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\]\n\\(g(\\cdot)\\) se conoce como función de enlace (link function). ¿Cuál es una \\(g\\) apropiada en este caso?\n\n\n\nSi \\(\\pi_i\\) es la probabilidad del evento de interés, \\(\\frac{\\pi_i}{1-\\pi_i}\\) es la chance (odds) del evento de interés.\nMientras que \\(\\pi_i \\in [0,1]\\), \\(\\frac{\\pi_i}{1-\\pi_i} \\in [0,+\\infty)\\)\n\n\n\nEstablecemos un modelo lineal para el log-odds del evento de interés\n\\[\\log(\\mathrm{odds}_i)=\\log\\left( \\frac{\\pi_i}{1-\\pi_i} \\right) = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\]\nLa función \\(g(x) = \\log\\left(\\frac{x}{1-x}\\right)\\) se conoce como función logit. Es una función no lineal.\n\n\n\nAnalicemos lo que vimos hasta ahora:\n\n¿Cuál es el dominio de la función logit?\n¿Para qué necesitamos la función \\(g(\\cdot)\\)?\n¿Cuál es la relación entre el predictor lineal y la variable respuesta?\n¿Cuál es la distribución de la variable respuesta?\n\n\n\n\nConsideremos el caso con una sola variable explicativa\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = \\beta_0 + \\beta_1 x_{1_i}\\]\nSe cumple:\n\\[\n\\frac{\\pi_i}{1-\\pi_i} = e^{\\beta_0 + \\beta_1 x_{1_i}} \\qquad\n\\pi_i = \\frac{e^{\\beta_0 + \\beta_1 x_{1_i}}}{1 + e^{\\beta_0 + \\beta_1 x_{1_i}}}\n\\]\n¡La esperanza de la variable respuesta se relaciona de manera no lineal con las variables explicativas!\n\n\n\nConsideremos la siguiente relación\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = -4 + 0.1\\ x_{1_i}\\]\ne imaginemos que \\(\\pi_i\\) es la probabilidad de que llueva el día \\(i\\) y \\(x_{1_i}\\) la humedad a las 9 de la mañana del día anterior al día \\(i\\).\n\n\n\n\nx1 <- seq(0, 100, length.out = 100)\nbeta0 <- -4\nbeta1 <- 0.1\n\ndata <- tibble(x1 = x1,\n               log_odds = beta0 + beta1*x1,\n               odds = exp(log_odds),\n               pi = odds/(1+odds))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\(\\beta_0\\) es la log-chance (log-odds) del evento de interés cuando todas las variables explicativas valen 0. \\(e^{\\beta_0}\\) es la chance. En términos del problema: _e^{0} es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0\n\n\n\n\n\n\n\\(\\beta_1\\) no es el incremento en la probabilidad del evento de interés cuando \\(x_1\\) aumenta en una unidad…\n\n\\(\\mathrm{odds}_x\\) es la chance del evento de interés cuando \\(x_1=x\\)\n\\(\\mathrm{odds}_{x+\\Delta x}\\) es la chance del evento de interés cuando \\(x_1 = x + \\Delta x\\)\n\n\\[\\log (\\mathrm{odds}_x) =\\log\\left( \\frac{\\pi_x}{1-\\pi_x} \\right) = \\beta_0 + \\beta_1 x\\]\n\\[\\log (\\mathrm{odds}_{x+\\Delta x}) =\\log\\left( \\frac{\\pi_{x+\\Delta x}}{1-\\pi_{x+\\Delta x}} \\right) = \\beta_0 + \\beta_1 (x+\\Delta x)\\]\n\n\n\n\nEntonces\n\\[\\log (\\mathrm{odds}_{x+\\Delta x}) - \\log (\\mathrm{odds}_{x}) = \\beta_1 \\Delta x\\]\n\\[ e^{\\beta_1 \\Delta x} = \\frac{\\mathrm{odds}_{x+\\Delta x}}{\\mathrm{odds}_{x}}\\]\nLa chance del evento de interés aumenta \\(e^{\\beta_1 \\Delta x}\\) veces cuando \\(x_1\\) aumenta en \\(\\Delta x\\) (y el resto de las variables se mantienen constantes). En términos del problema: _La chance de que llueva mañana aumenta e^{1} veces si la humedad aumenta en 1\n\n\n\nMás en términos del problema:\n\\[e^{\\beta_1} = \\frac{\\mathrm{odds}_{x+10}}{\\mathrm{odds}_{x}} \\Rightarrow \\mathrm{odds}_{x+1} = e^{\\beta_1} \\mathrm{odds}_{x}\\]\n\\[e^{\\beta_1} = 1.11\\]\n\nLa chance de que llueva mañana aumenta \\(1.11\\) veces cuando la humedad a las 9 de la mañana de hoy aumenta en una unidad\nLa chance de que llueva mañana aumenta en un \\(11\\%\\) cuando la humedad a las 9 de la mañana de hoy aumenta en una unidad\n\n\n\n\nAnalicemos juntos el siguiente caso:\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = 1.1 - 0.2\\ \\mathrm{despierto}_{i}\\]\ne imaginemos que \\(\\pi_i\\) es la probabilidad de que un estudiante \\(i\\) apruebe el parcial de Análisis de Datos de Duración \\(i\\) y \\(\\mathrm{despierto}_i\\) la cantidad de horas que el estudiante \\(i\\) estuvo despierto la noche anterior al parcial.\n\n\n\n¿Y Bayes?\nLa especificación del modelo se completa con la elección de distribuciones a priori para \\(\\beta_0,\\ \\beta_1,\\ \\dots\\)…\nCada cantidad que dependa de los \\(\\beta_0,\\ \\beta_1,\\ \\dots\\) tendrá una distribución de probabilidad.\nLas predicciones también son probabilísticas.\n\n\n\n¿Cómo se estiman \\(\\beta_0,\\ \\beta_1,\\ \\dots\\)? Como siempre. Aplicando la Regla de Bayes. Solo que la verosimilitud ahora es Bernoulli."
   },
   {
     "objectID": "presentaciones/presentacion_01.html",
@@ -1748,6 +1762,132 @@
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La Regla de Bayes permite combinar dos fuentes de información: la información a priori (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución a posteriori representa un compromiso entre la verosimilitud de los datos y la credibilidad a priori."
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#introducción",
+    "href": "presentaciones/presentacion_07.html#introducción",
+    "title": "Estadística Bayesiana",
+    "section": "Introducción",
+    "text": "Introducción\n\nEn un problema de regresión, no siempre la respuesta (condicionada) es normal\nA veces, la respuesta ni siquiera es cuantitativa"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section",
+    "href": "presentaciones/presentacion_07.html#section",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Supongamos que nos interesa modelizar las siguientes variables:\n\nSi una persona vota o no por un determinado candidato\nSi un estudiante aprueba o no un examen\nSi mañana lloverá o no\n\nEs decir, nos interesa modelizar una variable \\(Y\\), una variable respuesta categórica binaria:\n\\[Y = \\begin{cases}\n1 \\text{ si mañana llueve} \\\\\n0 \\text{ en caso contrario}\n\\end{cases}\\]\nen función de ciertas variables explicativas potenciales…\nEn otros contextos se habla de un problema de clasificación"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-1",
+    "href": "presentaciones/presentacion_07.html#section-1",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Según los valores que puede tomar \\(Y\\), ¿qué modelo de probabilidad podemos asumir?\n\\[Y_i \\mid \\pi_i \\sim \\mathrm{Bern}(\\pi_i)\\]\n\\[\\mathbb{E}(Y_i) = \\pi_i\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-2",
+    "href": "presentaciones/presentacion_07.html#section-2",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "En la regresión normal que conocíamos, teníamos\n\\[Y_i \\mid \\mu_i \\sim \\mathcal{N}(\\mu_i,\\sigma^2)\\]\n\\[\\mathbb{E}(Y_i) = \\mu_i\\]\nPor analogía, ¿podemos hacer \\(\\pi_i = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\)?\n¿Qué problemas identificamos?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-3",
+    "href": "presentaciones/presentacion_07.html#section-3",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Tendremos que hacer\n\\[g(\\pi_i) = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\]\n\\(g(\\cdot)\\) se conoce como función de enlace (link function). ¿Cuál es una \\(g\\) apropiada en este caso?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-4",
+    "href": "presentaciones/presentacion_07.html#section-4",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Si \\(\\pi_i\\) es la probabilidad del evento de interés, \\(\\frac{\\pi_i}{1-\\pi_i}\\) es la chance (odds) del evento de interés.\nMientras que \\(\\pi_i \\in [0,1]\\), \\(\\frac{\\pi_i}{1-\\pi_i} \\in [0,+\\infty)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-5",
+    "href": "presentaciones/presentacion_07.html#section-5",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Establecemos un modelo lineal para el log-odds del evento de interés\n\\[\\log(\\mathrm{odds}_i)=\\log\\left( \\frac{\\pi_i}{1-\\pi_i} \\right) = \\beta_0 + \\beta_1 x_{1_i} + \\beta_2 x_{2_i} + \\dots\\]\nLa función \\(g(x) = \\log\\left(\\frac{x}{1-x}\\right)\\) se conoce como función logit. Es una función no lineal."
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-6",
+    "href": "presentaciones/presentacion_07.html#section-6",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Analicemos lo que vimos hasta ahora:\n\n¿Cuál es el dominio de la función logit?\n¿Para qué necesitamos la función \\(g(\\cdot)\\)?\n¿Cuál es la relación entre el predictor lineal y la variable respuesta?\n¿Cuál es la distribución de la variable respuesta?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-7",
+    "href": "presentaciones/presentacion_07.html#section-7",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Consideremos el caso con una sola variable explicativa\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = \\beta_0 + \\beta_1 x_{1_i}\\]\nSe cumple:\n\\[\n\\frac{\\pi_i}{1-\\pi_i} = e^{\\beta_0 + \\beta_1 x_{1_i}} \\qquad\n\\pi_i = \\frac{e^{\\beta_0 + \\beta_1 x_{1_i}}}{1 + e^{\\beta_0 + \\beta_1 x_{1_i}}}\n\\]\n¡La esperanza de la variable respuesta se relaciona de manera no lineal con las variables explicativas!"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#ejemplo",
+    "href": "presentaciones/presentacion_07.html#ejemplo",
+    "title": "Estadística Bayesiana",
+    "section": "Ejemplo",
+    "text": "Ejemplo\nConsideremos la siguiente relación\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = -4 + 0.1\\ x_{1_i}\\]\ne imaginemos que \\(\\pi_i\\) es la probabilidad de que llueva el día \\(i\\) y \\(x_{1_i}\\) la humedad a las 9 de la mañana del día anterior al día \\(i\\)."
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-8",
+    "href": "presentaciones/presentacion_07.html#section-8",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "x1 <- seq(0, 100, length.out = 100)\nbeta0 <- -4\nbeta1 <- 0.1\n\ndata <- tibble(x1 = x1,\n               log_odds = beta0 + beta1*x1,\n               odds = exp(log_odds),\n               pi = odds/(1+odds))"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#interpretación-de-los-coeficientes",
+    "href": "presentaciones/presentacion_07.html#interpretación-de-los-coeficientes",
+    "title": "Estadística Bayesiana",
+    "section": "Interpretación de los coeficientes",
+    "text": "Interpretación de los coeficientes\n\\(\\beta_0\\)\n\\(\\beta_0\\) es la log-chance (log-odds) del evento de interés cuando todas las variables explicativas valen 0. \\(e^{\\beta_0}\\) es la chance. En términos del problema: _e^{0} es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-10",
+    "href": "presentaciones/presentacion_07.html#section-10",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\(\\beta_1\\)\n\\(\\beta_1\\) no es el incremento en la probabilidad del evento de interés cuando \\(x_1\\) aumenta en una unidad…\n\n\\(\\mathrm{odds}_x\\) es la chance del evento de interés cuando \\(x_1=x\\)\n\\(\\mathrm{odds}_{x+\\Delta x}\\) es la chance del evento de interés cuando \\(x_1 = x + \\Delta x\\)\n\n\\[\\log (\\mathrm{odds}_x) =\\log\\left( \\frac{\\pi_x}{1-\\pi_x} \\right) = \\beta_0 + \\beta_1 x\\]\n\\[\\log (\\mathrm{odds}_{x+\\Delta x}) =\\log\\left( \\frac{\\pi_{x+\\Delta x}}{1-\\pi_{x+\\Delta x}} \\right) = \\beta_0 + \\beta_1 (x+\\Delta x)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-11",
+    "href": "presentaciones/presentacion_07.html#section-11",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Entonces\n\\[\\log (\\mathrm{odds}_{x+\\Delta x}) - \\log (\\mathrm{odds}_{x}) = \\beta_1 \\Delta x\\]\n\\[ e^{\\beta_1 \\Delta x} = \\frac{\\mathrm{odds}_{x+\\Delta x}}{\\mathrm{odds}_{x}}\\]\nLa chance del evento de interés aumenta \\(e^{\\beta_1 \\Delta x}\\) veces cuando \\(x_1\\) aumenta en \\(\\Delta x\\) (y el resto de las variables se mantienen constantes). En términos del problema: _La chance de que llueva mañana aumenta e^{1} veces si la humedad aumenta en 1"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-12",
+    "href": "presentaciones/presentacion_07.html#section-12",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Más en términos del problema:\n\\[e^{\\beta_1} = \\frac{\\mathrm{odds}_{x+10}}{\\mathrm{odds}_{x}} \\Rightarrow \\mathrm{odds}_{x+1} = e^{\\beta_1} \\mathrm{odds}_{x}\\]\n\\[e^{\\beta_1} = 1.11\\]\n\nLa chance de que llueva mañana aumenta \\(1.11\\) veces cuando la humedad a las 9 de la mañana de hoy aumenta en una unidad\nLa chance de que llueva mañana aumenta en un \\(11\\%\\) cuando la humedad a las 9 de la mañana de hoy aumenta en una unidad"
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-13",
+    "href": "presentaciones/presentacion_07.html#section-13",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Analicemos juntos el siguiente caso:\n\\[\\log\\left(\\frac{\\pi_i}{1-\\pi_i}\\right) = 1.1 - 0.2\\ \\mathrm{despierto}_{i}\\]\ne imaginemos que \\(\\pi_i\\) es la probabilidad de que un estudiante \\(i\\) apruebe el parcial de Análisis de Datos de Duración \\(i\\) y \\(\\mathrm{despierto}_i\\) la cantidad de horas que el estudiante \\(i\\) estuvo despierto la noche anterior al parcial."
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-14",
+    "href": "presentaciones/presentacion_07.html#section-14",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Y Bayes?\nLa especificación del modelo se completa con la elección de distribuciones a priori para \\(\\beta_0,\\ \\beta_1,\\ \\dots\\)…\nCada cantidad que dependa de los \\(\\beta_0,\\ \\beta_1,\\ \\dots\\) tendrá una distribución de probabilidad.\nLas predicciones también son probabilísticas."
+  },
+  {
+    "objectID": "presentaciones/presentacion_07.html#section-15",
+    "href": "presentaciones/presentacion_07.html#section-15",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "¿Cómo se estiman \\(\\beta_0,\\ \\beta_1,\\ \\dots\\)? Como siempre. Aplicando la Regla de Bayes. Solo que la verosimilitud ahora es Bernoulli.\n\n\n\nEstadística Bayesiana – 2023"
   },
   {
     "objectID": "presentaciones/presentacion_01.html#lógica-deductiva",
