@@ -188,13 +188,13 @@ ul.task-list li input[type="checkbox"] {
 y_i \sim \mathcal{N}(\theta_3 x_i^3 + \theta_2 x_i^2 + \theta_1 x_i + \theta_0, \sigma^2)
 \]</span></p>
 <p>aunque no se conocen los valores de los <span class="math inline">\(\theta_i\)</span> ni de <span class="math inline">\(\sigma\)</span></p>
-<p>En primer lugar, se estudiará el efecto de la cantidad de datos utilizados para el ajuste del modelo.</p>
+<p>En primer lugar, se estudiará el <strong>efecto de la cantidad de datos</strong> utilizados para el ajuste del modelo.</p>
 <ol type="1">
 <li><p>Realice un análisis exploratorio de los datos de ajuste del modelo (<em>train</em>) y proponga <em>priors</em> vagos de acuerdo a la escala de los datos. Realice simulaciones predictivas <em>a priori</em>.</p></li>
-<li><p>Utilizando <em>priors</em> vagos para los parámetros del modelo, analice los resultados obtenidos al utilizar 10, 20, 50 o 100 observaciones de los datos de entrenamiento para ajustar el modelo. Compare las distribuciones <em>a posteriori</em> de los parámetros, de la media y las predicciones sobre los datos de test.</p></li>
+<li><p>Utilice los <em>priors</em> propuestos en el punto anterior para ajustar el modelo utilizando 10, 20, 50 o 100 observaciones de los datos de entrenamiento. Compare las distribuciones <em>a posteriori</em> de los parámetros, la media condicional y las predicciones sobre el conjunto de datos de evaluación.</p></li>
 </ol>
-<p>En segundo lugar, se investigará qué efecto tiene la elección de distribuciones <em>a priori</em> centradas en valores erróneos de los parámetros de la regresión.</p>
-<ol start="2" type="1">
+<p>En segundo lugar, se investigará qué efecto tiene la elección de <strong>distribuciones <em>a priori</em> centradas en valores erróneos</strong> de los parámetros de la regresión.</p>
+<ol start="3" type="1">
 <li><p>Considere las siguientes distribuciones <em>a priori</em>:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -206,11 +206,10 @@ y_i \sim \mathcal{N}(\theta_3 x_i^3 + \theta_2 x_i^2 + \theta_1 x_i + \theta_0, 
 \]</span></p>
 <p>Compare, como hizo en el caso anterior, los resultados en las estimaciones utilizando 10, 20, 50 y 100 observaciones.</p></li>
 </ol>
-<p>Finalmente, se considera el caso donde se propone un modelo erróneo.</p>
-<ol start="3" type="1">
+<p>Finalmente, se considera el caso donde se propone un <strong>modelo erróneo</strong>.</p>
+<ol start="4" type="1">
 <li>Utilizando <em>priors</em> vagos, ajuste polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. ¿Qué ocurre si se utilizan todos los datos del conjunto de entrenamiento?</li>
-<li>Utilice ahora <em>priors</em> de regularización (centrados en 0 y con diferentes varianzas: <span class="math inline">\(0.01\)</span>, <span class="math inline">\(0.1\)</span>, <span class="math inline">\(1\)</span> y <span class="math inline">\(10\)</span>) para polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Pruebe diferentes grados de regularización. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación.</li>
-<li>Escriba una función que calcule el <span class="math inline">\(\mathrm{lppd}\)</span> para un conjunto de observaciones. Compute el <span class="math inline">\(\mathrm{lppd}\)</span> para los polinomios de grados 3, 4, 5 y 6 ajustados con 20 observaciones. Compare la métrica utilizando los datos de entrenamiento y de evaluación.</li>
+<li>Utilice ahora <em>priors</em> de regularización (centrados en 0 y con diferentes varianzas: <span class="math inline">\(0.01\)</span>, <span class="math inline">\(0.1\)</span>, <span class="math inline">\(1\)</span> y <span class="math inline">\(10\)</span>) para polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. Como hizo en el punto anterior, analice que ocurre cuando utiliza todos los datos del conjunto de entrenamiento.</li>
 </ol>
 </section>
 <section id="enfriamiento-de-agua-en-un-termo" class="level2">
@@ -289,7 +288,6 @@ T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
 <li>Ajuste el modelo lineal utilizando <code>R</code></li>
 <li>Encontrar el <em>posterior</em> de <span class="math inline">\(r\)</span>, de <span class="math inline">\(T_{\text{diff}}\)</span> y de la temperatura inicial del agua <span class="math inline">\(T_i\)</span></li>
 <li>Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de la experiencia.</li>
-<li>Halle la distribución <em>a posteriori</em> del tiempo que le toma al agua llegar a <span class="math inline">\(30 \text{ C°}\)</span></li>
 </ol>
 
 
