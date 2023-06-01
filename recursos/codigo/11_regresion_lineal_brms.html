@@ -92,7 +92,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/distribuciones/distribuciones.html" rel="next">
+<link href="../../recursos/codigo/12_brms_rds.html" rel="next">
 <link href="../../recursos/codigo/10_rwmh_2d.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -253,6 +253,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../recursos/codigo/11_regresion_lineal_brms.html" class="sidebar-item-text sidebar-link active">11 - Regresión lineal simple con <code>{brms}</code></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/12_brms_rds.html" class="sidebar-item-text sidebar-link">12 - Guardar y leer modelos de <code>{brms}</code></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -331,12 +336,12 @@ Formula: y ~ x
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept     5.45      0.48     4.49     6.37 1.00     3944     2794
-x             0.29      0.04     0.21     0.37 1.00     3813     2508
+Intercept     5.44      0.48     4.49     6.38 1.00     2976     2648
+x             0.29      0.04     0.21     0.37 1.00     3397     2395
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.19      0.12     0.98     1.46 1.00     3973     2632
+sigma     1.20      0.12     0.98     1.47 1.00     3456     2580
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -431,12 +436,12 @@ Formula: y ~ x
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept     5.45      0.48     4.52     6.42 1.00     3707     2560
-x             0.29      0.04     0.21     0.36 1.00     3589     2584
+Intercept     5.45      0.49     4.49     6.43 1.00     3748     2794
+x             0.29      0.04     0.21     0.36 1.00     3674     2747
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.20      0.12     0.98     1.46 1.00     3567     3090
+sigma     1.21      0.13     0.99     1.49 1.00     2904     2691
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -682,8 +687,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/distribuciones/distribuciones.html" class="pagination-link">
-        <span class="nav-page-text">Distribuciones</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/12_brms_rds.html" class="pagination-link">
+        <span class="nav-page-text">12 - Guardar y leer modelos de <code>{brms}</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
