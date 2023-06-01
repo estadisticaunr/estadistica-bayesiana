@@ -1,0 +1,47 @@
+---
+title: "12 - Guardar y leer modelos de `{brms}`"
+---
+
+Este breve ejemplo muestra como guardar un modelo ajustado con `{brms}` utilizando 
+`saveRDS()` para luego cargarlo con `readRDS()` y realizar operaciones tales como una
+predicción sobre un conjunto nuevo de observaciones.
+
+
+```{r}
+#| eval: false
+library(brms)
+
+# Simular datos para el ejemplo
+a <- 2.2
+b <- 1.33
+s <- 0.5
+x <- runif(50)
+y <- rnorm(50, mean = a + b * x, sd = s)
+data <- data.frame(x = x, y = y)
+
+# Ajustar modelo
+model_fit <- brm(y ~ x, data)
+
+# Guardar el modelo ajustado como "model_fit.rds"
+saveRDS(model_fit, "model_fit.rds")
+```
+
+
+```{r}
+#| eval: false
+# Leer el archivo .rds guardado anteriormente 
+model_fit_loaded <- readRDS("model_fit.rds")
+
+# Crear un nuevo data frame de ejemplo
+new_data <- data.frame(x = c(0.1, 0.2, 0.3))
+
+# Calcular la media condicional para las observaciones del data frame de ejemplo    
+fitted(model_fit_loaded, newdata = new_data)
+```
+```
+     Estimate Est.Error     Q2.5    Q97.5
+[1,] 2.356671 0.1518292 2.052827 2.654910
+[2,] 2.476600 0.1275577 2.225724 2.727059
+[3,] 2.596528 0.1064967 2.391033 2.805158
+```
+
