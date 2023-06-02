@@ -279,14 +279,13 @@ T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
 T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
 \]</span></p>
 <ol start="4" type="1">
-<li>Verifique que el logaritmo natural de la nueva variable (<span class="math inline">\(T(t) - T_{\text{amb}}\)</span>) es una función lineal de <span class="math inline">\(t\)</span>.<br>
-¿Qué representan <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>?</li>
+<li>Verifique que el logaritmo natural de la nueva variable (<span class="math inline">\(T(t) - T_{\text{amb}}\)</span>) es una función lineal de <span class="math inline">\(t\)</span>. ¿Qué representan el intercepto y la pendiente? Llámelos <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>.</li>
 </ol>
-<p>Ajustaremos un modelo lineal a los datos transformados.</p>
+<p>Se propone ajustar un modelo lineal normal utilizando los datos transformados.</p>
 <ol start="5" type="1">
 <li>En función del enunciado del problema y de su conocimiento de termos, elija una distribución <em>a priori</em> para <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\sigma\)</span>. ¿Cuáles son las implicancias de sus distribuciones <em>a priori</em>? Realice pruebas predictivas <em>a priori</em>.</li>
-<li>Ajuste el modelo lineal utilizando <code>R</code></li>
-<li>Encontrar el <em>posterior</em> de <span class="math inline">\(r\)</span>, de <span class="math inline">\(T_{\text{diff}}\)</span> y de la temperatura inicial del agua <span class="math inline">\(T_i\)</span></li>
+<li>Ajuste el modelo lineal utilizando <code>R</code>.</li>
+<li>Encontrar el <em>posterior</em> de <span class="math inline">\(r\)</span>, de <span class="math inline">\(T_{\text{diff}}\)</span> y de la temperatura inicial del agua <span class="math inline">\(T_i\)</span>.</li>
 <li>Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de la experiencia.</li>
 </ol>
 
