@@ -176,16 +176,16 @@ T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
 $$
 
 4.  Verifique que el logaritmo natural de la nueva variable ($T(t) - T_{\text{amb}}$) es 
-    una función lineal de $t$.  
-    ¿Qué representan $\beta_0$ y $\beta_1$?
+    una función lineal de $t$. ¿Qué representan el intercepto y la pendiente? Llámelos 
+    $\beta_0$ y $\beta_1$.
 
-Ajustaremos un modelo lineal a los datos transformados.
+Se propone ajustar un modelo lineal normal utilizando los datos transformados.
 
 5.  En función del enunciado del problema y de su conocimiento de termos, elija una 
-    distribución *a priori* para $\beta_0$, $\beta_1$ y $\sigma$. ¿Cuáles son las 
-    implicancias de sus distribuciones *a priori*? Realice pruebas predictivas *a priori*.
-6.  Ajuste el modelo lineal utilizando `R`
-7.  Encontrar el *posterior* de $r$, de $T_{\text{diff}}$ y de la temperatura inicial del 
-    agua $T_i$
+    distribución _a priori_ para $\beta_0$, $\beta_1$ y $\sigma$. ¿Cuáles son las 
+    implicancias de sus distribuciones _a priori_? Realice pruebas predictivas _a priori_.
+6.  Ajuste el modelo lineal utilizando `R`.
+7.  Encontrar el _posterior_ de $r$, de $T_{\text{diff}}$ y de la temperatura inicial del 
+    agua $T_i$.
 8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de 
     la experiencia.
