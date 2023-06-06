@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - Generalidades</title>
+<title>Estadística Bayesiana - TP Final: El otro Fisher</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,7 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../trabajos_practicos/01_tp1.html" rel="next">
+<link href="../trabajos_practicos/03_tp3.html" rel="prev">
 <link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -60,7 +60,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -112,7 +111,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Generalidades</h1>
+      <h1 class="quarto-secondary-nav-title">TP Final: El otro Fisher</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -129,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/descripcion.html" class="sidebar-item-text sidebar-link active">Generalidades</a>
+  <a href="../trabajos_practicos/descripcion.html" class="sidebar-item-text sidebar-link">Generalidades</a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -149,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/04_tp_final.html" class="sidebar-item-text sidebar-link">TP Final</a>
+  <a href="../trabajos_practicos/04_tp_final.html" class="sidebar-item-text sidebar-link active">TP Final</a>
   </div>
 </li>
     </ul>
@@ -162,7 +161,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Generalidades</h1>
+<h1 class="title d-none d-lg-block">TP Final: El otro Fisher</h1>
 </div>
 
 
@@ -177,14 +176,66 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Para aprobar la materia es necesario completar tres trabajos prácticos <em>cortos</em>. La denominación <em>cortos</em> hace referencia a que los trabajos son guiados y las tareas a realizar están delimitadas.</p>
-<p>Los trabajos prácticos tienen como objetivo repasar y afianzar los conocimientos adquiridos durante las clases, adquirir práctica en la aplicación de conceptos trabajados, mejorar las habilidades de programación y el uso de R, e incorporar algunos conceptos complementarios.</p>
-<p>Cada trabajo práctico será presentado y discutido en clase. Se destinará una fracción de la clase a comenzar a pensar algunas de las actividades.</p>
-<p>La fecha de entrega de cada trabajo práctico será de dos semanas luego de la fecha de presentación. Se podrá entregar el trabajo práctico una semana después de la fecha de entrega con una penalización del 25% de la nota final.</p>
-<p>Para cada trabajo práctico, cada grupo deberá entregar un informe en formato pdf donde se resuelvan las actividades propuestas. El informe debe estar obligatoriamente elaborado utilizando <span class="math inline">\(\mathrm{\LaTeX{}}\)</span> (a través de Quarto, RMarkdown o alguna otra variante). Tener en cuenta que los apartados presentados en el enunciado del trabajo práctico constituyen una guía de actividades a resolver y no deben responderse uno a uno como si se tratara de un cuestionario. El informe deberá permitir una lectura fluida de los resultados y análisis presentados. Cuando la resolución de una problemática consista en una función o porción de código en R, el código deberá mostrarse en el informe.</p>
-<p>Se evaluarán los siguientes aspectos del informe: presentación, redacción (claridad, coherencia y cohesión), estética, resultados obtenidos, profundidad del análisis.</p>
+<div>
+<p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/04_tp_final.pdf">Descargar PDF</a></p>
+</div>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>En este último trabajo práctico nos sitúa como parte del equipo de ciencia de datos en una empresa de comercio electrónico que se especializa en vender pescado fresco de alta calidad a una clientela muy selectiva que consiste principalmente en restaurantes de lujo.</p>
+<p>Cuando enviamos nuestros productos hay un dato que no puede faltar: el peso del pescado. Esta información es relevante por dos razones. En primer lugar, el monto de dinero que se le factura a nuestros clientes es función del peso del pescado que reciben. En segundo lugar, la empresa de transporte con la que trabajamos tiene diferentes bandas tarifarias según el peso de la mercadería transportada, y algunas de estas bandas pueden resultar bastante caras.</p>
+<!-- En consecuencia, queremos determinar la probabilidad de que un 
+pescado exceda un umbral de peso particular. En otras palabras, es esencial estimar el 
+nivel de incertidumbre involucrado. -->
+<p>El problema es que nuestra empresa compra pescados al por mayor, por lo que se sabe el peso total del pedido, pero no el de los pescados individualmente. La solución mas obvia consiste en pesar a cada uno de los pescados de manera manual. Pero no es una gran solución: pesar cada pescado manualmente es costoso, requiere mucho tiempo y mano de obra. Entonces, ¿qué podemos hacer?, ¿ideas?</p>
+<p>Resulta que hablando con algunos colegas descubrimos que nuestro proveedor mayorista conoce el tamaño (es decir, largo, alto y ancho) de cada pescado de manera individual. Es imposible pesar los peces en el bote, porque el bote siempre está en movimiento, pero tienen una cámara que registra el tamaño de cada pez 🤯.</p>
+<p>¡Qué notición! Pero eso no es todo. Nuestra empresa solía pesar cada pez manualmente antes de detenerse por razones de costo, lo que significa que tenemos un conjunto de datos de entrenamiento de diferentes tipos de peces, con su peso medido de manera precisa.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/especies_pescados.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Especies de peces de todas variedades y tamaños.</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="el-desafío" class="level2">
+<h2 class="anchored" data-anchor-id="el-desafío">El desafío</h2>
+<p>El conjunto de datos <code>fish-market.csv</code> contiene la información de los pescados mencionados en la introducción e incluye mediciones sobre las siguientes variables:</p>
+<ul>
+<li><strong>Species</strong>: Nombre de la especie del pescado</li>
+<li><strong>Weight</strong>: Peso del pescado en gramos</li>
+<li><strong>Length1</strong>: Longitud vertical en centímetros</li>
+<li><strong>Length2</strong>: Longitud diagonal en centímetros</li>
+<li><strong>Length3</strong>: Longitud transversal en centímetros</li>
+<li><strong>Height</strong>: Altura en centímetros</li>
+<li><strong>Width</strong>: Ancho diagonal en centímetros</li>
+</ul>
+<p>El objetivo final de este trabajo es construir un modelo regresión bayesiano que en base a la información de los pescados prediga su peso. Para ello, se recomienda que se tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:</p>
+<ul>
+<li>Introducción</li>
+<li>Análisis exploratorio de datos</li>
+<li>Propuesta y ajuste de modelos
+<ul>
+<li>Descripción matemática</li>
+<li>Elicitación de los <em>priors</em></li>
+<li>Pruebas predictivas <em>a priori</em></li>
+<li>Ajuste del modelo</li>
+<li>Evaluación de la convergencia de las cadenas de Markov</li>
+<li>Exploración de la distribución <em>a posteriori</em> de los parámetros</li>
+<li>Pruebas predictivas <em>a posteriori</em></li>
+<li>Evaluación del ajuste del modelo</li>
+<li>Interpretación de parámetros</li>
+</ul></li>
+<li>Comparación de modelos</li>
+<li>Ajuste del modelo final en un conjunto de entrenamiento y predicción sobre un conjunto de datos de evaluación</li>
+<li>Análisis final y conclusión</li>
+</ul>
+<p>Se recomienda fuertemente que se haga uso de diferentes visualizaciones para comunicar los resultados de las diferentes etapas del análisis y que se propongan y evalúen un mínimo de tres modelos. En particular, considere que sucede a medida que se incorporan mas predictores e interacciones entre los mismos.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -322,11 +373,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../trabajos_practicos/03_tp3.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP 3</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../trabajos_practicos/01_tp1.html" class="pagination-link">
-        <span class="nav-page-text">TP 1</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
