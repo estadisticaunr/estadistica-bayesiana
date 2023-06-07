@@ -1,0 +1,731 @@
+---
+format:
+  revealjs:
+    incremental: true
+    logo: /utils/imgs/logo.png
+    footer: "Estadística Bayesiana -- 2023"
+    background-transition: fade
+    transition: fade
+    slide-number: true
+    fig-cap-location: top
+    theme: [default, style_presentaciones.scss]
+---
+
+# Modelos Jerárquicos
+
+```{r setup}
+#| echo: false
+#| include: false
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(patchwork)
+
+theme_set(theme_bw() +
+          theme(legend.position = "none",
+                panel.grid = element_blank(),
+                #strip.background = element_rect(fill="#ade658"),
+                text = element_text(size=26)))
+```
+
+## Introducción
+
+Consideremos el siguiente modelo:
+$$
+\begin{align*}
+    y\mid\pi & \sim  \mathrm{Bi}(N_i,\pi)\\
+    \pi & \sim  Beta(a,b)
+\end{align*}
+$$
+
+## {.smaller}
+
+Sabemos (gracias al TP2) que la función de densidad de la distribución beta se puede expresar en términos de su moda $\omega$ y su concentración $\kappa$
+
+$$
+\begin{align*}
+    y\mid\pi & \sim  \mathrm{Bi}(N,\pi)\\
+    \pi & \sim  Beta(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1)
+\end{align*}
+$$
+
+El valor de $\pi$ depende del valor de $\omega$. Lo sabíamos, después de todo, $\omega$ y $\kappa$ son las _constantes de ajuste del prior_ o _hiperparámetros_. $\kappa$ refleja el grado de credibilidad _a priori_ sobre los valores de $\pi$ (alrededor de $\omega$).
+
+## {.smaller}
+
+¿Qué pasa si $\omega$ no es fijo sino otro parámetro a estimar?
+
+. . .
+
+En el contexto de una moneda: $\pi$ es la probabilidad de cara de la moneda y $\omega$ es el valor de probabilidad de cara al que el fabricante de monedas le apunta en la construcción. $\kappa$ (fijo y conocido) es una medida de la dispersión que tiene el proceso de fabricación (de lo consistente que es este proceso) o, en otros términos, mide el grado de asociación entre $\pi$ y $\omega$.
+
+. . .
+
+¿Qué necesitamos para $\omega$? Digamos que, _a priori_, $\omega \sim \mathrm{Beta}(A_\omega,B_\omega)$
+
+. . .
+
+$$
+\begin{align*}
+    y\mid\pi & \sim  \mathrm{Bi}(N,\pi)\\
+    \pi \mid \omega & \sim  \mathrm{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1) \\
+    \omega & \sim \mathrm{Beta}(A_\omega,B_\omega)
+\end{align*}
+$$
+
+¿Cuántos parámetros tiene este modelo?
+
+## {.smaller}
+
+Es un modelo de dos parámetros (hay una distribución conjunta _a priori_ y una distribución conjunta _a posteriori_) pero no como el $\mu$ y el $\sigma$ de una distribución normal o el $\beta_0$ y $\beta_1$ de un modelo de regresión lineal...
+
+¿Cómo funciona el modelo hacia adelante? $\omega \rightarrow \pi \rightarrow y$
+
+¿Y el razonamiento inverso? De $N$ tiradas podemos hacer una inferencia sobre $\pi$, lo que nos permitirá hacer una inferencia sobre $\omega$
+
+## {.smaller}
+
+¿Qué distribución _a posteriori_ buscamos? $p(\pi,\omega\mid y)$
+
+¿Y la Regla de Bayes? ¿Vale? ¿Cómo la escribimos?
+
+$$p(\pi,\omega\mid y) = \frac{p(y\mid\pi,\omega)p(\pi,\omega)}{p(y)} = \frac{p(y\mid\pi)p(\pi\mid\omega)p(\omega)}{p(y)}$$
+
+¿Tenemos forma de expresar $p(y\mid\pi)$, $p(\pi\mid\omega)$, y $p(\omega)$?
+
+##
+
+Estamos haciendo inferencia bayesiana sobre una distribución conjunta (de $\pi$ y $\omega$). Pero la relación entre los parámetros (y la función de verosimilitud) es jerárquica. La jerarquía tiene una interpretación para el modelo.
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+pi <- seq(0,1,length.out=101)
+omega <- seq(0,1,length.out=101)
+A_omega <- 2
+B_omega <- 2
+kappa <- 5
+N <- 9
+y <- 3
+```
+
+## {.smaller}
+
+```{r}
+#| echo: true
+#| eval: true
+
+prior <- expand.grid(pi = pi, omega = omega) |>
+  mutate(p_omega = dbeta(omega, A_omega, B_omega),
+         p_pi_given_omega = dbeta(pi, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+         prior = p_pi_given_omega * p_omega)
+
+plot_prior <- ggplot(prior) +
+  geom_raster(aes(x=pi, y=omega, fill=prior)) +
+  geom_hline(yintercept = 0.6) +
+  geom_hline(yintercept = 0.9) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+plot_prior_omega <- ggplot(prior) +
+  geom_line(aes(x=omega, y=p_omega))
+
+plot_prior_pi_omega1 <- ggplot(prior |> filter(omega == 0.6)) +
+  geom_line(aes(x=pi, y=prior))
+
+plot_prior_pi_omega2 <- ggplot(prior |> filter(omega == 0.9)) +
+  geom_line(aes(x=pi, y=prior))
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+plot_prior + (plot_prior_pi_omega1/plot_prior_pi_omega2)
+```
+
+## {.smaller}
+
+```{r}
+#| echo: true
+#| eval: true
+
+likelihood <- expand.grid(pi = pi, omega = omega) |>
+  mutate(likelihood = dbinom(y, size = N, prob = pi))
+
+plot_likelihood <- ggplot(likelihood) +
+  geom_raster(aes(x=pi, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior <- inner_join(prior,likelihood) |>
+  mutate(posterior = prior * likelihood)
+
+plot_posterior <- ggplot(posterior) +
+  geom_raster(aes(x=pi, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+```
+
+## 
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+plot_prior + plot_likelihood + plot_posterior
+```
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+pi <- seq(0,1,length.out=101)
+omega <- seq(0,1,length.out=101)
+A_omega <- 20
+B_omega <- 20
+kappa <- 10
+N <- 9
+y <- 3
+```
+
+
+
+```{r}
+#| echo: false
+#| eval: true
+
+prior <- expand.grid(pi = pi, omega = omega) |>
+  mutate(p_omega = dbeta(omega, A_omega, B_omega),
+         p_pi_given_omega = dbeta(pi, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+         prior = p_pi_given_omega * p_omega)
+
+plot_prior <- ggplot(prior) +
+  geom_raster(aes(x=pi, y=omega, fill=prior)) +
+  geom_hline(yintercept = 0.6) +
+  geom_hline(yintercept = 0.9) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+prior_omega <- ggplot(prior) +
+  geom_line(aes(x=omega, y=p_omega))
+
+prior_pi_1 <- ggplot(prior |> filter(omega == 0.6)) +
+  geom_line(aes(x=pi, y=prior))
+
+prior_pi_2 <- ggplot(prior |> filter(omega == 0.9)) +
+  geom_line(aes(x=pi, y=prior))
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+plot_prior + (plot_prior_pi_omega1/plot_prior_pi_omega2)
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+likelihood <- expand.grid(pi = pi, omega = omega) |>
+  mutate(likelihood = dbinom(y, size = N, prob = pi))
+
+plot_likelihood <- ggplot(likelihood) +
+  geom_raster(aes(x=pi, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior <- inner_join(prior,likelihood) |>
+  mutate(posterior = prior * likelihood)
+
+plot_posterior <- ggplot(posterior) +
+  geom_raster(aes(x=pi, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+plot_prior + plot_likelihood + plot_posterior
+```
+
+
+##
+
+La inferencia bayesiana en un modelo jerárquico es inferencia en el espacio de la distribución conjunta de los parámetros pero reformulando la distribución conjunta en términos jerárquicos: se refactoriza $p(\pi,\omega)$ como $p(\pi\mid\omega)p(\omega)$
+
+## Extensión {.smaller}
+
+¿Qué pasaría si contamos con más de una moneda creada por la misma fábrica? Cada moneda tiene un valor de $\pi_s$ que es propio y que a su vez tienen algo en común: provienen de la fábrica que tiene parámetro $\omega$.
+
+Con $y_1$ caras en $N_1$ tiradas de la moneda 1 estimamos $\pi_1$, con $y_2$ caras en $N_2$ tiradas de la moneda 1 estimamos $\pi_2$... y luego, con todas las tiradas, podemos estimar $\omega$.
+
+## {.smaller}
+
+Consideremos un caso real. $S$ personas reciben una droga y son sometidos a un test de memoria. La probabilidad de que el sujeto $s$ recuerde un ítem que se le muestra es $\pi_s$. El sujeto $s$ recuerda $y_s$ ítems de $N_s$ que se le presentan. Asumimos que la droga induce un efecto en los sujetos alrededor de una tendencia central $\omega$.
+
+Consideremos por simplicidad que se tienen dos sujetos...
+
+¿Cuántos parámetros tiene el modelo? ¿Cómo podemos representar la relación entre los $\theta_s$?
+
+## {.smaller}
+
+$$
+\begin{align*}
+    y_s\mid\pi_s & \sim  \mathrm{Bi}(N_s,\pi_s)\\
+    \pi_s \mid \omega & \sim  \mathrm{Beta}(\omega(\kappa-2)+1,\ (1-\omega)(\kappa-2)+1) \\
+    \omega & \sim \mathrm{Beta}(A_\omega,B_\omega)
+\end{align*}
+$$
+
+Si fijo $\omega$, los valores de los $\pi_s$ son independientes: $\pi_1$ y $\pi_2$ son independientes dado $\omega$. 
+
+La probabilidad _a priori_ que es $p(\pi_1,\pi_2,\omega)$ ahora puede factorizarse como $p(\pi_1,\pi_2\mid \omega) p(\omega) = p(\pi_1\mid \omega) p(\pi_2\mid \omega) p(\omega)$
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+pi_1 <- seq(0,1,length.out=101)
+pi_2 <- seq(0,1,length.out=101)
+omega <- seq(0,1,length.out=101)
+A_omega <- 2
+B_omega <- 2
+kappa <- 5
+N_1 <- 20
+y_1 <- 5
+N_2 <- 8
+y_2 <- 4
+```
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+prior <- expand.grid(pi_1 = pi_1, pi_2 = pi_2, omega = omega) |>
+  mutate(
+    p_omega = dbeta(omega, A_omega, B_omega),
+    p_pi1_given_omega = dbeta(pi_1, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+    p_pi2_given_omega = dbeta(pi_2, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+    prior = p_pi1_given_omega *  p_pi2_given_omega * p_omega)
+
+prior_pi1 <- ggplot(prior |> 
+                      group_by(pi_1,omega) |> 
+                      summarise(prior = sum(prior))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=prior)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+prior_pi2 <- ggplot(prior |> 
+                      group_by(pi_2,omega) |> 
+                      summarise(prior = sum(prior))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=prior)) +
+  scale_x_continuous(expression(pi[2]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+prior_pi1 + prior_pi2
+```
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+likelihood <- expand.grid(pi_1 = pi_1, pi_2 = pi_2, omega = omega) |>
+  mutate(likelihood_pi1 = dbinom(y_1, size = N_1, prob = pi_1),
+         likelihood_pi2 = dbinom(y_2, size = N_2, prob = pi_2),
+         likelihood = likelihood_pi1 * likelihood_pi2)
+
+likelihood1 <- ggplot(likelihood |> 
+                        group_by(pi_1,omega) |> 
+                        summarise(likelihood = sum(likelihood))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+likelihood2 <- ggplot(likelihood |> 
+                        group_by(pi_2,omega) |> 
+                        summarise(likelihood = sum(likelihood))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi[2]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+```
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+likelihood1 + likelihood2
+```
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+posterior <- inner_join(prior, likelihood) |>
+  mutate(posterior = prior * likelihood)
+
+posterior_pi1 <- ggplot(posterior |> group_by(pi_1,omega) |> summarise(posterior = sum(posterior))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior_pi2 <- ggplot(posterior |> group_by(pi_2,omega) |> summarise(posterior = sum(posterior))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi[2]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior_omega <- ggplot(posterior |> group_by(omega) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=omega, y=posterior))
+
+posterior_pi1_marg <- ggplot(posterior |> group_by(pi_1) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_1, y=posterior))
+
+posterior_pi2_marg <- ggplot(posterior |> group_by(pi_2) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_2, y=posterior))
+```
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+posterior_pi1 + posterior_pi2
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+posterior_omega / posterior_pi1_marg / posterior_pi2_marg
+```
+
+##
+
+- La función de verosimilitud no depende de $\omega$ 
+- La función de verosimilitud es más estrecha para el sujeto 1 que para el sujeto 2
+- El _posterior_ marginal de $\pi_1$ está cerca de la proporción muestral
+- El _posterior_ marginal de $\pi_2$ está cerca de la proporción muestral
+- El _posterior_ marginal de $\pi_1$ tiene menos incertidumbre que el de $\pi_2$
+
+. . .
+
+¿Qué ocurre si se cambia el valor de $\kappa$?
+
+##
+
+```{r}
+#| echo: true
+#| eval: true
+
+pi_1 <- seq(0,1,length.out=101)
+pi_2 <- seq(0,1,length.out=101)
+omega <- seq(0,1,length.out=101)
+A_omega <- 2
+B_omega <- 2
+kappa <- 100
+N_1 <- 20
+y_1 <- 5
+N_2 <- 8
+y_2 <- 4
+```
+
+##
+
+```{r}
+#| echo: false
+#| eval: true
+
+prior <- expand.grid(pi_1 = pi_1, pi_2 = pi_2, omega = omega) |>
+  mutate(p_omega = dbeta(omega, A_omega, B_omega),
+         p_pi1_given_omega = dbeta(pi_1, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+         p_pi2_given_omega = dbeta(pi_2, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+         prior = p_pi1_given_omega *  p_pi2_given_omega * p_omega)
+
+prior_pi1 <- ggplot(prior |> group_by(pi_1,omega) |> summarise(prior = sum(prior))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=prior)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+prior_pi2 <- ggplot(prior |> group_by(pi_2,omega) |> summarise(prior = sum(prior))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=prior)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+likelihood <- expand.grid(pi_1 = pi_1, pi_2 = pi_2, omega = omega) |>
+  mutate(likelihood_pi1 = dbinom(y_1, size = N_1, prob = pi_1),
+         likelihood_pi2 = dbinom(y_2, size = N_2, prob = pi_2),
+         likelihood = likelihood_pi1 * likelihood_pi2)
+
+likelihood1 <- ggplot(likelihood |> group_by(pi_1,omega) |> summarise(likelihood = sum(likelihood))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+likelihood2 <- ggplot(likelihood |> group_by(pi_2,omega) |> summarise(likelihood = sum(likelihood))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=likelihood)) +
+  scale_x_continuous(expression(pi[2]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior <- inner_join(prior, likelihood) |>
+  mutate(posterior = prior * likelihood)
+
+posterior_pi1 <- ggplot(posterior |> group_by(pi_1,omega) |> summarise(posterior = sum(posterior))) +
+  geom_raster(aes(x=pi_1, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior_pi2 <- ggplot(posterior |> group_by(pi_2,omega) |> summarise(posterior = sum(posterior))) +
+  geom_raster(aes(x=pi_2, y=omega, fill=posterior)) +
+  scale_x_continuous(expression(pi), expand = c(0,0)) +
+  scale_y_continuous(expression(omega), expand = c(0,0)) +
+  viridis::scale_fill_viridis()
+
+posterior_omega <- ggplot(posterior |> group_by(omega) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=omega, y=posterior))
+
+posterior_pi1_marg <- ggplot(posterior |> group_by(pi_1) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_1, y=posterior))
+
+posterior_pi2_marg <- ggplot(posterior |> group_by(pi_2) |> summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_2, y=posterior))
+```
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+prior_pi1 + prior_pi2
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+likelihood1 + likelihood2
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+posterior_pi1 + posterior_pi2
+```
+
+##
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+posterior_omega / posterior_pi1_marg / posterior_pi2_marg
+```
+
+##
+
+El _posterior_ marginal de $\pi_2$ se alejó de la proporción muestral. El sujeto 1 tenía un tamaño de muestra mayor (más evidencia) y por lo tanto influyó más en la estimación de $\omega$, lo que a la vez influye en la estimación de $\pi_2$.
+
+## Shrinkage
+
+La estructura jerárquica de los modelos hace que las estimaciones de los parámetros de los niveles más bajos se acerquen más de lo que lo harían si no hubiera una distribución en un nivel superior. Esto es lo que se conoce como _shrinkage_ de las estimaciones.
+
+Las estimaciones de los parámetros de los niveles más bajos son tiradas (_pulled_) o se estrechan o tienden a concentrarse hacia la moda de la distribución superior.
+
+## {.smaller}
+
+El _shrinkage_ ocurre porque los parámetros de los niveles bajos (los $\pi_s$) son influenciados por:
+
+. . .
+
+1.    El conjunto de datos que dependen directamente de ese parámetro 
+2.    Los parámetros de niveles más altos de los cuales dependen los parámetros de niveles más bajos (¡y que son afectados por todos los datos!)
+
+. . .
+
+Por ejemplo, sobre $\pi_1$ influyen $y_1$ y $N_1$ pero también $\omega$ (cuya estimación depende de $\pi_2$ y $N_2$).
+
+. . .
+
+Nota: el _shrinkage_ es consecuencia exclusivamente de la estructura jerárquica (y no de la inferencia bayesiana). Existe en la teoría clásica de estimación (ver estimador de James-Stein)
+
+##
+
+![](imgs/shrinkage.png)
+
+## Otro ejemplo
+
+El radón es un gas radioactivo y cancerígeno. Los productos de la desintegración del radón son también radioactivos y en altas concentraciones se sabe que producen cáncer de pulmón. Trabajaremos con datos de mediciones de radón en el estado de Minnesota. Se cuenta con mediciones en hogares de diferentes condados dentro del estado.
+
+##
+
+1.    $i$ es el índice de los hogares
+1.    $Y_i$ es el nivel de radón (log radón) del hogar $i$
+1.    $j$ (entre $1$ y $J$) es el índice de los condados
+1.    $j[i] = \mathrm{county}[i]$ es el condado al que pertenece el hogar $i$
+
+##
+
+### Complete pooling {.smaller}
+
+$$
+\begin{align*}
+    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
+    \mu_i & = \alpha  \\
+    \alpha & \sim  P(\alpha) \\
+    \sigma & \sim  P(\sigma)
+\end{align*}
+$$
+
+Hay una única media $\alpha$ común para todos los $i$, independientemente del grupo $j$ al que pertenezcan
+
+##
+
+### No pooling  {.smaller}
+
+$$
+\begin{align*}
+    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2)\\
+    \mu_i & = \alpha_{j[i]}  \\
+    \alpha_j & \sim  P(\alpha_j) \\
+    \sigma & \sim  P(\sigma)
+\end{align*}
+$$
+
+Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer ninguna restricción sobre los $\alpha_j$. $P(\alpha_j)$ es una distribución no informativa (muy ancha y chata). Todos los $\alpha_j$ son independientes. Coincide con la estimación clásica que incluye una variable _dummy_ para cada grupo.
+
+##
+
+Podemos mejorar el modelo anterior incorporando un prior que regularice los $\alpha_j$
+
+\pause
+\begin{align*}
+    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
+    \mu_i & = \alpha_{j[i]}  \\
+    \alpha_j & \sim  \mathcal{N}(0,10) \\
+    \sigma & \sim  P(\sigma)
+\end{align*}
+
+0 y 10 son valores arbitrarios para la media y la varianza de la distribución _a priori_ de los $\alpha_j$. Los $\alpha_j$ dejan de poder ser estimados libremente. Hay _regularización_ y tendemos a evitar el _overfitting_. Hay un _partial pooling_. Si en lugar de 10 se elige un valor más grande, tendemos a _no pooling_; si se elige un valor más chico, tendemos a _pooling completo_
+
+##
+
+Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto _pooling_ es necesario? Se estima a partir de los datos...
+
+\pause
+\begin{align*}
+    Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
+    \mu_i & = \alpha_{j[i]}  \\
+    \alpha_j & \sim  \mathcal{N}(\mu_\alpha,\sigma_\alpha^2) \\
+    \sigma & \sim  P(\sigma) \\
+    \mu_\alpha & \sim  P(\mu_\alpha) \\
+    \sigma_\alpha & \sim  P(\sigma_\alpha) \\
+\end{align*}
+
+##
+
+$\mu_\alpha$ y $\sigma_\alpha$ son hiperparámetros (parámetros de la distribución de _a priori_ de los parámetros) y por lo tanto tienen _hiperpriors_
+
+El chiste es que _todos_ los datos se usan para estimar $\mu_\alpha$ y $\sigma_\alpha$ y por lo tanto en la estimación de cada $\alpha_j$ hay información de todos los datos. La regularización es adaptativa (se aprende de los datos).
+
+## Shrinkage
+
+1. Siempre que hay regularización, hay _shrinkage_ de parámetros.
+1. Los datos de un grupo ayudan en la estimación de los parámetros de los otros grupos (_partial pooling_: préstamo de información).
+1. Así, los grupos que tienen menor tamaño de muestra toman más información del resto de los grupos y el _shrinkage_ es más intenso.
+
+## {.smaller}
+
+1. _Pooling completo_: hay una única media para todos los individuos, independientemente del grupo. La variación entre los grupos es cero. _Underfitting_.
+1. _No pooling_: cada grupo tiene una media independiente de la de los demás. La variación entre los grupos es infinita. No se comparte información entre los grupos, lo que se sabe de un grupo no ayuda a inferir sobre los demás. _Overfitting_.
+1. _Partial pooling_: cada grupo tiene una media pero todas las medias están conectadas. Es una solución de compromiso, un punto medio entre _pooling completo_ y _no pooling_.
+
+## {.smaller}
+
+Para algunos condados: a la izquierda está la estimación de la media _no pooling_ de la media, a la derecha la estimación del modelo multinivel (_pooling parcial_). En línea de trazos el _pooling completo_.
+
+![](imgs/pooling_intercept_algunos.png)
+
+
+
+
