@@ -175,7 +175,7 @@ p1 + p2 + p3
 
 ### $\beta_0$
 
-$\beta_0$ es la log-chance (_log-odds_) del evento de interés cuando todas las variables explicativas valen 0. $e^{\beta_0}$ es la chance. En términos del problema: _e^{\beta_0} es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0_
+$\beta_0$ es la log-chance (_log-odds_) del evento de interés cuando todas las variables explicativas valen 0. $e^{\beta_0}$ es la chance. En términos del problema: _$e^{\beta_0}$ es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0_.
 
 ## {.smaller}
 
@@ -198,13 +198,13 @@ $$\log (\mathrm{odds}_{x+\Delta x}) - \log (\mathrm{odds}_{x}) = \beta_1 \Delta 
 
 $$ e^{\beta_1 \Delta x} = \frac{\mathrm{odds}_{x+\Delta x}}{\mathrm{odds}_{x}}$$
 
-La chance del evento de interés aumenta $e^{\beta_1 \Delta x}$ veces cuando $x_1$ aumenta en $\Delta x$ (y el resto de las variables se mantienen constantes). En términos del problema: _La chance de que llueva mañana aumenta e^{\beta_1} veces si la humedad aumenta en 1_
+La chance del evento de interés aumenta $e^{\beta_1 \Delta x}$ veces cuando $x_1$ aumenta en $\Delta x$ (y el resto de las variables se mantienen constantes). En términos del problema: _La chance de que llueva mañana aumenta $e^{\beta_1}$ veces si la humedad aumenta en 1_. 
 
 ##
 
 Más en términos del problema: 
 
-$$e^{\beta_1} = \frac{\mathrm{odds}_{x+10}}{\mathrm{odds}_{x}} \Rightarrow \mathrm{odds}_{x+1} = e^{\beta_1} \mathrm{odds}_{x}$$
+$$e^{\beta_1} = \frac{\mathrm{odds}_{x+1}}{\mathrm{odds}_{x}} \Rightarrow \mathrm{odds}_{x+1} = e^{\beta_1} \mathrm{odds}_{x}$$
 
 $$e^{\beta_1} = 1.11$$
 
