@@ -62,6 +62,18 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule 
     nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
 
+1.  **Intención de voto**
+
+    El conjunto de datos `elecciones.csv` contiene los resultados de un estudio piloto
+    sobre intención de voto. Contiene las variables `voto`, `edad` y `partido` que indican
+    respectivamente el candidato elegido, la edad y la afinidad partidaria del encuestado.
+    
+    Utilice un modelo de regresión logística para responder a las siguiente preguntas de
+    investigación:
+
+    1. ¿Cómo se relaciona la edad de los encuestados con la intención de voto?
+    1. ¿Es esta relación diferente para las diferentes afinidades partidarias?
+
 1.  **Modelo lineal para elecciones en Estados Unidos**
 
     Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 

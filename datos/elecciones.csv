@@ -1,0 +1,422 @@
+voto,edad,partido
+candidato A,56,azul
+candidato B,65,rojo
+candidato A,80,azul
+candidato B,38,rojo
+candidato B,60,rojo
+candidato B,35,azul
+candidato A,71,azul
+candidato A,62,verde
+candidato A,71,azul
+candidato A,38,azul
+candidato A,65,azul
+candidato A,49,azul
+candidato A,71,azul
+candidato A,68,azul
+candidato A,63,azul
+candidato B,54,verde
+candidato A,39,azul
+candidato B,76,rojo
+candidato A,33,azul
+candidato B,38,rojo
+candidato A,43,verde
+candidato B,54,rojo
+candidato A,56,azul
+candidato A,58,azul
+candidato B,49,verde
+candidato A,57,verde
+candidato B,74,verde
+candidato A,78,verde
+candidato B,63,verde
+candidato A,80,azul
+candidato A,43,verde
+candidato B,30,verde
+candidato A,30,azul
+candidato A,65,azul
+candidato B,83,rojo
+candidato A,48,verde
+candidato A,79,verde
+candidato B,54,rojo
+candidato B,67,verde
+otro,55,azul
+candidato A,52,verde
+candidato B,53,rojo
+candidato A,55,azul
+candidato A,50,azul
+candidato B,59,rojo
+candidato B,57,rojo
+candidato B,75,azul
+otro,66,rojo
+otro,78,azul
+candidato B,56,azul
+candidato A,57,azul
+candidato A,55,azul
+candidato B,61,rojo
+candidato A,61,azul
+candidato A,52,azul
+candidato A,44,azul
+otro,78,rojo
+candidato B,62,rojo
+otro,26,verde
+otro,35,azul
+candidato A,55,azul
+candidato B,30,rojo
+candidato B,62,verde
+candidato A,48,azul
+candidato B,84,rojo
+candidato A,41,azul
+candidato B,63,verde
+candidato B,59,rojo
+candidato B,91,rojo
+candidato B,36,rojo
+candidato B,64,verde
+candidato A,32,azul
+candidato B,56,rojo
+candidato A,38,azul
+candidato B,64,azul
+candidato B,75,verde
+candidato B,57,verde
+candidato A,38,verde
+candidato A,61,azul
+candidato B,74,verde
+candidato A,58,azul
+candidato B,70,verde
+candidato A,68,azul
+candidato B,39,rojo
+candidato B,62,rojo
+candidato A,39,verde
+candidato A,52,azul
+candidato B,50,rojo
+candidato A,60,azul
+candidato A,77,azul
+otro,58,rojo
+candidato A,28,azul
+candidato A,62,verde
+otro,60,rojo
+candidato B,78,verde
+candidato B,80,rojo
+candidato B,59,verde
+candidato A,83,azul
+otro,20,verde
+candidato A,61,azul
+candidato A,67,azul
+candidato A,62,azul
+candidato B,65,rojo
+candidato A,55,azul
+candidato B,55,verde
+candidato A,69,azul
+candidato B,73,rojo
+candidato B,59,rojo
+candidato A,55,azul
+candidato A,53,verde
+candidato B,40,verde
+candidato B,51,rojo
+candidato B,69,verde
+candidato A,32,azul
+candidato A,60,azul
+candidato A,56,azul
+otro,44,verde
+candidato A,70,azul
+candidato B,67,rojo
+candidato A,48,azul
+candidato A,71,verde
+candidato B,35,rojo
+candidato B,24,azul
+otro,74,verde
+candidato A,65,azul
+otro,60,rojo
+candidato B,77,verde
+candidato A,62,azul
+candidato B,66,rojo
+candidato B,50,verde
+otro,38,rojo
+otro,35,azul
+candidato A,56,azul
+otro,54,rojo
+candidato B,54,rojo
+candidato B,23,verde
+otro,42,verde
+candidato A,51,azul
+candidato A,59,azul
+candidato B,52,rojo
+candidato B,34,verde
+candidato B,43,rojo
+candidato A,59,azul
+candidato A,32,azul
+candidato A,36,azul
+candidato B,42,verde
+candidato A,67,azul
+candidato A,28,azul
+candidato A,71,azul
+candidato B,55,verde
+candidato A,56,azul
+candidato B,69,verde
+candidato B,63,verde
+candidato A,36,azul
+candidato A,61,azul
+candidato B,74,rojo
+candidato B,59,verde
+candidato A,62,verde
+candidato B,62,verde
+otro,56,rojo
+candidato B,52,rojo
+candidato A,63,verde
+candidato B,60,verde
+otro,52,rojo
+candidato A,40,azul
+candidato A,60,verde
+otro,44,rojo
+candidato A,49,azul
+candidato A,72,azul
+otro,67,verde
+candidato A,27,rojo
+candidato A,55,azul
+candidato B,32,verde
+candidato B,30,rojo
+candidato B,74,rojo
+candidato B,71,verde
+candidato A,64,azul
+candidato A,75,azul
+otro,42,verde
+candidato B,48,azul
+candidato A,57,azul
+candidato A,67,azul
+candidato B,65,azul
+candidato B,63,rojo
+candidato B,57,rojo
+candidato B,57,rojo
+candidato A,31,azul
+candidato A,58,verde
+candidato A,60,azul
+candidato A,39,azul
+candidato B,54,rojo
+candidato B,64,rojo
+candidato A,57,azul
+candidato B,63,verde
+candidato A,76,azul
+candidato A,53,azul
+candidato A,33,azul
+candidato B,67,verde
+candidato A,44,azul
+otro,28,verde
+candidato A,78,azul
+candidato A,37,verde
+candidato A,56,azul
+candidato B,68,verde
+candidato B,42,verde
+candidato B,68,verde
+candidato A,64,azul
+candidato B,63,rojo
+candidato A,33,azul
+candidato A,25,verde
+candidato B,36,rojo
+candidato A,34,azul
+otro,80,verde
+otro,60,verde
+candidato B,32,rojo
+candidato B,95,rojo
+candidato B,76,verde
+candidato B,77,verde
+candidato A,70,azul
+candidato A,25,verde
+candidato B,60,verde
+candidato A,22,azul
+otro,43,azul
+candidato A,72,azul
+otro,44,verde
+candidato B,38,azul
+candidato A,34,azul
+candidato A,33,azul
+candidato A,62,azul
+candidato A,62,verde
+candidato A,33,azul
+candidato B,38,verde
+candidato A,21,azul
+candidato B,35,rojo
+candidato A,49,azul
+candidato A,61,verde
+candidato A,62,azul
+candidato A,46,azul
+candidato B,67,rojo
+candidato A,40,verde
+candidato A,69,azul
+candidato A,44,azul
+candidato A,21,azul
+candidato B,56,azul
+candidato A,56,azul
+candidato A,28,azul
+candidato A,82,azul
+candidato A,69,azul
+candidato A,36,rojo
+candidato A,24,verde
+candidato A,63,verde
+candidato A,25,azul
+candidato A,31,azul
+candidato A,62,verde
+candidato B,23,verde
+candidato A,26,azul
+otro,58,rojo
+candidato A,20,azul
+candidato A,35,azul
+candidato B,38,verde
+candidato A,65,verde
+candidato A,37,verde
+candidato B,46,rojo
+candidato A,49,verde
+otro,64,verde
+candidato A,36,azul
+candidato B,60,rojo
+candidato B,28,rojo
+candidato A,26,azul
+candidato A,25,azul
+candidato B,57,verde
+candidato A,28,azul
+candidato A,27,verde
+candidato A,41,verde
+otro,19,verde
+otro,43,verde
+otro,49,rojo
+candidato A,56,verde
+candidato A,31,azul
+candidato B,64,rojo
+candidato A,56,azul
+candidato A,41,azul
+candidato B,20,verde
+candidato A,32,verde
+candidato B,62,azul
+candidato A,30,verde
+candidato B,74,rojo
+candidato B,52,verde
+otro,59,azul
+candidato A,35,verde
+candidato A,55,azul
+candidato B,41,rojo
+candidato B,33,verde
+candidato B,52,verde
+candidato A,48,azul
+candidato B,66,verde
+candidato A,44,azul
+candidato A,72,azul
+otro,26,verde
+candidato A,20,azul
+candidato A,42,azul
+candidato B,46,rojo
+otro,56,verde
+candidato A,28,azul
+candidato A,21,verde
+otro,42,verde
+candidato A,55,azul
+otro,57,azul
+candidato A,35,verde
+candidato A,40,azul
+candidato A,20,verde
+candidato B,39,rojo
+candidato A,27,azul
+candidato A,29,azul
+candidato A,62,azul
+candidato A,53,verde
+candidato A,24,azul
+candidato B,25,verde
+candidato B,57,verde
+candidato B,64,verde
+candidato B,69,verde
+candidato A,73,azul
+candidato B,70,verde
+candidato B,34,rojo
+candidato B,40,rojo
+candidato A,62,verde
+candidato B,27,azul
+candidato B,68,rojo
+candidato B,23,rojo
+candidato A,67,azul
+candidato B,62,verde
+candidato A,21,azul
+candidato B,21,rojo
+candidato B,29,verde
+candidato B,24,rojo
+candidato A,35,azul
+candidato A,32,azul
+candidato B,40,verde
+candidato A,35,azul
+candidato A,22,azul
+candidato A,24,verde
+candidato A,22,verde
+candidato A,30,verde
+otro,37,verde
+candidato B,28,azul
+otro,45,verde
+candidato B,42,verde
+candidato B,79,rojo
+otro,29,azul
+candidato B,27,rojo
+candidato A,21,azul
+candidato B,43,rojo
+candidato A,29,azul
+candidato A,52,azul
+candidato B,43,rojo
+candidato A,56,verde
+candidato A,29,verde
+candidato A,51,azul
+candidato A,22,azul
+candidato A,22,rojo
+candidato B,31,rojo
+candidato A,37,rojo
+candidato A,20,azul
+candidato A,38,azul
+candidato A,41,azul
+otro,39,verde
+candidato A,62,azul
+candidato A,42,azul
+candidato B,29,rojo
+candidato B,26,azul
+candidato A,45,azul
+candidato B,64,rojo
+candidato B,62,azul
+candidato B,34,verde
+candidato A,29,azul
+otro,22,azul
+candidato B,28,azul
+candidato B,39,rojo
+candidato B,52,rojo
+otro,30,rojo
+candidato B,67,rojo
+candidato B,54,verde
+candidato B,24,verde
+candidato A,37,azul
+candidato B,34,azul
+candidato A,30,verde
+candidato B,30,rojo
+candidato A,20,verde
+candidato A,51,azul
+candidato B,34,verde
+candidato B,28,rojo
+candidato A,20,azul
+candidato B,27,verde
+candidato A,25,azul
+candidato A,46,azul
+candidato B,65,verde
+otro,23,verde
+candidato A,63,azul
+candidato A,22,azul
+candidato B,47,rojo
+candidato A,24,verde
+candidato B,56,rojo
+candidato A,38,azul
+candidato A,81,azul
+candidato B,43,verde
+otro,34,rojo
+otro,54,rojo
+candidato A,27,azul
+candidato A,19,azul
+candidato B,31,azul
+candidato A,55,rojo
+otro,31,rojo
+otro,49,azul
+candidato A,21,azul
+candidato A,26,verde
+candidato A,43,verde
+candidato B,46,verde
+candidato A,64,azul
+otro,31,verde
+candidato A,39,azul
+candidato A,39,verde
