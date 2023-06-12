@@ -494,7 +494,7 @@
 <section id="interpretación-de-los-coeficientes" class="slide level2 smaller">
 <h2>Interpretación de los coeficientes</h2>
 <h3 id="beta_0"><span class="math inline">\(\beta_0\)</span></h3>
-<p><span class="math inline">\(\beta_0\)</span> es la log-chance (<em>log-odds</em>) del evento de interés cuando todas las variables explicativas valen 0. <span class="math inline">\(e^{\beta_0}\)</span> es la chance. En términos del problema: _e^{<em>0} es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0</em></p>
+<p><span class="math inline">\(\beta_0\)</span> es la log-chance (<em>log-odds</em>) del evento de interés cuando todas las variables explicativas valen 0. <span class="math inline">\(e^{\beta_0}\)</span> es la chance. En términos del problema: <em><span class="math inline">\(e^{\beta_0}\)</span> es la chance de que llueva mañana si la humedad de hoy a las 9 de la mañana es 0</em>.</p>
 </section>
 <section id="section-10" class="slide level2 smaller">
 <h2></h2>
@@ -512,12 +512,12 @@
 <p>Entonces</p>
 <p><span class="math display">\[\log (\mathrm{odds}_{x+\Delta x}) - \log (\mathrm{odds}_{x}) = \beta_1 \Delta x\]</span></p>
 <p><span class="math display">\[ e^{\beta_1 \Delta x} = \frac{\mathrm{odds}_{x+\Delta x}}{\mathrm{odds}_{x}}\]</span></p>
-<p>La chance del evento de interés aumenta <span class="math inline">\(e^{\beta_1 \Delta x}\)</span> veces cuando <span class="math inline">\(x_1\)</span> aumenta en <span class="math inline">\(\Delta x\)</span> (y el resto de las variables se mantienen constantes). En términos del problema: _La chance de que llueva mañana aumenta e^{<em>1} veces si la humedad aumenta en 1</em></p>
+<p>La chance del evento de interés aumenta <span class="math inline">\(e^{\beta_1 \Delta x}\)</span> veces cuando <span class="math inline">\(x_1\)</span> aumenta en <span class="math inline">\(\Delta x\)</span> (y el resto de las variables se mantienen constantes). En términos del problema: <em>La chance de que llueva mañana aumenta <span class="math inline">\(e^{\beta_1}\)</span> veces si la humedad aumenta en 1</em>.</p>
 </section>
 <section id="section-12" class="slide level2">
 <h2></h2>
 <p>Más en términos del problema:</p>
-<p><span class="math display">\[e^{\beta_1} = \frac{\mathrm{odds}_{x+10}}{\mathrm{odds}_{x}} \Rightarrow \mathrm{odds}_{x+1} = e^{\beta_1} \mathrm{odds}_{x}\]</span></p>
+<p><span class="math display">\[e^{\beta_1} = \frac{\mathrm{odds}_{x+1}}{\mathrm{odds}_{x}} \Rightarrow \mathrm{odds}_{x+1} = e^{\beta_1} \mathrm{odds}_{x}\]</span></p>
 <p><span class="math display">\[e^{\beta_1} = 1.11\]</span></p>
 <ul>
 <li class="fragment">La chance de que llueva mañana aumenta <span class="math inline">\(1.11\)</span> veces cuando la humedad a las 9 de la mañana de hoy aumenta en una unidad</li>
