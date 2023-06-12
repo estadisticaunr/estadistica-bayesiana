@@ -63,6 +63,8 @@ website:
           file: teoria/u4_teoria_06.qmd
         - text: U5 - Modelos Avanzados
           file: teoria/u5_teoria_07.qmd
+        - text: U5 - Modelos Jerárquicos
+          file: teoria/u5_teoria_08.qmd
     - title: Práctica
       style: docked
       search: false
