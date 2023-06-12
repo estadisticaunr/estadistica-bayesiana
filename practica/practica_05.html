@@ -295,6 +295,13 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li>Genere 1000 valores de <span class="math inline">\(X\)</span>, asuma un valor conocido (y fijo) para <span class="math inline">\(\beta\)</span>, simule los correspondientes valores de <span class="math inline">\(\theta_i\)</span> y los de <span class="math inline">\(Y_i\)</span>. ¿Cómo es <span class="math inline">\(\theta\)</span> en función de <span class="math inline">\(X\)</span>? ¿Es lineal la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?</li>
 <li>Ahora añada incertidumbre al valor de <span class="math inline">\(\beta\)</span> (¿cómo se hace esto?) y simule nuevamente valores para <span class="math inline">\(\theta_i\)</span> y <span class="math inline">\(Y_i\)</span>. Compare los resultados.</li>
 </ol></li>
+<li><p><strong>Intención de voto</strong></p>
+<p>El conjunto de datos <code>elecciones.csv</code> contiene los resultados de un estudio piloto sobre intención de voto. Contiene las variables <code>voto</code>, <code>edad</code> y <code>partido</code> que indican respectivamente el candidato elegido, la edad y la afinidad partidaria del encuestado.</p>
+<p>Utilice un modelo de regresión logística para responder a las siguiente preguntas de investigación:</p>
+<ol type="1">
+<li>¿Cómo se relaciona la edad de los encuestados con la intención de voto?</li>
+<li>¿Es esta relación diferente para las diferentes afinidades partidarias?</li>
+</ol></li>
 <li><p><strong>Modelo lineal para elecciones en Estados Unidos</strong></p>
 <p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
