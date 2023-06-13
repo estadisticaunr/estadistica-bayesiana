@@ -302,6 +302,16 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li>¿Cómo se relaciona la edad de los encuestados con la intención de voto?</li>
 <li>¿Es esta relación diferente para las diferentes afinidades partidarias?</li>
 </ol></li>
+<li><p><strong>Días de ausencia</strong></p>
+<p>Un organismo público de un Estado de los Estados Unidos está intereaso en estudiar el comportamiento de la asistencia de los estudiantes de secundaria. Para eso se cuenta con datos de 314 estudiantes tercer año en <code>students.csv</code>. Los predictores del número de días de ausencia incluyen el tipo de programa en el que está inscrito el estudiante y una prueba estandarizada de matemáticas.</p>
+<p>Las variables de interés en el conjunto de datos son:</p>
+<ul>
+<li><code>daysabs</code>: El número de días de ausencia. Es nuestra variable de respuesta.</li>
+<li><code>progr</code>: El tipo de programa. Puede ser uno de los siguientes: <code>"General"</code>, <code>"Academic"</code> o <code>"Vocational"</code>.</li>
+<li><code>math</code>: Puntuación en una prueba de matemáticas estandarizada.</li>
+</ul>
+<p>Interesa evaluar la asociación entre el tipo de programa y la puntuación en la prueba con los días de ausencia. También se desea ver ver si la asociación entre el puntaje en la prueba y los días de ausencia es diferente en cada tipo de programa.</p>
+<p>Realice un análisis exploratorio de los datos y elabore un modelo de regresión Poisson que permita explicar la asociación entre las variables predictoras y la cantidad de días que se ausentan los estudiantes.</p></li>
 <li><p><strong>Modelo lineal para elecciones en Estados Unidos</strong></p>
 <p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
