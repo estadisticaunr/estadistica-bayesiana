@@ -74,6 +74,30 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     1. ¿Cómo se relaciona la edad de los encuestados con la intención de voto?
     1. ¿Es esta relación diferente para las diferentes afinidades partidarias?
 
+1.  **Días de ausencia**
+
+    Un organismo público de un Estado de los Estados Unidos está intereaso en estudiar el
+    comportamiento de la asistencia de los estudiantes de secundaria. Para eso se cuenta 
+    con datos de 314 estudiantes tercer año en `students.csv`. Los predictores del número
+    de días de ausencia incluyen el tipo de programa en el que está inscrito el estudiante
+    y una prueba estandarizada de matemáticas. 
+
+    Las variables de interés en el conjunto de datos son:
+
+    * `daysabs`: El número de días de ausencia. Es nuestra variable de respuesta.
+    * `progr`: El tipo de programa. Puede ser uno de los siguientes: 
+    `"General"`, `"Academic"` o `"Vocational"`.
+    * `math`: Puntuación en una prueba de matemáticas estandarizada.
+
+    Interesa evaluar la asociación entre el tipo de programa y la puntuación en la prueba
+    con los días de ausencia. También se desea ver ver si la asociación entre el puntaje
+    en la prueba y los días de ausencia es diferente en cada tipo de programa.
+
+    Realice un análisis exploratorio de los datos y elabore un modelo de regresión Poisson
+    que permita explicar la asociación entre las variables predictoras y la cantidad de 
+    días que se ausentan los estudiantes.
+
+
 1.  **Modelo lineal para elecciones en Estados Unidos**
 
     Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
