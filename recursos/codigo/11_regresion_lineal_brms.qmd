@@ -6,7 +6,7 @@ El siguiente programa muestra el código necesario para con `R` los ejercicios
 **Mi primer regresión bayesiana** y **Mejorando mi regresión bayesiana** de la Práctica 4.
 
 ```{r regresion-lineal-brms}
-#| cache: false
+#| cache: true
 #| message: false
 #| warning: false
 #| echo: true
