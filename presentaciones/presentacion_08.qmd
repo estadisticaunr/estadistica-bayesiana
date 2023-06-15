@@ -80,7 +80,7 @@ $$
 
 Es un modelo de dos parámetros (hay una distribución conjunta _a priori_ y una distribución conjunta _a posteriori_) pero no como el $\mu$ y el $\sigma$ de una distribución normal o el $\beta_0$ y $\beta_1$ de un modelo de regresión lineal...
 
-¿Cómo funciona el modelo hacia adelante? $\omega \rightarrow \pi \rightarrow y$
+¿Cómo funciona el modelo hacia adelante? $\omega \rightarrow \pi \rightarrow y$ ($\omega$ influye en el valor de $y$ solo a través de $\pi$)
 
 ¿Y el razonamiento inverso? De $N$ tiradas podemos hacer una inferencia sobre $\pi$, lo que nos permitirá hacer una inferencia sobre $\omega$
 
@@ -136,10 +136,12 @@ plot_prior_omega <- ggplot(prior) +
   geom_line(aes(x=omega, y=p_omega))
 
 plot_prior_pi_omega1 <- ggplot(prior |> filter(omega == 0.6)) +
-  geom_line(aes(x=pi, y=prior))
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
 
 plot_prior_pi_omega2 <- ggplot(prior |> filter(omega == 0.9)) +
-  geom_line(aes(x=pi, y=prior))
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
 ```
 
 ##
@@ -229,10 +231,12 @@ prior_omega <- ggplot(prior) +
   geom_line(aes(x=omega, y=p_omega))
 
 prior_pi_1 <- ggplot(prior |> filter(omega == 0.6)) +
-  geom_line(aes(x=pi, y=prior))
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
 
 prior_pi_2 <- ggplot(prior |> filter(omega == 0.9)) +
-  geom_line(aes(x=pi, y=prior))
+  geom_line(aes(x=pi, y=prior)) +
+  xlab(expression(pi))
 ```
 
 ##
@@ -337,8 +341,12 @@ y_2 <- 4
 prior <- expand.grid(pi_1 = pi_1, pi_2 = pi_2, omega = omega) |>
   mutate(
     p_omega = dbeta(omega, A_omega, B_omega),
-    p_pi1_given_omega = dbeta(pi_1, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
-    p_pi2_given_omega = dbeta(pi_2, omega*(kappa-2)+1, (1-omega)*(kappa-2)+1),
+    p_pi1_given_omega = dbeta(pi_1, 
+                              omega*(kappa-2)+1, 
+                              (1-omega)*(kappa-2)+1),
+    p_pi2_given_omega = dbeta(pi_2, 
+                              omega*(kappa-2)+1, 
+                              (1-omega)*(kappa-2)+1),
     prior = p_pi1_given_omega *  p_pi2_given_omega * p_omega)
 
 prior_pi1 <- ggplot(prior |> 
@@ -417,26 +425,39 @@ likelihood1 + likelihood2
 posterior <- inner_join(prior, likelihood) |>
   mutate(posterior = prior * likelihood)
 
-posterior_pi1 <- ggplot(posterior |> group_by(pi_1,omega) |> summarise(posterior = sum(posterior))) +
+posterior_pi1 <- ggplot(posterior |> 
+                          group_by(pi_1,omega) |> 
+                          summarise(posterior = sum(posterior))) +
   geom_raster(aes(x=pi_1, y=omega, fill=posterior)) +
   scale_x_continuous(expression(pi[1]), expand = c(0,0)) +
   scale_y_continuous(expression(omega), expand = c(0,0)) +
   viridis::scale_fill_viridis()
 
-posterior_pi2 <- ggplot(posterior |> group_by(pi_2,omega) |> summarise(posterior = sum(posterior))) +
+posterior_pi2 <- ggplot(posterior |> 
+                          group_by(pi_2,omega) |> 
+                          summarise(posterior = sum(posterior))) +
   geom_raster(aes(x=pi_2, y=omega, fill=posterior)) +
   scale_x_continuous(expression(pi[2]), expand = c(0,0)) +
   scale_y_continuous(expression(omega), expand = c(0,0)) +
   viridis::scale_fill_viridis()
 
-posterior_omega <- ggplot(posterior |> group_by(omega) |> summarise(posterior = sum(posterior))) +
-  geom_line(aes(x=omega, y=posterior))
+posterior_omega <- ggplot(posterior |> 
+                            group_by(omega) |> 
+                            summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=omega, y=posterior)) +
+  xlab(expression(omega))
 
-posterior_pi1_marg <- ggplot(posterior |> group_by(pi_1) |> summarise(posterior = sum(posterior))) +
-  geom_line(aes(x=pi_1, y=posterior))
+posterior_pi1_marg <- ggplot(posterior |> 
+                               group_by(pi_1) |> 
+                               summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_1, y=posterior)) +
+  xlab(expression(pi[1]))
 
-posterior_pi2_marg <- ggplot(posterior |> group_by(pi_2) |> summarise(posterior = sum(posterior))) +
-  geom_line(aes(x=pi_2, y=posterior))
+posterior_pi2_marg <- ggplot(posterior |> 
+                               group_by(pi_2) |> 
+                               summarise(posterior = sum(posterior))) +
+  geom_line(aes(x=pi_2, y=posterior)) +
+  xlab(expression(pi[2]))
 ```
 ##
 
@@ -646,6 +667,26 @@ El radón es un gas radioactivo y cancerígeno. Los productos de la desintegraci
 
 ##
 
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+radon <- read.csv("https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/radon_data.csv")
+
+ggplot() +
+  geom_jitter(aes(x=log_radon, y=county, fill=county), 
+              data=radon %>% 
+                filter(county %in% c("LAC QUI PARLE","AITKIN","KOOCHICHING","DOUGLAS","CLAY","STEARNS","RAMSEY","ST LOUIS")), 
+              width = 0,
+              height = 0.05,
+              alpha = 0.5)
+```
+
+##
+
 ### Complete pooling {.smaller}
 
 $$
@@ -674,7 +715,7 @@ $$
 
 Decimos que los $Y_i$ tienen distribución de media $\alpha_{j[i]}$, sin imponer ninguna restricción sobre los $\alpha_j$. $P(\alpha_j)$ es una distribución no informativa (muy ancha y chata). Todos los $\alpha_j$ son independientes. Coincide con la estimación clásica que incluye una variable _dummy_ para cada grupo.
 
-##
+## {.smaller}
 
 Podemos mejorar el modelo anterior incorporando un prior que regularice los $\alpha_j$
 
@@ -692,7 +733,6 @@ Podemos mejorar el modelo anterior incorporando un prior que regularice los $\al
 
 Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto _pooling_ es necesario? Se estima a partir de los datos...
 
-\pause
 \begin{align*}
     Y_i\mid\mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
     \mu_i & = \alpha_{j[i]}  \\
@@ -726,6 +766,144 @@ Para algunos condados: a la izquierda está la estimación de la media _no pooli
 
 ![](imgs/pooling_intercept_algunos.png)
 
+## Otro ejemplo
+
+Corredores que han participado varias veces de una famosa maratón en Washington. Se registraron los tiempos de los participantes.
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+cherry <- read.csv("https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/cherry_blossom.csv")
+```
+
+```{r}
+  #| warning: false
+  #| echo: false
+  #| fig-width: 8
+  #| fig-height: 8
+  #| fig-align: center
+
+cherry %>%
+  ggplot(aes(x=runner, y=net)) +
+  geom_boxplot(aes(group=runner), fill="gray", alpha=0.2) +
+  geom_jitter(width = 0.05, size=1.5)
+```
+
+##
+
+```{r}
+# dv <- cherry %>%
+#   group_by(runner) %>%
+#   nest() %>%
+#   mutate(coefs = purrr::map_df(data, ~lm(net ~ age, data = .x)$coefficients)) %>%
+#   select(-data) %>%
+#   ungroup() %>%
+#   unnest_wider(coefs) %>%
+#   setNames(c("runner","intercept","slope"))
+
+ggplot() +
+  geom_jitter(data = cherry, aes(x=age, y=net),width=0.1) +
+  geom_smooth(data = cherry, 
+              aes(x=age, y=net, group=runner), 
+              method = "lm",
+              size = 0.6,
+              col = "gray50",
+              se=FALSE) +
+  geom_smooth(data = cherry, 
+              aes(x=age, y=net), 
+              method = "lm",
+              size = 1.2,
+              se=FALSE) +
+  xlim(c(50,61))
+  
+```
+##
+
+![](imgs/no_pooling_slope.png){fig-align="center"}
+
+##
+
+![](imgs/partial_pooling_slope.png){fig-align="center"}
+
+##
+
+- La información de la estimación de la pendiente de un grupo es útil para estimar las otras pendientes
+- La información de la estimación de las ordenadas al origen de un grupo es útil para estimar las otras ordenadas al origen
+- Las pendientes y las ordenadas al origen trabajan de forma conjunta para describir a un corredor, covarían
+
+##
+
+\begin{align*}
+    Y_i  \mid \mu_i,\sigma & \sim  \mathcal{N}(\mu_i,\sigma^2) \\
+    \mu_i & = \alpha_{j[i]} + \beta_{j[i]} x_i \\
+    \left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right] & \sim \mathcal{N}\left(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right],\Sigma\right)
+\end{align*}
+
+## {.smaller}
+
+$\left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right]$ tienen una distribución \textit{a priori} conjunta, normal multivariada de hiperparámetros $\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right]$ y $\Sigma$. ¡Necesitan \textit{hiperpriors}!
+
+. . .
+
+$\Sigma$ puede factorizarse según: \pause
+
+$$
+\Sigma = \left( \begin{array}{cc} \sigma_\alpha^2 & \sigma_\alpha\sigma_\beta\rho \\ \sigma_\alpha\sigma_\beta\rho & \sigma_\beta^2 \end{array}\right) = 
+\left( \begin{array}{cc} \sigma_\alpha & 0 \\ 0 & \sigma_\beta \end{array}\right) \left( \begin{array}{cc} 1 & \rho \\ \rho & 1 \end{array}\right)
+\left( \begin{array}{cc} \sigma_\alpha & 0 \\ 0 & \sigma_\beta \end{array}\right)
+$$
+
+Llamando
+$$R = \left( \begin{array}{cc} 1 & \rho \\ \rho & 1 \end{array}\right)$$
+solo habría que definir una distribución \textit{a priori} para $\sigma_\alpha$, $\sigma_\beta$ y $R$ (o $\rho$)
+
+
+## {.smaller}
+
+No es solo para modelos lineales... Se tienen 60 tanques con ranitas de la especie _Hyperolius viridiflavus_. Cada tanque $i$ de ellos contiene una cantidad inicial de renacuajos $N_i$. Al cabo de unas semanas se observa el número $S_i$ de renacuajos que sobrevivieron en el tanque $i$.
+
+![](imgs/frog.jpg){width=300}{fig-align="center"}
+
+##
+
+Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:
+
+\begin{align*}
+    S_i  \mid p_i & \sim  Binomial(N_i,p_i) \\
+   \log\left( \frac{p_i}{1-p_i} \right) & = \alpha_{i} \\
+   \alpha_i & \sim \mathcal{N}(\mu_\alpha,\sigma_\alpha^2)
+\end{align*}
+
+Observar que no hay grupos (no hay índice $j$), simplemente hacemos \textit{pooling} de los individuos. 
+
+## {.smaller}
+
+Comparamos la estimación de $p_i = \frac{e^{\alpha_i}}{1+e^{\alpha_i}}$ con la obtenida por máxima verosimilitud en cada tanque: $p_{i,ML} = \frac{S_i}{N_i}$
+
+![](imgs/pooling_ranas.png){fig-align="center"}
+
+## Intercambiabilidad
+
+Si no existe otra información más que los datos observados $y_i$ para distinguir a los individuos $i$ y estos no pueden ordenarse ninguna manera entonces se puede asumir una simetría de los parámetros. Se dice que los parámetros $\theta_i$ son **intercambiables** (_exchangeable_). 
+
+Si las observaciones pueden agruparse y los grupos son _indistinguibles_ (con características propias desconocidas) con propiedades/particularidades ignoradas entonces los grupos son **intercambiables** y los individuos, **parcialmente** o **condicionalmente intercambiables**.
+
+## Distribuciones predictivas {.smaller}
+
+En los modelos jerárquicos hay _dos tipos_ de distribuciones predictivas _a posteriori_:
+
+-   Predicciones para individuos que pertenecen a grupos ya existentes (tiradas de la moneda con la que se realizaron las inferencias, otra tarea de memoria para un individuo que ya participó del experimento)
+-   Predicciones para individuos pertenecientes a grupos nuevos (tiradas de una nueva moneda de la fábrica, cómo afectaría la droga a un individuo nuevo)
+
+## Resumen {.smaller}
+
+* Los modelos jerárquicos resultan atractivos para problemas en los cuales los parámetros se pueden considerar vinculados de cierta forma, por ejemplo en grupos.
+* Los modelos jerárquicos o multinivel son extensiones de los modelos lineales (y de los modelos lineales generalizados) para datos que tienen algún grado de agrupamiento y en los cuales se permite que los parámetros varíen por grupo 
+* Los modelos multinivel permiten mejorar las inferencias en contextos donde la muestra es pequeña. Si un individuo que tiene pocas observaciones pertenece a un determinado grupo, se supone que compartirá características con otros individuos de ese grupo y por lo tanto la estimación de sus parámetros podrá ser informada por la de sus pares.
 
 
 
