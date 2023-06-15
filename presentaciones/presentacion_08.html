@@ -436,7 +436,7 @@
 <section id="section-2" class="slide level2 smaller">
 <h2></h2>
 <p>Es un modelo de dos parámetros (hay una distribución conjunta <em>a priori</em> y una distribución conjunta <em>a posteriori</em>) pero no como el <span class="math inline">\(\mu\)</span> y el <span class="math inline">\(\sigma\)</span> de una distribución normal o el <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span> de un modelo de regresión lineal…</p>
-<p>¿Cómo funciona el modelo hacia adelante? <span class="math inline">\(\omega \rightarrow \pi \rightarrow y\)</span></p>
+<p>¿Cómo funciona el modelo hacia adelante? <span class="math inline">\(\omega \rightarrow \pi \rightarrow y\)</span> (<span class="math inline">\(\omega\)</span> influye en el valor de <span class="math inline">\(y\)</span> solo a través de <span class="math inline">\(\pi\)</span>)</p>
 <p>¿Y el razonamiento inverso? De <span class="math inline">\(N\)</span> tiradas podemos hacer una inferencia sobre <span class="math inline">\(\pi\)</span>, lo que nos permitirá hacer una inferencia sobre <span class="math inline">\(\omega\)</span></p>
 </section>
 <section id="section-3" class="slide level2 smaller">
@@ -482,10 +482,12 @@
 <span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>p_omega))</span>
 <span id="cb2-16"><a href="#cb2-16"></a></span>
 <span id="cb2-17"><a href="#cb2-17"></a>plot_prior_pi_omega1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.6</span>)) <span class="sc">+</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior))</span>
-<span id="cb2-19"><a href="#cb2-19"></a></span>
-<span id="cb2-20"><a href="#cb2-20"></a>plot_prior_pi_omega2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior)) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi))</span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a>plot_prior_pi_omega2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> <span class="fu">filter</span>(omega <span class="sc">==</span> <span class="fl">0.9</span>)) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi, <span class="at">y=</span>prior)) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-7" class="slide level2">
@@ -589,25 +591,29 @@
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">expand.grid</span>(<span class="at">pi_1 =</span> pi_1, <span class="at">pi_2 =</span> pi_2, <span class="at">omega =</span> omega) <span class="sc">|&gt;</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">p_omega =</span> <span class="fu">dbeta</span>(omega, A_omega, B_omega),</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">p_pi1_given_omega =</span> <span class="fu">dbeta</span>(pi_1, omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">p_pi2_given_omega =</span> <span class="fu">dbeta</span>(pi_2, omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">prior =</span> p_pi1_given_omega <span class="sc">*</span>  p_pi2_given_omega <span class="sc">*</span> p_omega)</span>
-<span id="cb6-7"><a href="#cb6-7"></a></span>
-<span id="cb6-8"><a href="#cb6-8"></a>prior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
-<span id="cb6-9"><a href="#cb6-9"></a>                      <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb6-10"><a href="#cb6-10"></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb6-15"><a href="#cb6-15"></a></span>
-<span id="cb6-16"><a href="#cb6-16"></a>prior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
-<span id="cb6-17"><a href="#cb6-17"></a>                      <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
-<span id="cb6-18"><a href="#cb6-18"></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
-<span id="cb6-19"><a href="#cb6-19"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
-<span id="cb6-20"><a href="#cb6-20"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-21"><a href="#cb6-21"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb6-22"><a href="#cb6-22"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">p_pi1_given_omega =</span> <span class="fu">dbeta</span>(pi_1, </span>
+<span id="cb6-5"><a href="#cb6-5"></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb6-6"><a href="#cb6-6"></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">p_pi2_given_omega =</span> <span class="fu">dbeta</span>(pi_2, </span>
+<span id="cb6-8"><a href="#cb6-8"></a>                              omega<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>                              (<span class="dv">1</span><span class="sc">-</span>omega)<span class="sc">*</span>(kappa<span class="dv">-2</span>)<span class="sc">+</span><span class="dv">1</span>),</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="at">prior =</span> p_pi1_given_omega <span class="sc">*</span>  p_pi2_given_omega <span class="sc">*</span> p_omega)</span>
+<span id="cb6-11"><a href="#cb6-11"></a></span>
+<span id="cb6-12"><a href="#cb6-12"></a>prior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
+<span id="cb6-13"><a href="#cb6-13"></a>                      <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb6-14"><a href="#cb6-14"></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a>prior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(prior <span class="sc">|&gt;</span> </span>
+<span id="cb6-21"><a href="#cb6-21"></a>                      <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb6-22"><a href="#cb6-22"></a>                      <span class="fu">summarise</span>(<span class="at">prior =</span> <span class="fu">sum</span>(prior))) <span class="sc">+</span></span>
+<span id="cb6-23"><a href="#cb6-23"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>prior)) <span class="sc">+</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-18" class="slide level2">
@@ -649,26 +655,39 @@
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>posterior <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(prior, likelihood) <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">mutate</span>(<span class="at">posterior =</span> prior <span class="sc">*</span> likelihood)</span>
 <span id="cb8-3"><a href="#cb8-3"></a></span>
-<span id="cb8-4"><a href="#cb8-4"></a>posterior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-8"><a href="#cb8-8"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb8-9"><a href="#cb8-9"></a></span>
-<span id="cb8-10"><a href="#cb8-10"></a>posterior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
-<span id="cb8-15"><a href="#cb8-15"></a></span>
-<span id="cb8-16"><a href="#cb8-16"></a>posterior_omega <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> <span class="fu">group_by</span>(omega) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>posterior))</span>
-<span id="cb8-18"><a href="#cb8-18"></a></span>
-<span id="cb8-19"><a href="#cb8-19"></a>posterior_pi1_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> <span class="fu">group_by</span>(pi_1) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-20"><a href="#cb8-20"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>posterior))</span>
-<span id="cb8-21"><a href="#cb8-21"></a></span>
-<span id="cb8-22"><a href="#cb8-22"></a>posterior_pi2_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> <span class="fu">group_by</span>(pi_2) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
-<span id="cb8-23"><a href="#cb8-23"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>posterior))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4"></a>posterior_pi1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb8-5"><a href="#cb8-5"></a>                          <span class="fu">group_by</span>(pi_1,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a href="#cb8-6"></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a>posterior_pi2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb8-13"><a href="#cb8-13"></a>                          <span class="fu">group_by</span>(pi_2,omega) <span class="sc">|&gt;</span> </span>
+<span id="cb8-14"><a href="#cb8-14"></a>                          <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>omega, <span class="at">fill=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">scale_x_continuous</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">scale_y_continuous</span>(<span class="fu">expression</span>(omega), <span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18"></a>  viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span>
+<span id="cb8-19"><a href="#cb8-19"></a></span>
+<span id="cb8-20"><a href="#cb8-20"></a>posterior_omega <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb8-21"><a href="#cb8-21"></a>                            <span class="fu">group_by</span>(omega) <span class="sc">|&gt;</span> </span>
+<span id="cb8-22"><a href="#cb8-22"></a>                            <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb8-23"><a href="#cb8-23"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>omega, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb8-24"><a href="#cb8-24"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(omega))</span>
+<span id="cb8-25"><a href="#cb8-25"></a></span>
+<span id="cb8-26"><a href="#cb8-26"></a>posterior_pi1_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb8-27"><a href="#cb8-27"></a>                               <span class="fu">group_by</span>(pi_1) <span class="sc">|&gt;</span> </span>
+<span id="cb8-28"><a href="#cb8-28"></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb8-29"><a href="#cb8-29"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_1, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb8-30"><a href="#cb8-30"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">1</span>]))</span>
+<span id="cb8-31"><a href="#cb8-31"></a></span>
+<span id="cb8-32"><a href="#cb8-32"></a>posterior_pi2_marg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(posterior <span class="sc">|&gt;</span> </span>
+<span id="cb8-33"><a href="#cb8-33"></a>                               <span class="fu">group_by</span>(pi_2) <span class="sc">|&gt;</span> </span>
+<span id="cb8-34"><a href="#cb8-34"></a>                               <span class="fu">summarise</span>(<span class="at">posterior =</span> <span class="fu">sum</span>(posterior))) <span class="sc">+</span></span>
+<span id="cb8-35"><a href="#cb8-35"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x=</span>pi_2, <span class="at">y=</span>posterior)) <span class="sc">+</span></span>
+<span id="cb8-36"><a href="#cb8-36"></a>  <span class="fu">xlab</span>(<span class="fu">expression</span>(pi[<span class="dv">2</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-22" class="slide level2">
@@ -770,6 +789,10 @@
 </section>
 <section id="section-34" class="slide level2">
 <h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-24-1.png" width="960" class="r-stretch"></section>
+<section id="section-35" class="slide level2">
+<h2></h2>
 <h3 class="smaller" id="complete-pooling">Complete pooling</h3>
 <p><span class="math display">\[
 \begin{align*}
@@ -781,7 +804,7 @@
 \]</span></p>
 <p>Hay una única media <span class="math inline">\(\alpha\)</span> común para todos los <span class="math inline">\(i\)</span>, independientemente del grupo <span class="math inline">\(j\)</span> al que pertenezcan</p>
 </section>
-<section id="section-35" class="slide level2">
+<section id="section-36" class="slide level2">
 <h2></h2>
 <h3 class="smaller" id="no-pooling">No pooling</h3>
 <p><span class="math display">\[
@@ -794,7 +817,7 @@
 \]</span></p>
 <p>Decimos que los <span class="math inline">\(Y_i\)</span> tienen distribución de media <span class="math inline">\(\alpha_{j[i]}\)</span>, sin imponer ninguna restricción sobre los <span class="math inline">\(\alpha_j\)</span>. <span class="math inline">\(P(\alpha_j)\)</span> es una distribución no informativa (muy ancha y chata). Todos los <span class="math inline">\(\alpha_j\)</span> son independientes. Coincide con la estimación clásica que incluye una variable <em>dummy</em> para cada grupo.</p>
 </section>
-<section id="section-36" class="slide level2">
+<section id="section-37" class="slide level2 smaller">
 <h2></h2>
 <p>Podemos mejorar el modelo anterior incorporando un prior que regularice los <span class="math inline">\(\alpha_j\)</span></p>
 <p><span class="math display">\[\begin{align*}
@@ -805,7 +828,7 @@
 \end{align*}\]</span></p>
 <p>0 y 10 son valores arbitrarios para la media y la varianza de la distribución <em>a priori</em> de los <span class="math inline">\(\alpha_j\)</span>. Los <span class="math inline">\(\alpha_j\)</span> dejan de poder ser estimados libremente. Hay <em>regularización</em> y tendemos a evitar el <em>overfitting</em>. Hay un <em>partial pooling</em>. Si en lugar de 10 se elige un valor más grande, tendemos a <em>no pooling</em>; si se elige un valor más chico, tendemos a <em>pooling completo</em></p>
 </section>
-<section id="section-37" class="slide level2">
+<section id="section-38" class="slide level2">
 <h2></h2>
 <p>Mejor aún, podemos estimar el grado de regularización partir de los datos. ¿Cuánto <em>pooling</em> es necesario? Se estima a partir de los datos…</p>
 <p><span class="math display">\[\begin{align*}
@@ -817,7 +840,7 @@
     \sigma_\alpha &amp; \sim  P(\sigma_\alpha) \\
 \end{align*}\]</span></p>
 </section>
-<section id="section-38" class="slide level2">
+<section id="section-39" class="slide level2">
 <h2></h2>
 <p><span class="math inline">\(\mu_\alpha\)</span> y <span class="math inline">\(\sigma_\alpha\)</span> son hiperparámetros (parámetros de la distribución de <em>a priori</em> de los parámetros) y por lo tanto tienen <em>hiperpriors</em></p>
 <p>El chiste es que <em>todos</em> los datos se usan para estimar <span class="math inline">\(\mu_\alpha\)</span> y <span class="math inline">\(\sigma_\alpha\)</span> y por lo tanto en la estimación de cada <span class="math inline">\(\alpha_j\)</span> hay información de todos los datos. La regularización es adaptativa (se aprende de los datos).</p>
@@ -830,7 +853,7 @@
 <li class="fragment">Así, los grupos que tienen menor tamaño de muestra toman más información del resto de los grupos y el <em>shrinkage</em> es más intenso.</li>
 </ol>
 </section>
-<section id="section-39" class="slide level2 smaller">
+<section id="section-40" class="slide level2 smaller">
 <h2></h2>
 <ol type="1">
 <li class="fragment"><em>Pooling completo</em>: hay una única media para todos los individuos, independientemente del grupo. La variación entre los grupos es cero. <em>Underfitting</em>.</li>
@@ -838,13 +861,103 @@
 <li class="fragment"><em>Partial pooling</em>: cada grupo tiene una media pero todas las medias están conectadas. Es una solución de compromiso, un punto medio entre <em>pooling completo</em> y <em>no pooling</em>.</li>
 </ol>
 </section>
-<section id="section-40" class="slide level2 smaller">
+<section id="section-41" class="slide level2 smaller">
 <h2></h2>
 <p>Para algunos condados: a la izquierda está la estimación de la media <em>no pooling</em> de la media, a la derecha la estimación del modelo multinivel (<em>pooling parcial</em>). En línea de trazos el <em>pooling completo</em>.</p>
-<p><img data-src="imgs/pooling_intercept_algunos.png"></p>
 
-<p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
+<img data-src="imgs/pooling_intercept_algunos.png" class="r-stretch"></section>
+<section id="otro-ejemplo-1" class="slide level2">
+<h2>Otro ejemplo</h2>
+<p>Corredores que han participado varias veces de una famosa maratón en Washington. Se registraron los tiempos de los participantes.</p>
+<div class="cell">
+
+</div>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<section id="section-42" class="slide level2">
+<h2></h2>
+
+<img data-src="presentacion_08_files/figure-revealjs/unnamed-chunk-27-1.png" width="960" class="r-stretch"></section>
+<section id="section-43" class="slide level2">
+<h2></h2>
+
+<img data-src="imgs/no_pooling_slope.png" class="r-stretch quarto-figure-center"></section>
+<section id="section-44" class="slide level2">
+<h2></h2>
+
+<img data-src="imgs/partial_pooling_slope.png" class="r-stretch quarto-figure-center"></section>
+<section id="section-45" class="slide level2">
+<h2></h2>
+<ul>
+<li class="fragment">La información de la estimación de la pendiente de un grupo es útil para estimar las otras pendientes</li>
+<li class="fragment">La información de la estimación de las ordenadas al origen de un grupo es útil para estimar las otras ordenadas al origen</li>
+<li class="fragment">Las pendientes y las ordenadas al origen trabajan de forma conjunta para describir a un corredor, covarían</li>
+</ul>
+</section>
+<section id="section-46" class="slide level2">
+<h2></h2>
+<p><span class="math display">\[\begin{align*}
+    Y_i  \mid \mu_i,\sigma &amp; \sim  \mathcal{N}(\mu_i,\sigma^2) \\
+    \mu_i &amp; = \alpha_{j[i]} + \beta_{j[i]} x_i \\
+    \left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right] &amp; \sim \mathcal{N}\left(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right],\Sigma\right)
+\end{align*}\]</span></p>
+</section>
+<section id="section-47" class="slide level2 smaller">
+<h2></h2>
+<p><span class="math inline">\(\left[\begin{array}{c}\alpha_j\\\beta_j\end{array}\right]\)</span> tienen una distribución conjunta, normal multivariada de hiperparámetros <span class="math inline">\(\left[\begin{array}{c}\mu_\alpha\\\mu_\beta\end{array}\right]\)</span> y <span class="math inline">\(\Sigma\)</span>. ¡Necesitan !</p>
+<div class="fragment">
+<p><span class="math inline">\(\Sigma\)</span> puede factorizarse según: </p>
+<p><span class="math display">\[
+\Sigma = \left( \begin{array}{cc} \sigma_\alpha^2 &amp; \sigma_\alpha\sigma_\beta\rho \\ \sigma_\alpha\sigma_\beta\rho &amp; \sigma_\beta^2 \end{array}\right) =
+\left( \begin{array}{cc} \sigma_\alpha &amp; 0 \\ 0 &amp; \sigma_\beta \end{array}\right) \left( \begin{array}{cc} 1 &amp; \rho \\ \rho &amp; 1 \end{array}\right)
+\left( \begin{array}{cc} \sigma_\alpha &amp; 0 \\ 0 &amp; \sigma_\beta \end{array}\right)
+\]</span></p>
+<p>Llamando <span class="math display">\[R = \left( \begin{array}{cc} 1 &amp; \rho \\ \rho &amp; 1 \end{array}\right)\]</span> solo habría que definir una distribución para <span class="math inline">\(\sigma_\alpha\)</span>, <span class="math inline">\(\sigma_\beta\)</span> y <span class="math inline">\(R\)</span> (o <span class="math inline">\(\rho\)</span>)</p>
+</div>
+</section>
+<section id="section-48" class="slide level2 smaller">
+<h2></h2>
+<p>No es solo para modelos lineales… Se tienen 60 tanques con ranitas de la especie <em>Hyperolius viridiflavus</em>. Cada tanque <span class="math inline">\(i\)</span> de ellos contiene una cantidad inicial de renacuajos <span class="math inline">\(N_i\)</span>. Al cabo de unas semanas se observa el número <span class="math inline">\(S_i\)</span> de renacuajos que sobrevivieron en el tanque <span class="math inline">\(i\)</span>.</p>
+<p><img data-src="imgs/frog.jpg" width="300">{fig-align=“center”}</p>
+</section>
+<section id="section-49" class="slide level2">
+<h2></h2>
+<p>Se modeliza la probabilidad de supervivencia de cada tanque con una regresión logística:</p>
+<p><span class="math display">\[\begin{align*}
+    S_i  \mid p_i &amp; \sim  Binomial(N_i,p_i) \\
+   \log\left( \frac{p_i}{1-p_i} \right) &amp; = \alpha_{i} \\
+   \alpha_i &amp; \sim \mathcal{N}(\mu_\alpha,\sigma_\alpha^2)
+\end{align*}\]</span></p>
+<p>Observar que no hay grupos (no hay índice <span class="math inline">\(j\)</span>), simplemente hacemos de los individuos.</p>
+</section>
+<section id="section-50" class="slide level2 smaller">
+<h2></h2>
+<p>Comparamos la estimación de <span class="math inline">\(p_i = \frac{e^{\alpha_i}}{1+e^{\alpha_i}}\)</span> con la obtenida por máxima verosimilitud en cada tanque: <span class="math inline">\(p_{i,ML} = \frac{S_i}{N_i}\)</span></p>
+
+<img data-src="imgs/pooling_ranas.png" class="r-stretch quarto-figure-center"></section>
+<section id="intercambiabilidad" class="slide level2">
+<h2>Intercambiabilidad</h2>
+<p>Si no existe otra información más que los datos observados <span class="math inline">\(y_i\)</span> para distinguir a los individuos <span class="math inline">\(i\)</span> y estos no pueden ordenarse ninguna manera entonces se puede asumir una simetría de los parámetros. Se dice que los parámetros <span class="math inline">\(\theta_i\)</span> son <strong>intercambiables</strong> (<em>exchangeable</em>).</p>
+<p>Si las observaciones pueden agruparse y los grupos son <em>indistinguibles</em> (con características propias desconocidas) con propiedades/particularidades ignoradas entonces los grupos son <strong>intercambiables</strong> y los individuos, <strong>parcialmente</strong> o <strong>condicionalmente intercambiables</strong>.</p>
+</section>
+<section id="distribuciones-predictivas" class="slide level2 smaller">
+<h2>Distribuciones predictivas</h2>
+<p>En los modelos jerárquicos hay <em>dos tipos</em> de distribuciones predictivas <em>a posteriori</em>:</p>
+<ul>
+<li class="fragment">Predicciones para individuos que pertenecen a grupos ya existentes (tiradas de la moneda con la que se realizaron las inferencias, otra tarea de memoria para un individuo que ya participó del experimento)</li>
+<li class="fragment">Predicciones para individuos pertenecientes a grupos nuevos (tiradas de una nueva moneda de la fábrica, cómo afectaría la droga a un individuo nuevo)</li>
+</ul>
+</section>
+<section id="resumen" class="slide level2 smaller">
+<h2>Resumen</h2>
+<ul>
+<li class="fragment">Los modelos jerárquicos resultan atractivos para problemas en los cuales los parámetros se pueden considerar vinculados de cierta forma, por ejemplo en grupos.</li>
+<li class="fragment">Los modelos jerárquicos o multinivel son extensiones de los modelos lineales (y de los modelos lineales generalizados) para datos que tienen algún grado de agrupamiento y en los cuales se permite que los parámetros varíen por grupo</li>
+<li class="fragment">Los modelos multinivel permiten mejorar las inferencias en contextos donde la muestra es pequeña. Si un individuo que tiene pocas observaciones pertenece a un determinado grupo, se supone que compartirá características con otros individuos de ese grupo y por lo tanto la estimación de sus parámetros podrá ser informada por la de sus pares.</li>
+</ul>
+
+
+<img src="../utils/imgs/logo.png" class="slide-logo r-stretch"><div class="footer footer-default">
 <p>Estadística Bayesiana – 2023</p>
 </div>
 </section></section>
