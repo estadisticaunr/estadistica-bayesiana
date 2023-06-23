@@ -97,6 +97,60 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     que permita explicar la asociación entre las variables predictoras y la cantidad de 
     días que se ausentan los estudiantes.
 
+1.  **_Baseball_**
+
+    El béisbol es uno de los deportes donde se más intensivamente se utilizan herramientas
+    estadísticas y analíticas. La cantidad de métricas que se calculan para los jugadores
+    es muy elevada. Supongamos que estamos en un equipo de béisbol y nos gustaría 
+    **cuantificar el rendimiento de los jugadores**, siendo una de las métricas su promedio de
+    bateo (definido por la cantidad de veces que un bateador golpea una pelota lanzada, 
+    dividido por el número de veces que se presenta al bate) ¿Cómo podríamos utilizar 
+    la estadística bayesiana para resolver este problema?
+
+    La tabla `batting` es una compilación de datos históricos de béisbol realizada por 
+    el _Baseball Databank_. Entre otras, contiene las siguientes columnas de interés:
+
+    * `playerID`: Identificación del jugador
+    * `AB`: Cantidad de veces que el jugador se presenta al bate
+    * `H`: Cantidad de veces que el jugador golpea la pelota al batear
+    * `batting_avg`: El cociente entre `H` y `AB`
+
+    Proponga un modelo de regresión logística para estimar la probabilidad de bateo para
+    cada jugador. Incorpore la identificación del jugador en el modelo. Considere primero
+    un modelo no jerárquico y luego un modelo jerárquico.
+
+1.  **Privados del sueño**
+
+    El conjunto de datos `sleepstudy` contiene el tiempo de reacción promedio 
+    en una serie de pruebas para un grupo de participantes en un estudio de privación del
+    sueño. Los primeros dos días del estudio se consideran de adaptación y entrenamiento,
+    el tercer día es una línea de base y la privación del sueño comienza después del día 3.
+    Los sujetos de este grupo estaban restringidos a 3 horas de sueño por noche.
+    El objetivo era analizar cómo la falta de sueño afectaba la capacidad de respuesta y 
+    la precisión en dicha tarea.
+
+    La variable de respuesta es `"Reaction"`, que representa el promedio de las mediciones
+    de tiempo de reacción de los participantes en un día determinado (en milisegundos). 
+    Las dos covariables son `"Days"`, que indica el número de días de privación del sueño,
+    y `"Subject"`, que es el identificador del participante sobre el cual se realizó la 
+    medición.
+
+    Se propone utilizar un modelo de regresión lineal de la forma:
+
+    $$
+    \begin{aligned}
+    \text{Reaction}_i & \sim \text{Normal}(\mu_i, \sigma) \\
+    \mu_i & = \beta_0 + \beta_1\text{Days}_i \\
+    \end{aligned}
+    $$
+
+    Considerando a los sujetos como grupos, evalúe las siguientes alternativas para 
+    estimar el intercepto y la pendiente:
+
+    * _Complete pooling_
+    * _No pooling_
+    * _Partial pooling_
+
 
 1.  **Modelo lineal para elecciones en Estados Unidos**
 
