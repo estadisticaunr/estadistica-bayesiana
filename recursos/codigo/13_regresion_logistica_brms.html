@@ -92,7 +92,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/distribuciones/distribuciones.html" rel="next">
+<link href="../../recursos/codigo/14_regresion_logistica_jerarquica_brms.html" rel="next">
 <link href="../../recursos/codigo/12_brms_rds.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -264,6 +264,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../recursos/codigo/13_regresion_logistica_brms.html" class="sidebar-item-text sidebar-link active">13 - Regresión logística con <code>{brms}</code></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/14_regresion_logistica_jerarquica_brms.html" class="sidebar-item-text sidebar-link">14 - Regresión logística jerárquica con <code>{brms}</code></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item">
@@ -296,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>En este programa se muestra código de <code>R</code> utilizar con el ejercicio <strong>Intención de voto</strong> de la Práctica 5.</p>
+<p>En este programa se muestra código de <code>R</code> que se puede utilizar con el ejercicio <strong>Intención de voto</strong> de la Práctica 5.</p>
 <p>La variable respuesta <span class="math inline">\(Y\)</span> se define:</p>
 <p><span class="math display">\[
 \begin{split}Y_i =
@@ -397,8 +402,8 @@ Formula: y ~ 1 + edad
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept     1.19      0.32     0.54     1.81 1.00     4173     2697
-edad         -0.02      0.01    -0.03    -0.01 1.00     4280     2682
+Intercept     1.20      0.33     0.56     1.85 1.00     3931     2833
+edad         -0.02      0.01    -0.03    -0.01 1.00     4173     2810
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -471,10 +476,10 @@ Formula: y ~ 0 + partido + edad
 
 Population-Level Effects: 
              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-partidoazul      3.32      0.54     2.33     4.42 1.00      936     1007
-partidorojo     -1.80      0.64    -3.10    -0.59 1.00     1167     1646
-partidoverde     0.79      0.48    -0.12     1.75 1.00      915     1065
-edad            -0.02      0.01    -0.04    -0.00 1.00      844     1055
+partidoazul      3.33      0.53     2.33     4.42 1.01     1162     1442
+partidorojo     -1.79      0.65    -3.09    -0.58 1.00     1368     1785
+partidoverde     0.79      0.47    -0.11     1.74 1.00     1005     1501
+edad            -0.02      0.01    -0.04    -0.00 1.00      944     1135
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -511,12 +516,12 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <pre><code># A tibble: 6 × 4
   coeficiente      valor grupo      partido
   &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
-1 b_partidoazul   3.01   intercepto azul   
-2 b_partidorojo  -1.38   intercepto rojo   
-3 b_partidoverde  0.554  intercepto verde  
-4 b_edad         -0.0172 pendiente  global 
-5 b_partidoazul   3.12   intercepto azul   
-6 b_partidorojo  -2.57   intercepto rojo   </code></pre>
+1 b_partidoazul   4.06   intercepto azul   
+2 b_partidorojo  -1.92   intercepto rojo   
+3 b_partidoverde  1.10   intercepto verde  
+4 b_edad         -0.0300 pendiente  global 
+5 b_partidoazul   3.86   intercepto azul   
+6 b_partidorojo  -1.82   intercepto rojo   </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_draws_2_long) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> valor, <span class="at">color =</span> partido, <span class="at">fill =</span> partido), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -592,12 +597,12 @@ Formula: y ~ 0 + partido + edad:partido
 
 Population-Level Effects: 
                   Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-partidoazul           1.68      0.72     0.30     3.13 1.00     2121     2325
-partidorojo           0.89      1.64    -2.25     4.26 1.00     2039     1729
-partidoverde          1.40      0.62     0.22     2.58 1.00     2129     1988
-partidoazul:edad      0.01      0.02    -0.02     0.04 1.00     2137     2129
-partidorojo:edad     -0.09      0.04    -0.19    -0.02 1.00     2033     1537
-partidoverde:edad    -0.03      0.01    -0.06    -0.01 1.00     2151     1902
+partidoazul           1.68      0.73     0.33     3.15 1.00     2379     2186
+partidorojo           0.89      1.61    -2.17     4.16 1.00     2152     1658
+partidoverde          1.42      0.61     0.24     2.65 1.00     2452     1900
+partidoazul:edad      0.01      0.02    -0.02     0.04 1.00     2395     2059
+partidorojo:edad     -0.09      0.04    -0.19    -0.02 1.00     2051     1766
+partidoverde:edad    -0.03      0.01    -0.06    -0.01 1.00     2406     2213
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -633,14 +638,14 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_3_long)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  coeficiente           valor grupo      partido
-  &lt;chr&gt;                 &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
-1 b_partidoazul        1.43   intercepto azul   
-2 b_partidorojo        3.32   intercepto rojo   
-3 b_partidoverde       3.24   intercepto verde  
-4 b_partidoazul:edad   0.0130 pendiente  azul   
-5 b_partidorojo:edad  -0.156  pendiente  rojo   
-6 b_partidoverde:edad -0.0684 pendiente  verde  </code></pre>
+  coeficiente            valor grupo      partido
+  &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
+1 b_partidoazul        1.20    intercepto azul   
+2 b_partidorojo       -2.50    intercepto rojo   
+3 b_partidoverde       2.56    intercepto verde  
+4 b_partidoazul:edad   0.0161  pendiente  azul   
+5 b_partidorojo:edad  -0.00452 pendiente  rojo   
+6 b_partidoverde:edad -0.0576  pendiente  verde  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_draws_3_long) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> valor, <span class="at">color =</span> partido, <span class="at">fill =</span> partido), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -711,23 +716,23 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoazul:edad"</span>] <span class="sc">&gt;</span> df_draws_3[<span class="st">"b_partidoverde:edad"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9945</code></pre>
+<pre><code>[1] 0.99425</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoverde:edad"</span>] <span class="sc">&gt;</span> df_draws_3[<span class="st">"b_partidorojo:edad"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.91025</code></pre>
+<pre><code>[1] 0.913</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoazul:edad"</span>] <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.80575</code></pre>
+<pre><code>[1] 0.8005</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidorojo:edad"</span>] <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.99175</code></pre>
+<pre><code>[1] 0.994</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoverde:edad"</span>] <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.99775</code></pre>
+<pre><code>[1] 0.99925</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparando los modelos con LOO... ¿qué significa?</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>loo_1 <span class="ot">&lt;-</span> <span class="fu">loo</span>(modelo_1)</span>
@@ -738,8 +743,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>         elpd_diff se_diff
 modelo_3   0.0       0.0  
-modelo_2  -1.9       3.3  
-modelo_1 -98.3      11.8  </code></pre>
+modelo_2  -1.8       3.4  
+modelo_1 -98.4      11.9  </code></pre>
 </div>
 </div>
 
@@ -886,8 +891,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/distribuciones/distribuciones.html" class="pagination-link">
-        <span class="nav-page-text">Distribuciones</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/14_regresion_logistica_jerarquica_brms.html" class="pagination-link">
+        <span class="nav-page-text">14 - Regresión logística jerárquica con <code>{brms}</code></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
