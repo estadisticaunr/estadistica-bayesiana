@@ -11,3 +11,5 @@ _site/
 # Ignorar todo el cache y archivos asociados
 */*_cache/*
 */*_files/*
+*_cache
+*_files

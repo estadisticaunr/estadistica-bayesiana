@@ -1,0 +1,18 @@
+---
+title: "14 - Regresión logística jerárquica con `{brms}`"
+---
+
+En esta sección se muestra código de `R` para implementar modelos de regresión logística
+jerárquicos (y no jerárquicos también) con `{brms}` que se utilizan en el ejercicio
+**_Baseball_** de la Práctica 5.
+
+```{r regresion-logistica-jerarquica-brms}
+#| cache: true
+#| message: false
+#| warning: false
+#| echo: true
+#| eval: true 
+#| fig-align: center
+#| file: scripts/14_regresion_logistica_jerarquica_brms.R 
+#| 
+```

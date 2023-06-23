@@ -2,8 +2,8 @@
 title: "13 - Regresión logística con `{brms}`"
 ---
 
-En este programa se muestra código de `R` utilizar con el ejercicio **Intención de voto**
-de la Práctica 5.
+En este programa se muestra código de `R` que se puede utilizar con el ejercicio 
+**Intención de voto** de la Práctica 5.
 
 La variable respuesta $Y$ se define:
 
