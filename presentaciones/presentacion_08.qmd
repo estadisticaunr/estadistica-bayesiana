@@ -866,7 +866,9 @@ solo habría que definir una distribución \textit{a priori} para $\sigma_\alpha
 
 No es solo para modelos lineales... Se tienen 60 tanques con ranitas de la especie _Hyperolius viridiflavus_. Cada tanque $i$ de ellos contiene una cantidad inicial de renacuajos $N_i$. Al cabo de unas semanas se observa el número $S_i$ de renacuajos que sobrevivieron en el tanque $i$.
 
-![](imgs/frog.jpg){width=300}{fig-align="center"}
+<center>
+![](imgs/frog.jpg){width=300}
+</center>
 
 ##
 
