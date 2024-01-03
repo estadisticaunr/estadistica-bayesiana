@@ -298,7 +298,25 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </div>
 </div></li>
 <li><p><strong>Paraguas</strong></p>
-<p>Estás a punto de subir a un avión rumbo a Mendoza. Querés saber si tenés que llevar un paraguas o no. Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de <span class="math inline">\(2/3\)</span> de decirte la verdad y <span class="math inline">\(1/3\)</span> de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza? Se puede asumir que en Mendoza llueve en 1 de cada 10 días. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p></li>
+<p>Estás a punto de subir a un avión rumbo a Mendoza. Querés saber si tenés que llevar un paraguas o no. Llamás a tres amigos que viven en Mendoza y les preguntás si está lloviendo. Cada uno de ellos tiene una probabilidad de <span class="math inline">\(2/3\)</span> de decirte la verdad y <span class="math inline">\(1/3\)</span> de mentirte para hacerte una broma. Los tres responden que sí está lloviendo. ¿Cuál es la probabilidad de que realmente esté lloviendo en las Mendoza? Se puede asumir que en Mendoza llueve en 1 de cada 10 días. <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Si LLL es “los tres amigos dijeron que llovía”, buscamos p(lluvia|LLL) = p(LLL|lluvia)p(lluvia)/p(LLL).</p>
+<p>p(LLL|lluvia) es la probabilidad de que ninguno de los tres mienta.</p>
+<p>p(LLL) = p(LLL|lluvia) p(lluvia) + p(LLL|no lluvia) p(no lluvia).</p>
+</div>
+</div>
+</div></li>
 <li><p><strong>Sherlock</strong></p>
 <p>Dos personas dejaron rastros de sangre en la escena del crimen. La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo ‘0’. Los rastros de sangre de la escena son de tipo ‘0’ (un tipo común en la población, presente en el 60% de las personas) y de tipo ‘AB’ (un tipo raro, con una frecuencia del 1% en la población). ¿Estos datos representan evidencia de que Guido estaba presente en la escena del crimen? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p>
 <div class="cell" data-layout-align="center">
@@ -310,13 +328,54 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 </figure>
 </div>
 </div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Llamemos S a “Guido y otra persona estuvieron en la escena del crimen” versus S’, “dos personas desconocidas estuvieron en la escena del crimen”. Además, contamos con la evidencia E, “observar sangre 0 y sangre AB”.</p>
+<p>Queremos saber qué es mayor, si p(E|S) o p(E|S’) (si luego quisiéramos comparar p(S|E) con p(S’|E) necesitaríamos las probabilidades a priori de P(S) y P(S’)). Si p(E|S) &lt; p(E|S’) entonces los datos aportan evidencia en contra de que Guido estaba en la escena del crimen (E es más probable bajo S’ que bajo S).</p>
+<p>p(E|S) es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba en la escena del crimen. Esto es básicamente la probabilidad de encontrar sangre AB (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a tener en la escena del crimen a una de las personas que tienen sangre AB (1/100 de la población). Luego, p(E|S) = 0.01.</p>
+<p>p(E|S’) es la probabilidad de observar sangre 0 y sangre AB, si Guido no estaba en la escena del crimen. Esto es la probabilidad de que la primera persona tuviera sangre 0 y la segunda AB más la probabilidad de que la primera persona tuviera sangre AB y la segunda sangre 0: (60/100)x(1/100) + (1/100)x(60/100) = 0.012.</p>
+<p>Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo. 120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB y el resto tiene otro tipo. Con Guido en la escena del crimen hay 2/200 personas que podrían haber estado con él; sin Guido en la escena, pudieron haber estado cualquiera de las 119 personas de sangre 0 con cualquiera de las 2 personas de sangre AB.</p>
+</div>
+</div>
 </div></li>
 <li><p><strong>Hijos de la probabilidad</strong></p>
 <p>Nos encontramos con alguien en la calle y nos dice que tiene dos hijos. Le preguntamos si alguno de ellos es mujer y nos responde que sí. ¿Cuál es la probabilidad de que ambos sean niñas? <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>Los Reyes del Rock</strong></p>
 <p>Elvis Presley tenía un hermano varón que nació en el mismo parto pero que murió al poco tiempo. ¿Cuál es la probabilidad de que Elvis tuviera un gemelo? Alguna información adicional: en 1935, cuando Elvis nació, 1/3 de los hermanos del mismo parto eran gemelos y 2/3 mellizos; además, la probabilidad de que dos mellizos sean del mismo sexo biológico puede estimarse en 50%, mientras que dos gemelos son siempre del mismo sexo biológico. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
 <li><p><strong>¿Alguien ordena las medias?</strong></p>
-<p>Dos cajones contienen medias. Uno de ellos tiene igual cantidad de medias blancas y negras. El otro contiene un número igual de medias rojas, verdes y azules. Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales. ¿Cuál es la probabilidad de que las medias sean blancas? Supóngase que sacar la primera media no altera las proporciones. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p></li>
+<p>Dos cajones contienen medias. Uno de ellos tiene igual cantidad de medias blancas y negras. El otro contiene un número igual de medias rojas, verdes y azules. Se elige un cajón al azar, se sacan dos medias sin mirar y resultan ser las dos iguales. ¿Cuál es la probabilidad de que las medias sean blancas? Supóngase que sacar la primera media no altera las proporciones. <!-- http://allendowney.github.io/ThinkBayes2/chap03.html --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sean los eventos</p>
+<p>C: elegir el cajón BN (y no el RVA)</p>
+<p>P: elegir un par de medias iguales</p>
+<p>B: elegir un par de medias blancas</p>
+<p>Matemáticamente, buscamos p(B|P) = p(B,C|P) + p(B,C’|P) (básicamente estamos marginalizando la variable “cajón”). El segundo término es 0 porque B y C’ no pueden darse nunca (nunca voy a sacar un par blanco del cajón RVA). Entonces queda p(B|P) = p(B,C|P) = p(B|C,P)p(C|P), que son los dos valores que encontramos arriba.</p>
+<p>¿De dónde sale que p(B,C|P) = p(B|C,P)p(C|P)? p(B,C|P) = p(B,C,P)/p(P) y el numerador, por regla de la cadena, es p(P)p(C|P)p(B|C,P).</p>
+</div>
+</div>
+</div></li>
 <li><p><strong>La Falacia del Fiscal</strong></p>
 <p>Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, murió con 11 semanas en diciembre de 1996 y su hijo más joven, Harry, con 8 semanas en enero de 1998. Durante el juicio, la defensa argumentó que las muertes se debieron al síndrome de muerte súbita del lactante (SIDS). Clark fue condenada a partir del testimonio del pediatra Sir Roy Meadow, quien argumentó en la corte lo siguiente:</p>
 <ul>
@@ -329,7 +388,24 @@ P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
 <li>Identifica una falla en la probabilidad de <span class="math inline">\(\frac{1}{73000000}\)</span> dada por Meadows.</li>
 <li>Incluso aceptando el número anterior como correcto, ¿cuál es el problema de interpretar esa probabilidad como la probabilidad de inocencia de Clark?</li>
 </ol>
-<!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf --></li>
+<!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf -->
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Aún asumiendo que P(E|I) es lo que dice Meadows, esa no es la probabilidad de interés. La probabilidad que interesa es la de inocencia (o culpabilidad) dada la evidencia. Es decir, la probabilidad que nos interesa es P(I|E) que la podemos escribir como P(I|E) = P(E|I)P(I)/P(E).</p>
+<p>P(I|E) es solo similar a P(E|I) si P(I) es similar a P(E). Este no es el caso, ¿por qué?</p>
+</div>
+</div>
+</div></li>
 </ol>
 </section>
 <section id="inferencia-bayesiana" class="level2">
@@ -430,8 +506,25 @@ Y | \theta, n \sim \text{Binomial}(\theta, n)
 <p>donde <span class="math inline">\(\theta\)</span> es la probabilidad de compra, dado que se produce la visita a la tienda. La distribución <em>a priori</em> de <span class="math inline">\(n\)</span> es <span class="math inline">\(n \sim \text{Poisson}(5)\)</span>. Bajo el supuesto que <span class="math inline">\(\theta\)</span> es conocido y que <span class="math inline">\(n\)</span> es desconocido, graficar la distribución <em>a posteriori</em> de <span class="math inline">\(n\)</span> para todas las combinaciones de <span class="math inline">\(Y \in \{0, 5, 10 \}\)</span> y <span class="math inline">\(\theta \in \{0.2, 0.5\}\)</span>. Explique cual es del efecto de cambiar <span class="math inline">\(Y\)</span> y <span class="math inline">\(\theta\)</span> sobre la distribución <em>a posteriori</em>. <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 --></p></li>
 <li><p><strong>Con amigos así, quién necesita enemigos</strong></p>
 <p>Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo <span class="math inline">\(T\)</span>). A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces. No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a <span class="math inline">\(T\)</span>.</p>
-<p>Supongamos que nos da la secuencia: <span class="math inline">\(G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C\)</span> (siendo <span class="math inline">\(G\)</span> más grande, <span class="math inline">\(C\)</span> más chico e <span class="math inline">\(I\)</span> igual). ¿Cuál es la distribución <em>a posteriori</em> de los valores de <span class="math inline">\(T\)</span>? <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html --></p></li>
-<li><p><strong>Orden en la sala</strong></p>
+<p>Supongamos que nos da la secuencia: <span class="math inline">\(G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C\)</span> (siendo <span class="math inline">\(G\)</span> más grande, <span class="math inline">\(C\)</span> más chico e <span class="math inline">\(I\)</span> igual). ¿Cuál es la distribución <em>a posteriori</em> de los valores de <span class="math inline">\(T\)</span>? <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Estamos tratando de hacer inferencias sobre T, es decir, la distribución a posteriori debe ser p(T=1), p(T=2), … p(T=6).</p>
+<p>Conviene analizar este problema en forma secuencial. Observamos “G”, ¿qué significa eso? ¿cómo obtenemos la verosimilitud? p(G|T=1) = 5/6, p(G|T=2) = 4/6, p(G|T=3) = 3/6…</p>
+</div>
+</div>
+</div></li>
+<li><p>💻 <strong>Orden en la sala</strong></p>
 <p>En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más de 1000 personas en la sala, superando el máximo permitido.</p>
 <p>La expositora piensa que hay menos de 1000 personas y se ofrece a demostrarlo, aunque piensa que contarlas podría llevar mucho tiempo. Decide hacer un experimento:</p>
 <ul>
@@ -439,8 +532,28 @@ Y | \theta, n \sim \text{Binomial}(\theta, n)
 <li>Pregunta cuántas personas nacieron el 23 de mayo. Una persona levanta la mano.</li>
 <li>Pregunta cuántas personas nacieron el 1 de agosto. Nadie levanta la mano.</li>
 </ul>
-<p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p></li>
-<li><p><strong><em>House of Cards</em></strong></p>
+<p>¿Cuántas personas hay en la sala? O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Estamos tratando de hacer inferencias sobre la cantidad de personas X (que puede ser un número entre, digamos, 1 y 3000).</p>
+<p>Conviene analizar el problema en forma secuencial. Para la primera observación (dos personas cumpliendo años el mismo día), la verosimilitud es la probabilidad de que haya dos personas con el mismo cumpleaños si en la sala hay 1, 2, 3, … personas. Lo podemos pensar como una binomial</p>
+<p>Si X=1, p(Y=2|X=1) = 0</p>
+<p>Si X=2, p(Y=2|X=2) = dbinom(2, size = 2, prob = 1/365)</p>
+<p>Si X=100, p(Y=2|X=100) = dbinom(2, size = 100, prob = 1/365)</p>
+</div>
+</div>
+</div></li>
+<li><p>💻 <strong><em>House of Cards</em></strong></p>
 <p>Hay 538 miembros en el Congreso de Estados Unidos. Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron rendimientos por encima del mercado. Asumamos que un miembro honesto del Congreso tiene solo una probabilidad del 50% de tener rendimientos por encima del mercado, pero uno deshonesto que opera con información confidencial tiene una chance del 90% de hacerlo. ¿Cuántos miembros del Congreso son honestos? <!-- http://allendowney.github.io/ThinkBayes2/chap06.html --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -452,7 +565,7 @@ Y | \theta, n \sim \text{Binomial}(\theta, n)
 </div>
 </div>
 </div></li>
-<li><p><strong>Puede fallar…</strong></p>
+<li><p>💻 <strong>Puede fallar…</strong></p>
 <p>Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara o ceca y registra el resultado.</p>
 <p>Lógicamente, el sistema diseñado no es perfecto sino que presenta una tasa de error. En particular, la probabilidad de que clasificar mal es de 0.2 (20% de las veces que sale cara, el sistema dice ceca, y viceversa).</p>
 <p>Se arroja la moneda 250 veces y el sistema detecta 140 caras,</p>
@@ -461,7 +574,29 @@ Y | \theta, n \sim \text{Binomial}(\theta, n)
 <li>¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></li>
 </ol></li>
 <li><p><strong>¡Saludos a los cubos con puntos! (…) Serán dados</strong></p>
-<p>Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos es 9. ¿Cuál es la distribución <em>a posteriori</em> de los puntajes de los dados? <!-- @Barber2012 --></p></li>
+<p>Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos es 9. ¿Cuál es la distribución <em>a posteriori</em> de los puntajes de los dados? <!-- @Barber2012 --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Estamos tratando de hacer inferencias sobre D1 y D2, los valroes de cada uno de los datos. Definir la distribución a priori no es complicado (es una distribución sobre D1 y D2).</p>
+<p>El truco está en determinar la verosimilitud de cada par (D1,D2) luego de haber observado un 9.</p>
+<p>¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que …?</p>
+<p>D1 = 1 y D2 = 1 - la probabilidad de observar 9 es 0</p>
+<p>D1 = 1 y D2 = 2 - la probabilidad de observar 9 es 0</p>
+<p>D1 = 4 y D2 = 5 - la probabilidad de observar 9 es 1</p>
+<p>D1 = 5 y D2 = 4 - la probabilidad de observar 9 es 1</p>
+</div>
+</div>
+</div></li>
 </ol>
 </section>
 <section id="conceptuales" class="level2">
