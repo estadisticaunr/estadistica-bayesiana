@@ -186,6 +186,17 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Se puede asumir que en Mendoza llueve en 1 de cada 10 días.
     <!-- http://allendowney.github.io/ThinkBayes2/chap06.html -->
 
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Si LLL es "los tres amigos dijeron que llovía", buscamos p(lluvia|LLL) =       p(LLL|lluvia)p(lluvia)/p(LLL).
+
+    p(LLL|lluvia) es la probabilidad de que ninguno de los tres mienta.
+
+    p(LLL) = p(LLL|lluvia) p(lluvia) + p(LLL|no lluvia) p(no lluvia).
+    
+    :::
 
 1.  **Sherlock**
 
@@ -204,6 +215,22 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     #| fig-cap: !expr captions[["sherlock"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "sherlock.png"))
     ```
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Llamemos S a "Guido y otra persona estuvieron en la escena del crimen"         versus S', "dos personas desconocidas estuvieron en la escena del crimen".     Además, contamos con la evidencia E, "observar sangre 0 y sangre AB". 
+
+    Queremos saber qué es mayor, si p(E|S) o p(E|S') (si luego quisiéramos         comparar p(S|E) con p(S'|E) necesitaríamos las probabilidades a priori de      P(S) y P(S')). Si p(E|S) < p(E|S') entonces los datos aportan evidencia en     contra de que Guido estaba en la escena del crimen (E es más probable bajo     S' que bajo S).
+    
+    p(E|S) es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba     en la escena del crimen. Esto es básicamente la probabilidad de encontrar      sangre AB (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a     tener en la escena del crimen a una de las personas que tienen sangre AB       (1/100 de la población). Luego, p(E|S) = 0.01.
+
+    p(E|S') es la probabilidad de observar sangre 0 y sangre AB, si Guido no       estaba en la escena del crimen. Esto es la probabilidad de que la primera      persona tuviera sangre 0 y la segunda AB más la probabilidad de que la         primera persona tuviera sangre AB y la segunda sangre 0: (60/100)x(1/100) +     (1/100)x(60/100) = 0.012.
+    
+    Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo.     120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB     y el resto tiene otro tipo. Con Guido en la escena del crimen hay 2/200        personas que podrían haber estado con él; sin Guido en la escena, pudieron     haber estado cualquiera de las 119 personas de sangre 0 con cualquiera de      las 2 personas de sangre AB.
+    
+    :::
 
 1.  **Hijos de la probabilidad**
 
@@ -232,6 +259,25 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Supóngase que sacar la primera media no altera las proporciones.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
     
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Sean los eventos
+    
+    C: elegir el cajón BN (y no el RVA)
+    
+    P: elegir un par de medias iguales
+    
+    B: elegir un par de medias blancas 
+    
+    Matemáticamente, buscamos p(B|P) = p(B,C|P) + p(B,C'|P) (básicamente           estamos marginalizando la variable "cajón"). El segundo término es 0 porque     B y C' no pueden darse nunca (nunca voy a sacar un par blanco del cajón        RVA). Entonces queda p(B|P) = p(B,C|P) = p(B|C,P)p(C|P), que son los dos       valores que encontramos arriba.
+
+    ¿De dónde sale que p(B,C|P) = p(B|C,P)p(C|P)?
+    p(B,C|P) = p(B,C,P)/p(P) y el numerador, por regla de la cadena, es            p(P)p(C|P)p(B|C,P).
+    
+    :::
+    
 1.  **La Falacia del Fiscal**
 
     Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión 
@@ -255,6 +301,16 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     interpretar esa probabilidad como la probabilidad de inocencia de Clark?
     
     <!-- https://web.stanford.edu/class/archive/cs/cs109/cs109.1206/section/1/section1_soln.pdf -->
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Aún asumiendo que P(E|I) es lo que dice Meadows, esa no es la probabilidad     de interés. La probabilidad que interesa es la de inocencia (o                 culpabilidad) dada la evidencia. Es decir, la probabilidad que nos interesa     es P(I|E) que la podemos escribir como P(I|E) = P(E|I)P(I)/P(E). 
+
+    P(I|E) es solo similar a P(E|I) si P(I) es similar a P(E). Este no es el       caso, ¿por qué?
+    
+    :::
     
 ## Inferencia Bayesiana
 
@@ -421,7 +477,17 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     ¿Cuál es la distribución _a posteriori_ de los valores de $T$?
     <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
     
-1.  **Orden en la sala**
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Estamos tratando de hacer inferencias sobre T, es decir, la distribución a     posteriori debe ser p(T=1), p(T=2), ... p(T=6).
+    
+    Conviene analizar este problema en forma secuencial. Observamos "G", ¿qué      significa eso? ¿cómo obtenemos la verosimilitud? p(G|T=1) = 5/6, p(G|T=2) =     4/6, p(G|T=3) = 3/6...
+    
+    :::
+    
+1.  💻 **Orden en la sala**
 
     En las Jornadas Rosarinas de Ciencia de Datos, una expositora está dando una charla en
     un salón cuando el personal de seguridad la interrumpe porque cree que puede haber más
@@ -437,8 +503,24 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     ¿Cuántas personas hay en la sala?
     O, mejor dicho, ¿cuál es la probabilidad de que haya más de 1000 personas en la sala?
     <!-- http://allendowney.github.io/ThinkBayes2/chap04html -->
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Estamos tratando de hacer inferencias sobre la cantidad de personas X (que     puede ser un número entre, digamos, 1 y 3000).
+    
+    Conviene analizar el problema en forma secuencial. Para la primera             observación (dos personas cumpliendo años el mismo día), la verosimilitud      es la probabilidad de que haya dos personas con el mismo cumpleaños si en      la sala hay 1, 2, 3, ... personas. Lo podemos pensar como una binomial
+    
+    Si X=1, p(Y=2|X=1) = 0
+    
+    Si X=2, p(Y=2|X=2) = dbinom(2, size = 2, prob = 1/365)
+    
+    Si X=100, p(Y=2|X=100) = dbinom(2, size = 100, prob = 1/365)
+    
+    :::
      
-1.  **_House of Cards_**
+1.  💻 **_House of Cards_**
 
     Hay 538 miembros en el Congreso de Estados Unidos.
     Supongamos que se auditan sus inversiones y se encuentra que 312 de ellos obtuvieron
@@ -458,7 +540,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     ```
 
 
-1.  **Puede fallar...**
+1.  💻 **Puede fallar...**
 
     Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una 
     estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
@@ -479,6 +561,26 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos
     es 9. ¿Cuál es la distribución _a posteriori_ de los puntajes de los dados?
     <!-- @Barber2012 -->
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    Estamos tratando de hacer inferencias sobre D1 y D2, los valroes de cada       uno de los datos. Definir la distribución a priori no es complicado (es una     distribución sobre D1 y D2).
+    
+    El truco está en determinar la verosimilitud de cada par (D1,D2) luego de      haber observado un 9.
+    
+    ¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que ...?
+    
+    D1 = 1 y D2 = 1 - la probabilidad de observar 9 es 0
+    
+    D1 = 1 y D2 = 2 - la probabilidad de observar 9 es 0
+    
+    D1 = 4 y D2 = 5 - la probabilidad de observar 9 es 1
+    
+    D1 = 5 y D2 = 4 - la probabilidad de observar 9 es 1
+    
+    :::
 
 
 ## Conceptuales
