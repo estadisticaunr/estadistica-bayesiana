@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP1: Aplicación de modelos conjugados a reviews de Google Maps</title>
+<title>Estadística Bayesiana - TP1: The Multiarmed Bandit</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,8 +29,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../trabajos_practicos/02_tp2.html" rel="next">
-<link href="../trabajos_practicos/descripcion.html" rel="prev">
 <link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -65,7 +63,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked nav-fixed fullcontent">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -94,7 +92,7 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Práctica</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../trabajos_practicos/descripcion.html" aria-current="page">
+    <a class="nav-link" href="../trabajos_practicos/descripcion.html">
  <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
@@ -111,51 +109,10 @@ ul.task-list li input[type="checkbox"] {
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">TP1: Aplicación de modelos conjugados a reviews de Google Maps</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
-      </button>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
-<p>Trabajos Prácticos</p>
-</div></div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/descripcion.html" class="sidebar-item-text sidebar-link">Generalidades</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/01_tp1.html" class="sidebar-item-text sidebar-link active">TP 1</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/02_tp2.html" class="sidebar-item-text sidebar-link">TP 2</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/03_tp3.html" class="sidebar-item-text sidebar-link">TP 3</a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../trabajos_practicos/04_tp_final.html" class="sidebar-item-text sidebar-link">TP Final</a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
 <!-- margin-sidebar -->
     
 <!-- main -->
@@ -163,7 +120,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">TP1: Aplicación de modelos conjugados a reviews de Google Maps</h1>
+<h1 class="title">TP1: The Multiarmed Bandit</h1>
 </div>
 
 
@@ -183,8 +140,10 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <section id="introducción" class="level1">
 <h1>Introducción</h1>
-<p>En 2017 comenzó una revolución gastronómica en Rosario. La experiencia de tomar café pasó a otro nivel. Comenzaron a aparecer cafeterías con una característica particular: ofrecer café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos a la cafeína.</p>
-<p>Una cafetería de especialidad es una cafetería en donde el café es lo más importante de todo, preparado por baristas, con granos de café de distintas partes del mundo (con información meticulosa sobre la finca de la que vienen, la variedad de la planta, la altura a la que fue cultivado, y el grado de tueste) y distintos métodos de preparación aparte del ya tradicional café de máquina espresso (como por ejemplo, los cafés filtrados)</p>
+<p>La vida nos enfrenta constantemente a decisiones que nos obligan a equilibrar entre la seguridad de lo familiar y la promesa de lo desconocido, un dilema conocido como <em>“explore vs.&nbsp;exploit”</em>. Esta dicotomía, se manifiesta en una multitud de escenarios cotidianos. Por ejemplo, consideremos la elección de una cafetería para una merienda. ¿Optamos por un lugar al que hemos ido muchas veces, conocido por su calidad constante (<em>‘exploit’</em>), o probamos uno de los nuevos locales que abrieron en Rosario con el furor del café de especialidad que podría ofrecer una experiencia culinaria increíble o decepcionante (<em>‘explore’</em>)? Esta elección representa una encrucijada entre lo seguro y lo novedoso, entre el confort de lo familiar y la emoción de la novedad.</p>
+<p>Este dilema también se extiende a decisiones más significativas en nuestras vidas, como la elección de una carrera, donde <em>‘exploit’</em> implicaría seguir en un campo donde ya tenemos habilidades y experiencia, mientras que <em>‘explore’</em> nos llevaría a aventurarnos en un nuevo dominio, potencialmente más gratificante pero también más arriesgado. Esta tensión entre explorar y explotar no es solo una curiosidad teórica; es un principio fundamental que guía nuestras decisiones diarias. Navegar entre estas dos opciones requiere una comprensión profunda de nuestras metas, recursos y el entorno en el que operamos, y es una habilidad esencial para la adaptación y el éxito en un mundo en constante cambio.</p>
+<p>Estos párrafos de <em>coaching emocional</em> sirven como la introducción a este trabajo práctico, donde estudiaremos el problema del <em>multi-armed bandit</em>, que pone énfasis en el dilema <em>“explore vs.&nbsp;exploit”</em>. La traducción de <em>multi-armed bandit</em> es bandido multibrazo por lo que, por motivos obvios, nos quedaremos con la expresión en inglés.</p>
+<p>El <em>multi-armed bandit</em> nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario)…</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -433,18 +392,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../trabajos_practicos/descripcion.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Generalidades</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../trabajos_practicos/02_tp2.html" class="pagination-link">
-        <span class="nav-page-text">TP 2</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

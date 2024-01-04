@@ -273,22 +273,70 @@ div.csl-indent {
 </div>
 </div>
 </div></li>
-<li><p><strong>¿Quién dijo que el fútbol siempre da revancha?</strong></p>
+<li><p>💻 <strong>¿Quién dijo que el fútbol siempre da revancha?</strong></p>
 <p>En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por 4 a 2. Considere que el número de goles que un equipo hace en un partido puede modelizarse con una distribución de Poisson. Suponga un parámetro <span class="math inline">\(\lambda_F\)</span> para Francia y uno <span class="math inline">\(\lambda_C\)</span> para Croacia. Elija una distribución Gamma <em>a priori</em> para el número medio de goles por partido (es decir, <span class="math inline">\(\lambda_F\)</span> y <span class="math inline">\(\lambda_C\)</span> compartirán la distribución <em>a priori</em>). <span class="math inline">\(\lambda_F\)</span> da una idea de la capacidad de Francia de hacer goles (<span class="math inline">\(\lambda_C\)</span> lo mismo, pero para Croacia).</p>
 <p>En función del resultado del partido, obtenga las distribuciones <em>a posteriori</em> de <span class="math inline">\(\lambda_F\)</span> y <span class="math inline">\(\lambda_C\)</span> y responda utilizando R:</p>
 <ol type="i">
 <li>¿Qué probabilidad hay de que Francia fuera un mejor equipo que Croacia?</li>
 <li>Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
-</ol></li>
+</ol>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TO DO</p>
+</div>
+</div>
+</div></li>
 <li><p><strong>Mirá si me va a pasar a mi…</strong></p>
 <p>Durante el desarrollo de las vacunas contra el COVID-19, un medio anunció para una determinada vacuna una eficacia del 100%.</p>
 <blockquote class="blockquote">
 <p>En la fase 3 de un ensayo en adolescentes de entre 12 y 15 años, la vacuna BNT162b2 de Pfizer-BioNTech para el COVID-19 demostró una eficacia del 100% y una respuesta robusta de anticuerpos. El ensayo clínico involucró 2260 jóvenes estadounidenses. En el ensayo, 18 casos de COVID-19 fueron observados en el grupo placebo (<span class="math inline">\(n=1129\)</span>) y ninguno en el grupo vacunado (<span class="math inline">\(n=1131\)</span>)</p>
 </blockquote>
-<p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p></li>
-<li><p><strong>La regla del tres</strong></p>
+<p>Es de esperar que, en un ensayo más grande, aparezca algún caso de COVID-19 en el grupo que recibió el tratamiento. ¿Cómo se estima la probabilidad de algo que aún no ocurrió? <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TO DO</p>
+</div>
+</div>
+</div></li>
+<li><p>💻 <strong>La regla del tres</strong></p>
 <p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas con al menos un <em>typo</em>, sería <em>razonable</em> estimar que la probabilidad de que una página contenga un <em>typo</em> es <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span>. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
-<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la probabilidad de que una página contenga un <em>typo</em>), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, grafique la distribución <em>a priori</em> que se obtiene al haber observado 0 <em>typos</em> en 10 páginas y luego halle la probabilidad de que <span class="math inline">\(\tau &lt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span> (10, 100, 1000, 10000). <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p></li>
+<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la probabilidad de que una página contenga un <em>typo</em>), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, grafique la distribución <em>a priori</em> que se obtiene al haber observado 0 <em>typos</em> en 10 páginas y luego halle la probabilidad de que <span class="math inline">\(\tau &lt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span> (10, 100, 1000, 10000). <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TO DO</p>
+</div>
+</div>
+</div></li>
 <li><p><strong>¿Tenés alguien para recomendar?</strong></p>
 <p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
 <li><p><strong>Bichos</strong></p>
@@ -304,6 +352,22 @@ div.csl-indent {
 <p><img src="imgs/insectos.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
 <p></p><figcaption class="figure-caption">Una gran variedad de insectos<br><a href="https://www.freepik.es/vector-gratis/errores-dibujos-animados-bebe-insecto-divertido-bicho-feliz-linda-mariquita_10722677.htm">Imágen de Freepik</a></figcaption><p></p>
 </figure>
+</div>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TO DO</p>
 </div>
 </div>
 </div></li>
@@ -440,7 +504,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 </ol>
 </section>
 <section id="simulaciones" class="level2">
-<h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
+<h2 class="anchored" data-anchor-id="simulaciones">💻 Simulaciones</h2>
 <p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
 <li><p><strong>Entrada en calor</strong></p>
