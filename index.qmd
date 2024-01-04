@@ -21,8 +21,8 @@ course-logo: utils/imgs/logo.png
 ::: {.course-meta}
 {{< fa graduation-cap >}} &nbsp; Licenciatura en Estadística  
 {{< fa university >}}     &nbsp; Facultad de Ciencias Económicas y Estadística  (UNR)  
-{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2023  
-{{< fa clock >}}   &nbsp; Lun -- 11:00 a 13:00 &nbsp; | &nbsp; Mié -- 7:00 a 9:00 &nbsp; | &nbsp; Vie -- 7:00 a 9:00
+{{< fa calendar-alt >}}   &nbsp; 1° Cuatrimestre 2024  
+{{< fa clock >}}   &nbsp; Mié -- 7:00 a 11:00 &nbsp; | &nbsp; Vie -- 7:00 a 9:00
 :::
 
 :::
