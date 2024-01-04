@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estadística Bayesiana - TP3: WIP</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../trabajos_practicos/2024_04_tp_final.html" rel="next">
+<link href="../trabajos_practicos/2024_02_tp2.html" rel="prev">
+<link href="../utils/imgs/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar docked nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Estadística Bayesiana</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../info/programa.html">
+ <span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../teoria/u1_teoria_01.html">
+ <span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../practica/practica_00.html">
+ <span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../trabajos_practicos/descripcion.html" aria-current="page">
+ <span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../recursos/codigo/index.html">
+ <span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/estadisticaunr/estadistica-bayesiana"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">TP3: WIP</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p>Trabajos Prácticos</p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../trabajos_practicos/descripcion.html" class="sidebar-item-text sidebar-link">Generalidades</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../trabajos_practicos/2024_01_tp1.html" class="sidebar-item-text sidebar-link">TP 1</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../trabajos_practicos/2024_02_tp2.html" class="sidebar-item-text sidebar-link">TP 2</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../trabajos_practicos/2024_03_tp3.html" class="sidebar-item-text sidebar-link active">TP 3</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../trabajos_practicos/2024_04_tp_final.html" class="sidebar-item-text sidebar-link">TP Final</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">TP3: WIP</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div>
+<p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/2024_03_tp3.pdf">Descargar PDF</a></p>
+</div>
+<section id="estudio-de-modelos-lineales" class="level1">
+<h1>Estudio de modelos lineales</h1>
+<section id="simulaciones" class="level2">
+<h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
+<p>El archivo <code>tp3_train.csv</code> contiene 100 observaciones que se usarán para identificar los parámetros de un modelo, mientras que el archivo <code>tp3_test.csv</code> tiene 20 observaciones que se usarán para evaluar los resultados del proceso de inferencia.</p>
+<p>Se sabe que los datos fueron generados utilizando un modelo de la forma:</p>
+<p><span class="math display">\[
+y_i \sim \mathcal{N}(\theta_3 x_i^3 + \theta_2 x_i^2 + \theta_1 x_i + \theta_0, \sigma^2)
+\]</span></p>
+<p>aunque no se conocen los valores de los <span class="math inline">\(\theta_i\)</span> ni de <span class="math inline">\(\sigma\)</span></p>
+<p>En primer lugar, se estudiará el <strong>efecto de la cantidad de datos</strong> utilizados para el ajuste del modelo.</p>
+<ol type="1">
+<li><p>Realice un análisis exploratorio de los datos de ajuste del modelo (<em>train</em>) y proponga <em>priors</em> vagos de acuerdo a la escala de los datos. Realice simulaciones predictivas <em>a priori</em>.</p></li>
+<li><p>Utilice los <em>priors</em> propuestos en el punto anterior para ajustar el modelo utilizando 10, 20, 50 o 100 observaciones de los datos de entrenamiento. Compare las distribuciones <em>a posteriori</em> de los parámetros, la media condicional y las predicciones sobre el conjunto de datos de evaluación.</p></li>
+</ol>
+<p>En segundo lugar, se investigará qué efecto tiene la elección de <strong>distribuciones <em>a priori</em> centradas en valores erróneos</strong> de los parámetros de la regresión.</p>
+<ol start="3" type="1">
+<li><p>Considere las siguientes distribuciones <em>a priori</em>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\theta_0 &amp;\sim \mathcal{N}(0.6,0.2) \\
+\theta_1 &amp;\sim \mathcal{N}(-0.2,0.2) \\
+\theta_2 &amp;\sim \mathcal{N}(2.1,0.2) \\
+\theta_3 &amp;\sim \mathcal{N}(1,0.2)
+\end{aligned}
+\]</span></p>
+<p>Compare, como hizo en el caso anterior, los resultados en las estimaciones utilizando 10, 20, 50 y 100 observaciones.</p></li>
+</ol>
+<p>Finalmente, se considera el caso donde se propone un <strong>modelo erróneo</strong>.</p>
+<ol start="4" type="1">
+<li>Utilizando <em>priors</em> vagos, ajuste polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. ¿Qué ocurre si se utilizan todos los datos del conjunto de entrenamiento?</li>
+<li>Utilice ahora <em>priors</em> de regularización (centrados en 0 y con diferentes varianzas: <span class="math inline">\(0.01\)</span>, <span class="math inline">\(0.1\)</span>, <span class="math inline">\(1\)</span> y <span class="math inline">\(10\)</span>) para polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. Como hizo en el punto anterior, analice que ocurre cuando utiliza todos los datos del conjunto de entrenamiento.</li>
+</ol>
+</section>
+<section id="enfriamiento-de-agua-en-un-termo" class="level2">
+<h2 class="anchored" data-anchor-id="enfriamiento-de-agua-en-un-termo">Enfriamiento de agua en un termo</h2>
+<p>En un país matero como Argentina, era de esperarse que aparecieran casi tantos termos como personas. Es difícil decir si la cantidad de variantes de termos en el mercado nacional cambió, pero es indudable que, tras el furor del termo color <em>verde militar</em>, la elección de un termo adquirió un papel relevante en el ritual del mate.</p>
+<p>De acero, de vidrio, con capa aisladora. Diferentes configuraciones dan lugar a distintas capacidades de mantener la temperatura y, obviamente, a distintos rangos de precios. Dejando de lado la cuestión monetaria, centrémonos en estudiar cómo varía la temperatura de un líquido en el interior de un termo en función del tiempo transcurrido.</p>
+<p>La temperatura es una medida del grado de agitación de las partículas de una sustancia. Un líquido (o sólido, o gas) está <em>más caliente</em> que otro si sus partículas tienen (en promedio) mayor grado de agitación. Sabemos por evidencia empírica que si un cuerpo se pone en contacto con otro que tiene una temperatura menor, hay una transferencia de energía que hace que el primero se enfríe y el segundo se caliente, hasta que alcanzan el denominado equilibrio térmico.</p>
+<p>De manera similar, esto es lo que ocurre con el agua que dejamos dentro del termo: en algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el agua del recipiente.</p>
+<p>Ahora bien, el ritmo con el cual el agua caliente pierde energía no es constante. Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura del agua en el termo en función del tiempo, notaremos que el ritmo con el que cambia decrece a medida con el que transcurre el tiempo.</p>
+<p>La lectura del párrafo anterior debería permitir asociar el concepto de <em>ritmo de cambio</em> con la noción matemática de derivada. En efecto, la derivada de la temperatura respecto al tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.</p>
+<p>Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del agua en el termo satisface la siguiente ley:</p>
+<p><span class="math display">\[
+\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}}-T(t)]
+\]</span></p>
+<p>donde <span class="math inline">\(T_{\text{amb}}\)</span> es la temperatura ambiente (un valor fijo y conocido), <span class="math inline">\(r\)</span> es una constante y <span class="math inline">\(T(t)\)</span> es la función (en principio desconocida) que describe la temperatura del agua del termo en función del tiempo.</p>
+<p>No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una ecuación donde la solución es una función. Buscamos una función <span class="math inline">\(T(t)\)</span> que satisfaga la ecuación: su derivada debe cambiar con el valor que toma la función.</p>
+<p>Una función que satisface esa ecuación es:</p>
+<p><span class="math display">\[
+T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
+\]</span></p>
+<p>siendo <span class="math inline">\(T_i\)</span> la temperatura a la que está inicialmente el agua en el termo (un valor fijo y conocido).</p>
+<ol type="1">
+<li>Verificar que la función anterior satisface la ecuación diferencial</li>
+<li>Grafique <span class="math inline">\(T(t)\)</span> para <span class="math inline">\(T_{\text{amb}} = 20 \text{ C°}\)</span> y <span class="math inline">\(T_i = 90 \text{ C°}\)</span>, para dos valores de <span class="math inline">\(r\)</span>, <span class="math inline">\(r_1=0.1\)</span> y <span class="math inline">\(r_2 = 0.3\)</span>. ¿Qué representa <span class="math inline">\(r\)</span>?</li>
+<li>Según su experiencia con termos, ¿cuál es un valor realista de <span class="math inline">\(r\)</span>?</li>
+</ol>
+<p>Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo en función del tiempo transcurrido.</p>
+<p>Leonel tiene un termo Estanli™ que compró por Amason y se dispone a despejar la duda de cualquier usuario de termos Estanli™: ¿cuánto dura el agua caliente? Pone agua en la pava eléctrica, la vierte en el termo y registra la temperatura en algunos momentos posteriores. Ese día, el reporte meteorológico indica una temperatura de <span class="math inline">\(T_{\text{amb}} = 23\text{ C°}\)</span>. Las temperaturas que registró Leonel son las siguientes:</p>
+<div class="cell">
+<div class="cell-output-display">
+
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> t (h:mm) </th>
+   <th style="text-align:right;"> T (°C) </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> 1:20 </td>
+   <td style="text-align:right;"> 92.0 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 2:30 </td>
+   <td style="text-align:right;"> 90.5 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 4:00 </td>
+   <td style="text-align:right;"> 81.4 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 5:15 </td>
+   <td style="text-align:right;"> 80.8 </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> 8:30 </td>
+   <td style="text-align:right;"> 74.2 </td>
+  </tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<p>Para simplificar la construcción de un modelo, en lugar de considerar la temperatura del agua en el termo, se considerará la diferencia entre la temperatura del agua y la temperatura ambiente <span class="math inline">\(T-T_{\text{amb}}\)</span>. Además, se llamará <span class="math inline">\(T_{\text{diff}}\)</span> a la diferencia de temperatura entre la temperatura inicial del agua y la temperatura ambiente <span class="math inline">\(T_i - T_{\text{amb}}\)</span>.</p>
+<p><span class="math display">\[
+T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
+\]</span></p>
+<ol start="4" type="1">
+<li>Verifique que el logaritmo natural de la nueva variable (<span class="math inline">\(T(t) - T_{\text{amb}}\)</span>) es una función lineal de <span class="math inline">\(t\)</span>. ¿Qué representan el intercepto y la pendiente? Llámelos <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>.</li>
+</ol>
+<p>Se propone ajustar un modelo lineal normal utilizando los datos transformados.</p>
+<ol start="5" type="1">
+<li>En función del enunciado del problema y de su conocimiento de termos, elija una distribución <em>a priori</em> para <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span> y <span class="math inline">\(\sigma\)</span>. ¿Cuáles son las implicancias de sus distribuciones <em>a priori</em>? Realice pruebas predictivas <em>a priori</em>.</li>
+<li>Ajuste el modelo lineal utilizando <code>R</code>.</li>
+<li>Encontrar el <em>posterior</em> de <span class="math inline">\(r\)</span>, de <span class="math inline">\(T_{\text{diff}}\)</span> y de la temperatura inicial del agua <span class="math inline">\(T_i\)</span>.</li>
+<li>Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de la experiencia.</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../trabajos_practicos/2024_02_tp2.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP 2</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../trabajos_practicos/2024_04_tp_final.html" class="pagination-link">
+        <span class="nav-page-text">TP Final</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-right">Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

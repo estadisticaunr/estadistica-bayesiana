@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estadística Bayesiana - TP1: Aplicación de modelos conjugados a reviews de Google Maps</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Estadística Bayesiana</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../info/programa.html">
+ <span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teoria/u1_teoria_01.html">
+ <span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/practica_00.html">
+ <span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html">
+ <span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/codigo/index.html">
+ <span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/estadisticaunr/estadistica-bayesiana"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TP1: Aplicación de modelos conjugados a reviews de Google Maps</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div>
+<p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/2023_01_tp1.pdf">Descargar PDF</a></p>
+</div>
+<section id="introducción" class="level1">
+<h1>Introducción</h1>
+<p>En 2017 comenzó una revolución gastronómica en Rosario. La experiencia de tomar café pasó a otro nivel. Comenzaron a aparecer cafeterías con una característica particular: ofrecer café de especialidad. El café de especialidad comenzó a ganar terreno entre los adeptos a la cafeína.</p>
+<p>Una cafetería de especialidad es una cafetería en donde el café es lo más importante de todo, preparado por baristas, con granos de café de distintas partes del mundo (con información meticulosa sobre la finca de la que vienen, la variedad de la planta, la altura a la que fue cultivado, y el grado de tueste) y distintos métodos de preparación aparte del ya tradicional café de máquina espresso (como por ejemplo, los cafés filtrados)</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/cafe.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">El arte latte suele ser distintivo de las cafeterías de especialidad</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>La primera cafetería de especialidad que causó furor en Rosario fue <a href="https://www.instagram.com/artocafe/?hl=es"><strong>Arto</strong></a> (Tucumán 1932), abierta en 2018. Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió <a href="https://www.instagram.com/cafeorlan/?hl=es"><strong>Orlan</strong></a> (Dorrego 1670).</p>
+<p>A enero de 2023, en Google Maps, <strong>Arto</strong> tiene una puntuación de 4.5⭐ (en 750 <em>reviews</em>) y <strong>Orlan</strong>, una puntuación de 4.9⭐ (en 95 <em>reviews</em>). Basándonos exclusivamente en las <em>reviews</em> de Google Maps, ¿podemos decir que <strong>Orlan</strong>&nbsp;es una opción mejor que <strong>Arto</strong>? ¿Podrá la estadística bayesiana darnos una respuesta?</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023_01_tp1_files/figure-html/plot-stars-1.png" class="img-fluid figure-img" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero de ⭐.</p>
+</section>
+<section id="modelo-beta-binomial" class="level1">
+<h1>Modelo beta-binomial</h1>
+<p>En primera instancia, se modelizarán las <em>reviews</em>&nbsp;como una sucesión de lanzamientos de una moneda sesgada. La moneda tiene un 👍🏼 de un lado y un 👎🏼 del otro. La probabilidad de obtener 👍🏼 es <span class="math inline">\(\sigma\)</span>, que está relacionada con la calidad del bar. Luego de tomarse un cafecito, el cliente arroja la moneda al aire cuatro veces y puntúa a la cafetería según el número de 👍🏼 que obtuvo.</p>
+<p>Según esta descripción, cada <em>review</em> es un proceso binomial con cuatro intentos y probabilidad de acierto <span class="math inline">\(\sigma\)</span>.</p>
+<ol type="1">
+<li>Explique la relación entre la cantidad de 👍🏼 obtenidas al arrojar la moneda y la cantidad puntuación en ⭐ del bar.</li>
+<li>Describa la relación entre <span class="math inline">\(\sigma\)</span> y la puntuación en ⭐ del bar.</li>
+<li>Construya una función que, dada una puntuación real de 1⭐ a 5⭐, simule el proceso de calificación de un usuario.</li>
+<li>Construya una función que, apoyándose en la apartado anterior, simule las <em>reviews</em> de <span class="math inline">\(U\)</span> personas.</li>
+<li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
+</ol>
+<p>Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
+<ol start="6" type="1">
+<li>Elija una distribución <em>a priori</em> para <span class="math inline">\(\sigma\)</span> utilizando una distribución beta. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida? Considere las implicancias para ambas cantidades de <em>reviews</em>.</li>
+<li>Con los datos de la introducción, obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\sigma\)</span> para cada cafetería.</li>
+<li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
+<li>¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos <em>reviews</em>?</li>
+</ol>
+<!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
+</section>
+<section id="modelo-dirichlet-multinomial" class="level1">
+<h1>Modelo Dirichlet-multinomial</h1>
+<p>Trabajaremos a continuación con otro modelo, también de distribuciones conjugadas. Para ello es necesario presentar dos distribuciones de probabilidad: la distribución de Dirichlet y la distribución multinomial.</p>
+<section id="descubriendo-la-distribución-de-dirichlet" class="level2">
+<h2 class="anchored" data-anchor-id="descubriendo-la-distribución-de-dirichlet">Descubriendo la distribución de Dirichlet</h2>
+<p>La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una familia de distribuciones de probabilidad continuas y multivariadas. La distribución de Dirichlet en <span class="math inline">\(K \geq 2\)</span> es la distribución de probabilidad del vector aleatorio <span class="math inline">\(X=[X_1, X_2 \dots, X_K]\)</span> dimensiones tiene como parámetro al vector <span class="math inline">\(\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]\)</span>.</p>
+<p><span class="math display">\[
+f(x_1,x_2,\dots,x_k \mid \alpha_1, \alpha_2,\dots,\alpha_K) =
+    \frac{1}{B(\pmb{\alpha})} \prod_{i=1}^K x_i^{\alpha_i-1}
+\]</span></p>
+<p>donde los <span class="math inline">\(\alpha_i \in \mathbb{R}^+\)</span> y <span class="math inline">\(B(\pmb{\alpha})\)</span> es la constante que hace que la integral sea unitaria.</p>
+<p>El soporte de la distribución Dirichlet es tal que <span class="math inline">\(\sum_{i=1}^{K} x_i = 1\)</span> y <span class="math inline">\(x_i \in [0,1]\)</span>. Es decir, los <span class="math inline">\(x_i\)</span> suman 1. Si consideramos, por ejemplo, <span class="math inline">\(K=3\)</span>, el vector <span class="math inline">\([x_1, x_2, x_3]\)</span> pertenece al triángulo en <span class="math inline">\(\mathbb{R}^3\)</span> que tiene por vértices a los puntos <span class="math inline">\((1,0,0)\)</span>, <span class="math inline">\((0,1,0)\)</span> y <span class="math inline">\((0,0,1)\)</span>. Así, si <span class="math inline">\(x_1=1\)</span> entonces <span class="math inline">\(x_2=x_3=0\)</span>.</p>
+<p>Más simple aún, cuando <span class="math inline">\(K=2\)</span>, el vector <span class="math inline">\([x_1,x_2]\)</span> pertenece al segmento en <span class="math inline">\(\mathbb{R}^2\)</span> que tiene por extremos a los puntos <span class="math inline">\((1,0)\)</span> y <span class="math inline">\((0,1)\)</span>.</p>
+<p>Notar que esta característica hace que los <span class="math inline">\(x_1, x_2, \dots, x_K\)</span> puedan representar las probabilidades de un experimento con <span class="math inline">\(K\)</span> resultados posibles.</p>
+<p>A título informativo, el soporte de la distribución Dirichlet en <span class="math inline">\(K\)</span> dimensiones es lo que se conoce como <em>simplex</em> (estándar) de <span class="math inline">\(K-1\)</span> dimensiones. El <span class="math inline">\(3\)</span>-<em>simplex</em> es un triángulo y el <span class="math inline">\(2\)</span>-<em>simplex</em> es un segmento. En general, un <span class="math inline">\(K-1\)</span>-<em>simplex</em> es la envolvente convexa de <span class="math inline">\(K\)</span> vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos en el conjunto <a href="https://es.wikipedia.org/wiki/Teorema_de_Carath%C3%A9odory">(Teorema de Carathéodory)</a>.</p>
+<p>Los párrafos anteriores, delirantemente matemáticos, muestran una virtud particular de la distribución Dirichlet de <span class="math inline">\(K=3\)</span> dimensiones. Esta distribución, a pesar de ser de una variable aleatoria en <span class="math inline">\(\mathbb{R}^3\)</span>, puede representarse perfectamente de manera gráfica en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas baricéntricas), como si se tratara de una distribución bivariada.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/dirichlet.jpg" class="img-fluid figure-img" style="width:70.0%"></p>
+<p></p><figcaption class="figure-caption">Como los valores posibles del vector aleatorio tridimensional yacen en un plano, la distribución de probabilidad puede representarse gráficamente con facilidad</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- (hacer plots con el paquete \`ggtern\`\`) -->
+<ol type="1">
+<li>Mostrar que, cuando <span class="math inline">\(K=2\)</span>, la distribución de Dirichlet es la distribución beta de parámetros <span class="math inline">\(a=\alpha_1\)</span> y <span class="math inline">\(b=\alpha_2\)</span></li>
+</ol>
+</section>
+<section id="relación-entre-la-distribución-dirichlet-y-la-multinomial" class="level2">
+<h2 class="anchored" data-anchor-id="relación-entre-la-distribución-dirichlet-y-la-multinomial">Relación entre la distribución Dirichlet y la multinomial</h2>
+<p>Cuando un experimento puede tener dos resultados posibles, uno de ellos tiene probabilidad <span class="math inline">\(p\)</span> y el otro probabilidad <span class="math inline">\(1-p\)</span>. Si coleccionamos <span class="math inline">\(N\)</span> realizaciones independientes del experimento, el número de éxitos es una variable aleatoria con distribución binomial. Estudiamos que era natural utilizar la distribución beta como distribución <em>a priori</em> para <span class="math inline">\(p\)</span>, dado que la distribución <em>a posteriori</em>&nbsp;también era beta.</p>
+<p>Análogamente, cuando un experimento puede tener tres resultados posibles, el primero tiene probabilidad <span class="math inline">\(p_1\)</span>, el segundo tiene probabilidad <span class="math inline">\(p_2\)</span> y el tercero, probabilidad <span class="math inline">\(p_3 = p_1 - p_2\)</span>. Necesariamente debe ser <span class="math inline">\(p_1 + p_2 + p_3 = 1\)</span>. Si coleccionamos <span class="math inline">\(N\)</span> realizaciones independientes del experimento, el número de ocurrencias de cada resultado posible es un vector aleatorio con distribución multinomial. Por lo visto hasta aquí, todo parece indicar que, si queremos realizar inferencias sobre <span class="math inline">\(p_1\)</span>, <span class="math inline">\(p_2\)</span> y <span class="math inline">\(p_3\)</span>, sería natural utilizar la distribución Dirichlet de tres dimensiones como distribución <em>a priori</em> para las probabilidades…</p>
+<p>En efecto, cuando la distribución <em>a priori</em> es Dirichlet y la verosimilitud es multinomial, la distribución <em>a posteriori</em> también es Dirichlet.</p>
+<ol start="2" type="1">
+<li><p>Sabemos que para una verosimilitud binomial, si la distribución <em>a priori</em> de la probabilidad de éxito <span class="math inline">\(p\)</span> es beta de parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> y se observan <span class="math inline">\(s\)</span> éxitos en <span class="math inline">\(N\)</span> intentos independientes, la distribución <em>a posteriori</em> es beta de parámetros <span class="math inline">\(a' = a + s\)</span> y <span class="math inline">\(b' = b + (N - s)\)</span>.</p>
+<p>Hallar, por analogía con el caso anterior, los parámetros de la distribución <em>a posteriori</em> que se obtiene si la verosimilitud es multinomial con tres resultados posibles, la distribución a priori&nbsp;es Dirichlet de parámetros <span class="math inline">\([\alpha_1, \alpha_2, \alpha_3]\)</span> y se obtuvieron <span class="math inline">\(s_1\)</span> veces el primer resultado y <span class="math inline">\(s_2\)</span> veces el segundo resultado, sobre un total de <span class="math inline">\(N\)</span> intentos.</p></li>
+</ol>
+</section>
+<section id="aplicación" class="level2">
+<h2 class="anchored" data-anchor-id="aplicación">Aplicación</h2>
+<p>Asumiremos ahora que las <em>reviews</em> de un local tienen distribución multinomial de parámetros <span class="math inline">\([p_1, p_2, \dots, p_5]\)</span>. Es decir, la probabilidad de que un usuario asigne 1⭐ es <span class="math inline">\(p_1\)</span>, de que asigne 2⭐ es <span class="math inline">\(p_2\)</span>, y así sucesivamente. Llamaremos <span class="math inline">\(n_1\)</span> al número de calificaciones de 1⭐, <span class="math inline">\(n_2\)</span> al número de calificaciones de 2⭐, y así sucesivamente. <span class="math inline">\(n_1 + n_2 + n_3 + n_4 + n_5 = N\)</span> será el número total de <em>reviews</em>.</p>
+<p>Se puede verificar que el número esperado de reviews de <span class="math inline">\(i\)</span>⭐ será <span class="math inline">\(N p_i\)</span>. Por lo tanto, la puntuación esperada será:</p>
+<p><span class="math display">\[
+\frac{1}{N} (1\cdot N p_1 + 2\cdot N p_2 + 3\cdot N p_3 + 4\cdot N p_4 +5\cdot N p_5) =
+    \sum_{i=1}^5 i \cdot p_i
+\]</span></p>
+<ol start="3" type="1">
+<li>Elija dos combinaciones de posibles valores de <span class="math inline">\(p_i\)</span> que den un valor esperado de 4.1⭐. Piense en una combinación que represente acuerdo entre los clientes y otra que indique la presencia de opiniones dispares.</li>
+<li>Escriba una función que, dada una combinación de valores de <span class="math inline">\(p_i\)</span>, simule el proceso de calificación de un cliente.</li>
+<li>Construya una función que simule la calificación de <span class="math inline">\(U\)</span> clientes.</li>
+<li>Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?</li>
+</ol>
+<p>Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de <strong>Arto</strong> y <strong>Orlan</strong>.</p>
+<p>Para obtener muestras de una distribución Dirichlet, puede utilizar la función <code>rdirichlet</code> de alguno de los siguientes paquetes: <code>{LaplacesDemon}</code>, <code>{rBeta2009}</code>, <code>{gtools}</code>.</p>
+<ol start="7" type="1">
+<li>Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los parámetros de esa distribución multinomial? ¿Qué distribución <em>a priori</em> sería conveniente utilizar? ¿Cómo está parametrizada esa distribución <em>a priori</em>?</li>
+<li>Elija los parámetros de la distribución <em>a priori</em> de modo tal que la creencia inicial sea uniforme sobre los posibles valores de los <span class="math inline">\(p_i\)</span>. ¿Qué implicancias tiene para la puntuación en ⭐ la distribución <em>a priori</em> elegida?</li>
+<li>Con los datos de la introducción, obtenga la distribución <em>a posteriori</em> de los <span class="math inline">\(p_i\)</span> para cada cafetería.</li>
+<li>¿Cuál es la probabilidad de que <strong>Orlan</strong> sea mejor que <strong>Arto</strong>?</li>
+<li>¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos <em>reviews</em>?</li>
+</ol>
+<!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
+<!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-right">Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>

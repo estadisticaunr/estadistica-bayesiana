@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.280">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Estadística Bayesiana - TP2: Implementación del algoritmo de Metropolis-Hastings</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "Sin resultados",
+    "search-matching-documents-text": "documentos encontrados",
+    "search-copy-link-title": "Copiar el enlace en la búsqueda",
+    "search-hide-matches-text": "Ocultar resultados adicionales",
+    "search-more-match-text": "resultado adicional en este documento",
+    "search-more-matches-text": "resultados adicionales en este documento",
+    "search-clear-button-title": "Borrar",
+    "search-detached-cancel-button-title": "Cancelar",
+    "search-submit-button-title": "Enviar"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Estadística Bayesiana</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../info/programa.html">
+ <span class="menu-text">Información</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../teoria/u1_teoria_01.html">
+ <span class="menu-text">Teoría</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../practica/practica_00.html">
+ <span class="menu-text">Práctica</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../trabajos_practicos/descripcion.html">
+ <span class="menu-text">Trabajos Prácticos</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../recursos/codigo/index.html">
+ <span class="menu-text">Recursos</span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/estadisticaunr/estadistica-bayesiana"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TP2: Implementación del algoritmo de Metropolis-Hastings</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<div>
+<p><a href="https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/2023_02_tp2.pdf">Descargar PDF</a></p>
+</div>
+<section id="metropolis-hastings-en-1d" class="level1">
+<h1>Metropolis-Hastings en 1D</h1>
+<p>El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> que no necesariamente pertence a una familia de distribuciones conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de probabilidad) <span class="math inline">\(p^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>, incluso cuando <span class="math inline">\(p^*(\theta)\)</span> sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno).</p>
+<!-- ::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+::: -->
+<ol type="1">
+<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada moda y concentración (es decir, utilizando <a href="https://en.wikipedia.org/wiki/Beta_distribution#Mode_and_concentration">esta parametrización</a>).</p></li>
+<li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
+<p><span class="math display">\[
+g^*(x) =
+\begin{cases}
+    x^4 e^{-x} &amp; \text{si } x \geq 0 \\
+    0 &amp; \text{si } x&lt;0
+\end{cases}
+\]</span></p>
+<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
+<li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
+<li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<em>Effective sample size</em> (ESS)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El número efectivo de muestras <span class="math inline">\(N_{eff}\)</span> es el número de muestras independientes que tienen el mismo <em>poder de estimación</em> que <span class="math inline">\(S\)</span> muestras correlacionadas.</p>
+<p>Este valor puede aproximarse por:</p>
+<p><span class="math display">\[N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}\]</span></p>
+<p>Notar que la suma infinita del denominador empieza en <span class="math inline">\(k=1\)</span> (y no en <span class="math inline">\(k=0\)</span>, donde <span class="math inline">\(ACF(0)=1\)</span>). Además, en la práctica, una regla para truncar la <span class="math inline">\(ACF\)</span> es hacerlo a partir del primer <span class="math inline">\(k\)</span> valor donde <span class="math inline">\(ACF(k)&lt;0.05\)</span> <span class="citation" data-cites="Kruschke2014">(<a href="#ref-Kruschke2014" role="doc-biblioref">Kruschke 2014, 184</a>)</span>.</p>
+</div>
+</div>
+<div class="callout-tip callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+<em>Montecarlo standard error</em> (MCSE)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Por el Teorema Central del Límite sabemos que, si <span class="math inline">\(\bar{X}_N\)</span> es el promedio de <span class="math inline">\(N\)</span> observaciones independientes e idénticamente distribuidas, entonces <span class="math inline">\(\sqrt{N}(\bar{X}_N-\mu)\)</span> converge en distribución a <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> cuando <span class="math inline">\(N\)</span> tiende a infinito, donde <span class="math inline">\(\mu\)</span> es la media de la distribución de las <span class="math inline">\(X_i\)</span> y <span class="math inline">\(\sigma\)</span> es su desvío estándar. Si <span class="math inline">\(\sigma\)</span> se estima por <span class="math inline">\(\hat{\sigma}\)</span>, el término <span class="math inline">\(\frac{\sigma}{\sqrt{N}}\)</span> se conoce como error estándar.</p>
+<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}{X}\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}\]</span></p>
+</div>
+</div></li>
+<li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p></li>
+</ol>
+<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
+<ol start="6" type="1">
+<li><p>Elija la mejor distribución de probabilidad para transiciones que le permita tomar muestras de la función de densidad:</p>
+<p><span class="math display">\[
+h^*(x) = e^{-\frac{4}{10} (x - \frac{4}{10})^2 - \frac{2}{25}x^4}
+\]</span></p></li>
+<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
+<p><span class="math display">\[
+p(\theta) = 2 \theta \qquad \theta \in [0,1]
+\]</span></p></li>
+</ol>
+<section id="metropolis-hastings-en-2d" class="level2">
+<h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
+<p>Se desean tomar muestras de una normal bivariada asimétrica cuya función de densidad viene dada por</p>
+<p><span class="math display">\[
+f(\mathbf{x}) =
+    2\ \phi_2(\mathbf{x} \mid \mathbf{0}, \pmb{\Omega})
+    \ \Phi(\pmb{\alpha}^T\mathbf{x})
+    \qquad \mathbf{x} \in \mathbb{R}^2
+\]</span></p>
+<p>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\pmb{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\pmb{\alpha} \in \mathbb{R}^2\)</span> es un vector de parámetros.</p>
+<!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
+<p>En este caso, se tiene:</p>
+<p><span class="math display">\[
+\mathbf{\Omega} = \begin{bmatrix}1.5 &amp; 0.6 \\ 0.6 &amp; 1.5 \end{bmatrix}
+\]</span></p>
+<p>y</p>
+<p><span class="math display">\[
+\pmb{\alpha} = [2 \quad 0]
+\]</span></p>
+<div class="cell" data-hash="2023_02_tp2_cache/html/grafico-2d_2186ea05c6e51fb4ca8f9bb395954e62">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="2023_02_tp2_files/figure-html/grafico-2d-1.png" class="img-fluid figure-img" width="672"></p>
+<p></p><figcaption class="figure-caption">Función de densidad de la que se desean obtener muestras</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</li>
+</ol>
+<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>. Se explorará el efecto de diferentes distribuciones de probabilidad para el salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si se representa a <span class="math inline">\(\mathbf{\Sigma}\)</span> de la siguiente manera</p>
+<p><span class="math display">\[
+\mathbf{\Sigma} =
+    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
+    \begin{bmatrix} 1 &amp; \rho \\ \rho &amp; 1\end{bmatrix}  
+    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
+\]</span></p>
+<p>donde <span class="math inline">\(\sigma_i\)</span> representa el desvío estándar de la componente <span class="math inline">\(i\)</span> y <span class="math inline">\(\rho\)</span> la correlación entre las variables <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, entonces se deberán ensayar los siguientes casos:</p>
+<ul>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 &gt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 &lt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &gt; 0\)</span></li>
+<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span></li>
+</ul>
+<ol start="2" type="1">
+<li>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
+</ol>
+<!-- 3.  Considere la familia de distribucion normal bivariada en dos dimensiones
+    $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
+    covarianza
+
+    $$
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_3 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_5 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+    \end{array}
+    $$
+
+    La función de densidad está dada por
+
+    $$
+    f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y se puede visualizar para las diferentes matrices de covarianza en el siguiente
+    gráfico
+
+
+    ::: {.cell layout-align="center" hash='2023_02_tp2_cache/html/plot-matrix-of-gaussians_dbba953481e0e2887d374832512c6262'}
+    ::: {.cell-output-display}
+    ![](2023_02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png){fig-align='center' width=768}
+    :::
+    :::
+
+
+    Responda a las siguientes consignas:
+
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación en cada uno de los casos.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado.  -->
+<!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
+
+
+
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Kruschke2014" class="csl-entry" role="doc-biblioentry">
+Kruschke, John. 2014. <em>Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan</em>. 2nd edition. Academic Press.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copiado");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copiado");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-right">Esta página es hecha con ❤️ y <a href="https://quarto.org/">Quarto</a>.</div>
+  </div>
+</footer>
+
+
+
+</body></html>
