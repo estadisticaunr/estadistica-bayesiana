@@ -145,7 +145,7 @@ vida profesional.
     if (is_html) knitr::include_graphics(file.path("imgs", "tomates.jpg"))
     ```
 
-1.  **¿Quién dijo que el fútbol siempre da revancha?**
+1.  💻 **¿Quién dijo que el fútbol siempre da revancha?**
 
     En la final del 2018 de la Copa del Mundo de la FIFA, Francia le ganó a Croacia por
     4 a 2. Considere que el número de goles que un equipo hace en un partido puede modelizarse
@@ -161,6 +161,14 @@ vida profesional.
     i. Si el mismo partido se jugara de nuevo (cosa que los franceses en aquella 
     oportunidad no pidieron), ¿cuál es la probabilidad de que Francia ganara de nuevo?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    TO DO
+    
+    :::
 
 1.  **Mirá si me va a pasar a mi...**
 
@@ -178,8 +186,16 @@ vida profesional.
     grupo que recibió el tratamiento. 
     ¿Cómo se estima la probabilidad de algo que aún no ocurrió?
     <!-- http://allendowney.github.io/ThinkBayes2/vaccine2.html -->
+    
+    ::: {.callout-tip collapse="true"}
 
-1.  **La regla del tres**
+    ## Ayuda
+    
+    TO DO
+    
+    :::
+
+1.  💻 **La regla del tres**
 
     Una estudiante de Licenciatura en Estadística está releyendo su
     tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas
@@ -195,6 +211,14 @@ vida profesional.
     la probabilidad de que $\tau < \frac{3}{N}$ para diferentes valores de 
     $N$ (10, 100, 1000, 10000). 
     <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ -->
+    
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    TO DO
+    
+    :::
 
 1.  **¿Tenés alguien para recomendar?**
 
@@ -223,6 +247,14 @@ vida profesional.
     #| fig-cap: !expr captions[["insectos"]]
     if (is_html) knitr::include_graphics(file.path("imgs", "insectos.jpg"))
     ```
+
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    TO DO
+    
+    :::
 
 1.  **Alter-ego**
 
@@ -423,7 +455,7 @@ vida profesional.
     la expresión para la distribución de probabilidad _a posteriori_
     <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) -->
 
-## Simulaciones
+## 💻 Simulaciones
 
 A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y 
 promueve el uso de la computadora y `R` de manera complementaria, esta sección 
