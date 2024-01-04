@@ -92,13 +92,13 @@ website:
         - text: Generalidades
           file: trabajos_practicos/descripcion.qmd
         - text: TP 1
-          file: trabajos_practicos/01_tp1.qmd
+          file: trabajos_practicos/2024_01_tp1.qmd
         - text: TP 2
-          file: trabajos_practicos/02_tp2.qmd
+          file: trabajos_practicos/2024_02_tp2.qmd
         - text: TP 3
-          file: trabajos_practicos/03_tp3.qmd
+          file: trabajos_practicos/2024_03_tp3.qmd
         - text: TP Final
-          file: trabajos_practicos/04_tp_final.qmd
+          file: trabajos_practicos/2024_04_tp_final.qmd
     - title: Recursos
       style: docked
       search: false

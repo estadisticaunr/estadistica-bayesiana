@@ -1,0 +1,350 @@
+---
+title: "TP2: WIP"
+format:
+    pdf:
+        template: ../templates/template.tex
+        template-partials:
+            - ../templates/title.tex
+        suppress-bibliography: true
+    html: default
+year: "2024"
+course: "Estadística Bayesiana"
+practica: "Trabajo Práctico 2"
+logo: ../templates/logo.png
+---
+
+```{r}
+#| echo: false
+#| include: false
+pdf_file <- paste0(
+    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
+    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
+)
+library(patchwork)
+library(ggplot2)
+library(dplyr)
+```
+
+::: {.content-visible when-format="html"}
+[Descargar PDF](`r pdf_file`)
+:::
+
+# Metropolis-Hastings en 1D
+
+El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a 
+partir de una distribución de probabilidad $P$ que no necesariamente pertence a una 
+familia de distribuciones conocida. El único requisito es que se pueda evaluar la función
+de densidad (o de masa de probabilidad) $p^*(\theta)$ en cualquier valor de $\theta$,
+incluso cuando $p^*(\theta)$ sea impropia (es decir, incluso aunque sea
+desconocida la constante de normalización que hace que la integral en el soporte de la 
+función sea igual a uno).
+
+
+<!-- ::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+::: -->
+
+
+1.  Escriba una función que implemente el algoritmo de MH para tomar 
+muestras de una distribución de probabilidad unidimensional a partir de su función de 
+densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de 
+propuesta de transición: normal de una varianza dada y beta de una determinada moda y 
+concentración (es decir, utilizando [esta parametrización](https://en.wikipedia.org/wiki/Beta_distribution#Mode_and_concentration)).
+
+2.  Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por
+
+    $$
+    g^*(x) = 
+    \begin{cases}
+        x^4 e^{-x} & \text{si } x \geq 0 \\
+        0 & \text{si } x<0
+    \end{cases}
+    $$
+
+    Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de 
+    transición: tres normales de varianzas diferentes y tres betas de concentraciones 
+    diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones
+    de autocorrelación (puede utilizar la función `acf` o escribir una función propia). 
+    Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y 
+    busque un punto conveniente.
+    
+    
+
+3.  Utilizando cada una de las seis cadenas anteriores, compute la media de la 
+    distribución, los percentiles 5 y 95, y la esperanza de $\sqrt{X}$ sabiendo que $X$ 
+    se distribuye según $g^*(x)$
+
+4.  Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra 
+    ($ESS$ o $N_{eff}$). Luego, estime el MCSE de los valores de $\mathbb{E}(X)$ para cada caso.
+    
+    ::: {.callout-tip}
+    ## _Effective sample size_ (ESS)
+    
+    El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
+    
+    Este valor puede aproximarse por:
+    
+    $$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
+    
+    Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
+    :::
+    
+    ::: {.callout-tip}
+    ## _Montecarlo standard error_ (MCSE)
+    
+    Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
+    independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
+    a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
+    de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
+    $\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
+    
+    Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}{X}$ con $N_{eff}$ muestras dependientes
+    que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
+    $$MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}$$
+    :::
+
+5.  Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas
+    que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en
+    caso de ser necesario, descarte muetras iniciales. 
+    Calcule el estadístico de Gelman-Rubin $\hat{R}$
+
+<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
+
+6.  Elija la mejor distribución de probabilidad para transiciones que le permita tomar 
+    muestras de la función de densidad:
+
+    $$
+    h^*(x) = e^{-\frac{4}{10} (x - \frac{4}{10})^2 - \frac{2}{25}x^4}
+    $$
+
+7.  Considere un experimento binomial a partir del cual se quiere determinar la 
+    probabilidad de éxito $\theta$. Se realiza el experimento se obtienen 6 éxitos en 
+    10 intentos. Obtenga la distribución *a posteriori* de $\theta$ si la creencia 
+    *a priori* viene dada por
+
+    $$
+    p(\theta) = 2 \theta \qquad \theta \in [0,1]
+    $$
+
+## Metropolis-Hastings en 2D
+
+Se desean tomar muestras de una normal bivariada asimétrica cuya función de densidad viene
+dada por
+
+$$
+f(\mathbf{x}) = 
+    2\ \phi_2(\mathbf{x} \mid \mathbf{0}, \pmb{\Omega}) 
+    \ \Phi(\pmb{\alpha}^T\mathbf{x}) 
+    \qquad \mathbf{x} \in \mathbb{R}^2
+$$
+
+siendo $\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})$ la función de densidad de la 
+normal bivariada de media $\mathbf{0}$ y matriz de covarianza 
+$\mathbf{\Omega}$, $\Phi(\pmb{\alpha}^T\mathbf{x})$ es la función de probabilidad 
+acumulada de la normal estándar $\mathcal{N}(0,1)$ y $\pmb{\alpha} \in \mathbb{R}^2$ es un
+vector de parámetros.
+
+<!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
+
+En este caso, se tiene:
+
+$$
+\mathbf{\Omega} = \begin{bmatrix}1.5 & 0.6 \\ 0.6 & 1.5 \end{bmatrix}
+$$
+
+y
+
+$$
+\pmb{\alpha} = [2 \quad 0]
+$$
+
+```{r grafico-2d}
+#| warning: false
+#| cache: true
+#| echo: false
+#| fig-cap: "Función de densidad de la que se desean obtener muestras"
+library(ggplot2)
+library(dplyr)
+data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
+
+Mu <- c(0, 0)
+Sigma <- matrix(c(1.5, 0.6, 0.6, 1.5), nrow = 2)
+data |>
+    mutate(
+        f = 2 * purrr::map2_dbl(x1, x2, ~mvtnorm::dmvnorm(c(.x, .y), Mu, Sigma)) * pnorm(x1 * 2 + x2 * 0)
+    ) |>
+    ggplot() + 
+    geom_raster(aes(x = x1, y = x2, fill = f)) +
+    stat_contour(aes(x = x1, y = x2, z = f), col = "white") +
+    viridis::scale_fill_viridis()
+```
+
+1.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
+    muestras de una función de probabilidad bivariada dada. Separe en funciones cada una 
+    de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz 
+    de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como 
+    argumento la matriz de covarianza de la probabilidad de transición.
+
+Se utilizará una normal bivariada para proponer un salto en el algoritmo de 
+Metropolis-Hastings (utilizar para ello la función `rmvnorm` del paquete `{mvtnorm}`. 
+Se explorará el efecto de diferentes distribuciones de probabilidad 
+para el salto, en función de diferentes matrices de covarianza $\mathbf{\Sigma}$. 
+Si se representa a $\mathbf{\Sigma}$ de la siguiente manera
+
+$$
+\mathbf{\Sigma} = 
+    \begin{bmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{bmatrix} 
+    \begin{bmatrix} 1 & \rho \\ \rho & 1\end{bmatrix}  
+    \begin{bmatrix} \sigma_1 & 0 \\ 0 & \sigma_2 \end{bmatrix}
+$$
+
+donde $\sigma_i$ representa el desvío estándar de la componente $i$ y $\rho$ la 
+correlación entre las variables $X_1$ y $X_2$, entonces se deberán ensayar los siguientes
+casos: 
+
+* $\sigma_1 = \sigma_2$ y $\rho = 0$
+* $\sigma_1 > \sigma_2$ y $\rho = 0$
+* $\sigma_1 < \sigma_2$ y $\rho = 0$ 
+* $\sigma_1 = \sigma_2$ y $\rho > 0$
+* $\sigma_1 = \sigma_2$ y $\rho < 0$
+
+2.  Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas 
+    por las cadenas al obtener muestras de $f(x)$.
+
+
+<!-- 3.  Considere la familia de distribucion normal bivariada en dos dimensiones
+    $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
+    covarianza
+
+    $$
+    \begin{array}{cc}
+        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \\ \\ 
+        \pmb{\Sigma}_3 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \\ \\
+        \pmb{\Sigma}_5 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+    \end{array}
+    $$
+
+    La función de densidad está dada por
+
+    $$
+    f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma}) 
+    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    $$
+
+    y se puede visualizar para las diferentes matrices de covarianza en el siguiente
+    gráfico
+
+    ```{r plot-matrix-of-gaussians}
+    #| warning: false
+    #| cache: true
+    #| echo: false
+    #| fig.width: 8
+    #| fig.height: 12
+    #| fig.align: center
+    data <- tidyr::crossing(x1 = seq(-3, 3, 0.1), x2 = seq(-3, 3, 0.1))
+    Mu <- replicate(6, c(0, 0), simplify = FALSE)
+    Sigma <- list(
+        matrix(c(1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.2, 0.2, 1), nrow = 2),
+        matrix(c(1, 0.5, 0.5, 1), nrow = 2),
+        matrix(c(0.1, 0, 0, 1), nrow = 2),
+        matrix(c(1, 0.9, 0.9, 1), nrow = 2),
+        matrix(c(0.01, 0, 0, 1), nrow = 2)
+    )
+
+    index <- 1
+    plot_list <- purrr::map2(Mu, Sigma, function(x, y) {
+        title_str <- paste0("$\\Sigma_", index, "$")
+        plt <- data |>
+            mutate(f = mvtnorm::dmvnorm(data, x, y)) |>
+            ggplot() +
+            geom_raster(aes(x = x1, y = x2, fill = f)) +
+            stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 5) +
+            viridis::scale_fill_viridis() +
+            labs(title = latex2exp::TeX(title_str)) + 
+            theme(
+                legend.position = "none", 
+                plot.title = element_text(hjust = 0.5, size = 18)
+            )
+        index <<- index + 1
+        return(plt)
+    })
+
+    plt <- Reduce(`+`, plot_list) + 
+    plot_layout(ncol = 2)
+    plt
+    ```
+
+    Responda a las siguientes consignas:
+
+    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
+    cada una de las distribuciones.
+    i. Calcule la probabilidad de aceptación en cada uno de los casos.
+    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
+    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
+    efectivas según las diferentes características de la distribución objetivo.
+    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
+    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
+    se haya encontrado.  -->
+
+<!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
