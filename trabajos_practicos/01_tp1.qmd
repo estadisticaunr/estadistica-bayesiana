@@ -27,7 +27,7 @@ pdf_file <- paste0(
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 captions <- list()
-captions[["cafe"]] <- "El arte latte suele ser distintivo de las cafeterías de especialidad"
+captions[["slotmachines2"]] <- "Tres maquinitas con diferentes probabilidades de ganar"
 captions[["dirichlet"]] <- "Como los valores posibles del vector aleatorio tridimensional yacen en un plano, la distribución de probabilidad puede representarse gráficamente con facilidad "
 ```
 
@@ -43,7 +43,9 @@ Este dilema también se extiende a decisiones más significativas en nuestras vi
 
 Estos párrafos de *coaching emocional* sirven como la introducción a este trabajo práctico, donde estudiaremos el problema del _multi-armed bandit_, que pone énfasis en el dilema *"explore vs. exploit"*. La traducción de _multi-armed bandit_ es bandido multibrazo por lo que, por motivos obvios, nos quedaremos con la expresión en inglés.
 
-El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario)...
+# El _multi-armed bandit_
+
+El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario) ...
 
 
 ```{r}
@@ -51,249 +53,57 @@ El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras 
 #| out-width: 70%
 #| fig-align: center
 #| fig-cap: !expr captions[["cafe"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "cafe.jpg"))
+if (is_html) knitr::include_graphics(file.path("imgs", "slotsmachines2.png"))
 ```
 
-La primera cafetería de especialidad que causó furor en Rosario fue 
-[**Arto**](https://www.instagram.com/artocafe/?hl=es) (Tucumán 1932), abierta en 2018. 
-Con el correr de los años, el ecosistema cafetero de la ciudad fue agregando locales que 
-subieron el umbral de la calidad de café que se consume. En 2022, entre otras, abrió
-[**Orlan**](https://www.instagram.com/cafeorlan/?hl=es) (Dorrego 1670).
+Cada máquina tiene una probabilidad de éxito desconocida y potencialmente diferente, es decir, una probabilidad distinta de entregar un premio. El desafío consiste en decidir a cuál máquina dedicar nuestras tiradas con el objetivo de maximizar las ganancias totales. Aquí es donde entra el dilema: ¿conviene _"explotar"_ la máquina que hasta ahora ha dado mejores resultados, o _"explorar"_ otras máquinas que podrían tener una tasa de éxito mayor pero aún desconocida?
 
-A enero de 2023, en Google Maps, **Arto** tiene una puntuación de 4.5⭐ 
-(en 750 *reviews*) y **Orlan**, una puntuación de 4.9⭐ (en 95 *reviews*). 
-Basándonos exclusivamente en las *reviews* de Google Maps, ¿podemos decir que **Orlan** es
-una opción mejor que **Arto**? ¿Podrá la estadística bayesiana darnos una respuesta?
+En la fase inicial, cuando se sabe poco sobre las máquinas, podría ser más prudente _"explorar"_, probando cada máquina varias veces para obtener una estimación aproximada de sus probabilidades de éxito. A medida que se acumulan datos sobre el rendimiento de cada máquina, la estrategia podría cambiar a _"explotar"_ la máquina que ha demostrado ser la más rentable. Sin embargo, siempre existe la incertidumbre y la posibilidad de que una de las máquinas menos utilizadas tenga en realidad una tasa de éxito mayor. Este problema se complica aún más por el hecho de que cada elección de máquina proporciona información que podría alterar nuestra comprensión de cuál es la mejor opción. La solución óptima a este problema involucra un equilibrio cuidadoso entre explorar para ganar información y explotar esa información para maximizar las ganancias.
 
-```{r}
-#| echo: false
-#| include: false
-# cantidad de califaciones para cada número de estrellas
+En este trabajo práctico consideraremos la situación simplificada e imaginaria en la que no cuesta dinero jugar con una máquina. Es decir, si la máquina da éxito, sumamos una unidad monetaria 🤑, pero si no, no perdemos nada. Supondremos, además, un escenario ficticio en que el deseo por descubrir cual es la máquina ganadora nos tendrá jugando los 366 días del año 2024 🍀. Lo que sí, cada día jugaremos con una sola máquina 🎰 y volveremos al día siguiente...
 
-arto <- data.frame(s = seq(5,1,-1), r = c(526, 149, 39, 12, 24))
-orlan <- data.frame(s = seq(5,1,-1), r = c(89, 3, 1, 0, 2))
-```
+El objetivo del trabajo consiste en evaluar y comparar diferentes estrategias de juego. Se analizarán mediante simulaciones diferentes estrategias de exploración y explotación de la máquina. ¿Dónde aparece la inferencia bayesiana? Partiremos de una creencia _a priori_ para la probabilidad de éxito de cada máquina y la iremos actualizando con cada jugada. 
 
-```{r plot-stars}
-#| warning: false
-#| echo: false
-#| fig-width: 12
-#| fig-height: 5
-#| fig-align: center
+Para el estudio mediante simulaciones, consideraremos que las probabilidades de éxito de las tres máquinas son $\theta_a = 0.30$, $\theta_b = 0.55$ y $\theta_c = 0.45$. Recordemos que estas probabilidades son desconocidas (no podemos basar nuestras estrategias en esos valores, sino en las estimaciones que vamos haciendo de ellos).
 
-p1 <- 
-arto |>
-  ggplot(aes(x=s,y=r)) +
-  geom_bar(stat = "identity", 
-           fill = "#FFC000", 
-           width = 0.5) +
-  geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
-  coord_flip() +
-  labs(title = "Arto") +
-  theme_minimal() +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0),limits = c(0,max(arto$r*1.15))) +
-  theme(axis.title = element_blank(),
-        axis.text.y = element_text(size = 15),
-        axis.text.x = element_blank(),
-        plot.title = element_text(size = 20),
-        panel.grid = element_blank())
+1. Simule 1000 repeticiones de una persona que tiene información confidencial y privilegiada y juega 366 días con la mejor máquina. Realice un histograma del dinero acumulado al finalizar el período. ¿Cuánto se espera que gane en promedio?
 
-p2 <- 
-orlan |>
-  ggplot(aes(x=s,y=r)) +
-  geom_bar(stat = "identity", 
-           fill = "#FFC000", 
-           width = 0.5) +
-  geom_text(aes(label=r), hjust=-0.2, color="black", size=5)+
-  coord_flip() +
-  labs(title = "Orlan") +
-  theme_minimal() +
-  scale_x_continuous(expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0),limits = c(0,max(orlan$r*1.15))) +
-  theme(axis.title = element_blank(),
-        axis.text.y = element_text(size = 15),
-        axis.text.x = element_blank(),
-        plot.title = element_text(size = 20),
-        panel.grid = element_blank())
+# Estrategias 
 
-p1+p2
-```
+Para todo lo que sigue de aquí en adelante, consideremos que la creencia _a priori_ para $\theta_a$, $\theta_b$ y $\theta_c$ es $\mathrm{Beta}(2,2)$
+
+## Completamente al azar
+
+Considere la estrategia (o no-estrategia) más elemental: cada día, elegir una máquina al azar para jugar. 
+
+1. Construya una función en R que elija una máquina al azar, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+2. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+3. Simule 1000 secuencias de 366 días de juego y analice los resultados.
+
+## _Greedy_ con tasa observada
+
+Se elige la máquina que tenga la mayor tasa de éxito observada hasta el momento.
+
+## _Greedy_ con probabilidad _a posteriori_
+
+## _$\epsilon$-greedy_
+
+Se selecciona la mejor máquina (la de mayor tasa de éxito observada según los datos actuales) con una probabilidad de $1-\epsilon$ y se elige una máquina al azar con una probabilidad $\epsilon$. 
+
+## _Softmax_
+
+Dada la tasa observada para cada máquina $i$, $\pi_i$, se calcula una probabilidad de elegir cada máquina utilizando la función _softmax_:
+
+$$\mathrm{Pr}(i) = \frac{e^{\pi_i/\tau}}{\sum_{j=1}^3 e^{\pi_i/\tau}}$$
+donde $\tau$ es un parámetro de "temperatura" que controla el grado de exploración (con valores más altos que promueven más exploración).
+
+1. Implemente la función _softmax_ que, dadas tres tasas observadas, devuelva la probabilidad de elegir cada máquina.
+
+## _Upper-bound_
+
+Se selecciona la máquina que tenga el mayor extremo derecho de un intervalo de credibilidad (construido a partir de la distribución _a posteriori_)
+
+## _Thompson sampling_
 
 
-En este trabajo se evaluarán dos modelos para comparar ambas cafeterías. El supuesto 
-inicial del análisis es que las cafeterías tienen una puntuación verdadera basada en su 
-calidad y medida en ⭐ sobre un máximo de cinco. Las opiniones de los usuarios, que 
-consideraremos honestas, constituyen observaciones ruidosas de la puntuación verdadera. 
-Vale la pena recordar que en Google Maps un negocio solo puede recibir un número entero 
-de ⭐.
 
-# Modelo beta-binomial
-
-En primera instancia, se modelizarán las *reviews* como una sucesión de lanzamientos de 
-una moneda sesgada. La moneda tiene un 👍🏼 de un lado y un 👎🏼 del otro. La probabilidad de
-obtener 👍🏼 es $\sigma$, que está relacionada con la calidad del bar. Luego de tomarse un
-cafecito, el cliente arroja la moneda al aire cuatro veces y puntúa a la cafetería según
-el número de 👍🏼 que obtuvo.
-
-Según esta descripción, cada *review* es un proceso binomial con cuatro intentos y 
-probabilidad de acierto $\sigma$.
-
-
-1.  Explique la relación entre la cantidad de 👍🏼 obtenidas al arrojar la moneda y la 
-    cantidad puntuación en ⭐ del bar.
-2.  Describa la relación entre $\sigma$ y la puntuación en ⭐ del bar.
-3.  Construya una función que, dada una puntuación real de 1⭐ a 5⭐, simule el proceso de
-    calificación de un usuario.
-4.  Construya una función que, apoyándose en la apartado anterior, simule las *reviews* de
-    $U$ personas.
-5.  Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el 
-    proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?
-
-Utilizaremos este modelo para realizar inferencias sobre las puntuaciones de **Arto** y 
-**Orlan**.
-
-6.  Elija una distribución *a priori* para $\sigma$ utilizando una distribución beta. 
-    ¿Qué implicancias tiene para la puntuación en ⭐ la distribución *a priori* elegida? 
-    Considere las implicancias para ambas cantidades de *reviews*.
-7.  Con los datos de la introducción, obtenga la distribución *a posteriori* de $\sigma$ 
-    para cada cafetería.
-8.  ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
-9.  ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos _reviews_?
-
-<!--# https://towardsdatascience.com/adding-error-bars-to-5-star-reviews-a-bayesian-approach-d6fef78b3382 -->
-
-# Modelo Dirichlet-multinomial
-
-Trabajaremos a continuación con otro modelo, también de distribuciones conjugadas. Para 
-ello es necesario presentar dos distribuciones de probabilidad: la distribución de 
-Dirichlet y la distribución multinomial.
-
-## Descubriendo la distribución de Dirichlet
-
-La distribución Dirichlet es en realidad una familia de distribuciones. Se trata de una 
-familia de distribuciones de probabilidad continuas y multivariadas. La distribución de 
-Dirichlet en $K \geq 2$ es la distribución de probabilidad del vector aleatorio 
-$X=[X_1, X_2 \dots, X_K]$ dimensiones tiene como parámetro al vector 
-$\mathbf{\alpha} = [\alpha_1, \alpha_2, \dots,\alpha_K]$.
-
-$$
-f(x_1,x_2,\dots,x_k \mid \alpha_1, \alpha_2,\dots,\alpha_K) = 
-    \frac{1}{B(\pmb{\alpha})} \prod_{i=1}^K x_i^{\alpha_i-1}
-$$
-
-donde los $\alpha_i \in \mathbb{R}^+$ y $B(\pmb{\alpha})$ es la constante que hace que la 
-integral sea unitaria.
-
-El soporte de la distribución Dirichlet es tal que 
-$\sum_{i=1}^{K} x_i = 1$ y $x_i \in [0,1]$. Es decir, los $x_i$ suman 1. Si consideramos, 
-por ejemplo, $K=3$, el vector $[x_1, x_2, x_3]$ pertenece al triángulo en $\mathbb{R}^3$ 
-que tiene por vértices a los puntos $(1,0,0)$, $(0,1,0)$ y $(0,0,1)$. 
-Así, si $x_1=1$ entonces $x_2=x_3=0$.
-
-Más simple aún, cuando $K=2$, el vector $[x_1,x_2]$ pertenece al segmento en 
-$\mathbb{R}^2$ que tiene por extremos a los puntos $(1,0)$ y $(0,1)$.
-
-Notar que esta característica hace que los $x_1, x_2, \dots, x_K$ puedan representar las 
-probabilidades de un experimento con $K$ resultados posibles.
-
-A título informativo, el soporte de la distribución Dirichlet en $K$ dimensiones es lo que
-se conoce como _simplex_ (estándar) de $K-1$ dimensiones. El $3$-_simplex_ es un triángulo
-y el $2$-_simplex_ es un segmento. En general, un $K-1$-_simplex_ es la envolvente convexa
-de $K$ vértices y, a su vez, es la colección de todas las combinaciones convexas de puntos
-en el conjunto 
-[(Teorema de Carathéodory)](https://es.wikipedia.org/wiki/Teorema_de_Carath%C3%A9odory).
-
-Los párrafos anteriores, delirantemente matemáticos, muestran una virtud particular de la
-distribución Dirichlet de $K=3$ dimensiones. Esta distribución, a pesar de ser de una 
-variable aleatoria en $\mathbb{R}^3$, puede representarse perfectamente de manera gráfica 
-en dos dimensiones (aunque utilizando un sistema de coordenadas peculiar: las coordenadas 
-baricéntricas), como si se tratara de una distribución bivariada.
-
-```{r}
-#| echo: false
-#| out-width: 70%
-#| fig-align: center
-#| fig-cap: !expr captions[["dirichlet"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "dirichlet.jpg"))
-```
-
-<!-- (hacer plots con el paquete \`ggtern\`\`) -->
-
-1.  Mostrar que, cuando $K=2$, la distribución de Dirichlet es la distribución beta de 
-    parámetros $a=\alpha_1$ y $b=\alpha_2$
-
-## Relación entre la distribución Dirichlet y la multinomial
-
-Cuando un experimento puede tener dos resultados posibles, uno de ellos tiene probabilidad
-$p$ y el otro probabilidad $1-p$. Si coleccionamos $N$ realizaciones independientes del 
-experimento, el número de éxitos es una variable aleatoria con distribución binomial. 
-Estudiamos que era natural utilizar la distribución beta como distribución *a priori* para
-$p$, dado que la distribución *a posteriori* también era beta.
-
-Análogamente, cuando un experimento puede tener tres resultados posibles, el primero tiene
-probabilidad $p_1$, el segundo tiene probabilidad $p_2$ y el tercero, probabilidad 
-$p_3 = p_1 - p_2$. Necesariamente debe ser $p_1 + p_2 + p_3 = 1$. Si coleccionamos $N$ 
-realizaciones independientes del experimento, el número de ocurrencias de cada resultado
-posible es un vector aleatorio con distribución multinomial. Por lo visto hasta aquí, todo
-parece indicar que, si queremos realizar inferencias sobre $p_1$, $p_2$ y $p_3$, sería 
-natural utilizar la distribución Dirichlet de tres dimensiones como distribución 
-*a priori* para las probabilidades...
-
-En efecto, cuando la distribución *a priori* es Dirichlet y la verosimilitud es 
-multinomial, la distribución *a posteriori* también es Dirichlet.
-
-2.  Sabemos que para una verosimilitud binomial, si la distribución *a priori* de la 
-    probabilidad de éxito $p$ es beta de parámetros $a$ y $b$ y se observan $s$ éxitos en 
-    $N$ intentos independientes, la distribución *a posteriori* es beta de parámetros 
-    $a' = a + s$ y $b' = b + (N - s)$.
- 
-    Hallar, por analogía con el caso anterior, los parámetros de la distribución 
-    *a posteriori* que se obtiene si la verosimilitud es multinomial con tres resultados 
-    posibles, la distribución a priori es Dirichlet de parámetros 
-    $[\alpha_1, \alpha_2, \alpha_3]$ y se obtuvieron $s_1$ veces el primer resultado y 
-    $s_2$ veces el segundo resultado, sobre un total de $N$ intentos.
-
-## Aplicación
-
-Asumiremos ahora que las *reviews* de un local tienen distribución multinomial de 
-parámetros $[p_1, p_2, \dots, p_5]$. Es decir, la probabilidad de que un usuario asigne 
-1⭐ es $p_1$, de que asigne 2⭐ es $p_2$, y así sucesivamente. Llamaremos $n_1$ al número
-de calificaciones de 1⭐, $n_2$ al número de calificaciones de 2⭐, y así sucesivamente.
-$n_1 + n_2 + n_3 + n_4 + n_5 = N$ será el número total de *reviews*.
-
-Se puede verificar que el número esperado de reviews de $i$⭐ será $N p_i$. 
-Por lo tanto, la puntuación esperada será:
-
-$$
-\frac{1}{N} (1\cdot N p_1 + 2\cdot N p_2 + 3\cdot N p_3 + 4\cdot N p_4 +5\cdot N p_5) = 
-    \sum_{i=1}^5 i \cdot p_i
-$$
-
-3.  Elija dos combinaciones de posibles valores de $p_i$ que den un valor esperado de 
-    4.1⭐. Piense en una combinación que represente acuerdo entre los clientes y otra que 
-    indique la presencia de opiniones dispares.
-4.  Escriba una función que, dada una combinación de valores de $p_i$, simule el proceso 
-    de calificación de un cliente.
-5.  Construya una función que simule la calificación de $U$ clientes.
-6.  Simule 1000 veces el proceso de 15 clientes que evalúan una cafetería de 4.1⭐ y el 
-    proceso de 100 clientes que evalúan la misma cafetería. ¿Qué se observa?
-
-Utilizaremos este nuevo modelo para realizar inferencias sobre las puntuaciones de 
-**Arto** y **Orlan**.
-
-Para obtener muestras de una distribución Dirichlet, puede utilizar la función `rdirichlet` de alguno de los siguientes paquetes: `{LaplacesDemon}`, `{rBeta2009}`, `{gtools}`.
-
-7.  Los datos se generan siguiendo una distribución multinomial. ¿Cuáles son los 
-    parámetros de esa distribución multinomial? ¿Qué distribución *a priori* sería 
-    conveniente utilizar? ¿Cómo está parametrizada esa distribución *a priori*?
-8.  Elija los parámetros de la distribución *a priori* de modo tal que la creencia inicial
-    sea uniforme sobre los posibles valores de los $p_i$. ¿Qué implicancias tiene para la 
-    puntuación en ⭐ la distribución *a priori* elegida?
-9.  Con los datos de la introducción, obtenga la distribución *a posteriori* de los $p_i$ 
-    para cada cafetería.
-10. ¿Cuál es la probabilidad de que **Orlan** sea mejor que **Arto**?
-11. ¿Cómo cambiaría el resultado si cada cafetería tuviera diez veces menos _reviews_?
-
-<!--# Principalmente de: https://fulmicoton.com/posts/bayesian_rating/ -->
-<!--# Un análisis adicional en: https://www.evanmiller.org/ranking-items-with-star-ratings.html -->
