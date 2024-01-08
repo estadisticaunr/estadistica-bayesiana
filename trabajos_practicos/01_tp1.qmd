@@ -53,7 +53,7 @@ El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras 
 #| out-width: 70%
 #| fig-align: center
 #| fig-cap: !expr captions[["cafe"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "slotsmachines2.png"))
+if (is_html) knitr::include_graphics(file.path("imgs", "slotmachines2.png"))
 ```
 
 Cada máquina tiene una probabilidad de éxito desconocida y potencialmente diferente, es decir, una probabilidad distinta de entregar un premio. El desafío consiste en decidir a cuál máquina dedicar nuestras tiradas con el objetivo de maximizar las ganancias totales. Aquí es donde entra el dilema: ¿conviene _"explotar"_ la máquina que hasta ahora ha dado mejores resultados, o _"explorar"_ otras máquinas que podrían tener una tasa de éxito mayor pero aún desconocida?
@@ -84,26 +84,61 @@ Considere la estrategia (o no-estrategia) más elemental: cada día, elegir una 
 
 Se elige la máquina que tenga la mayor tasa de éxito observada hasta el momento.
 
-## _Greedy_ con probabilidad _a posteriori_
+4. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+5. ¿Podría considerarse bayesiano este método de elección de máquina?
+6. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+7. Simule 1000 secuencias de 366 días de juego y analice los resultados.
 
-## _$\epsilon$-greedy_
+## _Greedy_ con probabilidad _a posteriori_ (SE PODRÍA SACAR)
+
+Se elige la máquina que tenga, hasta el momento, mayor probabilidad de éxito promedio _a posteriori_.
+
+8. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+9. ¿Podría considerarse bayesiano este método de elección de máquina?
+10. Utilice su función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+11. Simule 1000 secuencias de 366 días de juego y analice los resultados.
+
+## _$\epsilon$-greedy_ (con tasa observada)
 
 Se selecciona la mejor máquina (la de mayor tasa de éxito observada según los datos actuales) con una probabilidad de $1-\epsilon$ y se elige una máquina al azar con una probabilidad $\epsilon$. 
+
+12. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+13. ¿Podría considerarse bayesiano este método de elección de máquina?
+14. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+15. Simule 1000 secuencias de 366 días de juego y analice los resultados.
 
 ## _Softmax_
 
 Dada la tasa observada para cada máquina $i$, $\pi_i$, se calcula una probabilidad de elegir cada máquina utilizando la función _softmax_:
 
 $$\mathrm{Pr}(i) = \frac{e^{\pi_i/\tau}}{\sum_{j=1}^3 e^{\pi_i/\tau}}$$
-donde $\tau$ es un parámetro de "temperatura" que controla el grado de exploración (con valores más altos que promueven más exploración).
+donde $\tau$ es un parámetro de "temperatura" que controla el grado de exploración. Luego, se elige la máquina $i$ con probabilidad $\mathrm{Pr}(i)$.
 
-1. Implemente la función _softmax_ que, dadas tres tasas observadas, devuelva la probabilidad de elegir cada máquina.
+16. Implemente la función _softmax_ que, dadas tres tasas observadas, devuelva la probabilidad de elegir cada máquina. La función debe recibir la "temperatura" como argumento.
+17. Explique qué función cumple el parámetro de "temperatura" en términos de explorar versus explotar.
+18. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+19. ¿Podría considerarse bayesiano este método de elección de máquina?
+20. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+21. Simule 1000 secuencias de 366 días de juego y analice los resultados.
 
 ## _Upper-bound_
 
-Se selecciona la máquina que tenga el mayor extremo derecho de un intervalo de credibilidad (construido a partir de la distribución _a posteriori_)
+Se selecciona la máquina que tenga el mayor extremo derecho de un intervalo de credibilidad (construido a partir de la distribución _a posteriori_).
+
+22. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+23. ¿Podría considerarse bayesiano este método de elección de máquina?
+24. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+25. Simule 1000 secuencias de 366 días de juego y analice los resultados.
 
 ## _Thompson sampling_
+
+Para seleccionar una máquina, se toma una muestra de la distribución _a posteriori_ de las probabilidades de éxito de cada máquina y se elige la máquina correspondiente a la muestra más grande.
+
+26. Construya una función en R que elija una máquina sigiendo este método, obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles valores de la probabilidad de éxito correspondiente. 
+27. ¿Podría considerarse bayesiano este método de elección de máquina?
+28. Explique intuitivamente por qué este método balancea exploración y explotación.
+29. Utilice esa función para simular una secuencia de 366 días de juego. Registre la evolución diaria del dinero acumulado cada día, la cantidad de veces que se juega en cada máquina, y la distribución _a posteriori_ de cada probabilidad de éxito. Muestre gráficamente los resultados.
+30. Simule 1000 secuencias de 366 días de juego y analice los resultados.
 
 
 
