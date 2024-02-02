@@ -338,7 +338,7 @@ Idea general:
 
 El algoritmo de Metropolis--Hastings (1953)
 
-1.    Estamos la iteración $i$ estamos en el valor del parámetro $\theta^{(i)}$
+1.    En la iteración $i$ estamos en el valor del parámetro $\theta^{(i)}$
 1.    En función del valor de parámetro actual $\theta^{(i)}=\theta$, proponemos un nuevo valor $\theta'$ en función de $q(\theta'\mid\theta)$
 1.    Decidimos si vamos a la nueva ubicación $\theta^{(i+1)} = \theta'$ o si nos quedamos $\theta^{(i+1)} = \theta$:
       -   Calcular la probabilidad de salto:
@@ -600,7 +600,7 @@ $$\hat{R} \, = \, \sqrt{\frac{\widehat{\mbox{var}}^{+}\!(\theta|y)}{W}}$$
 
 ## Hamiltonian Montecarlo {.smaller}
 
--   Metropolis-Hastings (MG) es una exploración _a ciegas_ del espacio de parámetros
+-   Metropolis-Hastings (MH) es una exploración _a ciegas_ del espacio de parámetros
 -   La distribución de propuesta de salto es fija 
 -   En las colas de la distribución, se proponen tanto saltos que se acercan al grueso (_bulk_) de la distribución como saltos que se alejan. Se rechazan _muchos_ saltos propuestos.
 -   Hamiltonian-Montecarlo (HMC) es una variante más eficiente de MCMC. Para lograr la eficiencia, los saltos propuestos se adaptan a la forma del _posterior_.
