@@ -65,6 +65,6 @@ course-logo: utils/imgs/logo.png
 ### Tomás Capretto
 
 * {{< fa envelope >}} &nbsp; [tomicapretto@gmail.com](mailto:tomicapretto@gmail.com)
-* {{< fa calendar >}} &nbsp; Consultas: Jueves 9:00
+* {{< fa calendar >}} &nbsp; Consultas: Martes 16:00
 :::
 :::
