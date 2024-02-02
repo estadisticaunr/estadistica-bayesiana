@@ -24,7 +24,7 @@ Estos párrafos de *coaching emocional* sirven como la introducción a este trab
 
 # El _multi-armed bandit_
 
-El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario). El juego de las maquinitas consiste en hacer girar sus rodillos (analógicos o digitales) con el objetivo de obtener una combinación de símbolos ganadora y obtener un premio monetario 💰 (¡a esto sí que se le puede llamar éxito!).
+El _multi-armed bandit_ nos enfrenta a tres máquinas tragamonedas, tragaperras (si es por usar traducciones poco felices) o simplemente maquinitas (como les decimos en Rosario). El juego de las maquinitas consiste en hacer girar sus rodillos (analógicos o digitales) con el objetivo de obtener una combinación de símbolos ganadora y así acceder a un premio monetario 💰 (¡a esto sí que se le puede llamar éxito!).
 
 ```{r}
 #| echo: false
