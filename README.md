@@ -2,9 +2,9 @@
 
 Este repositorio contiene un proyecto de Quarto. 
 
-El mismo se utiliza para generar la página web del curso y los PDF de la práctica y los trabajos prácticos.
+El mismo se utiliza para generar la página web del curso, las diapositivas de teoría, 
+los PDF de la práctica y los trabajos prácticos.
 
-**TODO** presentaciones
 
 Para renderizar el proyecto hay que ejecutar el siguiente comando:
 
@@ -12,17 +12,18 @@ Para renderizar el proyecto hay que ejecutar el siguiente comando:
 quarto render
 ```
 
-Por defecto, este genera la web y los archivos en PDF. Si se desea generar solamente la web se puede
-utilizar
+Por defecto, este genera la web, las presentaciones y los archivos en PDF. 
+Si se desea generar solamente la web se puede utilizar
 
 ```shell
 quarto render --to html
 ```
 
-y se desea generar solo los archivos en PDF, hay que reemplazar `html` por `pdf`.
+En cambio, si se desea generar solo los archivos en PDF, o solo las presentaciones,
+hay que reemplazar `html` por `pdf` o `revealjs`, respectivamente.
+
 
 ## Dependencias
-
 
 * Quarto. La versión utilizada se puede encontrar en el archivo de configuración del despliegue
 automático [quarto-publish.yml](.github/workflows/quarto-publish.yml)
