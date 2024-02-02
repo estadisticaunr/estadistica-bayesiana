@@ -13,7 +13,6 @@ website:
 
   navbar:
     pinned: true
-    background: "#f07039"
     right:
       - text: Información
         file: info/programa.qmd
@@ -33,7 +32,6 @@ website:
     - title: Información
       style: docked
       search: false
-      background: dark
       header: Información
       contents:
         - text: Programa
@@ -47,7 +45,6 @@ website:
     - title: Teoría
       style: docked
       search: false
-      background: dark
       header: Teoría
       contents:
         - text: U1 - Introducción
@@ -69,7 +66,6 @@ website:
     - title: Práctica
       style: docked
       search: false
-      background: dark
       header: Práctica
       contents:
         - text: Unidad 0
@@ -87,7 +83,6 @@ website:
     - title: Trabajos Prácticos
       style: docked
       search: false
-      background: dark
       header: Trabajos Prácticos
       contents:
         - text: Generalidades
@@ -103,7 +98,6 @@ website:
     - title: Recursos
       style: docked
       search: false
-      background: dark
       header: Recursos
       contents:
         - text: Código
@@ -116,7 +110,6 @@ website:
     - title: Material complementario
       style: docked
       search: false
-      background: dark
       contents:
         - text: Probabilidad
           file: complementario/probabilidad.qmd
@@ -126,8 +119,6 @@ website:
   page-footer:
     right: "Esta página es hecha con ❤️ y [Quarto](https://quarto.org/)."
     border: false
-    background: dark
-    foreground: "#cacccd"
 
 bibliography: references.bib
 csl: chicago-author-date.csl
@@ -135,7 +126,6 @@ csl: chicago-author-date.csl
 format:
   html:
     theme: 
-      - cosmo
       - styles.scss
     toc: false
     lang: es

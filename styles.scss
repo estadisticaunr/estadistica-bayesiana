@@ -125,10 +125,6 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-size: 1.4rem;
 }
 
-.navbar-nav .nav-link, .navbar-brand {
-  color: #fffefd;
-}
-
 .navbar-nav .show>.nav-link, 
 .navbar-nav .active>.nav-link, 
 .navbar-nav .nav-link.active,
@@ -142,9 +138,6 @@ h1, .h1, h2, .h2, h3, .h3 {
   color: #ffdfba;
 }
 
-.navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon {
-  color: #fffefd;
-}
 
 .navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:hover,
 .navbar #quarto-search.type-overlay .aa-Autocomplete svg.aa-SubmitIcon:focus {
@@ -163,6 +156,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   font-weight: 200;
 }
 
+nav .nav-link i {
+  font-size: 1.3rem;
+}
+
 .five-columns {
   --bs-columns: 5;
 }
@@ -173,4 +170,44 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 div.sidebar-item-container code {
   color: #adcff4
+}
+
+.navbar {
+  background-color: #f07039;
+  color: #fffefd;
+}
+
+.nav-footer {
+  background-color: #343a40;
+  color: #cacccd;
+}
+
+.nav-footer a {
+  color: #cacccd;
+}
+
+#quarto-sidebar {
+  background-color: #343a40;
+  color: #cacccd;
+}
+
+div.sidebar-item-container {
+  color: #cacccd;
+}
+
+div.sidebar-item-container .active, div.sidebar-item-container .show>.nav-link, div.sidebar-item-container .sidebar-link>code {
+  color: #b8cbf6;
+}
+
+div.sidebar-item-container:hover, div.sidebar-item-container:focus {
+  color: rgba(184,203,246,.8);
+}
+
+.quarto-sidebar-header {
+  color: #cacccd;
+}
+
+/* Agrandar el texto en el sidebar de la derecha con otros formatos */
+.sidebar .quarto-alternate-formats>h2, .sidebar .quarto-alternate-formats>ul, .quarto-alternate-formats i.bi {
+  font-size: 1rem;
 }
