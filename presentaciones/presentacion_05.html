@@ -569,7 +569,7 @@
 <h2>Metropolis-Hastings (MH)</h2>
 <p>El algoritmo de Metropolis–Hastings (1953)</p>
 <ol type="1">
-<li class="fragment">Estamos la iteración <span class="math inline">\(i\)</span> estamos en el valor del parámetro <span class="math inline">\(\theta^{(i)}\)</span></li>
+<li class="fragment">En la iteración <span class="math inline">\(i\)</span> estamos en el valor del parámetro <span class="math inline">\(\theta^{(i)}\)</span></li>
 <li class="fragment">En función del valor de parámetro actual <span class="math inline">\(\theta^{(i)}=\theta\)</span>, proponemos un nuevo valor <span class="math inline">\(\theta'\)</span> en función de <span class="math inline">\(q(\theta'\mid\theta)\)</span></li>
 <li class="fragment">Decidimos si vamos a la nueva ubicación <span class="math inline">\(\theta^{(i+1)} = \theta'\)</span> o si nos quedamos <span class="math inline">\(\theta^{(i+1)} = \theta\)</span>:
 <ul>
@@ -775,7 +775,7 @@
 <section id="hamiltonian-montecarlo" class="slide level2 smaller">
 <h2>Hamiltonian Montecarlo</h2>
 <ul>
-<li class="fragment">Metropolis-Hastings (MG) es una exploración <em>a ciegas</em> del espacio de parámetros</li>
+<li class="fragment">Metropolis-Hastings (MH) es una exploración <em>a ciegas</em> del espacio de parámetros</li>
 <li class="fragment">La distribución de propuesta de salto es fija</li>
 <li class="fragment">En las colas de la distribución, se proponen tanto saltos que se acercan al grueso (<em>bulk</em>) de la distribución como saltos que se alejan. Se rechazan <em>muchos</em> saltos propuestos.</li>
 <li class="fragment">Hamiltonian-Montecarlo (HMC) es una variante más eficiente de MCMC. Para lograr la eficiencia, los saltos propuestos se adaptan a la forma del <em>posterior</em>.</li>
