@@ -64,7 +64,7 @@ course-logo: utils/imgs/logo.png
 
 ### Tomás Capretto
 
-* {{< fa envelope >}} &nbsp; [tomicapretto@gmail.com](mailto:tomicapretto@gmail.com)
+* {{< fa envelope >}} &nbsp; [tomas.capretto@fcecon.unr.edu.ar](mailto:tomas.capretto@fcecon.unr.edu.ar)
 * {{< fa calendar >}} &nbsp; Consultas: Martes 16:00
 :::
 :::
