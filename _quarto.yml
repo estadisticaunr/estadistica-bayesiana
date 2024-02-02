@@ -2,6 +2,7 @@ project:
   type: website
   preview:
     port: 4200
+  output-dir: _site
 
 website:
   title: "Estadística Bayesiana"
@@ -138,4 +139,3 @@ format:
       - styles.scss
     toc: false
     lang: es
-    format-links: false

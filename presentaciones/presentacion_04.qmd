@@ -1,16 +1,3 @@
----
-format:
-  revealjs:
-    incremental: true
-    logo: /utils/imgs/logo.png
-    footer: "Estadística Bayesiana -- 2023"
-    background-transition: fade
-    transition: fade
-    slide-number: true
-    fig-cap-location: top
-    theme: [default, style_presentaciones.scss]
----
-
 # Teoría de la Decisión
 
 ```{r setup}
@@ -237,24 +224,24 @@ expected.loss <- loss %>%
   summarise(loss.mean = mean(L))
 
 p3 <- ggplot(expected.loss) +
-  geom_line(aes(x=theta_hat,y=loss.mean),size=1) +
+  geom_line(aes(x=theta_hat,y=loss.mean),linewidth=1) +
   xlab(expression(hat(theta))) +
   ylab("R") +
   theme(axis.text.x = element_blank(),
         axis.text.y = element_blank()) +
-  geom_vline(xintercept=mean,color = "orange",size=0.8) +
-  geom_vline(xintercept=median,color = "blue",size=0.8) +
-  geom_vline(xintercept=mode,color = "darkgreen",size=0.8)
+  geom_vline(xintercept=mean,color = "orange",linewidth=0.8) +
+  geom_vline(xintercept=median,color = "blue",linewidth=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",linewidth=0.8)
 
 p <- tibble(x=seq(0,1,0.008),y=dbeta(x,2,9)) %>%
   ggplot() + 
-  geom_line(aes(x=x,y=y),size=1,col="#FF729F") +
+  geom_line(aes(x=x,y=y),linewidth=1,col="#FF729F") +
   geom_ribbon(aes(x=x,ymin=0,ymax=y),alpha=0.6,fill="#FF729F") +
   ylab(expression("p("*theta*"|y)")) +
   xlab(expression(theta)) +
-  geom_vline(xintercept=mean,color = "orange",size=0.8) +
-  geom_vline(xintercept=median,color = "blue",size=0.8) +
-  geom_vline(xintercept=mode,color = "darkgreen",size=0.8) +
+  geom_vline(xintercept=mean,color = "orange",linewidth=0.8) +
+  geom_vline(xintercept=median,color = "blue",linewidth=0.8) +
+  geom_vline(xintercept=mode,color = "darkgreen",linewidth=0.8) +
   theme(axis.text.y = element_blank())
 
 p/p1/p2/p3
@@ -361,16 +348,16 @@ hpdi.higher <- 0.3400824
 
 p1 <- ggplot() +
   geom_ribbon(data=dv%>%filter(x>p.l & x<p.h), aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=0.7) +
-  geom_line(data=dv,aes(x=x,y=y),size=1,col="#FF729F") +
-  geom_segment(aes(x=p.l,xend=p.h,y=0,yend=0),size=1.2) +
+  geom_line(data=dv,aes(x=x,y=y),linewidth=1,col="#FF729F") +
+  geom_segment(aes(x=p.l,xend=p.h,y=0,yend=0),linewidth=1.2) +
   ylab(expression("p("*theta*"|y)")) +
   xlab(expression(theta))
   
 p2 <- ggplot() +
   geom_ribbon(data=dv%>%filter(x>hpdi.lower & x<hpdi.higher), aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=0.7) +
-  geom_line(data=dv,aes(x=x,y=y),size=1,col="#FF729F") +
+  geom_line(data=dv,aes(x=x,y=y),linewidth=1,col="#FF729F") +
   geom_hline(yintercept = 1.100891,linetype="dashed") +
-  geom_segment(aes(x=hpdi.lower,xend=hpdi.higher,y=0,yend=0),size=1.2) +
+  geom_segment(aes(x=hpdi.lower,xend=hpdi.higher,y=0,yend=0),linewidth=1.2) +
   ylab(expression("p("*theta*"|y)")) +
   xlab(expression(theta))
 

@@ -7,10 +7,6 @@ practica: "Práctica 4"
 ```{r}
 #| echo: false
 #| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -29,10 +25,6 @@ captions[["mesquite"]] <- paste(
 )
 captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tamaños."
 ```
-
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Regresión lineal
 

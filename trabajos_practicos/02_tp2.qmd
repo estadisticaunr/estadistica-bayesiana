@@ -1,33 +1,15 @@
 ---
 title: "TP2: WIP"
-format:
-    pdf:
-        template: ../templates/template.tex
-        template-partials:
-            - ../templates/title.tex
-        suppress-bibliography: true
-    html: default
-year: "2024"
-course: "Estadística Bayesiana"
 practica: "Trabajo Práctico 2"
-logo: ../templates/logo.png
 ---
 
 ```{r}
 #| echo: false
 #| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 library(patchwork)
 library(ggplot2)
 library(dplyr)
 ```
-
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 # Metropolis-Hastings en 1D
 

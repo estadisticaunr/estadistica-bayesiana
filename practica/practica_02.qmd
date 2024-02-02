@@ -12,10 +12,6 @@ library(ggplot2)
 library(dplyr)
 library(patchwork)
 
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -33,9 +29,6 @@ captions[["insectos"]] <- paste0(
 )
 ```
 
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Modelos de Distribuciones Conjugadas
 
@@ -617,7 +610,7 @@ p1 <-
 dv |>
   distinct(theta,post) |>
   ggplot() +
-  geom_segment(aes(x=theta,xend=theta,y=0,yend=post),size=2,lineend="round") +
+  geom_segment(aes(x=theta,xend=theta,y=0,yend=post),linewidth=2,lineend="round") +
   xlab("θ") +
   ylab("p(θ|y)") +
   scale_x_continuous(limits = c(0,1),breaks = seq(0,1,0.1), expand=c(0,0)) +
@@ -630,7 +623,7 @@ dv |>
 p2 <- 
 dv |>
   ggplot() +
-  geom_segment(aes(x=y,xend=y,y=0,yend=prob), size=1.5, lineend="round") +
+  geom_segment(aes(x=y,xend=y,y=0,yend=prob), linewidth=1.5, lineend="round") +
   facet_grid(.~paste0("θ = ",theta)) +
   scale_y_continuous(expand=c(0,0,0,0.05)) +
   xlab(expression(tilde(y))) +

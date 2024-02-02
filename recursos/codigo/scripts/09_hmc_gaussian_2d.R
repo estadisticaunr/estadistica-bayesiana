@@ -139,7 +139,7 @@ plt <- df_basis |>
   )
 
 plt + 
-  geom_path(aes(x = q0, y = q1), size = 1, data = df_leap) + 
+  geom_path(aes(x = q0, y = q1), linewidth = 1, data = df_leap) + 
   geom_quiver(
     aes(x = q0, y = q1, u = p0, v = p1), 
     size = 1,

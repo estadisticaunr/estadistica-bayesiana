@@ -66,6 +66,25 @@ figure figcaption {
   margin-top: 0;
 }
 
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-weight: 400;
+}
+
+
+@media (min-width: 1200px) {
+  h2, .h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  h3, .h3 {
+    font-size: 1.5rem;
+  }
+}
+
+
 .course-title {
   font-size: 3.5rem;
   margin-top: 0;
@@ -106,20 +125,20 @@ figure figcaption {
   font-size: 1.4rem;
 }
 
-.navbar-dark .navbar-nav .nav-link, .navbar-dark .navbar-brand {
+.navbar-nav .nav-link, .navbar-brand {
   color: #fffefd;
 }
 
-.navbar-dark .navbar-nav .show>.nav-link, 
-.navbar-dark .navbar-nav .active>.nav-link, 
-.navbar-dark .navbar-nav .nav-link.active,
-.navbar-dark .navbar-brand:hover, 
-.navbar-dark .navbar-brand:focus {
+.navbar-nav .show>.nav-link, 
+.navbar-nav .active>.nav-link, 
+.navbar-nav .nav-link.active,
+.navbar-brand:hover, 
+.navbar-brand:focus {
   color: #ffd186;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover, 
-.navbar-dark .navbar-nav .nav-link:focus {
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link:focus {
   color: #ffdfba;
 }
 
@@ -134,13 +153,13 @@ figure figcaption {
 
 .navbar-title {
   font-family: $font-family-sans-serif;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }
 
 .nav-item {
   font-family: $font-family-sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 200;
 }
 
@@ -150,4 +169,8 @@ figure figcaption {
 
 .inactive {
   color: $gray-400;
+}
+
+div.sidebar-item-container code {
+  color: #adcff4
 }

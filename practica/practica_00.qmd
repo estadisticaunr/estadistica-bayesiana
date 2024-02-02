@@ -7,10 +7,6 @@ practica: "Práctica 0"
 ```{r}
 #| echo: false
 #| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -21,10 +17,6 @@ captions <- lapply(caption_data, function(x) do.call(make_unsplash_caption, x))
 captions[["un_peso"]] <- "Moneda de un peso argentino acuñada en 1995"
 captions[["argentina_campeon"]] <- "El festejo de los campeones del mundo"
 ```
-
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Repaso de probabilidad
 

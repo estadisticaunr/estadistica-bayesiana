@@ -1,16 +1,6 @@
 ---
 title: "TP1: The Multiarmed Bandit"
-format:
-    pdf:
-        template: ../templates/template.tex
-        template-partials:
-            - ../templates/title.tex
-        suppress-bibliography: true
-    html: default
-year: "2024"
-course: "Estadística Bayesiana"
 practica: "Trabajo Práctico 1"
-logo: ../templates/logo.png
 ---
 
 ```{r}
@@ -20,10 +10,6 @@ logo: ../templates/logo.png
 library(ggplot2)
 library(patchwork)
 
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 captions <- list()
@@ -31,9 +17,6 @@ captions[["slotmachines2"]] <- "Tres maquinitas con diferentes probabilidades de
 captions[["dirichlet"]] <- "Como los valores posibles del vector aleatorio tridimensional yacen en un plano, la distribución de probabilidad puede representarse gráficamente con facilidad "
 ```
 
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 # Introducción
 

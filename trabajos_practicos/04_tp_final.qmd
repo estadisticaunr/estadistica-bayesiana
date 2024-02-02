@@ -1,34 +1,16 @@
 ---
 title: "TP Final: WIP"
-format:
-    pdf:
-        template: ../templates/template.tex
-        template-partials:
-            - ../templates/title.tex
-        suppress-bibliography: true
-    html: default
-year: "2024"
-course: "Estadística Bayesiana"
 practica: "Trabajo Práctico Final"
-logo: ../templates/logo.png
 ---
 
 ```{r}
 #| echo: false
 #| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/trabajos_practicos/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
-
 is_html <- knitr::is_html_output()
 captions <- list()
 captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tamaños."
 ```
 
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Introducción
 

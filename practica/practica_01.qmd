@@ -7,10 +7,6 @@ practica: "Práctica 1"
 ```{r}
 #| echo: false
 #| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
 is_html <- knitr::is_html_output()
 options("knitr.graphics.error" = FALSE)
 source(here::here("scripts", "utils.R"))
@@ -26,9 +22,6 @@ captions[["sherlock"]] <- "Sherlock Holmes, el detective privado"
 captions[["house_of_cards"]] <- "Robin Wright y Kevin Spacey, protagonistas de House of Cards"
 ```
 
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Regla de Bayes
 

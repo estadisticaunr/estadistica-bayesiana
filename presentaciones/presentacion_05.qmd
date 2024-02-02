@@ -1,16 +1,3 @@
----
-format:
-  revealjs:
-    incremental: true
-    logo: /utils/imgs/logo.png
-    footer: "Estadística Bayesiana -- 2023"
-    background-transition: fade
-    transition: fade
-    slide-number: true
-    fig-cap-location: top
-    theme: [default, style_presentaciones.scss]
----
-
 # Métodos Computacionales
 
 ```{r setup}
@@ -174,7 +161,7 @@ prob_bimod <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4))
 p1 <- tibble(x = seq(-4.5,4.5,0.01)) |>
   mutate(p = prob_bimod(x)) |>
   ggplot() +
-  geom_line(aes(x=x,y=p), size=1.2) +
+  geom_line(aes(x=x,y=p), linewidth=1.2) +
   scale_x_continuous("x") +
   scale_y_continuous("p*(x)", expand=c(0,0,0.05,0)) +
   coord_cartesian(xlim=c(-4,4))
@@ -182,7 +169,7 @@ p1 <- tibble(x = seq(-4.5,4.5,0.01)) |>
 p2 <- tibble(x = seq(-4.5,4.5,0.5)) |>
   mutate(p = prob_bimod(x)) |>
   ggplot() +
-  geom_segment(aes(x=x,xend=x,y=0,yend=p), size=1.2) +
+  geom_segment(aes(x=x,xend=x,y=0,yend=p), linewidth=1.2) +
   scale_x_continuous("x") +
   scale_y_continuous(expression(tilde(p)*"*(x)"), expand=c(0,0,0.05,0)) +
   coord_cartesian(xlim=c(-4,4))
@@ -296,14 +283,14 @@ data <- tibble(x = seq(-4.5,4.5,0.01)) |>
 
 p1 <- data |>
   ggplot() +
-  geom_line(aes(x=x,y=p), size=1.2) +
+  geom_line(aes(x=x,y=p), linewidth=1.2) +
   scale_x_continuous("x") +
   scale_y_continuous("p*(x)", limits = c(0,4), expand=c(0,0,0.05,0)) +
   coord_cartesian(xlim=c(-4,4))
 
 p2 <- data |>
   ggplot() +
-  geom_line(aes(x=x,y=Cq), size=1.2, col="maroon1") +
+  geom_line(aes(x=x,y=Cq), linewidth=1.2, col="maroon1") +
   scale_x_continuous("x") +
   scale_y_continuous("Cq(x)", limits = c(0,4), expand=c(0,0,0.05,0)) +
   coord_cartesian(xlim=c(-4,4))
@@ -322,10 +309,10 @@ p1+p2
 
 data |>
   ggplot() +
-  geom_line(aes(x=x,y=p), size=1.2) +
-  geom_line(aes(x=x,y=Cq), size=1.2, col = "maroon1") +
-  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=0,yend=p), col = "forestgreen", size=1.2, alpha=0.5) +
-  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=p,yend=Cq), col = "red", size=1.2, alpha=0.5) +
+  geom_line(aes(x=x,y=p), linewidth=1.2) +
+  geom_line(aes(x=x,y=Cq), linewidth=1.2, col = "maroon1") +
+  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=0,yend=p), col = "forestgreen", linewidth=1.2, alpha=0.5) +
+  geom_segment(data = data |> filter(abs(x-1.11)<0.01 | abs(x+0.98)<0.01), aes(x=x,xend=x,y=p,yend=Cq), col = "red", linewidth=1.2, alpha=0.5) +
   scale_x_continuous("x",breaks = seq(-4,4,2), expand = c(0,0)) +
   scale_y_continuous("", limits = c(0,4), expand = c(0,0,0.05,0))
 ```
@@ -382,7 +369,7 @@ x <- seq(-4,4,0.01)
 f <- exp(0.4*(x-0.4)^2-0.08*x^4)
 
 p1 <- ggplot(tibble(x,f)) +
-  geom_line(aes(x=x,y=f),size=1,col="#FFD400") +
+  geom_line(aes(x=x,y=f),linewidth=1,col="#FFD400") +
   geom_ribbon(aes(x=x,ymin=0,ymax=f),alpha=0.6,fill="#FFD400") +
   xlab(expression(theta)) +
   theme(axis.title.y = element_blank())

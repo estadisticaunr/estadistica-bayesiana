@@ -48,15 +48,16 @@ jobs:
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2   
         with:
-          version: 1.2.280 
-      
+          version: 1.4.549 
+
+      - name: Install TinyTex.   
+        run: quarto install tinytex
+
       # Ver: https://github.com/quarto-dev/quarto-actions/issues/41
       # Importante renderizar las presentaciones, luego son linkeadas en la página
       - name: Render Webpage
         shell: bash
-        run: |
-          quarto render --to html --output-dir _site
-          quarto render presentaciones 
+        run: quarto render
 
       - name: Publish to GitHub 
         uses: quarto-dev/quarto-actions/publish@v2

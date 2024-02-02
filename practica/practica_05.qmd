@@ -4,18 +4,6 @@ nocite: "@Reich2020, @DavidsonPilon2015"
 practica: "Práctica 5"
 ---
 
-```{r}
-#| echo: false
-#| include: false
-pdf_file <- paste0(
-    "https://github.com/estadisticaunr/estadistica-bayesiana/raw/pdf/practica/",
-    paste0(sub("\\..*$", "", knitr::current_input()), ".pdf")
-)
-```
-
-::: {.content-visible when-format="html"}
-[Descargar PDF](`r pdf_file`)
-:::
 
 ## Modelos de regresión avanzados
 

@@ -1,23 +1,39 @@
 # Estadística Bayesiana <img src="utils/imgs/logo.png" width="150px" align="right" />
 
-🚧 Trabajo en progreso! 🚧
+Este repositorio contiene un proyecto de Quarto. 
 
-Para renderizar la web hay que tener instalado Quarto. Luego correr alguno de los siguientes comandos. El primero crea una previsualizacion, el segundo lo renderiza.
+El mismo se utiliza para generar la página web del curso y los PDF de la práctica y los trabajos prácticos.
 
+**TODO** presentaciones
+
+Para renderizar el proyecto hay que ejecutar el siguiente comando:
+
+```shell
+quarto render
 ```
-quarto preview --to html
-```
 
-o
+Por defecto, este genera la web y los archivos en PDF. Si se desea generar solamente la web se puede
+utilizar
 
-```
+```shell
 quarto render --to html
 ```
 
-**Notas**
+y se desea generar solo los archivos en PDF, hay que reemplazar `html` por `pdf`.
 
-El argumento `--to html` es necesario para evitar que se generen los PDF.
+## Dependencias
 
-## Recursos útiles
 
-* Enlace a la web: [https://estadisticaunr.github.io/estadistica-bayesiana/](https://estadisticaunr.github.io/estadistica-bayesiana/)
+* Quarto. La versión utilizada se puede encontrar en el archivo de configuración del despliegue
+automático [quarto-publish.yml](.github/workflows/quarto-publish.yml)
+* R. Se recomienda utilizar una versión de R mayor a 4.1
+* tinytex. Es utilizado para generar los archivos PDF. Se puede instalar desde la terminal con `quarto install tinytex`.
+* Librerías de R. Estas se pueden encontrar en [quarto-publish.yml](.github/workflows/quarto-publish.yml).
+
+
+<!-- ## Despliegue continuo
+
+El directorio [.github/workflows](.github/workflows) contiene siguientes archivos de configuración:
+
+* `quarto-publish.yml`
+* `quarto-render-pdf.yml` -->

@@ -1,3 +1,6 @@
+# NOTA: A partir de Quarto 1.3 o Quarto 1.4, es mucho mas facil lidiar con multiples
+# formatos, por lo tanto este script ya no se utiliza mas.
+
 OUTPUT_BASE_DIR <- file.path(".output")
 INPUT_DIRS <- c("practica", "trabajos_practicos")
 OUTPUT_DIRS <- file.path(OUTPUT_BASE_DIR, INPUT_DIRS)
