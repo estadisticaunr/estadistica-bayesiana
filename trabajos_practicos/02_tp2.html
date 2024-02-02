@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -250,76 +284,134 @@ window.Quarto = {
 <section id="metropolis-hastings-en-1d" class="level1">
 <h1>Metropolis-Hastings en 1D</h1>
 <p>El algoritmo de Metropolis-Hastings (MH) permite generar muestras (pseudo-)aleatorias a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> que no necesariamente pertence a una familia de distribuciones conocida. El único requisito es que se pueda evaluar la función de densidad (o de masa de probabilidad) <span class="math inline">\(p^*(\theta)\)</span> en cualquier valor de <span class="math inline">\(\theta\)</span>, incluso cuando <span class="math inline">\(p^*(\theta)\)</span> sea impropia (es decir, incluso aunque sea desconocida la constante de normalización que hace que la integral en el soporte de la función sea igual a uno).</p>
-<!-- ::: {.callout-tip}
-## Algoritmo de Metropolis Hastings
-
-Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
-de una distribución de probabilidad $P$ con función de densidad $p$.
-
-1. Seleccionar un punto inicial $y^{(1)}$.
-
-1. Para cada $t\in \{1, \cdots, n\}$, repetir:
-
-    i.  **Proponer un nuevo valor**
-    
-        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
-        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
-        obtenida:
-    
-        $$
-        Y' \sim Q(y^{(t)})
-        $$
-    
-    i.  **Calcular la probabilidad de aceptación**
-
-        Calcular el cociente entre la función de densidad en el punto propuesto y en el
-        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
-        a 1, caso contrario es igual a 1.
-
-        $$
-        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
-        $$
-
-    i.  **Seleccionar el nuevo valor**
-
-        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
-        $y^{(t + 1)}$ de la siguiente manera:
-
-        $$
-        y^{(t + 1)} = \left\{
-        \begin{array}{ll}
-        y' & \text{si} \quad u \le \alpha \\
-        y^{(t)} & \text{si} \quad u > \alpha
-        \end{array}\right.
-        $$
-
-**Notas**
-
-El cálculo del cociente en la determinación de la probabilidad de aceptación es
-en realidad:
-
-$$
-\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
-$$
-
-donde $q$ es la función de densidad de la distribución de propuesta.
-
-Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
-simétrica alrededor de su media.
-::: -->
 <ol type="1">
-<li><p>Escriba una función que implemente el algoritmo de MH para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del algoritmo. Otorgue flexibilidad al algoritmo permitiendo elegir diferentes puntos de inicio y diferentes distribuciones de propuesta de transición: normal de una varianza dada y beta de una determinada moda y concentración (es decir, utilizando <a href="https://en.wikipedia.org/wiki/Beta_distribution#Mode_and_concentration">esta parametrización</a>).</p></li>
-<li><p>Utilizando la función propuesta, obtener 3000 muestras de la distribución dada por</p>
+<li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del procedimiento. Otorgue flexibilidad al algoritmo permitiendo elegir entre un punto de inicio arbitrario o al azar y utilizar distribuciones de propuesta de transición arbitrarias (por defecto, se utiliza una distribución normal estándar).</li>
+</ol>
+<p>La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza para modelar variables aleatorias con soporte en el intervalo <span class="math inline">\((0, 1)\)</span>. Si bien graficamente la forma de su función de densidad puede hacernos recordar a la distribución beta, vale mencionar que la distribución de Kumaraswamy resulta en una expresión matemática cuyo cómputo es más sencillo:</p>
 <p><span class="math display">\[
-g^*(x) =
-\begin{cases}
-    x^4 e^{-x} &amp; \text{si } x \geq 0 \\
-    0 &amp; \text{si } x&lt;0
-\end{cases}
+\begin{array}{lr}
+p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} &amp; \text{con } a, b &gt; 0
+\end{array}
 \]</span></p>
-<p>Compare las cadenas obtenidas al utilizar diversas distribuciones de propuesta de transición: tres normales de varianzas diferentes y tres betas de concentraciones diferentes. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, grafique la función de densidad y busque un punto conveniente.</p></li>
-<li><p>Utilizando cada una de las seis cadenas anteriores, compute la media de la distribución, los percentiles 5 y 95, y la esperanza de <span class="math inline">\(\sqrt{X}\)</span> sabiendo que <span class="math inline">\(X\)</span> se distribuye según <span class="math inline">\(g^*(x)\)</span></p></li>
-<li><p>Para cada uno de los seis casos anteriores, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>). Luego, estime el MCSE de los valores de <span class="math inline">\(\mathbb{E}(X)\)</span> para cada caso.</p>
+<ol start="2" type="1">
+<li><p>Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones de los parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> que crea convenientes.</p></li>
+<li><p>Utilizando la función construida en el punto <strong>1</strong>, obtenga 5000 muestras de una distribución de Kumaraswamy con parámetros <span class="math inline">\(a=6\)</span> y <span class="math inline">\(b=2\)</span>. Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede parametrizar según media <span class="math inline">\(\mu = \alpha / (\alpha + \beta)\)</span> y concentración <span class="math inline">\(\kappa = \alpha + \beta\)</span>.</p>
+<p>Compare las cadenas obtenidas al utilizar tres diferentes grados de concentración en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, obtenga un valor aleatorio de una distribución conocida que crea conveniente.</p></li>
+<li><p>Utilizando cada una de las cadenas anteriores, compute la media de la distribución y los percentiles 5 y 95 de <span class="math inline">\(X\)</span> y de <span class="math inline">\(\mathrm{logit}(X)\)</span>.</p></li>
+<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento y se obtienen 8 éxitos en 13 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
+<p><span class="math display">\[
+p(\theta) = 2 \theta \qquad \theta \in (0, 1)
+\]</span></p>
+<p>Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Además, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>) y el MCSE de la media <em>a posteriori</em> de la probabilidad de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución <em>a posteriori</em> y su media.</p></li>
+</ol>
+<section id="metropolis-hastings-en-2d" class="level2">
+<h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
+<p>Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de una dimensión, incluso cuando no se conoce la constante de normalización. Paradójicamente, los ejemplos trabajados a continuación también serán los que nos permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.</p>
+<p>La distribución normal multivariada es la generalización de la distribución normal univariada a múltiples dimensiones (mejor dicho, el caso en una dimensión es un caso particular de la distribución en múltiples dimensiones). La función de densidad de la distribución normal en <span class="math inline">\(k\)</span> dimensiones es:</p>
+<p><span class="math display">\[
+p(\boldsymbol{x} \mid \boldsymbol{\mu}, \Sigma) =
+    \frac{1}{(2\pi)^{k/2} |\Sigma|^{1/2}}
+    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
+\]</span></p>
+<ol start="6" type="1">
+<li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>). Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</p></li>
+<li><p>Utilice la función escrita en el punto anterior para obtenga muestras de una distribución normal bivariada con media <span class="math inline">\(\boldsymbol{\mu}^*\)</span> y matriz de covarianza <span class="math inline">\(\Sigma^*\)</span>. Determine una matriz de covarianza que crea conveniente para la distribución de propuesta. Justifique su decisión y valide la bondad del método mediante el uso de <em>traceplots</em> y las estadísticas que crea adecuadas.</p>
+<p><span class="math display">\[
+\begin{array}{lr}
+\boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} &amp; \Sigma^* = \begin{bmatrix} 1.35 &amp; 0.4 \\ 0.4 &amp; 2.4 \end{bmatrix}
+\end{array}
+\]</span></p></li>
+<li><p>Calculo de probabilidades</p></li>
+</ol>
+<p>La banana de Rosenbrock, funciones para hacer benchmark en optimizacion, etc.</p>
+<p>https://en.wikipedia.org/wiki/Rosenbrock_function</p>
+<ol start="9" type="1">
+<li><p>Obtencion de muestras, evaluación del proceso de muestreo.</p></li>
+<li><p>calculo de probabilidades con lsa muestras</p></li>
+<li><p>calculo de probabilidades en base a grilla, comparacion y conclusión.</p></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(u, v) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">=</span> <span class="fl">1.75</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> u <span class="sc">/</span> a</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> v <span class="sc">*</span> a <span class="sc">+</span> a <span class="sc">*</span> b <span class="sc">+</span> (u <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> a <span class="sc">^</span> <span class="dv">2</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">exp</span>(<span class="sc">-</span>(x <span class="sc">^</span> <span class="dv">2</span> <span class="sc">-</span> x <span class="sc">*</span> y <span class="sc">+</span> y <span class="sc">^</span> <span class="dv">2</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">crossing</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">f =</span> purrr<span class="sc">::</span><span class="fu">map2_dbl</span>(x1, x2, <span class="sc">~</span> <span class="fu">f</span>(.x, .y))) <span class="sc">|&gt;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">fill =</span> f)) <span class="sc">+</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_contour</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">z =</span> f), <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">7</span>) <span class="sc">+</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02_tp2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figcaption>Función de densidad de la que se desean obtener muestras</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="apéndice-para-mover-a-teoría" class="level1">
+<h1>Apéndice (para mover a teoría)</h1>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Algoritmo de Metropolis Hastings
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se desea generar una muestra de valores <span class="math inline">\(\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}\)</span> a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> con función de densidad <span class="math inline">\(p\)</span>.</p>
+<ol type="1">
+<li><p>Seleccionar un punto inicial <span class="math inline">\(y^{(1)}\)</span>.</p></li>
+<li><p>Para cada <span class="math inline">\(t\in \{1, \cdots, n\}\)</span>, repetir:</p>
+<ol type="i">
+<li><p><strong>Proponer un nuevo valor</strong></p>
+<p>Obtener un valor aleatorio <span class="math inline">\(y'\)</span> de una variable <span class="math inline">\(Y'\)</span> cuya distribución está dada por la distribución de propuesta <span class="math inline">\(Q\)</span> y el valor de la última muestra obtenida:</p>
+<p><span class="math display">\[
+Y' \sim Q(y^{(t)})
+\]</span></p></li>
+<li><p><strong>Calcular la probabilidad de aceptación</strong></p>
+<p>Calcular el cociente entre la función de densidad en el punto propuesto y en el punto actual. La probabilidad de aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1.</p>
+<p><span class="math display">\[
+\alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+\]</span></p></li>
+<li><p><strong>Seleccionar el nuevo valor</strong></p>
+<p>Generar un valor aleatorio <span class="math inline">\(u\)</span> de una distribución <span class="math inline">\(\mathcal{U}(0, 1)\)</span> y determinar <span class="math inline">\(y^{(t + 1)}\)</span> de la siguiente manera:</p>
+<p><span class="math display">\[
+y^{(t + 1)} = \left\{
+\begin{array}{ll}
+y' &amp; \text{si} \quad u \le \alpha \\
+y^{(t)} &amp; \text{si} \quad u &gt; \alpha
+\end{array}\right.
+\]</span></p></li>
+</ol></li>
+</ol>
+<p><strong>Notas</strong></p>
+<p>El cálculo del cociente en la determinación de la probabilidad de aceptación es en realidad:</p>
+<p><span class="math display">\[
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+\]</span></p>
+<p>donde <span class="math inline">\(q\)</span> es la función de densidad de la distribución de propuesta.</p>
+<p>Esta se simplifica a la expresión utilizada en el algoritmo cuando <span class="math inline">\(q\)</span> es una función simétrica alrededor de su media.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -347,126 +439,14 @@ g^*(x) =
 </div>
 <div class="callout-body-container callout-body">
 <p>Por el Teorema Central del Límite sabemos que, si <span class="math inline">\(\bar{X}_N\)</span> es el promedio de <span class="math inline">\(N\)</span> observaciones independientes e idénticamente distribuidas, entonces <span class="math inline">\(\sqrt{N}(\bar{X}_N-\mu)\)</span> converge en distribución a <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> cuando <span class="math inline">\(N\)</span> tiende a infinito, donde <span class="math inline">\(\mu\)</span> es la media de la distribución de las <span class="math inline">\(X_i\)</span> y <span class="math inline">\(\sigma\)</span> es su desvío estándar. Si <span class="math inline">\(\sigma\)</span> se estima por <span class="math inline">\(\hat{\sigma}\)</span>, el término <span class="math inline">\(\frac{\sigma}{\sqrt{N}}\)</span> se conoce como error estándar.</p>
-<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}{X}\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}\]</span></p>
-</div>
-</div></li>
-<li><p>Para cada uno de los casos anteriores de distribución propuesta, obtenga cinco cadenas que partan de diferentes puntos iniciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Calcule el estadístico de Gelman-Rubin <span class="math inline">\(\hat{R}\)</span></p></li>
-</ol>
-<!--# https://bookdown.org/rdpeng/advstatcomp/monitoring-convergence.html -->
-<ol start="6" type="1">
-<li><p>Elija la mejor distribución de probabilidad para transiciones que le permita tomar muestras de la función de densidad:</p>
-<p><span class="math display">\[
-h^*(x) = e^{-\frac{4}{10} (x - \frac{4}{10})^2 - \frac{2}{25}x^4}
-\]</span></p></li>
-<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento se obtienen 6 éxitos en 10 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
-<p><span class="math display">\[
-p(\theta) = 2 \theta \qquad \theta \in [0,1]
-\]</span></p></li>
-</ol>
-<section id="metropolis-hastings-en-2d" class="level2">
-<h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
-<p>Se desean tomar muestras de una normal bivariada asimétrica cuya función de densidad viene dada por</p>
-<p><span class="math display">\[
-f(\mathbf{x}) =
-    2\ \phi_2(\mathbf{x} \mid \mathbf{0}, \pmb{\Omega})
-    \ \Phi(\pmb{\alpha}^T\mathbf{x})
-    \qquad \mathbf{x} \in \mathbb{R}^2
+<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}({X})\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[
+MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
 \]</span></p>
-<p>siendo <span class="math inline">\(\phi_2(\mathbf{x}\mid\mathbf{0},\mathbf{\Omega})\)</span> la función de densidad de la normal bivariada de media <span class="math inline">\(\mathbf{0}\)</span> y matriz de covarianza <span class="math inline">\(\mathbf{\Omega}\)</span>, <span class="math inline">\(\Phi(\pmb{\alpha}^T\mathbf{x})\)</span> es la función de probabilidad acumulada de la normal estándar <span class="math inline">\(\mathcal{N}(0,1)\)</span> y <span class="math inline">\(\pmb{\alpha} \in \mathbb{R}^2\)</span> es un vector de parámetros.</p>
-<!--# http://gregorygundersen.com/blog/2020/12/29/multivariate-skew-normal/ -->
-<p>En este caso, se tiene:</p>
-<p><span class="math display">\[
-\mathbf{\Omega} = \begin{bmatrix}1.5 &amp; 0.6 \\ 0.6 &amp; 1.5 \end{bmatrix}
-\]</span></p>
-<p>y</p>
-<p><span class="math display">\[
-\pmb{\alpha} = [2 \quad 0]
-\]</span></p>
-<div class="cell">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="02_tp2_files/figure-html/grafico-2d-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption>Función de densidad de la que se desean obtener muestras</figcaption>
-</figure>
 </div>
 </div>
-</div>
-<ol type="1">
-<li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable. Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</li>
-</ol>
-<p>Se utilizará una normal bivariada para proponer un salto en el algoritmo de Metropolis-Hastings (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>. Se explorará el efecto de diferentes distribuciones de probabilidad para el salto, en función de diferentes matrices de covarianza <span class="math inline">\(\mathbf{\Sigma}\)</span>. Si se representa a <span class="math inline">\(\mathbf{\Sigma}\)</span> de la siguiente manera</p>
-<p><span class="math display">\[
-\mathbf{\Sigma} =
-    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
-    \begin{bmatrix} 1 &amp; \rho \\ \rho &amp; 1\end{bmatrix}  
-    \begin{bmatrix} \sigma_1 &amp; 0 \\ 0 &amp; \sigma_2 \end{bmatrix}
-\]</span></p>
-<p>donde <span class="math inline">\(\sigma_i\)</span> representa el desvío estándar de la componente <span class="math inline">\(i\)</span> y <span class="math inline">\(\rho\)</span> la correlación entre las variables <span class="math inline">\(X_1\)</span> y <span class="math inline">\(X_2\)</span>, entonces se deberán ensayar los siguientes casos:</p>
-<ul>
-<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
-<li><span class="math inline">\(\sigma_1 &gt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
-<li><span class="math inline">\(\sigma_1 &lt; \sigma_2\)</span> y <span class="math inline">\(\rho = 0\)</span></li>
-<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &gt; 0\)</span></li>
-<li><span class="math inline">\(\sigma_1 = \sigma_2\)</span> y <span class="math inline">\(\rho &lt; 0\)</span></li>
-</ul>
-<ol start="2" type="1">
-<li>Para al menos dos de los cinco casos anteriores, comparar las trayectorias seguidas por las cadenas al obtener muestras de <span class="math inline">\(f(x)\)</span>.</li>
-</ol>
-<!-- 3.  Considere la familia de distribucion normal bivariada en dos dimensiones
-    $\mathcal{N}(\pmb{\mu} = \mathbf{0}, \pmb{\Sigma})$ y las siguientes matrices de 
-    covarianza
-
-    $$
-    \begin{array}{cc}
-        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
-        \\ \\ 
-        \pmb{\Sigma}_3 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_4 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
-        \\ \\
-        \pmb{\Sigma}_5 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_6 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
-    \end{array}
-    $$
-
-    La función de densidad está dada por
-
-    $$
-    f(\mathbf{x} | \pmb{\mu} = \mathbf{0}, \pmb{\Sigma}) 
-    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
-    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
-    $$
-
-    y se puede visualizar para las diferentes matrices de covarianza en el siguiente
-    gráfico
 
 
 
-    ::: {.cell layout-align="center"}
-    ::: {.cell-output-display}
-    ![](02_tp2_files/figure-html/plot-matrix-of-gaussians-1.png){fig-align='center' width=768}
-    :::
-    :::
-
-
-
-    Responda a las siguientes consignas:
-
-    i. Utilice el algoritmo Metropolis-Hastings para obtener $n=10000$ muestras de
-    cada una de las distribuciones.
-    i. Calcule la probabilidad de aceptación en cada uno de los casos.
-    i. Grafique la función de autocorrelación y calcule la cantidad de muestras efectivas.
-    i. Analice como varía la probabilidad de aceptación y la cantidad de muestras 
-    efectivas según las diferentes características de la distribución objetivo.
-    i. ¿Cuáles son las ventajas y desventajas del algoritmo de Metropolis-Hastings según
-    lo que puede concluir a partir de esta aplicación? Comente dificultades con las que
-    se haya encontrado.  -->
-<!-- ## Aplicación: ¿tiempo de reacción humano? ¿proponer un prior para sigma y uno para mu? -->
-
-
-
-</section>
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
