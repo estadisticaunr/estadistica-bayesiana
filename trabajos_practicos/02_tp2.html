@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP2: WIP</title>
+<title>Estadística Bayesiana - TP2: Metropolis-Hastings</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,61 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -264,7 +210,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP2: WIP</h1>
+<h1 class="title">TP2: Metropolis-Hastings</h1>
 </div>
 
 
@@ -302,158 +248,178 @@ p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} &amp; \text{con } a, b &gt;
 <p><span class="math display">\[
 p(\theta) = 2 \theta \qquad \theta \in (0, 1)
 \]</span></p>
-<p>Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Además, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{eff}\)</span>) y el MCSE de la media <em>a posteriori</em> de la probabilidad de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución <em>a posteriori</em> y su media.</p></li>
+<p>Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Además, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{\mathrm{eff}}\)</span>) y el MCSE de la media <em>a posteriori</em> de la probabilidad de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución <em>a posteriori</em> y su media.</p></li>
 </ol>
 <section id="metropolis-hastings-en-2d" class="level2">
 <h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
 <p>Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de una dimensión, incluso cuando no se conoce la constante de normalización. Paradójicamente, los ejemplos trabajados a continuación también serán los que nos permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.</p>
+<section id="normal-multivariada" class="level3">
+<h3 class="anchored" data-anchor-id="normal-multivariada">Normal multivariada</h3>
 <p>La distribución normal multivariada es la generalización de la distribución normal univariada a múltiples dimensiones (mejor dicho, el caso en una dimensión es un caso particular de la distribución en múltiples dimensiones). La función de densidad de la distribución normal en <span class="math inline">\(k\)</span> dimensiones es:</p>
 <p><span class="math display">\[
-p(\boldsymbol{x} \mid \boldsymbol{\mu}, \Sigma) =
-    \frac{1}{(2\pi)^{k/2} |\Sigma|^{1/2}}
-    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
+p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) =
+    \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}}
+    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
 \]</span></p>
+<p>donde <span class="math inline">\(\boldsymbol{\mu}\)</span> es el vector de medias y <span class="math inline">\(\boldsymbol{\Sigma}\)</span> la matriz de covarianza.</p>
 <ol start="6" type="1">
 <li><p>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una función de probabilidad bivariada dada. Separe en funciones cada una de los pasos del algoritmo. La probabilidad de salto será normal bivariada de matriz de covarianza variable (utilizar para ello la función <code>rmvnorm</code> del paquete <code>{mvtnorm}</code>). Otorgue flexibilidad al algoritmo haciendo que reciba como argumento la matriz de covarianza de la probabilidad de transición.</p></li>
-<li><p>Utilice la función escrita en el punto anterior para obtenga muestras de una distribución normal bivariada con media <span class="math inline">\(\boldsymbol{\mu}^*\)</span> y matriz de covarianza <span class="math inline">\(\Sigma^*\)</span>. Determine una matriz de covarianza que crea conveniente para la distribución de propuesta. Justifique su decisión y valide la bondad del método mediante el uso de <em>traceplots</em> y las estadísticas que crea adecuadas.</p>
+<li><p>Utilice la función escrita en el punto anterior para obtenga muestras de una distribución normal bivariada con media <span class="math inline">\(\boldsymbol{\mu}^*\)</span> y matriz de covarianza <span class="math inline">\(\boldsymbol{\Sigma}^*\)</span>. Determine una matriz de covarianza que crea conveniente para la distribución de propuesta. Justifique su decisión y valide la bondad del método mediante el uso de <em>traceplots</em> y las estadísticas que crea adecuadas.</p>
 <p><span class="math display">\[
 \begin{array}{lr}
-\boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} &amp; \Sigma^* = \begin{bmatrix} 1.35 &amp; 0.4 \\ 0.4 &amp; 2.4 \end{bmatrix}
+    \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix}
+    &amp; \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 &amp; 0.4 \\ 0.4 &amp; 2.4 \end{bmatrix}
 \end{array}
 \]</span></p></li>
-<li><p>Calculo de probabilidades</p></li>
+<li><p>Estime las siguientes probabilidades utilizando las muestras:</p>
+<ol type="i">
+<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &lt; 0)\)</span></li>
+<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &gt; 2)\)</span></li>
+<li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 0.4, X_2 &gt; 0.75)\)</span></li>
 </ol>
-<p>La banana de Rosenbrock, funciones para hacer benchmark en optimizacion, etc.</p>
-<p>https://en.wikipedia.org/wiki/Rosenbrock_function</p>
-<ol start="9" type="1">
-<li><p>Obtencion de muestras, evaluación del proceso de muestreo.</p></li>
-<li><p>calculo de probabilidades con lsa muestras</p></li>
-<li><p>calculo de probabilidades en base a grilla, comparacion y conclusión.</p></li>
+<p>Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente (función de distribución, integración manual, integración numérica, monte carlo, etc.), compare con las obtenidas con las muestras obtenidas con MH y concluya.</p></li>
 </ol>
+</section>
+<section id="función-de-rosenbrock" class="level3">
+<h3 class="anchored" data-anchor-id="función-de-rosenbrock">Función de Rosenbrock</h3>
+<p>La <a href="https://es.wikipedia.org/wiki/Funci%C3%B3n_de_Rosenbrock">función de Rosenbrock</a>, a veces llamada el “valle de Rosenbrock”, y comunmente conocida como la “banana de Rosenbrock” 🍌, es una función matemática utilizada frecuentemente como un problema de optimización y prueba para algoritmos de optimización numérica.</p>
+<p>La función está definida por: <span class="math display">\[
+f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
+\]</span></p>
+<p>y cuenta con un mínimo global en <span class="math inline">\((x, y) = (a, a^2)\)</span>, que satisface <span class="math inline">\(f(a, a^2) = 0\)</span>.</p>
+<p>Debido a su forma peculiar, la función de Rosenbrock presenta desafíos particulares para los algoritmos de optimización, ya que tiene un valle largo y estrecho en el que la convergencia puede ser lenta.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(u, v) {</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    a <span class="ot">=</span> <span class="fl">1.75</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    b <span class="ot">=</span> <span class="fl">0.5</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    x <span class="ot">&lt;-</span> u <span class="sc">/</span> a</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    y <span class="ot">&lt;-</span> v <span class="sc">*</span> a <span class="sc">+</span> a <span class="sc">*</span> b <span class="sc">+</span> (u <span class="sc">^</span> <span class="dv">2</span> <span class="sc">+</span> a <span class="sc">^</span> <span class="dv">2</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">exp</span>(<span class="sc">-</span>(x <span class="sc">^</span> <span class="dv">2</span> <span class="sc">-</span> x <span class="sc">*</span> y <span class="sc">+</span> y <span class="sc">^</span> <span class="dv">2</span>))</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">8</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="at">length.out =</span> <span class="dv">100</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">crossing</span>(<span class="at">x1 =</span> x1, <span class="at">x2 =</span> x2)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">f =</span> purrr<span class="sc">::</span><span class="fu">map2_dbl</span>(x1, x2, <span class="sc">~</span> <span class="fu">f</span>(.x, .y))) <span class="sc">|&gt;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_raster</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">fill =</span> f)) <span class="sc">+</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_contour</span>(<span class="fu">aes</span>(<span class="at">x =</span> x1, <span class="at">y =</span> x2, <span class="at">z =</span> f), <span class="at">col =</span> <span class="st">"white"</span>, <span class="at">bins =</span> <span class="dv">7</span>) <span class="sc">+</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>)) <span class="sc">+</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    viridis<span class="sc">::</span><span class="fu">scale_fill_viridis</span>()</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="02_tp2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
-<figcaption>Función de densidad de la que se desean obtener muestras</figcaption>
+<p><img src="imgs/rosenbrock2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Función de Rosenbrock</figcaption>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="apéndice-para-mover-a-teoría" class="level1">
-<h1>Apéndice (para mover a teoría)</h1>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo de la estadística bayesiana, ya que en ciertos escenarios, la densidad del <em>a posteriori</em> toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de este fenómeno es la función <span class="math inline">\(p^*\)</span>:</p>
+<p><span class="math display">\[
+p^*(x, y \mid a, b) = \exp \left[-\left((a - x) ^ 2 + b(y - x^2) ^ 2\right) \right]
+\]</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02_tp2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="768"></p>
+<figcaption>Función de densidad de la que se desean obtener muestras con <span class="math inline">\(a = 0.5\)</span> y <span class="math inline">\(b = 5\)</span></figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Algoritmo de Metropolis Hastings
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Se desea generar una muestra de valores <span class="math inline">\(\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}\)</span> a partir de una distribución de probabilidad <span class="math inline">\(P\)</span> con función de densidad <span class="math inline">\(p\)</span>.</p>
-<ol type="1">
-<li><p>Seleccionar un punto inicial <span class="math inline">\(y^{(1)}\)</span>.</p></li>
-<li><p>Para cada <span class="math inline">\(t\in \{1, \cdots, n\}\)</span>, repetir:</p>
+<ol start="9" type="1">
+<li><p>Mediante la función implementada en el punto <strong>6</strong> obtenga muestras de la distribución <em>a posteriori</em> determinada por <span class="math inline">\(p^*\)</span> con <span class="math inline">\(a=0.5\)</span> y <span class="math inline">\(b=5\)</span>. Proponga y utilice tres matrices de covarianza distintas para la distribución de propuesta. Para al menos dos de los casos, compare las trayectorias seguidas por las cadenas en el proceso de muestreo. En todos los casos, calcule la probabilidad de aceptación y muestre la función de autocorrelación.</p></li>
+<li><p>Con el conjunto de muestras que crea mas conveniente, estime las siguientes probabilidades:</p>
 <ol type="i">
-<li><p><strong>Proponer un nuevo valor</strong></p>
-<p>Obtener un valor aleatorio <span class="math inline">\(y'\)</span> de una variable <span class="math inline">\(Y'\)</span> cuya distribución está dada por la distribución de propuesta <span class="math inline">\(Q\)</span> y el valor de la última muestra obtenida:</p>
-<p><span class="math display">\[
-Y' \sim Q(y^{(t)})
-\]</span></p></li>
-<li><p><strong>Calcular la probabilidad de aceptación</strong></p>
-<p>Calcular el cociente entre la función de densidad en el punto propuesto y en el punto actual. La probabilidad de aceptación es igual a este cociente si es menor a 1, caso contrario es igual a 1.</p>
-<p><span class="math display">\[
-\alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
-\]</span></p></li>
-<li><p><strong>Seleccionar el nuevo valor</strong></p>
-<p>Generar un valor aleatorio <span class="math inline">\(u\)</span> de una distribución <span class="math inline">\(\mathcal{U}(0, 1)\)</span> y determinar <span class="math inline">\(y^{(t + 1)}\)</span> de la siguiente manera:</p>
-<p><span class="math display">\[
-y^{(t + 1)} = \left\{
-\begin{array}{ll}
-y' &amp; \text{si} \quad u \le \alpha \\
-y^{(t)} &amp; \text{si} \quad u &gt; \alpha
-\end{array}\right.
-\]</span></p></li>
+<li><span class="math inline">\(\mathrm{Pr}(0 &lt; X_1 &lt; 1, 0 &lt; X_2 &lt; 1)\)</span></li>
+<li><span class="math inline">\(\mathrm{Pr}(-1 &lt; X_1 &lt; 0, 0 &lt; X_2 &lt; 1)\)</span></li>
+<li><span class="math inline">\(\mathrm{Pr}(1 &lt; X_1 &lt; 2, 2 &lt; X_2 &lt; 3)\)</span></li>
 </ol></li>
+<li><p>Finalmente, calcule las mismas probabilidades utilizando el método que crea mas conveniente (integración manual, integración numérica, método de la grilla, etc.) y concluya sobre los resultados en este experimento en particular y sobre la utilidad del algoritmo de Metropolis-Hastings en general.</p></li>
 </ol>
-<p><strong>Notas</strong></p>
-<p>El cálculo del cociente en la determinación de la probabilidad de aceptación es en realidad:</p>
-<p><span class="math display">\[
-\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
-\]</span></p>
-<p>donde <span class="math inline">\(q\)</span> es la función de densidad de la distribución de propuesta.</p>
-<p>Esta se simplifica a la expresión utilizada en el algoritmo cuando <span class="math inline">\(q\)</span> es una función simétrica alrededor de su media.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<em>Effective sample size</em> (ESS)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>El número efectivo de muestras <span class="math inline">\(N_{eff}\)</span> es el número de muestras independientes que tienen el mismo <em>poder de estimación</em> que <span class="math inline">\(S\)</span> muestras correlacionadas.</p>
-<p>Este valor puede aproximarse por:</p>
-<p><span class="math display">\[N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}\]</span></p>
-<p>Notar que la suma infinita del denominador empieza en <span class="math inline">\(k=1\)</span> (y no en <span class="math inline">\(k=0\)</span>, donde <span class="math inline">\(ACF(0)=1\)</span>). Además, en la práctica, una regla para truncar la <span class="math inline">\(ACF\)</span> es hacerlo a partir del primer <span class="math inline">\(k\)</span> valor donde <span class="math inline">\(ACF(k)&lt;0.05\)</span> <span class="citation" data-cites="Kruschke2014">(<a href="#ref-Kruschke2014" role="doc-biblioref">Kruschke 2014, 184</a>)</span>.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<em>Montecarlo standard error</em> (MCSE)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Por el Teorema Central del Límite sabemos que, si <span class="math inline">\(\bar{X}_N\)</span> es el promedio de <span class="math inline">\(N\)</span> observaciones independientes e idénticamente distribuidas, entonces <span class="math inline">\(\sqrt{N}(\bar{X}_N-\mu)\)</span> converge en distribución a <span class="math inline">\(\mathcal{N}(0,\sigma^2)\)</span> cuando <span class="math inline">\(N\)</span> tiende a infinito, donde <span class="math inline">\(\mu\)</span> es la media de la distribución de las <span class="math inline">\(X_i\)</span> y <span class="math inline">\(\sigma\)</span> es su desvío estándar. Si <span class="math inline">\(\sigma\)</span> se estima por <span class="math inline">\(\hat{\sigma}\)</span>, el término <span class="math inline">\(\frac{\sigma}{\sqrt{N}}\)</span> se conoce como error estándar.</p>
-<p>Cuando se realiza integración por Montecarlo y se estima <span class="math inline">\(\mathbb{E}({X})\)</span> con <span class="math inline">\(N_{eff}\)</span> muestras dependientes que se comportan como <span class="math inline">\(N\)</span> muestras independientes, el error estándar se aproxima por: <span class="math display">\[
-MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
-\]</span></p>
-</div>
-</div>
+<!--
+# Apéndice (para mover a teoría)
 
+::: {.callout-tip}
+## Algoritmo de Metropolis Hastings
+
+Se desea generar una muestra de valores $\{y^{(1)}, y^{(2)}, \cdots, y^{(n)} \}$ a partir
+de una distribución de probabilidad $P$ con función de densidad $p$.
+
+1. Seleccionar un punto inicial $y^{(1)}$.
+
+1. Para cada $t\in \{1, \cdots, n\}$, repetir:
+
+    i.  **Proponer un nuevo valor**
+    
+        Obtener un valor aleatorio $y'$ de una variable $Y'$ cuya distribución está
+        dada por la distribución de propuesta $Q$ y el valor de la última muestra 
+        obtenida:
+    
+        $$
+        Y' \sim Q(y^{(t)})
+        $$
+    
+    i.  **Calcular la probabilidad de aceptación**
+
+        Calcular el cociente entre la función de densidad en el punto propuesto y en el
+        punto actual. La probabilidad de aceptación es igual a este cociente si es menor 
+        a 1, caso contrario es igual a 1.
+
+        $$
+        \alpha = \min \left\{ 1, \frac{p(y')}{p(y)} \right\}
+        $$
+
+    i.  **Seleccionar el nuevo valor**
+
+        Generar un valor aleatorio $u$ de una distribución $\mathcal{U}(0, 1)$ y determinar
+        $y^{(t + 1)}$ de la siguiente manera:
+
+        $$
+        y^{(t + 1)} = \left\{
+        \begin{array}{ll}
+        y' & \text{si} \quad u \le \alpha \\
+        y^{(t)} & \text{si} \quad u > \alpha
+        \end{array}\right.
+        $$
+
+**Notas**
+
+El cálculo del cociente en la determinación de la probabilidad de aceptación es
+en realidad:
+
+$$
+\frac{p(y')q(y^{(t)} \mid y')}{p(y)q(y' \mid y^{(t)})}
+$$
+
+donde $q$ es la función de densidad de la distribución de propuesta.
+
+Esta se simplifica a la expresión utilizada en el algoritmo cuando $q$ es una función 
+simétrica alrededor de su media.
+:::
+
+
+::: {.callout-tip}
+## _Effective sample size_ (ESS)
+
+El número efectivo de muestras $N_{eff}$ es el número de muestras independientes que tienen el mismo _poder de estimación_ que $S$ muestras correlacionadas.
+
+Este valor puede aproximarse por:
+
+$$N_{eff} = \frac{S}{1 + 2 \sum_{k=1}^\infty ACF(k)}$$
+
+Notar que la suma infinita del denominador empieza en $k=1$ (y no en $k=0$, donde $ACF(0)=1$). Además, en la práctica, una regla para truncar la $ACF$ es hacerlo a partir del primer $k$ valor donde $ACF(k)<0.05$ [@Kruschke2014, p. 184].
+:::
+
+::: {.callout-tip}
+## _Montecarlo standard error_ (MCSE)
+
+Por el Teorema Central del Límite sabemos que, si $\bar{X}_N$ es el promedio de $N$ observaciones 
+independientes e idénticamente distribuidas, entonces $\sqrt{N}(\bar{X}_N-\mu)$ converge en distribución 
+a $\mathcal{N}(0,\sigma^2)$ cuando $N$ tiende a infinito, donde $\mu$ es la media de la distribución
+de las $X_i$ y $\sigma$ es su desvío estándar. Si $\sigma$ se estima por $\hat{\sigma}$, el término 
+$\frac{\sigma}{\sqrt{N}}$ se conoce como error estándar.
+
+Cuando se realiza integración por Montecarlo y se estima $\mathbb{E}({X})$ con $N_{eff}$ muestras dependientes
+que se comportan como $N$ muestras independientes, el error estándar se aproxima por:
+$$
+MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
+$$
+:::
+
+-->
 
 
 </section>
+</section>
+</section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referencias</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Kruschke2014" class="csl-entry" role="listitem">
-Kruschke, John. 2014. <em>Doing Bayesian Data Analysis: A Tutorial with R, JAGS, and Stan</em>. 2nd edition. Academic Press.
-</div>
-</div></section></div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
