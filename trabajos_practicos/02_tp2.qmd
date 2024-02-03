@@ -1,5 +1,5 @@
 ---
-title: "TP2: WIP"
+title: "TP2: Metropolis-Hastings"
 practica: "Trabajo Práctico 2"
 ---
 
@@ -70,9 +70,10 @@ $$
 
     Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos
     inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte 
-    muetras iniciales. Además, estime el tamaño efectivo de muestra ($ESS$ o $N_{eff}$)
-    y el MCSE de la media _a posteriori_ de la probabilidad de éxito. Concluya sobre la
-    bondad de la aproximación obtenida de la distribución _a posteriori_ y su media.
+    muetras iniciales. Además, estime el tamaño efectivo de muestra 
+    ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
+    de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
+    _a posteriori_ y su media.
 
 
 ## Metropolis-Hastings en 2D
@@ -83,16 +84,20 @@ una dimensión, incluso cuando no se conoce la constante de normalización.
 Paradójicamente, los ejemplos trabajados a continuación también serán los que nos 
 permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.
 
+### Normal multivariada
+
 La distribución normal multivariada es la generalización de la distribución normal 
 univariada a múltiples dimensiones (mejor dicho, el caso en una dimensión es un caso 
 particular de la distribución en múltiples dimensiones). La función de densidad de 
 la distribución normal en $k$ dimensiones es:
 
 $$
-p(\boldsymbol{x} \mid \boldsymbol{\mu}, \Sigma) = 
-    \frac{1}{(2\pi)^{k/2} |\Sigma|^{1/2}} 
-    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \Sigma^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
+p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) = 
+    \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}} 
+    \exp\left(-\frac{1}{2} (\boldsymbol{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1} (\boldsymbol{x} - \boldsymbol{\mu})\right)
 $$
+
+donde $\boldsymbol{\mu}$ es el vector de medias y $\boldsymbol{\Sigma}$ la matriz de covarianza.
 
 6.  Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar 
     muestras de una función de probabilidad bivariada dada. Separe en funciones cada una 
@@ -103,61 +108,115 @@ $$
 
 7.  Utilice la función escrita en el punto anterior para obtenga muestras de una 
     distribución normal bivariada con media $\boldsymbol{\mu}^*$ y matriz de covarianza 
-    $\Sigma^*$. Determine una matriz de covarianza que crea conveniente para la 
-    distribución de propuesta. Justifique su decisión y valide la bondad del método mediante
-    el uso de _traceplots_ y las estadísticas que crea adecuadas.
+    $\boldsymbol{\Sigma}^*$. Determine una matriz de covarianza que crea conveniente para la 
+    distribución de propuesta. Justifique su decisión y valide la bondad del método 
+    mediante el uso de _traceplots_ y las estadísticas que crea adecuadas.
     
     $$
     \begin{array}{lr}
-    \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} & \Sigma^* = \begin{bmatrix} 1.35 & 0.4 \\ 0.4 & 2.4 \end{bmatrix}
+        \boldsymbol{\mu}^* = \begin{bmatrix} 0.4 \\ 0.75 \end{bmatrix} 
+        & \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 & 0.4 \\ 0.4 & 2.4 \end{bmatrix}
     \end{array}
     $$
 
-8.   Calculo de probabilidades
+8.  Estime las siguientes probabilidades utilizando las muestras:
 
-La banana de Rosenbrock, funciones para hacer benchmark en optimizacion, etc.
+    i.  $\mathrm{Pr}(X_1 > 1, X_2 < 0)$
+    i.  $\mathrm{Pr}(X_1 > 1, X_2 > 2)$
+    i.  $\mathrm{Pr}(X_1 > 0.4, X_2 > 0.75)$
 
-https://en.wikipedia.org/wiki/Rosenbrock_function
+    Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente 
+    (función de distribución, integración manual, integración numérica, monte carlo, etc.),
+    compare con las obtenidas con las muestras obtenidas con MH y concluya.
 
-9.  Obtencion de muestras, evaluación del proceso de muestreo.
 
-10. calculo de probabilidades con lsa muestras
+### Función de Rosenbrock 
 
-11. calculo de probabilidades en base a grilla, comparacion y conclusión.
+La [función de Rosenbrock](https://es.wikipedia.org/wiki/Funci%C3%B3n_de_Rosenbrock), 
+a veces llamada el "valle de Rosenbrock", y comunmente conocida como la 
+"banana de Rosenbrock" 🍌, es una función matemática utilizada frecuentemente como un 
+problema de optimización y prueba para algoritmos de optimización numérica. 
+
+La función está definida por:
+$$
+f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
+$$
+
+y cuenta con un mínimo global en $(x, y) = (a, a^2)$, que satisface $f(a, a^2) = 0$.
+
+Debido a su forma peculiar, la función de Rosenbrock presenta desafíos particulares para 
+los algoritmos de optimización, ya que tiene un valle largo y estrecho en el que la 
+convergencia puede ser lenta.
+
+```{r}
+#| echo: false
+#| out-width: 60%
+#| fig-align: center
+#| fig-cap: "Función de Rosenbrock"
+knitr::include_graphics(file.path("imgs", "rosenbrock2.png"))
+```
+
+Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo
+de la estadística bayesiana, ya que en ciertos escenarios, la densidad del _a posteriori_ 
+toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de
+este fenómeno es la función $p^*$:
+
+$$
+p^*(x, y \mid a, b) = \exp \left[-\left((a - x) ^ 2 + b(y - x^2) ^ 2\right) \right]
+$$
 
 
 ```{r}
+#| echo: false
 #| fig-align: center
 #| fig-width: 8
 #| fig-height: 5
-#| fig-cap: "Función de densidad de la que se desean obtener muestras"
+#| fig-cap: Función de densidad de la que se desean obtener muestras con $a = 0.5$ y $b = 5$
 
-library(ggplot2)
-library(dplyr)
-
-f <- function(u, v) {
-    a = 1.75
-    b = 0.5
-    x <- u / a
-    y <- v * a + a * b + (u ^ 2 + a ^ 2)
-    exp(-(x ^ 2 - x * y + y ^ 2))
+f <- function(x, y) {
+    a <- 0.5
+    b <- 5
+    exp(- ((a - x) ^ 2 + b * (y - x^2) ^ 2))
 }
 
-x1 <- seq(-4, 4, length.out = 100)
-x2 <- seq(-8, -1, length.out = 100)
+x1 <- seq(-2.5, 2.5, length.out = 100)
+x2 <- seq(-1, 6, length.out = 100)
 
 data <- tidyr::crossing(x1 = x1, x2 = x2)
 data |>
     mutate(f = purrr::map2_dbl(x1, x2, ~ f(.x, .y))) |>
     ggplot() + 
     geom_raster(aes(x = x1, y = x2, fill = f)) +
-    stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 7) +
+    stat_contour(aes(x = x1, y = x2, z = f), col = "white", bins = 8) +
+    # geom_hline(yintercept = seq(-1, 6, by = 1)) +
+    # geom_vline(xintercept = seq(-2, 2), by = 0.25) +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0)) +
+    labs(x = "x", y = "y", fill = expression(p^"*" ~ "(x, y | a, b)")) +
     viridis::scale_fill_viridis()
 ```
 
+9.  Mediante la función implementada en el punto **6** obtenga muestras de la 
+    distribución _a posteriori_ determinada por $p^*$ con $a=0.5$ y $b=5$. 
+    Proponga y utilice tres matrices de covarianza distintas para la distribución de 
+    propuesta. Para al menos dos de los casos, compare las trayectorias seguidas por las 
+    cadenas en el proceso de muestreo.  En todos los casos, calcule la probabilidad de
+    aceptación y muestre la función de autocorrelación.
 
+10. Con el conjunto de muestras que crea mas conveniente, estime las siguientes
+    probabilidades:
+
+    i.  $\mathrm{Pr}(0 < X_1 < 1, 0 < X_2 < 1)$
+    i.  $\mathrm{Pr}(-1 < X_1 < 0, 0 < X_2 < 1)$
+    i.  $\mathrm{Pr}(1 < X_1 < 2, 2 < X_2 < 3)$
+
+11. Finalmente, calcule las mismas probabilidades utilizando el método que crea mas 
+    conveniente (integración manual, integración numérica, método de la grilla, etc.) y
+    concluya sobre los resultados en este experimento en particular y sobre la utilidad
+    del algoritmo de Metropolis-Hastings en general.
+
+
+<!--
 # Apéndice (para mover a teoría)
 
 ::: {.callout-tip}
@@ -247,3 +306,4 @@ MCSE = \frac{\hat{\sigma}}{\sqrt{N_{eff}}}
 $$
 :::
 
+-->
