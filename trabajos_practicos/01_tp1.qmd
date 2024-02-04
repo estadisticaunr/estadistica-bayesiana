@@ -50,13 +50,13 @@ Para el estudio mediante simulaciones, consideraremos que las probabilidades de 
 
 Utilizando nuestro ingenio e imaginación podríamos inventarnos al menos un par de estrategias
 que nos ayuden a determinar la máquina mas pagadora. Sin embargo, el género humano ya se 
-ha inventado y debatido un sinfín de estrategias y nosotros podemos aportar nuestro 
-granito de arena a la discusión mientras aprendemos estadística bayesiana y ponemos
-a ejercitar nuestras habilidades en `R`, ¡qué ofertón!. 
+ha inventado y debatido un sinfín de alternativas a seguir y nosotros podemos aportar 
+nuestro granito de arena a la discusión mientras aprendemos estadística bayesiana y 
+ejercitamos nuestras habilidades en R, ¡qué ofertón!. 
 
 Por lo tanto, para cada una de las estrategias presentadas debajo:
 
-1.  Construya una función en `R` que elija una máquina siguiendo el método indicado, 
+1.  Construya una función en R que elija una máquina siguiendo el método indicado, 
     obtenga un resultado (éxito o fracaso) y actualice la credibilidad sobre los posibles 
     valores de la probabilidad de éxito correspondiente. 
 2.  Utilice esa función para simular una secuencia de 366 días de juego. 

@@ -6,7 +6,6 @@ practica: "Trabajo Práctico 2"
 ```{r}
 #| echo: false
 #| include: false
-library(patchwork)
 library(ggplot2)
 library(dplyr)
 ```
@@ -28,6 +27,7 @@ función sea igual a uno).
     o al azar y utilizar distribuciones de propuesta de transición arbitrarias 
     (por defecto, se utiliza una distribución normal estándar).
 
+## Distribución de Kumaraswamy
 
 La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza
 para modelar variables aleatorias con soporte en el intervalo $(0, 1)$. Si bien graficamente
@@ -42,7 +42,8 @@ p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} & \text{con } a, b > 0
 $$
 
 2.  Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones
-    de los parámetros $a$ y $b$ que crea convenientes.
+    de los parámetros $a$ y $b$ que crea convenientes. Concluya sobre la utilidad que 
+    puede tener en la estadística bayesiana.
 
 3.  Utilizando la función construida en el punto **1**, obtenga 5000 muestras de una 
     distribución de Kumaraswamy con parámetros $a=6$ y $b=2$.
@@ -50,11 +51,11 @@ $$
     parametrizar según media $\mu = \alpha / (\alpha + \beta)$ y  concentración 
     $\kappa = \alpha + \beta$.
 
-    Compare las cadenas obtenidas al utilizar tres diferentes grados de concentración
+    Compare las cadenas obtenidas al utilizar tres grados de concentración distintos
     en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando 
     histogramas y funciones de autocorrelación (puede utilizar la función `acf` o 
     escribir una función propia). Para elegir el punto inicial del algoritmo de MH, 
-    obtenga un valor aleatorio de una distribución conocida que crea conveniente.    
+    obtenga un valor aleatorio de una distribución conocida que sea conveniente.    
     
 4.  Utilizando cada una de las cadenas anteriores, compute la media de la 
     distribución y los percentiles 5 y 95 de $X$ y de $\mathrm{logit}(X)$.
@@ -87,7 +88,7 @@ permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alter
 ### Normal multivariada
 
 La distribución normal multivariada es la generalización de la distribución normal 
-univariada a múltiples dimensiones (mejor dicho, el caso en una dimensión es un caso 
+univariada a múltiples dimensiones (o mejor dicho, el caso en una dimensión es un caso 
 particular de la distribución en múltiples dimensiones). La función de densidad de 
 la distribución normal en $k$ dimensiones es:
 
@@ -119,7 +120,7 @@ donde $\boldsymbol{\mu}$ es el vector de medias y $\boldsymbol{\Sigma}$ la matri
     \end{array}
     $$
 
-8.  Estime las siguientes probabilidades utilizando las muestras:
+8.  Estime las siguientes probabilidades utilizando las muestras obtenidas:
 
     i.  $\mathrm{Pr}(X_1 > 1, X_2 < 0)$
     i.  $\mathrm{Pr}(X_1 > 1, X_2 > 2)$
@@ -127,7 +128,8 @@ donde $\boldsymbol{\mu}$ es el vector de medias y $\boldsymbol{\Sigma}$ la matri
 
     Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente 
     (función de distribución, integración manual, integración numérica, monte carlo, etc.),
-    compare con las obtenidas con las muestras obtenidas con MH y concluya.
+    y compare los resultados con los obtenidos en base a las muestras seleccionadas con 
+    MH y concluya.
 
 
 ### Función de Rosenbrock 
@@ -157,12 +159,12 @@ knitr::include_graphics(file.path("imgs", "rosenbrock2.png"))
 ```
 
 Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo
-de la estadística bayesiana, ya que en ciertos escenarios, la densidad del _a posteriori_ 
+de la estadística bayesiana, ya que en ciertos escenarios, la densidad del _posterior_ 
 toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de
 este fenómeno es la función $p^*$:
 
 $$
-p^*(x, y \mid a, b) = \exp \left[-\left((a - x) ^ 2 + b(y - x^2) ^ 2\right) \right]
+p^*(x_1, x_2 \mid a, b) = \exp \left\{-\left[(a - x_1) ^ 2 + b(x_2 - x_1^2) ^ 2\right] \right\}
 $$
 
 
@@ -192,28 +194,28 @@ data |>
     # geom_vline(xintercept = seq(-2, 2), by = 0.25) +
     scale_x_continuous(expand = c(0, 0)) +
     scale_y_continuous(expand = c(0, 0)) +
-    labs(x = "x", y = "y", fill = expression(p^"*" ~ "(x, y | a, b)")) +
+    labs(x = expression(x[1]), y = expression(x[2]), fill = expression(p^"*" ~ "("~x[1]~", "~x[2]~" | a, b)")) +
     viridis::scale_fill_viridis()
 ```
 
-9.  Mediante la función implementada en el punto **6** obtenga muestras de la 
-    distribución _a posteriori_ determinada por $p^*$ con $a=0.5$ y $b=5$. 
-    Proponga y utilice tres matrices de covarianza distintas para la distribución de 
-    propuesta. Para al menos dos de los casos, compare las trayectorias seguidas por las 
-    cadenas en el proceso de muestreo.  En todos los casos, calcule la probabilidad de
+9.  Obtenga muestras de la distribución _a posteriori_ determinada por $p^*$ 
+    con $a=0.5$ y $b=5$ utlizando la función implementada en el punto **6**. 
+    Utilice tres matrices de covarianza distintas para la distribución de propuesta. 
+    En al menos dos de los casos, compare las trayectorias seguidas por las 
+    cadenas en el proceso de muestreo. Y en todos los casos, calcule la probabilidad de
     aceptación y muestre la función de autocorrelación.
 
-10. Con el conjunto de muestras que crea mas conveniente, estime las siguientes
+10. Utilizando el conjunto de muestras que crea mas conveniente, estime las siguientes
     probabilidades:
 
     i.  $\mathrm{Pr}(0 < X_1 < 1, 0 < X_2 < 1)$
     i.  $\mathrm{Pr}(-1 < X_1 < 0, 0 < X_2 < 1)$
     i.  $\mathrm{Pr}(1 < X_1 < 2, 2 < X_2 < 3)$
 
-11. Finalmente, calcule las mismas probabilidades utilizando el método que crea mas 
-    conveniente (integración manual, integración numérica, método de la grilla, etc.) y
-    concluya sobre los resultados en este experimento en particular y sobre la utilidad
-    del algoritmo de Metropolis-Hastings en general.
+11. Finalmente, calcule las mismas probabilidades utilizando un método de su elección 
+    (integración manual, integración numérica, método de la grilla, etc.), compare los
+    resultados y concluya sobre lo observado en este experimento en particular y 
+    sobre la utilidad del algoritmo de Metropolis-Hastings en general.
 
 
 <!--
