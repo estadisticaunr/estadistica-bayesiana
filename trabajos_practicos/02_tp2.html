@@ -233,6 +233,8 @@ window.Quarto = {
 <ol type="1">
 <li>Escriba una función que implemente el algoritmo de Metropolis-Hastings para tomar muestras de una distribución de probabilidad unidimensional a partir de su función de densidad. Separe en funciones cada uno de los pasos del procedimiento. Otorgue flexibilidad al algoritmo permitiendo elegir entre un punto de inicio arbitrario o al azar y utilizar distribuciones de propuesta de transición arbitrarias (por defecto, se utiliza una distribución normal estándar).</li>
 </ol>
+<section id="distribución-de-kumaraswamy" class="level2">
+<h2 class="anchored" data-anchor-id="distribución-de-kumaraswamy">Distribución de Kumaraswamy</h2>
 <p>La distribución de Kumaraswamy es una distribución de probabilidad continua que se utiliza para modelar variables aleatorias con soporte en el intervalo <span class="math inline">\((0, 1)\)</span>. Si bien graficamente la forma de su función de densidad puede hacernos recordar a la distribución beta, vale mencionar que la distribución de Kumaraswamy resulta en una expresión matemática cuyo cómputo es más sencillo:</p>
 <p><span class="math display">\[
 \begin{array}{lr}
@@ -240,9 +242,9 @@ p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} &amp; \text{con } a, b &gt;
 \end{array}
 \]</span></p>
 <ol start="2" type="1">
-<li><p>Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones de los parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> que crea convenientes.</p></li>
+<li><p>Grafique la función de densidad de la distribución de Kumaraswamy para 5 combinaciones de los parámetros <span class="math inline">\(a\)</span> y <span class="math inline">\(b\)</span> que crea convenientes. Concluya sobre la utilidad que puede tener en la estadística bayesiana.</p></li>
 <li><p>Utilizando la función construida en el punto <strong>1</strong>, obtenga 5000 muestras de una distribución de Kumaraswamy con parámetros <span class="math inline">\(a=6\)</span> y <span class="math inline">\(b=2\)</span>. Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede parametrizar según media <span class="math inline">\(\mu = \alpha / (\alpha + \beta)\)</span> y concentración <span class="math inline">\(\kappa = \alpha + \beta\)</span>.</p>
-<p>Compare las cadenas obtenidas al utilizar tres diferentes grados de concentración en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, obtenga un valor aleatorio de una distribución conocida que crea conveniente.</p></li>
+<p>Compare las cadenas obtenidas al utilizar tres grados de concentración distintos en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, obtenga un valor aleatorio de una distribución conocida que sea conveniente.</p></li>
 <li><p>Utilizando cada una de las cadenas anteriores, compute la media de la distribución y los percentiles 5 y 95 de <span class="math inline">\(X\)</span> y de <span class="math inline">\(\mathrm{logit}(X)\)</span>.</p></li>
 <li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento y se obtienen 8 éxitos en 13 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
 <p><span class="math display">\[
@@ -250,12 +252,13 @@ p(\theta) = 2 \theta \qquad \theta \in (0, 1)
 \]</span></p>
 <p>Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Además, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{\mathrm{eff}}\)</span>) y el MCSE de la media <em>a posteriori</em> de la probabilidad de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución <em>a posteriori</em> y su media.</p></li>
 </ol>
+</section>
 <section id="metropolis-hastings-en-2d" class="level2">
 <h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
 <p>Como veremos en esta sección del trabajo práctico, la verdadera utilidad del algoritmo de Metropolis-Hastings se aprecia cuando se obtienen muestras de distribuciones en más de una dimensión, incluso cuando no se conoce la constante de normalización. Paradójicamente, los ejemplos trabajados a continuación también serán los que nos permitirán advertir sus limitaciones y motivarán la búsqueda de mejores alternativas.</p>
 <section id="normal-multivariada" class="level3">
 <h3 class="anchored" data-anchor-id="normal-multivariada">Normal multivariada</h3>
-<p>La distribución normal multivariada es la generalización de la distribución normal univariada a múltiples dimensiones (mejor dicho, el caso en una dimensión es un caso particular de la distribución en múltiples dimensiones). La función de densidad de la distribución normal en <span class="math inline">\(k\)</span> dimensiones es:</p>
+<p>La distribución normal multivariada es la generalización de la distribución normal univariada a múltiples dimensiones (o mejor dicho, el caso en una dimensión es un caso particular de la distribución en múltiples dimensiones). La función de densidad de la distribución normal en <span class="math inline">\(k\)</span> dimensiones es:</p>
 <p><span class="math display">\[
 p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) =
     \frac{1}{(2\pi)^{k/2} |\boldsymbol{\Sigma}|^{1/2}}
@@ -271,13 +274,13 @@ p(\boldsymbol{x} \mid \boldsymbol{\mu}, \boldsymbol{\Sigma}) =
     &amp; \boldsymbol{\Sigma}^* = \begin{bmatrix} 1.35 &amp; 0.4 \\ 0.4 &amp; 2.4 \end{bmatrix}
 \end{array}
 \]</span></p></li>
-<li><p>Estime las siguientes probabilidades utilizando las muestras:</p>
+<li><p>Estime las siguientes probabilidades utilizando las muestras obtenidas:</p>
 <ol type="i">
 <li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &lt; 0)\)</span></li>
 <li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 1, X_2 &gt; 2)\)</span></li>
 <li><span class="math inline">\(\mathrm{Pr}(X_1 &gt; 0.4, X_2 &gt; 0.75)\)</span></li>
 </ol>
-<p>Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente (función de distribución, integración manual, integración numérica, monte carlo, etc.), compare con las obtenidas con las muestras obtenidas con MH y concluya.</p></li>
+<p>Luego, calcule esas mismas probabilidades mediante algún método que crea conveniente (función de distribución, integración manual, integración numérica, monte carlo, etc.), y compare los resultados con los obtenidos en base a las muestras seleccionadas con MH y concluya.</p></li>
 </ol>
 </section>
 <section id="función-de-rosenbrock" class="level3">
@@ -298,9 +301,9 @@ f(x, y) = (a - x) ^ 2 + b(y - x^2) ^ 2
 </div>
 </div>
 </div>
-<p>Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo de la estadística bayesiana, ya que en ciertos escenarios, la densidad del <em>a posteriori</em> toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de este fenómeno es la función <span class="math inline">\(p^*\)</span>:</p>
+<p>Esta forma de banana popularizada por Rosenbrock es también muy conocida en el campo de la estadística bayesiana, ya que en ciertos escenarios, la densidad del <em>posterior</em> toma una forma que definitivamente se asemeja a la banana de Rosenbrock. Un ejemplo de este fenómeno es la función <span class="math inline">\(p^*\)</span>:</p>
 <p><span class="math display">\[
-p^*(x, y \mid a, b) = \exp \left[-\left((a - x) ^ 2 + b(y - x^2) ^ 2\right) \right]
+p^*(x_1, x_2 \mid a, b) = \exp \left\{-\left[(a - x_1) ^ 2 + b(x_2 - x_1^2) ^ 2\right] \right\}
 \]</span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -313,14 +316,14 @@ p^*(x, y \mid a, b) = \exp \left[-\left((a - x) ^ 2 + b(y - x^2) ^ 2\right) \rig
 </div>
 </div>
 <ol start="9" type="1">
-<li><p>Mediante la función implementada en el punto <strong>6</strong> obtenga muestras de la distribución <em>a posteriori</em> determinada por <span class="math inline">\(p^*\)</span> con <span class="math inline">\(a=0.5\)</span> y <span class="math inline">\(b=5\)</span>. Proponga y utilice tres matrices de covarianza distintas para la distribución de propuesta. Para al menos dos de los casos, compare las trayectorias seguidas por las cadenas en el proceso de muestreo. En todos los casos, calcule la probabilidad de aceptación y muestre la función de autocorrelación.</p></li>
-<li><p>Con el conjunto de muestras que crea mas conveniente, estime las siguientes probabilidades:</p>
+<li><p>Obtenga muestras de la distribución <em>a posteriori</em> determinada por <span class="math inline">\(p^*\)</span> con <span class="math inline">\(a=0.5\)</span> y <span class="math inline">\(b=5\)</span> utlizando la función implementada en el punto <strong>6</strong>. Utilice tres matrices de covarianza distintas para la distribución de propuesta. En al menos dos de los casos, compare las trayectorias seguidas por las cadenas en el proceso de muestreo. Y en todos los casos, calcule la probabilidad de aceptación y muestre la función de autocorrelación.</p></li>
+<li><p>Utilizando el conjunto de muestras que crea mas conveniente, estime las siguientes probabilidades:</p>
 <ol type="i">
 <li><span class="math inline">\(\mathrm{Pr}(0 &lt; X_1 &lt; 1, 0 &lt; X_2 &lt; 1)\)</span></li>
 <li><span class="math inline">\(\mathrm{Pr}(-1 &lt; X_1 &lt; 0, 0 &lt; X_2 &lt; 1)\)</span></li>
 <li><span class="math inline">\(\mathrm{Pr}(1 &lt; X_1 &lt; 2, 2 &lt; X_2 &lt; 3)\)</span></li>
 </ol></li>
-<li><p>Finalmente, calcule las mismas probabilidades utilizando el método que crea mas conveniente (integración manual, integración numérica, método de la grilla, etc.) y concluya sobre los resultados en este experimento en particular y sobre la utilidad del algoritmo de Metropolis-Hastings en general.</p></li>
+<li><p>Finalmente, calcule las mismas probabilidades utilizando un método de su elección (integración manual, integración numérica, método de la grilla, etc.), compare los resultados y concluya sobre lo observado en este experimento en particular y sobre la utilidad del algoritmo de Metropolis-Hastings en general.</p></li>
 </ol>
 <!--
 # Apéndice (para mover a teoría)
