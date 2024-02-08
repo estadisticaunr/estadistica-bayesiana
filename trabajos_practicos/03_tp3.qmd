@@ -1,111 +1,101 @@
 ---
-title: "TP3: WIP"
+title: "TP3: Una masacre estadística (WIP)"
 practica: "Trabajo Práctico 3"
 ---
 
+## Introducción
 
-# Estudio de modelos lineales
+Como si la riqueza del idioma español no fuera suficiente para expresar aquello que 
+queremos decir, muy frecuentemente los argentinos recurrimos a palabras o expresiones que,
+sin contexto, carecen de significado o transmiten algo completamente distinto al uso que 
+les damos.
 
-## Simulaciones
+Si de palabras se trata, sobran los ejemplos: perro, bife, mango, cana, puchero, 
+panqueque, pavo, chorro, bondi y rata son algunos de ellos. Tampoco escasean frases que, 
+inevitablemente, confunden a aquellos que nunca han pisado suelo argento: tomar el palo,
+hacer la cama, mandar fruta, comer vidrio, estar en pañales, pararse de manos o sacar el 
+cuero.
 
-El archivo `tp3_train.csv` contiene 100 observaciones que se usarán para identificar los 
-parámetros de un modelo, mientras que el archivo `tp3_test.csv` tiene 20 observaciones que
-se usarán para evaluar los resultados del proceso de inferencia.
+El presente trabajo práctico gira alrededor de una palabra clave: masacre. 
+La palabra "masacre" se utiliza, generalmente, para referirse a la matanza violenta e 
+indiscriminada de un gran número de personas. Sin embargo, y siguiendo la línea de los 
+párrafos introductorios, no la vamos a usar por su significado mas obvio, aunque sí por 
+uno muy cercano.
 
-Se sabe que los datos fueron generados utilizando un modelo de la forma:
 
-$$
-y_i \sim \mathcal{N}(\theta_3 x_i^3 + \theta_2 x_i^2 + \theta_1 x_i + \theta_0, \sigma^2)
-$$
+## El caso 🕵️‍♀️
 
-aunque no se conocen los valores de los $\theta_i$ ni de $\sigma$
+Comenzar una carrera en estadística puede llevarnos a lugares impensados (algunos dirán 
+que se converge, casi seguramente, a un estado de máxima confusión). Quien puede dar 
+prueba de esto es Guido, un estudiante de estadística que, habiendo siendo fanático de
+[_CSI: Crime Scene Investigations_](https://es.wikipedia.org/wiki/CSI:_Crime_Scene_Investigation), 
+nunca imaginó que iba a cumplir su sueño de formar parte la policía científica de Córdoba.
 
-En primer lugar, se estudiará el **efecto de la cantidad de datos** utilizados para el 
-ajuste del modelo.
+Pero no todo es color de rosas en el camino de Guido. Al poco tiempo de instalado en 
+la capital del cuarteto, una madrugada de miércoles, su unidad de trabajo fue convocada
+de manera urgente por el comisario de Salsipuedes para investigar una crimen que, 
+aparentemente, había sido recién cometido.
 
-1.  Realice un análisis exploratorio de los datos de ajuste del modelo (_train_) y 
-proponga _priors_ vagos de acuerdo a la escala de los datos. Realice simulaciones 
-predictivas _a priori_.
+¡Qué masacre! Fue lo único que pudo a decir al llegar al lugar. 
+El caos se extendía por toda la habitación.
+Muebles volcados y destrozados. Utensillos de cocina desparramados y manchados con un
+líquido carmesí. La ventana, con sus vidrios estallados, daba paso a la brisa matutina 
+y la débil luz de los móviles policiales que dejaban ver que, hacia un extremo del salón, 
+el cuerpo de Sergio Contreras yacía en un charco de sangre.
 
-2.  Utilice los _priors_ propuestos en el punto anterior para ajustar el modelo utilizando
-10, 20, 50 o 100 observaciones de los datos de entrenamiento. Compare las distribuciones
-_a posteriori_ de los parámetros, la media condicional y las predicciones sobre el
-conjunto de datos de evaluación.
+Abundan las tareas que los investigadores deben realizar en un crimen de estas 
+características. Nuestro protagonista, Guido, quedó encargado de determinar la hora 
+en que se produjo la muerte. En un marco tan desolador, Guido se alegró de encontrarse,
+al fin, frente a un caso de aplicación basado en datos reales.
 
-En segundo lugar, se investigará qué efecto tiene la elección de **distribuciones 
-_a priori_ centradas en valores erróneos** de los parámetros de la regresión.
+## La metodología 📚
 
-3.  Considere las siguientes distribuciones _a priori_:
+La medicina forense dispone de un gran abanico de métodos para estimar la hora del 
+fallecimiento. Estos estudian diferentes características, como por ejemplo la rigidez 
+corporal, la presencia de livideces (manchas en el cuerpo), el nivel de descomposición, 
+etc. 
 
-    $$
-    \begin{aligned}
-    \theta_0 &\sim \mathcal{N}(0.6,0.2) \\
-    \theta_1 &\sim \mathcal{N}(-0.2,0.2) \\
-    \theta_2 &\sim \mathcal{N}(2.1,0.2) \\
-    \theta_3 &\sim \mathcal{N}(1,0.2)
-    \end{aligned}
-    $$
-    
-    Compare, como hizo en el caso anterior, los resultados en las estimaciones utilizando 
-    10, 20, 50 y 100 observaciones.
+Una de las estrategias mas utilizadas se basa en el estudio de la temperatura corporal.
+Durante las primeras horas después de la muerte ocurre el enfriamiento del cuerpo,
+que se conoce como enfriamiento postmortem o _algor mortis_. 
 
-Finalmente, se considera el caso donde se propone un **modelo erróneo**.
+<!-- Para entender como utilizar la temperatura para determinar la hora de muerte, primero 
+necesitamos entender cómo varia la temperatura de un cuerpo en función del tiempo 
+transcurrido. -->
 
-4.  Utilizando _priors_ vagos, ajuste polinomios de grado 3, 4, 5 y 6 utilizando 20 
-observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste 
-en los datos de evaluación. ¿Qué ocurre si se utilizan todos los datos del conjunto de 
-entrenamiento?
-5.  Utilice ahora _priors_ de regularización (centrados en 0 y con diferentes varianzas: 
-$0.01$, $0.1$, $1$ y $10$) para polinomios de grado 3, 4, 5 y 6 utilizando 20 
-observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste 
-en los datos de evaluación. Como hizo en el punto anterior, analice que ocurre cuando 
-utiliza todos los datos del conjunto de entrenamiento.
-
-## Enfriamiento de agua en un termo
-
-En un país matero como Argentina, era de esperarse que aparecieran casi tantos termos como
-personas. Es difícil decir si la cantidad de variantes de termos en el mercado nacional 
-cambió, pero es indudable que, tras el furor del termo color *verde militar*, la elección 
-de un termo adquirió un papel relevante en el ritual del mate.
-
-De acero, de vidrio, con capa aisladora. Diferentes configuraciones dan lugar a distintas 
-capacidades de mantener la temperatura y, obviamente, a distintos rangos de precios. 
-Dejando de lado la cuestión monetaria, centrémonos en estudiar cómo varía la temperatura 
-de un líquido en el interior de un termo en función del tiempo transcurrido.
-
-La temperatura es una medida del grado de agitación de las partículas de una sustancia. 
-Un líquido (o sólido, o gas) está _más caliente_ que otro si sus partículas tienen 
+La temperatura es una medida del grado de agitación de las partículas de un cuerpo. 
+Un sólido (o líquido, o gas) está _más caliente_ que otro si sus partículas tienen 
 (en promedio) mayor grado de agitación. Sabemos por evidencia empírica que si un cuerpo se
 pone en contacto con otro que tiene una temperatura menor, hay una transferencia de 
 energía que hace que el primero se enfríe y el segundo se caliente, hasta que alcanzan el 
 denominado equilibrio térmico.
 
-De manera similar, esto es lo que ocurre con el agua que dejamos dentro del termo: en 
-algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es 
-que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el 
-agua del recipiente.
+De manera similar, esto es lo que ocurre con el cuerpo de Sergio que yace en el living
+de su casa: en algún momento, llega al equilibrio térmico con el ambiente. 
+La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura 
+con la energía que pierde el cuerpo.
 
-Ahora bien, el ritmo con el cual el agua caliente pierde energía no es constante. 
+Ahora bien, el ritmo con el cual el cuerpo pierde energía no es constante. 
 Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido
-fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura del
-agua en el termo en función del tiempo, notaremos que el ritmo con el que cambia decrece a
+fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura de
+un cuerpo en función del tiempo, notaremos que el ritmo con el que cambia decrece a
 medida con el que transcurre el tiempo.
 
-La lectura del párrafo anterior debería permitir asociar el concepto de *ritmo de cambio* 
+La lectura del párrafo anterior debería permitir asociar el concepto de _ritmo de cambio_ 
 con la noción matemática de derivada. En efecto, la derivada de la temperatura respecto al
 tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.
 
 Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en 
-matemática se conoce como ecuación diferencial. En este caso, la temperatura del agua en 
-el termo satisface la siguiente ley:
+matemática se conoce como ecuación diferencial. En este caso, la temperatura del cuerpo
+de Segio satisface la siguiente ley:
 
 $$
-\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}}-T(t)]
+\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}} - T(t)]
 $$
 
 donde $T_{\text{amb}}$ es la temperatura ambiente (un valor fijo y conocido), $r$ es una 
 constante y $T(t)$ es la función (en principio desconocida) que describe la temperatura 
-del agua del termo en función del tiempo.
+del cuerpo en función del tiempo.
 
 No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una 
 ecuación donde la solución es una función. Buscamos una función $T(t)$ que satisfaga la 
@@ -120,10 +110,17 @@ $$
 siendo $T_i$ la temperatura a la que está inicialmente el agua en el termo 
 (un valor fijo y conocido).
 
+   
+## Bayes al rescate 🎲
+
+**WIP**
+
+
 1.  Verificar que la función anterior satisface la ecuación diferencial
-2.  Grafique $T(t)$ para $T_{\text{amb}} = 20 \text{ C°}$ y $T_i = 90 \text{ C°}$, 
+2.  Grafique $T(t)$ para $T_{\text{amb}} = 20 \text{ C°}$ y $T_i = 37 \text{ C°}$, 
     para dos valores de $r$, $r_1=0.1$ y $r_2 = 0.3$. ¿Qué representa $r$?
-3.  Según su experiencia con termos, ¿cuál es un valor realista de $r$?
+3.  ~~Según su experiencia con termos, ¿cuál es un valor realista de $r$?~~ Dar alguna información
+que diga a que hora el cuerpo en general ya está "frio"
 
 Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo 
 en función del tiempo transcurrido.
@@ -167,3 +164,46 @@ Se propone ajustar un modelo lineal normal utilizando los datos transformados.
     agua $T_i$.
 8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de 
     la experiencia.
+
+
+
+
+<!-- Bondi, Perro, Rata, Gato, Cana Mango, Ñoqui, Botón, Chorro, Gamba, Banana, Bife, Panqueque, Pavo, Picada, Puchero, Llantas -->
+
+<!-- Tomar el palo, Estar en pañales, Abrir el paraguas, Chupar medias, Hacer la cama, Mandar fruta, Comer vidrio, Pararse de manos, Vender humo, Sacar el cuero -->
+
+
+<!-- 1.  Realice un análisis exploratorio de los datos de ajuste del modelo (_train_) y 
+proponga _priors_ vagos de acuerdo a la escala de los datos. Realice simulaciones 
+predictivas _a priori_. -->
+
+
+---
+
+<!-- Necesitan saber cuando falleció el muerto, tienen toda la fe depositada en el,
+pero Guido no llegó a cursar estadística bayesiana, y no sabe que hacer!
+
+Si no lo resolvemos, me van a masacrar en la revision anual
+
+Bueno, lo ayudamos?
+
+El caso
+
+* Llamada a la policia hecha por una persona que dice que su perro estuvo toreando durante
+las ultimas X horas, por la noche, y que al salir al patio al mirar observo que estaba
+todo abierto en lo del vecino, lo cual era raro.
+
+* Toman la temperatura corporal (poner hora).
+
+* Esperan que llegue Z unidad, algo asi. Nuevamente toman la temperatura corporal.
+
+* Al llegar el cuerpo a la morgue policial, otar vez toman la temperatura corporal.
+
+Idea: Poner horas a los eventos, sirve para dar mas informacion a priori.
+
+* Pensar en los siguientes escenarios
+    * La persona es sana
+    * La persona esta enferma
+    * El hecho ocurre un 9 de julio
+    * El hecho ocurre un 9 de enero
+    * Estaba todo abierto, todo cerrado. -->
