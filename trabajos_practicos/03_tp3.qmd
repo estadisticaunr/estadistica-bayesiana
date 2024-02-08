@@ -119,7 +119,7 @@ siendo $T_i$ la temperatura a la que está inicialmente el agua en el termo
 1.  Verificar que la función anterior satisface la ecuación diferencial
 2.  Grafique $T(t)$ para $T_{\text{amb}} = 20 \text{ C°}$ y $T_i = 37 \text{ C°}$, 
     para dos valores de $r$, $r_1=0.1$ y $r_2 = 0.3$. ¿Qué representa $r$?
-3.  ~~Según su experiencia con termos, ¿cuál es un valor realista de $r$?~~ Dar alguna información
+3.  Según su experiencia con termos, ¿cuál es un valor realista de $r$? Dar alguna información
 que diga a que hora el cuerpo en general ya está "frio"
 
 Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo 
