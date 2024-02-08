@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP3: WIP</title>
+<title>Estadística Bayesiana - TP3: Una masacre estadística (WIP)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -212,7 +212,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP3: WIP</h1>
+<h1 class="title">TP3: Una masacre estadística (WIP)</h1>
 </div>
 
 
@@ -229,63 +229,49 @@ window.Quarto = {
 </header>
 
 
-<section id="estudio-de-modelos-lineales" class="level1">
-<h1>Estudio de modelos lineales</h1>
-<section id="simulaciones" class="level2">
-<h2 class="anchored" data-anchor-id="simulaciones">Simulaciones</h2>
-<p>El archivo <code>tp3_train.csv</code> contiene 100 observaciones que se usarán para identificar los parámetros de un modelo, mientras que el archivo <code>tp3_test.csv</code> tiene 20 observaciones que se usarán para evaluar los resultados del proceso de inferencia.</p>
-<p>Se sabe que los datos fueron generados utilizando un modelo de la forma:</p>
-<p><span class="math display">\[
-y_i \sim \mathcal{N}(\theta_3 x_i^3 + \theta_2 x_i^2 + \theta_1 x_i + \theta_0, \sigma^2)
-\]</span></p>
-<p>aunque no se conocen los valores de los <span class="math inline">\(\theta_i\)</span> ni de <span class="math inline">\(\sigma\)</span></p>
-<p>En primer lugar, se estudiará el <strong>efecto de la cantidad de datos</strong> utilizados para el ajuste del modelo.</p>
-<ol type="1">
-<li><p>Realice un análisis exploratorio de los datos de ajuste del modelo (<em>train</em>) y proponga <em>priors</em> vagos de acuerdo a la escala de los datos. Realice simulaciones predictivas <em>a priori</em>.</p></li>
-<li><p>Utilice los <em>priors</em> propuestos en el punto anterior para ajustar el modelo utilizando 10, 20, 50 o 100 observaciones de los datos de entrenamiento. Compare las distribuciones <em>a posteriori</em> de los parámetros, la media condicional y las predicciones sobre el conjunto de datos de evaluación.</p></li>
-</ol>
-<p>En segundo lugar, se investigará qué efecto tiene la elección de <strong>distribuciones <em>a priori</em> centradas en valores erróneos</strong> de los parámetros de la regresión.</p>
-<ol start="3" type="1">
-<li><p>Considere las siguientes distribuciones <em>a priori</em>:</p>
-<p><span class="math display">\[
-\begin{aligned}
-\theta_0 &amp;\sim \mathcal{N}(0.6,0.2) \\
-\theta_1 &amp;\sim \mathcal{N}(-0.2,0.2) \\
-\theta_2 &amp;\sim \mathcal{N}(2.1,0.2) \\
-\theta_3 &amp;\sim \mathcal{N}(1,0.2)
-\end{aligned}
-\]</span></p>
-<p>Compare, como hizo en el caso anterior, los resultados en las estimaciones utilizando 10, 20, 50 y 100 observaciones.</p></li>
-</ol>
-<p>Finalmente, se considera el caso donde se propone un <strong>modelo erróneo</strong>.</p>
-<ol start="4" type="1">
-<li>Utilizando <em>priors</em> vagos, ajuste polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. ¿Qué ocurre si se utilizan todos los datos del conjunto de entrenamiento?</li>
-<li>Utilice ahora <em>priors</em> de regularización (centrados en 0 y con diferentes varianzas: <span class="math inline">\(0.01\)</span>, <span class="math inline">\(0.1\)</span>, <span class="math inline">\(1\)</span> y <span class="math inline">\(10\)</span>) para polinomios de grado 3, 4, 5 y 6 utilizando 20 observaciones. Compare gráficamente el ajuste en los datos de entrenamiento con el ajuste en los datos de evaluación. Como hizo en el punto anterior, analice que ocurre cuando utiliza todos los datos del conjunto de entrenamiento.</li>
-</ol>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
+<p>Como si la riqueza del idioma español no fuera suficiente para expresar aquello que queremos decir, muy frecuentemente los argentinos recurrimos a palabras o expresiones que, sin contexto, carecen de significado o transmiten algo completamente distinto al uso que les damos.</p>
+<p>Si de palabras se trata, sobran los ejemplos: perro, bife, mango, cana, puchero, panqueque, pavo, chorro, bondi y rata son algunos de ellos. Tampoco escasean frases que, inevitablemente, confunden a aquellos que nunca han pisado suelo argento: tomar el palo, hacer la cama, mandar fruta, comer vidrio, estar en pañales, pararse de manos o sacar el cuero.</p>
+<p>El presente trabajo práctico gira alrededor de una palabra clave: masacre. La palabra “masacre” se utiliza, generalmente, para referirse a la matanza violenta e indiscriminada de un gran número de personas. Sin embargo, y siguiendo la línea de los párrafos introductorios, no la vamos a usar por su significado mas obvio, aunque sí por uno muy cercano.</p>
 </section>
-<section id="enfriamiento-de-agua-en-un-termo" class="level2">
-<h2 class="anchored" data-anchor-id="enfriamiento-de-agua-en-un-termo">Enfriamiento de agua en un termo</h2>
-<p>En un país matero como Argentina, era de esperarse que aparecieran casi tantos termos como personas. Es difícil decir si la cantidad de variantes de termos en el mercado nacional cambió, pero es indudable que, tras el furor del termo color <em>verde militar</em>, la elección de un termo adquirió un papel relevante en el ritual del mate.</p>
-<p>De acero, de vidrio, con capa aisladora. Diferentes configuraciones dan lugar a distintas capacidades de mantener la temperatura y, obviamente, a distintos rangos de precios. Dejando de lado la cuestión monetaria, centrémonos en estudiar cómo varía la temperatura de un líquido en el interior de un termo en función del tiempo transcurrido.</p>
-<p>La temperatura es una medida del grado de agitación de las partículas de una sustancia. Un líquido (o sólido, o gas) está <em>más caliente</em> que otro si sus partículas tienen (en promedio) mayor grado de agitación. Sabemos por evidencia empírica que si un cuerpo se pone en contacto con otro que tiene una temperatura menor, hay una transferencia de energía que hace que el primero se enfríe y el segundo se caliente, hasta que alcanzan el denominado equilibrio térmico.</p>
-<p>De manera similar, esto es lo que ocurre con el agua que dejamos dentro del termo: en algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el agua del recipiente.</p>
-<p>Ahora bien, el ritmo con el cual el agua caliente pierde energía no es constante. Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura del agua en el termo en función del tiempo, notaremos que el ritmo con el que cambia decrece a medida con el que transcurre el tiempo.</p>
+<section id="el-caso" class="level2">
+<h2 class="anchored" data-anchor-id="el-caso">El caso 🕵️‍♀️</h2>
+<p>Comenzar una carrera en estadística puede llevarnos a lugares impensados (algunos dirán que se converge, casi seguramente, a un estado de máxima confusión). Quien puede dar prueba de esto es Guido, un estudiante de estadística que, habiendo siendo fanático de <a href="https://es.wikipedia.org/wiki/CSI:_Crime_Scene_Investigation"><em>CSI: Crime Scene Investigations</em></a>, nunca imaginó que iba a cumplir su sueño de formar parte la policía científica de Córdoba.</p>
+<p>Pero no todo es color de rosas en el camino de Guido. Al poco tiempo de instalado en la capital del cuarteto, una madrugada de miércoles, su unidad de trabajo fue convocada de manera urgente por el comisario de Salsipuedes para investigar una crimen que, aparentemente, había sido recién cometido.</p>
+<p>¡Qué masacre! Fue lo único que pudo a decir al llegar al lugar. El caos se extendía por toda la habitación. Muebles volcados y destrozados. Utensillos de cocina desparramados y manchados con un líquido carmesí. La ventana, con sus vidrios estallados, daba paso a la brisa matutina y la débil luz de los móviles policiales que dejaban ver que, hacia un extremo del salón, el cuerpo de Sergio Contreras yacía en un charco de sangre.</p>
+<p>Abundan las tareas que los investigadores deben realizar en un crimen de estas características. Nuestro protagonista, Guido, quedó encargado de determinar la hora en que se produjo la muerte. En un marco tan desolador, Guido se alegró de encontrarse, al fin, frente a un caso de aplicación basado en datos reales.</p>
+</section>
+<section id="la-metodología" class="level2">
+<h2 class="anchored" data-anchor-id="la-metodología">La metodología 📚</h2>
+<p>La medicina forense dispone de un gran abanico de métodos para estimar la hora del fallecimiento. Estos estudian diferentes características, como por ejemplo la rigidez corporal, la presencia de livideces (manchas en el cuerpo), el nivel de descomposición, etc.</p>
+<p>Una de las estrategias mas utilizadas se basa en el estudio de la temperatura corporal. Durante las primeras horas después de la muerte ocurre el enfriamiento del cuerpo, que se conoce como enfriamiento postmortem o <em>algor mortis</em>.</p>
+<!-- Para entender como utilizar la temperatura para determinar la hora de muerte, primero 
+necesitamos entender cómo varia la temperatura de un cuerpo en función del tiempo 
+transcurrido. -->
+<p>La temperatura es una medida del grado de agitación de las partículas de un cuerpo. Un sólido (o líquido, o gas) está <em>más caliente</em> que otro si sus partículas tienen (en promedio) mayor grado de agitación. Sabemos por evidencia empírica que si un cuerpo se pone en contacto con otro que tiene una temperatura menor, hay una transferencia de energía que hace que el primero se enfríe y el segundo se caliente, hasta que alcanzan el denominado equilibrio térmico.</p>
+<p>De manera similar, esto es lo que ocurre con el cuerpo de Sergio que yace en el living de su casa: en algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el cuerpo.</p>
+<p>Ahora bien, el ritmo con el cual el cuerpo pierde energía no es constante. Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura de un cuerpo en función del tiempo, notaremos que el ritmo con el que cambia decrece a medida con el que transcurre el tiempo.</p>
 <p>La lectura del párrafo anterior debería permitir asociar el concepto de <em>ritmo de cambio</em> con la noción matemática de derivada. En efecto, la derivada de la temperatura respecto al tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.</p>
-<p>Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del agua en el termo satisface la siguiente ley:</p>
+<p>Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del cuerpo de Segio satisface la siguiente ley:</p>
 <p><span class="math display">\[
-\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}}-T(t)]
+\frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}} - T(t)]
 \]</span></p>
-<p>donde <span class="math inline">\(T_{\text{amb}}\)</span> es la temperatura ambiente (un valor fijo y conocido), <span class="math inline">\(r\)</span> es una constante y <span class="math inline">\(T(t)\)</span> es la función (en principio desconocida) que describe la temperatura del agua del termo en función del tiempo.</p>
+<p>donde <span class="math inline">\(T_{\text{amb}}\)</span> es la temperatura ambiente (un valor fijo y conocido), <span class="math inline">\(r\)</span> es una constante y <span class="math inline">\(T(t)\)</span> es la función (en principio desconocida) que describe la temperatura del cuerpo en función del tiempo.</p>
 <p>No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una ecuación donde la solución es una función. Buscamos una función <span class="math inline">\(T(t)\)</span> que satisfaga la ecuación: su derivada debe cambiar con el valor que toma la función.</p>
 <p>Una función que satisface esa ecuación es:</p>
 <p><span class="math display">\[
 T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
 \]</span></p>
 <p>siendo <span class="math inline">\(T_i\)</span> la temperatura a la que está inicialmente el agua en el termo (un valor fijo y conocido).</p>
+</section>
+<section id="bayes-al-rescate" class="level2">
+<h2 class="anchored" data-anchor-id="bayes-al-rescate">Bayes al rescate 🎲</h2>
+<p><strong>WIP</strong></p>
 <ol type="1">
 <li>Verificar que la función anterior satisface la ecuación diferencial</li>
-<li>Grafique <span class="math inline">\(T(t)\)</span> para <span class="math inline">\(T_{\text{amb}} = 20 \text{ C°}\)</span> y <span class="math inline">\(T_i = 90 \text{ C°}\)</span>, para dos valores de <span class="math inline">\(r\)</span>, <span class="math inline">\(r_1=0.1\)</span> y <span class="math inline">\(r_2 = 0.3\)</span>. ¿Qué representa <span class="math inline">\(r\)</span>?</li>
-<li>Según su experiencia con termos, ¿cuál es un valor realista de <span class="math inline">\(r\)</span>?</li>
+<li>Grafique <span class="math inline">\(T(t)\)</span> para <span class="math inline">\(T_{\text{amb}} = 20 \text{ C°}\)</span> y <span class="math inline">\(T_i = 37 \text{ C°}\)</span>, para dos valores de <span class="math inline">\(r\)</span>, <span class="math inline">\(r_1=0.1\)</span> y <span class="math inline">\(r_2 = 0.3\)</span>. ¿Qué representa <span class="math inline">\(r\)</span>?</li>
+<li>Según su experiencia con termos, ¿cuál es un valor realista de <span class="math inline">\(r\)</span>? Dar alguna información que diga a que hora el cuerpo en general ya está “frio”</li>
 </ol>
 <p>Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo en función del tiempo transcurrido.</p>
 <p>Leonel tiene un termo Estanli™ que compró por Amason y se dispone a despejar la duda de cualquier usuario de termos Estanli™: ¿cuánto dura el agua caliente? Pone agua en la pava eléctrica, la vierte en el termo y registra la temperatura en algunos momentos posteriores. Ese día, el reporte meteorológico indica una temperatura de <span class="math inline">\(T_{\text{amb}} = 23\text{ C°}\)</span>. Las temperaturas que registró Leonel son las siguientes:</p>
@@ -339,9 +325,41 @@ T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
 <li>Encontrar el <em>posterior</em> de <span class="math inline">\(r\)</span>, de <span class="math inline">\(T_{\text{diff}}\)</span> y de la temperatura inicial del agua <span class="math inline">\(T_i\)</span>.</li>
 <li>Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de la experiencia.</li>
 </ol>
+<!-- Bondi, Perro, Rata, Gato, Cana Mango, Ñoqui, Botón, Chorro, Gamba, Banana, Bife, Panqueque, Pavo, Picada, Puchero, Llantas -->
+<!-- Tomar el palo, Estar en pañales, Abrir el paraguas, Chupar medias, Hacer la cama, Mandar fruta, Comer vidrio, Pararse de manos, Vender humo, Sacar el cuero -->
+<!-- 1.  Realice un análisis exploratorio de los datos de ajuste del modelo (_train_) y 
+proponga _priors_ vagos de acuerdo a la escala de los datos. Realice simulaciones 
+predictivas _a priori_. -->
+<hr>
+<!-- Necesitan saber cuando falleció el muerto, tienen toda la fe depositada en el,
+pero Guido no llegó a cursar estadística bayesiana, y no sabe que hacer!
+
+Si no lo resolvemos, me van a masacrar en la revision anual
+
+Bueno, lo ayudamos?
+
+El caso
+
+* Llamada a la policia hecha por una persona que dice que su perro estuvo toreando durante
+las ultimas X horas, por la noche, y que al salir al patio al mirar observo que estaba
+todo abierto en lo del vecino, lo cual era raro.
+
+* Toman la temperatura corporal (poner hora).
+
+* Esperan que llegue Z unidad, algo asi. Nuevamente toman la temperatura corporal.
+
+* Al llegar el cuerpo a la morgue policial, otar vez toman la temperatura corporal.
+
+Idea: Poner horas a los eventos, sirve para dar mas informacion a priori.
+
+* Pensar en los siguientes escenarios
+    * La persona es sana
+    * La persona esta enferma
+    * El hecho ocurre un 9 de julio
+    * El hecho ocurre un 9 de enero
+    * Estaba todo abierto, todo cerrado. -->
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
