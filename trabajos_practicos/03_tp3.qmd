@@ -5,21 +5,20 @@ practica: "Trabajo Práctico 3"
 
 ## Introducción
 
-Como si la riqueza del idioma español no fuera suficiente para expresar aquello que 
-queremos decir, muy frecuentemente los argentinos recurrimos a palabras o expresiones que,
-sin contexto, carecen de significado o transmiten algo completamente distinto al uso que 
-les damos.
+Como si la riqueza del idioma español no fuera suficiente, 
+muy frecuentemente los argentinos recurrimos a palabras o expresiones que, sin contexto, 
+carecen de significado o transmiten algo completamente distinto al uso que les damos.
 
 Si de palabras se trata, sobran los ejemplos: perro, bife, mango, cana, puchero, 
 panqueque, pavo, chorro, bondi y rata son algunos de ellos. Tampoco escasean frases que, 
-inevitablemente, confunden a aquellos que nunca han pisado suelo argento: tomar el palo,
+inevitablemente, confunden a los que nunca han pisado suelo argento: tomar el palo,
 hacer la cama, mandar fruta, comer vidrio, estar en pañales, pararse de manos o sacar el 
 cuero.
 
 El presente trabajo práctico gira alrededor de una palabra clave: masacre. 
 La palabra "masacre" se utiliza, generalmente, para referirse a la matanza violenta e 
 indiscriminada de un gran número de personas. Sin embargo, y siguiendo la línea de los 
-párrafos introductorios, no la vamos a usar por su significado mas obvio, aunque sí por 
+párrafos introductorios, no la vamos a usar por su significado más obvio, aunque sí por 
 uno muy cercano.
 
 
@@ -38,10 +37,10 @@ aparentemente, había sido recién cometido.
 
 ¡Qué masacre! Fue lo único que pudo a decir al llegar al lugar. 
 El caos se extendía por toda la habitación.
-Muebles volcados y destrozados. Utensillos de cocina desparramados y manchados con un
-líquido carmesí. La ventana, con sus vidrios estallados, daba paso a la brisa matutina 
-y la débil luz de los móviles policiales que dejaban ver que, hacia un extremo del salón, 
-el cuerpo de Sergio Contreras yacía en un charco de sangre.
+Muebles volcados y destrozados. Utensillos de cocina desparramados y manchados. 
+La brisa matutina se abría paso por los vidrios estallados y la débil luz de los móviles
+policiales dejaban ver que el cuerpo de Sergio Contreras yacía en un charco de sangre
+hacia un extremo del salón.
 
 Abundan las tareas que los investigadores deben realizar en un crimen de estas 
 características. Nuestro protagonista, Guido, quedó encargado de determinar la hora 
@@ -55,7 +54,7 @@ fallecimiento. Estos estudian diferentes características, como por ejemplo la r
 corporal, la presencia de livideces (manchas en el cuerpo), el nivel de descomposición, 
 etc. 
 
-Una de las estrategias mas utilizadas se basa en el estudio de la temperatura corporal.
+Una de las estrategias más utilizadas se basa en el estudio de la temperatura corporal.
 Durante las primeras horas después de la muerte ocurre el enfriamiento del cuerpo,
 que se conoce como enfriamiento postmortem o _algor mortis_. 
 
@@ -107,103 +106,86 @@ $$
 T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
 $$ 
 
-siendo $T_i$ la temperatura a la que está inicialmente el agua en el termo 
-(un valor fijo y conocido).
+siendo $T_i$ la temperatura a la que está inicialmente el cuerpo de Sergio.
 
-   
 ## Bayes al rescate 🎲
 
-**WIP**
+Es ahora cuando entran en escena nuevos e impensados protagonistas: los estudiantes
+de la materia Estadística Bayesiana. Utilizando los conocimientos adquiridos a lo largo 
+del curso y la información relevante volcada en este documento, deberán hacer el trabajo
+originalmente encomendado a Guido: determinar la hora de muerte de Sergio.
 
+1.  Verifique que la función anterior satisface la ecuación diferencial.
+2.  Grafique $T(t)$ para $T_{\text{amb}} = 23 \text{ C°}$ y $T_i = 37 \text{ C°}$, 
+    para dos valores de $r$, $r_1 = 0.1$ y $r_2 = 0.3$. ¿Qué representa $r$?
+3.  ¿Cuál es un valor realista de $r$? De ser necesario, busque información acerca de los 
+tiempos del enfriamiento postmortem.
 
-1.  Verificar que la función anterior satisface la ecuación diferencial
-2.  Grafique $T(t)$ para $T_{\text{amb}} = 20 \text{ C°}$ y $T_i = 37 \text{ C°}$, 
-    para dos valores de $r$, $r_1=0.1$ y $r_2 = 0.3$. ¿Qué representa $r$?
-3.  Según su experiencia con termos, ¿cuál es un valor realista de $r$? Dar alguna información
-que diga a que hora el cuerpo en general ya está "frio"
+Téngase presente el siguiente resumen de los hechos ocurridos:
 
-Estudiaremos a continuación un conjunto de mediciones de temperatura de agua en un termo 
-en función del tiempo transcurrido.
-
-Leonel tiene un termo Estanli™ que compró por Amason y se dispone a despejar la duda de 
-cualquier usuario de termos Estanli™: ¿cuánto dura el agua caliente? Pone agua en la pava 
-eléctrica, la vierte en el termo y registra la temperatura en algunos momentos posteriores.
-Ese día, el reporte meteorológico indica una temperatura de $T_{\text{amb}} = 23\text{ C°}$. 
-Las temperaturas que registró Leonel son las siguientes:
-
-```{r mediciones, echo=FALSE}
-tabla <- data.frame(
-    t = c("1:20", "2:30", "4:00", "5:15", "8:30"),
-    T = c(92.0, 90.5, 81.4, 80.8, 74.2)
-)
-knitr::kable(tabla,col.names = c("t (h:mm)", "T (°C)")) |> 
-    kableExtra::kable_styling(full_width = FALSE)
-```
+* 5:33 hs - El Centro de Atención de Emergencias 911 recibe un llamado de Lidia Benegas, 
+alertando sobre ruidos extraños en la vivienda de su vecino en la localidad de Salsipuedes.
+Agrega que le llama la atención observar que las puertas y ventanas estuvieran abiertas
+tan temprano.
+* 5:36 hs - La policía de Salsipuedes recibe el llamado y envía un móvil a la dirección 
+indicada.
+* 5:52 hs - Llega el móvil policial a destino, y ante la ausencia de respuesta, 
+deciden ingresar a la casa y realizar una inspección ocular.
+* 6:00 hs - Concluida la inspección, se constata la presencia de una persona tendida
+en el suelo, aparentemente muerta, y se llama a la policía científica de Córdoba para 
+actuar en el lugar.
+* 6:45 hs - Arriba la policía científica al lugar. El médico forense determina la 
+ausencia de signos vitales. El informe menciona una temperatura corporal de **XX** °C.
+* 6:50 hs - Comienza el relevamiento de pruebas. Miembros del equipo forense toman 
+fotografías, recogen huellas dactilares, y secuestran elementos que puedan aportar a la 
+causa.
+* 8:15 hs - Finalizados los procedimientos legales y técnicos, se procede a colocar el
+cuerpo en la bolsa de óbito para su posterior traslado a morgue judicial. 
+El termómetro registra que la temperatura del cadáver es de **YY** °C.
+* 8:40 hs - Comienza el traslado del cuerpo a morgue judicial en Córdoba Capital.
+* 9:55 hs - Llega a destino la unidad de traslado y se resguarda el cuerpo a espera de su 
+correspondiente autopsia.
+* 13:30 hs - Comienza la autopsia. El cadáver se encuentra a **ZZ** °C.
+* 16:10 hs - Finaliza la autopsia, se determina que Sergio falleció desangrado producto 
+de una herida punzante recibida en el bazo.
 
 Para simplificar la construcción de un modelo, en lugar de considerar la temperatura del 
-agua en el termo, se considerará la diferencia entre la temperatura del agua y la 
-temperatura ambiente $T-T_{\text{amb}}$. Además, se llamará $T_{\text{diff}}$ a la 
-diferencia de temperatura entre la temperatura inicial del agua y la temperatura ambiente 
+cuerpo, se considerará la diferencia entre la temperatura del cuerpo y la 
+temperatura ambiente $T - T_{\text{amb}}$. Además, se llamará $T_{\text{diff}}$ a la 
+diferencia entre la temperatura inicial del cuerpo y la temperatura ambiente 
 $T_i - T_{\text{amb}}$.
 
 $$
 T(t) - T_{\text{amb}} = T_{\text{diff}} e^{-rt}
 $$
 
-4.  Verifique que el logaritmo natural de la nueva variable ($T(t) - T_{\text{amb}}$) es 
+4.  Verifique que el logaritmo natural de la nueva variable $T(t) - T_{\text{amb}}$ es 
     una función lineal de $t$. ¿Qué representan el intercepto y la pendiente? Llámelos 
     $\beta_0$ y $\beta_1$.
 
 Se propone ajustar un modelo lineal normal utilizando los datos transformados.
 
-5.  En función del enunciado del problema y de su conocimiento de termos, elija una 
-    distribución _a priori_ para $\beta_0$, $\beta_1$ y $\sigma$. ¿Cuáles son las 
-    implicancias de sus distribuciones _a priori_? Realice pruebas predictivas _a priori_.
-6.  Ajuste el modelo lineal utilizando `R`.
-7.  Encontrar el _posterior_ de $r$, de $T_{\text{diff}}$ y de la temperatura inicial del 
-    agua $T_i$.
-8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de 
-    la experiencia.
+5.  En función del enunciado del problema y de su conocimiento, elija una distribución
+     _a priori_ para $\beta_0$, $\beta_1$ y $\sigma$. 
+    ¿Cuáles son las implicancias de sus distribuciones _a priori_? 
+    Realice pruebas predictivas _a priori_.
+    Considere una temperatura ambiente de 22 °C.
+6.  ¿Es posible estimar la hora de muerte utilizando la información disponible hasta las 
+        7 de la mañana? En caso afirmativo, explicite los supuestos realizados y ajuste 
+        el modelo usando Stan.
+7.  Luego, estime la hora de muerte utilizando la información disponible hasta las 10 horas. 
+8.  Finalmente, estime la hora de muerte utilizando todas las mediciones de temperatura
+    realizadas sobre el cuerpo de Sergio. Compare esta estimación con la obtenida en el 
+    punto **7**. ¿Cuál de las dos es un reflejo más fiel de la verdadera hora de muerte?
+    Justifique su respuesta.
+9. ¿Modificaría algún aspecto del modelo si supiera que Sergio no gozaba de buena salud
+al momento de fallecer?
 
 
-
+<!-- 7.  Encontrar el _posterior_ de $r$, de $T_{\text{diff}}$ y de la temperatura inicial del 
+    agua $T_i$. -->
+<!-- 8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de 
+    la experiencia. -->
 
 <!-- Bondi, Perro, Rata, Gato, Cana Mango, Ñoqui, Botón, Chorro, Gamba, Banana, Bife, Panqueque, Pavo, Picada, Puchero, Llantas -->
-
 <!-- Tomar el palo, Estar en pañales, Abrir el paraguas, Chupar medias, Hacer la cama, Mandar fruta, Comer vidrio, Pararse de manos, Vender humo, Sacar el cuero -->
-
-
-<!-- 1.  Realice un análisis exploratorio de los datos de ajuste del modelo (_train_) y 
-proponga _priors_ vagos de acuerdo a la escala de los datos. Realice simulaciones 
-predictivas _a priori_. -->
-
-
----
-
-<!-- Necesitan saber cuando falleció el muerto, tienen toda la fe depositada en el,
-pero Guido no llegó a cursar estadística bayesiana, y no sabe que hacer!
-
-Si no lo resolvemos, me van a masacrar en la revision anual
-
-Bueno, lo ayudamos?
-
-El caso
-
-* Llamada a la policia hecha por una persona que dice que su perro estuvo toreando durante
-las ultimas X horas, por la noche, y que al salir al patio al mirar observo que estaba
-todo abierto en lo del vecino, lo cual era raro.
-
-* Toman la temperatura corporal (poner hora).
-
-* Esperan que llegue Z unidad, algo asi. Nuevamente toman la temperatura corporal.
-
-* Al llegar el cuerpo a la morgue policial, otar vez toman la temperatura corporal.
-
-Idea: Poner horas a los eventos, sirve para dar mas informacion a priori.
-
-* Pensar en los siguientes escenarios
-    * La persona es sana
-    * La persona esta enferma
-    * El hecho ocurre un 9 de julio
-    * El hecho ocurre un 9 de enero
-    * Estaba todo abierto, todo cerrado. -->
