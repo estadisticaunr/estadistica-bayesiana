@@ -145,7 +145,7 @@ El termómetro registra que la temperatura del cadáver es de 30.5 °C.
 * 8:40 hs - Comienza el traslado del cuerpo a morgue judicial en Córdoba Capital.
 * 9:55 hs - Llega a destino la unidad de traslado y se resguarda el cuerpo a espera de su 
 correspondiente autopsia.
-* 13:30 hs - Comienza la autopsia. El cadáver se encuentra a 25.1 °C.
+* 13:30 hs - Comienza la autopsia. El cadáver se encuentra a 23.7 °C.
 * 16:10 hs - Finaliza la autopsia, se determina que Sergio falleció desangrado producto 
 de una herida punzante recibida en el bazo.
 
