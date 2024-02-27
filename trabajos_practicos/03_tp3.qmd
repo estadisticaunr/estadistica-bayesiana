@@ -135,17 +135,17 @@ deciden ingresar a la casa y realizar una inspección ocular.
 en el suelo, aparentemente muerta, y se llama a la policía científica de Córdoba para 
 actuar en el lugar.
 * 6:45 hs - Arriba la policía científica al lugar. El médico forense determina la 
-ausencia de signos vitales. El informe menciona una temperatura corporal de **XX** °C.
+ausencia de signos vitales. El informe menciona una temperatura corporal de 32.8 °C.
 * 6:50 hs - Comienza el relevamiento de pruebas. Miembros del equipo forense toman 
 fotografías, recogen huellas dactilares, y secuestran elementos que puedan aportar a la 
 causa.
 * 8:15 hs - Finalizados los procedimientos legales y técnicos, se procede a colocar el
 cuerpo en la bolsa de óbito para su posterior traslado a morgue judicial. 
-El termómetro registra que la temperatura del cadáver es de **YY** °C.
+El termómetro registra que la temperatura del cadáver es de 30.5 °C.
 * 8:40 hs - Comienza el traslado del cuerpo a morgue judicial en Córdoba Capital.
 * 9:55 hs - Llega a destino la unidad de traslado y se resguarda el cuerpo a espera de su 
 correspondiente autopsia.
-* 13:30 hs - Comienza la autopsia. El cadáver se encuentra a **ZZ** °C.
+* 13:30 hs - Comienza la autopsia. El cadáver se encuentra a 25.1 °C.
 * 16:10 hs - Finaliza la autopsia, se determina que Sergio falleció desangrado producto 
 de una herida punzante recibida en el bazo.
 
@@ -186,6 +186,3 @@ al momento de fallecer?
     agua $T_i$. -->
 <!-- 8.  Predecir la temperatura a la que estará el agua transcurridas 12:00 h del inicio de 
     la experiencia. -->
-
-<!-- Bondi, Perro, Rata, Gato, Cana Mango, Ñoqui, Botón, Chorro, Gamba, Banana, Bife, Panqueque, Pavo, Picada, Puchero, Llantas -->
-<!-- Tomar el palo, Estar en pañales, Abrir el paraguas, Chupar medias, Hacer la cama, Mandar fruta, Comer vidrio, Pararse de manos, Vender humo, Sacar el cuero -->
