@@ -432,8 +432,8 @@ Formula: y ~ 1 + edad
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept     1.19      0.32     0.55     1.84 1.00     3351     2853
-edad         -0.02      0.01    -0.03    -0.01 1.00     3881     2904
+Intercept     1.20      0.33     0.56     1.87 1.00     3938     2430
+edad         -0.02      0.01    -0.03    -0.01 1.00     4061     2813
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -506,10 +506,10 @@ Formula: y ~ 0 + partido + edad
 
 Population-Level Effects: 
              Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-partidoazul      3.34      0.52     2.35     4.34 1.00     1118     1568
-partidorojo     -1.77      0.62    -3.06    -0.66 1.00     1371     1778
-partidoverde     0.81      0.46    -0.09     1.70 1.00     1039     1447
-edad            -0.02      0.01    -0.04    -0.00 1.00      990     1269
+partidoazul      3.32      0.53     2.31     4.41 1.00     1185     1656
+partidorojo     -1.81      0.64    -3.15    -0.62 1.00     1190     1533
+partidoverde     0.78      0.47    -0.13     1.70 1.00     1141     1409
+edad            -0.02      0.01    -0.04    -0.00 1.00     1094     1462
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -544,14 +544,14 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_2_long)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 4
-  coeficiente      valor grupo      partido
-  &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
-1 b_partidoazul   4.10   intercepto azul   
-2 b_partidorojo  -0.0712 intercepto rojo   
-3 b_partidoverde  1.55   intercepto verde  
-4 b_edad         -0.0414 pendiente  global 
-5 b_partidoazul   4.00   intercepto azul   
-6 b_partidorojo  -0.456  intercepto rojo   </code></pre>
+  coeficiente       valor grupo      partido
+  &lt;chr&gt;             &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
+1 b_partidoazul   1.53    intercepto azul   
+2 b_partidorojo  -2.93    intercepto rojo   
+3 b_partidoverde -0.257   intercepto verde  
+4 b_edad          0.00299 pendiente  global 
+5 b_partidoazul   3.26    intercepto azul   
+6 b_partidorojo  -2.16    intercepto rojo   </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_draws_2_long) <span class="sc">+</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> valor, <span class="at">color =</span> partido, <span class="at">fill =</span> partido), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -627,12 +627,12 @@ Formula: y ~ 0 + partido + edad:partido
 
 Population-Level Effects: 
                   Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-partidoazul           1.74      0.73     0.34     3.20 1.00     2565     1963
-partidorojo           0.84      1.66    -2.31     4.28 1.00     2249     1792
-partidoverde          1.42      0.61     0.25     2.64 1.01     2280     1800
-partidoazul:edad      0.01      0.02    -0.02     0.04 1.00     2605     2109
-partidorojo:edad     -0.09      0.04    -0.19    -0.01 1.00     2246     1809
-partidoverde:edad    -0.03      0.01    -0.06    -0.01 1.00     2373     1953
+partidoazul           1.71      0.73     0.33     3.18 1.00     2476     1889
+partidorojo           0.81      1.60    -2.27     3.99 1.00     2169     2032
+partidoverde          1.41      0.61     0.24     2.60 1.00     2292     1894
+partidoazul:edad      0.01      0.02    -0.02     0.04 1.00     2515     2023
+partidorojo:edad     -0.09      0.04    -0.18    -0.02 1.00     2193     2137
+partidoverde:edad    -0.03      0.01    -0.06    -0.01 1.00     2265     1982
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -670,12 +670,12 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <pre><code># A tibble: 6 × 4
   coeficiente            valor grupo      partido
   &lt;chr&gt;                  &lt;dbl&gt; &lt;chr&gt;      &lt;ord&gt;  
-1 b_partidoazul        1.08    intercepto azul   
-2 b_partidorojo       -2.34    intercepto rojo   
-3 b_partidoverde       0.114   intercepto verde  
-4 b_partidoazul:edad   0.0199  pendiente  azul   
-5 b_partidorojo:edad  -0.0248  pendiente  rojo   
-6 b_partidoverde:edad -0.00729 pendiente  verde  </code></pre>
+1 b_partidoazul        2.49    intercepto azul   
+2 b_partidorojo       -0.185   intercepto rojo   
+3 b_partidoverde       1.15    intercepto verde  
+4 b_partidoazul:edad   0.00917 pendiente  azul   
+5 b_partidorojo:edad  -0.0734  pendiente  rojo   
+6 b_partidoverde:edad -0.0296  pendiente  verde  </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_draws_3_long) <span class="sc">+</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> valor, <span class="at">color =</span> partido, <span class="at">fill =</span> partido), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
@@ -742,27 +742,27 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoazul:edad"</span>] <span class="sc">&gt;</span> df_draws_3[<span class="st">"b_partidorojo:edad"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.99375</code></pre>
+<pre><code>[1] 0.99575</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoazul:edad"</span>] <span class="sc">&gt;</span> df_draws_3[<span class="st">"b_partidoverde:edad"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.99125</code></pre>
+<pre><code>[1] 0.993</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoverde:edad"</span>] <span class="sc">&gt;</span> df_draws_3[<span class="st">"b_partidorojo:edad"</span>])</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9045</code></pre>
+<pre><code>[1] 0.9065</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoazul:edad"</span>] <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.77775</code></pre>
+<pre><code>[1] 0.79375</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidorojo:edad"</span>] <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.98925</code></pre>
+<pre><code>[1] 0.992</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df_draws_3[<span class="st">"b_partidoverde:edad"</span>] <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9995</code></pre>
+<pre><code>[1] 0.998</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparando los modelos con LOO... ¿qué significa?</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>loo_1 <span class="ot">&lt;-</span> <span class="fu">loo</span>(modelo_1)</span>
@@ -773,8 +773,8 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>         elpd_diff se_diff
 modelo_3   0.0       0.0  
-modelo_2  -1.6       3.3  
-modelo_1 -98.2      11.9  </code></pre>
+modelo_2  -1.9       3.3  
+modelo_1 -98.4      11.8  </code></pre>
 </div>
 </div>
 

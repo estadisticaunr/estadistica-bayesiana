@@ -288,8 +288,8 @@ window.Quarto = {
 
 
 <section id="métodos-computacionales" class="level2">
-<h2 class="anchored" data-anchor-id="métodos-computacionales">Métodos Computacionales</h2>
-<p>Esta sección contiene una lista exhaustiva de ejercicios que requieren el uso de herramientas computacionales para resolver problemas que involucran una variedad de cálculos, como el cálculo de probabilidades y el cálculo de integrales. Se vuelve indispensable el uso de <code>R</code> y se promueve el uso de buenas prácticas de programación científica, como el uso de funciones compartimentar los componentes de un programa.</p>
+<h2 class="anchored" data-anchor-id="métodos-computacionales">💻 Métodos Computacionales</h2>
+<p>Esta sección contiene una lista exhaustiva de ejercicios que requieren el uso de herramientas computacionales para resolver problemas que involucran una variedad de cálculos, como el cálculo de probabilidades y el cálculo de integrales. Se vuelve indispensable el uso de R y se promueve el uso de buenas prácticas de programación científica, como el uso de funciones compartimentar los componentes de un programa.</p>
 <ol type="1">
 <li><p><strong>¡A calcular probabilidades! (I)</strong></p>
 <p>Sea <span class="math inline">\(X \sim \text{Normal}(\mu=3, \sigma=1.2)\)</span>.</p>
@@ -321,7 +321,7 @@ window.Quarto = {
 </ol></li>
 <li><p><strong>Te veo en la fotocopiadora</strong></p>
 <p>Dos estudiantes de estadística deciden encontrarse en la fotocopiadora de la Facultad entre las 10 y las 11 de la mañana, eligiendo el tiempo de llegada al azar. La estudiante A esperará 10 minutos luego de llegar. Si el estudiante B no llega en ese intervalo, se irá. Lo mismo hace el estudiante B, pero este decide esperar 14 minutos. ¿Cuál es la probabilidad de que se produzca el encuentro en la fotocopiadora entre la estudiante A y el estudiante B?</p></li>
-<li><p><strong>Armando celulares en Tierra del Fuego</strong></p>
+<li><p>🧩 <strong>Armando celulares en Tierra del Fuego</strong></p>
 <p>Una máquina que se utiliza para ensamblar teléfonos celulares en una fábrica en Tierra del Fuego cuenta con tres componentes críticos para su funcionamiento. Ante una falla en cualquiera de estos componentes, la máquina se detiene. Las probabilidades de que estos elementos operen correctamente durante un día cualquiera son <span class="math inline">\(p_1 = 0.8\)</span>, <span class="math inline">\(p_2 = 0.9\)</span> y <span class="math inline">\(p_3 = 0.7\)</span>. Responda las siguientes preguntas utilizando técnicas de simulación:</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que la máquina falle en el primer día de uso?</li>
@@ -337,7 +337,7 @@ window.Quarto = {
 <li>No se estabiliza.</li>
 <li>Ninguna de las anteriores.</li>
 </ol>
-<p>Escriba un programa en <code>R</code> para responder esta pregunta utilizando simulaciones. Genere gráficos que faciliten la comprensión del resultado. <!-- https://twitter.com/pgroisma/status/1616820135313932288 --></p></li>
+<p>Escriba un programa en R para responder esta pregunta utilizando simulaciones. Genere gráficos que faciliten la comprensión del resultado. <!-- https://twitter.com/pgroisma/status/1616820135313932288 --></p></li>
 <li><p><strong>Estimando el valor de</strong> <span class="math inline">\(\pi\)</span></p>
 <p>Imagine un círculo de radio <span class="math inline">\(r\)</span> y un cuadrado de lado <span class="math inline">\(2r\)</span>, ambos centrados en el mismo punto, que de manera arbitraria puede ser el punto <span class="math inline">\((0, 0)\)</span>. Obtenga muestras de una distribución uniforme en el plano <span class="math inline">\((x, y)\)</span>, cuyo dominio está acotado por el cuadrado antes mencionado. Para cada muestra extraida, determine si se encuentra dentro del círculo o no – todos las muestras se encontrarán dentro del cuadrado. Utilice esta información para estimar el valor de <span class="math inline">\(\pi\)</span>.</p>
 <div class="cell" data-layout-align="center">
@@ -357,7 +357,7 @@ window.Quarto = {
 <li><p><strong>Los puntos uniformes</strong></p>
 <p>Se seleccionan dos puntos de manera uniforme e independiente dentro de un círculo. ¿Cuál es la probabilidad de que la distancia entre dos puntos sea menor al radio?</p>
 <ol type="i">
-<li>Resuelva el problema utilizando <code>R</code>.</li>
+<li>Resuelva el problema utilizando R.</li>
 <li>Elabore una visualización que facilite la comunicación de los resultados.</li>
 </ol></li>
 <li><p><strong>Sobre el histórico 7 a 1 del 2014</strong></p>
@@ -373,7 +373,7 @@ window.Quarto = {
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
 <li>¿Cuál es el horario esperado al que terminará su entrevista? <!-- Modern Data Science with R --></li>
 </ol></li>
-<li><p><strong>¡Qué casualidad!</strong></p>
+<li><p>🧩 <strong>¡Qué casualidad!</strong></p>
 <p>Dos personas se conocen en la fila de embarque para un vuelo en un avión Airbus A330-300. Considere que el Airbus A330-300 tiene 30 filas de 2-4-2 asientos.</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
@@ -431,7 +431,7 @@ window.Quarto = {
 </ol>
 </section>
 <section id="aproximación-de-una-distribución-mediante-una-grilla" class="level2">
-<h2 class="anchored" data-anchor-id="aproximación-de-una-distribución-mediante-una-grilla">Aproximación de una distribución mediante una grilla</h2>
+<h2 class="anchored" data-anchor-id="aproximación-de-una-distribución-mediante-una-grilla">💻 Aproximación de una distribución mediante una grilla</h2>
 <p>En esta parte de la práctica se comienza a utilizar técnicas computacionales que se asocian directamente a la práctica de la estadística bayesiana. Los problemas tienen como objetivo la familiarización con el uso práctico de estas técnicas y la comprensión de sus características principales.</p>
 <ol type="1">
 <li><p><strong>Aproximación de grilla</strong></p>
@@ -524,7 +524,7 @@ TO DO
 -->
 </section>
 <section id="sec-mh" class="level2">
-<h2 class="anchored" data-anchor-id="sec-mh"><strong>Metropolis-Hastings</strong></h2>
+<h2 class="anchored" data-anchor-id="sec-mh">💻 <strong>Metropolis-Hastings</strong></h2>
 <!--
 Copio algunos pasajes del libro porque la verdad me parece super claro. 
 Puede ser útil para la presentación de teoría.
@@ -621,21 +621,21 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \]</span></p>
 <p>Ajuste el modelo utilizando Metropolis-Hastings y verifique la convergencia de las cadenas de Markov. <!-- @Reich2020 3.10/3.11  --></p></li>
 <li><p><strong>Metropolis-Hastings multivariado</strong></p>
-<p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\pmb{\mu}, \pmb{\Sigma})\)</span> donde</p>
+<p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span> donde</p>
 <p><span class="math display">\[
 \begin{array}{cc}
-    \pmb{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix}, &amp;
-    \pmb{\Sigma} = \begin{bmatrix}3 &amp; 0.2 \\ 0.2 &amp; 2 \end{bmatrix}
+    \boldsymbol{\mu} = \begin{bmatrix}1.2 \\ 0.8 \end{bmatrix}, &amp;
+    \boldsymbol{\Sigma} = \begin{bmatrix}3 &amp; 0.2 \\ 0.2 &amp; 2 \end{bmatrix}
 \end{array}
 \]</span></p>
-<p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\mathbf{0}_2, \mathbf{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
+<p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\boldsymbol{0}_2, \boldsymbol{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
 <li><p><strong>Metropolis-Hastings para regresión</strong></p>
 <p>Repita el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> pero utilice Metropolis-Hastings para obtener muestras del <em>posterior</em> en vez del método de la grilla.</p></li>
 </ol>
 <!-- 1.  **Demostración sobre la distribución estacionaria**
     
     Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
-    la distribución objetivo $p(\pmb{\theta} | \mathbf{y})$ -->
+    la distribución objetivo $p(\boldsymbol{\theta} | \boldsymbol{y})$ -->
 <!--
 TO DO
 
@@ -680,7 +680,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li><p><strong><span class="math inline">\(\hat{R}\)</span> para un muestreo independiente</strong></p>
 <p>En un determinado problema se encuentra que el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> de un modelo con verosimilitud binomial está dado por</p>
 <p><span class="math display">\[
-\pi | \mathbf{y} \sim \text{Beta}(12, 6)
+\pi | \boldsymbol{y} \sim \text{Beta}(12, 6)
 \]</span></p>
 <ol type="i">
 <li>Obtenga 4 conjuntos independientes de 1000 muestras independientes de esta distribución.</li>
@@ -777,7 +777,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 </section>
 <section id="programación-probabilística---stan-y-rstan" class="level2">
 <h2 class="anchored" data-anchor-id="programación-probabilística---stan-y-rstan"><strong>Programación probabilística - Stan y RStan</strong></h2>
-<p>En esta sección se comienza a utilizar Stan para realizar los cálculos relacionados a la inferencia bayesiana. Stan es uno de los lenguajes de programación probabilística mas potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que deben ser resueltos con la interface de <code>Stan</code> a <code>R</code>, <code>{RStan}</code>.</p>
+<p>En esta sección se comienza a utilizar Stan para realizar los cálculos relacionados a la inferencia bayesiana. Stan es uno de los lenguajes de programación probabilística mas potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que deben ser resueltos con la interface de <code>Stan</code> a R, <code>{RStan}</code>.</p>
 <ol type="1">
 <li><p><strong>MCMC con RStan: Precalentamiento (I)</strong></p>
 <p>Utilice la información proporcionada para definir la estructura del modelo bayesiano utilizando <code>{RStan}</code>. No es necesario ejecutar nada, solo necesita proporcionar el código correcto.</p>
@@ -857,7 +857,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 \sigma              &amp;\sim \text{Gamma}(k, \theta)
 \end{aligned}
 \]</span></p>
-<p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en <code>R</code> utilizando el siguiente bloque de código.</p>
+<p>El peso se encuentra medido en gramos y la longitud en centímetros. El equipo provee las muestras que obtuvieron del <em>posterior</em>. Las mismas se pueden leer en R utilizando el siguiente bloque de código.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://raw.githubusercontent.com/estadisticaunr/"</span>,</span>
@@ -893,23 +893,23 @@ TO DO: Mover a otro lado?
 1.  Considere la siguiente familia de distribuciones normales en 2D
 
     $$
-    f(\mathbf{x} | \pmb{\Sigma}, \pmb{\mu} = \mathbf{0}) 
-    = \frac{1}{\det(2\pi\pmb{\Sigma})^{-\frac{1}{2}}}
-    \exp[{-\frac{1}{2} \mathbf{x}^T \pmb{\Sigma}^{-1} \mathbf{x}}]
+    f(\boldsymbol{x} | \boldsymbol{\Sigma}, \boldsymbol{\mu} = \boldsymbol{0}) 
+    = \frac{1}{\det(2\pi\boldsymbol{\Sigma})^{-\frac{1}{2}}}
+    \exp[{-\frac{1}{2} \boldsymbol{x}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{x}}]
     $$
 
     y las siguientes matrices de covarianza
 
     $$
     \begin{array}{cc}
-        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
+        \boldsymbol{\Sigma}_1 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} & 
+        \boldsymbol{\Sigma}_2 = \begin{bmatrix} 1 & 0.2 \\ 0.2 & 1 \end{bmatrix}
         \\ \\ 
-        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_2 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
+        \boldsymbol{\Sigma}_1 = \begin{bmatrix} 1 & 0.5 \\ 0.5 & 1 \end{bmatrix} & 
+        \boldsymbol{\Sigma}_2 = \begin{bmatrix} 0.1 & 0 \\ 0 & 1 \end{bmatrix}
         \\ \\
-        \pmb{\Sigma}_1 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
-        \pmb{\Sigma}_2 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
+        \boldsymbol{\Sigma}_1 = \begin{bmatrix} 1 & 0.9 \\ 0.9 & 1 \end{bmatrix} & 
+        \boldsymbol{\Sigma}_2 = \begin{bmatrix} 0.01 & 0 \\ 0 & 1 \end{bmatrix}
     \end{array}
     $$
 

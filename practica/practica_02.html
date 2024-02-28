@@ -255,7 +255,7 @@ window.Quarto = {
 
 <section id="modelos-de-distribuciones-conjugadas" class="level2">
 <h2 class="anchored" data-anchor-id="modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</h2>
-<p>Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el lenguaje <code>R</code> para verificar los resultados, mostrar soluciones alternativas y ejercitar el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la vida profesional.</p>
+<p>Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el lenguaje R para verificar los resultados, mostrar soluciones alternativas y ejercitar el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la vida profesional.</p>
 <ol type="1">
 <li><p><strong>¿Quién domina el <em>posterior</em>?</strong></p>
 <p>Para cada una de las situaciones siguientes, se da una distribución <em>a priori</em> Beta para el parámetro <span class="math inline">\(\pi\)</span> de un ensayo binomial. Para cada escenario, identificar cuál de estos se cumple: el <em>prior</em> tiene mayor influencia en el <em>posterior</em>, los datos tienen más influencia en el <em>posteriori</em>, o la creencia <em>a priori</em> y los datos influyen de manera similar en la creencia <em>a posteriori</em></p>
@@ -303,12 +303,12 @@ window.Quarto = {
 <li>Resuma ambas distribuciones <em>a priori</em> y explique con sus palabras lo que implican.</li>
 <li>Con la información de sus compañeros de curso, actualice ambas distribuciones <em>a priori</em>. ¿Es suficiente esa información para acercar ambas posturas?</li>
 </ol></li>
-<li><p><strong>Mi primera huerta</strong></p>
+<li><p>💻 <strong>Mi primera huerta</strong></p>
 <p>En un campamento de verano para infantes se realizaron actividades que promueven el contacto con la naturaleza. Una de las tareas consistió en germinar semillas de tomate. Josefina plantó 18 semillas en su almaciguera. Al cabo de 5 días, 8 de ellas germinaron. Sea <span class="math inline">\(\theta\)</span> la probabilidad de que una semilla de tomate germine y sea <span class="math inline">\(\text{Beta}(1, 1)\)</span> su distribución <em>a priori</em>.</p>
 <ol type="i">
 <li>¿Qué información implica el <em>prior</em> sobre la probabilidad de germinación?</li>
 <li>Calcule la media y el desvío estándar <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> a mano.</li>
-<li>Verifique el cálculo utilizando <code>R</code>.</li>
+<li>Verifique el cálculo utilizando R.</li>
 <li>Obtenga un intervalo de credibilidad del 95% para <span class="math inline">\(\theta\)</span>.</li>
 </ol>
 <div class="cell" data-layout-align="center">
@@ -440,7 +440,7 @@ x \in \{0, 1, 2, \cdots \}
 <p>donde <span class="math inline">\(\lambda &gt; 0\)</span> es la cantidad promedio de veces que ocurre el evento de interés en un periodo o espacio determinado.</p>
 <ol type="i">
 <li>Derive el estimador de máxima verosimilitud del parámetro <span class="math inline">\(\lambda\)</span>.</li>
-<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda \mid \mathbf{x})\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\text{Gamma}(\lambda \mid \alpha, \beta)\)</span> con <span class="math inline">\(p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}\)</span>.<br>
+<li>Derive el <em>posterior</em> <span class="math inline">\(p(\lambda \mid \boldsymbol{x})\)</span> suponiendo que el <em>prior</em> sobre <span class="math inline">\(\lambda\)</span> es <span class="math inline">\(\text{Gamma}(\lambda \mid \alpha, \beta)\)</span> con <span class="math inline">\(p(\lambda \mid \alpha, \beta)  \propto \lambda^{\alpha - 1}e ^ {-\lambda \beta}\)</span>.<br>
 Ayuda: El <em>posterior</em> también es una distribución Gamma.</li>
 <li>¿A qué valor tiende la media a <em>posteriori</em> cuando <span class="math inline">\(\alpha \to 0\)</span> y <span class="math inline">\(\beta \to 0\)</span>?<br>
 Recuerde que la media de una distribución <span class="math inline">\(\text{Gamma}(\alpha, \beta)\)</span> es <span class="math inline">\(\alpha/\beta\)</span>. <!-- @Murphy2012 --></li>
@@ -459,12 +459,12 @@ Recuerde que la media de una distribución <span class="math inline">\(\text{Gam
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que la tasa de mensajes sea mayor a 10?</li>
 <li>¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?</li>
 </ol></li>
-<li><p><strong>Inferencia sobre una distribución Uniforme</strong></p>
+<li><p>🧩 <strong>Inferencia sobre una distribución Uniforme</strong></p>
 <p>Considere una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span>. La función de densidad de probabilidad es</p>
 <p><span class="math display">\[
 p(x) = \frac{1}{\theta}I(x \in [0, \theta])
 \]</span></p>
-<p>Sea <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
+<p>Sea <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
 <p><strong>Inferencia máximo-verosímil</strong></p>
 <ol type="i">
 <li>¿Cuál es el estimador máximo verosímil de <span class="math inline">\(\theta\)</span> (llámelo <span class="math inline">\(\hat{\theta}_{\text{MV}}\)</span>)?</li>
@@ -477,16 +477,16 @@ p(x) = \frac{1}{\theta}I(x \in [0, \theta])
 <p><span class="math display">\[
 p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
 \]</span></p>
-<p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\mathbf{X} = (X_1,..., X_n)\)</span> es</p>
+<p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> es</p>
 <p><span class="math display">\[
-p(\theta, \mathbf{X})
+p(\theta, \boldsymbol{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
-    \mathbb{I}(\theta \ge \text{max}(\mathbf{X}))
+    \mathbb{I}(\theta \ge \max(\boldsymbol{X}))
 \]</span></p>
-<p>Llamando <span class="math inline">\(M_x = \text{max}(\mathbf{X})\)</span>. La evidencia es</p>
+<p>Llamando <span class="math inline">\(M_x = \text{max}(\boldsymbol{X})\)</span>. La evidencia es</p>
 <p><span class="math display">\[
 \begin{aligned}
-p(\mathbf{X}) &amp;= \int_{M_x}^\infty
+p(\boldsymbol{X}) &amp;= \int_{M_x}^\infty
                  \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
                  d\theta \\
 &amp;=  \begin{cases}
@@ -496,7 +496,7 @@ p(\mathbf{X}) &amp;= \int_{M_x}^\infty
 \end{aligned}
 \]</span></p>
 <p>Derive el <em>posterior</em> y muestre que puede ser expresado como una distribución de Pareto. <!-- @Murphy2012 --> <!-- Hay que mejorar la redaccion y ver que la notacion es consistente --></p></li>
-<li><p><strong>Inferencia sobre una distribución Exponencial</strong></p>
+<li><p>🧩 <strong>Inferencia sobre una distribución Exponencial</strong></p>
 <p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
 <p><span class="math display">\[
 \begin{array}{lcrr}
@@ -512,9 +512,9 @@ p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \thet
 p(\theta \mid \lambda) &amp;= \lambda e^{-\lambda \theta}
 \end{aligned}
 \]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\lambda_0\)</span> para representar al valor.</p></li>
-<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta \mid \mathbf{X}, \lambda_0)\)</span>?</p></li>
+<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta \mid \boldsymbol{X}, \lambda_0)\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
-<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta \mid \mathbf{X}, \lambda_0)\)</span></p></li>
+<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta \mid \boldsymbol{X}, \lambda_0)\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
 <li><p><strong>Otras distribuciones conjugadas (I)</strong></p>
@@ -540,30 +540,30 @@ Y\mid\theta &amp;\sim \text{BinomialNeg}(\theta, m) \\
 <p>donde la función de densidad de la distribución binomial negativa es</p>
 <p><span class="math display">\[p(y\mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y\]</span></p>
 <p>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>.</p></li>
-<li><p><strong>Otras distribuciones conjugadas (III)</strong></p>
+<li><p>🧩 <strong>Otras distribuciones conjugadas (III)</strong></p>
 <p>Considere el siguiente modelo:</p>
 <p><span class="math display">\[
 \begin{array}{l}
 Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 \end{array}
 \]</span></p>
-<p>donde la función de densidad exponencial es <span class="math inline">\(p(y\mid\theta) = \theta e^{-\theta y}\)</span>.</p>
+<p>donde la función de densidad exponencial es <span class="math inline">\(p(y \mid \theta) = \theta e^{-\theta y}\)</span>.</p>
 <p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em> <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) --></p></li>
 </ol>
 </section>
 <section id="simulaciones" class="level2">
 <h2 class="anchored" data-anchor-id="simulaciones">💻 Simulaciones</h2>
-<p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y <code>R</code> de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en <code>R</code>. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
+<p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y R de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en R. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
 <li><p><strong>Entrada en calor</strong></p>
 <p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad</p>
 <ol type="i">
-<li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \mathbf{y} \sim \text{Beta}(4,5)\)</span>.</li>
-<li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \mathbf{y} \sim \text{Beta}(4,5)\)</span>.</li>
-<li>Intervalo del 89% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \mathbf{y} \sim \text{Gamma}(1,8)\)</span>.</li>
-<li>Intervalo del 95% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \mathbf{y} \sim \text{Gamma}(2,5)\)</span>.</li>
-<li>Intervalo del 81% para <span class="math inline">\(\mu\)</span> siendo <span class="math inline">\(\mu\mid \mathbf{y} \sim \mathcal{N}(10,2^2)\)</span>.</li>
-<li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid \mathbf{y} \sim \mathcal{N}(-3,1^2)\)</span>.</li>
+<li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)\)</span>.</li>
+<li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)\)</span>.</li>
+<li>Intervalo del 89% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \boldsymbol{y} \sim \text{Gamma}(1,8)\)</span>.</li>
+<li>Intervalo del 95% para <span class="math inline">\(\lambda\)</span> siendo <span class="math inline">\(\lambda\mid \boldsymbol{y} \sim \text{Gamma}(2,5)\)</span>.</li>
+<li>Intervalo del 81% para <span class="math inline">\(\mu\)</span> siendo <span class="math inline">\(\mu\mid \boldsymbol{y} \sim \mathcal{N}(10,2^2)\)</span>.</li>
+<li>Intervalo del 99% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\mu\mid \boldsymbol{y} \sim \mathcal{N}(-3,1^2)\)</span>.</li>
 </ol></li>
 <li><p><strong>Propiedades frecuentistas de inferencias bayesianas (!!)</strong></p>
 <p>Sea una variable <span class="math inline">\(Y\)</span> tal que <span class="math inline">\(Y \mid \theta \sim \text{Binomial}(n, \theta)\)</span> y <span class="math inline">\(\theta \sim \text{Beta}(1/2, 1/2)\)</span>. Mediante un estudio de simulación calcule la cobertura empírica del intervalo de credibilidad del 95% con <span class="math inline">\(n \in \{1, 5, 10, 25\}\)</span> y <span class="math inline">\(\theta \in \{0.05, 0.10, \dots, 0.50 \}\)</span>. Describa las propiedades frecuentistas del intervalo de credibilidad bayesiano. <!-- @Reich2020 --></p></li>
@@ -587,8 +587,8 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <li>El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia la derecha.</li>
 </ol></li>
 <li><p><strong>Verificar los resultados de manera computacional</strong></p>
-<p>Para cada uno cada uno de los ejemplos del ejercicio anterior, graficar la distribución usando <code>R</code>. Seleccionar los parámetros que creas razonable, tomar una muestra aleatoria de tamaño 1000 y graficar la distribución en base a las muestras. ¿Se refleja tu conocimiento del problema en la distribución graficada? Si no, ajustar los parámetros y repetir el proceso hasta que el resultado tenga concuerde con el conocimiento del problema.</p></li>
-<li><p><strong>Hay que amigarse con de la distribución Beta</strong></p>
+<p>Para cada uno cada uno de los ejemplos del ejercicio anterior, graficar la distribución usando R. Seleccionar los parámetros que creas razonable, tomar una muestra aleatoria de tamaño 1000 y graficar la distribución en base a las muestras. ¿Se refleja tu conocimiento del problema en la distribución graficada? Si no, ajustar los parámetros y repetir el proceso hasta que el resultado tenga concuerde con el conocimiento del problema.</p></li>
+<li><p>💻 <strong>Hay que amigarse con de la distribución Beta</strong></p>
 <p>Comparar las siguientes distribuciones <em>a priori</em>.</p>
 <ul>
 <li><span class="math inline">\(\text{Beta}(0.5, 0.5)\)</span>.</li>
@@ -601,7 +601,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <li>¿Cuál de ellas es más informativa?</li>
 <li>¿Cómo lo determinaste?</li>
 </ol></li>
-<li><p><strong>Elicitación de <em>priors</em></strong></p>
+<li><p>💻 <strong>Elicitación de <em>priors</em></strong></p>
 <p>En cada una de la situaciones que se describen debajo, ajustar manualmente los parámetros de una distribución <span class="math inline">\(\text{Beta}\)</span> para que reflejen la información brindada. No siempre existe una única respuesta correcta.</p>
 <ol type="i">
 <li>Un amigo se postuló para un empleo en LinkedIn y te dijo: “Diría que tengo una chance del 40% de que me den el trabajo, pero no estoy seguro”. Cuando le preguntamos un poco mas, dijo que estima sus chances entre un 20% y un 60%.</li>
@@ -615,7 +615,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <blockquote class="blockquote">
 <p>Tuve mis malas rachas, pero nunca menos de 8 pescas de cada 10 salidas.</p>
 </blockquote></li>
-<li><p><strong>Efecto de la parametrización</strong></p>
+<li><p>💻 <strong>Efecto de la parametrización</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito en un experimento binomial y sea <span class="math inline">\(\gamma = \frac{\theta}{1-\theta}\)</span> la chance de éxito. Utilizar simulaciones para explorar los efectos de las siguientes elecciones de distribuciones <em>a priori</em></p>
 <ol type="i">
 <li>Si <span class="math inline">\(\theta \sim \text{Uniforme}(0, 1)\)</span>, ¿cuál es el <em>prior</em> inducido para <span class="math inline">\(\gamma\)</span>?</li>
@@ -641,7 +641,7 @@ Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <section id="otros" class="level2">
 <h2 class="anchored" data-anchor-id="otros">Otros</h2>
 <ol type="1">
-<li><p><strong>Distribución predictiva a posteriori (a mano)</strong></p>
+<li><p>✍️ <strong>Distribución predictiva a posteriori</strong></p>
 <p>Considere un modelo <span class="math inline">\(y\mid \theta \sim \mathrm{Bin}(\theta,n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la <a href="#fig-ppd" class="quarto-xref">Figura&nbsp;1</a>.</p>
 <p>Se desea obtener la distribución predictiva <em>a posteriori</em> para el número de éxitos <span class="math inline">\(\tilde{y}\)</span> en <span class="math inline">\(n=5\)</span> nuevas realizaciones del experimento. Cada valor de <span class="math inline">\(\theta\)</span> da lugar a una posible distribución de <span class="math inline">\(\tilde{y}\)</span> de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la <a href="#fig-ppd" class="quarto-xref">Figura&nbsp;1</a>.</p></li>
 </ol>

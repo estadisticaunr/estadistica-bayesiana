@@ -359,9 +359,9 @@ Ayuda
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Si LLL es “los tres amigos dijeron que llovía”, buscamos p(lluvia|LLL) = p(LLL|lluvia)p(lluvia)/p(LLL).</p>
-<p>p(LLL|lluvia) es la probabilidad de que ninguno de los tres mienta.</p>
-<p>p(LLL) = p(LLL|lluvia) p(lluvia) + p(LLL|no lluvia) p(no lluvia).</p>
+<p>Si <span class="math inline">\(LLL\)</span> es “los tres amigos dijeron que llovía”, buscamos <span class="math inline">\(P(\text{lluvia} \mid LLL) = P(LLL \mid \text{lluvia}) P(\text{lluvia}) / P(LLL)\)</span>.</p>
+<p><span class="math inline">\(P(LLL \mid \text{lluvia})\)</span> es la probabilidad de que ninguno de los tres mienta.</p>
+<p><span class="math inline">\(P(LLL) = P(LLL \mid \text{lluvia}) P(\text{lluvia}) + P(LLL \mid \text{no lluvia}) P(\text{no lluvia})\)</span>.</p>
 </div>
 </div>
 </div></li>
@@ -389,11 +389,11 @@ Ayuda
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Llamemos S a “Guido y otra persona estuvieron en la escena del crimen” versus S’, “dos personas desconocidas estuvieron en la escena del crimen”. Además, contamos con la evidencia E, “observar sangre 0 y sangre AB”.</p>
-<p>Queremos saber qué es mayor, si p(E|S) o p(E|S’) (si luego quisiéramos comparar p(S|E) con p(S’|E) necesitaríamos las probabilidades a priori de P(S) y P(S’)). Si p(E|S) &lt; p(E|S’) entonces los datos aportan evidencia en contra de que Guido estaba en la escena del crimen (E es más probable bajo S’ que bajo S).</p>
-<p>p(E|S) es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba en la escena del crimen. Esto es básicamente la probabilidad de encontrar sangre AB (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a tener en la escena del crimen a una de las personas que tienen sangre AB (1/100 de la población). Luego, p(E|S) = 0.01.</p>
-<p>p(E|S’) es la probabilidad de observar sangre 0 y sangre AB, si Guido no estaba en la escena del crimen. Esto es la probabilidad de que la primera persona tuviera sangre 0 y la segunda AB más la probabilidad de que la primera persona tuviera sangre AB y la segunda sangre 0: (60/100)x(1/100) + (1/100)x(60/100) = 0.012.</p>
-<p>Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo. 120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB y el resto tiene otro tipo. Con Guido en la escena del crimen hay 2/200 personas que podrían haber estado con él; sin Guido en la escena, pudieron haber estado cualquiera de las 119 personas de sangre 0 con cualquiera de las 2 personas de sangre AB.</p>
+<p>Llamemos <span class="math inline">\(S\)</span> a “Guido y otra persona estuvieron en la escena del crimen” versus <span class="math inline">\(S'\)</span>, “dos personas desconocidas estuvieron en la escena del crimen”. Además, contamos con la evidencia <span class="math inline">\(E\)</span>, “observar sangre 0 y sangre AB”.</p>
+<p>Queremos saber qué es mayor, si <span class="math inline">\(P(E \mid S)\)</span> o <span class="math inline">\(P(E \mid S')\)</span> (si luego quisiéramos comparar <span class="math inline">\(P(S \mid E)\)</span> con <span class="math inline">\(P(S' \mid E)\)</span> necesitaríamos las probabilidades a priori de <span class="math inline">\(P(S)\)</span> y <span class="math inline">\(P(S')\)</span>). Si <span class="math inline">\(P(E \mid S) &lt; P(E \mid S')\)</span> entonces los datos aportan evidencia en contra de que Guido estaba en la escena del crimen (<span class="math inline">\(E\)</span> es más probable bajo <span class="math inline">\(S'\)</span> que bajo <span class="math inline">\(S\)</span>).</p>
+<p><span class="math inline">\(P(E \mid S)\)</span> es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba en la escena del crimen. Esto es básicamente la probabilidad de encontrar sangre AB (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a tener en la escena del crimen a una de las personas que tienen sangre AB (1/100 de la población). Luego, <span class="math inline">\(P(E \mid S) = 0.01\)</span>.</p>
+<p><span class="math inline">\(P(E \mid S')\)</span> es la probabilidad de observar sangre 0 y sangre AB, si Guido no estaba en la escena del crimen. Esto es la probabilidad de que la primera persona tuviera sangre 0 y la segunda AB más la probabilidad de que la primera persona tuviera sangre AB y la segunda sangre 0: <span class="math inline">\((60 / 100) \cdot (1 / 100) + (1 / 100) \cdot (60 / 100) = 0.012\)</span>.</p>
+<p>Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo. 120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB y el resto tiene otro tipo. Con Guido en la escena del crimen hay <span class="math inline">\(2/200\)</span> personas que podrían haber estado con él; sin Guido en la escena, pudieron haber estado cualquiera de las 119 personas de sangre 0 con cualquiera de las 2 personas de sangre AB.</p>
 </div>
 </div>
 </div></li>
@@ -416,11 +416,12 @@ Ayuda
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Sean los eventos</p>
-<p>C: elegir el cajón BN (y no el RVA)</p>
-<p>P: elegir un par de medias iguales</p>
-<p>B: elegir un par de medias blancas</p>
-<p>Matemáticamente, buscamos p(B|P) = p(B,C|P) + p(B,C’|P) (básicamente estamos marginalizando la variable “cajón”). El segundo término es 0 porque B y C’ no pueden darse nunca (nunca voy a sacar un par blanco del cajón RVA). Entonces queda p(B|P) = p(B,C|P) = p(B|C,P)p(C|P), que son los dos valores que encontramos arriba.</p>
-<p>¿De dónde sale que p(B,C|P) = p(B|C,P)p(C|P)? p(B,C|P) = p(B,C,P)/p(P) y el numerador, por regla de la cadena, es p(P)p(C|P)p(B|C,P).</p>
+<p><span class="math inline">\(C\)</span>: elegir el cajón BN (y no el RVA)</p>
+<p><span class="math inline">\(I\)</span>: elegir un par de medias iguales</p>
+<p><span class="math inline">\(B\)</span>: elegir un par de medias blancas</p>
+<p>Matemáticamente, buscamos <span class="math inline">\(P(B \mid I) = P(B, C \mid I) + P(B, C' \mid I)\)</span> (básicamente estamos marginalizando la variable “cajón”). El segundo término es 0 porque <span class="math inline">\(B\)</span> y <span class="math inline">\(C'\)</span> no pueden darse nunca (nunca voy a sacar un par blanco del cajón RVA). Entonces queda <span class="math inline">\(P(B \mid I) = P(B,C \mid I) = P(B \mid C, I) P(C \mid I)\)</span>, que son los dosvalores que encontramos arriba.</p>
+<p>¿De dónde sale que <span class="math inline">\(P(B, C \mid I) = P(B \mid C, I) P(C \mid I)\)</span>?</p>
+<p><span class="math inline">\(P(B, C \mid I) = P(B,C,I)/P(I)\)</span> y el numerador, por regla de la cadena, es <span class="math inline">\(P(A) P(C \mid I) P(B \mid C,I)\)</span>.</p>
 </div>
 </div>
 </div></li>
@@ -449,8 +450,8 @@ Ayuda
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Aún asumiendo que P(E|I) es lo que dice Meadows, esa no es la probabilidad de interés. La probabilidad que interesa es la de inocencia (o culpabilidad) dada la evidencia. Es decir, la probabilidad que nos interesa es P(I|E) que la podemos escribir como P(I|E) = P(E|I)P(I)/P(E).</p>
-<p>P(I|E) es solo similar a P(E|I) si P(I) es similar a P(E). Este no es el caso, ¿por qué?</p>
+<p>Aún asumiendo que <span class="math inline">\(P(E \mid I)\)</span> es lo que dice Meadows, esa no es la probabilidad de interés. La probabilidad que interesa es la de inocencia (o culpabilidad) dada la evidencia. Es decir, la probabilidad que nos interesa es <span class="math inline">\(P(I \mid E)\)</span> que la podemos escribir como <span class="math inline">\(P(I \mid E) = P(E \mid I) P(I) / P(E)\)</span>.</p>
+<p><span class="math inline">\(P(I \mid E)\)</span> es solo similar a <span class="math inline">\(P(E \ mid I)\)</span> si <span class="math inline">\(P(I)\)</span> es similar a <span class="math inline">\(P(E)\)</span>. Este no es el caso, ¿por qué?</p>
 </div>
 </div>
 </div></li>
@@ -476,7 +477,7 @@ Ayuda
 <li>Luego de 1995, la mezcla pasó a ser: 24% azul, 20% verde, 16% naranja, 14% amarillo, 13% rojo y 13% marrón.</li>
 </ul>
 <p>Un amigo tiene dos bolsas de M&amp;M y nos dice que una bolsa es de 1994 y la otra es de 1996, pero no nos dice cuál es cuál. Nos da un M&amp;M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos). ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?</p></li>
-<li><p><strong>La Gran Estafa</strong></p>
+<li><p>💻 <strong>La Gran Estafa</strong></p>
 <p>Hay dos monedas en una caja. Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.</p>
 <ol type="i">
 <li>Se elige una moneda al azar, se arroja, y se obtiene cara. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?</li>
@@ -536,7 +537,7 @@ X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) &amp; \text{con} \ \lambda \in [0, 
 </div>
 </div>
 </div></li>
-<li><p><strong>¡Ostras! ¡Estoy haciendo inferencia bayesiana!</strong></p>
+<li><p>💻 <strong>¡Ostras! ¡Estoy haciendo inferencia bayesiana!</strong></p>
 <p>En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número de especies que serán descubiertas en el futuro se reporta que la cantidad de especies marinas bivalvas<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.</p>
 <p>Si se representa con <span class="math inline">\(Y_t\)</span> a la cantidad de especies descubierta en el año <span class="math inline">\(t\)</span>, y asumiendo:</p>
 <p><span class="math display">\[
@@ -546,7 +547,7 @@ Y_t | \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
 \end{aligned}
 \]</span></p>
 <p>Graficar la distribución <em>a posteriori</em> de <span class="math inline">\(\lambda\)</span>. <!-- @Reich2020 --></p></li>
-<li><p><strong>Es negocio…</strong></p>
+<li><p>💻 <strong>Es negocio…</strong></p>
 <p>Sea <span class="math inline">\(n\)</span> la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera. El número de clientes que realizan una compra es <span class="math inline">\(Y\)</span> y se cumple que</p>
 <p><span class="math display">\[
 Y | \theta, n \sim \text{Binomial}(\theta, n)
@@ -567,8 +568,8 @@ Ayuda
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Estamos tratando de hacer inferencias sobre T, es decir, la distribución a posteriori debe ser p(T=1), p(T=2), … p(T=6).</p>
-<p>Conviene analizar este problema en forma secuencial. Observamos “G”, ¿qué significa eso? ¿cómo obtenemos la verosimilitud? p(G|T=1) = 5/6, p(G|T=2) = 4/6, p(G|T=3) = 3/6…</p>
+<p>Estamos tratando de hacer inferencias sobre <span class="math inline">\(T\)</span>, es decir, la distribución a posteriori debe ser <span class="math inline">\(P(T=1), P(T=2), \dots P(T=6)\)</span>.</p>
+<p>Conviene analizar este problema en forma secuencial. Observamos <span class="math inline">\(G\)</span>, ¿qué significa eso? ¿cómo obtenemos la verosimilitud? <span class="math inline">\(P(G \mid T=1) = 5/6\)</span>, <span class="math inline">\(P(G \mid T = 2) = 4 / 6\)</span>, <span class="math inline">\(P(G \mid T=3) = 3/6\)</span>…</p>
 </div>
 </div>
 </div></li>
@@ -595,9 +596,9 @@ Ayuda
 <div class="callout-body-container callout-body">
 <p>Estamos tratando de hacer inferencias sobre la cantidad de personas X (que puede ser un número entre, digamos, 1 y 3000).</p>
 <p>Conviene analizar el problema en forma secuencial. Para la primera observación (dos personas cumpliendo años el mismo día), la verosimilitud es la probabilidad de que haya dos personas con el mismo cumpleaños si en la sala hay 1, 2, 3, … personas. Lo podemos pensar como una binomial</p>
-<p>Si X=1, p(Y=2|X=1) = 0</p>
-<p>Si X=2, p(Y=2|X=2) = dbinom(2, size = 2, prob = 1/365)</p>
-<p>Si X=100, p(Y=2|X=100) = dbinom(2, size = 100, prob = 1/365)</p>
+<p>Si <span class="math inline">\(X=1\)</span>, <span class="math inline">\(P(Y=2 \mid X = 1) = 0\)</span></p>
+<p>Si <span class="math inline">\(X=2\)</span>, <span class="math inline">\(P(Y=2 \mid X=2) =\)</span> <code>dbinom(2, size = 2, prob = 1/365)</code></p>
+<p>Si <span class="math inline">\(X=100\)</span>, <span class="math inline">\(P(Y=2 \mid X=100) =\)</span> <code>dbinom(2, size = 100, prob = 1/365)</code></p>
 </div>
 </div>
 </div></li>
@@ -635,13 +636,13 @@ Ayuda
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Estamos tratando de hacer inferencias sobre D1 y D2, los valroes de cada uno de los datos. Definir la distribución a priori no es complicado (es una distribución sobre D1 y D2).</p>
-<p>El truco está en determinar la verosimilitud de cada par (D1,D2) luego de haber observado un 9.</p>
+<p>Estamos tratando de hacer inferencias sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>, los valores de cada uno de los datos. Definir la distribución a priori no es complicado (es una distribución sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>).</p>
+<p>El truco está en determinar la verosimilitud de cada par (<span class="math inline">\(D_1, D_2\)</span>) luego de haber observado un 9.</p>
 <p>¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que …?</p>
-<p>D1 = 1 y D2 = 1 - la probabilidad de observar 9 es 0</p>
-<p>D1 = 1 y D2 = 2 - la probabilidad de observar 9 es 0</p>
-<p>D1 = 4 y D2 = 5 - la probabilidad de observar 9 es 1</p>
-<p>D1 = 5 y D2 = 4 - la probabilidad de observar 9 es 1</p>
+<p><span class="math inline">\(D_1 = 1\)</span> y <span class="math inline">\(D_2 = 1 -\)</span> la probabilidad de observar 9 es 0</p>
+<p><span class="math inline">\(D_1 = 1\)</span> y <span class="math inline">\(D_2 = 2 -\)</span> la probabilidad de observar 9 es 0</p>
+<p><span class="math inline">\(D_1 = 4\)</span> y <span class="math inline">\(D_2 = 5 -\)</span> la probabilidad de observar 9 es 1</p>
+<p><span class="math inline">\(D_1 = 5\)</span> y <span class="math inline">\(D_2 = 4 -\)</span> la probabilidad de observar 9 es 1</p>
 </div>
 </div>
 </div></li>
