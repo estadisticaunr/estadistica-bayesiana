@@ -188,6 +188,7 @@ probabilidad.
     y que los cumpleaños de las personas son independientes entre si.
     ¿Cuál es la probabilidad de que al menos un par de personas en el grupo cumplan los
     años el mismo día?
+
     <!-- Blitzstein, Introdudction to Probability -->
 
     ```{r}
@@ -199,7 +200,7 @@ probabilidad.
     ```
 
 
-1.  **Problema de concordancia de de Montmort**
+1.  🧩 **Problema de concordancia de de Montmort** 
 
     Considere un mazo de $n$ cartas bien mezcladas, etiquetadas con números de 1 a $n$.
     Se seleccionan las cartas de a una y se la da vuelta, diciendo en voz alta el número
@@ -210,12 +211,13 @@ probabilidad.
     <!-- Blitzstein, Introdudction to Probability -->
 
 
-1.  **Problema de los dos sobres**
+1.  🧩 **Problema de los dos sobres**
 
     Supongamos que te presentan dos sobres con dinero. Un sobre contiene el doble de 
     dinero que el otro, pero a simple vista son indistinguibles. Se te pide que escojas
     uno de los sobres. Antes de abrirlo se te ofrece la posibilidad de cambiarlo por el 
     otro. ¿Cambiarías el sobre? ¿Por qué?
+
     <!-- https://es.wikipedia.org/wiki/Paradoja_de_los_dos_sobres -->
     <!-- https://twitter.com/pgroisma/status/1614242343510589441 -->
     <!-- https://twitter.com/pgroisma/status/1614686037351010306 -->

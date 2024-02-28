@@ -150,7 +150,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
 
     i. Utilice distribuciones _a priori_ normales no informativas. Interprete las 
     distribuciones _a posteriori_ marginales de los coeficientes de regresión.
-    i. Calcule los residuos $\mathbf{r} = \mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}$ 
+    i. Calcule los residuos $\boldsymbol{r} = \boldsymbol{y} - \boldsymbol{X}\hat{\boldsymbol{\beta}}$ 
     donde $\hat{\boldsymbol{\beta}}$ es la media a posteriori del vector de coeficientes 
     de regresión ¿Puede concluir que los residuos siguen una distribución normal? ¿Qué 
     condados presentan los residuos más grandes y más pequeños? ¿Qué puede indicar sobre 
@@ -164,9 +164,9 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     homicidios y $N_i$ el tamaño de la población.
 
     i. Ajuste el modelo $Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
-    $\text{log}(\lambda_i) = \mathbf{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
-    informativas y $p = 7$ de las covariables en $\mathbf{X}_i$: el intercepto, los cinco 
-    _confounders_ $\mathbf{Z}_i$, y el número de leyes relacionadas a armas. 
+    $\text{log}(\lambda_i) = \boldsymbol{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
+    informativas y $p = 7$ de las covariables en $\boldsymbol{X}_i$: el intercepto, los cinco 
+    _confounders_ $\boldsymbol{Z}_i$, y el número de leyes relacionadas a armas. 
     Justifique que el _sampler_ ha convergido y explorado suficientemente la distribución a 
     posteriori y resuma la distribución a posteriori de $\boldsymbol{\beta}$.
     <!--

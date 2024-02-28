@@ -183,11 +183,12 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 
     ## Ayuda
     
-    Si LLL es "los tres amigos dijeron que llovía", buscamos p(lluvia|LLL) =       p(LLL|lluvia)p(lluvia)/p(LLL).
+    Si $LLL$ es "los tres amigos dijeron que llovía", buscamos 
+    $P(\text{lluvia} \mid LLL) = P(LLL \mid \text{lluvia}) P(\text{lluvia}) / P(LLL)$.
 
-    p(LLL|lluvia) es la probabilidad de que ninguno de los tres mienta.
+    $P(LLL \mid \text{lluvia})$ es la probabilidad de que ninguno de los tres mienta.
 
-    p(LLL) = p(LLL|lluvia) p(lluvia) + p(LLL|no lluvia) p(no lluvia).
+    $P(LLL) = P(LLL \mid \text{lluvia}) P(\text{lluvia}) + P(LLL \mid \text{no lluvia}) P(\text{no lluvia})$.
     
     :::
 
@@ -213,15 +214,33 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 
     ## Ayuda
     
-    Llamemos S a "Guido y otra persona estuvieron en la escena del crimen"         versus S', "dos personas desconocidas estuvieron en la escena del crimen".     Además, contamos con la evidencia E, "observar sangre 0 y sangre AB". 
+    Llamemos $S$ a "Guido y otra persona estuvieron en la escena del crimen" versus $S'$, 
+    "dos personas desconocidas estuvieron en la escena del crimen".
+    Además, contamos con la evidencia $E$, "observar sangre 0 y sangre AB". 
 
-    Queremos saber qué es mayor, si p(E|S) o p(E|S') (si luego quisiéramos         comparar p(S|E) con p(S'|E) necesitaríamos las probabilidades a priori de      P(S) y P(S')). Si p(E|S) < p(E|S') entonces los datos aportan evidencia en     contra de que Guido estaba en la escena del crimen (E es más probable bajo     S' que bajo S).
+    Queremos saber qué es mayor, si $P(E \mid S)$ o $P(E \mid S')$ 
+    (si luego quisiéramos comparar $P(S \mid E)$ con $P(S' \mid E)$ necesitaríamos las 
+    probabilidades a priori de $P(S)$ y $P(S')$). Si $P(E \mid S) < P(E \mid S')$ 
+    entonces los datos aportan evidencia en contra de que Guido estaba en la escena del 
+    crimen ($E$ es más probable bajo $S'$ que bajo $S$).
     
-    p(E|S) es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba     en la escena del crimen. Esto es básicamente la probabilidad de encontrar      sangre AB (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a     tener en la escena del crimen a una de las personas que tienen sangre AB       (1/100 de la población). Luego, p(E|S) = 0.01.
+    $P(E \mid S)$ es la probabilidad de observar sangre 0 y sangre AB, si Guido estaba 
+    en la escena del crimen. Esto es básicamente la probabilidad de encontrar sangre AB 
+    (porque la cuota de 0 ya está cubierta por Guido). Eso equivale a tener en la escena 
+    del crimen a una de las personas que tienen sangre AB  (1/100 de la población). 
+    Luego, $P(E \mid S) = 0.01$.
 
-    p(E|S') es la probabilidad de observar sangre 0 y sangre AB, si Guido no       estaba en la escena del crimen. Esto es la probabilidad de que la primera      persona tuviera sangre 0 y la segunda AB más la probabilidad de que la         primera persona tuviera sangre AB y la segunda sangre 0: (60/100)x(1/100) +     (1/100)x(60/100) = 0.012.
+    $P(E \mid S')$ es la probabilidad de observar sangre 0 y sangre AB, si Guido no 
+    estaba en la escena del crimen. Esto es la probabilidad de que la primera 
+    persona tuviera sangre 0 y la segunda AB más la probabilidad de que la 
+    primera persona tuviera sangre AB y la segunda sangre 0: 
+    $(60 / 100) \cdot (1 / 100) + (1 / 100) \cdot (60 / 100) = 0.012$.
     
-    Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo.     120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB     y el resto tiene otro tipo. Con Guido en la escena del crimen hay 2/200        personas que podrían haber estado con él; sin Guido en la escena, pudieron     haber estado cualquiera de las 119 personas de sangre 0 con cualquiera de      las 2 personas de sangre AB.
+    Para pensarlo intuitivamente: supongamos que hay 200 personas en un pueblo. 
+    120 personas (Guido y 119 más) tienen sangre 0, 2 personas tienen sangre AB y 
+    el resto tiene otro tipo. Con Guido en la escena del crimen hay $2/200$ personas que 
+    podrían haber estado con él; sin Guido en la escena, pudieron haber estado cualquiera 
+    de las 119 personas de sangre 0 con cualquiera de las 2 personas de sangre AB.
     
     :::
 
@@ -258,16 +277,23 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     
     Sean los eventos
     
-    C: elegir el cajón BN (y no el RVA)
+    $C$: elegir el cajón BN (y no el RVA)
     
-    P: elegir un par de medias iguales
+    $I$: elegir un par de medias iguales
     
-    B: elegir un par de medias blancas 
+    $B$: elegir un par de medias blancas 
     
-    Matemáticamente, buscamos p(B|P) = p(B,C|P) + p(B,C'|P) (básicamente           estamos marginalizando la variable "cajón"). El segundo término es 0 porque     B y C' no pueden darse nunca (nunca voy a sacar un par blanco del cajón        RVA). Entonces queda p(B|P) = p(B,C|P) = p(B|C,P)p(C|P), que son los dos       valores que encontramos arriba.
+    Matemáticamente, buscamos $P(B \mid I) = P(B, C \mid I) + P(B, C' \mid I)$ 
+    (básicamente estamos marginalizando la variable "cajón"). 
+    El segundo término es 0 porque $B$ y $C'$ no pueden darse nunca 
+    (nunca voy a sacar un par blanco del cajón RVA). Entonces queda 
+    $P(B \mid I) = P(B,C \mid I) = P(B \mid C, I) P(C \mid I)$, 
+    que son los dosvalores que encontramos arriba.
 
-    ¿De dónde sale que p(B,C|P) = p(B|C,P)p(C|P)?
-    p(B,C|P) = p(B,C,P)/p(P) y el numerador, por regla de la cadena, es            p(P)p(C|P)p(B|C,P).
+    ¿De dónde sale que $P(B, C \mid I) = P(B \mid C, I) P(C \mid I)$?
+
+    $P(B, C \mid I) = P(B,C,I)/P(I)$ y el numerador, por regla de la cadena, es 
+    $P(A) P(C \mid I) P(B \mid C,I)$.
     
     :::
     
@@ -299,9 +325,13 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
 
     ## Ayuda
     
-    Aún asumiendo que P(E|I) es lo que dice Meadows, esa no es la probabilidad     de interés. La probabilidad que interesa es la de inocencia (o                 culpabilidad) dada la evidencia. Es decir, la probabilidad que nos interesa     es P(I|E) que la podemos escribir como P(I|E) = P(E|I)P(I)/P(E). 
+    Aún asumiendo que $P(E \mid I)$ es lo que dice Meadows, esa no es la probabilidad 
+    de interés. La probabilidad que interesa es la de inocencia (o culpabilidad) dada la 
+    evidencia. Es decir, la probabilidad que nos interesa es $P(I \mid E)$ que la podemos 
+    escribir como $P(I \mid E) = P(E \mid I) P(I) / P(E)$. 
 
-    P(I|E) es solo similar a P(E|I) si P(I) es similar a P(E). Este no es el       caso, ¿por qué?
+    $P(I \mid E)$ es solo similar a $P(E \ mid I)$ si $P(I)$ es similar a $P(E)$. 
+    Este no es el caso, ¿por qué?
     
     :::
     
@@ -338,7 +368,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Nos da un M&M de cada bolsa: uno es amarillo y el otro es verde (ambos posiblemente estén vencidos).
     ¿Cuál es la probabilidad de que el amarillo venga de la bolsa de 1994?
     
-1.  **La Gran Estafa**
+1.  💻 **La Gran Estafa**
 
     Hay dos monedas en una caja.
     Una de ellas es una moneda común y la otra es una moneda que tiene dos caras.
@@ -422,7 +452,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     if (is_html) knitr::include_graphics(file.path("imgs", "bosque.jpg"))
     ```
 
-1.  **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
+1.  💻 **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
 
     En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número
     de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
@@ -442,7 +472,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Graficar la distribución _a posteriori_ de $\lambda$.
     <!-- @Reich2020 -->
 
-1.  **Es negocio...**
+1.  💻 **Es negocio...**
 
     Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
     El número de clientes que realizan una compra es $Y$ y se cumple que
@@ -464,9 +494,11 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$).
     A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
-    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos es mayor, menor o igual a $T$.
+    No podemos ver el número que sale pero nuestro amigo nos dice si el número que sacamos
+    es mayor, menor o igual a $T$.
 
-    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ (siendo $G$ más grande, $C$ más chico e $I$ igual).
+    Supongamos que nos da la secuencia: $G,\ G,\ C,\ I,\ C,\ C,\ C, I,\ G,\ C$ 
+    (siendo $G$ más grande, $C$ más chico e $I$ igual).
     ¿Cuál es la distribución _a posteriori_ de los valores de $T$?
     <!-- http://allendowney.github.io/ThinkBayes2/bayes_dice.html -->
     
@@ -474,9 +506,12 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     ## Ayuda
     
-    Estamos tratando de hacer inferencias sobre T, es decir, la distribución a     posteriori debe ser p(T=1), p(T=2), ... p(T=6).
+    Estamos tratando de hacer inferencias sobre $T$, es decir, la distribución a 
+    posteriori debe ser $P(T=1), P(T=2), \dots P(T=6)$.
     
-    Conviene analizar este problema en forma secuencial. Observamos "G", ¿qué      significa eso? ¿cómo obtenemos la verosimilitud? p(G|T=1) = 5/6, p(G|T=2) =     4/6, p(G|T=3) = 3/6...
+    Conviene analizar este problema en forma secuencial. Observamos $G$, 
+    ¿qué significa eso? ¿cómo obtenemos la verosimilitud? $P(G \mid T=1) = 5/6$, 
+    $P(G \mid T = 2) = 4 / 6$, $P(G \mid T=3) = 3/6$...
     
     :::
     
@@ -505,11 +540,11 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     
     Conviene analizar el problema en forma secuencial. Para la primera             observación (dos personas cumpliendo años el mismo día), la verosimilitud      es la probabilidad de que haya dos personas con el mismo cumpleaños si en      la sala hay 1, 2, 3, ... personas. Lo podemos pensar como una binomial
     
-    Si X=1, p(Y=2|X=1) = 0
+    Si $X=1$, $P(Y=2 \mid X = 1) = 0$
     
-    Si X=2, p(Y=2|X=2) = dbinom(2, size = 2, prob = 1/365)
+    Si $X=2$, $P(Y=2 \mid X=2) =$ `dbinom(2, size = 2, prob = 1/365)`
     
-    Si X=100, p(Y=2|X=100) = dbinom(2, size = 100, prob = 1/365)
+    Si $X=100$, $P(Y=2 \mid X=100) =$ `dbinom(2, size = 100, prob = 1/365)`
     
     :::
      
@@ -559,19 +594,22 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     ## Ayuda
     
-    Estamos tratando de hacer inferencias sobre D1 y D2, los valroes de cada       uno de los datos. Definir la distribución a priori no es complicado (es una     distribución sobre D1 y D2).
+    Estamos tratando de hacer inferencias sobre $D_1$ y $D_2$, los valores de cada 
+    uno de los datos. 
+    Definir la distribución a priori no es complicado (es una distribución sobre $D_1$ y $D_2$).
     
-    El truco está en determinar la verosimilitud de cada par (D1,D2) luego de      haber observado un 9.
+    El truco está en determinar la verosimilitud de cada par ($D_1, D_2$) luego de haber 
+    observado un 9.
     
     ¿Cuál es la probabilidad de observar 9 en la suma de los dos dado que ...?
     
-    D1 = 1 y D2 = 1 - la probabilidad de observar 9 es 0
+    $D_1 = 1$ y $D_2 = 1 -$ la probabilidad de observar 9 es 0
     
-    D1 = 1 y D2 = 2 - la probabilidad de observar 9 es 0
+    $D_1 = 1$ y $D_2 = 2 -$ la probabilidad de observar 9 es 0
     
-    D1 = 4 y D2 = 5 - la probabilidad de observar 9 es 1
+    $D_1 = 4$ y $D_2 = 5 -$ la probabilidad de observar 9 es 1
     
-    D1 = 5 y D2 = 4 - la probabilidad de observar 9 es 1
+    $D_1 = 5$ y $D_2 = 4 -$ la probabilidad de observar 9 es 1
     
     :::
 
