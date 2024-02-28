@@ -26,7 +26,7 @@ Se vuelve indispensable el uso de R y se promueve el uso de buenas prácticas de
 programación científica, como el uso de funciones compartimentar los componentes de un 
 programa. 
 
-1.  **¡A calcular probabilidades! (I)**
+1.  📌 **¡A calcular probabilidades! (I)**
 
     Sea $X \sim \text{Normal}(\mu=3, \sigma=1.2)$.
 
@@ -36,7 +36,7 @@ programa.
     i. ¿Cuál es la probabilidad de que $X$ sea mayor a 4?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor 2 y menor 3?
 
-1.  **¡A calcular probabilidades! (II)**
+1.  📌 **¡A calcular probabilidades! (II)**
 
     Sea $X \sim \text{Beta}(\alpha=10, \beta=2)$.
 
@@ -46,7 +46,7 @@ programa.
     i. ¿Cuál es la probabilidad de que $X$ sea mayor a 0.8?
     i. ¿Cuál es la probabilidad de que $X$ sea mayor 0.25 y menor 0.75?
 
-1.  **Magia blanca: Obtener probabilidades mediante simulación**
+1.  📌 **Magia blanca: Obtener probabilidades mediante simulación**
 
     Responda los dos puntos anteriores sin evaluar la función de densidad ni la función
     de distribución de las variables aleatorias mencionadas. Para eso genere muestras
@@ -54,21 +54,21 @@ programa.
     preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un 
     enfoque basado en la simulación para resolver problemas.
 
-1.  **Media y varianza de una variable aleatoria**
+1.  📌 **Media y varianza de una variable aleatoria**
 
     Una variable aleatoria $X$ toma valores en el conjunto $\{2, 4, 6, 8, 10\}$ con igual
     probabilidad. Encuentre la media y el desvío estándar de las variables $X$ e 
     $Y = 2X + 1$.
     <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal -->
 
-1.  **Probabilidades _a posteriori_**
+1.  📌 **Probabilidades _a posteriori_**
 
     En un problema determinado la distribución _a posteriori_ de la parámetro de inteŕes
     $\alpha$ es $\Gamma(k=3, \theta=1.5)$, donde $k$ es el parámetro de forma y $\theta$ 
     es el parámetro de escala. Calcule la probabilidad de que $\alpha^2$ sea mayor a 10.
     <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable -->
 
-1.  **Probabilidades con dos variables aleatorias**
+1.  📌 **Probabilidades con dos variables aleatorias**
 
     Sean $X$ e $Y$ dos variables aleatorias independientes con distribución uniforme en el
     intervalo $[0, 1]$. 
@@ -119,7 +119,7 @@ programa.
     Genere gráficos que faciliten la comprensión del resultado.
     <!-- https://twitter.com/pgroisma/status/1616820135313932288 -->
 
-1.  **Estimando el valor de** $\pi$
+1.  📌 **Estimando el valor de** $\pi$
 
     Imagine un círculo de radio $r$ y un cuadrado de lado $2r$, ambos centrados en el 
     mismo punto, que de manera arbitraria puede ser el punto $(0, 0)$. Obtenga muestras
@@ -165,7 +165,7 @@ programa.
         geom_path(aes(x = x, y = y), linewidth = 1.25, color = "#0984C0") +
         geom_rect(
             xmin = -1, xmax = 1, ymin = -1, ymax = 1, 
-            fill = NA, color = "#999999", size = 1.25
+            fill = NA, color = "#999999", linewidth = 1.25
         )
     ```
 
@@ -182,6 +182,14 @@ programa.
     i.  Resuelva el problema utilizando R.
     i.  Elabore una visualización que facilite la comunicación de los resultados.
 
+    ::: {.callout-tip collapse="true"}
+
+    ## Ayuda
+    
+    TO DO Algo sobre como simular de una uniforme en 2d
+    
+    :::
+
 1.  **Sobre el histórico 7 a 1 del 2014**
 
     En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. 
@@ -195,7 +203,7 @@ programa.
     i. ¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)?
     <!-- http://allendowney.github.io/ThinkBayes2/chap08.html -->
 
-1.  **¿Tendré que esperar mucho?**
+1.  💻 **¿Tendré que esperar mucho?**
 
     El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene
     distribución exponencial con media 30 minutos. Los tiempos de duración de cada 
@@ -216,7 +224,7 @@ programa.
     i. ¿Cuál es la probabilidad de que tengan asientos en la misma fila?
     i. ¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?
 
-1.  **El Problema de Monty Hall**
+1.  ✍️ 💻 📌 **El Problema de Monty Hall**
 
     El Problema de Monty Hall es un problema de probabilidad basado en un juego del
     concurso televisivo estadounidense "Trato hecho". 
@@ -239,7 +247,7 @@ programa.
     if (is_html) knitr::include_graphics(file.path("imgs", "monty_hall.png"))
     ```
 
-1.  **Que los cumplan feliz**
+1.  💻 **Que los cumplan feliz**
 
     Basándose en el [siguiente tuit](https://twitter.com/Kit_Yates_Maths/status/1542767039814713346)
     y conociendo el problema del cumpleaños (¿cuántas personas debe
@@ -249,7 +257,7 @@ programa.
     $n$ personas que cumplan años el mismo día para $K$ personas
     presentes en la habitación.
 
-1.  **Qué suerte, ¿no?**
+1.  💻 **Qué suerte, ¿no?**
     
     Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se
     reúnen en la habitación del hotel como se describe en 
@@ -269,12 +277,12 @@ programa.
     i. Si a una persona le faltan diez figuritas para completar el álbum, 
     ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?
 
-1.  **¿Que tán raras son estas secuencias raras?**
+1.  💻 **¿Que tán raras son estas secuencias raras?**
 
     Si se arroja una moneda $n$ veces, ¿cuál es la probabilidad de que no haya secuencias 
     de $k$ caras?
 
-1.  **Un viaje por el elevador**
+1.  📌 **Un viaje por el elevador**
 
     ¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen 
     para ir a tres pisos consecutivos? ¿Qué supuestos realiza para resolver el problema?
@@ -311,7 +319,7 @@ programa.
     Resuelva el problema de los dos sobres presentado en la **Práctica 0** utilizando 
     simulaciones.
 
-1.  **Integración por muestreo**
+1.  🧩 **Integración por muestreo**
 
     Calcule las siguientes integrales utilizando muestras.
 
@@ -332,7 +340,7 @@ asocian directamente a la práctica de la estadística bayesiana. Los problemas 
 objetivo la familiarización con el uso práctico de estas técnicas y la comprensión de sus 
 características principales.
 
-1. **Aproximación de grilla**
+1. 📌 **Aproximación de grilla**
 
     Se tiene un experimento binomial donde $n=80$ y se observan $y=7$ éxitos. 
     Considere que el _prior_ de la probabilidad de éxito $\theta$ es $\text{Beta}(2, 10)$.
@@ -345,7 +353,7 @@ características principales.
     i. Concluya sobre la fidelidad de las aproximaciones. ¿Considera que es necesario
     utilizar una grilla más densa? ¿Cuáles serían las ventajas y desventajas?
 
-1. **Cálculo de probabilidades en base a la grilla (I)**
+1. 📌 **Cálculo de probabilidades en base a la grilla (I)**
 
     En base al _posterior_ obtenido en el ejercicio anterior mediante el método de la 
     grilla calcule las siguientes probabilidades
@@ -356,13 +364,13 @@ características principales.
 
     De ser necesario, obtenga el _posterior_ mediante una grilla de mayor densidad.
 
-1. **Cálculo de probabilidades en base a la grilla (II)**
+1. 📌 **Cálculo de probabilidades en base a la grilla (II)**
 
     Utilice los valores de la grilla y sus probabilidades _a posteriori_ para obtener
     muestras del _posterior_ y calcular las mismas probabilidades que en el ejercicio
     anterior en base a muestras. Ayuda: Para obtener muestras utilice la función `sample()`.
 
-1.  **Aproximación de grilla en 2 dimensiones**
+1.  📌 **Aproximación de grilla en 2 dimensiones**
 
     Sean dos variables aleatorias continuas $X$ e $Y$ tales que $(X, Y) \in \mathbb{R}^2$,
     y sea el siguiente modelo de regresión lineal simple:
@@ -453,7 +461,7 @@ características principales.
     plt
     ```
 
-1.  **Escalando la aproximación de la grilla**
+1.  📌 **Escalando la aproximación de la grilla**
 
     Suponga que se tiene que estimar un _posterior_ utilizando la aproximación mediante
     una grilla de 200 puntos en cada dimensión. Calcule cúantas veces se tiene que evaluar
@@ -540,7 +548,7 @@ requisito de distribución simétrica.
 En esta sección, se profundiza en la práctica de uno de los algoritmos fundamentales de la
 inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings. 
 
-1.  **Muestreo utilizando el algoritmo de Metropolis-Hastings (I)** 
+1.  📌 **Muestreo utilizando el algoritmo de Metropolis-Hastings (I)** 
 
     Use el algoritmo de Metropolis-Hastings y una distribución de propuesta 
     $\text{Normal}(0, 0.1)$ para obtener 5000 muestras de las siguientes distribuciones 
@@ -555,7 +563,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     comparación. Concluya sobre la similitud de las mismas y la aptitud de la distribución
     de propuesta utilizada.
 
-1.  **Simplificando el algoritmo de Metropolis-Hastings**
+1.  📌 **Simplificando el algoritmo de Metropolis-Hastings**
     
     La distribución de propuesta utilizada en el ejercicio anterior goza de una propiedad
     que permite simplificar el algoritmo de Metropolis-Hastings.
@@ -567,7 +575,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     nuevamente 5000 muestras para las distribuciones presentadas en el ejercicio anterior
     utilizando la nueva implementación.
 
-1.  **Muestreo utilizando el algoritmo de Metropolis-Hastings (II)**
+1.  📌 **Muestreo utilizando el algoritmo de Metropolis-Hastings (II)**
 
     Use el algoritmo de Metropolis-Hastings y una distribución de propuesta que crea
     conveniente para obtener 5000 muestras de las siguientes distribuciones de 
@@ -597,7 +605,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     utilizando la ecuación del criterio de aceptación.
 
 
-1.  [**Modelo Normal-Normal**]{#ex-mh-mm}
+1.  📌 [**Modelo Normal-Normal**]{#ex-mh-mm}
 
     Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por
     semana a la materia Estadística Bayesiana. Para eso se propone utilizar un
@@ -622,7 +630,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     df_estudio <- readr::read_csv(url)
     ```
 
-1.  [**Modelo Beta-Binomial**]{#ex-mh-bb}
+1.  📌 [**Modelo Beta-Binomial**]{#ex-mh-bb}
 
     Se desea estimar el _posterior_ del parámetro $\pi$ en el siguiente modelo 
     Beta-Binomial:
@@ -640,7 +648,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
 
     De ser necesario, ajuste los parámetros de la distribución de propuesta. 
 
-1.  **Modelo Poisson**
+1.  📌 **Modelo Poisson**
 
     En el ejercicio **¡Ostras! ¡Estoy haciendo inferencia bayesiana!** de la Práctica 1
     se reportó que la cantidad de especies marinas bivalvas descubiertas cada año entre 
@@ -662,7 +670,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     cadenas de Markov.
     <!-- @Reich2020 3.10/3.11  -->
 
-1.  **Metropolis-Hastings multivariado**
+1.  📌 **Metropolis-Hastings multivariado**
 
     Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución
     $\text{MVN}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ donde
@@ -677,7 +685,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     Utilice una distribución de propuesta $\text{MVN}(\boldsymbol{0}_2, \boldsymbol{I}_2\sigma)$
     con $\sigma = 0.2$.
 
-1.  **Metropolis-Hastings para regresión**
+1.  📌 **Metropolis-Hastings para regresión**
 
     Repita el ejercicio **Aproximación de grilla en 2 dimensiones** pero utilice 
     Metropolis-Hastings para obtener muestras del _posterior_ en vez del método de
@@ -703,7 +711,7 @@ En los ejercicios de esta sección ya se cuenta con un _posterior_ y se busca ev
 la fiabilidad de las muestras utilizando diferentes medidas de diagnóstico análiticas
 y gráficas.
 
-1.  **Describir medidas de diagnóstico (I)**
+1.  📌 **Describir medidas de diagnóstico (I)**
     
     En sus propias palabras, explique que son $\text{ESS}$, $\hat{R}$ y $\text{MCSE}$. 
     Considere:
@@ -712,7 +720,7 @@ y gráficas.
     * ¿Qué potencial problema de MCMC detectan?
     <!-- @Martin2021 2E2 -->
 
-1.  **Describir medidas de diagnóstico (II)**
+1.  📌 **Describir medidas de diagnóstico (II)**
 
     En sus propias palabras, explique por qué las técnicas de estimación del _posterior_
     basadas en MCMC necesitan diagnósticos de convergencia.
@@ -721,7 +729,7 @@ y gráficas.
     ¿Qué es diferente entre los dos métodos de inferencia?
     <!-- @Martin2021 2E8 -->
 
-1.  **Problemitas de MCMC**
+1.  📌 **Problemitas de MCMC**
 
     Para cada escenario de simulación mediante MCMC descrito a continuación, explique 
     cómo el escenario podría afectar la aproximación del _posterior_.
@@ -731,7 +739,7 @@ y gráficas.
     * La cadena tiende a quedarse "trabada".
     <!-- @Johnson2021 Exercise 6.3  -->
 
-1.  **Vamos de paseo**
+1.  📌 **Vamos de paseo**
 
     Elabore _traceplots_ que le permitan visualizar la traza de la cadena de Markov
     utilizada en el ejercicio [**Modelo Normal-Normal**](#ex-mh-mm) de la sección 
@@ -741,7 +749,7 @@ y gráficas.
     en un mismo gráfico. ¿Qué puede concluir sobre la convergencia y la mezcla de las 
     cadenas?
 
-1.  [**Primeros pasitos con $\hat{R}$**]{#ex-diag-pprhat}
+1.  📌 [**Primeros pasitos con $\hat{R}$**]{#ex-diag-pprhat}
 
     Repita lo realizado en el ejercicio [**Modelo Beta-Binomial**](#ex-mh-bb) de la 
     sección [**Metropolis-Hastings**](#sec-mh) utilizando 4 cadenas independientes. Luego:
@@ -775,14 +783,14 @@ y gráficas.
     realizaciones de una cadena de Markov? ¿Por qué?
     i. ¿Por qué no fue necesario descartar un conjunto de muestras de _warm-up_?
 
-1.  **Función de autocorrelación**
+1.  📌 **Función de autocorrelación**
 
     Utilice las 4 cadenas obtenidas en el ejercicio 
     [**Primeros pasitos con $\hat{R}$**](#ex-diag-pprhat) y grafique la función de 
     autocorrelación y calcule el coeficiente de autocorrelación utilizando un rezago
     unitario. Concluya sobre la dependencia entre las muestras obtenidas.
 
-1.  **Tamaño de muestra efectivo**
+1.  📌 **Tamaño de muestra efectivo**
 
     Utilice las muestras obtenidas en el ejercicio anterior para calcular el tamaño
     de muestra efectivo. 
@@ -798,7 +806,7 @@ y gráficas.
     el número de muestras.
     i. ¿Por qué se observan los comportamientos descritos?
 
-1.  **¡Rompan todo! Un caso simulado**
+1.  📌 **¡Rompan todo! Un caso simulado**
 
     Los siguientes gráficos muestran las trazas y las distribuciones que resultan al 
     obtener muestras de un _posterior_ utilizando dos cadenas de Markov independientes. 
@@ -894,7 +902,7 @@ y gráficas.
     plot_trace_and_histogram(df)
     ```
 
-1.  **¡Rompan todo! Un caso real**
+1.  📌 **¡Rompan todo! Un caso real**
 
     Al igual que en el ejercicio anterior, se presentan _traceplots_ donde el muestreo del
     _posterior_ presenta problemas. En este caso, los gráficos que se observan fueron 
@@ -932,7 +940,7 @@ inferencia bayesiana. Stan es uno de los lenguajes de programación probabilíst
 potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que
 deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
-1.  **MCMC con RStan: Precalentamiento (I)**
+1.  📌 **MCMC con RStan: Precalentamiento (I)**
 
     Utilice la información proporcionada para definir la estructura del modelo bayesiano 
     utilizando `{RStan}`. No es necesario ejecutar nada, solo necesita proporcionar el 
@@ -943,7 +951,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     i. $Y | \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$.
     <!-- @Johnson2021 6.11 -->
 
-1.  **MCMC con RStan: Precalentamiento (II)**
+1.  📌 **MCMC con RStan: Precalentamiento (II)**
 
     Utilice la información proporcionada para (1) definir la estructura del modelo 
     bayesiano y (2) obtener muestras del _posterior_ utilizando `{RStan}`. 
@@ -957,7 +965,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     $y = 12.2$.
     <!-- @Johnson2021 6.12 -->
 
-1.  **Modelo Beta-Binomial con RStan (I)**
+1.  📌 **Modelo Beta-Binomial con RStan (I)**
 
     Considere el modelo Beta-Binomial para $\pi$ con $Y | \pi \sim \text{Binomial}(\pi, n)$
     y $\pi \sim \text{Beta}(3, 8)$. Suponga que en $n = 10$ ensayos independientes
@@ -973,15 +981,15 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     i. Utilizando lo estudiado en la Unidad 2, especifique el _posterior_ de $\pi$. 
     ¿Cómo se compara con la aproximación mediante MCMC?
 
-1.  **Modelo Beta-Binomial con RStan (II)**
+1.  📌 **Modelo Beta-Binomial con RStan (II)**
 
     Repita el ejercicio anterior utilizando $\pi \sim \text{Beta}(4, 3)$, donde observa
     $y = 4$ éxitos en $n = 12$ ensayos independientes.
 
-1.  **Modelo Gamma-Poisson con RStan (I)**
+1.  📌 **Modelo Gamma-Poisson con RStan (I)**
 
     Considere el modelo Gamma-Poisson para $\lambda$ con 
-    $Y_i | \lambda \sim \text{Poisson}(\lambda)$ y $\lambda \sim \text{Gamma}(20, 5)$.
+    $Y_i \mid \lambda \sim \text{Poisson}(\lambda)$ y $\lambda \sim \text{Gamma}(20, 5)$.
     Suponga que cuenta con $n = 3$ observaciones independientes $(y_1, y_2, y_3) = (0, 1, 0)$
 
     i. Obtenga muestras del _posterior_ de $\lambda$ con `{RStan}` utilizando 4 cadenas y 
@@ -992,11 +1000,11 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     i. Utilizando lo estudiado en la Unidad 2, especifique el _posterior_ de $\lambda$. 
     ¿Cómo se compara con la aproximación mediante MCMC?
 
-1.  **Modelo Gamma-Poisson con RStan (II)**
+1.  📌 **Modelo Gamma-Poisson con RStan (II)**
 
     Repita el ejercicio anterior utilizando el _prior_ $\lambda \sim \text{Gamma}(5, 5)$.
 
-1.  **Modelo Normal-Normal con RStan (I)**
+1.  📌 **Modelo Normal-Normal con RStan (I)**
 
     Repita los mismos pasos del ejercicio **Modelo Gamma-Poisson con Rstan (I)** pero
     considere el modelo Normal-Normal para $\mu$ con 
@@ -1004,7 +1012,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     Suponga que cuenta con $n = 4$ observaciones independientes 
     $(y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)$
 
-1.  **Modelo Normal-Normal con RStan (II)**
+1.  📌 **Modelo Normal-Normal con RStan (II)**
 
     Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere 
     $Y_i | \mu \sim \text{Normal}(\mu, 8^2)$ y $\mu \sim \text{Normal}(-15, 2^2)$.
@@ -1046,7 +1054,9 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
 ## **Otros**
 
-1.  Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para
+1.  📌 **El peso de los pescados**
+
+    Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para
     estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método
     es obtener una estimación lo suficientemente buena del peso de cada pescado sin tener
     que pesarlos uno por uno, ya que es un proceso costoso en tiempo y labor. 

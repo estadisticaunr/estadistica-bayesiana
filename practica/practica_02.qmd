@@ -39,7 +39,7 @@ lenguaje R para verificar los resultados, mostrar soluciones alternativas y ejer
 el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la 
 vida profesional.
 
-1.  **¿Quién domina el _posterior_?**
+1.  📌 **¿Quién domina el _posterior_?**
 
     Para cada una de las situaciones siguientes, se da una distribución _a priori_ Beta
     para el parámetro $\pi$ de un ensayo binomial. Para cada escenario, identificar cuál de
@@ -54,7 +54,7 @@ vida profesional.
     i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $y=10$ éxitos en $n=200$ ensayos.
 
 
-1.  **Más o menos certeza**
+1.  📌 **Más o menos certeza**
 
     Sea $\theta$ la proporción de personas que prefieren los perros a los gatos. Suponga que
     se elige una distribución $\text{Beta}(7,2)$ para representar la creencia _a priori_
@@ -68,7 +68,7 @@ vida profesional.
     i. Si, en lugar de eso, se determina que $y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
     
-1.  **Pasito a pasito**
+1.  📌 **Pasito a pasito**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente:
@@ -78,7 +78,7 @@ vida profesional.
     i. Tercera observación: fracaso.
     i. Cuarta observación: éxito.
     
-1.  **Pasitos tras pasitos**
+1.  📌 **Pasitos tras pasitos**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente dados conjuntos
@@ -89,7 +89,7 @@ vida profesional.
     i. Terceras observaciones: un éxito.
     i. Cuartas observaciónes: dos éxitos.
     
-1.  **Diferentes observaciones, diferentes _posteriors_**
+1.  📌 **Diferentes observaciones, diferentes _posteriors_**
 
     Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. 
     Tres empleados comparten que la creencia _a priori_ para $\pi$, 
@@ -104,7 +104,7 @@ vida profesional.
     i. Especifique la distribución _a posteriori_ de cada uno de los empleados.
     i. Compare las distribuciones _a posteriori_ de cada empleado.
     
-1. **¿Galletitas o masitas?**
+1. 📌 **¿Galletitas o masitas?**
 
     La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen
     una distancia "caminable" suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre
@@ -116,7 +116,7 @@ vida profesional.
     i. Con la información de sus compañeros de curso, actualice ambas distribuciones _a priori_. 
     ¿Es suficiente esa información para acercar ambas posturas?
 
-1.  💻 **Mi primera huerta**
+1.  💻 📌 **Mi primera huerta**
 
     En un campamento de verano para infantes se realizaron actividades
     que promueven el contacto con la naturaleza. Una de las tareas
@@ -222,7 +222,7 @@ vida profesional.
     ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
-1.  **Bichos**
+1.  📌 **Bichos**
 
     Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
     promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
@@ -249,7 +249,7 @@ vida profesional.
     
     :::
 
-1.  **Alter-ego**
+1.  📌 **Alter-ego**
 
     El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
     Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
@@ -265,7 +265,7 @@ vida profesional.
     i. ¿Cuál es la probabilidad _a posteriori_ de que un estudiante se saque más de 9 en un examen final?
 
 
-1.  **Inferencia sobre una distribución de Poisson**
+1.  📌 **Inferencia sobre una distribución de Poisson**
 
     La distribución de masa de probabilidad Poisson se define como
 
@@ -290,7 +290,7 @@ vida profesional.
     <!-- @Murphy2012 -->
     
     
-1.  **El modelo Gamma-Poisson**
+1.  📌 **El modelo Gamma-Poisson**
 
     Sea $\lambda$ la tasa de mensajes de WhatsApp que una persona recibe en una hora. 
     Suponga inicialmente que se cree que la tasa de mensajes por hora tiene media 5
@@ -307,7 +307,7 @@ vida profesional.
     i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10? 
     i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
 
-1.  🧩 **Inferencia sobre una distribución Uniforme**
+1.  🧩 📌 **Inferencia sobre una distribución Uniforme**
 
     Considere una distribución $\text{Uniforme}(0, \theta)$. La función de densidad de probabilidad es
 
@@ -365,7 +365,7 @@ vida profesional.
     <!-- @Murphy2012 -->
     <!-- Hay que mejorar la redaccion y ver que la notacion es consistente -->
 
-1.  🧩 **Inferencia sobre una distribución Exponencial**
+1.  🧩 📌 **Inferencia sobre una distribución Exponencial**
 
     El tiempo de vida de una máquina en años $X$ es modelado con una distribución 
     exponencial con parámetro $\theta$ desconocido. La función de densidad es 
@@ -398,7 +398,7 @@ vida profesional.
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
        
-1.  **Otras distribuciones conjugadas (I)**
+1.  📌 **Otras distribuciones conjugadas (I)**
     
     Considere el siguiente modelo:
 
@@ -415,7 +415,7 @@ vida profesional.
     afirmar que la distribución geométrica es conjugada de la beta?
     i. Derive la distribución _a posteriori_ de $\theta$ y concluya.
 
-1.  **Otras distribuciones conjugadas (II)**
+1.  📌 **Otras distribuciones conjugadas (II)**
 
     Considere el siguiente modelo:
     
@@ -458,7 +458,7 @@ En estos casos, puede resultar de utilidad obtener también una solución a mano
 validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan 
 ambos enfoques.
 
-1.  **Entrada en calor**
+1.  📌 **Entrada en calor**
 
     Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad
     
@@ -478,7 +478,7 @@ ambos enfoques.
     del intervalo de credibilidad bayesiano.
     <!-- @Reich2020 -->
 
-1.  **¿Te preguntaste alguna vez cuál es la distribución de un _p-value_?**
+1.  📌 **¿Te preguntaste alguna vez cuál es la distribución de un _p-value_?**
 
     Considere un problema conocido. Se desean comparar dos muestras independientes de 
     tamaño 5 utilizando un test t y utilizando el test de Mann-Whitney.
@@ -498,7 +498,7 @@ Esta útima sección de la práctica tiene como propósito ejercitar el uso de d
 de probabilidad como herramienta para reflejar información de un problema determinado.
 
 
-1.  **Esbozar la distribución de las siguientes variables**
+1.  📌 **Esbozar la distribución de las siguientes variables**
 
     i. El número de personas que compran café en el bar de la facultad asumiendo 
     distribución de Poisson.
@@ -507,7 +507,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
     i. El peso de humanos adultos en libras asumiendo una distribución asimétrica hacia 
     la derecha.
 
-1.  **Verificar los resultados de manera computacional**  
+1.  📌 **Verificar los resultados de manera computacional**  
 
     Para cada uno cada uno de los ejemplos del ejercicio anterior,
     graficar la distribución usando R. Seleccionar los parámetros que
@@ -517,7 +517,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
     ajustar los parámetros y repetir el proceso hasta que el resultado
     tenga concuerde con el conocimiento del problema.
 
-1.  💻 **Hay que amigarse con de la distribución Beta**
+1.  💻 📌 **Hay que amigarse con de la distribución Beta**
 
     Comparar las siguientes distribuciones _a priori_.
 
@@ -530,7 +530,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
     i. ¿Cuál de ellas es más informativa?
     i. ¿Cómo lo determinaste?
 
-1.  💻 **Elicitación de _priors_**
+1.  💻 📌 **Elicitación de _priors_**
 
     En cada una de la situaciones que se describen debajo, ajustar manualmente los 
     parámetros de una distribución $\text{Beta}$ para que reflejen la información brindada.
@@ -555,7 +555,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
     
     > Tuve mis malas rachas, pero nunca menos de 8 pescas de cada 10 salidas.
     
-1.  💻 **Efecto de la parametrización**
+1.  💻 📌 **Efecto de la parametrización**
     
     Sea $\theta$ la probabilidad de éxito en un experimento binomial y sea 
     $\gamma = \frac{\theta}{1-\theta}$ la chance de éxito. Utilizar simulaciones para 
@@ -585,7 +585,7 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 ## Otros
 
-1. ✍️ **Distribución predictiva a posteriori**
+1. ✍️ 📌 **Distribución predictiva a posteriori**
 
     Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la @fig-ppd.
 

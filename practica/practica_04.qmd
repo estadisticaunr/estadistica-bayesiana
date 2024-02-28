@@ -36,7 +36,7 @@ bayesiana es una distribución de probabilidad _a posteriori_, la cual se utiliz
 fuente de todas las conclusiones. Además, se emplean técnicas propias de la estadística
 bayesiana para evaluar la adecuación y comparar los modelos utilizados.
 
-1.  **Mi primer regresión bayesiana**
+1.  📌 **Mi primer regresión bayesiana**
 
     El conjunto de datos `sales` contiene los montos semanales de inversión en publicidad 
     y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión 
@@ -53,7 +53,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Construya un gráfico que muestre las ventas en función de la inversión en 
     publicidad y superponga la recta de regresión estimada.
 
-1.  **Mejorando mi regresión bayesiana**
+1.  📌 **Mejorando mi regresión bayesiana**
 
     Considere la siguiente versión del modelo del ejercicio anterior que propone 
     distribuciones _a priori_ para los parámetros del modelo:
@@ -88,7 +88,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     enfoques den resultados diferentes.
     <!-- @Gelman2021 8.8 -->
 
-1.  **La altura... ¿se hereda?**
+1.  📌 **La altura... ¿se hereda?**
 
     El conjunto de datos de las alturas (`heights`) contiene las alturas (en pulgadas) de
     5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y 
@@ -116,7 +116,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Obtenga el _posterior_ del peso medio de una hija cuya madre mide 58 pulgadas.
     <!-- @Gelman2021 Capitulo 6-->
 
-1.  **Clima en Australia**
+1.  📌 **Clima en Australia**
 
     El conjunto de datos `weather_WU` datos climáticos correspondientes a 100 días en dos 
     ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las
@@ -142,7 +142,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     if (is_html) knitr::include_graphics(file.path("imgs", "uluru.jpg"))
     ```
 
-1.  **Pingüinos**
+1.  📌 **Pingüinos**
 
     Considere el dataset de pingüinos de Palmer (`penguins`) y los siguientes 
     modelos:
@@ -159,7 +159,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Compare los _ELPD_ de cada modelo utilizando _LOO_.
     <!-- Bayes Rules. Capítulo 11. -->
     
-1.  **De tal palo...**
+1.  📌 **De tal palo...**
 
     El dataset `child_iq` contiene información de los resultados de tests de coeficiente
     intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio
@@ -182,7 +182,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
     **To Do**? -->
     
-1.  **Ingresos**
+1.  📌 **Ingresos**
 
     El dataset `earnings` contiene los resultados de la encuesta realizada por Ross sobre
     Trabajo, Familia y Bienestar.
@@ -194,7 +194,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Ajuste un nuevo modelo utilizando la transformación propuesta en el punto anterior
     y compare los _posteriors_ de los coeficientes.
     
-1.  **!Kung**
+1.  📌 **!Kung**
 
     Los !Kung son un pueblo que habita en el desierto de Kalahari entre Botsuana, 
     Namibia y Angola. Hablan la lengua !Kung, que se destaca por su amplio uso de 
@@ -213,7 +213,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59
     y 54.63. Calcule la altura esperada y el intervalo del 89\%.
     
-1.  **Zorros urbanos**
+1.  📌 **Zorros urbanos**
 
     Considere del conjunto de datos sobre zorros urbanos (`foxes`). Ajuste tres modelos:
 
@@ -228,7 +228,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las
     variables para predecir la masa de un zorro?
 
-1.  **Un _prior_ informativo marca la diferencia**
+1.  📌 **Un _prior_ informativo marca la diferencia**
 
     Considere el conjunto de datos sobre belleza y proporción de sexos (`sexratio`) .
     Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en
@@ -257,7 +257,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Ajuste el modelo utilizando `brm()` y los _priors_ informativos.
     i. Compare el resultado con los obtenidos anteriormente y concluya.
 
-1.  **¡A la pesca de _priors_!**
+1.  📌 **¡A la pesca de _priors_!**
 
     El conjunto de datos `fish-market` contiene mediciones morfológicas realizadas sobre
     pescados de diferentes especies. El objetivo es construir un modelo de regresión
@@ -370,7 +370,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     <!-- @Gelman2021 Capitulo 12-->
     <!-- https://avehtari.github.io/ROS-Examples/Mesquite/mesquite.html -->
 
-1.  **Secundarios en Portugal**
+1.  🧩 **Secundarios en Portugal**
 
     Se cuenta con un conjunto de datos sobre 343 estudiantes de secundaria de Portugal 
     (`portugal`) y se desea predecir la calificación final en matemáticas del último año

@@ -4,7 +4,6 @@ nocite: "@Reich2020, @DavidsonPilon2015"
 practica: "Práctica 5"
 ---
 
-
 ## Modelos de regresión avanzados
 
 En esta última unidad de la práctica se presentan ejercicios que requieren el desarrollo
@@ -13,7 +12,7 @@ condicional de la respuesta ya no es necesariamente normal y la forma del predic
 media incluye características que lo diferencian de un predictor lineal simple. Además,
 esta unidad presenta ejercicios con modelos jerárquicos.
 
-1.  **Regresión Poisson**
+1.  📌 **Regresión Poisson**
 
     Considere el siguiente modelo para datos de conteo con un predictor $X$ que toma 
     valores entre -3 y 50:
@@ -32,7 +31,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule 
     nuevamente valores para $\lambda_i$ y $Y_i$. Compare los resultados.
     
-1.  **Regresión logística**
+1.  📌 **Regresión logística**
 
     Considere el siguiente modelo de clasificación con un predictor $X$ que toma valores 
     entre -30 y 10:
@@ -50,7 +49,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     i. Ahora añada incertidumbre al valor de $\beta$ (¿cómo se hace esto?) y simule 
     nuevamente valores para $\theta_i$ y $Y_i$. Compare los resultados.
 
-1.  **Intención de voto**
+1.  📌 **Intención de voto**
 
     El conjunto de datos `elecciones.csv` contiene los resultados de un estudio piloto
     sobre intención de voto. Contiene las variables `voto`, `edad` y `partido` que indican
@@ -62,7 +61,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     1. ¿Cómo se relaciona la edad de los encuestados con la intención de voto?
     1. ¿Es esta relación diferente para las diferentes afinidades partidarias?
 
-1.  **Días de ausencia**
+1.  📌 **Días de ausencia**
 
     Un organismo público de un Estado de los Estados Unidos está intereaso en estudiar el
     comportamiento de la asistencia de los estudiantes de secundaria. Para eso se cuenta 
@@ -85,7 +84,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     que permita explicar la asociación entre las variables predictoras y la cantidad de 
     días que se ausentan los estudiantes.
 
-1.  **_Baseball_**
+1.  📌 **_Baseball_**
 
     El béisbol es uno de los deportes donde se más intensivamente se utilizan herramientas
     estadísticas y analíticas. La cantidad de métricas que se calculan para los jugadores
@@ -107,7 +106,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     cada jugador. Incorpore la identificación del jugador en el modelo. Considere primero
     un modelo no jerárquico y luego un modelo jerárquico.
 
-1.  **Privados del sueño**
+1.  📌 **Privados del sueño**
 
     El conjunto de datos `sleepstudy` contiene el tiempo de reacción promedio 
     en una serie de pruebas para un grupo de participantes en un estudio de privación del
@@ -140,7 +139,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     * _Partial pooling_
 
 
-1.  **Modelo lineal para elecciones en Estados Unidos**
+1.  📌 **Modelo lineal para elecciones en Estados Unidos**
 
     Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
     año 2016 que se provee en @Reich2020 (`rep_2012_2016`). Elabore un modelo de regresión
@@ -163,9 +162,9 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     provienen de un estudio transversal. Para el estado $i$, sea $Y_i$ el numero de 
     homicidios y $N_i$ el tamaño de la población.
 
-    i. Ajuste el modelo $Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
-    $\text{log}(\lambda_i) = \boldsymbol{X}_i\boldsymbol{\beta}$. Use distribuciones a priori no 
-    informativas y $p = 7$ de las covariables en $\boldsymbol{X}_i$: el intercepto, los cinco 
+    i. Ajuste el modelo $Y_i \mid \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)$ donde
+    $\text{log}(\lambda_i) = \boldsymbol{X}_i\boldsymbol{\beta}$. Use distribuciones _a priori_ 
+    no informativas y $p = 7$ de las covariables en $\boldsymbol{X}_i$: el intercepto, los cinco 
     _confounders_ $\boldsymbol{Z}_i$, y el número de leyes relacionadas a armas. 
     Justifique que el _sampler_ ha convergido y explorado suficientemente la distribución a 
     posteriori y resuma la distribución a posteriori de $\boldsymbol{\beta}$.
@@ -174,7 +173,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
     -->
 
-1.  **¿A cuántas Sofías conoces?**
+1.  🧩 **¿A cuántas Sofías conoces?**
 
     Descargue el conjunto de datos `babynames` en `R` y calcule el log-odds de un bebé 
     llamado "Sophia" en cada año luego de 1950.
@@ -210,7 +209,7 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     i. Grafique la distribución predictiva a posteriori para $Y_t$ en el año 2020.
     <!-- @Reich2020 -->
 
-1.  **Meta-análisis**
+1.  🧩 **Meta-análisis**
 
     En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina
     el resultado de varios estudios. Los datos provienen del paquete `{rmeta}` en `R`.
@@ -239,10 +238,10 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     que ocurren en el grupo de control de tamaño $N_{i0}$ y $Y_{i1}$ representa
     el número de eventos que ocurren en el grupo tratado de tamaño $N_{i1}$.
 
-    i. Ajuste el modelo $Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)$
+    i. Ajuste el modelo $Y_{ij} \mid \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)$
     con $\theta_0, \theta_1 \sim \text{Uniforme}(0, 1)$. ¿Se puede concluir que el tratamiento 
     está asociado a una reducción de la tasa de muerte?
-    i. Ajuste el modelo $Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)$
+    i. Ajuste el modelo $Y_{ij} \mid \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)$
     con 
         * $\text{logit}(\theta_{ij}) = \alpha_{ij}$
         * $\boldsymbol{\alpha}_i = (\alpha_{i0}, \alpha_{i1})^T \underset{iid}{\sim} \text{Normal}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$
@@ -288,7 +287,9 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     Elija _priors_ para los parámetros de ambos modelos explicando su elección.
     <!-- @Reich2020 -->
 
-1.  **Accidente del Challenger**
+<!-- 1.  **Accidente del Challenger**
+
+    NO ESTAN REDACTADAS LAS CONSIGNAS
 
     El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de 
     trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del 
@@ -302,8 +303,8 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron 
     a la conclusión de que no había una evidencia clara. 
     
-    <!-- @DavidsonPilon2015 -->
-    
+    @DavidsonPilon2015
+
     ```{r tabla-challenger}
     #| warning: false
     #| echo: false
@@ -318,9 +319,10 @@ esta unidad presenta ejercicios con modelos jerárquicos.
         )
     )
     knitr::kable(t(challenger), col.names = NULL)
-    ```
+    ``` 
+-->
     
-1.  **Curvas de crecimiento de tiranosáuridos**
+1.  🧩 **Curvas de crecimiento de tiranosáuridos**
 
     Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de 
     crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. 

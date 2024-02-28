@@ -24,7 +24,7 @@ El objetivo de los ejercicios de esta unidad es refrescar y consolidar los conoc
 relacionados con el cálculo de probabilidades y la manipulación de distribuciones de 
 probabilidad.
 
-1.  **¡Argentina campeón!**
+1.  📌 **¡Argentina campeón!**
 
     De las siguientes expresiones cual(es) se corresponde(n) con el enunciado 
     "la probabilidad de que Argentina gane la copa del mundo dado que es 18 de Diciembre 
@@ -45,12 +45,12 @@ probabilidad.
     if (is_html) knitr::include_graphics(file.path("imgs", "argentina_campeon.png"))
     ```
 
-1.  **De formulas al español**  
+1.  📌 **De formulas al español**  
 
     Enuncie con palabras cada una de las expresiones del punto anterior.
     <!-- @Martin2021 -->
 
-1.  **Probabilidades condicionales**
+1.  📌 **Probabilidades condicionales**
 
     Según la definición de probabilidad condicional
 
@@ -62,7 +62,7 @@ probabilidad.
     i. ¿Es posible que $P(A | B) < P(A)$? ¿Cuándo?
     <!-- @Martin2021 -->
 
-1.  **Amigarse con la función de densidad (I)**
+1.  📌 **Amigarse con la función de densidad (I)**
 
     Suponga $X \sim \text{Uniforme}(a, b)$. Su soporte es $\mathcal{S} = [a, b]$ 
     y su función de densidad de probabilidad es $p(x) = 1 / (b - a)$ para todo 
@@ -72,21 +72,21 @@ probabilidad.
     i. Encuentre la media y la varianza de $X$.
     <!-- @Reich2020 -->
 
-1.  **Amigarse con la función de densidad (II)**
+1.  📌 **Amigarse con la función de densidad (II)**
 
     Sea $X$ una variable aleatoria con soporte $X \in \mathcal{S} = [1, \infty)$. 
     Encuentre la constante $c$, en función de $\theta$, que haga que 
     $p(x) = c \exp(-x / \theta)$ sea una función de densidad de probabilidad válida.
     <!-- @Reich2020 -->
 
-1.  **En búsqueda de la distribución deseada**
+1.  📌 **En búsqueda de la distribución deseada**
 
     Según personas expertas en un problema determinado, se indica que el valor de un 
     parámetro  debe ser positivo y su distribución _a priori_ debe tener media igual a 5 y
     varianza igual a 3. Encuentre una distribución que satisfaga estas condiciones.
     <!-- @Reich2020 -->
 
-1.  **Distribución conjunta, marginal y condicional**
+1.  📌 **Distribución conjunta, marginal y condicional**
 
     Sean $X_1$ y $X_2$ dos variables aleatorias con función de probabilidad conjunta dada
     por la siguiente tabla:
@@ -121,7 +121,7 @@ probabilidad.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
     <!-- @Reich2020 -->
 
-1.  **De bolas, pesos y distribuciones de probabilidad**
+1.  📌 **De bolas, pesos y distribuciones de probabilidad**
 
     Suponga una urna $S$ contiene un 40% de bolas verdes y un 60% de bolas rojas, y otra
     urna $E$ contiene un 60% de bolas verdes y un 40% de bolas rojas.

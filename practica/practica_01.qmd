@@ -46,7 +46,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     <!-- @Hoff2009 -->
     <!-- Se necesitan los axiomas P1-P3 del capitulo 2. -->
 
-1.  **El test ~~in~~falible**
+1.  📌 **El test ~~in~~falible**
 
     En una población dada, una de cada mil personas tiene una enfermedad.
     Se toma una persona al azar de la población, se le aplica un test para detectar dicha
@@ -82,7 +82,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     ```
 
 
-1.  **Árboles enfermos**
+1.  📌 **Árboles enfermos**
 
     Un vivero de la ciudad se destaca por vender una variedad de árboles nativos, 
     incluyendo al jacarandá, ceibo, ombú, entre otros.
@@ -110,7 +110,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     if (is_html) knitr::include_graphics(file.path("imgs", "ceibo.png"))
     ```
 
-1.  **Transporte "El Impuntual"**
+1.  📌 **Transporte "El Impuntual"**
 
     Una cierta empresa de transporte regional, que decidimos llamar "El Impuntual", tiene
     servicios que van desde Rosario hasta Wheelwright varias veces al día, 
@@ -137,7 +137,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     if (is_html) knitr::include_graphics(file.path("imgs", "colectivo.jpg"))
     ```
 
-1.  **Bebé panda**
+1.  📌 **Bebé panda**
 
     Supongamos que hay dos especies de osos panda.
     Ambas especies son igual de frecuentes y viven en la misma región.
@@ -167,7 +167,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     if (is_html) knitr::include_graphics(file.path("imgs", "bebe_panda.jpg"))
     ```
 
-1.  **Paraguas**
+1.  📌 **Paraguas**
 
     Estás a punto de subir a un avión rumbo a Mendoza.
     Querés saber si tenés que llevar un paraguas o no.
@@ -192,7 +192,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     
     :::
 
-1.  **Sherlock**
+1.  📌 **Sherlock**
 
     Dos personas dejaron rastros de sangre en la escena del crimen.
     La sangre de Guido, un sospechoso, es analizada y resulta ser de tipo '0'.
@@ -261,7 +261,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     siempre del mismo sexo biológico.
     <!-- http://allendowney.github.io/ThinkBayes2/chap03.html -->
 
-1.  **¿Alguien ordena las medias?**
+1.  📌 **¿Alguien ordena las medias?**
 
     Dos cajones contienen medias.
     Uno de ellos tiene igual cantidad de medias blancas y negras.
@@ -297,7 +297,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     
     :::
     
-1.  **La Falacia del Fiscal**
+1.  📌 **La Falacia del Fiscal**
 
     Sally Clark era una abogada británica que fue erróneamente sentenciada a prisión 
     perpetua en 1999 por la muerte de sus dos hijos bebés. Su hijo mayor, Christopher, 
@@ -343,7 +343,7 @@ Ahora los problemas se tratan de realizar inferencias sobre posibles causas de c
 datos observados. Se incrementa el rigor matemático, aparecen distribuciones de 
 probabilidad y la necesidad de dejar ciertos cálculos en manos de la computadora.
 
-1.  **El lenguaje de las probabilidades**
+1.  📌 **El lenguaje de las probabilidades**
 
     Escribir la expresión matemática para cada una de las siguientes descripciones verbales:
 
@@ -378,7 +378,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     i. Se elige una moneda al azar y se arroja al aire tres veces, obteniéndose tres 
     caras. ¿Cuál es la probabilidad de que la moneda elegida sea la falsa?
     
-1.  **Vocabulario limitado**
+1.  📌 **Vocabulario limitado**
 
     Supongamos que existe un idioma con seis palabras:
 
@@ -409,7 +409,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
          a. $\alpha = 2$ y $\theta = 0.9$
          
 
-1.  **Que el árbol no tape el bosque**
+1.  📌 **Que el árbol no tape el bosque**
 
     Sea $X_1 \sim \text{Bernoulli}(\theta)$ una variable que indica si una especie de 
     árboles se halla en un determinado bosque y $\theta \in [0, 1]$ representa la 
@@ -452,7 +452,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     if (is_html) knitr::include_graphics(file.path("imgs", "bosque.jpg"))
     ```
 
-1.  💻 **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
+1.  💻 📌 **¡Ostras! ¡Estoy haciendo inferencia bayesiana!**
 
     En un estudio que utiliza métodos de la Estadística Bayesiana para predecir el número
     de especies que serán descubiertas en el futuro se reporta que la cantidad de especies
@@ -472,7 +472,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Graficar la distribución _a posteriori_ de $\lambda$.
     <!-- @Reich2020 -->
 
-1.  💻 **Es negocio...**
+1.  💻 📌 **Es negocio...**
 
     Sea $n$ la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera.
     El número de clientes que realizan una compra es $Y$ y se cumple que
@@ -490,7 +490,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> 
     <!-- @Reich2020 -->
 
-1.  **Con amigos así, quién necesita enemigos**
+1.  📌 **Con amigos así, quién necesita enemigos**
 
     Un amigo arroja un dado y anota en secreto el número que sale (llamémoslo $T$).
     A continuación, nosotros, con los ojos vendados, arrojamos el dado varias veces.
@@ -568,7 +568,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     ```
 
 
-1.  💻 **Puede fallar...**
+1.  💻 📌 **Puede fallar...**
 
     Cansada de los experimentos de arrojar una moneda cientos de veces al aire, una 
     estudiante diseña un sistema de reconocimiento de imágenes que determina si salió cara
@@ -621,7 +621,7 @@ En lugar de encontrar una respuesta única mediante cálculos matemáticos,
 se necesita comprender en profundidad tanto el enfoque frecuentista como el bayesiano
 para interpretar estas visiones en diferentes escenarios.
 
-1.  **Voy a conseguir esa pasantía**
+1.  📌 **Voy a conseguir esa pasantía**
 
     La empresa de tecnología en la que todo el mundo quiere trabajar tiene varias vacantes
     para pasantes en ciencia de datos.
@@ -637,7 +637,7 @@ para interpretar estas visiones en diferentes escenarios.
     Justifica tu respuesta. 
     <!-- @Johnson2021 -->
 
-1.  **Beneficios de la Estadística Bayesiana**
+1.  📌 **Beneficios de la Estadística Bayesiana**
 
     Una amiga te cuenta que está interesada en aprender más sobre Estadística Bayesiana.
     Explícale lo siguiente:
