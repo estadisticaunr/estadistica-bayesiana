@@ -291,7 +291,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="métodos-computacionales">💻 Métodos Computacionales</h2>
 <p>Esta sección contiene una lista exhaustiva de ejercicios que requieren el uso de herramientas computacionales para resolver problemas que involucran una variedad de cálculos, como el cálculo de probabilidades y el cálculo de integrales. Se vuelve indispensable el uso de R y se promueve el uso de buenas prácticas de programación científica, como el uso de funciones compartimentar los componentes de un programa.</p>
 <ol type="1">
-<li><p><strong>¡A calcular probabilidades! (I)</strong></p>
+<li><p>📌 <strong>¡A calcular probabilidades! (I)</strong></p>
 <p>Sea <span class="math inline">\(X \sim \text{Normal}(\mu=3, \sigma=1.2)\)</span>.</p>
 <ol type="i">
 <li>Elabore un gráfico que permita visualizar la función de densidad de probabilidad de <span class="math inline">\(X\)</span>.</li>
@@ -299,7 +299,7 @@ window.Quarto = {
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor a 4?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor 2 y menor 3?</li>
 </ol></li>
-<li><p><strong>¡A calcular probabilidades! (II)</strong></p>
+<li><p>📌 <strong>¡A calcular probabilidades! (II)</strong></p>
 <p>Sea <span class="math inline">\(X \sim \text{Beta}(\alpha=10, \beta=2)\)</span>.</p>
 <ol type="i">
 <li>Elabore un gráfico que permita visualizar la función de densidad de probabilidad de <span class="math inline">\(X\)</span>.</li>
@@ -307,13 +307,13 @@ window.Quarto = {
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor a 0.8?</li>
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X\)</span> sea mayor 0.25 y menor 0.75?</li>
 </ol></li>
-<li><p><strong>Magia blanca: Obtener probabilidades mediante simulación</strong></p>
+<li><p>📌 <strong>Magia blanca: Obtener probabilidades mediante simulación</strong></p>
 <p>Responda los dos puntos anteriores sin evaluar la función de densidad ni la función de distribución de las variables aleatorias mencionadas. Para eso genere muestras que provengan de las correspondientes distribuciones y utilícelas para responder las preguntas mencionadas. Reflexione sobre las ventajas y desventajas de utilizar un enfoque basado en la simulación para resolver problemas.</p></li>
-<li><p><strong>Media y varianza de una variable aleatoria</strong></p>
+<li><p>📌 <strong>Media y varianza de una variable aleatoria</strong></p>
 <p>Una variable aleatoria <span class="math inline">\(X\)</span> toma valores en el conjunto <span class="math inline">\(\{2, 4, 6, 8, 10\}\)</span> con igual probabilidad. Encuentre la media y el desvío estándar de las variables <span class="math inline">\(X\)</span> e <span class="math inline">\(Y = 2X + 1\)</span>. <!-- Tal vez se puede hacer un poco más difícil si hacemos que la función sea no-lineal --></p></li>
-<li><p><strong>Probabilidades <em>a posteriori</em></strong></p>
+<li><p>📌 <strong>Probabilidades <em>a posteriori</em></strong></p>
 <p>En un problema determinado la distribución <em>a posteriori</em> de la parámetro de inteŕes <span class="math inline">\(\alpha\)</span> es <span class="math inline">\(\Gamma(k=3, \theta=1.5)\)</span>, donde <span class="math inline">\(k\)</span> es el parámetro de forma y <span class="math inline">\(\theta\)</span> es el parámetro de escala. Calcule la probabilidad de que <span class="math inline">\(\alpha^2\)</span> sea mayor a 10. <!-- https://stats.stackexchange.com/questions/154135/square-of-gamma-random-variable --></p></li>
-<li><p><strong>Probabilidades con dos variables aleatorias</strong></p>
+<li><p>📌 <strong>Probabilidades con dos variables aleatorias</strong></p>
 <p>Sean <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> dos variables aleatorias independientes con distribución uniforme en el intervalo <span class="math inline">\([0, 1]\)</span>.</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que <span class="math inline">\(X \le Y\)</span>?</li>
@@ -338,7 +338,7 @@ window.Quarto = {
 <li>Ninguna de las anteriores.</li>
 </ol>
 <p>Escriba un programa en R para responder esta pregunta utilizando simulaciones. Genere gráficos que faciliten la comprensión del resultado. <!-- https://twitter.com/pgroisma/status/1616820135313932288 --></p></li>
-<li><p><strong>Estimando el valor de</strong> <span class="math inline">\(\pi\)</span></p>
+<li><p>📌 <strong>Estimando el valor de</strong> <span class="math inline">\(\pi\)</span></p>
 <p>Imagine un círculo de radio <span class="math inline">\(r\)</span> y un cuadrado de lado <span class="math inline">\(2r\)</span>, ambos centrados en el mismo punto, que de manera arbitraria puede ser el punto <span class="math inline">\((0, 0)\)</span>. Obtenga muestras de una distribución uniforme en el plano <span class="math inline">\((x, y)\)</span>, cuyo dominio está acotado por el cuadrado antes mencionado. Para cada muestra extraida, determine si se encuentra dentro del círculo o no – todos las muestras se encontrarán dentro del cuadrado. Utilice esta información para estimar el valor de <span class="math inline">\(\pi\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -359,7 +359,23 @@ window.Quarto = {
 <ol type="i">
 <li>Resuelva el problema utilizando R.</li>
 <li>Elabore una visualización que facilite la comunicación de los resultados.</li>
-</ol></li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>TO DO Algo sobre como simular de una uniforme en 2d</p>
+</div>
+</div>
+</div></li>
 <li><p><strong>Sobre el histórico 7 a 1 del 2014</strong></p>
 <p>En la Copa del Mundo de la FIFA 2014, Alemania jugó contra Brasil en la semifinal. Los alemanes hicieron el primer gol a los 11 minutos y el segundo a los 23. Asuma que el tiempo entre goles sigue una distribución exponencial. Elija una distribución <em>a priori</em> para el tiempo entre goles (puede ser conjugada o no). En ese momento del partido,</p>
 <ol type="i">
@@ -367,7 +383,7 @@ window.Quarto = {
 <li>¿Cuántos goles cabría esperar que Alemania hiciera al finalizar los 90 minutos?</li>
 <li>¿Cuál era la probabilidad de que Alemania hiciera más de 5 goles (cosa que ocurrió)? <!-- http://allendowney.github.io/ThinkBayes2/chap08.html --></li>
 </ol></li>
-<li><p><strong>¿Tendré que esperar mucho?</strong></p>
+<li><p>💻 <strong>¿Tendré que esperar mucho?</strong></p>
 <p>El tiempo que un empleado de recursos humanos demora en hacer una entrevista tiene distribución exponencial con media 30 minutos. Los tiempos de duración de cada entrevista se pueden considerar independientes entre sí. Las entrevistas a postulantes para un trabajo están programadas cada 15 minutos, comenzando desde las 8. Es válido considerar que todos los postulantes llegan puntuales a su entrevista. Cuando la persona del turno de las 8:15 llega a la oficina</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que tenga que esperar antes de ser entrevistada?</li>
@@ -379,7 +395,7 @@ window.Quarto = {
 <li>¿Cuál es la probabilidad de que tengan asientos en la misma fila?</li>
 <li>¿Cuál es la probabilidad de que estén sentados en asientos adyacentes?</li>
 </ol></li>
-<li><p><strong>El Problema de Monty Hall</strong></p>
+<li><p>✍️ 💻 📌 <strong>El Problema de Monty Hall</strong></p>
 <p>El Problema de Monty Hall es un problema de probabilidad basado en un juego del concurso televisivo estadounidense “Trato hecho”. En este problema, el concursante debe elegir una puerta entre tres, todas cerradas. El premio consiste en llevarse lo que se encuentra detrás de la elegida. Se sabe con certeza que tras una de ellas se oculta un automóvil, y tras las otras dos hay cabras. Una vez que el concursante haya elegido una puerta y comunicado su elección a los presentes, el presentador, que sabe lo que hay detrás de cada puerta, abrirá una de las otras dos en la que haya una cabra. A continuación, le da la opción al concursante de cambiar, si lo desea, de puerta (tiene dos opciones). ¿Debe el concursante mantener su elección original o escoger la otra puerta? ¿Hay alguna diferencia? Resuelva este ejercicio utilizando simulaciones. <!-- Modern Data Science with R --></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -391,9 +407,9 @@ window.Quarto = {
 </div>
 </div>
 </div></li>
-<li><p><strong>Que los cumplan feliz</strong></p>
+<li><p>💻 <strong>Que los cumplan feliz</strong></p>
 <p>Basándose en el <a href="https://twitter.com/Kit_Yates_Maths/status/1542767039814713346">siguiente tuit</a> y conociendo el problema del cumpleaños (¿cuántas personas debe haber en una habitación para que la probabilidad de que dos de ellas cumplan años el mismo día sea mayor a X%?) construir un gráfico similar al del tuit donde se grafique la probabilidad de que haya <span class="math inline">\(n\)</span> personas que cumplan años el mismo día para <span class="math inline">\(K\)</span> personas presentes en la habitación.</p></li>
-<li><p><strong>Qué suerte, ¿no?</strong></p>
+<li><p>💻 <strong>Qué suerte, ¿no?</strong></p>
 <p>Previo a la final de la Copa América 2021, los jugadores de la Selección Argentina se reúnen en la habitación del hotel como se describe en <a href="https://twitter.com/PlanetaDeCABJ/status/1587925636869300224">este tuit</a>.</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad de que un jugador adivine una de diez cartas?</li>
@@ -407,9 +423,9 @@ window.Quarto = {
 <li>¿Cuántos paquetes se necesitan, en promedio, para completar el álbum?</li>
 <li>Si a una persona le faltan diez figuritas para completar el álbum, ¿cuántos paquetes tiene que comprar para asegurarse de lograrlo?</li>
 </ol></li>
-<li><p><strong>¿Que tán raras son estas secuencias raras?</strong></p>
+<li><p>💻 <strong>¿Que tán raras son estas secuencias raras?</strong></p>
 <p>Si se arroja una moneda <span class="math inline">\(n\)</span> veces, ¿cuál es la probabilidad de que no haya secuencias de <span class="math inline">\(k\)</span> caras?</p></li>
-<li><p><strong>Un viaje por el elevador</strong></p>
+<li><p>📌 <strong>Un viaje por el elevador</strong></p>
 <p>¿Cuál es la probabilidad de que tres personas en un ascensor con doce pisos presionen para ir a tres pisos consecutivos? ¿Qué supuestos realiza para resolver el problema? Escríbalos en una lista de manera explícita.</p></li>
 <li><p><strong>La vida es muy corta como para perderla ordenando medias</strong></p>
 <p>Un cajón contiene 10 pares de medias. No hay dos pares iguales. Por fiaca, el dueño de las medias no las agrupa después de lavarlas y simplemente las pone en el cajón. Al momento de necesitar un par de medias, saca una tras una hasta que se forma un par. En promedio, ¿cuántas medias sacará hasta encontrar un par? <!-- https://fivethirtyeight.com/features/can-you-find-a-matching-pair-of-socks/ --></p></li>
@@ -419,7 +435,7 @@ window.Quarto = {
 <p>Resuelva el problema de concordancia de de Montmort presentado en la <strong>Práctica 0</strong> utilizando simulaciones. <!-- Blitzstein, Introdudction to Probability --></p></li>
 <li><p><strong>El problema de los sobres</strong></p>
 <p>Resuelva el problema de los dos sobres presentado en la <strong>Práctica 0</strong> utilizando simulaciones.</p></li>
-<li><p><strong>Integración por muestreo</strong></p>
+<li><p>🧩 <strong>Integración por muestreo</strong></p>
 <p>Calcule las siguientes integrales utilizando muestras.</p>
 <ol type="i">
 <li><span class="math inline">\(\displaystyle \int_{-\infty}^{\infty}{\frac{x^2}{\sqrt{2\pi}}\exp \left(-\frac{x^2}{2} \right)dx}\)</span></li>
@@ -434,7 +450,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="aproximación-de-una-distribución-mediante-una-grilla">💻 Aproximación de una distribución mediante una grilla</h2>
 <p>En esta parte de la práctica se comienza a utilizar técnicas computacionales que se asocian directamente a la práctica de la estadística bayesiana. Los problemas tienen como objetivo la familiarización con el uso práctico de estas técnicas y la comprensión de sus características principales.</p>
 <ol type="1">
-<li><p><strong>Aproximación de grilla</strong></p>
+<li><p>📌 <strong>Aproximación de grilla</strong></p>
 <p>Se tiene un experimento binomial donde <span class="math inline">\(n=80\)</span> y se observan <span class="math inline">\(y=7\)</span> éxitos. Considere que el <em>prior</em> de la probabilidad de éxito <span class="math inline">\(\theta\)</span> es <span class="math inline">\(\text{Beta}(2, 10)\)</span>.</p>
 <ol type="i">
 <li>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> de manera analítica y grafíquela.</li>
@@ -442,7 +458,7 @@ window.Quarto = {
 <li>Repita el proceso del punto anterior utilizando una grilla de 100 puntos.</li>
 <li>Concluya sobre la fidelidad de las aproximaciones. ¿Considera que es necesario utilizar una grilla más densa? ¿Cuáles serían las ventajas y desventajas?</li>
 </ol></li>
-<li><p><strong>Cálculo de probabilidades en base a la grilla (I)</strong></p>
+<li><p>📌 <strong>Cálculo de probabilidades en base a la grilla (I)</strong></p>
 <p>En base al <em>posterior</em> obtenido en el ejercicio anterior mediante el método de la grilla calcule las siguientes probabilidades</p>
 <ul>
 <li><span class="math inline">\(P(\theta &lt; 0.7)\)</span>.</li>
@@ -450,9 +466,9 @@ window.Quarto = {
 <li><span class="math inline">\(P(0.05 &lt; \theta &lt; 0.15)\)</span>.</li>
 </ul>
 <p>De ser necesario, obtenga el <em>posterior</em> mediante una grilla de mayor densidad.</p></li>
-<li><p><strong>Cálculo de probabilidades en base a la grilla (II)</strong></p>
+<li><p>📌 <strong>Cálculo de probabilidades en base a la grilla (II)</strong></p>
 <p>Utilice los valores de la grilla y sus probabilidades <em>a posteriori</em> para obtener muestras del <em>posterior</em> y calcular las mismas probabilidades que en el ejercicio anterior en base a muestras. Ayuda: Para obtener muestras utilice la función <code>sample()</code>.</p></li>
-<li><p><strong>Aproximación de grilla en 2 dimensiones</strong></p>
+<li><p>📌 <strong>Aproximación de grilla en 2 dimensiones</strong></p>
 <p>Sean dos variables aleatorias continuas <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> tales que <span class="math inline">\((X, Y) \in \mathbb{R}^2\)</span>, y sea el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -480,7 +496,7 @@ Y      &amp;\sim \text{Normal}(\alpha + \beta X, 0.8)
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Bonus:</strong> ¿Cómo podría responder las consignas (ii)-(v) utilizando muestras del <em>posterior</em>?</p></li>
-<li><p><strong>Escalando la aproximación de la grilla</strong></p>
+<li><p>📌 <strong>Escalando la aproximación de la grilla</strong></p>
 <p>Suponga que se tiene que estimar un <em>posterior</em> utilizando la aproximación mediante una grilla de 200 puntos en cada dimensión. Calcule cúantas veces se tiene que evaluar el posterior en cada uno de los siguientes escenarios:</p>
 <ol type="i">
 <li>1 dimensión.</li>
@@ -547,7 +563,7 @@ requisito de distribución simétrica.
 -->
 <p>En esta sección, se profundiza en la práctica de uno de los algoritmos fundamentales de la inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.</p>
 <ol type="1">
-<li><p><strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (I)</strong></p>
+<li><p>📌 <strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (I)</strong></p>
 <p>Use el algoritmo de Metropolis-Hastings y una distribución de propuesta <span class="math inline">\(\text{Normal}(0, 0.1)\)</span> para obtener 5000 muestras de las siguientes distribuciones de probabilidad:</p>
 <ol type="i">
 <li><span class="math inline">\(\text{Normal}(\mu = 3, \sigma = 6)\)</span>.</li>
@@ -555,7 +571,7 @@ requisito de distribución simétrica.
 <li><span class="math inline">\(\frac{2}{3}\text{Normal}(\mu = 0, \sigma = 0.5) + \frac{1}{3}\text{Normal}(\mu = 3, \sigma = 2)\)</span>.</li>
 </ol>
 <p>Grafique las distribuciones obtenidas utilizando un histograma o una estimación de densidad y superponga la función de densidad verdadera para realizar una comparación. Concluya sobre la similitud de las mismas y la aptitud de la distribución de propuesta utilizada.</p></li>
-<li><p><strong>Simplificando el algoritmo de Metropolis-Hastings</strong></p>
+<li><p>📌 <strong>Simplificando el algoritmo de Metropolis-Hastings</strong></p>
 <p>La distribución de propuesta utilizada en el ejercicio anterior goza de una propiedad que permite simplificar el algoritmo de Metropolis-Hastings.</p>
 <ol type="i">
 <li>¿Cuál es esta propiedad?</li>
@@ -563,7 +579,7 @@ requisito de distribución simétrica.
 <li>¿Qué nombre recibe la versión simplificada del algoritmo?</li>
 <li>Implemente la versión simplificada del algoritmo de Metropolis-Hastings y obtenga nuevamente 5000 muestras para las distribuciones presentadas en el ejercicio anterior utilizando la nueva implementación.</li>
 </ol></li>
-<li><p><strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (II)</strong></p>
+<li><p>📌 <strong>Muestreo utilizando el algoritmo de Metropolis-Hastings (II)</strong></p>
 <p>Use el algoritmo de Metropolis-Hastings y una distribución de propuesta que crea conveniente para obtener 5000 muestras de las siguientes distribuciones de probabilidad:</p>
 <ol type="i">
 <li><span class="math inline">\(\text{Beta}(\alpha=4, \beta=8)\)</span>.</li>
@@ -581,7 +597,7 @@ requisito de distribución simétrica.
 <li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con el desempeño del muestreo?</li>
 <li>¿Cómo se relaciona <span class="math inline">\(w\)</span> con la probabilidad de aceptación? Justifique su respuesta utilizando la ecuación del criterio de aceptación.</li>
 </ul></li>
-<li><p><span id="ex-mh-mm"><strong>Modelo Normal-Normal</strong></span></p>
+<li><p>📌 <span id="ex-mh-mm"><strong>Modelo Normal-Normal</strong></span></p>
 <p>Se desea estudiar el tiempo promedio que los estudiantes de estadística dedican por semana a la materia Estadística Bayesiana. Para eso se propone utilizar un modelo Normal-Normal, con <span class="math inline">\(\sigma=1.2\)</span> conocido.</p>
 <ol type="i">
 <li>Elija una distribución <em>a priori</em> para el parámetro <span class="math inline">\(\mu\)</span>.</li>
@@ -598,7 +614,7 @@ requisito de distribución simétrica.
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>df_estudio <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(url)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p><span id="ex-mh-bb"><strong>Modelo Beta-Binomial</strong></span></p>
+<li><p>📌 <span id="ex-mh-bb"><strong>Modelo Beta-Binomial</strong></span></p>
 <p>Se desea estimar el <em>posterior</em> del parámetro <span class="math inline">\(\pi\)</span> en el siguiente modelo Beta-Binomial:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -608,7 +624,7 @@ Y &amp;\sim \text{Binomial}(n, \pi) \\
 \]</span></p>
 <p>Se observan <span class="math inline">\(n=10\)</span> ensayos de Bernoulli y se registran <span class="math inline">\(y=3\)</span> éxitos. Determine una distribución de propuesta adecuada y obtenga muestras de la distribución <em>a posteriori</em> del parámetro <span class="math inline">\(\pi\)</span> utilizando el algoritmo de Metropolis-Hastings.</p>
 <p>De ser necesario, ajuste los parámetros de la distribución de propuesta.</p></li>
-<li><p><strong>Modelo Poisson</strong></p>
+<li><p>📌 <strong>Modelo Poisson</strong></p>
 <p>En el ejercicio <strong>¡Ostras! ¡Estoy haciendo inferencia bayesiana!</strong> de la Práctica 1 se reportó que la cantidad de especies marinas bivalvas descubiertas cada año entre 2010 y 2015 fue 64, 13, 33, 18, 30 y 20.</p>
 <p>Sea <span class="math inline">\(Y_t\)</span> la cantidad de especies descubiertas en el año <span class="math inline">\(2009 + t\)</span> (e.g.&nbsp;<span class="math inline">\(Y_1 = 64\)</span> es el conteo para el año 2010) y el siguiente modelo:</p>
 <p><span class="math display">\[
@@ -620,7 +636,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \end{aligned}
 \]</span></p>
 <p>Ajuste el modelo utilizando Metropolis-Hastings y verifique la convergencia de las cadenas de Markov. <!-- @Reich2020 3.10/3.11  --></p></li>
-<li><p><strong>Metropolis-Hastings multivariado</strong></p>
+<li><p>📌 <strong>Metropolis-Hastings multivariado</strong></p>
 <p>Use el algoritmo de Metropolis Hastings para obtener 1000 muestras de la distribución <span class="math inline">\(\text{MVN}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span> donde</p>
 <p><span class="math display">\[
 \begin{array}{cc}
@@ -629,7 +645,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 \end{array}
 \]</span></p>
 <p>Utilice una distribución de propuesta <span class="math inline">\(\text{MVN}(\boldsymbol{0}_2, \boldsymbol{I}_2\sigma)\)</span> con <span class="math inline">\(\sigma = 0.2\)</span>.</p></li>
-<li><p><strong>Metropolis-Hastings para regresión</strong></p>
+<li><p>📌 <strong>Metropolis-Hastings para regresión</strong></p>
 <p>Repita el ejercicio <strong>Aproximación de grilla en 2 dimensiones</strong> pero utilice Metropolis-Hastings para obtener muestras del <em>posterior</em> en vez del método de la grilla.</p></li>
 </ol>
 <!-- 1.  **Demostración sobre la distribución estacionaria**
@@ -648,25 +664,25 @@ Tenemos que completarlo...
 <h2 class="anchored" data-anchor-id="diagnósticos"><strong>Diagnósticos</strong></h2>
 <p>El uso de algoritmos de MCMC provee de un gran poder que conlleva una gran responsabilidad. En los ejercicios de esta sección ya se cuenta con un <em>posterior</em> y se busca evaluar la fiabilidad de las muestras utilizando diferentes medidas de diagnóstico análiticas y gráficas.</p>
 <ol type="1">
-<li><p><strong>Describir medidas de diagnóstico (I)</strong></p>
+<li><p>📌 <strong>Describir medidas de diagnóstico (I)</strong></p>
 <p>En sus propias palabras, explique que son <span class="math inline">\(\text{ESS}\)</span>, <span class="math inline">\(\hat{R}\)</span> y <span class="math inline">\(\text{MCSE}\)</span>. Considere:</p>
 <ul>
 <li>¿Qué miden?</li>
 <li>¿Qué potencial problema de MCMC detectan? <!-- @Martin2021 2E2 --></li>
 </ul></li>
-<li><p><strong>Describir medidas de diagnóstico (II)</strong></p>
+<li><p>📌 <strong>Describir medidas de diagnóstico (II)</strong></p>
 <p>En sus propias palabras, explique por qué las técnicas de estimación del <em>posterior</em> basadas en MCMC necesitan diagnósticos de convergencia. En particular, contraste estos con los métodos conjugados descritos en la Unidad 2 que no necesitan esos diagnósticos. ¿Qué es diferente entre los dos métodos de inferencia? <!-- @Martin2021 2E8 --></p></li>
-<li><p><strong>Problemitas de MCMC</strong></p>
+<li><p>📌 <strong>Problemitas de MCMC</strong></p>
 <p>Para cada escenario de simulación mediante MCMC descrito a continuación, explique cómo el escenario podría afectar la aproximación del <em>posterior</em>.</p>
 <ul>
 <li>La cadena se mezcla muy lentamente.</li>
 <li>La cadena presenta alta auto-correlación.</li>
 <li>La cadena tiende a quedarse “trabada”. <!-- @Johnson2021 Exercise 6.3  --></li>
 </ul></li>
-<li><p><strong>Vamos de paseo</strong></p>
+<li><p>📌 <strong>Vamos de paseo</strong></p>
 <p>Elabore <em>traceplots</em> que le permitan visualizar la traza de la cadena de Markov utilizada en el ejercicio <a href="#ex-mh-mm"><strong>Modelo Normal-Normal</strong></a> de la sección <a href="#sec-mh"><strong>Metropolis-Hastings</strong></a>.</p>
 <p>Luego, repita el ejercicio utilizando 4 cadenas independientes y grafique sus trazas en un mismo gráfico. ¿Qué puede concluir sobre la convergencia y la mezcla de las cadenas?</p></li>
-<li><p><span id="ex-diag-pprhat"><strong>Primeros pasitos con <span class="math inline">\(\hat{R}\)</span></strong></span></p>
+<li><p>📌 <span id="ex-diag-pprhat"><strong>Primeros pasitos con <span class="math inline">\(\hat{R}\)</span></strong></span></p>
 <p>Repita lo realizado en el ejercicio <a href="#ex-mh-bb"><strong>Modelo Beta-Binomial</strong></a> de la sección <a href="#sec-mh"><strong>Metropolis-Hastings</strong></a> utilizando 4 cadenas independientes. Luego:</p>
 <ol type="i">
 <li>Calcule la varianza intra-cadenas <span class="math inline">\(W\)</span>.</li>
@@ -692,9 +708,9 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li>¿Se puede concluir que cada uno de los muestreos realizados representan realizaciones de una cadena de Markov? ¿Por qué?</li>
 <li>¿Por qué no fue necesario descartar un conjunto de muestras de <em>warm-up</em>?</li>
 </ol></li>
-<li><p><strong>Función de autocorrelación</strong></p>
+<li><p>📌 <strong>Función de autocorrelación</strong></p>
 <p>Utilice las 4 cadenas obtenidas en el ejercicio <a href="#ex-diag-pprhat"><strong>Primeros pasitos con <span class="math inline">\(\hat{R}\)</span></strong></a> y grafique la función de autocorrelación y calcule el coeficiente de autocorrelación utilizando un rezago unitario. Concluya sobre la dependencia entre las muestras obtenidas.</p></li>
-<li><p><strong>Tamaño de muestra efectivo</strong></p>
+<li><p>📌 <strong>Tamaño de muestra efectivo</strong></p>
 <p>Utilice las muestras obtenidas en el ejercicio anterior para calcular el tamaño de muestra efectivo.</p></li>
 <li><p><strong>Experimentos con el tamaño de muestra efectivo</strong></p>
 <p>Suponga una distribución <span class="math inline">\(\text{Normal}(0, 1^2)\)</span>. Obtenga <span class="math inline">\(n\)</span> muestras independientes utilizando <code>rnorm()</code> y <span class="math inline">\(n\)</span> muestras dependientes utilizando Metropolis-Hastings con <span class="math inline">\(n \in \{10, 50, 100, 500, 1000, 10000\}\)</span>.</p>
@@ -703,7 +719,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li>Describa el comportamiento del tamaño de muestra efectivo conforme se incrementa el número de muestras.</li>
 <li>¿Por qué se observan los comportamientos descritos?</li>
 </ol></li>
-<li><p><strong>¡Rompan todo! Un caso simulado</strong></p>
+<li><p>📌 <strong>¡Rompan todo! Un caso simulado</strong></p>
 <p>Los siguientes gráficos muestran las trazas y las distribuciones que resultan al obtener muestras de un <em>posterior</em> utilizando dos cadenas de Markov independientes. Estos muestreos fueron realizados de manera que presenten algunos problemas. Describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -745,7 +761,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 </div>
 </div>
 </div></li>
-<li><p><strong>¡Rompan todo! Un caso real</strong></p>
+<li><p>📌 <strong>¡Rompan todo! Un caso real</strong></p>
 <p>Al igual que en el ejercicio anterior, se presentan <em>traceplots</em> donde el muestreo del <em>posterior</em> presenta problemas. En este caso, los gráficos que se observan fueron obtenidos en el marco de un problema real, y se usan 4 cadenas en vez de 2. Nuevamente, describa cuales son los problemas que puede observar en los siguientes gráficos y explique por qué no utilizaría estas muestras para obtener conclusiones sobre el <em>posterior</em>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -779,21 +795,21 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <h2 class="anchored" data-anchor-id="programación-probabilística---stan-y-rstan"><strong>Programación probabilística - Stan y RStan</strong></h2>
 <p>En esta sección se comienza a utilizar Stan para realizar los cálculos relacionados a la inferencia bayesiana. Stan es uno de los lenguajes de programación probabilística mas potentes y populares en la actualidad. Los ejercicios contienen modelos estadísticos que deben ser resueltos con la interface de <code>Stan</code> a R, <code>{RStan}</code>.</p>
 <ol type="1">
-<li><p><strong>MCMC con RStan: Precalentamiento (I)</strong></p>
+<li><p>📌 <strong>MCMC con RStan: Precalentamiento (I)</strong></p>
 <p>Utilice la información proporcionada para definir la estructura del modelo bayesiano utilizando <code>{RStan}</code>. No es necesario ejecutar nada, solo necesita proporcionar el código correcto.</p>
 <ol type="i">
 <li><span class="math inline">\(Y | \pi \sim \text{Binomial}(\pi, 20)\)</span> con <span class="math inline">\(\pi \sim \text{Beta}(1, 1)\)</span>.</li>
 <li><span class="math inline">\(Y | \lambda \sim \text{Poisson}(\lambda)\)</span> con <span class="math inline">\(\lambda \sim \text{Gamma}(4, 2)\)</span>.</li>
 <li><span class="math inline">\(Y | \mu \sim \text{Normal}(\mu, 1^2)\)</span> con <span class="math inline">\(\mu \sim \text{Normal}(0, 10^2)\)</span>. <!-- @Johnson2021 6.11 --></li>
 </ol></li>
-<li><p><strong>MCMC con RStan: Precalentamiento (II)</strong></p>
+<li><p>📌 <strong>MCMC con RStan: Precalentamiento (II)</strong></p>
 <p>Utilice la información proporcionada para (1) definir la estructura del modelo bayesiano y (2) obtener muestras del <em>posterior</em> utilizando <code>{RStan}</code>. No es necesario ejecutar nada, solo necesita proporcionar el código correcto.</p>
 <ol type="i">
 <li><span class="math inline">\(Y | \pi \sim \text{Binomial}(\pi, 20)\)</span> con <span class="math inline">\(\pi \sim \text{Beta}(1, 1)\)</span> e <span class="math inline">\(y = 12\)</span>.</li>
 <li><span class="math inline">\(Y | \lambda \sim \text{Poisson}(\lambda)\)</span> con <span class="math inline">\(\lambda \sim \text{Gamma}(4, 2)\)</span> e <span class="math inline">\(y = 3\)</span>.</li>
 <li><span class="math inline">\(Y | \mu \sim \text{Normal}(\mu, 1^2)\)</span> con <span class="math inline">\(\mu \sim \text{Normal}(0, 10^2)\)</span> e <span class="math inline">\(y = 12.2\)</span>. <!-- @Johnson2021 6.12 --></li>
 </ol></li>
-<li><p><strong>Modelo Beta-Binomial con RStan (I)</strong></p>
+<li><p>📌 <strong>Modelo Beta-Binomial con RStan (I)</strong></p>
 <p>Considere el modelo Beta-Binomial para <span class="math inline">\(\pi\)</span> con <span class="math inline">\(Y | \pi \sim \text{Binomial}(\pi, n)\)</span> y <span class="math inline">\(\pi \sim \text{Beta}(3, 8)\)</span>. Suponga que en <span class="math inline">\(n = 10\)</span> ensayos independientes observa <span class="math inline">\(y = 2\)</span> éxitos.</p>
 <ol type="i">
 <li>Obtenga muestras del <em>posterior</em> de <span class="math inline">\(\pi\)</span> con <code>{RStan}</code> utilizando 3 cadenas y 12000 iteraciones por cadena.</li>
@@ -802,21 +818,21 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li>Cree un gráfico que permita visualizar la función de densidad de los valores obtenidos con cada una de las tres cadenas.</li>
 <li>Utilizando lo estudiado en la Unidad 2, especifique el <em>posterior</em> de <span class="math inline">\(\pi\)</span>. ¿Cómo se compara con la aproximación mediante MCMC?</li>
 </ol></li>
-<li><p><strong>Modelo Beta-Binomial con RStan (II)</strong></p>
+<li><p>📌 <strong>Modelo Beta-Binomial con RStan (II)</strong></p>
 <p>Repita el ejercicio anterior utilizando <span class="math inline">\(\pi \sim \text{Beta}(4, 3)\)</span>, donde observa <span class="math inline">\(y = 4\)</span> éxitos en <span class="math inline">\(n = 12\)</span> ensayos independientes.</p></li>
-<li><p><strong>Modelo Gamma-Poisson con RStan (I)</strong></p>
-<p>Considere el modelo Gamma-Poisson para <span class="math inline">\(\lambda\)</span> con <span class="math inline">\(Y_i | \lambda \sim \text{Poisson}(\lambda)\)</span> y <span class="math inline">\(\lambda \sim \text{Gamma}(20, 5)\)</span>. Suponga que cuenta con <span class="math inline">\(n = 3\)</span> observaciones independientes <span class="math inline">\((y_1, y_2, y_3) = (0, 1, 0)\)</span></p>
+<li><p>📌 <strong>Modelo Gamma-Poisson con RStan (I)</strong></p>
+<p>Considere el modelo Gamma-Poisson para <span class="math inline">\(\lambda\)</span> con <span class="math inline">\(Y_i \mid \lambda \sim \text{Poisson}(\lambda)\)</span> y <span class="math inline">\(\lambda \sim \text{Gamma}(20, 5)\)</span>. Suponga que cuenta con <span class="math inline">\(n = 3\)</span> observaciones independientes <span class="math inline">\((y_1, y_2, y_3) = (0, 1, 0)\)</span></p>
 <ol type="i">
 <li>Obtenga muestras del <em>posterior</em> de <span class="math inline">\(\lambda\)</span> con <code>{RStan}</code> utilizando 4 cadenas y 10000 iteraciones por cadena.</li>
 <li>Grafique la traza y la función de densidad de cada una de las tres cadenas.</li>
 <li>A partir del gráfico de la función de densidad, ¿cuáles suelen ser, <em>a posteriori</em>, los valores más probables de <span class="math inline">\(\lambda\)</span>?</li>
 <li>Utilizando lo estudiado en la Unidad 2, especifique el <em>posterior</em> de <span class="math inline">\(\lambda\)</span>. ¿Cómo se compara con la aproximación mediante MCMC?</li>
 </ol></li>
-<li><p><strong>Modelo Gamma-Poisson con RStan (II)</strong></p>
+<li><p>📌 <strong>Modelo Gamma-Poisson con RStan (II)</strong></p>
 <p>Repita el ejercicio anterior utilizando el <em>prior</em> <span class="math inline">\(\lambda \sim \text{Gamma}(5, 5)\)</span>.</p></li>
-<li><p><strong>Modelo Normal-Normal con RStan (I)</strong></p>
+<li><p>📌 <strong>Modelo Normal-Normal con RStan (I)</strong></p>
 <p>Repita los mismos pasos del ejercicio <strong>Modelo Gamma-Poisson con Rstan (I)</strong> pero considere el modelo Normal-Normal para <span class="math inline">\(\mu\)</span> con <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 1.3^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(10, 1.2^2)\)</span>. Suponga que cuenta con <span class="math inline">\(n = 4\)</span> observaciones independientes <span class="math inline">\((y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)\)</span></p></li>
-<li><p><strong>Modelo Normal-Normal con RStan (II)</strong></p>
+<li><p>📌 <strong>Modelo Normal-Normal con RStan (II)</strong></p>
 <p>Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere <span class="math inline">\(Y_i | \mu \sim \text{Normal}(\mu, 8^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(-15, 2^2)\)</span>. Suponga que en <span class="math inline">\(n = 5\)</span> observaciones independientes observa <span class="math inline">\((y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)\)</span></p></li>
 <li><p><strong>Un modelo que es un poco ¿complicado?</strong></p>
 <p>Considere el siguiente modelo</p>
@@ -848,7 +864,8 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <section id="otros" class="level2">
 <h2 class="anchored" data-anchor-id="otros"><strong>Otros</strong></h2>
 <ol type="1">
-<li><p>Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método es obtener una estimación lo suficientemente buena del peso de cada pescado sin tener que pesarlos uno por uno, ya que es un proceso costoso en tiempo y labor. Para eso, seleccionaron una muestra de pescados, los pesaron y les midieron ciertos aspectos morfológicos (ancho, alto y largo). En el futuro, esperan recolectar estas mismas medidas morfológicas mediante una cámara especializada y utilizar un modelo para estimar el peso.</p>
+<li><p>📌 <strong>El peso de los pescados</strong></p>
+<p>Una compañía pesquera de Comodoro Rivadavia se encuentra probando un nuevo método para estimar el peso de los peces que extrae del Mar Argentino. El objetivo de este método es obtener una estimación lo suficientemente buena del peso de cada pescado sin tener que pesarlos uno por uno, ya que es un proceso costoso en tiempo y labor. Para eso, seleccionaron una muestra de pescados, los pesaron y les midieron ciertos aspectos morfológicos (ancho, alto y largo). En el futuro, esperan recolectar estas mismas medidas morfológicas mediante una cámara especializada y utilizar un modelo para estimar el peso.</p>
 <p>El modelo propuesto por el equipo de investigación es el siguiente:</p>
 <p><span class="math display">\[
 \begin{aligned}

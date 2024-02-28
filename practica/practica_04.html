@@ -257,7 +257,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="regresión-lineal">Regresión lineal</h2>
 <p>El objetivo principal de esta unidad es la aplicación de modelos de regresión lineales desde una perspectiva bayesiana, considerando a los parámetros del modelo como cantidades aleatorias que se corresponden con una distribución de probabilidad <em>a priori</em>. A diferencia del enfoque frecuentista o máximo verosímil, el resultado de la inferencia bayesiana es una distribución de probabilidad <em>a posteriori</em>, la cual se utiliza como fuente de todas las conclusiones. Además, se emplean técnicas propias de la estadística bayesiana para evaluar la adecuación y comparar los modelos utilizados.</p>
 <ol type="1">
-<li><p><strong>Mi primer regresión bayesiana</strong></p>
+<li><p>📌 <strong>Mi primer regresión bayesiana</strong></p>
 <p>El conjunto de datos <code>sales</code> contiene los montos semanales de inversión en publicidad y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -269,7 +269,7 @@ window.Quarto = {
 <li>Ajuste el modelo utilizando <code>{brms}</code> y sus <em>priors</em> por defecto.</li>
 <li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad y superponga la recta de regresión estimada.</li>
 </ol></li>
-<li><p><strong>Mejorando mi regresión bayesiana</strong></p>
+<li><p>📌 <strong>Mejorando mi regresión bayesiana</strong></p>
 <p>Considere la siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo: <span class="math display">\[
 \begin{aligned}
 \mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
@@ -292,7 +292,7 @@ window.Quarto = {
 <li>Represente gráficamente los datos y las dos rectas de regresión.</li>
 <li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- @Gelman2021 8.8 --></li>
 </ol></li>
-<li><p><strong>La altura… ¿se hereda?</strong></p>
+<li><p>📌 <strong>La altura… ¿se hereda?</strong></p>
 <p>El conjunto de datos de las alturas (<code>heights</code>) contiene las alturas (en pulgadas) de 5524 pares de madres e hijas registradas en un estudio realizado por Karl Pearson y Alice Lee en 1903.</p>
 <ol type="i">
 <li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa y fidedigna.</li>
@@ -311,7 +311,7 @@ window.Quarto = {
 <li>Superponga la recta de regresión en el gráfico donde se visualiza la relación entre las variables.</li>
 <li>Obtenga el <em>posterior</em> del peso medio de una hija cuya madre mide 58 pulgadas. <!-- @Gelman2021 Capitulo 6--></li>
 </ol></li>
-<li><p><strong>Clima en Australia</strong></p>
+<li><p>📌 <strong>Clima en Australia</strong></p>
 <p>El conjunto de datos <code>weather_WU</code> datos climáticos correspondientes a 100 días en dos ciudades de Australia: Uluru y Wollongong. Se intentará predecir la temperatura a las 3 de la tarde, utilizando otras variables.</p>
 <p>Considere los siguientes cuatro modelos:</p>
 <ul>
@@ -335,7 +335,7 @@ window.Quarto = {
 </div>
 </div>
 </div></li>
-<li><p><strong>Pingüinos</strong></p>
+<li><p>📌 <strong>Pingüinos</strong></p>
 <p>Considere el dataset de pingüinos de Palmer (<code>penguins</code>) y los siguientes modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>body_mass_g ~ flipper_length_mm</code>;</li>
@@ -349,7 +349,7 @@ window.Quarto = {
 <li>Realice pruebas predictivas <em>a posteriori</em> para comparar los modelos.</li>
 <li>Compare los <em>ELPD</em> de cada modelo utilizando <em>LOO</em>. <!-- Bayes Rules. Capítulo 11. --></li>
 </ol></li>
-<li><p><strong>De tal palo…</strong></p>
+<li><p>📌 <strong>De tal palo…</strong></p>
 <p>El dataset <code>child_iq</code> contiene información de los resultados de tests de coeficiente intelectual de niños de 3 años, educación de la madre, y edad de la madre cuando dio a luz.</p>
 <ol type="i">
 <li>Ajuste un modelo de regresión del puntaje del bebé a los 3 años en función de la edad de la madre.</li>
@@ -367,14 +367,14 @@ conocían las notas. Los datos se encuentran en el archivo `beauty`.
 
 i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 **To Do**? --></li>
-<li><p><strong>Ingresos</strong></p>
+<li><p>📌 <strong>Ingresos</strong></p>
 <p>El dataset <code>earnings</code> contiene los resultados de la encuesta realizada por Ross sobre Trabajo, Familia y Bienestar.</p>
 <ol type="i">
 <li>Ajuste un modelo que prediga ingreso en función de altura e interprete los parámetros.</li>
 <li>¿Qué transformación sería necesaria para interpretar el intercepto como el ingreso promedio de una persona con altura promedio?</li>
 <li>Ajuste un nuevo modelo utilizando la transformación propuesta en el punto anterior y compare los <em>posteriors</em> de los coeficientes.</li>
 </ol></li>
-<li><p><strong>!Kung</strong></p>
+<li><p>📌 <strong>!Kung</strong></p>
 <p>Los !Kung son un pueblo que habita en el desierto de Kalahari entre Botsuana, Namibia y Angola. Hablan la lengua !Kung, que se destaca por su amplio uso de consonantes clic (chasquido consonántico). El !K del nombre ǃKung es un sonido como cuando sale un corcho de una botella.</p>
 <p>El archivo <code>Howell1</code> contiene datos de un censo parcial realizado por Dobe Howell acerca de la población !Kung.</p>
 <p>Considere un modelo de altura en función del peso.</p>
@@ -383,7 +383,7 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 <li>Construya un gráfico de altura en función del peso, incluya las observaciones de los individuos, la recta de regresión MAP, el intervalo del 80% para la media y y el intervalo del 80% para la altura predicha.</li>
 <li>Realice predicciones para individuos cuyos pesos son: 46.95, 43.72, 64.78, 32.59 y 54.63. Calcule la altura esperada y el intervalo del 89%.</li>
 </ol></li>
-<li><p><strong>Zorros urbanos</strong></p>
+<li><p>📌 <strong>Zorros urbanos</strong></p>
 <p>Considere del conjunto de datos sobre zorros urbanos (<code>foxes</code>). Ajuste tres modelos:</p>
 <ul>
 <li><span class="math inline">\(m_1\)</span>: <code>weight ~ area</code>;</li>
@@ -394,7 +394,7 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 <li>Para los modelos <span class="math inline">\(m_1\)</span> y <span class="math inline">\(m_2\)</span>, represente gráficamente los resultados, incluyendo la recta de regresión MAP, su intervalo del 89% y el intervalo de predicción del 89%. ¿Es alguna de las dos variables importantes para predecir la masa de un zorro?</li>
 <li>Representar gráficamente las predicciones del modelo para cada predictor, dejando el otro constante en su valor medio. ¿Qué puede decirse sobre la importancia de las variables para predecir la masa de un zorro?</li>
 </ol></li>
-<li><p><strong>Un <em>prior</em> informativo marca la diferencia</strong></p>
+<li><p>📌 <strong>Un <em>prior</em> informativo marca la diferencia</strong></p>
 <p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -412,7 +412,7 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 <li>Ajuste el modelo utilizando <code>brm()</code> y los <em>priors</em> informativos.</li>
 <li>Compare el resultado con los obtenidos anteriormente y concluya.</li>
 </ol></li>
-<li><p><strong>¡A la pesca de <em>priors</em>!</strong></p>
+<li><p>📌 <strong>¡A la pesca de <em>priors</em>!</strong></p>
 <p>El conjunto de datos <code>fish-market</code> contiene mediciones morfológicas realizadas sobre pescados de diferentes especies. El objetivo es construir un modelo de regresión lineal que permita predecir el peso de los pescados en base a sus otros atributos.</p>
 <p>Uno de los modelos propuestos es el siguiente:</p>
 <p><span class="math display">\[
@@ -522,7 +522,7 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 </div>
 <!-- @Gelman2021 Capitulo 12-->
 <!-- https://avehtari.github.io/ROS-Examples/Mesquite/mesquite.html --></li>
-<li><p><strong>Secundarios en Portugal</strong></p>
+<li><p>🧩 <strong>Secundarios en Portugal</strong></p>
 <p>Se cuenta con un conjunto de datos sobre 343 estudiantes de secundaria de Portugal (<code>portugal</code>) y se desea predecir la calificación final en matemáticas del último año en base a un gran número de predictores potencialmente relevantes.</p>
 <p>El listado de variables se compone por: escuela del estudiante, sexo del estudiante, edad del estudiante, tipo de domicilio del estudiante, tamaño de la familia, estado de convivencia de los padres, educación de la madre, educación del padre, tiempo de viaje del hogar a la escuela, tiempo de estudio semanal, número de fracasos escolares pasados, apoyo educativo adicional, clases pagadas adicionales dentro de la materia del curso, actividades extracurriculares, si el estudiante asistió a una guardería, si el estudiante desea cursar estudios superiores, acceso a Internet en el hogar, si el estudiante tiene una relación romántica, calidad de las relaciones familiares, tiempo libre después de la escuela, si el estudiante sale con amigos, consumo de alcohol entre semana, consumo de alcohol los fines de semana, estado de salud actual y número de ausencias escolares.</p>
 <p><strong>Priors débilmente informativos</strong></p>

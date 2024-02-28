@@ -290,7 +290,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="modelos-de-regresión-avanzados">Modelos de regresión avanzados</h2>
 <p>En esta última unidad de la práctica se presentan ejercicios que requieren el desarrollo de modelos de regresión con un nivdel de complejidad mayor. La distribución condicional de la respuesta ya no es necesariamente normal y la forma del predictor de la media incluye características que lo diferencian de un predictor lineal simple. Además, esta unidad presenta ejercicios con modelos jerárquicos.</p>
 <ol type="1">
-<li><p><strong>Regresión Poisson</strong></p>
+<li><p>📌 <strong>Regresión Poisson</strong></p>
 <p>Considere el siguiente modelo para datos de conteo con un predictor <span class="math inline">\(X\)</span> que toma valores entre -3 y 50:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -302,7 +302,7 @@ Y_i   &amp;\sim \mathrm{Poisson}(\lambda_i) \\
 <li>Genere 1000 valores de <span class="math inline">\(X\)</span>, asuma un valor conocido (y fijo) para <span class="math inline">\(\beta\)</span>, simule los correspondientes valores de <span class="math inline">\(\lambda_i\)</span> y los de <span class="math inline">\(Y_i\)</span>. ¿Cómo es <span class="math inline">\(\lambda\)</span> en función de <span class="math inline">\(X\)</span>? ¿Es lineal la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>? ¿Qué ocurre con la varianza de <span class="math inline">\(Y\)</span> en función de <span class="math inline">\(X\)</span>? ¿Cómo es la distribución marginal de <span class="math inline">\(Y\)</span>?</li>
 <li>Ahora añada incertidumbre al valor de <span class="math inline">\(\beta\)</span> (¿cómo se hace esto?) y simule nuevamente valores para <span class="math inline">\(\lambda_i\)</span> y <span class="math inline">\(Y_i\)</span>. Compare los resultados.</li>
 </ol></li>
-<li><p><strong>Regresión logística</strong></p>
+<li><p>📌 <strong>Regresión logística</strong></p>
 <p>Considere el siguiente modelo de clasificación con un predictor <span class="math inline">\(X\)</span> que toma valores entre -30 y 10:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -314,14 +314,14 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li>Genere 1000 valores de <span class="math inline">\(X\)</span>, asuma un valor conocido (y fijo) para <span class="math inline">\(\beta\)</span>, simule los correspondientes valores de <span class="math inline">\(\theta_i\)</span> y los de <span class="math inline">\(Y_i\)</span>. ¿Cómo es <span class="math inline">\(\theta\)</span> en función de <span class="math inline">\(X\)</span>? ¿Es lineal la relación entre <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span>?</li>
 <li>Ahora añada incertidumbre al valor de <span class="math inline">\(\beta\)</span> (¿cómo se hace esto?) y simule nuevamente valores para <span class="math inline">\(\theta_i\)</span> y <span class="math inline">\(Y_i\)</span>. Compare los resultados.</li>
 </ol></li>
-<li><p><strong>Intención de voto</strong></p>
+<li><p>📌 <strong>Intención de voto</strong></p>
 <p>El conjunto de datos <code>elecciones.csv</code> contiene los resultados de un estudio piloto sobre intención de voto. Contiene las variables <code>voto</code>, <code>edad</code> y <code>partido</code> que indican respectivamente el candidato elegido, la edad y la afinidad partidaria del encuestado.</p>
 <p>Utilice un modelo de regresión logística para responder a las siguiente preguntas de investigación:</p>
 <ol type="1">
 <li>¿Cómo se relaciona la edad de los encuestados con la intención de voto?</li>
 <li>¿Es esta relación diferente para las diferentes afinidades partidarias?</li>
 </ol></li>
-<li><p><strong>Días de ausencia</strong></p>
+<li><p>📌 <strong>Días de ausencia</strong></p>
 <p>Un organismo público de un Estado de los Estados Unidos está intereaso en estudiar el comportamiento de la asistencia de los estudiantes de secundaria. Para eso se cuenta con datos de 314 estudiantes tercer año en <code>students.csv</code>. Los predictores del número de días de ausencia incluyen el tipo de programa en el que está inscrito el estudiante y una prueba estandarizada de matemáticas.</p>
 <p>Las variables de interés en el conjunto de datos son:</p>
 <ul>
@@ -331,7 +331,7 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 </ul>
 <p>Interesa evaluar la asociación entre el tipo de programa y la puntuación en la prueba con los días de ausencia. También se desea ver ver si la asociación entre el puntaje en la prueba y los días de ausencia es diferente en cada tipo de programa.</p>
 <p>Realice un análisis exploratorio de los datos y elabore un modelo de regresión Poisson que permita explicar la asociación entre las variables predictoras y la cantidad de días que se ausentan los estudiantes.</p></li>
-<li><p><strong><em>Baseball</em></strong></p>
+<li><p>📌 <strong><em>Baseball</em></strong></p>
 <p>El béisbol es uno de los deportes donde se más intensivamente se utilizan herramientas estadísticas y analíticas. La cantidad de métricas que se calculan para los jugadores es muy elevada. Supongamos que estamos en un equipo de béisbol y nos gustaría <strong>cuantificar el rendimiento de los jugadores</strong>, siendo una de las métricas su promedio de bateo (definido por la cantidad de veces que un bateador golpea una pelota lanzada, dividido por el número de veces que se presenta al bate) ¿Cómo podríamos utilizar la estadística bayesiana para resolver este problema?</p>
 <p>La tabla <code>batting</code> es una compilación de datos históricos de béisbol realizada por el <em>Baseball Databank</em>. Entre otras, contiene las siguientes columnas de interés:</p>
 <ul>
@@ -341,7 +341,7 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li><code>batting_avg</code>: El cociente entre <code>H</code> y <code>AB</code></li>
 </ul>
 <p>Proponga un modelo de regresión logística para estimar la probabilidad de bateo para cada jugador. Incorpore la identificación del jugador en el modelo. Considere primero un modelo no jerárquico y luego un modelo jerárquico.</p></li>
-<li><p><strong>Privados del sueño</strong></p>
+<li><p>📌 <strong>Privados del sueño</strong></p>
 <p>El conjunto de datos <code>sleepstudy</code> contiene el tiempo de reacción promedio en una serie de pruebas para un grupo de participantes en un estudio de privación del sueño. Los primeros dos días del estudio se consideran de adaptación y entrenamiento, el tercer día es una línea de base y la privación del sueño comienza después del día 3. Los sujetos de este grupo estaban restringidos a 3 horas de sueño por noche. El objetivo era analizar cómo la falta de sueño afectaba la capacidad de respuesta y la precisión en dicha tarea.</p>
 <p>La variable de respuesta es <code>"Reaction"</code>, que representa el promedio de las mediciones de tiempo de reacción de los participantes en un día determinado (en milisegundos). Las dos covariables son <code>"Days"</code>, que indica el número de días de privación del sueño, y <code>"Subject"</code>, que es el identificador del participante sobre el cual se realizó la medición.</p>
 <p>Se propone utilizar un modelo de regresión lineal de la forma:</p>
@@ -357,7 +357,7 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li><em>No pooling</em></li>
 <li><em>Partial pooling</em></li>
 </ul></li>
-<li><p><strong>Modelo lineal para elecciones en Estados Unidos</strong></p>
+<li><p>📌 <strong>Modelo lineal para elecciones en Estados Unidos</strong></p>
 <p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
 <li>Utilice distribuciones <em>a priori</em> normales no informativas. Interprete las distribuciones <em>a posteriori</em> marginales de los coeficientes de regresión.</li>
@@ -366,12 +366,12 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li><p><strong>Control de armas</strong></p>
 <p>Utilice el conjunto de datos sobre el control de armas en Estados Unidos. Estos datos provienen de un estudio transversal. Para el estado <span class="math inline">\(i\)</span>, sea <span class="math inline">\(Y_i\)</span> el numero de homicidios y <span class="math inline">\(N_i\)</span> el tamaño de la población.</p>
 <ol type="i">
-<li>Ajuste el modelo <span class="math inline">\(Y_i | \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \boldsymbol{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones a priori no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\boldsymbol{X}_i\)</span>: el intercepto, los cinco <em>confounders</em> <span class="math inline">\(\boldsymbol{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>. <!--
+<li>Ajuste el modelo <span class="math inline">\(Y_i \mid \boldsymbol{\beta} \sim \text{Poisson}(N_i\lambda_i)\)</span> donde <span class="math inline">\(\text{log}(\lambda_i) = \boldsymbol{X}_i\boldsymbol{\beta}\)</span>. Use distribuciones <em>a priori</em> no informativas y <span class="math inline">\(p = 7\)</span> de las covariables en <span class="math inline">\(\boldsymbol{X}_i\)</span>: el intercepto, los cinco <em>confounders</em> <span class="math inline">\(\boldsymbol{Z}_i\)</span>, y el número de leyes relacionadas a armas. Justifique que el <em>sampler</em> ha convergido y explorado suficientemente la distribución a posteriori y resuma la distribución a posteriori de <span class="math inline">\(\boldsymbol{\beta}\)</span>. <!--
 i. To Do: No puse los puntos (b) y (c) porque no se si estan dentro del plan
 i. To Do: Ver como presentamos el tema de las variables a incorporar en el modelo
 --></li>
 </ol></li>
-<li><p><strong>¿A cuántas Sofías conoces?</strong></p>
+<li><p>🧩 <strong>¿A cuántas Sofías conoces?</strong></p>
 <p>Descargue el conjunto de datos <code>babynames</code> en <code>R</code> y calcule el log-odds de un bebé llamado “Sophia” en cada año luego de 1950.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(babynames)</span>
@@ -398,7 +398,7 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 <li>Ajuste el modelo utilizando <code>{RStan}</code> para <span class="math inline">\(t &gt; 1\)</span>. Verifique la convergencia y reporte la media a posteriori e intervalos del 95% para los parámetros.</li>
 <li>Grafique la distribución predictiva a posteriori para <span class="math inline">\(Y_t\)</span> en el año 2020. <!-- @Reich2020 --></li>
 </ol></li>
-<li><p><strong>Meta-análisis</strong></p>
+<li><p>🧩 <strong>Meta-análisis</strong></p>
 <p>En este ejercicio se llevará a cabo un meta-análisis, es decir, un análisis que combina el resultado de varios estudios. Los datos provienen del paquete <code>{rmeta}</code> en <code>R</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmeta)</span>
@@ -415,8 +415,8 @@ Y_t   &amp;= \mu_t + \rho(Y_{t - 1} + \mu_{t - 1}) + \varepsilon_t \\
 7      Tauesch      8    56      10     71</code></pre>
 <p>Los datos provienen de siete ensayos aleatorizados que evalúan el efecto de la terapia con corticosteroides en la muerte neonatal. Para el ensayo <span class="math inline">\(i \in \{1, \dots, 7 \}\)</span> <span class="math inline">\(Y_{i0}\)</span> representa el número de eventos que ocurren en el grupo de control de tamaño <span class="math inline">\(N_{i0}\)</span> y <span class="math inline">\(Y_{i1}\)</span> representa el número de eventos que ocurren en el grupo tratado de tamaño <span class="math inline">\(N_{i1}\)</span>.</p>
 <ol type="i">
-<li>Ajuste el modelo <span class="math inline">\(Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con <span class="math inline">\(\theta_0, \theta_1 \sim \text{Uniforme}(0, 1)\)</span>. ¿Se puede concluir que el tratamiento está asociado a una reducción de la tasa de muerte?</li>
-<li>Ajuste el modelo <span class="math inline">\(Y_{ij} | \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con
+<li>Ajuste el modelo <span class="math inline">\(Y_{ij} \mid \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con <span class="math inline">\(\theta_0, \theta_1 \sim \text{Uniforme}(0, 1)\)</span>. ¿Se puede concluir que el tratamiento está asociado a una reducción de la tasa de muerte?</li>
+<li>Ajuste el modelo <span class="math inline">\(Y_{ij} \mid \theta_j \underset{indep}{\sim} \text{Binomial}(N_{ij}, \theta_j)\)</span> con
 <ul>
 <li><span class="math inline">\(\text{logit}(\theta_{ij}) = \alpha_{ij}\)</span></li>
 <li><span class="math inline">\(\boldsymbol{\alpha}_i = (\alpha_{i0}, \alpha_{i1})^T \underset{iid}{\sim} \text{Normal}(\boldsymbol{\mu}, \boldsymbol{\Sigma})\)</span></li>
@@ -448,96 +448,44 @@ Interprete los resultados indicando si estos sugieren que el tratamiento está a
 \end{array}
 \]</span></p>
 <p>Elija <em>priors</em> para los parámetros de ambos modelos explicando su elección. <!-- @Reich2020 --></p></li>
-<li><p><strong>Accidente del Challenger</strong></p>
-<p>El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del Challenger explotó poco después del despegue. En el accidente murieron los siete tripulantes. La comisión que investigó el accidente concluyó que el accidente fue causado por una falla en un <em>o-ring</em> en una juntura de uno de los propulsores. Esta falla se debió a un diseño defectuoso que volvió al <em>o-ring</em> excesivamente sensible a factores externos, entre ellos la temperatura. De los veinticuatro vuelos previos, existía información de fallas de <em>o-rings</em> para veintitrés de ellos (el otro se perdió en el océano). Estos datos fueron discutidos la noche previa al incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron a la conclusión de que no había una evidencia clara.</p>
-<!-- @DavidsonPilon2015 -->
-<div class="cell">
-<div class="cell-output-display">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-<col style="width: 4%">
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">T</td>
-<td style="text-align: right;">66</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">69</td>
-<td style="text-align: right;">68</td>
-<td style="text-align: right;">67</td>
-<td style="text-align: right;">72</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">57</td>
-<td style="text-align: right;">63</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">78</td>
-<td style="text-align: right;">67</td>
-<td style="text-align: right;">53</td>
-<td style="text-align: right;">67</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">81</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: right;">76</td>
-<td style="text-align: right;">58</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">F</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div></li>
-<li><p><strong>Curvas de crecimiento de tiranosáuridos</strong></p>
+</ol>
+<!-- 1.  **Accidente del Challenger**
+
+    NO ESTAN REDACTADAS LAS CONSIGNAS
+
+    El 28 de enero de 1986, el vuelo número veinticinco del programa estadounidense de 
+    trasbordadores espaciales acabó en un desastre cuando uno de los propulsores del 
+    Challenger explotó poco después del despegue. En el accidente murieron los siete 
+    tripulantes. La comisión que investigó el accidente concluyó que el accidente fue 
+    causado por una falla en un _o-ring_ en una juntura de uno de los propulsores. 
+    Esta falla se debió a un diseño defectuoso que volvió al _o-ring_ excesivamente 
+    sensible a factores externos, entre ellos la temperatura. De los veinticuatro vuelos
+    previos, existía información de fallas de _o-rings_ para veintitrés de ellos 
+    (el otro se perdió en el océano). Estos datos fueron discutidos la noche previa al 
+    incidente. No obstante, los datos de los siete vuelos en los que hubo fallas llevaron 
+    a la conclusión de que no había una evidencia clara. 
+    
+    @DavidsonPilon2015
+
+
+
+    ::: {.cell}
+    ::: {.cell-output-display}
+    
+    
+    |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+    |:--|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|--:|
+    |T  | 66| 70| 69| 68| 67| 72| 73| 70| 57| 63| 70| 78| 67| 53| 67| 75| 70| 81| 76| 79| 75| 76| 58|
+    |F  |  0|  1|  0|  0|  0|  0|  0|  0|  1|  1|  1|  0|  0|  1|  0|  0|  0|  0|  0|  0|  1|  0|  1|
+    
+    
+    :::
+    :::
+
+
+-->
+<ol type="1">
+<li><p>🧩 <strong>Curvas de crecimiento de tiranosáuridos</strong></p>
 <p>Se analizan datos de 20 fósiles de tiranosáuridos para estimar las curvas de crecimiento de cuatro especies: Albertosaurio, Daspletosaurio, Gorgosaurio y Tiranosaurio. Los datos se toman de la Tabla 1 de <span class="citation" data-cites="Erickson2004">Erickson et&nbsp;al. (<a href="#ref-Erickson2004" role="doc-biblioref">2004</a>)</span> y se muestran en la <a href="#fig-dinos" class="quarto-xref">Figura&nbsp;1</a>. El objetivo es determinar la curva de crecimiento, esto es, determinar el peso esperado por edad para todas las especies.</p>
 <p>En el panel izquierdo de la <a href="#fig-dinos" class="quarto-xref">Figura&nbsp;1</a> se puede observar que hay una relación no lineal entre la edad y el peso. También se observan ciertos patrones comunes a las especies. Por ejemplo, la relación positiva entre las variables o el decrecimiento en la tasa de cambio conforme la edad es mayor.</p>
 <div class="cell">
