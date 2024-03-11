@@ -36,5 +36,5 @@ file_names <- list.files(here::here("recursos", "codigo"), full.names = TRUE)
 file_names <- file_names[str_detect(file_names, "\\.qmd")]
 file_names <- file_names[basename(file_names) != "index.qmd"]
 entries <- make_entries(file_names)
-cat(entries)
+#cat(entries)
 ```
