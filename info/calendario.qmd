@@ -33,9 +33,10 @@ format_date <- function(date, format, locale = NULL) {
 ```{r}
 #| echo: false
 #| include: false
-SHEET_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
+FILE_ID <- "1lEmhEuxPychZjZOJLnkKYc0e7ZKPrKxdQdkw1XioHzo"
+SHEET_NAME <- "2024 (WIP)"
 googlesheets4::gs4_deauth()
-data <- googlesheets4::read_sheet(SHEET_ID)
+data <- googlesheets4::read_sheet(FILE_ID, sheet = SHEET_NAME)
 data[["fecha"]] <- as.Date(data[["fecha"]])
 data$unidad <- sapply(data$unidad, function(x) if (is.null(x)) return(NA) else return(x))
 data[] <- lapply(data, as.character)
