@@ -60,7 +60,7 @@ $$
 4.  Utilizando cada una de las cadenas anteriores, compute la media de la 
     distribución y los percentiles 5 y 95 de $X$ y de $\mathrm{logit}(X)$.
 
-5.  Considere un experimento binomial a partir del cual se quiere determinar la 
+<!-- 5.  Considere un experimento binomial a partir del cual se quiere determinar la 
     probabilidad de éxito $\theta$. Se realiza el experimento y se obtienen 8 éxitos en 
     13 intentos. Obtenga la distribución _a posteriori_ de $\theta$ si la creencia 
     _a priori_ viene dada por
@@ -74,7 +74,7 @@ $$
     muetras iniciales. Además, estime el tamaño efectivo de muestra 
     ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
     de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
-    _a posteriori_ y su media.
+    _a posteriori_ y su media. -->
 
 
 ## Metropolis-Hastings en 2D
