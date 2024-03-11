@@ -246,12 +246,22 @@ p(x \mid a, b) = a b x ^ {a - 1} (1 - x ^ a)^{b - 1} &amp; \text{con } a, b &gt;
 <li><p>Utilizando la función construida en el punto <strong>1</strong>, obtenga 5000 muestras de una distribución de Kumaraswamy con parámetros <span class="math inline">\(a=6\)</span> y <span class="math inline">\(b=2\)</span>. Utilice una distribución de propuesta beta. Tenga en cuenta que la misma se puede parametrizar según media <span class="math inline">\(\mu = \alpha / (\alpha + \beta)\)</span> y concentración <span class="math inline">\(\kappa = \alpha + \beta\)</span>.</p>
 <p>Compare las cadenas obtenidas al utilizar tres grados de concentración distintos en la distribución de propuesta. Calcule la tasa de aceptación. Compare utilizando histogramas y funciones de autocorrelación (puede utilizar la función <code>acf</code> o escribir una función propia). Para elegir el punto inicial del algoritmo de MH, obtenga un valor aleatorio de una distribución conocida que sea conveniente.</p></li>
 <li><p>Utilizando cada una de las cadenas anteriores, compute la media de la distribución y los percentiles 5 y 95 de <span class="math inline">\(X\)</span> y de <span class="math inline">\(\mathrm{logit}(X)\)</span>.</p></li>
-<li><p>Considere un experimento binomial a partir del cual se quiere determinar la probabilidad de éxito <span class="math inline">\(\theta\)</span>. Se realiza el experimento y se obtienen 8 éxitos en 13 intentos. Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> si la creencia <em>a priori</em> viene dada por</p>
-<p><span class="math display">\[
-p(\theta) = 2 \theta \qquad \theta \in (0, 1)
-\]</span></p>
-<p>Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte muetras iniciales. Además, estime el tamaño efectivo de muestra (<span class="math inline">\(ESS\)</span> o <span class="math inline">\(N_{\mathrm{eff}}\)</span>) y el MCSE de la media <em>a posteriori</em> de la probabilidad de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución <em>a posteriori</em> y su media.</p></li>
 </ol>
+<!-- 5.  Considere un experimento binomial a partir del cual se quiere determinar la 
+    probabilidad de éxito $\theta$. Se realiza el experimento y se obtienen 8 éxitos en 
+    13 intentos. Obtenga la distribución _a posteriori_ de $\theta$ si la creencia 
+    _a priori_ viene dada por
+
+    $$
+    p(\theta) = 2 \theta \qquad \theta \in (0, 1)
+    $$
+
+    Obtenga muestras utilizando 6 cadenas independientes que partan de diferentes puntos
+    inciales. Estudie gráficamente la convergencia y, en caso de ser necesario, descarte 
+    muetras iniciales. Además, estime el tamaño efectivo de muestra 
+    ($ESS$ o $N_{\mathrm{eff}}$) y el MCSE de la media _a posteriori_ de la probabilidad 
+    de éxito. Concluya sobre la bondad de la aproximación obtenida de la distribución 
+    _a posteriori_ y su media. -->
 </section>
 <section id="metropolis-hastings-en-2d" class="level2">
 <h2 class="anchored" data-anchor-id="metropolis-hastings-en-2d">Metropolis-Hastings en 2D</h2>
