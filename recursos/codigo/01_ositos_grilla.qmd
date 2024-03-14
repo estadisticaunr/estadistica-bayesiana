@@ -1,0 +1,18 @@
+---
+title: "01 - Los ositos de Pagani"
+---
+
+Este _script_ fue utilizado en la primer clase de práctica en el laboratorio para
+mostrar como resolver el ejercicio de los ositos utilizando código.
+
+```{r}
+#| echo: true
+#| eval: true 
+#| fig-width: 12
+#| file: scripts/01_ositos_grilla.R
+```
+
+**Preguntas**
+
+* ¿Qué pasa con el _prior_ si incrementamos el $n$?
+* ¿Qué pasa con el _posterior_ si incrementamos el $n$?

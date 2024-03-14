@@ -34,7 +34,9 @@ extract_title_qmd <- function(file_name) {
 #| echo: false
 file_names <- list.files(here::here("recursos", "codigo"), full.names = TRUE)
 file_names <- file_names[str_detect(file_names, "\\.qmd")]
+# No considerar los que empiezan con '_'
+file_names <- file_names[!str_starts(basename(file_names), "_")]
 file_names <- file_names[basename(file_names) != "index.qmd"]
 entries <- make_entries(file_names)
-#cat(entries)
+cat(entries)
 ```

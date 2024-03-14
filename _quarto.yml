@@ -102,10 +102,9 @@ website:
       contents:
         - text: Código
           file: recursos/codigo/index.qmd
-          # No muestra los recursos
-          # contents:
-          #   - auto: recursos/codigo/*.qmd
-          #   - sort-ui: false
+          contents:
+            - auto: recursos/codigo/*.qmd
+            - sort-ui: false
         - text: Distribuciones
           file: recursos/distribuciones/distribuciones.qmd
     - title: Material complementario
