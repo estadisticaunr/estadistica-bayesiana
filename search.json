@@ -2089,7 +2089,7 @@
     "href": "presentaciones/presentacion_02.html#section-19",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La probabilidad de escribir correctamente ‘tarro’ es \\((1-\\pi)^5\\)\nLa probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es $(1-)^4 $\nAllá vamos…"
+    "text": "La probabilidad de escribir correctamente ‘tarro’ es \\((1-\\pi)^5\\)\nLa probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es \\(\\pi (1-\\pi)^4\\)\nAllá vamos…"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-20",
@@ -2134,11 +2134,18 @@
     "text": "Llamemos:\n\n\n\\(\\pi\\) a la proporción de agua en el planeta Tierra\n\\(N\\) al número de tiradas\n\\(y\\) al número de veces que salió agua\n\n\n\n\\(\\pi\\) es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos."
   },
   {
+    "objectID": "presentaciones/presentacion_02.html#prior",
+    "href": "presentaciones/presentacion_02.html#prior",
+    "title": "Estadística Bayesiana",
+    "section": "Prior",
+    "text": "Prior\n\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi_a\\)?\n\n\nCon una distribución de probabilidad.\n\n\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n\n\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n\n\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\n\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]"
+  },
+  {
     "objectID": "presentaciones/presentacion_02.html#section-27",
     "href": "presentaciones/presentacion_02.html#section-27",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Prior\n¿Cómo asignamos una credibilidad a priori para los valores de \\(\\pi_a\\)? . . . Con una distribución de probabilidad.\n. . .\n\\[\n\\pi \\sim \\mathrm{Beta}(a,b)\n\\]\n. . .\n\\[\np(\\pi\\mid a,b) = p(\\pi) = \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}\n\\]\n. . .\n\\[\nB(a,b) = \\int_0^1 \\pi^{a-1} (1-\\pi)^{b-1} d\\pi = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n. . .\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]"
+    "text": "La distribución beta"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-28",
@@ -2152,42 +2159,35 @@
     "href": "presentaciones/presentacion_02.html#section-29",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La distribución beta"
+    "text": "Una posible elección de valores para la distribución a priori es \\(\\text{Beta}(2,2)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#likelihood",
+    "href": "presentaciones/presentacion_02.html#likelihood",
+    "title": "Estadística Bayesiana",
+    "section": "Likelihood",
+    "text": "Likelihood\n¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?\n\n\\[ y \\mid \\pi, N \\sim Bi(N,\\pi) \\]\n\\[p(y\\mid \\pi, N) = {N \\choose y }\\pi^y (1-\\pi)^{N-y} = p(y\\mid \\pi)\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#posterior",
+    "href": "presentaciones/presentacion_02.html#posterior",
+    "title": "Estadística Bayesiana",
+    "section": "Posterior",
+    "text": "Posterior\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n\n\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable intractable (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve."
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-30",
     "href": "presentaciones/presentacion_02.html#section-30",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Una posible elección de valores para la distribución a priori es \\(Beta(2,2)\\)"
+    "text": "Recordando que: \\[\n\\mathrm{posterior} \\propto \\mathrm{prior}\\times\\mathrm{likelihood}\n\\]\n\nResulta \\[p(\\pi\\mid y) \\propto p(y\\mid\\pi) p(\\pi)\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y }\\pi^y (1-\\pi)^{N-y} \\frac{1}{B(a,b)} \\pi^{a-1}(1-\\pi)^{b-1}\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y } \\frac{1}{B(a,b)} \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K C  \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K^* \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-31",
     "href": "presentaciones/presentacion_02.html#section-31",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Likelihood\n¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?\n. . .\n\\[ y \\mid \\pi, N \\sim Bi(N,\\pi) \\]\n\\[p(y\\mid \\pi, N) = {N \\choose y }\\pi^y (1-\\pi)^{N-y} = p(y\\mid \\pi)\\]"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-32",
-    "href": "presentaciones/presentacion_02.html#section-32",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Posterior\n\\[p(\\pi\\mid y) = \\frac{p(y\\mid \\pi)p(\\pi)}{p(y)}\\]\n. . .\n\\[p(\\pi\\mid y) = \\frac{{N \\choose y }\\pi^y (1-\\pi)^{N-y}  \\frac{\\pi^{a-1} (1-\\pi)^{b-1}}{B(a,b)}}{\\int p(y\\mid\\pi) p(\\pi) d \\pi}\\]\n. . .\nLa integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable intractable (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve."
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-33",
-    "href": "presentaciones/presentacion_02.html#section-33",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Recordando que: \\[\n\\mathrm{posterior} \\propto \\mathrm{prior}\\times\\mathrm{likelihood}\n\\]\n\nResulta \\[p(\\pi\\mid y) \\propto p(y\\mid\\pi) p(\\pi)\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y }\\pi^y (1-\\pi)^{N-y} \\frac{1}{B(a,b)} \\pi^{a-1}(1-\\pi)^{b-1}\\]\n\n\n\\[p(\\pi\\mid y) \\propto {N \\choose y } \\frac{1}{B(a,b)} \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K C  \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]\n\n\n\\[p(\\pi\\mid y) = K^* \\pi^{(y+a)-1} (1-\\pi)^{(N-y+b)-1}\\]"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-34",
-    "href": "presentaciones/presentacion_02.html#section-34",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "Para que \\(\\int_0^1 p(\\pi\\mid y) d \\pi = 1\\), debe ser\n\n\\[K^* = \\frac{1}{B(y+a,N-y+b)} = \\frac{\\Gamma\\left[(y+a)+(N-y+b)\\right]}{\\Gamma(y+a)\\Gamma(N-y+b)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Beta de parámetros \\(y+a\\) y \\(N-y+b\\)\n\\[\np(\\pi\\mid y) = \\frac{\\pi^{(y+a)-1}(1-\\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}\n\\]\n\\[\n\\pi\\mid y \\sim  Beta(y+a,N-y+b)\n\\]"
+    "text": "Para que \\(\\int_0^1 p(\\pi\\mid y) d \\pi = 1\\), debe ser\n\n\\[K^* = \\frac{1}{B(y+a,N-y+b)} = \\frac{\\Gamma\\left[(y+a)+(N-y+b)\\right]}{\\Gamma(y+a)\\Gamma(N-y+b)}\\]\n\n\nPor lo tanto, resulta que la distribución a posteriori es Beta de parámetros \\(y+a\\) y \\(N-y+b\\)\n\\[\np(\\pi\\mid y) = \\frac{\\pi^{(y+a)-1}(1-\\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}\n\\]\n\\[\n\\pi\\mid y \\sim  \\text{Beta}(y+a,N-y+b)\n\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#qué-hicimos",
@@ -2197,8 +2197,8 @@
     "text": "¿Qué hicimos?\n\nNos las arreglamos para encontrar la solución exacta al problema de inferir el parámetro de una distribución binomial a partir del número de éxitos observados.\n\n\nEl prior y el posterior tienen la misma forma distribucional. Esto ocurre por la elección del prior y el likelihood."
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-35",
-    "href": "presentaciones/presentacion_02.html#section-35",
+    "objectID": "presentaciones/presentacion_02.html#section-32",
+    "href": "presentaciones/presentacion_02.html#section-32",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Una distribución \\(\\mathcal{F}\\) se dice conjugada de una verosimilitud \\(\\mathcal{L}\\) si cuando la distribución a priori es \\(\\mathcal{F}\\), la distribución a posteriori también es \\(\\mathcal{F}\\)"
@@ -2208,60 +2208,60 @@
     "href": "presentaciones/presentacion_02.html#pequeño-mundo-1",
     "title": "Estadística Bayesiana",
     "section": "Pequeño mundo",
-    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  Bi(N,\\pi)\\\\\n    \\pi & \\sim  Beta(a,b)\n\\end{align*}\n\\]"
+    "text": "Pequeño mundo\n\nSe desea estimar la proporción de agua que cubre el planeta Tierra. Para ello se arroja hacia arriba un “globo terráqueo antiestrés” y se registra la posición del dedo índice al volver a tomarlo.\nSe arroja el globo 11 veces hacia arriba y se obtiene la siguiente secuencia: \\[TAAATTAATAA\\]\n\n\n\\[\n\\begin{align*}\n    y\\mid\\pi & \\sim  \\text{Binoimal}(N,\\pi)\\\\\n    \\pi & \\sim  \\text{Beta}(a,b)\n\\end{align*}\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-36",
-    "href": "presentaciones/presentacion_02.html#section-36",
+    "objectID": "presentaciones/presentacion_02.html#section-33",
+    "href": "presentaciones/presentacion_02.html#section-33",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "con \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim Beta(a+y,b+N-y)\\] \\[p(\\pi\\mid y) = Beta(2+7,2+4)\\]"
+    "text": "con \\(N=11\\), \\(a=2\\) y \\(b=2\\).\nAl observar \\(y=7\\) resulta\n\\[\\pi\\mid y \\sim \\text{Beta}(a+y,b+N-y)\\] \\[p(\\pi\\mid y) = \\text{Beta}(2+7,2+4)\\]"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#más-ejemplos",
     "href": "presentaciones/presentacion_02.html#más-ejemplos",
     "title": "Estadística Bayesiana",
     "section": "Más ejemplos",
-    "text": "Más ejemplos\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(Beta(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?"
+    "text": "Más ejemplos\nQueremos estimar la probabilidad \\(\\pi\\) de que salga cara al arrojar una moneda.\n\nCredibilidad a priori: \\(\\text{Beta}(2,2)\\)\n\n\n¿Cómo cambia nuestra creencia si…\n\n…realizamos 6 tiradas y observamos 4 caras?\n…realizamos 60 tiradas y observamos 40 caras?\n…realizamos 2 tiradas y observamos 2 caras?\n…realizamos 40 tiradas y observamos 40 caras?\n…realizamos 4 tiradas y obtenemos 3 caras y luego realizamos 2 tiradas más y observamos 1 caras?"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-35",
+    "href": "presentaciones/presentacion_02.html#section-35",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\(\\pi \\mid y \\sim \\text{Beta}(2+4,2+2)\\)\n\\(\\pi \\mid y \\sim \\text{Beta}(2+40,2+20)\\)\n\\(\\pi \\mid y \\sim \\text{Beta}(2+2,2+0)\\)\n\\(\\pi \\mid y \\sim \\text{Beta}(2+40,2+0)\\)\n\\(\\pi \\mid y \\sim \\text{Beta}((2+3)+1,(2+1)+1)\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-36",
+    "href": "presentaciones/presentacion_02.html#section-36",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "4 caras en 6 tiradas"
+  },
+  {
+    "objectID": "presentaciones/presentacion_02.html#section-37",
+    "href": "presentaciones/presentacion_02.html#section-37",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "40 caras en 60 tiradas"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-38",
     "href": "presentaciones/presentacion_02.html#section-38",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\(\\pi \\mid y \\sim Beta(2+4,2+2)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+20)\\)\n\\(\\pi \\mid y \\sim Beta(2+2,2+0)\\)\n\\(\\pi \\mid y \\sim Beta(2+40,2+0)\\)\n\\(\\pi \\mid y \\sim Beta((2+3)+1,(2+1)+1)\\)"
+    "text": "2 caras en 2 tiradas"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-39",
     "href": "presentaciones/presentacion_02.html#section-39",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "4 caras en 6 tiradas"
+    "text": "40 caras en 40 tiradas"
   },
   {
     "objectID": "presentaciones/presentacion_02.html#section-40",
     "href": "presentaciones/presentacion_02.html#section-40",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "40 caras en 60 tiradas"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-41",
-    "href": "presentaciones/presentacion_02.html#section-41",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "2 caras en 2 tiradas"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-42",
-    "href": "presentaciones/presentacion_02.html#section-42",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "40 caras en 40 tiradas"
-  },
-  {
-    "objectID": "presentaciones/presentacion_02.html#section-43",
-    "href": "presentaciones/presentacion_02.html#section-43",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "3 caras en 4 tiradas, luego 1 cara en 2 tiradas"
@@ -2278,18 +2278,18 @@
     "href": "presentaciones/presentacion_02.html#compromiso",
     "title": "Estadística Bayesiana",
     "section": "Compromiso",
-    "text": "Compromiso\nVamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:\n\\[\\text{Si } X\\sim Beta(a,b)\\]\n\\[\\mathbb{E}({X}) = \\frac{a}{a+b}\\]"
+    "text": "Compromiso\nVamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:\n\\[\\text{Si } X \\sim \\text{Beta}(a,b)\\]\n\\[\\mathbb{E}({X}) = \\frac{a}{a+b}\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-44",
-    "href": "presentaciones/presentacion_02.html#section-44",
+    "objectID": "presentaciones/presentacion_02.html#section-41",
+    "href": "presentaciones/presentacion_02.html#section-41",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "La distribución a priori es \\(Beta(a,b)\\) y la distribución a posteriori es \\(Beta(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{align*}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[P(\\pi)]}\n\\end{align*}\n\\]"
+    "text": "La distribución a priori es \\(\\text{Beta}(a,b)\\) y la distribución a posteriori es \\(\\text{Beta}(y+a,N-y+b)\\). La media del es:\n\\[\n\\begin{align*}\n\\mathbb{E}[{p(\\pi\\mid y)}] & = \\frac{y+a}{a+b+N} \\\\\n& = \\frac{y}{a+b+N} + \\frac{a}{a+b+N} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\frac{a}{a+b} \\\\\n& = \\frac{N}{a+b+N}\\frac{y}{N} + \\frac{a+b}{a+b+N} \\mathbb{E}{[P(\\pi)]}\n\\end{align*}\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-45",
-    "href": "presentaciones/presentacion_02.html#section-45",
+    "objectID": "presentaciones/presentacion_02.html#section-42",
+    "href": "presentaciones/presentacion_02.html#section-42",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La distribución a posteriori representa un balance (promedio ponderado o combinación convexa) entre la proporción observada y la proporción esperada a priori. Hay un shrinkage hacia la media del prior."
@@ -2299,11 +2299,11 @@
     "href": "presentaciones/presentacion_02.html#secuencialidad",
     "title": "Estadística Bayesiana",
     "section": "Secuencialidad",
-    "text": "Secuencialidad\nSi primero observamos \\(y_1\\) en \\(N_1\\) y luego observamos \\(y_2\\) en \\(N_2\\)… Con el primer conjunto de datos pasamos del prior al posterior y luego esa distribución se convierte en el nuevo prior:\n\n\\[Beta(a,b) \\rightarrow Beta(y_1 + a, N_1 - y_1 + b)\\]\n\n\n\\[Beta(y_1 + a, N_1 - y_1 + b) \\rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\\]\n\n\n\\[Beta(a,b) \\rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\\]\n\n\nEs idéntico a observar \\(y_1+y_2\\) en \\(N_1+N_2\\)"
+    "text": "Secuencialidad\nSi primero observamos \\(y_1\\) en \\(N_1\\) y luego observamos \\(y_2\\) en \\(N_2\\)… Con el primer conjunto de datos pasamos del prior al posterior y luego esa distribución se convierte en el nuevo prior:\n\n\\[\\text{Beta}(a,b) \\rightarrow \\text{Beta}(y_1 + a, N_1 - y_1 + b)\\]\n\n\n\\[\\text{Beta}(y_1 + a, N_1 - y_1 + b) \\rightarrow \\text{Beta}(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\\]\n\n\n\\[\\text{Beta}(a,b) \\rightarrow \\text{Beta}((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\\]\n\n\nEs idéntico a observar \\(y_1+y_2\\) en \\(N_1+N_2\\)"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-46",
-    "href": "presentaciones/presentacion_02.html#section-46",
+    "objectID": "presentaciones/presentacion_02.html#section-43",
+    "href": "presentaciones/presentacion_02.html#section-43",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La Regla de Bayes permite combinar dos fuentes de información: la información a priori (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución a posteriori representa un compromiso entre la verosimilitud de los datos y la credibilidad a priori."
@@ -2316,36 +2316,36 @@
     "text": "Predicciones\nDistribución predictiva a posteriori (también distribución posterior predictiva) (en inglés posterior predictive distribution): queremos predecir un valor futuro de la variable de interés, \\(\\tilde{y}\\). Más aún, interesa la distribución de \\(\\tilde{y}\\) a posteriori, es decir, luego de observar los datos \\(y\\): \\(\\tilde{y}\\mid y\\)\n\\[\np(\\tilde{y}\\mid y) = \\int p(\\tilde{y}\\mid\\pi) p(\\pi\\mid y) d\\pi\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-56",
-    "href": "presentaciones/presentacion_02.html#section-56",
+    "objectID": "presentaciones/presentacion_02.html#section-53",
+    "href": "presentaciones/presentacion_02.html#section-53",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "\\(\\tilde{y}\\) tiene una distribución de probabilidad\nSi \\(\\pi\\) fuera fijo, la distribución de \\(\\tilde{y}\\) viene dada por \\(p(\\tilde{y}\\mid\\pi)\\) (la verosimilitud, aunque ahora es función de \\(\\tilde{y}\\))\nPero ahora hay incertidumbre en \\(\\pi\\) (tiene una distribución a posteriori), por lo tanto se hace una ponderación para los distintos valores de \\(\\pi\\) (\\(\\pi\\) varía en la integral anterior)\nCombinamos lo que no sabemos porque es aleatorio per se, con aquello que desconocemos (aunque podemos reducir nuestra incertidumbre recolectando más información)"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-57",
-    "href": "presentaciones/presentacion_02.html#section-57",
+    "objectID": "presentaciones/presentacion_02.html#section-54",
+    "href": "presentaciones/presentacion_02.html#section-54",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener \\(A\\) (agua)?\n\\[\n\\begin{align*}\nP(\\tilde{y} = 1\\mid y) & = \\int_0^1 \\pi \\vphantom{\\tilde{y}}p(\\pi\\mid x) d \\pi = \\mathbb{E}[{p(\\pi\\mid x)}] \\\\\n& = \\frac{y+a}{y+a+N-y+b} = \\frac{y+a}{N+a+b} \\\\\n\\end{align*}\n\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-58",
-    "href": "presentaciones/presentacion_02.html#section-58",
+    "objectID": "presentaciones/presentacion_02.html#section-55",
+    "href": "presentaciones/presentacion_02.html#section-55",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "muestras_pi &lt;- rbeta(2000,a+y,b+N-y) # muestras del posterior\nx_new &lt;- rbinom(2000,1,muestras_pi) # predicciones para cada valor de pi"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-59",
-    "href": "presentaciones/presentacion_02.html#section-59",
+    "objectID": "presentaciones/presentacion_02.html#section-56",
+    "href": "presentaciones/presentacion_02.html#section-56",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Consideremos un caso particular:\n\nEn una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?\n\n\\[p(\\tilde{y}=1\\mid y) = \\frac{y+1}{N+2}\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_02.html#section-60",
-    "href": "presentaciones/presentacion_02.html#section-60",
+    "objectID": "presentaciones/presentacion_02.html#section-57",
+    "href": "presentaciones/presentacion_02.html#section-57",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Los parámetros tienen una distribución de probabilidad. Incorporar la incertidumbre en el valor de \\(\\pi\\) nos permite no entusiasmarnos tanto con los datos, hacer predicciones más conservadoras con a pocos datos, regularizar.\n\n\n\n\nEstadística Bayesiana – 2024"

@@ -638,7 +638,7 @@ p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\
 <h2></h2>
 <ol type="i">
 <li class="fragment">La probabilidad de escribir correctamente ‘tarro’ es <span class="math inline">\((1-\pi)^5\)</span></li>
-<li class="fragment">La probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es $(1-)^4 $</li>
+<li class="fragment">La probabilidad de escribir correctamente ‘cerro’ o ‘curro’ al querer escribir ‘carro’ es <span class="math inline">\(\pi (1-\pi)^4\)</span></li>
 <li class="fragment">Allá vamos…</li>
 </ol>
 </section>
@@ -695,60 +695,69 @@ p(n_i=12\mid N_a) &amp; = &amp; p(n_{ia}=0\mid N_a)p(n_{if}=12\mid N_a) \\
 <p><span class="math inline">\(\pi\)</span> es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.</p>
 </div>
 </section>
-<section id="section-27" class="slide level2 smaller">
-<h2></h2>
-<h3 id="prior"><em>Prior</em></h3>
-<p>¿Cómo asignamos una credibilidad <em>a priori</em> para los valores de <span class="math inline">\(\pi_a\)</span>? . . . Con una distribución de probabilidad.</p>
-<p>. . .</p>
+<section id="prior" class="slide level2 smaller">
+<h2><em>Prior</em></h2>
+<div class="fragment">
+<p>¿Cómo asignamos una credibilidad <em>a priori</em> para los valores de <span class="math inline">\(\pi_a\)</span>?</p>
+</div>
+<div class="fragment">
+<p>Con una distribución de probabilidad.</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 \pi \sim \mathrm{Beta}(a,b)
 \]</span></p>
-<p>. . .</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 p(\pi\mid a,b) = p(\pi) = \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}
 \]</span></p>
-<p>. . .</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}
 \]</span></p>
-<p>. . .</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 \Gamma(x) = \int_0^\infty u^{x-1} e^{-u} du
 \]</span></p>
+</div>
 </section>
-<section id="section-28" class="slide level2">
+<section id="section-27" class="slide level2">
 <h2></h2>
 <h3 id="la-distribución-beta">La distribución beta</h3>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-beta-1-1.png" width="960" class="r-stretch"></section>
-<section id="section-29" class="slide level2">
+<section id="section-28" class="slide level2">
 <h2></h2>
 <h3 id="la-distribución-beta-1">La distribución beta</h3>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-beta-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-30" class="slide level2">
+<section id="section-29" class="slide level2">
 <h2></h2>
-<p>Una posible elección de valores para la distribución <em>a priori</em> es <span class="math inline">\(Beta(2,2)\)</span></p>
+<p>Una posible elección de valores para la distribución <em>a priori</em> es <span class="math inline">\(\text{Beta}(2,2)\)</span></p>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-beta-prior-1.png" width="960" class="r-stretch"></section>
-<section id="section-31" class="slide level2">
-<h2></h2>
-<h3 id="likelihood"><em>Likelihood</em></h3>
+<section id="likelihood" class="slide level2">
+<h2><em>Likelihood</em></h2>
 <p>¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?</p>
-<p>. . .</p>
+<div class="fragment">
 <p><span class="math display">\[ y \mid \pi, N \sim Bi(N,\pi) \]</span></p>
 <p><span class="math display">\[p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)\]</span></p>
+</div>
 </section>
-<section id="section-32" class="slide level2">
-<h2></h2>
-<h3 id="posterior"><em>Posterior</em></h3>
+<section id="posterior" class="slide level2">
+<h2><em>Posterior</em></h2>
 <p><span class="math display">\[p(\pi\mid y) = \frac{p(y\mid \pi)p(\pi)}{p(y)}\]</span></p>
-<p>. . .</p>
+<div class="fragment">
 <p><span class="math display">\[p(\pi\mid y) = \frac{{N \choose y }\pi^y (1-\pi)^{N-y}  \frac{\pi^{a-1} (1-\pi)^{b-1}}{B(a,b)}}{\int p(y\mid\pi) p(\pi) d \pi}\]</span></p>
-<p>. . .</p>
+</div>
+<div class="fragment">
 <p>La integral en el denominador suele ser un problema. Con dos parámetros es una integral doble, con tres parámetros, una triple, etc. Esta integral puede ser intratable <em>intractable</em> (no tener solución exacta, analítica, cerrada). No hay vaca vestida de uniforme que nos salve.</p>
+</div>
 </section>
-<section id="section-33" class="slide level2 smaller">
+<section id="section-30" class="slide level2 smaller">
 <h2></h2>
 <p>Recordando que: <span class="math display">\[
 \mathrm{posterior} \propto \mathrm{prior}\times\mathrm{likelihood}
@@ -769,7 +778,7 @@ B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamm
 <p><span class="math display">\[p(\pi\mid y) = K^* \pi^{(y+a)-1} (1-\pi)^{(N-y+b)-1}\]</span></p>
 </div>
 </section>
-<section id="section-34" class="slide level2">
+<section id="section-31" class="slide level2">
 <h2></h2>
 <p>Para que <span class="math inline">\(\int_0^1 p(\pi\mid y) d \pi = 1\)</span>, debe ser</p>
 <div class="fragment">
@@ -781,7 +790,7 @@ B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamm
 p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 \]</span></p>
 <p><span class="math display">\[
-\pi\mid y \sim  Beta(y+a,N-y+b)
+\pi\mid y \sim  \text{Beta}(y+a,N-y+b)
 \]</span></p>
 </div>
 </section>
@@ -794,7 +803,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <p>El <em>prior</em> y el <em>posterior</em> tienen la misma forma distribucional. Esto ocurre por la elección del <em>prior</em> y el <em>likelihood</em>.</p>
 </div>
 </section>
-<section id="section-35" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
+<section id="section-32" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.8em; text-align: left; color=white">
 <h2></h2>
 <p>Una distribución <span class="math inline">\(\mathcal{F}\)</span> se dice conjugada de una verosimilitud <span class="math inline">\(\mathcal{L}\)</span> si cuando la distribución <em>a priori</em> es <span class="math inline">\(\mathcal{F}\)</span>, la distribución <em>a posteriori</em> también es <span class="math inline">\(\mathcal{F}\)</span></p>
 </section>
@@ -807,19 +816,19 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <div class="fragment">
 <p><span class="math display">\[
 \begin{align*}
-    y\mid\pi &amp; \sim  Bi(N,\pi)\\
-    \pi &amp; \sim  Beta(a,b)
+    y\mid\pi &amp; \sim  \text{Binoimal}(N,\pi)\\
+    \pi &amp; \sim  \text{Beta}(a,b)
 \end{align*}
 \]</span></p>
 </div>
 </section>
-<section id="section-36" class="slide level2">
+<section id="section-33" class="slide level2">
 <h2></h2>
 <p>con <span class="math inline">\(N=11\)</span>, <span class="math inline">\(a=2\)</span> y <span class="math inline">\(b=2\)</span>.</p>
 <p>Al observar <span class="math inline">\(y=7\)</span> resulta</p>
-<p><span class="math display">\[\pi\mid y \sim Beta(a+y,b+N-y)\]</span> <span class="math display">\[p(\pi\mid y) = Beta(2+7,2+4)\]</span></p>
+<p><span class="math display">\[\pi\mid y \sim \text{Beta}(a+y,b+N-y)\]</span> <span class="math display">\[p(\pi\mid y) = \text{Beta}(2+7,2+4)\]</span></p>
 </section>
-<section id="section-37" class="slide level2">
+<section id="section-34" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-water-1.png" width="960" class="r-stretch"></section>
@@ -827,7 +836,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <h2>Más ejemplos</h2>
 <p>Queremos estimar la probabilidad <span class="math inline">\(\pi\)</span> de que salga cara al arrojar una moneda.</p>
 <div class="fragment">
-<p>Credibilidad <em>a priori</em>: <span class="math inline">\(Beta(2,2)\)</span></p>
+<p>Credibilidad <em>a priori</em>: <span class="math inline">\(\text{Beta}(2,2)\)</span></p>
 </div>
 <div class="fragment">
 <p>¿Cómo cambia nuestra creencia si…</p>
@@ -840,37 +849,37 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 </ol>
 </div>
 </section>
-<section id="section-38" class="slide level2">
+<section id="section-35" class="slide level2">
 <h2></h2>
 <ol type="1">
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+4,2+2)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+40,2+20)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+2,2+0)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta(2+40,2+0)\)</span></li>
-<li class="fragment"><span class="math inline">\(\pi \mid y \sim Beta((2+3)+1,(2+1)+1)\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi \mid y \sim \text{Beta}(2+4,2+2)\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi \mid y \sim \text{Beta}(2+40,2+20)\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi \mid y \sim \text{Beta}(2+2,2+0)\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi \mid y \sim \text{Beta}(2+40,2+0)\)</span></li>
+<li class="fragment"><span class="math inline">\(\pi \mid y \sim \text{Beta}((2+3)+1,(2+1)+1)\)</span></li>
 </ol>
 </section>
-<section id="section-39" class="slide level2">
+<section id="section-36" class="slide level2">
 <h2></h2>
 <p>4 caras en 6 tiradas</p>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo1-1.png" width="960" class="r-stretch"></section>
-<section id="section-40" class="slide level2">
+<section id="section-37" class="slide level2">
 <h2></h2>
 <p>40 caras en 60 tiradas</p>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo2-1.png" width="960" class="r-stretch"></section>
-<section id="section-41" class="slide level2">
+<section id="section-38" class="slide level2">
 <h2></h2>
 <p>2 caras en 2 tiradas</p>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo3-1.png" width="960" class="r-stretch"></section>
-<section id="section-42" class="slide level2">
+<section id="section-39" class="slide level2">
 <h2></h2>
 <p>40 caras en 40 tiradas</p>
 
 <img data-src="presentacion_02_files/figure-revealjs/plot-ejemplo4-1.png" width="960" class="r-stretch"></section>
-<section id="section-43" class="slide level2">
+<section id="section-40" class="slide level2">
 <h2></h2>
 <p>3 caras en 4 tiradas, luego 1 cara en 2 tiradas</p>
 
@@ -882,12 +891,12 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <section id="compromiso" class="slide level2">
 <h2>Compromiso</h2>
 <p>Vamos a formalizar lo que observamos en el ejemplo para el modelo Beta–Binomial. Para esto será útil el siguiente resultado:</p>
-<p><span class="math display">\[\text{Si } X\sim Beta(a,b)\]</span></p>
+<p><span class="math display">\[\text{Si } X \sim \text{Beta}(a,b)\]</span></p>
 <p><span class="math display">\[\mathbb{E}({X}) = \frac{a}{a+b}\]</span></p>
 </section>
-<section id="section-44" class="slide level2 smaller">
+<section id="section-41" class="slide level2 smaller">
 <h2></h2>
-<p>La distribución <em>a priori</em> es <span class="math inline">\(Beta(a,b)\)</span> y la distribución <em>a posteriori</em> es <span class="math inline">\(Beta(y+a,N-y+b)\)</span>. La media del es:</p>
+<p>La distribución <em>a priori</em> es <span class="math inline">\(\text{Beta}(a,b)\)</span> y la distribución <em>a posteriori</em> es <span class="math inline">\(\text{Beta}(y+a,N-y+b)\)</span>. La media del es:</p>
 <p><span class="math display">\[
 \begin{align*}
 \mathbb{E}[{p(\pi\mid y)}] &amp; = \frac{y+a}{a+b+N} \\
@@ -897,7 +906,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 \end{align*}
 \]</span></p>
 </section>
-<section id="section-45" class="slide level2">
+<section id="section-42" class="slide level2">
 <h2></h2>
 <p>La distribución <em>a posteriori</em> representa un balance (promedio ponderado o <em>combinación convexa</em>) entre la proporción observada y la proporción esperada <em>a priori</em>. Hay un <em>shrinkage</em> hacia la media del <em>prior</em>.</p>
 </section>
@@ -905,19 +914,19 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <h2>Secuencialidad</h2>
 <p>Si primero observamos <span class="math inline">\(y_1\)</span> en <span class="math inline">\(N_1\)</span> y luego observamos <span class="math inline">\(y_2\)</span> en <span class="math inline">\(N_2\)</span>… Con el primer conjunto de datos pasamos del <em>prior</em> al <em>posterior</em> y luego esa distribución se convierte en el nuevo <em>prior</em>:</p>
 <div class="fragment">
-<p><span class="math display">\[Beta(a,b) \rightarrow Beta(y_1 + a, N_1 - y_1 + b)\]</span></p>
+<p><span class="math display">\[\text{Beta}(a,b) \rightarrow \text{Beta}(y_1 + a, N_1 - y_1 + b)\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[Beta(y_1 + a, N_1 - y_1 + b) \rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\]</span></p>
+<p><span class="math display">\[\text{Beta}(y_1 + a, N_1 - y_1 + b) \rightarrow \text{Beta}(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)\]</span></p>
 </div>
 <div class="fragment">
-<p><span class="math display">\[Beta(a,b) \rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\]</span></p>
+<p><span class="math display">\[\text{Beta}(a,b) \rightarrow \text{Beta}((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)\]</span></p>
 </div>
 <div class="fragment">
 <p>Es idéntico a observar <span class="math inline">\(y_1+y_2\)</span> en <span class="math inline">\(N_1+N_2\)</span></p>
 </div>
 </section>
-<section id="section-46" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.4em; text-align: left; color=white">
+<section id="section-43" class="slide level2" data-background-color="#ffc13b" style="font-size: 1.4em; text-align: left; color=white">
 <h2></h2>
 <p>La Regla de Bayes permite combinar dos fuentes de información: la información <em>a priori</em> (lo que sabemos hasta el momento), y la nueva información (representada por la verosimilitud). La distribución <em>a posteriori</em> representa un compromiso entre la verosimilitud de los datos y la credibilidad <em>a priori</em>.</p>
 </section></section>
@@ -926,39 +935,39 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <h1>Más ejemplos</h1>
 
 <img data-src="presentacion_02_files/figure-revealjs/prior-plano-1.png" width="960" class="r-stretch"></section>
-<section id="section-47" class="slide level2">
+<section id="section-44" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"></section>
-<section id="section-48" class="slide level2">
+<section id="section-45" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-2-1.png" width="960" class="r-stretch"></section>
-<section id="section-49" class="slide level2">
+<section id="section-46" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-3-1.png" width="960" class="r-stretch"></section>
-<section id="section-50" class="slide level2">
+<section id="section-47" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-4-1.png" width="960" class="r-stretch"></section>
-<section id="section-51" class="slide level2">
+<section id="section-48" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-5-1.png" width="960" class="r-stretch"></section>
-<section id="section-52" class="slide level2">
+<section id="section-49" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
-<section id="section-53" class="slide level2">
+<section id="section-50" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
-<section id="section-54" class="slide level2">
+<section id="section-51" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="section-55" class="slide level2">
+<section id="section-52" class="slide level2">
 <h2></h2>
 
 <img data-src="presentacion_02_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"></section>
@@ -969,7 +978,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
 \]</span></p>
 </section>
-<section id="section-56" class="slide level2">
+<section id="section-53" class="slide level2">
 <h2></h2>
 <ul>
 <li class="fragment"><span class="math inline">\(\tilde{y}\)</span> tiene una distribución de probabilidad</li>
@@ -978,7 +987,7 @@ p(\tilde{y}\mid y) = \int p(\tilde{y}\mid\pi) p(\pi\mid y) d\pi
 <li class="fragment">Combinamos lo que no sabemos porque es aleatorio <em>per se</em>, con aquello que desconocemos (aunque podemos reducir nuestra incertidumbre recolectando más información)</li>
 </ul>
 </section>
-<section id="section-57" class="slide level2">
+<section id="section-54" class="slide level2">
 <h2></h2>
 <p>Para el caso binomial que venimos estudiando, consideramos una realización más (tirar el globo terráqueo y agarrarlo). ¿Cuál es la probabilidad de obtener <span class="math inline">\(A\)</span> (agua)?</p>
 <p><span class="math display">\[
@@ -988,22 +997,22 @@ P(\tilde{y} = 1\mid y) &amp; = \int_0^1 \pi \vphantom{\tilde{y}}p(\pi\mid x) d \
 \end{align*}
 \]</span></p>
 </section>
-<section id="section-58" class="slide level2">
+<section id="section-55" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>muestras_pi <span class="ot">&lt;-</span> <span class="fu">rbeta</span>(<span class="dv">2000</span>,a<span class="sc">+</span>y,b<span class="sc">+</span>N<span class="sc">-</span>y) <span class="co"># muestras del posterior</span></span>
 <span id="cb2-2"><a></a>x_new <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">2000</span>,<span class="dv">1</span>,muestras_pi) <span class="co"># predicciones para cada valor de pi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-59" class="slide level2">
+<section id="section-56" class="slide level2">
 <h2></h2>
 <p>Consideremos un caso particular:</p>
 <blockquote>
-<p>En una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. A priori no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?</p>
+<p>En una bolsa hay bolitas negras y blancas, queremos saber cuál es la probabilidad de sacar una bolita negra. <em>A priori</em> no sabemos nada. Sacamos (con reposición) tres veces una bolita. Las tres veces sale negra. ¿Cuál es la probabilidad de que la próxima bolita sea negra?</p>
 </blockquote>
 <p><span class="math display">\[p(\tilde{y}=1\mid y) = \frac{y+1}{N+2}\]</span></p>
 </section>
-<section id="section-60" class="slide level2">
+<section id="section-57" class="slide level2">
 <h2></h2>
 <p>Los parámetros tienen una distribución de probabilidad. Incorporar la incertidumbre en el valor de <span class="math inline">\(\pi\)</span> nos permite no entusiasmarnos tanto con los datos, hacer predicciones más conservadoras con a pocos datos, regularizar.</p>
 
