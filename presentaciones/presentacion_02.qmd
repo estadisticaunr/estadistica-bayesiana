@@ -426,7 +426,7 @@ i. Desarrollar un corrector gramatical para esta lengua: para las palabras tipea
 ##
 
 i. La probabilidad de escribir correctamente 'tarro' es $(1-\pi)^5$
-i. La probabilidad de escribir correctamente 'cerro' o 'curro' al querer escribir 'carro' es $\pi(1-\pi)^4 $
+i. La probabilidad de escribir correctamente 'cerro' o 'curro' al querer escribir 'carro' es $\pi (1-\pi)^4$
 i. Allá vamos...
 
 ##
@@ -546,11 +546,15 @@ Llamemos:
 
 $\pi$ es una cantidad continua entre 0 y 1. Esta vez no la discretizaremos.
 
-## {.smaller}
+## _Prior_ {.smaller}
 
-### _Prior_
+. . .
 
-¿Cómo asignamos una credibilidad _a priori_ para los valores de $\pi_a$? . . . Con una distribución de probabilidad.
+¿Cómo asignamos una credibilidad _a priori_ para los valores de $\pi_a$?
+
+. . .
+
+Con una distribución de probabilidad.
 
 . . .
 
@@ -632,7 +636,7 @@ dv |>
 
 ## 
 
-Una posible elección de valores para la distribución _a priori_ es $Beta(2,2)$
+Una posible elección de valores para la distribución _a priori_ es $\text{Beta}(2,2)$
 
 ```{r plot-beta-prior}
   #| warning: false
@@ -658,9 +662,8 @@ dv |>
 ```
 
 
-##
+## _Likelihood_
 
-### _Likelihood_
 
 ¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?
 
@@ -670,9 +673,7 @@ $$ y \mid \pi, N \sim Bi(N,\pi) $$
 
 $$p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)$$
 
-##
-
-### _Posterior_
+## _Posterior_
 
 $$p(\pi\mid y) = \frac{p(y\mid \pi)p(\pi)}{p(y)}$$
 
@@ -730,7 +731,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 $$
 
 $$
-\pi\mid y \sim  Beta(y+a,N-y+b)
+\pi\mid y \sim  \text{Beta}(y+a,N-y+b)
 $$
 
 ## ¿Qué hicimos?
@@ -762,8 +763,8 @@ la distribución _a posteriori_ también es $\mathcal{F}$
 
 $$
 \begin{align*}
-    y\mid\pi & \sim  Bi(N,\pi)\\
-    \pi & \sim  Beta(a,b)
+    y\mid\pi & \sim  \text{Binoimal}(N,\pi)\\
+    \pi & \sim  \text{Beta}(a,b)
 \end{align*}
 $$
 
@@ -773,8 +774,8 @@ con $N=11$, $a=2$ y $b=2$.
 
 Al observar $y=7$ resulta
 
-$$\pi\mid y \sim Beta(a+y,b+N-y)$$
-$$p(\pi\mid y) = Beta(2+7,2+4)$$ 
+$$\pi\mid y \sim \text{Beta}(a+y,b+N-y)$$
+$$p(\pi\mid y) = \text{Beta}(2+7,2+4)$$ 
 
 ##
 
@@ -821,7 +822,7 @@ Queremos estimar la probabilidad $\pi$ de que salga cara al arrojar una moneda.
 
 . . .
 
-Credibilidad _a priori_: $Beta(2,2)$
+Credibilidad _a priori_: $\text{Beta}(2,2)$
 
 . . .
 
@@ -835,11 +836,11 @@ Credibilidad _a priori_: $Beta(2,2)$
 
 ##
 
-1. $\pi \mid y \sim Beta(2+4,2+2)$
-1. $\pi \mid y \sim Beta(2+40,2+20)$
-1. $\pi \mid y \sim Beta(2+2,2+0)$
-1. $\pi \mid y \sim Beta(2+40,2+0)$
-1. $\pi \mid y \sim Beta((2+3)+1,(2+1)+1)$
+1. $\pi \mid y \sim \text{Beta}(2+4,2+2)$
+1. $\pi \mid y \sim \text{Beta}(2+40,2+20)$
+1. $\pi \mid y \sim \text{Beta}(2+2,2+0)$
+1. $\pi \mid y \sim \text{Beta}(2+40,2+0)$
+1. $\pi \mid y \sim \text{Beta}((2+3)+1,(2+1)+1)$
 
 ##
 
@@ -970,7 +971,7 @@ p6.2 <- tibble(x = seq(0,1,length.out = 500),
          posterior_prior = prior) %>%
   plot_bayes()
 
-p6.1/p6.2
+p6.1 / p6.2
 ```
 
 ## Características generales
@@ -982,13 +983,13 @@ independientemente de las distribuciones elegidas.
 
 Vamos a formalizar lo que observamos en el ejemplo para el modelo Beta--Binomial. Para esto será útil el siguiente resultado:
 
-$$\text{Si } X\sim Beta(a,b)$$
+$$\text{Si } X \sim \text{Beta}(a,b)$$
 
 $$\mathbb{E}({X}) = \frac{a}{a+b}$$
 
 ## {.smaller}
 
-La distribución _a priori_ es $Beta(a,b)$ y la distribución _a posteriori_ es $Beta(y+a,N-y+b)$. \pause La media del \textit{posterior} es:
+La distribución _a priori_ es $\text{Beta}(a,b)$ y la distribución _a posteriori_ es $\text{Beta}(y+a,N-y+b)$. \pause La media del \textit{posterior} es:
 
 $$
 \begin{align*}
@@ -1011,15 +1012,15 @@ Si primero observamos $y_1$ en $N_1$ y luego observamos $y_2$ en $N_2$... Con el
 
 . . .
 
-$$Beta(a,b) \rightarrow Beta(y_1 + a, N_1 - y_1 + b)$$
+$$\text{Beta}(a,b) \rightarrow \text{Beta}(y_1 + a, N_1 - y_1 + b)$$
 
 . . .
 
-$$Beta(y_1 + a, N_1 - y_1 + b) \rightarrow Beta(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)$$
+$$\text{Beta}(y_1 + a, N_1 - y_1 + b) \rightarrow \text{Beta}(y_2 + y_1 + a,N_2 - y_2 + N_1 - y_1 + b)$$
 
 . . .
 
-$$Beta(a,b) \rightarrow Beta((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)$$
+$$\text{Beta}(a,b) \rightarrow \text{Beta}((y_1+y_2) + a, (N_1+N_2) - (y_1+y_2) + b)$$
 
 . . .
 
@@ -1303,7 +1304,7 @@ x_new <- rbinom(2000,1,muestras_pi) # predicciones para cada valor de pi
 Consideremos un caso particular:
 
 > En una bolsa hay bolitas negras y blancas, queremos saber cuál
-> es la probabilidad de sacar una bolita negra. A priori no sabemos
+> es la probabilidad de sacar una bolita negra. _A priori_ no sabemos
 > nada. Sacamos (con reposición) tres veces una bolita. Las tres
 > veces sale negra. ¿Cuál es la probabilidad de que la próxima
 > bolita sea negra?
