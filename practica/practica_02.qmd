@@ -39,7 +39,7 @@ lenguaje R para verificar los resultados, mostrar soluciones alternativas y ejer
 el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la 
 vida profesional.
 
-1.  📌 **¿Quién domina el _posterior_?**
+1.  💻📌 **¿Quién domina el _posterior_?**
 
     Para cada una de las situaciones siguientes, se da una distribución _a priori_ Beta
     para el parámetro $\pi$ de un ensayo binomial. Para cada escenario, identificar cuál de
@@ -54,7 +54,7 @@ vida profesional.
     i. _Prior_: $\pi \sim \text{Beta}(20,2)$, observaciones: $y=10$ éxitos en $n=200$ ensayos.
 
 
-1.  📌 **Más o menos certeza**
+1.  💻📌 **Más o menos certeza**
 
     Sea $\theta$ la proporción de personas que prefieren los perros a los gatos. Suponga que
     se elige una distribución $\text{Beta}(7,2)$ para representar la creencia _a priori_
@@ -68,7 +68,7 @@ vida profesional.
     i. Si, en lugar de eso, se determina que $y=10$ de $n=20$ personas prefieren perros, ¿cómo cambia
     ahora el grado de credibilidad de los diferentes valores de $\theta$?
     
-1.  📌 **Pasito a pasito**
+1.  💻📌 **Pasito a pasito**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente:
@@ -78,7 +78,7 @@ vida profesional.
     i. Tercera observación: fracaso.
     i. Cuarta observación: éxito.
     
-1.  📌 **Pasitos tras pasitos**
+1.  💻📌 **Pasitos tras pasitos**
 
     Sea $\theta$ la probabilidad de éxito de un evento de interés. Sea $\text{Beta}(2,3)$ la distribución
     _a priori_ para $\theta$. Actualiza la distribución _a posteriori_ para $\theta$ secuencialmente dados conjuntos
@@ -89,7 +89,7 @@ vida profesional.
     i. Terceras observaciones: un éxito.
     i. Cuartas observaciónes: dos éxitos.
     
-1.  📌 **Diferentes observaciones, diferentes _posteriors_**
+1.  💻📌 **Diferentes observaciones, diferentes _posteriors_**
 
     Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. 
     Tres empleados comparten que la creencia _a priori_ para $\pi$, 
@@ -104,7 +104,7 @@ vida profesional.
     i. Especifique la distribución _a posteriori_ de cada uno de los empleados.
     i. Compare las distribuciones _a posteriori_ de cada empleado.
     
-1. 📌 **¿Galletitas o masitas?**
+1. 💻📌 **¿Galletitas o masitas?**
 
     La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen
     una distancia "caminable" suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre
@@ -222,7 +222,7 @@ vida profesional.
     ¿Cuál de los tres vendedores le recomendarías?
     <!-- http://allendowney.github.io/ThinkBayes2/chap18html -->
 
-1.  📌 **Bichos**
+1.  💻📌 **Bichos**
 
     Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento _a priori_ del número
     promedio de insectos por unidad de área ($\text{m}^2$) se puede representar con una distribución Gamma de 
