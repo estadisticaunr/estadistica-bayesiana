@@ -431,8 +431,8 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     Encuntre expresiones matemáticas en término de $n$, $\theta$ y $\lambda$ para las 
     siguientes probabilidades:
 
-    i. $P(X_1 = 0, X_2 = 0)$.
     i. $P(X_1 = 0)$.
+    i. $P(X_1 = 0, X_2 = 0)$.
     i. $P(X_2 = 0)$.
     i. $P(X_1 = 0 | X_2 = 0)$.
     i. $P(X_2 = 0 | X_1 = 0)$.
