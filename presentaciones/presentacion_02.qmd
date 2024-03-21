@@ -379,7 +379,7 @@ expand.grid(N_a = 0:35,
             n_ia = 0:35,
             n_if = 0:35) |>
   mutate(n_i = n_ia + n_if,
-         prob_ia = dbinom(n_ia,N_a,0.95),
+         prob_ia = dbinom(n_ia,N_a,0.90),
          prob_if = dbinom(n_if,N-N_a,0.4),
          prob = prob_ia*prob_if) |>
   filter(n_i == 12) |>
