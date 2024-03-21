@@ -1,0 +1,28 @@
+---
+title: "02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!"
+---
+
+El siguiente programa muestra diferentes alternativas para obtener la densidad de la
+distribución _a posteriori_ en el ejercicio ¡Ostras! ¡Estoy haciendo inferencia bayesiana!
+de la Práctica 1.
+
+Tener presente:
+
+$$
+\begin{aligned}
+p(\boldsymbol{y} \mid \lambda) &= \prod_{i=1}^n p(y_i \mid \lambda) \\
+p(\boldsymbol{y} \mid \lambda) &= \prod_{i=1}^n {\frac{e^{-\lambda}\lambda^{y_i}}{y_i!}} \\
+& = \frac{e^{-n\lambda}\lambda^{\sum_i y_i}}{\prod_{i=1}^{n}{y_i!}} \\
+\log p(\boldsymbol{y} \mid \lambda) &= \sum_{i=1}^{n} p(y_i \mid \lambda)
+\end{aligned}
+$$
+
+
+
+```{r}
+#| echo: true
+#| eval: true 
+#| fig-width: 12
+#| file: scripts/02_ostras.R
+```
+
