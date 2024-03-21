@@ -257,7 +257,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="modelos-de-distribuciones-conjugadas">Modelos de Distribuciones Conjugadas</h2>
 <p>Esta sección contiene ejercicios para trabajar con modelos basados en distribuciones conjugadas. En general, los ejercicios requieren cálculos o derivaciones que se pueden realizar a mano. Sin embargo, se promueve fuertemente el uso de la computadora y el lenguaje R para verificar los resultados, mostrar soluciones alternativas y ejercitar el uso de una herramienta que será de suma utilidad a lo largo de todo el curso y de la vida profesional.</p>
 <ol type="1">
-<li><p>📌 <strong>¿Quién domina el <em>posterior</em>?</strong></p>
+<li><p>💻📌 <strong>¿Quién domina el <em>posterior</em>?</strong></p>
 <p>Para cada una de las situaciones siguientes, se da una distribución <em>a priori</em> Beta para el parámetro <span class="math inline">\(\pi\)</span> de un ensayo binomial. Para cada escenario, identificar cuál de estos se cumple: el <em>prior</em> tiene mayor influencia en el <em>posterior</em>, los datos tienen más influencia en el <em>posteriori</em>, o la creencia <em>a priori</em> y los datos influyen de manera similar en la creencia <em>a posteriori</em></p>
 <ol type="i">
 <li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(1,4)\)</span>, observaciones: <span class="math inline">\(y=8\)</span> éxitos en <span class="math inline">\(n=10\)</span> ensayos.</li>
@@ -266,7 +266,7 @@ window.Quarto = {
 <li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(3,10)\)</span>, observaciones: <span class="math inline">\(y=10\)</span> éxitos en <span class="math inline">\(n=13\)</span> ensayos.</li>
 <li><em>Prior</em>: <span class="math inline">\(\pi \sim \text{Beta}(20,2)\)</span>, observaciones: <span class="math inline">\(y=10\)</span> éxitos en <span class="math inline">\(n=200\)</span> ensayos.</li>
 </ol></li>
-<li><p>📌 <strong>Más o menos certeza</strong></p>
+<li><p>💻📌 <strong>Más o menos certeza</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la proporción de personas que prefieren los perros a los gatos. Suponga que se elige una distribución <span class="math inline">\(\text{Beta}(7,2)\)</span> para representar la creencia <em>a priori</em></p>
 <ol type="i">
 <li>De acuerdo al <em>prior</em> ¿cuáles son valores razonables para <span class="math inline">\(\theta\)</span>?</li>
@@ -274,7 +274,7 @@ window.Quarto = {
 <li>Si, en lugar de eso, se determina que <span class="math inline">\(y=1\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
 <li>Si, en lugar de eso, se determina que <span class="math inline">\(y=10\)</span> de <span class="math inline">\(n=20\)</span> personas prefieren perros, ¿cómo cambia ahora el grado de credibilidad de los diferentes valores de <span class="math inline">\(\theta\)</span>?</li>
 </ol></li>
-<li><p>📌 <strong>Pasito a pasito</strong></p>
+<li><p>💻📌 <strong>Pasito a pasito</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito de un evento de interés. Sea <span class="math inline">\(\text{Beta}(2,3)\)</span> la distribución <em>a priori</em> para <span class="math inline">\(\theta\)</span>. Actualiza la distribución <em>a posteriori</em> para <span class="math inline">\(\theta\)</span> secuencialmente:</p>
 <ol type="i">
 <li>Primera observación: éxito.</li>
@@ -282,7 +282,7 @@ window.Quarto = {
 <li>Tercera observación: fracaso.</li>
 <li>Cuarta observación: éxito.</li>
 </ol></li>
-<li><p>📌 <strong>Pasitos tras pasitos</strong></p>
+<li><p>💻📌 <strong>Pasitos tras pasitos</strong></p>
 <p>Sea <span class="math inline">\(\theta\)</span> la probabilidad de éxito de un evento de interés. Sea <span class="math inline">\(\text{Beta}(2,3)\)</span> la distribución <em>a priori</em> para <span class="math inline">\(\theta\)</span>. Actualiza la distribución <em>a posteriori</em> para <span class="math inline">\(\theta\)</span> secuencialmente dados conjuntos de cinco observaciones:</p>
 <ol type="i">
 <li>Primeras observaciones: tres éxitos.</li>
@@ -290,14 +290,14 @@ window.Quarto = {
 <li>Terceras observaciones: un éxito.</li>
 <li>Cuartas observaciónes: dos éxitos.</li>
 </ol></li>
-<li><p>📌 <strong>Diferentes observaciones, diferentes <em>posteriors</em></strong></p>
+<li><p>💻📌 <strong>Diferentes observaciones, diferentes <em>posteriors</em></strong></p>
 <p>Una empresa que fabrica zapatillas está diseñando una publicidad para Instagram. Tres empleados comparten que la creencia <em>a priori</em> para <span class="math inline">\(\pi\)</span>, la probabilidad de que un cliente haga clic en el anuncio cuando lo ve, puede expresarse con una distribución <span class="math inline">\(\text{Beta}(4, 3)\)</span>. No obstante, los tres empleados realizan tres experimentos distintos y por ende tienen acceso a datos diferentes. El primer empleado prueba el anuncio en una persona, que no cliquea el anuncio. El segundo lo prueba en 10 personas, de las cuales 3 cliquean el anuncio. El último lo prueba en 100 personas, 20 de las cuales cliquean el anuncio.</p>
 <ol type="i">
 <li>Describa el entendimiento <em>a priori</em> que los empleados tienen sobre <span class="math inline">\(\pi\)</span>.</li>
 <li>Especifique la distribución <em>a posteriori</em> de cada uno de los empleados.</li>
 <li>Compare las distribuciones <em>a posteriori</em> de cada empleado.</li>
 </ol></li>
-<li><p>📌 <strong>¿Galletitas o masitas?</strong></p>
+<li><p>💻📌 <strong>¿Galletitas o masitas?</strong></p>
 <p>La UNR reúne cada año a estudiantes provenientes de diferentes localidades. Cuántas cuadras constituyen una distancia “caminable” suele ser motivo de discusión, entre otros. Pero la verdadera grieta está entre la denominación <em>galletitas</em> versus <em>masitas</em>. Un rosarino pone un <em>prior</em> <span class="math inline">\(\text{Beta}(20,2)\)</span> a la proporción de personas que dicen <em>galletitas</em>, mientras que un oriundo de una localidad del interior dirá que la credibilidad <em>a priori</em> es <span class="math inline">\(\text{Beta}(2,8)\)</span>.</p>
 <ol type="i">
 <li>Resuma ambas distribuciones <em>a priori</em> y explique con sus palabras lo que implican.</li>
@@ -387,7 +387,7 @@ Ayuda
 </div></li>
 <li><p><strong>¿Tenés alguien para recomendar?</strong></p>
 <p>Una colega quiere comprar un producto por Internet. Tres vendedores ofrecen el mismo producto al mismo precio. Un vendedor tiene 100% de evaluaciones positivas, con 10 <em>reviews</em>. Otro tiene 96% de evaluaciones positivas, con 50 <em>reviews</em>. El último tiene 90% de comentarios positivos, con 200 evaluaciones. ¿Cuál de los tres vendedores le recomendarías? <!-- http://allendowney.github.io/ThinkBayes2/chap18html --></p></li>
-<li><p>📌 <strong>Bichos</strong></p>
+<li><p>💻📌 <strong>Bichos</strong></p>
 <p>Un biólogo quiere determinar la densidad de un insecto en su región. Su conocimiento <em>a priori</em> del número promedio de insectos por unidad de área (<span class="math inline">\(\text{m}^2\)</span>) se puede representar con una distribución Gamma de media 0.50 y desvío estándar 0.25. En una investigación en 20 <span class="math inline">\(\text{m}^2\)</span> de área, se hallan 3, 2, 5, 1 y 2 insectos en los primeros 5 <span class="math inline">\(\text{m}^2\)</span> y ninguno en la fracción de tierra restante.</p>
 <ol type="i">
 <li>Halle la distribución <em>a posteriori</em> del número medio de insectos por unidad de área.</li>
