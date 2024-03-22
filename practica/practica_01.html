@@ -621,9 +621,7 @@ Ayuda
 <ol type="i">
 <li>¿Cuál es la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>, la probabilidad de obtener cara?</li>
 <li>¿Qué ocurre a medida que la probabilidad de clasificar mal varía? <!-- http://allendowney.github.io/ThinkBayes2/chap04html --></li>
-</ol></li>
-<li><p><strong>¡Saludos a los cubos con puntos! (…) Serán dados</strong></p>
-<p>Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos es 9. ¿Cuál es la distribución <em>a posteriori</em> de los puntajes de los dados? <!-- @Barber2012 --></p>
+</ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -635,6 +633,45 @@ Ayuda
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Considerar:</p>
+<ul>
+<li><span class="math inline">\(\theta\)</span>: probabilidad de obtener cara.</li>
+<li><span class="math inline">\(\pi\)</span>: probabilidad de mala clasificación.</li>
+</ul>
+<p>y</p>
+<p><span class="math display">\[
+\begin{aligned}
+\theta &amp;\sim \text{Beta}(1, 1) \\
+Y &amp;=
+    \begin{cases}
+    1 &amp; \text{Si la moneda cae en cara} \\
+    0 &amp; \text{Si la moneda cae en ceca}
+    \end{cases} \\
+X &amp;=
+    \begin{cases}
+    1 &amp; \text{Si se registra cara} \\
+    0 &amp; \text{Si se registra ceca}
+    \end{cases}
+\end{aligned}
+\]</span></p>
+<p>Obtener <span class="math inline">\(P(Y = 1)\)</span> en base a la distribución conjunta de <span class="math inline">\(X\)</span> e <span class="math inline">\(Y\)</span> y luego realizar la inferencia utilizando esa probabilidad como probabilidad de éxito en vez de <span class="math inline">\(\theta\)</span>.</p>
+</div>
+</div>
+</div></li>
+<li><p><strong>¡Saludos a los cubos con puntos! (…) Serán dados</strong></p>
+<p>Dos dados de seis caras son arrojados. Se sabe que la suma de los dos puntajes obtenidos es 9. ¿Cuál es la distribución <em>a posteriori</em> de los puntajes de los dados? <!-- @Barber2012 --></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Ayuda
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Estamos tratando de hacer inferencias sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>, los valores de cada uno de los datos. Definir la distribución a priori no es complicado (es una distribución sobre <span class="math inline">\(D_1\)</span> y <span class="math inline">\(D_2\)</span>).</p>
 <p>El truco está en determinar la verosimilitud de cada par (<span class="math inline">\(D_1, D_2\)</span>) luego de haber observado un 9.</p>
