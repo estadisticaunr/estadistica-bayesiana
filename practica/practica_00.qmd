@@ -111,11 +111,11 @@ probabilidad.
     i. Obtenga la distribución condicional de $X_2$ dado $X_1$.
     <!-- @Reich2020 -->
 
-1.  **Distribuciones marginal y condicional de una normal**
+1.  **Distribuciones marginales y condicionales de una normal**
 
-    Sean $X_1$ y $X_2$ tales que $(X_1, X_2)$ siguen una distribución normal bivariada
-    con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$, $\text{Var}(X_1) = \text{Var}(X_2) = 1$ y 
-    $\text{cor}(X_1, X_2) = \rho$
+    Sean $X_1$ y $X_2$ tales que el vector $(X_1, X_2)$ sigue una distribución normal 
+    bivariada con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$, 
+    $\mathbb{V}(X_1) = \mathbb{V}(X_2) = 1$ y  \text{cor}(X_1, X_2) = \rho$
 
     i. Encuentre la distribución marginal de $X_1$.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
@@ -151,7 +151,7 @@ probabilidad.
 
     i. Encuentre la distribución conjunta de $X$ e $Y$ en una tabla.
     i. Encuentre $\mathbb{E}(Y)$. ¿Cuál es la probabilidad de que la bola sea verde?
-    i. Encuentre $\text{Var}(Y | X = 0)$, $\text{Var}(Y | X = 1)$ Y $\text{Var}(Y)$.
+    i. Encuentre $\mathbb{V}(Y | X = 0)$, $\mathbb{V}(Y | X = 1)$ Y $\mathbb{V}(Y)$.
     Considerando a la varianza como una medida de incertidumbre, explique de manera 
     intuitiva por que algunas variancias son mas grandes que otras.
     i. Suponga que observa que la bola es verde. ¿Cuál es la probabilidad de que la moneda
@@ -184,7 +184,7 @@ probabilidad.
 1.  **Problema del cumpleaños**
 
     Hay $k$ personas en una sala. Suponga que el cumpleaños de cada persona tiene la misma
-    probabilidad de ocurrir en cualquiera de los 365 días del año (se excluye el 29 de Febrero)
+    probabilidad de ocurrir en cualquiera de los 365 días del año (se excluye el 29 de febrero)
     y que los cumpleaños de las personas son independientes entre si.
     ¿Cuál es la probabilidad de que al menos un par de personas en el grupo cumplan los
     años el mismo día?
