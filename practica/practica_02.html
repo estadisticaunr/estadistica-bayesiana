@@ -462,7 +462,7 @@ Recuerde que la media de una distribución <span class="math inline">\(\text{Gam
 <li><p>🧩 📌 <strong>Inferencia sobre una distribución Uniforme</strong></p>
 <p>Considere una distribución <span class="math inline">\(\text{Uniforme}(0, \theta)\)</span>. La función de densidad de probabilidad es</p>
 <p><span class="math display">\[
-p(x) = \frac{1}{\theta}I(x \in [0, \theta])
+p(x) = \frac{1}{\theta}\mathbb{I}(x \in [0, \theta])
 \]</span></p>
 <p>Sea <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> un vector de <span class="math inline">\(n\)</span> variables aleatorias independientes e idénticamente distribuidas según <span class="math inline">\(p(x)\)</span></p>
 <p><strong>Inferencia máximo-verosímil</strong></p>
@@ -473,12 +473,10 @@ p(x) = \frac{1}{\theta}I(x \in [0, \theta])
 </ol>
 <p><strong>Inferencia Bayesiana</strong></p>
 <p>El <em>prior</em> conjugado de la distribución uniforme es la distribución de Pareto.</p>
-<p>Si <span class="math inline">\(X \sim \text{Pareto}(\alpha, m)\)</span>, luego</p>
-<p><span class="math display">\[
-p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+<p>Si <span class="math inline">\(X \sim \text{Pareto}(\alpha, m)\)</span>, luego <span class="math display">\[
+p(x \mid \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
 \]</span></p>
-<p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> es</p>
-<p><span class="math display">\[
+<p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> es <span class="math display">\[
 p(\theta, \boldsymbol{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
     \mathbb{I}(\theta \ge \max(\boldsymbol{X}))
@@ -490,17 +488,16 @@ p(\boldsymbol{X}) &amp;= \int_{M_x}^\infty
                  \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
                  d\theta \\
 &amp;=  \begin{cases}
-    \frac{\alpha}{(n+\alpha)m^n} &amp; \text{Si } M_x \le m \\
-    \frac{\alpha m^\alpha}{(n+\alpha)M_x^{n+\alpha}} &amp; \text{Si } M_x &gt; m \\
+    \displaystyle \frac{\alpha}{(n+\alpha)m^n} &amp; \text{Si } M_x \le m \\
+    \displaystyle \frac{\alpha m^\alpha}{(n+\alpha)M_x^{n+\alpha}} &amp; \text{Si } M_x &gt; m \\
     \end{cases}
 \end{aligned}
 \]</span></p>
-<p>Derive el <em>posterior</em> y muestre que puede ser expresado como una distribución de Pareto. <!-- @Murphy2012 --> <!-- Hay que mejorar la redaccion y ver que la notacion es consistente --></p></li>
+<p>Derive el <em>posterior</em> y muestre que puede ser expresado como una distribución de Pareto. <!-- @Murphy2012 --></p></li>
 <li><p>🧩 📌 <strong>Inferencia sobre una distribución Exponencial</strong></p>
-<p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es</p>
-<p><span class="math display">\[
+<p>El tiempo de vida de una máquina en años <span class="math inline">\(X\)</span> es modelado con una distribución exponencial con parámetro <span class="math inline">\(\theta\)</span> desconocido. La función de densidad es: <span class="math display">\[
 \begin{array}{lcrr}
-p(x | \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
+p(x \mid \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \theta \ge 0
 \end{array}
 \]</span></p>
 <ol type="i">
@@ -518,34 +515,33 @@ p(\theta \mid \lambda) &amp;= \lambda e^{-\lambda \theta}
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
 <li><p>📌 <strong>Otras distribuciones conjugadas (I)</strong></p>
-<p>Considere el siguiente modelo:</p>
-<p><span class="math display">\[
+<p>Considere el siguiente modelo: <span class="math display">\[
 \begin{array}{l}
-Y\mid\theta \sim \text{Geom}(\theta) \\
-\theta \sim \text{Beta}(\alpha,\beta)
+Y \mid \theta \sim \text{Geometrica}(\theta) \\
+\theta \sim \text{Beta}(\alpha, \beta)
 \end{array}
-\]</span> donde la función de densidad de la distribución geométrica es <span class="math inline">\(p(y\mid\theta) = \theta(1-\theta)^{y-1}\)</span> para <span class="math inline">\(y \in {1,2,\dots}\)</span></p>
+\]</span></p>
+<p>donde la función de densidad de la distribución geométrica es <span class="math inline">\(p(y \mid \theta) = \theta (1 - \theta)^{y-1}\)</span> para <span class="math inline">\(y \in {1,2,\dots}\)</span></p>
 <ol type="i">
 <li>¿Qué debería ocurrir con la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> para poder afirmar que la distribución geométrica es conjugada de la beta?</li>
 <li>Derive la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> y concluya.</li>
 </ol></li>
 <li><p>📌 <strong>Otras distribuciones conjugadas (II)</strong></p>
-<p>Considere el siguiente modelo:</p>
-<p><span class="math display">\[
+<p>Considere el siguiente modelo:<br>
+<span class="math display">\[
 \begin{aligned}
 Y\mid\theta &amp;\sim \text{BinomialNeg}(\theta, m) \\
 \theta &amp;\sim \text{Beta}(\alpha,\beta)
 \end{aligned}
 \]</span></p>
 <p>donde la función de densidad de la distribución binomial negativa es</p>
-<p><span class="math display">\[p(y\mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y\]</span></p>
+<p><span class="math display">\[
+p(y \mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y
+\]</span></p>
 <p>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>.</p></li>
 <li><p>🧩 <strong>Otras distribuciones conjugadas (III)</strong></p>
-<p>Considere el siguiente modelo:</p>
-<p><span class="math display">\[
-\begin{array}{l}
-Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
-\end{array}
+<p>Considere el siguiente modelo: <span class="math display">\[
+Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 \]</span></p>
 <p>donde la función de densidad exponencial es <span class="math inline">\(p(y \mid \theta) = \theta e^{-\theta y}\)</span>.</p>
 <p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em> <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) --></p></li>

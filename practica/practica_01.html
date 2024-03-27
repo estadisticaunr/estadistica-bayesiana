@@ -260,7 +260,7 @@ window.Quarto = {
 <li><p><strong>Demostración</strong></p>
 <p>Demuestra la validez de la siguiente expresión de la Regla de Bayes</p>
 <p><span class="math display">\[
-P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
+P(B_j \mid A) = \frac{P(A \mid B_j) P(B_j)}{\sum_{k=1}^{K}P(A \mid B_k) P(B_k)}
 \]</span></p>
 <p>donde <span class="math inline">\(A\)</span> es un evento cualquiera y <span class="math inline">\(\{B_1, \cdots, B_K\}\)</span> forman una partición. <!-- Para ello siga los siguientes pasos --></p>
 <!-- i.  Demuestre que $P(B_j | A) P(A) = P(A | B_j) P(B_j)$. -->
@@ -511,7 +511,7 @@ Ayuda
 <p>El modelo luego es</p>
 <p><span class="math display">\[
 \begin{array}{lc}
-X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) &amp; \text{con} \ \lambda \in [0, 1]
+X_2 \mid X_1 = x_1 \sim \text{Binomial}(\lambda x_1, n) &amp; \text{con} \ \lambda \in [0, 1]
 \end{array}
 \]</span></p>
 <p><span class="math inline">\(\lambda\)</span> representa la probabilidad de detectar la especie, dado que la especie se encuentra en el bosque.</p>
@@ -520,10 +520,10 @@ X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) &amp; \text{con} \ \lambda \in [0, 
 <li><span class="math inline">\(P(X_1 = 0)\)</span>.</li>
 <li><span class="math inline">\(P(X_1 = 0, X_2 = 0)\)</span>.</li>
 <li><span class="math inline">\(P(X_2 = 0)\)</span>.</li>
-<li><span class="math inline">\(P(X_1 = 0 | X_2 = 0)\)</span>.</li>
-<li><span class="math inline">\(P(X_2 = 0 | X_1 = 0)\)</span>.</li>
-<li><span class="math inline">\(P(X_1 = 0 | X_2 = 1)\)</span>.</li>
-<li><span class="math inline">\(P(X_2 = 0 | X_1 = 1)\)</span>.</li>
+<li><span class="math inline">\(P(X_1 = 0 \mid X_2 = 0)\)</span>.</li>
+<li><span class="math inline">\(P(X_2 = 0 \mid X_1 = 0)\)</span>.</li>
+<li><span class="math inline">\(P(X_1 = 0 \mid X_2 = 1)\)</span>.</li>
+<li><span class="math inline">\(P(X_2 = 0 \mid X_1 = 1)\)</span>.</li>
 <li>Explique de manera intuitiva cómo es que las probabilidades calculadas en (iv)-(vii) cambian según <span class="math inline">\(n\)</span>, <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\lambda\)</span>.</li>
 <li>Asuma <span class="math inline">\(\theta=0.5\)</span>, <span class="math inline">\(\lambda=0.1\)</span> y <span class="math inline">\(X_2 = 0\)</span> ¿Cuán grande debe ser <span class="math inline">\(n\)</span> para que se puede concluir con 95% de confianza que la especie no se encuentra en el bosque? <!-- @Reich2020 --></li>
 </ol>
@@ -542,7 +542,7 @@ X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) &amp; \text{con} \ \lambda \in [0, 
 <p>Si se representa con <span class="math inline">\(Y_t\)</span> a la cantidad de especies descubierta en el año <span class="math inline">\(t\)</span>, y asumiendo:</p>
 <p><span class="math display">\[
 \begin{aligned}
-Y_t | \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
+Y_t \mid \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
 \lambda       &amp;\sim \text{Uniforme}(0, 100)
 \end{aligned}
 \]</span></p>
@@ -550,7 +550,7 @@ Y_t | \lambda &amp;\underset{iid}{\sim} \text{Poisson}(\lambda) \\
 <li><p>💻 📌 <strong>Es negocio…</strong></p>
 <p>Sea <span class="math inline">\(n\)</span> la cantidad desconocida de clientes que visitan una tienda en un dia cualquiera. El número de clientes que realizan una compra es <span class="math inline">\(Y\)</span> y se cumple que</p>
 <p><span class="math display">\[
-Y | \theta, n \sim \text{Binomial}(\theta, n)
+Y \mid \theta, n \sim \text{Binomial}(\theta, n)
 \]</span></p>
 <p>donde <span class="math inline">\(\theta\)</span> es la probabilidad de compra, dado que se produce la visita a la tienda. La distribución <em>a priori</em> de <span class="math inline">\(n\)</span> es <span class="math inline">\(n \sim \text{Poisson}(5)\)</span>. Bajo el supuesto que <span class="math inline">\(\theta\)</span> es conocido y que <span class="math inline">\(n\)</span> es desconocido, graficar la distribución <em>a posteriori</em> de <span class="math inline">\(n\)</span> para todas las combinaciones de <span class="math inline">\(Y \in \{0, 5, 10 \}\)</span> y <span class="math inline">\(\theta \in \{0.2, 0.5\}\)</span>. Explique cual es del efecto de cambiar <span class="math inline">\(Y\)</span> y <span class="math inline">\(\theta\)</span> sobre la distribución <em>a posteriori</em>. <!-- Me parece interesante porque plantea la inferencia sobre "n" en vez de "p" --> <!-- @Reich2020 --></p></li>
 <li><p>📌 <strong>Con amigos así, quién necesita enemigos</strong></p>

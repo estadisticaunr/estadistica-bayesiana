@@ -399,7 +399,7 @@
 <section id="gamma-poisson" class="slide level2">
 <h2>Gamma-Poisson</h2>
 <p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo Poisson, es decir:</p>
-<p><span class="math display">\[y_i \sim \mathrm{Poisson}(\lambda)\]</span></p>
+<p><span class="math display">\[Y_i \sim \mathrm{Poisson}(\lambda)\]</span></p>
 <p>Interesa realizar una inferencia sobre el valor de <span class="math inline">\(\lambda\)</span></p>
 <div class="fragment">
 <p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\lambda\)</span>?</p>
@@ -408,10 +408,10 @@
 <section id="section" class="slide level2">
 <h2></h2>
 <p><span class="math display">\[
-\lambda \sim \mathrm{Gamma}(r,s)
+\lambda \sim \mathrm{Gamma}(s, r)
 \]</span></p>
 <p><span class="math display">\[
-p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
+p(\lambda \mid s, r) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
 \]</span></p>
 <div class="callout callout-warning callout-titled callout-style-default">
 <div class="callout-body">
@@ -422,7 +422,7 @@ p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lamb
 <p><strong>Cuidado</strong></p>
 </div>
 <div class="callout-content">
-<p><span class="math inline">\(\mathrm{Gamma}(r,s)\)</span> en R es <code>dgamma(x, shape = s, scale = 1/r)</code></p>
+<p><span class="math inline">\(\mathrm{Gamma}(s, r)\)</span> en R es <code>dgamma(x, shape = s, scale = 1/r)</code></p>
 </div>
 </div>
 </div>
@@ -431,7 +431,7 @@ p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lamb
 <h2></h2>
 <p>El modelo propuesto es <span class="math display">\[
 \begin{align*}
-    y_i \mid \lambda &amp; \sim  Po(\lambda)\\
+    Y_i \mid \lambda &amp; \sim  Po(\lambda)\\
     \lambda &amp; \sim  \mathrm{Gamma}(s, r)
 \end{align*}
 \]</span></p>
@@ -464,21 +464,21 @@ p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\s
 <p><span class="math display">\[K^* = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)}\]</span></p>
 </div>
 <div class="fragment">
-<p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es Gamma de parámetros <span class="math inline">\(n+r\)</span> y <span class="math inline">\(\sum_i y_i + s\)</span></p>
+<p>Por lo tanto, resulta que la distribución <em>a posteriori</em> es Gamma de parámetros <span class="math inline">\(\sum_i y_i + s\)</span> y <span class="math inline">\(n+r\)</span></p>
 </div>
 <div class="fragment">
 <p><span class="math display">\[
 p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)} \lambda^{\sum_iy_i+s-1} e^{-(n + r)\lambda}
 \]</span></p>
 <p><span class="math display">\[
-\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(n+r,\sum_i y_i + s)
+\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(\sum_i y_i + s, n+r)
 \]</span></p>
 </div>
 </section>
 <section id="normal-normal" class="slide level2">
 <h2>Normal-normal</h2>
 <p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo normal con varianza conocida <span class="math inline">\(\sigma^2\)</span>, es decir:</p>
-<p><span class="math display">\[y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
+<p><span class="math display">\[Y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
 <p>Interesa realizar una inferencia sobre el valor de <span class="math inline">\(\mu\)</span></p>
 <div class="fragment">
 <p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\mu\)</span>?</p>
@@ -498,7 +498,7 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 <p>El <em>likelihood</em> es normal: <span class="math display">\[
 \small{
   \begin{aligned}
-  p(y_i\mid \mu) &amp;= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \implies \\
+  p(y_i\mid \mu) &amp;= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\
   p(\mathbf{y}\mid \mu) &amp;= \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}
   \end{aligned}
 }
@@ -512,7 +512,7 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 \]</span></p>
 </div>
 <div class="fragment">
-<p>Interesa hallar <span class="math inline">\(p(\lambda\mid \mathbf{y})\)</span></p>
+<p>Interesa hallar <span class="math inline">\(p(\mu \mid \mathbf{y})\)</span></p>
 </div>
 </section>
 <section id="section-5" class="slide level2 smaller">
@@ -682,7 +682,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>La incertidumbre en <span class="math inline">\(\tilde{y}\)</span> proviene de la variabilidad debida al azar (<span class="math inline">\(\sigma\)</span>) y de la variabilidad debida al desconocimiento de <span class="math inline">\(\mu\)</span> (<span class="math inline">\(\tau_n\)</span>)</p>
 </div>
 <div class="fragment">
-<p>En otras palabras, si supiéramos que <span class="math inline">\(\mu = 2\)</span>, toda la variabilidad provendría de <span class="math inline">\(\sigma\)</span>, ¡pero no sabemos cuánto vale <span class="math inline">\(\mu\)</span>! Puede ser <span class="math inline">\(2\)</span> o <span class="math inline">\(1,98\)</span> o <span class="math inline">\(1.43\)</span>… Por lo que hay una componente adicional de varianza.</p>
+<p>En otras palabras, si supiéramos que <span class="math inline">\(\mu = 2\)</span>, toda la variabilidad provendría de <span class="math inline">\(\sigma\)</span>, ¡pero no sabemos cuánto vale <span class="math inline">\(\mu\)</span>! Puede ser <span class="math inline">\(2\)</span> o <span class="math inline">\(1.98\)</span> o <span class="math inline">\(1.43\)</span>… Por lo que hay una componente adicional de varianza.</p>
 </div>
 </section>
 <section id="section-17" class="slide level2 smaller">
@@ -724,7 +724,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <section id="normal-normal-gamma-inversa" class="slide level2">
 <h2>Normal – normal-gamma-inversa</h2>
 <p>Sea una muestra <span class="math inline">\(\mathbf{y} = (y_1,y_2,\dots,y_n)\)</span> obtenida de un modelo normal con varianza desconocida <span class="math inline">\(\sigma^2\)</span>, es decir:</p>
-<p><span class="math display">\[y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
+<p><span class="math display">\[Y_i \sim \mathcal{N}(\mu,\sigma^2)\]</span></p>
 <p>E interesa realizar una inferencia sobre el valor de <span class="math inline">\(\mu\)</span> y el valor de <span class="math inline">\(\sigma\)</span></p>
 <div class="fragment">
 <p>¿Cómo asignamos una credibilidad <em>a priori</em> para <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\sigma\)</span>? ¡Con una distribución en dos dimensiones!</p>
@@ -735,7 +735,7 @@ y-\mu \mid \mu &amp; \sim &amp; \mathcal{N}(0,\sigma^2) \\
 <p>El modelo es</p>
 <p><span class="math display">\[
 \begin{align*}
-    X_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    Y_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 &amp; \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
 \end{align*}
 \]</span></p>
@@ -772,7 +772,7 @@ p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) =
 <p>Reflexionemos…</p>
 <p><span class="math display">\[
 \begin{align*}
-    y_i\mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
+    Y_i \mid\mu &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu &amp; \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} &amp; \sim \mathcal{N}(\theta_n,\tau_n^2)
 \end{align*}

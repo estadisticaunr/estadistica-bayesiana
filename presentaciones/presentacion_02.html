@@ -743,7 +743,9 @@ B(a,b) = \int_0^1 \pi^{a-1} (1-\pi)^{b-1} d\pi = \frac{\Gamma(a)\Gamma(b)}{\Gamm
 <h2><em>Likelihood</em></h2>
 <p>¿Cuál es la probabilidad de observar los datos que observamos para diferentes valores del parámetro?</p>
 <div class="fragment">
-<p><span class="math display">\[ y \mid \pi, N \sim Bi(N,\pi) \]</span></p>
+<p><span class="math display">\[
+Y \mid \pi, N \sim Bi(N,\pi)
+\]</span></p>
 <p><span class="math display">\[p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)\]</span></p>
 </div>
 </section>
@@ -816,7 +818,7 @@ p(\pi\mid y) = \frac{\pi^{(y+a)-1}(1-\pi)^{(N-y+b)-1}}{B(y+a,N-y+b)}
 <div class="fragment">
 <p><span class="math display">\[
 \begin{align*}
-    y\mid\pi &amp; \sim  \text{Binoimal}(N,\pi)\\
+    Y \mid\pi &amp; \sim  \text{Binoimal}(N,\pi)\\
     \pi &amp; \sim  \text{Beta}(a,b)
 \end{align*}
 \]</span></p>
