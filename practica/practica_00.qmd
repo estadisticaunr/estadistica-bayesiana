@@ -115,7 +115,7 @@ probabilidad.
 
     Sean $X_1$ y $X_2$ tales que el vector $(X_1, X_2)$ sigue una distribución normal 
     bivariada con $\mathbb{E}(X_1) = \mathbb{E}(X_2) = 0$, 
-    $\mathbb{V}(X_1) = \mathbb{V}(X_2) = 1$ y  \text{cor}(X_1, X_2) = \rho$
+    $\mathbb{V}(X_1) = \mathbb{V}(X_2) = 1$ y  $\text{cor}(X_1, X_2) = \rho$
 
     i. Encuentre la distribución marginal de $X_1$.
     i. Encuentre la distribución condicional de $X_1$ dado $X_2$.
