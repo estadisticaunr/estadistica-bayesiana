@@ -170,8 +170,13 @@ $$p(\lambda\mid \mathbf{y}) \propto p(\mathbf{y}\mid\lambda) p(\lambda)$$
 
 . . .
 
-$$p(\lambda \mid \mathbf{y}) \propto \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!} \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}$$ \pause
-$$p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}$$
+$$
+p(\lambda \mid \mathbf{y}) \propto \frac{\lambda^{\sum_i y_i}e^{-n\lambda}}{\prod_{i}y_i!} \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
+$$
+
+$$
+p(\lambda \mid \mathbf{y}) \propto \frac{r^s}{\Gamma(s)\prod_i y_i!} \lambda^{\sum_iy_i+s-1} e^{-n\lambda - r \lambda}
+$$
 
 . . .
 
@@ -217,25 +222,44 @@ Interesa realizar una inferencia sobre el valor de $\mu$
 
 ## {.smaller}
 
-El modelo propuesto es
+El modelo propuesto es:
 $$
-\begin{align*}
-    y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2)\\
-    \mu & \sim \mathcal{N}(\theta,\tau^2)
-\end{align*}
+\small{
+  \begin{align*}
+      y_i \mid \mu & \sim  \mathcal{N}(\mu,\sigma^2)\\
+      \mu & \sim \mathcal{N}(\theta,\tau^2)
+  \end{align*}
+}
 $$
+
+. . .
 
 El _likelihood_ es normal:
-$$p(y_i\mid \mu) = \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ p(\mathbf{y}\mid \mu) = \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}$$
+$$
+\small{
+  \begin{aligned} 
+  p(y_i\mid \mu) &= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \implies \\ 
+  p(\mathbf{y}\mid \mu) &= \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}
+  \end{aligned}
+}
+$$
+
+. . .
 
 El _prior_ es normal:
-$$p(\mu) = \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
+$$
+\small{
+  p(\mu) = \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}
+}
+$$
+
+. . .
 
 Interesa hallar $p(\lambda\mid \mathbf{y})$
 
 ## {.smaller}
 
-$$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$ \pause
+$$p(\mu\mid \mathbf{y}) \propto p(\mathbf{y}\mid\mu) p(\mu)$$
 $$p(\mu \mid \mathbf{y}) \propto   e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}} \frac{1}{\sqrt{2\pi\tau}} e^{-\frac{(\mu-\theta)^2}{2\tau^2}}$$
 
 $$
@@ -275,7 +299,6 @@ $$
 ##
 
 Reflexionemos...
-
 $$
 \begin{align*}
     y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
@@ -284,7 +307,23 @@ $$
 \end{align*}
 $$
 
-¿Parámetros desconocidos en la verosimilitud? ¿Dimensión y característica del espacio de parámetros? ¿Constantes de ajuste del _prior_? ¿Forma del _posterior_? ¿Qué son $\theta_n$ y $\tau_n^2$?
+¿Parámetros desconocidos en la verosimilitud? 
+
+. . . 
+
+¿Dimensión y característica del espacio de parámetros? 
+
+. . . 
+
+¿Constantes de ajuste del _prior_? 
+
+. . . 
+
+¿Forma del _posterior_? 
+
+. . . 
+
+¿Qué son $\theta_n$ y $\tau_n^2$?
 
 ##
 
@@ -295,7 +334,6 @@ $$
 #| fig-height: 6
 #| fig-align: center
 #| cache: true
-
 p1 + p2 
 ```
 
@@ -348,7 +386,6 @@ $\mu$ y $\sigma^2$
 p3
 ```
 
-
 ## {.smaller}
 
 _A posteriori_ (luego de observar los datos)... ¿qué ocurre con la plausibilidad
@@ -379,23 +416,43 @@ $\theta_n$ y $\tau_n^2$
 $\mu$ y $\sigma^2$
 :::
 
-## {.smaller}
+## Compromiso {.smaller .scrollable}
 
-### Compromiso 
+$$
+\small{
+  \mathbb{E}[p(\mu\mid \mathbf{y})] = \theta_n = \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}
+}
+$$
 
-$$\mathbb{E}[p(\mu\mid \mathbf{y})] = \theta_n = \frac{\theta\sigma^2 + \bar{y}n\tau^2}{n\tau^2 + \sigma^2}$$
-$$\mathbb{E}[p(\mu\mid \mathbf{y})] =  \theta\frac{\sigma^2}{n\tau^2 + \sigma^2} + \bar{y}\frac{n\tau^2}{n\tau^2 + \sigma^2}$$
+$$
+\small{
+  \mathbb{E}[p(\mu\mid \mathbf{y})] =  \theta\frac{\sigma^2}{n\tau^2 + \sigma^2} + \bar{y}\frac{n\tau^2}{n\tau^2 + \sigma^2}
+}
+$$
 
 . . .
 
-Representa un balance (promedio ponderado o \textit{combinación convexa}) entre la media muestral y la media esperada \textit{a priori}.
+Representa un balance (promedio ponderado o _combinación convexa_) entre la media muestral y la media esperada _a priori_.
 
 . . .
 
-$$\mathbb{V}[p(\mu\mid \mathbf{y})] = \tau_n^2 = \frac{\tau^2\sigma^2}{n\tau^2+\sigma^2}$$
+$$
+\small{
+  \mathbb{V}[p(\mu\mid \mathbf{y})] = \tau_n^2 = \frac{\tau^2\sigma^2}{n\tau^2+\sigma^2}
+}
+$$
 
-$$\mathbb{V}[p(\mu\mid \mathbf{y})] = \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2}}$$
-$$\frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}$$
+$$
+\small{
+  \mathbb{V}[p(\mu\mid \mathbf{y})] = \frac{1}{\frac{n}{\sigma^2}+\frac{1}{\tau^2}}
+}
+$$
+
+$$
+\small{
+  \frac{1}{\mathbb{V}[p(\mu\mid \mathbf{y})]} =  \frac{n}{\sigma^2} + \frac{1}{\tau^2}
+}
+$$
 
 La precisión _a posteriori_ es la suma de las precisiones del _prior_ y la muestra.
 
@@ -441,7 +498,11 @@ No se entendió nada. _Simular para creer_.
 
 . . .
 
-¿Cómo obtenemos una observación nueva si sabemos que $\mu = 2$ (sabiendo que $\sigma = 1,2$)? . . . Directamente tomamos una muestra $\tilde{y}$ de $\mathcal{N}\left(\mu=2,\sigma^2= 1.2^2\right)$  
+¿Cómo obtenemos una observación nueva si sabemos que $\mu = 2$ (sabiendo que $\sigma = 1.2$)? 
+
+. . . 
+
+Directamente tomamos una muestra $\tilde{y}$ de $\mathcal{N}\left(\mu=2,\sigma^2= 1.2^2\right)$  
 
 ```{r sim1}
 #| echo: true
@@ -483,8 +544,8 @@ y_new <- rnorm(1, mean = mu_s, sd = 1.2)
 #| fig-align: center
 #| cache: true
 
-x <- seq(-4,8,0.01)
-y <- dnorm(x,2,1.8)
+x <- seq(-4, 8, 0.01)
+y <- dnorm(x, 2, 1.8)
 
 dv1 <- tibble(x = rnorm(4000, mean = 2, sd = 1.2))
 dv2 <- tibble(mu = rnorm(4000, 2, 1.8), x = rnorm(4000, mu, 1.2))
@@ -507,19 +568,21 @@ p2<-ggplot(dv2) +
         axis.title.y = element_blank(),
         axis.ticks.y = element_blank())
 
-p3<-ggplot() +
-  geom_vline(xintercept=2, col = "#FF729F", size=1) +
+p3 <- ggplot() +
+  geom_vline(xintercept = 2, color = "#FF729F", linewidth = 1) +
   xlim(c(2 - 6, 2 + 6)) +
   xlab(expression(mu))
 
 
 p4 <- ggplot() +
-  geom_line(data=tibble(x,y),aes(x=x,y=y),col="#FF729F",size=1) +
+  geom_line(data=tibble(x,y),aes(x=x,y=y),col="#FF729F",linewidth=1) +
   geom_ribbon(data=tibble(x,y),aes(x=x,ymin=0,ymax=y),fill="#FF729F",alpha=.7) +
-  xlim(c(2-6,2+6)) +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank(),
-        axis.ticks.y = element_blank()) +
+  xlim(c(2 - 6, 2 + 6)) +
+  theme(
+    axis.text.y = element_blank(),
+    axis.title.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
   xlab(expression(mu))
 
 (p3 + p1) / (p4 + p2)
@@ -552,7 +615,13 @@ $$
 
 $\mu$ y $\sigma^2$ tienen **distribución conjunta** normal-gamma-inversa:
 
-$$(\mu,\sigma^2) = \frac{\sqrt{\tau}}{\sqrt{2\pi\sigma^2}} \frac{\beta^\alpha}{\Gamma(\alpha)} \left( \frac{1}{\sigma^2} \right)^{\alpha+1} e^{-\frac{2\beta + \tau(\mu-\theta)^2}{2\sigma^2}}$$
+$$
+p(\mu,\sigma^2 \mid \theta, \tau, \alpha, \beta ) = 
+  \frac{\sqrt{\tau}}{\sqrt{2\pi\sigma^2}} 
+  \frac{\beta^\alpha}{\Gamma(\alpha)} 
+  \left( \frac{1}{\sigma^2} \right)^{\alpha+1} 
+  e^{-\frac{2\beta + \tau(\mu-\theta)^2}{2\sigma^2}}
+$$
 
 Si anticipamos que la normal-gamma-inversa es conjugada de la normal (para los parámetros $\mu$ y $\sigma^2$), ¿qué podemos decir de la distribución _a posteriori_ (conjunta) de $\mu$ y $\sigma^2$
 
@@ -592,11 +661,11 @@ mean <- 2
 lambda <- 0.5
 
 dninvgamma <- function(mu, sigma2, alpha, beta, mean, lambda){
- f <- (sqrt(lambda)/sqrt(2*pi*sigma2)) * (beta^alpha/gamma(alpha)) * ((1/sigma2)^(alpha+1)) * (exp(-(2*beta + lambda * (mu - mean)^2)/(2*sigma2)))
+ f <- (sqrt(lambda) / sqrt(2*pi*sigma2)) * (beta^alpha/gamma(alpha)) * ((1/sigma2)^(alpha+1)) * (exp(-(2*beta + lambda * (mu - mean)^2)/(2*sigma2)))
  return(f)
 }
 
-# ========== Distribución a priori ==============
+# ========== Distribución a priori ============== 
 dv <- tidyr::crossing(mu = seq(-1,5,0.005), 
                       sigma2 = seq(0.01,2,0.005)) %>%
   mutate(f = purrr::map2_dbl(mu,sigma2,~dninvgamma(.x,.y,alpha,beta,mean,lambda)))
