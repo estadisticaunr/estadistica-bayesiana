@@ -30,11 +30,11 @@ probabilidad.
     "la probabilidad de que Argentina gane la copa del mundo dado que es 18 de Diciembre 
     de 2022"?
     
-    i. $P(\text{18 de Diciembre de 2022} | \text{Argentina campeón})$.
+    i. $P(\text{18 de Diciembre de 2022} \mid \text{Argentina campeón})$.
     i. $P(\text{Argentina campeón})$.
     i. $P(\text{Argentina campeón}, \text{18 de Diciembre de 2022}) / P(\text{18 de Diciembre de 2022})$.
-    i. $P(\text{Argentina campeón} | \text{Diciembre})$.
-    i. $P(\text{Argentina campeón} | \text{18 de Diciembre de 2022})$.
+    i. $P(\text{Argentina campeón} \mid \text{Diciembre})$.
+    i. $P(\text{Argentina campeón} \mid \text{18 de Diciembre de 2022})$.
     <!-- @Martin2021 -->
 
     ```{r}
@@ -54,12 +54,12 @@ probabilidad.
 
     Según la definición de probabilidad condicional
 
-    i. ¿Cuál es el valor de $P(A | A)$?
+    i. ¿Cuál es el valor de $P(A \mid A)$?
     i. ¿Cuál es la probabilidad de $P(A, B)$?
     i. ¿Cuál es la probabilidad de $P(A, B)$ en el caso que $A$ y $B$ sean independientes?
-    i. ¿Cuándo se cumple que $P(A | B) = P(A)$?
-    i. ¿Es posible que $P(A | B) > P(A)$? ¿Cuándo?
-    i. ¿Es posible que $P(A | B) < P(A)$? ¿Cuándo?
+    i. ¿Cuándo se cumple que $P(A \mid B) = P(A)$?
+    i. ¿Es posible que $P(A \mid B) > P(A)$? ¿Cuándo?
+    i. ¿Es posible que $P(A \mid B) < P(A)$? ¿Cuándo?
     <!-- @Martin2021 -->
 
 1.  📌 **Amigarse con la función de densidad (I)**
@@ -151,7 +151,7 @@ probabilidad.
 
     i. Encuentre la distribución conjunta de $X$ e $Y$ en una tabla.
     i. Encuentre $\mathbb{E}(Y)$. ¿Cuál es la probabilidad de que la bola sea verde?
-    i. Encuentre $\mathbb{V}(Y | X = 0)$, $\mathbb{V}(Y | X = 1)$ Y $\mathbb{V}(Y)$.
+    i. Encuentre $\mathbb{V}(Y \mid X = 0)$, $\mathbb{V}(Y \mid X = 1)$ Y $\mathbb{V}(Y)$.
     Considerando a la varianza como una medida de incertidumbre, explique de manera 
     intuitiva por que algunas variancias son mas grandes que otras.
     i. Suponga que observa que la bola es verde. ¿Cuál es la probabilidad de que la moneda

@@ -312,7 +312,7 @@ vida profesional.
     Considere una distribución $\text{Uniforme}(0, \theta)$. La función de densidad de probabilidad es
 
     $$
-    p(x) = \frac{1}{\theta}I(x \in [0, \theta])
+    p(x) = \frac{1}{\theta}\mathbb{I}(x \in [0, \theta])
     $$
 
     Sea $\boldsymbol{X} = (X_1,..., X_n)$ un vector de $n$ variables aleatorias independientes
@@ -331,14 +331,12 @@ vida profesional.
     El _prior_ conjugado de la distribución uniforme es la distribución de Pareto.
 
     Si $X \sim \text{Pareto}(\alpha, m)$, luego
-
     $$
-    p(x| \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
+    p(x \mid \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
     $$
 
     Si el _prior_ es una distribución de Pareto, la distribución conjunta de $\theta$ y 
     $\boldsymbol{X} = (X_1,..., X_n)$ es 
-
     $$
     p(\theta, \boldsymbol{X}) 
         = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
@@ -354,8 +352,8 @@ vida profesional.
                      \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
                      d\theta \\
     &=  \begin{cases}
-        \frac{\alpha}{(n+\alpha)m^n} & \text{Si } M_x \le m \\
-        \frac{\alpha m^\alpha}{(n+\alpha)M_x^{n+\alpha}} & \text{Si } M_x > m \\
+        \displaystyle \frac{\alpha}{(n+\alpha)m^n} & \text{Si } M_x \le m \\
+        \displaystyle \frac{\alpha m^\alpha}{(n+\alpha)M_x^{n+\alpha}} & \text{Si } M_x > m \\
         \end{cases}
     \end{aligned}
     $$
@@ -363,16 +361,14 @@ vida profesional.
     Derive el _posterior_ y muestre que puede ser expresado como una distribución de 
     Pareto.
     <!-- @Murphy2012 -->
-    <!-- Hay que mejorar la redaccion y ver que la notacion es consistente -->
 
 1.  🧩 📌 **Inferencia sobre una distribución Exponencial**
 
     El tiempo de vida de una máquina en años $X$ es modelado con una distribución 
-    exponencial con parámetro $\theta$ desconocido. La función de densidad es 
-
+    exponencial con parámetro $\theta$ desconocido. La función de densidad es:
     $$
     \begin{array}{lcrr}
-    p(x | \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
+    p(x \mid \theta) = \theta e^{-\theta x} & \text{con} & x \ge 0, & \theta \ge 0
     \end{array}
     $$
 
@@ -401,15 +397,15 @@ vida profesional.
 1.  📌 **Otras distribuciones conjugadas (I)**
     
     Considere el siguiente modelo:
-
     $$
     \begin{array}{l}
-    Y\mid\theta \sim \text{Geom}(\theta) \\
-    \theta \sim \text{Beta}(\alpha,\beta)
+    Y \mid \theta \sim \text{Geometrica}(\theta) \\
+    \theta \sim \text{Beta}(\alpha, \beta)
     \end{array}
     $$
+
     donde la función de densidad de la distribución geométrica es 
-    $p(y\mid\theta) = \theta(1-\theta)^{y-1}$ para $y \in {1,2,\dots}$
+    $p(y \mid \theta) = \theta (1 - \theta)^{y-1}$ para $y \in {1,2,\dots}$
     
     i. ¿Qué debería ocurrir con la distribución _a posteriori_ de $\theta$ para poder 
     afirmar que la distribución geométrica es conjugada de la beta?
@@ -417,8 +413,7 @@ vida profesional.
 
 1.  📌 **Otras distribuciones conjugadas (II)**
 
-    Considere el siguiente modelo:
-    
+    Considere el siguiente modelo:    
     $$
     \begin{aligned}
     Y\mid\theta &\sim \text{BinomialNeg}(\theta, m) \\
@@ -428,18 +423,17 @@ vida profesional.
     
     donde la función de densidad de la distribución binomial negativa es 
     
-    $$p(y\mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y$$
+    $$
+    p(y \mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y
+    $$
     
     Obtenga la distribución _a posteriori_ de $\theta$.
     
 1.  🧩 **Otras distribuciones conjugadas (III)**
 
     Considere el siguiente modelo:
-    
     $$
-    \begin{array}{l}
-    Y\mid\theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
-    \end{array}
+    Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
     $$
 
     donde la función de densidad exponencial es $p(y \mid \theta) = \theta e^{-\theta y}$.

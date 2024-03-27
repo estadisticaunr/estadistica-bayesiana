@@ -669,7 +669,9 @@ dv |>
 
 . . .
 
-$$ y \mid \pi, N \sim Bi(N,\pi) $$
+$$
+Y \mid \pi, N \sim Bi(N,\pi)
+$$
 
 $$p(y\mid \pi, N) = {N \choose y }\pi^y (1-\pi)^{N-y} = p(y\mid \pi)$$
 
@@ -763,7 +765,7 @@ la distribución _a posteriori_ también es $\mathcal{F}$
 
 $$
 \begin{align*}
-    y\mid\pi & \sim  \text{Binoimal}(N,\pi)\\
+    Y \mid\pi & \sim  \text{Binoimal}(N,\pi)\\
     \pi & \sim  \text{Beta}(a,b)
 \end{align*}
 $$

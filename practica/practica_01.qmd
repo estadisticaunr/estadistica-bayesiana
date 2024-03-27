@@ -33,7 +33,7 @@ aplicación de la Regla de Bayes como se presenta tradicionalmente en un curso d
     Demuestra la validez de la siguiente expresión de la Regla de Bayes
 
     $$
-    P(B_j | A) = \frac{P(A | B_j) P(B_j)}{\sum_{k=1}^{K}P(A | B_k) P(B_k)}
+    P(B_j \mid A) = \frac{P(A \mid B_j) P(B_j)}{\sum_{k=1}^{K}P(A \mid B_k) P(B_k)}
     $$
 
     donde $A$ es un evento cualquiera y $\{B_1, \cdots, B_K\}$ forman una partición.
@@ -421,7 +421,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     $$
     \begin{array}{lc}
-    X_2|X_1 \sim \text{Binomial}(\lambda X_1, n) & \text{con} \ \lambda \in [0, 1]
+    X_2 \mid X_1 = x_1 \sim \text{Binomial}(\lambda x_1, n) & \text{con} \ \lambda \in [0, 1]
     \end{array}
     $$
 
@@ -434,10 +434,10 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     i. $P(X_1 = 0)$.
     i. $P(X_1 = 0, X_2 = 0)$.
     i. $P(X_2 = 0)$.
-    i. $P(X_1 = 0 | X_2 = 0)$.
-    i. $P(X_2 = 0 | X_1 = 0)$.
-    i. $P(X_1 = 0 | X_2 = 1)$.
-    i. $P(X_2 = 0 | X_1 = 1)$.
+    i. $P(X_1 = 0 \mid X_2 = 0)$.
+    i. $P(X_2 = 0 \mid X_1 = 0)$.
+    i. $P(X_1 = 0 \mid X_2 = 1)$.
+    i. $P(X_2 = 0 \mid X_1 = 1)$.
     i. Explique de manera intuitiva cómo es que las probabilidades calculadas en 
     (iv)-(vii) cambian según $n$, $\theta$ y $\lambda$.
     i. Asuma $\theta=0.5$, $\lambda=0.1$ y $X_2 = 0$ ¿Cuán grande debe ser $n$ para que 
@@ -464,7 +464,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
 
     $$
     \begin{aligned}
-    Y_t | \lambda &\underset{iid}{\sim} \text{Poisson}(\lambda) \\
+    Y_t \mid \lambda &\underset{iid}{\sim} \text{Poisson}(\lambda) \\
     \lambda       &\sim \text{Uniforme}(0, 100)
     \end{aligned}
     $$
@@ -478,7 +478,7 @@ probabilidad y la necesidad de dejar ciertos cálculos en manos de la computador
     El número de clientes que realizan una compra es $Y$ y se cumple que
 
     $$
-    Y | \theta, n \sim \text{Binomial}(\theta, n)
+    Y \mid \theta, n \sim \text{Binomial}(\theta, n)
     $$
 
     donde $\theta$ es la probabilidad de compra, dado que se produce la visita a la tienda.

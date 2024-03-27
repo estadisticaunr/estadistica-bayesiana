@@ -123,7 +123,7 @@ p5 <- ggplot(dv) +
 
 Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo Poisson, es decir:
 
-$$y_i \sim \mathrm{Poisson}(\lambda)$$
+$$Y_i \sim \mathrm{Poisson}(\lambda)$$
 
 Interesa realizar una inferencia sobre el valor de $\lambda$
 
@@ -134,16 +134,16 @@ Interesa realizar una inferencia sobre el valor de $\lambda$
 ##
 
 $$
-\lambda \sim \mathrm{Gamma}(r,s)
+\lambda \sim \mathrm{Gamma}(s, r)
 $$
 
 $$
-p(\lambda \mid r,s) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
+p(\lambda \mid s, r) = p(\lambda) = \frac{r^s}{\Gamma(s)} \lambda^{s-1}e^{-r\lambda}
 $$
 
 ::: {.callout-warning icon="true"}
 ## Cuidado
-$\mathrm{Gamma}(r,s)$ en R es `dgamma(x, shape = s, scale = 1/r)`
+$\mathrm{Gamma}(s, r)$ en R es `dgamma(x, shape = s, scale = 1/r)`
 :::
 
 ## {.smaller}
@@ -151,7 +151,7 @@ $\mathrm{Gamma}(r,s)$ en R es `dgamma(x, shape = s, scale = 1/r)`
 El modelo propuesto es
 $$
 \begin{align*}
-    y_i \mid \lambda & \sim  Po(\lambda)\\
+    Y_i \mid \lambda & \sim  Po(\lambda)\\
     \lambda & \sim  \mathrm{Gamma}(s, r)
 \end{align*}
 $$
@@ -196,7 +196,7 @@ $$K^* = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i + s)}$$
 
 . . .
 
-Por lo tanto, resulta que la distribución _a posteriori_ es Gamma de parámetros $n+r$ y $\sum_i y_i + s$
+Por lo tanto, resulta que la distribución _a posteriori_ es Gamma de parámetros $\sum_i y_i + s$ y $n+r$
 
 . . .
 
@@ -205,14 +205,14 @@ p(\lambda\mid \mathbf{y}) = \frac{(n + r )^{\sum_i y_i + s}}{\Gamma(\sum_i y_i +
 $$
 
 $$
-\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(n+r,\sum_i y_i + s)
+\lambda\mid \mathbf{y} \sim  \mathrm{Gamma}(\sum_i y_i + s, n+r)
 $$
 
 ## Normal-normal
 
 Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo normal con varianza conocida $\sigma^2$, es decir:
 
-$$y_i \sim \mathcal{N}(\mu,\sigma^2)$$
+$$Y_i \sim \mathcal{N}(\mu,\sigma^2)$$
 
 Interesa realizar una inferencia sobre el valor de $\mu$
 
@@ -238,7 +238,7 @@ El _likelihood_ es normal:
 $$
 \small{
   \begin{aligned} 
-  p(y_i\mid \mu) &= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \implies \\ 
+  p(y_i\mid \mu) &= \frac{1}{\sqrt{2\pi\sigma}} e^{-\frac{(y_i-\mu)^2}{2\sigma^2}} \rightarrow \\ 
   p(\mathbf{y}\mid \mu) &= \left(\frac{1}{2\pi\sigma}\right)^{n/2}  e^{-\frac{\sum_i(y_i-\mu)^2}{2\sigma^2}} \propto e^{-\frac{(\bar{y}-\mu)^2}{2\sigma^2/n}}
   \end{aligned}
 }
@@ -255,7 +255,7 @@ $$
 
 . . .
 
-Interesa hallar $p(\lambda\mid \mathbf{y})$
+Interesa hallar $p(\mu \mid \mathbf{y})$
 
 ## {.smaller}
 
@@ -490,7 +490,7 @@ La incertidumbre en $\tilde{y}$ proviene de la variabilidad debida al azar ($\si
 
 . . .
 
-En otras palabras, si supiéramos que $\mu = 2$, toda la variabilidad provendría de $\sigma$, ¡pero no sabemos cuánto vale $\mu$! Puede ser $2$ o $1,98$ o $1.43$... Por lo que hay una componente adicional de varianza.
+En otras palabras, si supiéramos que $\mu = 2$, toda la variabilidad provendría de $\sigma$, ¡pero no sabemos cuánto vale $\mu$! Puede ser $2$ o $1.98$ o $1.43$... Por lo que hay una componente adicional de varianza.
 
 ## {.smaller}
 
@@ -594,7 +594,7 @@ La distribución predictiva contiene la variabilidad inherente al fenómeno en e
 
 Sea una muestra $\mathbf{y} = (y_1,y_2,\dots,y_n)$ obtenida de un modelo normal con varianza desconocida $\sigma^2$, es decir:
 
-$$y_i \sim \mathcal{N}(\mu,\sigma^2)$$
+$$Y_i \sim \mathcal{N}(\mu,\sigma^2)$$
 
 E interesa realizar una inferencia sobre el valor de $\mu$ y el valor de $\sigma$
 
@@ -608,7 +608,7 @@ El modelo es
 
 $$
 \begin{align*}
-    X_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    Y_i\mid\mu,\sigma^2 & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 & \sim  \mathcal{N}GI(\theta,\tau,\alpha,\beta)
 \end{align*}
 $$
@@ -762,7 +762,7 @@ Reflexionemos...
 
 $$
 \begin{align*}
-    y_i\mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
+    Y_i \mid\mu & \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu & \sim  \mathcal{N}(\theta,\tau^2) \\
     \mu \mid \mathbf{y} & \sim \mathcal{N}(\theta_n,\tau_n^2)
 \end{align*}
