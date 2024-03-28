@@ -340,7 +340,14 @@ Ayuda
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>TO DO</p>
+<p>Plantee el modelo: <span class="math display">\[
+\begin{aligned}
+Y_F &amp; \sim \text{Poisson}(\lambda_F) \\
+Y_C &amp; \sim \text{Poisson}(\lambda_C) \\
+\lambda_F, \lambda_C &amp;\sim \text{Gamma}(\alpha, \beta)
+\end{aligned}
+\]</span></p>
+<p>utilizando valores razonables para <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(\beta\)</span>. Luego obtener el <em>posterior</em> y calcular <span class="math inline">\(P(\lambda_F &gt; \lambda_C)\)</span>. Para el segundo punto calcular <span class="math inline">\(P(\tilde{y}_F \mid y_F) &gt; P(\tilde{y}_C \mid y_C)\)</span>.</p>
 </div>
 </div>
 </div></li>
@@ -362,13 +369,13 @@ Ayuda
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>TO DO</p>
+<p>Sea <span class="math inline">\(Y =\)</span> cantidad de personas que reciben la vacuna y se contagian COVID-19. Plantee un modelo y obtenga el <em>posterior</em> de <span class="math inline">\(\theta_v\)</span>, la probabilidad de que una persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva <em>a posteriori</em> utilizando un <span class="math inline">\(N_v\)</span> grande y calcule <span class="math inline">\(P(\tilde{Y} &gt; 0)\)</span>.</p>
 </div>
 </div>
 </div></li>
 <li><p>💻 <strong>La regla del tres</strong></p>
 <p>Una estudiante de Licenciatura en Estadística está releyendo su tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas con al menos un <em>typo</em>, sería <em>razonable</em> estimar que la probabilidad de que una página contenga un <em>typo</em> es <span class="math inline">\(\frac{5}{20} = \frac{1}{4}\)</span>. ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?</p>
-<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la probabilidad de que una página contenga un <em>typo</em>), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, grafique la distribución <em>a priori</em> que se obtiene al haber observado 0 <em>typos</em> en 10 páginas y luego halle la probabilidad de que <span class="math inline">\(\tau &lt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span> (10, 100, 1000, 10000). <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p>
+<p>Verifcar que, partiendo de un <em>prior</em> uniforme, <span class="math inline">\(\frac{3}{N}\)</span> es una estimación razonable para <span class="math inline">\(\tau\)</span> (la probabilidad de que una página contenga un <em>typo</em>), siendo <span class="math inline">\(N\)</span> el número de páginas. Para ello, grafique la distribución <em>a posteriori</em> que se obtiene al haber observado 0 <em>typos</em> en 10 páginas y luego halle la probabilidad de que <span class="math inline">\(\tau &lt; \frac{3}{N}\)</span> para diferentes valores de <span class="math inline">\(N\)</span> (10, 100, 1000, 10000). <!-- https://www.johndcook.com/blog/2010/03/30/statistical-rule-of-three/ --></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -381,7 +388,7 @@ Ayuda
 </div>
 <div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>TO DO</p>
+<p>Considerar <span class="math inline">\(Y =\)</span> cantidad de páginas con al menos un <em>typo</em> en <span class="math inline">\(N\)</span> páginas. Asumir que la ocurrencia de <em>typos</em> entre páginas son independientes. El <em>prior</em> uniforme refiere a la probabilidad de cometer al menos un <em>typo</em> en una página, <span class="math inline">\(\tau\)</span>. Para los diferentes valores de <span class="math inline">\(N\)</span>, primero encontrar el <em>posterior</em> de <span class="math inline">\(\tau\)</span> y luego calcular <span class="math inline">\(P(\tau &lt; \frac{3}{N})\)</span>. ¿Qué se observa?</p>
 </div>
 </div>
 </div></li>
@@ -415,7 +422,21 @@ Ayuda
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>TO DO</p>
+<ol type="i">
+<li>Una distribución conveniente para la cantidad de bichos por metro cuadrado dado que se sabe que su promedio tiene un <em>prior</em> Gamma es la Poisson. A partir de eso es sencillo obtener el <em>posterior</em>.</li>
+<li>Primero resolverlo para 1 metro cuadrado, y luego para 10. Se puede hacer computacionalmente muestreando <span class="math inline">\(\lambda\)</span> del <em>posterior</em> y obteniendo muestras de la distribución de la respuesta usando los valores muestreados de <span class="math inline">\(\lambda\)</span>. También se puede resolver de manera teórica calculando la integral de la distribución predictiva <em>a posteriori</em>. Para eso tener en cuenta: <span class="math display">\[
+\begin{aligned}
+\Gamma(x + 1) &amp;= x! \\
+\int_0^{\infty} x^b e^{-ax} dx &amp;= \frac{\Gamma(b + 1)}{a ^ {b+1}}
+\end{aligned}
+\]</span> y que la función de masa de probabiliad la distribución binomial negativa se puede escribir como: <span class="math display">\[
+\begin{array}{ccc}
+p(k, \mid r, \pi) = P(X = k) = \displaystyle \frac{\Gamma(k + r)}{\Gamma(k + 1) \Gamma({r})}(1 - \pi)^k \pi^r,
+&amp; k \in \{0, 1, 2, \dots\},
+&amp; r &gt; 0
+\end{array}
+\]</span></li>
+</ol>
 </div>
 </div>
 </div></li>
