@@ -479,9 +479,9 @@ p(x \mid \alpha, m) = \frac{\alpha m^\alpha}{x^{\alpha+1}} \mathbb{I}(x \ge m)
 <p>Si el <em>prior</em> es una distribución de Pareto, la distribución conjunta de <span class="math inline">\(\theta\)</span> y <span class="math inline">\(\boldsymbol{X} = (X_1,..., X_n)\)</span> es <span class="math display">\[
 p(\theta, \boldsymbol{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
-    \mathbb{I}(\theta \ge \max(\boldsymbol{X}))
+    \mathbb{I}(\theta \ge \max(M_x, m))
 \]</span></p>
-<p>Llamando <span class="math inline">\(M_x = \text{max}(\boldsymbol{X})\)</span>. La evidencia es</p>
+<p>donde <span class="math inline">\(M_x = \text{max}(\boldsymbol{X})\)</span>. La evidencia es</p>
 <p><span class="math display">\[
 \begin{aligned}
 p(\boldsymbol{X}) &amp;= \int_{M_x}^\infty
