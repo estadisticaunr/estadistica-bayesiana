@@ -340,10 +340,10 @@ vida profesional.
     $$
     p(\theta, \boldsymbol{X}) 
         = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}} 
-        \mathbb{I}(\theta \ge \max(\boldsymbol{X}))
+        \mathbb{I}(\theta \ge \max(M_x, m))
     $$
 
-    Llamando $M_x = \text{max}(\boldsymbol{X})$. 
+    donde $M_x = \text{max}(\boldsymbol{X})$. 
     La evidencia es
 
     $$
