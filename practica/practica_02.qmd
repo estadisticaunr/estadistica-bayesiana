@@ -159,8 +159,18 @@ vida profesional.
 
     ## Ayuda
     
-    TO DO
-    
+    Plantee el modelo:
+    $$
+    \begin{aligned}
+    Y_F & \sim \text{Poisson}(\lambda_F) \\
+    Y_C & \sim \text{Poisson}(\lambda_C) \\
+    \lambda_F, \lambda_C &\sim \text{Gamma}(\alpha, \beta)
+    \end{aligned}
+    $$
+
+    utilizando valores razonables para $\alpha$ y $\beta$. Luego obtener el _posterior_
+    y calcular $P(\lambda_F > \lambda_C)$. Para el segundo punto calcular 
+    $P(\tilde{y}_F \mid y_F) > P(\tilde{y}_C \mid y_C)$.
     :::
 
 1.  **Mirá si me va a pasar a mi...**
@@ -184,7 +194,10 @@ vida profesional.
 
     ## Ayuda
     
-    TO DO
+    Sea $Y =$ cantidad de personas que reciben la vacuna y se contagian COVID-19.
+    Plantee un modelo y obtenga el _posterior_ de $\theta_v$, la probabilidad de que una
+    persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva
+    _a posteriori_ utilizando un $N_v$ grande y calcule $P(\tilde{Y} > 0)$.
     
     :::
 
@@ -192,14 +205,13 @@ vida profesional.
 
     Una estudiante de Licenciatura en Estadística está releyendo su
     tesina antes de entregarla. Si en 20 páginas encontrase 5 de ellas
-    con al menos un _typo_,
-    sería _razonable_ estimar que la probabilidad de que una página
-    contenga un _typo_ es $\frac{5}{20} = \frac{1}{4}$.
+    con al menos un _typo_, sería _razonable_ estimar que la probabilidad de que una 
+    página contenga un _typo_ es $\frac{5}{20} = \frac{1}{4}$.
     ¿Pero qué ocurre si en 20 páginas no encuentra ningún error?
     
     Verifcar que, partiendo de un _prior_ uniforme, $\frac{3}{N}$ es una estimación 
     razonable para $\tau$ (la probabilidad de que una página contenga un _typo_), 
-    siendo $N$ el número de páginas. Para ello, grafique la distribución _a priori_
+    siendo $N$ el número de páginas. Para ello, grafique la distribución _a posteriori_
     que se obtiene al haber observado 0 _typos_ en 10 páginas y luego halle 
     la probabilidad de que $\tau < \frac{3}{N}$ para diferentes valores de 
     $N$ (10, 100, 1000, 10000). 
@@ -209,7 +221,11 @@ vida profesional.
 
     ## Ayuda
     
-    TO DO
+    Considerar $Y =$ cantidad de páginas con al menos un _typo_ en $N$ páginas. 
+    Asumir que la ocurrencia de _typos_ entre páginas son independientes. 
+    El _prior_ uniforme refiere a la probabilidad de cometer al menos un _typo_ en una
+    página, $\tau$. Para los diferentes valores de $N$, primero encontrar el _posterior_ 
+    de $\tau$ y luego calcular $P(\tau < \frac{3}{N})$. ¿Qué se observa?
     
     :::
 
@@ -245,7 +261,30 @@ vida profesional.
 
     ## Ayuda
     
-    TO DO
+    i. Una distribución conveniente para la cantidad de bichos por metro cuadrado
+    dado que se sabe que su promedio tiene un _prior_ Gamma es la Poisson. 
+    A partir de eso es sencillo obtener el _posterior_.
+    ii. Primero resolverlo para 1 metro cuadrado, y luego para 10. Se puede hacer 
+    computacionalmente muestreando $\lambda$ del _posterior_ y obteniendo
+    muestras de la distribución de la respuesta usando los valores muestreados de $\lambda$. 
+    También se puede resolver de manera teórica calculando la integral de la distribución 
+    predictiva _a posteriori_. Para eso tener en cuenta:
+    $$
+    \begin{aligned}
+    \Gamma(x + 1) &= x! \\
+    \int_0^{\infty} x^b e^{-ax} dx &= \frac{\Gamma(b + 1)}{a ^ {b+1}}
+    \end{aligned}
+    $$
+    y que la función de masa de probabiliad la distribución binomial negativa se puede 
+    escribir como:
+    $$
+    \begin{array}{ccc}
+    p(k, \mid r, \pi) = P(X = k) = \displaystyle \frac{\Gamma(k + r)}{\Gamma(k + 1) \Gamma({r})}(1 - \pi)^k \pi^r,
+    & k \in \{0, 1, 2, \dots\},
+    & r > 0
+    \end{array}
+    $$
+
     
     :::
 
