@@ -194,7 +194,7 @@ vida profesional.
 
     ## Ayuda
     
-    Sea $Y =$ cantidad de personas que reciben la vacuna y se contagian COVID-19.
+    Sea $Y$ laf cantidad de personas que reciben la vacuna y se contagian COVID-19.
     Plantee un modelo y obtenga el _posterior_ de $\theta_v$, la probabilidad de que una
     persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva
     _a posteriori_ utilizando un $N_v$ grande y calcule $P(\tilde{Y} > 0)$.
@@ -292,7 +292,7 @@ vida profesional.
 
     El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. 
     Sus colegas les dijeron que el puntaje promedio en un examen final, $\mu$, varía normalmente año a año
-    con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes $Y$ varían
+    con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de los estudiantes $Y$ varían
     normalmente alrededor de $\mu$ con una desviación estándar de 0.4
     
     i. ¿Cuál es la probabilidad _a priori_ de que un estudiante se saque más de 9 en un examen final?
@@ -341,7 +341,7 @@ vida profesional.
     
     Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.
     
-    i. Graficar la verosimilitud de $\lambda$.
+    i. Graficar la función de verosimilitud.
     i. Determinar la distribución _a posteriori_ de $\lambda$.
     i. ¿Cuál es la probabilidad _a posteriori_ de que la tasa de mensajes sea mayor a 10? 
     i. ¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?
@@ -383,8 +383,7 @@ vida profesional.
     $$
 
     donde $M_x = \text{max}(\boldsymbol{X})$. 
-    La evidencia es
-
+    La evidencia es:
     $$
     \begin{aligned}
     p(\boldsymbol{X}) &= \int_{M_x}^\infty
@@ -426,9 +425,9 @@ vida profesional.
     Elija un valor para el hiperparámetro $\lambda$ de la distribución _a priori_ tal que
     $\mathbb{E}(\theta) = 1/3$. Utilice $\lambda_0$ para representar al valor.
 
-    i. ¿Cuál es el _posterior_ $p(\theta \mid \boldsymbol{X}, \lambda_0)$?
+    i. ¿Cuál es el _posterior_ $p(\theta \mid \boldsymbol{x}, \lambda_0)$?
     i. ¿Es la distribución exponencial conjugada con un _likelihood_ exponencial?
-    i. Encuentre la media del _posterior_, $\mathbb{E}(\theta \mid \boldsymbol{X}, \lambda_0)$
+    i. Encuentre la media del _posterior_, $\mathbb{E}(\theta \mid \boldsymbol{x}, \lambda_0)$
     i. Explique por que difieren el estimador MV de la media _a posteriori_. 
     ¿Cuál es más razonable en este ejemplo?
     <!-- @Murphy2012 -->
@@ -438,7 +437,7 @@ vida profesional.
     Considere el siguiente modelo:
     $$
     \begin{array}{l}
-    Y \mid \theta \sim \text{Geometrica}(\theta) \\
+    Y \mid \theta \sim \text{Geométrica}(\theta) \\
     \theta \sim \text{Beta}(\alpha, \beta)
     \end{array}
     $$
@@ -460,8 +459,7 @@ vida profesional.
     \end{aligned}
     $$
     
-    donde la función de densidad de la distribución binomial negativa es 
-    
+    donde la función de densidad de la distribución binomial negativa es:
     $$
     p(y \mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y
     $$
@@ -472,13 +470,13 @@ vida profesional.
 
     Considere el siguiente modelo:
     $$
-    Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
+    Y \mid \theta \sim \text{Exponencial}(\theta) = \text{Gamma}(1,\theta)
     $$
 
     donde la función de densidad exponencial es $p(y \mid \theta) = \theta e^{-\theta y}$.
     
     Elija una distribución _a priori_ conjugada de la verosimilitud propuesta y obtenga 
-    la expresión para la distribución de probabilidad _a posteriori_
+    la expresión para la distribución de probabilidad _a posteriori_.
     <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) -->
 
 ## 💻 Simulaciones
@@ -493,7 +491,7 @@ ambos enfoques.
 
 1.  📌 **Entrada en calor**
 
-    Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad
+    Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad.
     
     i. Intervalo del 95\% para $\pi$ siendo $\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)$.
     i. Intervalo del 60\% para $\pi$ siendo $\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)$.
@@ -620,9 +618,15 @@ de probabilidad como herramienta para reflejar información de un problema deter
 
 1. ✍️ 📌 **Distribución predictiva a posteriori**
 
-    Considere un modelo $y\mid \theta \sim \mathrm{Bin}(\theta,n)$, donde $\theta$ puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ que se muestra en la parte superior de la @fig-ppd.
+    Considere un modelo $Y \mid \theta \sim \text{Binomial}(\theta, n)$, donde $\theta$ 
+    puede tomar valores discretos $0,\ 0.1,\ 0.2,\ \dots,\ 1$. 
+    Se realizaron inferencias sobre $\theta$ y se obtuvo la distribución _a posteriori_ 
+    que se muestra en la parte superior de la @fig-ppd.
 
-    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la @fig-ppd.
+    Se desea obtener la distribución predictiva _a posteriori_ para el número de éxitos 
+    $\tilde{y}$ en $n=5$ nuevas realizaciones del experimento. 
+    Cada valor de $\theta$ da lugar a una posible distribución de $\tilde{y}$ de acuerdo a
+    la verosimilitud binomial, como se observa en la parte inferior de la @fig-ppd.
     
 ```{r}
 #| warning: false
@@ -633,34 +637,41 @@ de probabilidad como herramienta para reflejar información de un problema deter
 #| fig-cap: Distribución _a posteriori_ y distribución predictiva _a posteriori_
 #| label: fig-ppd
 
-dv <- 
-tibble(theta = c(0.3,0.4,0.5,0.6,0.7),
-       post = c(0.1,0.2,0.5,0.1,0.1)) |>
-  tidyr::crossing(y=0:5) |>
-  mutate(prob = dbinom(y,5,theta))
+dv <- tibble(
+    theta = c(0.3, 0.4, 0.5, 0.6, 0.7),
+    post = c(0.1, 0.2, 0.5, 0.1, 0.1)
+) |>
+  tidyr::crossing(y = 0:5) |>
+  mutate(prob = dbinom(y, 5, theta))
 
-p1 <- 
-dv |>
-  distinct(theta,post) |>
+p1 <- dv |>
+  distinct(theta, post) |>
   ggplot() +
-  geom_segment(aes(x=theta,xend=theta,y=0,yend=post),linewidth=2,lineend="round") +
+  geom_segment(
+    aes(x = theta, xend = theta, y = 0, yend = post), 
+    linewidth = 2, 
+    lineend = "round"
+  ) +
   xlab("θ") +
   ylab("p(θ|y)") +
-  scale_x_continuous(limits = c(0,1),breaks = seq(0,1,0.1), expand=c(0,0)) +
-  scale_y_continuous(expand=c(0,0,0,0.05)) +
+  scale_x_continuous(limits = c(0, 1),breaks = seq(0, 1, 0.1), expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0, 0, 0.05)) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank(),
-        plot.margin = unit(c(0.1,0.2,0.1,0.1), "npc"))
+        plot.margin = unit(c(0.1, 0.2, 0.1, 0.1), "npc"))
 
-p2 <- 
-dv |>
+p2 <- dv |>
   ggplot() +
-  geom_segment(aes(x=y,xend=y,y=0,yend=prob), linewidth=1.5, lineend="round") +
-  facet_grid(.~paste0("θ = ",theta)) +
-  scale_y_continuous(expand=c(0,0,0,0.05)) +
+  geom_segment(
+    aes(x = y, xend = y, y = 0, yend = prob), 
+    linewidth = 1.5, 
+    lineend="round"
+  ) +
+  facet_grid(. ~ paste0("θ = ", theta)) +
+  scale_y_continuous(expand=c(0, 0, 0, 0.05)) +
   xlab(expression(tilde(y))) +
-  ylab(expression("p("*tilde(y)*"|"*theta*")")) +
+  ylab(expression("p(" * tilde(y) * "|" * theta * ")")) +
   theme_bw() +
   theme(panel.grid.minor = element_blank(),
         panel.grid.major.x = element_blank())
@@ -669,7 +680,6 @@ layout <- "
 #AAAA#
 BBBBBB
 "
-
 
 p1 + p2 + 
   plot_layout(design = layout)
@@ -684,36 +694,3 @@ p1 + p2 +
 
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
     Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
-
-<!-- 
-## Notas
-
-En algún lado podríamos tener un glosario, o algo del estilo. El
-objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de
-las distribuciones que utilizamos por defecto. Acá podriamos mostrar que
-usamos $\text{Beta}(a, b)$ con
-$\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}$ 
-
-
-Let $\pi$  be a random variable which can take any value between 0 and 1, i.e.,  
-$\pi \in [0,1]$. Then the variability in $\pi$ might be well modeled by a Beta model 
-with **shape hyperparameters** $\alpha > 0$ and $\beta > 0$:
-
-$\pi \sim \text{Beta}(\alpha, \beta).$
-
-
-$$
-\begin{equation}
-f(\pi) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} \pi^{\alpha-1} (1-\pi)^{\beta-1} \;\; \text{ for } \pi \in [0,1] \tag{3.1}
-\end{equation}
-$$
-
-$\Gamma(z) = \int_0^\infty x^{z-1}e^{-y}dx$ $\Gamma(z + 1) = z \Gamma(z)$
-
-Fun fact: 
-when  $z$ is a positive integer, then  $\Gamma(z)$ simplifies to  $\Gamma(z) = (z-1)!$
-
-**Hyperparameter**
-
-A hyperparameter is a parameter used in a prior model.
--->
