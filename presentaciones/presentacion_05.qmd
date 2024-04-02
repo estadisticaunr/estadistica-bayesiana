@@ -52,7 +52,7 @@ Típicamente interesa resolver los siguientes problemas:
 
 . . .
 
-En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de alguna distribución de probabilidad y $p(x)$ es el _posterior_
+En la estadística bayesiana, $x$ es $\theta$, el parámetro desconocido de alguna distribución de probabilidad y $p(x)$ es el _posterior_.
 
 ## Métodos de Montecarlo
 
@@ -84,7 +84,7 @@ Esto ya lo hemos hecho
 
 . . .
 
--   La distribución predictiva _a posteriori_ es $\int p(y\mid \theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N p(y\mid \theta_i)$
+-   La distribución predictiva _a posteriori_ es $\int p(\tilde{y} \mid \theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N p(\tilde{y}\mid \theta_i)$
 -   El riesgo bayesiano es $\int L(\theta,\hat\theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)$
 -   Si consideramos la integral $\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta$ es la probabilidad de que $\theta$ esté en $A$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}$
 
@@ -98,7 +98,9 @@ Para algunas distribuciones de probabilidad es fácil obtener muestras. Pero no 
 
 ## {.smaller}
 
-Tomar muestras de una distribución de probabilidad $p(x)$ implica obtener valores que provienen, con mayor frecuencia, de regiones donde $p(x)$ es grande. ¿Por qué es difícil tomar muestras de una distribución de probabilidad? 
+Tomar muestras de una distribución de probabilidad $p(x)$ implica obtener valores que provienen, con mayor frecuencia, de regiones donde $p(x)$ es grande. 
+
+¿Por qué es difícil tomar muestras de una distribución de probabilidad? 
 
 . . .
 
@@ -153,7 +155,7 @@ Evaluando $\tilde{p}$ en **todos los posibles $x_i$ de la grilla** podemos calcu
 #| warning: false
 #| echo: false
 #| fig-width: 22
-#| fig-height: 9
+#| fig-height: 8
 #| fig-align: center
 
 prob_bimod <- function(x) return(exp(0.4*(x-0.4)^2 - 0.08*x^4))
@@ -203,9 +205,9 @@ p_rulito <- p_/Z # ~p
 sample(x, replace = TRUE, prob = p_rulito)
 ```
 
-##
+## 
 
-¿Cómo se aplica esto en estadística bayesiana?
+**¿Cómo se aplica esto en estadística bayesiana?**
 
 . . .
 
@@ -217,7 +219,7 @@ Podemos considerar una grilla de valores del parámetro (o los parámetros), com
 
 . . .
 
-Escala muy mal con el número de parámetros...
+**Pero**, escala muy mal con el número de parámetros...
 
 ## {.smaller}
 
@@ -231,7 +233,7 @@ $$
     \mu,\sigma^2 & \sim  \frac{1}{K} \frac{e^{-\sigma^2}}{\eta} e^{-\frac{(\mu - \xi)^2}{2\psi^2}}
 \end{align*}
 $$
-(¿Cuáles son las constantes que ajustan el _prior_)
+(¿Cuáles son las constantes que ajustan el _prior_?)
 
 
 ```{r rejection1}
@@ -243,7 +245,6 @@ $$
 
 dv <- expand.grid(mu = seq(-4, 4, 0.05),
                   sigma = seq(0, 3, 0.05))
-
 xi <- 0
 psi <- 0.5
 eta <- 0.1
@@ -669,16 +670,24 @@ Es necesario resolver estas ecuaciones... Queremos hallar la posición ($\theta$
 ##
 
 Se tiene:
+$$
+\small{
+  \begin{aligned}
+  \frac{dv}{dt} &\approx \frac{v_{t+\varepsilon} - v_{t}}{\varepsilon} = \frac{v_{t_2} - v_{t_1}}{\varepsilon} \\
+  \frac{d\theta}{dt} &\approx \frac{\theta_{t+\varepsilon} - \theta_{t}}{\varepsilon} = \frac{\theta_{t_2} - \theta_{t_1}}{\varepsilon}
+  \end{aligned}
+}
+$$
 
-$$\frac{dv}{dt} \approx \frac{v_{t+\varepsilon} - v_{t}}{\varepsilon} = \frac{v_{t_2} - v_{t_1}}{\varepsilon}$$
-
-$$\frac{d\theta}{dt} \approx \frac{\theta_{t+\varepsilon} - \theta_{t}}{\varepsilon} = \frac{\theta_{t_2} - \theta_{t_1}}{\varepsilon}$$
-
-con lo cual
-
-$$v_{t_2} = v_{t_1} + \varepsilon \frac{dv}{dt} = v_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}$$
-
-$$\theta_{t_2} = \theta_{t_1} + \varepsilon \frac{d\theta}{dt} = \theta_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}$$
+con lo cual:
+$$
+\small{
+  \begin{aligned}
+  v_{t_2} &= v_{t_1} + \varepsilon \frac{dv}{dt} = v_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta} \\
+  \theta_{t_2} &= \theta_{t_1} + \varepsilon \frac{d\theta}{dt} = \theta_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}
+  \end{aligned}
+}
+$$
 
 Estas aproximaciones no son buenas...
 
