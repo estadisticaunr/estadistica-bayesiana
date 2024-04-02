@@ -1,5 +1,5 @@
 ---
-title: "02 - Diferentes observaciones, diferentes posteriors"
+title: "03 - Diferentes observaciones, diferentes posteriors"
 ---
 
 Este programa obtiene la distribución _a posteriori_ para los diferentes trabajadores
@@ -7,6 +7,8 @@ del ejercicio **Diferentes observaciones, diferentes _posteriors_** de la Práct
 
 ```{r}
 #| echo: true
-#| eval: false 
-#| file: scripts/02_diferentes_posteriors.R
+#| eval: true
+#| fig-width: 8
+#| fig-align: center
+#| file: scripts/03_diferentes_posteriors.R
 ```

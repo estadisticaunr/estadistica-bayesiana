@@ -1,11 +1,10 @@
 ---
-title: "03 - Función de verosimilitud Poisson"
+title: "04 - Función de verosimilitud Poisson"
 ---
 
 Este programa grafica la función de verosimilitud cuando se obtiene una muestra
 de $n$ realizaciones independientes de una distribución Poisson. Se utiliza en el 
 ejercicio **El modelo Gamma-Poisson** de la Práctica 2.
-
 
 $$
 \begin{array}{lcc}
@@ -26,6 +25,8 @@ $$
 
 ```{r}
 #| echo: true
-#| eval: false 
-#| file: scripts/03_likelihood_poisson.R
+#| eval: true
+#| fig-width: 8
+#| fig-align: center
+#| file: scripts/04_likelihood_poisson.R
 ```

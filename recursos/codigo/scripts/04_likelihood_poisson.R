@@ -1,4 +1,6 @@
 # Cantidad de mensajes observados
+library(ggplot2)
+
 mensajes <- c(7, 3, 8, 9, 10, 12)
 
 # Opción 1: Escribiendo la función de verosimilitud analíticamente
@@ -14,7 +16,10 @@ lambda <- seq(0, 20, length.out = 200)
 verosimilitud <- exp(-n * lambda) * lambda ^ total / producto_factoriales
 
 # Visualización de la verosimilitud para los valores de lambda en la grilla
-plot(lambda, verosimilitud, type = "l")
+data.frame(x = lambda, y = verosimilitud) |>
+    ggplot() +
+    geom_line(aes(x = x, y = y), linewidth = 1) +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
 
 # Opción 2: Utilizando 'dpois'.
 # Para cada valor observado, se evalúa la pmf de la Poisson en una grilla
@@ -26,4 +31,8 @@ plot(lambda, verosimilitud, type = "l")
 mensajes_matriz <- matrix(rep(mensajes, 200), nrow = 200, byrow = TRUE)
 pmf <- dpois(mensajes_matriz, lambda)
 verosimilitud <- apply(pmf, 1, prod)
-plot(lambda, verosimilitud, type = "l")
+
+data.frame(x = lambda, y = verosimilitud) |>
+    ggplot() +
+    geom_line(aes(x = x, y = y), linewidth = 1) +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))

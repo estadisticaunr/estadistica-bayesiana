@@ -24,4 +24,5 @@ datos <- data.frame(
 # * Las areas tienen un color de relleno distinto para cada valor en "trabajador"
 ggplot(datos, aes(x = pi, y = posterior, color = trabajador)) +
   geom_line() + 
-  geom_area(aes(fill = trabajador), alpha = 0.5, position = "identity")
+  geom_area(aes(fill = trabajador), alpha = 0.4, position = "identity") +
+  labs(x = expression(pi), y = expression("p(" ~ pi ~ "| y)"))

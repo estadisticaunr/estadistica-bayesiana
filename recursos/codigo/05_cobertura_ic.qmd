@@ -7,6 +7,8 @@ inferencias bayesianas** de la Práctica 2.
 
 ```{r}
 #| echo: true
-#| eval: false 
+#| eval: true
+#| fig-width: 8
+#| fig-align: center
 #| file: scripts/05_cobertura_ic.R
 ```
