@@ -369,7 +369,7 @@ Ayuda
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Sea <span class="math inline">\(Y =\)</span> cantidad de personas que reciben la vacuna y se contagian COVID-19. Plantee un modelo y obtenga el <em>posterior</em> de <span class="math inline">\(\theta_v\)</span>, la probabilidad de que una persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva <em>a posteriori</em> utilizando un <span class="math inline">\(N_v\)</span> grande y calcule <span class="math inline">\(P(\tilde{Y} &gt; 0)\)</span>.</p>
+<p>Sea <span class="math inline">\(Y\)</span> laf cantidad de personas que reciben la vacuna y se contagian COVID-19. Plantee un modelo y obtenga el <em>posterior</em> de <span class="math inline">\(\theta_v\)</span>, la probabilidad de que una persona vacunada se contagie de COVID-19. Luego obtenga la distribución predictiva <em>a posteriori</em> utilizando un <span class="math inline">\(N_v\)</span> grande y calcule <span class="math inline">\(P(\tilde{Y} &gt; 0)\)</span>.</p>
 </div>
 </div>
 </div></li>
@@ -441,7 +441,7 @@ p(k, \mid r, \pi) = P(X = k) = \displaystyle \frac{\Gamma(k + r)}{\Gamma(k + 1) 
 </div>
 </div></li>
 <li><p>📌 <strong>Alter-ego</strong></p>
-<p>El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. Sus colegas les dijeron que el puntaje promedio en un examen final, <span class="math inline">\(\mu\)</span>, varía normalmente año a año con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de lxs estudiantes <span class="math inline">\(Y\)</span> varían normalmente alrededor de <span class="math inline">\(\mu\)</span> con una desviación estándar de 0.4</p>
+<p>El profesor Caprista y el profesor Evangetto están dando sus primeros cursos de Estadística Bayesiana. Sus colegas les dijeron que el puntaje promedio en un examen final, <span class="math inline">\(\mu\)</span>, varía normalmente año a año con media 8 y desvío estándar 0.4. Y además, que los puntajes individuales de los estudiantes <span class="math inline">\(Y\)</span> varían normalmente alrededor de <span class="math inline">\(\mu\)</span> con una desviación estándar de 0.4</p>
 <ol type="i">
 <li>¿Cuál es la probabilidad <em>a priori</em> de que un estudiante se saque más de 9 en un examen final?</li>
 <li>El profesor Caprista toma el examen final y observa que sus 20 estudiantes obtuvieron una nota media de 8.6. Halle la distribución <em>a posteriori</em> de <span class="math inline">\(\mu\)</span>.</li>
@@ -475,7 +475,7 @@ Recuerde que la media de una distribución <span class="math inline">\(\text{Gam
 </ol>
 <p>Se sondea a un grupo de seis personas que recibieron 7, 3, 8, 9, 10 y 12 mensajes en la última hora.</p>
 <ol type="i">
-<li>Graficar la verosimilitud de <span class="math inline">\(\lambda\)</span>.</li>
+<li>Graficar la función de verosimilitud.</li>
 <li>Determinar la distribución <em>a posteriori</em> de <span class="math inline">\(\lambda\)</span>.</li>
 <li>¿Cuál es la probabilidad <em>a posteriori</em> de que la tasa de mensajes sea mayor a 10?</li>
 <li>¿Cuántos mensajes se espera ahora que reciba una persona en promedio en una hora?</li>
@@ -502,8 +502,7 @@ p(\theta, \boldsymbol{X})
     = \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
     \mathbb{I}(\theta \ge \max(M_x, m))
 \]</span></p>
-<p>donde <span class="math inline">\(M_x = \text{max}(\boldsymbol{X})\)</span>. La evidencia es</p>
-<p><span class="math display">\[
+<p>donde <span class="math inline">\(M_x = \text{max}(\boldsymbol{X})\)</span>. La evidencia es: <span class="math display">\[
 \begin{aligned}
 p(\boldsymbol{X}) &amp;= \int_{M_x}^\infty
                  \frac{\alpha m^\alpha}{\theta^{n + \alpha + 1}}
@@ -530,15 +529,15 @@ p(x \mid \theta) = \theta e^{-\theta x} &amp; \text{con} &amp; x \ge 0, &amp; \t
 p(\theta \mid \lambda) &amp;= \lambda e^{-\lambda \theta}
 \end{aligned}
 \]</span> Elija un valor para el hiperparámetro <span class="math inline">\(\lambda\)</span> de la distribución <em>a priori</em> tal que <span class="math inline">\(\mathbb{E}(\theta) = 1/3\)</span>. Utilice <span class="math inline">\(\lambda_0\)</span> para representar al valor.</p></li>
-<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta \mid \boldsymbol{X}, \lambda_0)\)</span>?</p></li>
+<li><p>¿Cuál es el <em>posterior</em> <span class="math inline">\(p(\theta \mid \boldsymbol{x}, \lambda_0)\)</span>?</p></li>
 <li><p>¿Es la distribución exponencial conjugada con un <em>likelihood</em> exponencial?</p></li>
-<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta \mid \boldsymbol{X}, \lambda_0)\)</span></p></li>
+<li><p>Encuentre la media del <em>posterior</em>, <span class="math inline">\(\mathbb{E}(\theta \mid \boldsymbol{x}, \lambda_0)\)</span></p></li>
 <li><p>Explique por que difieren el estimador MV de la media <em>a posteriori</em>. ¿Cuál es más razonable en este ejemplo? <!-- @Murphy2012 --></p></li>
 </ol></li>
 <li><p>📌 <strong>Otras distribuciones conjugadas (I)</strong></p>
 <p>Considere el siguiente modelo: <span class="math display">\[
 \begin{array}{l}
-Y \mid \theta \sim \text{Geometrica}(\theta) \\
+Y \mid \theta \sim \text{Geométrica}(\theta) \\
 \theta \sim \text{Beta}(\alpha, \beta)
 \end{array}
 \]</span></p>
@@ -555,17 +554,16 @@ Y\mid\theta &amp;\sim \text{BinomialNeg}(\theta, m) \\
 \theta &amp;\sim \text{Beta}(\alpha,\beta)
 \end{aligned}
 \]</span></p>
-<p>donde la función de densidad de la distribución binomial negativa es</p>
-<p><span class="math display">\[
+<p>donde la función de densidad de la distribución binomial negativa es: <span class="math display">\[
 p(y \mid \theta, m) = {y+m-1 \choose y} \theta^{m} (1-\theta)^y
 \]</span></p>
 <p>Obtenga la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span>.</p></li>
 <li><p>🧩 <strong>Otras distribuciones conjugadas (III)</strong></p>
 <p>Considere el siguiente modelo: <span class="math display">\[
-Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
+Y \mid \theta \sim \text{Exponencial}(\theta) = \text{Gamma}(1,\theta)
 \]</span></p>
 <p>donde la función de densidad exponencial es <span class="math inline">\(p(y \mid \theta) = \theta e^{-\theta y}\)</span>.</p>
-<p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em> <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) --></p></li>
+<p>Elija una distribución <em>a priori</em> conjugada de la verosimilitud propuesta y obtenga la expresión para la distribución de probabilidad <em>a posteriori</em>. <!-- Nota: Es la parametrizacion de la gamma basada en forma y escala (versus forma y _rate_) --></p></li>
 </ol>
 </section>
 <section id="simulaciones" class="level2">
@@ -573,7 +571,7 @@ Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <p>A diferencia de la sección anterior, que requiere resolver los ejercicios a mano y promueve el uso de la computadora y R de manera complementaria, esta sección contiene ejercicios que deben ser resueltos mediante técnicas de simulación implementadas en R. Es posible que en algunos casos también se pueda obtener una solución analítica. En estos casos, puede resultar de utilidad obtener también una solución a mano para validar el resultado, evaluar el nivel de dificultad y ver que tan intuitivo resultan ambos enfoques.</p>
 <ol type="1">
 <li><p>📌 <strong>Entrada en calor</strong></p>
-<p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad</p>
+<p>Para cada una de las siguientes situaciones, hallar los intervalos centrales de credibilidad.</p>
 <ol type="i">
 <li>Intervalo del 95% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)\)</span>.</li>
 <li>Intervalo del 60% para <span class="math inline">\(\pi\)</span> siendo <span class="math inline">\(\pi\mid \boldsymbol{y} \sim \text{Beta}(4,5)\)</span>.</li>
@@ -659,7 +657,7 @@ Y \mid \theta \sim \text{Exp}(\theta) = \text{Gamma}(1,\theta)
 <h2 class="anchored" data-anchor-id="otros">Otros</h2>
 <ol type="1">
 <li><p>✍️ 📌 <strong>Distribución predictiva a posteriori</strong></p>
-<p>Considere un modelo <span class="math inline">\(y\mid \theta \sim \mathrm{Bin}(\theta,n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la <a href="#fig-ppd" class="quarto-xref">Figura&nbsp;1</a>.</p>
+<p>Considere un modelo <span class="math inline">\(Y \mid \theta \sim \text{Binomial}(\theta, n)\)</span>, donde <span class="math inline">\(\theta\)</span> puede tomar valores discretos <span class="math inline">\(0,\ 0.1,\ 0.2,\ \dots,\ 1\)</span>. Se realizaron inferencias sobre <span class="math inline">\(\theta\)</span> y se obtuvo la distribución <em>a posteriori</em> que se muestra en la parte superior de la <a href="#fig-ppd" class="quarto-xref">Figura&nbsp;1</a>.</p>
 <p>Se desea obtener la distribución predictiva <em>a posteriori</em> para el número de éxitos <span class="math inline">\(\tilde{y}\)</span> en <span class="math inline">\(n=5\)</span> nuevas realizaciones del experimento. Cada valor de <span class="math inline">\(\theta\)</span> da lugar a una posible distribución de <span class="math inline">\(\tilde{y}\)</span> de acuerdo a la verosimilitud binomial, como se observa en la parte inferior de la <a href="#fig-ppd" class="quarto-xref">Figura&nbsp;1</a>.</p></li>
 </ol>
 <div class="cell" data-layout-align="center">
@@ -684,38 +682,6 @@ Figura&nbsp;1: Distribución <em>a posteriori</em> y distribución predictiva <e
 </ol>
 <!-- 1.  **To Do** Problema de rankear cinco tratamientos. Se tienen los puntajes de diez tratamientos, ${\theta_1,\theta_2,\dots,\theta_10}$.
     Se dan muestras de las distribuciones _a posteriori_, $p(\theta_i\mid y)$. ¿Cuál de los tratamientos es mejor? -->
-<!-- 
-## Notas
-
-En algún lado podríamos tener un glosario, o algo del estilo. El
-objetivo es despejar dudas, por ejemplo, sobre las parametrizaciones de
-las distribuciones que utilizamos por defecto. Acá podriamos mostrar que
-usamos $\text{Beta}(a, b)$ con
-$\text{pdf}(x) = \frac{\Gamma(a + b)}{\Gamma(a) + \Gamma(b)} x^{a-1}(1-x)^{b-1}$ 
-
-
-Let $\pi$  be a random variable which can take any value between 0 and 1, i.e.,  
-$\pi \in [0,1]$. Then the variability in $\pi$ might be well modeled by a Beta model 
-with **shape hyperparameters** $\alpha > 0$ and $\beta > 0$:
-
-$\pi \sim \text{Beta}(\alpha, \beta).$
-
-
-$$
-\begin{equation}
-f(\pi) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} \pi^{\alpha-1} (1-\pi)^{\beta-1} \;\; \text{ for } \pi \in [0,1] \tag{3.1}
-\end{equation}
-$$
-
-$\Gamma(z) = \int_0^\infty x^{z-1}e^{-y}dx$ $\Gamma(z + 1) = z \Gamma(z)$
-
-Fun fact: 
-when  $z$ is a positive integer, then  $\Gamma(z)$ simplifies to  $\Gamma(z) = (z-1)!$
-
-**Hyperparameter**
-
-A hyperparameter is a parameter used in a prior model.
--->
 
 
 

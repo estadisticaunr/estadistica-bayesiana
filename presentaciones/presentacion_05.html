@@ -406,7 +406,7 @@
 </ul>
 </div>
 <div class="fragment">
-<p>En la estadística bayesiana, <span class="math inline">\(x\)</span> es <span class="math inline">\(\theta\)</span>, el parámetro desconocido de alguna distribución de probabilidad y <span class="math inline">\(p(x)\)</span> es el <em>posterior</em></p>
+<p>En la estadística bayesiana, <span class="math inline">\(x\)</span> es <span class="math inline">\(\theta\)</span>, el parámetro desconocido de alguna distribución de probabilidad y <span class="math inline">\(p(x)\)</span> es el <em>posterior</em>.</p>
 </div>
 </section>
 <section id="métodos-de-montecarlo" class="slide level2">
@@ -434,7 +434,7 @@
 <p>Esto ya lo hemos hecho</p>
 <div class="fragment">
 <ul>
-<li class="fragment">La distribución predictiva <em>a posteriori</em> es <span class="math inline">\(\int p(y\mid \theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N p(y\mid \theta_i)\)</span></li>
+<li class="fragment">La distribución predictiva <em>a posteriori</em> es <span class="math inline">\(\int p(\tilde{y} \mid \theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N p(\tilde{y}\mid \theta_i)\)</span></li>
 <li class="fragment">El riesgo bayesiano es <span class="math inline">\(\int L(\theta,\hat\theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)\)</span></li>
 <li class="fragment">Si consideramos la integral <span class="math inline">\(\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta\)</span> es la probabilidad de que <span class="math inline">\(\theta\)</span> esté en <span class="math inline">\(A\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}\)</span></li>
 </ul>
@@ -449,7 +449,8 @@
 </section>
 <section id="section-3" class="slide level2 smaller">
 <h2></h2>
-<p>Tomar muestras de una distribución de probabilidad <span class="math inline">\(p(x)\)</span> implica obtener valores que provienen, con mayor frecuencia, de regiones donde <span class="math inline">\(p(x)\)</span> es grande. ¿Por qué es difícil tomar muestras de una distribución de probabilidad?</p>
+<p>Tomar muestras de una distribución de probabilidad <span class="math inline">\(p(x)\)</span> implica obtener valores que provienen, con mayor frecuencia, de regiones donde <span class="math inline">\(p(x)\)</span> es grande.</p>
+<p>¿Por qué es difícil tomar muestras de una distribución de probabilidad?</p>
 <div class="fragment">
 <p>En estadística bayesiana tenemos <span class="math inline">\(p(\theta \mid y ) \propto p(y\mid\theta) p(\theta)\)</span> por lo que en general llegamos a <span class="math inline">\(p^*(\theta \mid y) = \frac{1}{Z} p(\theta\mid y)\)</span></p>
 </div>
@@ -496,7 +497,7 @@
 </section>
 <section id="section-6" class="slide level2">
 <h2></h2>
-<p>¿Cómo se aplica esto en estadística bayesiana?</p>
+<p><strong>¿Cómo se aplica esto en estadística bayesiana?</strong></p>
 <div class="fragment">
 <p>El <em>posterior</em> es <span class="math inline">\(\frac{1}{Z} p(\theta\mid y) p(\theta)\)</span>. Sabemos calcular el valor del <em>posterior</em> (sin normalizar) para cualquier valor de <span class="math inline">\(\theta\)</span>: haciendo el producto del <em>prior</em> por el <em>likelihood</em>.</p>
 </div>
@@ -504,7 +505,7 @@
 <p>Podemos considerar una grilla de valores del parámetro (o los parámetros), computar el <em>posterior</em> sin normalizar para cada valor de la grilla, normalizarlo y tomar muestras de él.</p>
 </div>
 <div class="fragment">
-<p>Escala muy mal con el número de parámetros…</p>
+<p><strong>Pero</strong>, escala muy mal con el número de parámetros…</p>
 </div>
 </section>
 <section id="section-7" class="slide level2 smaller">
@@ -518,7 +519,7 @@
     y_i\mid\mu,\sigma^2 &amp; \sim  \mathcal{N}(\mu,\sigma^2) \\
     \mu,\sigma^2 &amp; \sim  \frac{1}{K} \frac{e^{-\sigma^2}}{\eta} e^{-\frac{(\mu - \xi)^2}{2\psi^2}}
 \end{align*}
-\]</span> (¿Cuáles son las constantes que ajustan el <em>prior</em>)</p>
+\]</span> (¿Cuáles son las constantes que ajustan el <em>prior</em>?)</p>
 </div>
 <div class="cell quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="cell-output-display">
@@ -849,12 +850,22 @@
 </section>
 <section id="section-30" class="slide level2">
 <h2></h2>
-<p>Se tiene:</p>
-<p><span class="math display">\[\frac{dv}{dt} \approx \frac{v_{t+\varepsilon} - v_{t}}{\varepsilon} = \frac{v_{t_2} - v_{t_1}}{\varepsilon}\]</span></p>
-<p><span class="math display">\[\frac{d\theta}{dt} \approx \frac{\theta_{t+\varepsilon} - \theta_{t}}{\varepsilon} = \frac{\theta_{t_2} - \theta_{t_1}}{\varepsilon}\]</span></p>
-<p>con lo cual</p>
-<p><span class="math display">\[v_{t_2} = v_{t_1} + \varepsilon \frac{dv}{dt} = v_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}\]</span></p>
-<p><span class="math display">\[\theta_{t_2} = \theta_{t_1} + \varepsilon \frac{d\theta}{dt} = \theta_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}\]</span></p>
+<p>Se tiene: <span class="math display">\[
+\small{
+  \begin{aligned}
+  \frac{dv}{dt} &amp;\approx \frac{v_{t+\varepsilon} - v_{t}}{\varepsilon} = \frac{v_{t_2} - v_{t_1}}{\varepsilon} \\
+  \frac{d\theta}{dt} &amp;\approx \frac{\theta_{t+\varepsilon} - \theta_{t}}{\varepsilon} = \frac{\theta_{t_2} - \theta_{t_1}}{\varepsilon}
+  \end{aligned}
+}
+\]</span></p>
+<p>con lo cual: <span class="math display">\[
+\small{
+  \begin{aligned}
+  v_{t_2} &amp;= v_{t_1} + \varepsilon \frac{dv}{dt} = v_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta} \\
+  \theta_{t_2} &amp;= \theta_{t_1} + \varepsilon \frac{d\theta}{dt} = \theta_{t_1}-\varepsilon \frac{\partial \mathcal{H}}{\partial \theta}
+  \end{aligned}
+}
+\]</span></p>
 <p>Estas aproximaciones no son buenas…</p>
 </section>
 <section id="leapfrog-integrator" class="slide level2 smaller">
