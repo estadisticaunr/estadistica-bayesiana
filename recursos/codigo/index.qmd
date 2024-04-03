@@ -23,7 +23,7 @@ make_formatted_entry <- function(file_name) {
 
 extract_title_qmd <- function(file_name) {
     file_lines <- readLines(file_name, warn = FALSE)
-    title_line <- file_lines[str_detect(file_lines, "title")]
+    title_line <- file_lines[str_detect(file_lines, "title")][1]
     title <- str_replace_all(str_extract(title_line, '"(.*?)"'), '"', "")
     return(title)
 }
@@ -38,5 +38,5 @@ file_names <- file_names[str_detect(file_names, "\\.qmd")]
 file_names <- file_names[!str_starts(basename(file_names), "_")]
 file_names <- file_names[basename(file_names) != "index.qmd"]
 entries <- make_entries(file_names)
-cat(entries)
+cat(entries, "\n")
 ```
