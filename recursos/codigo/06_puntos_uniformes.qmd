@@ -1,0 +1,49 @@
+---
+title: "06 -  Los puntos uniformes"
+---
+
+Se explica como obtener muestras de una distribución uniforme en un círculo. Esto sirve
+de puntapié inicial para hacer el ejercicio **Los puntos uniformes** de la Práctica 3.
+
+El programa muestrea los puntos en coordenadas polares. Primero se muestrean los ángulos y 
+luego las distancias al origen. Finalmente se convierten estos puntos al sistema de 
+coordenadas del plano cartesiano y se grafican.
+
+```{r}
+#| fig-width: 6
+#| fig-height: 6
+#| fig-align: center
+library(ggplot2)
+
+# Cantidad de puntos
+n <- 2000
+
+# Radio del circulo
+radio <- 3
+
+# Muestrear ángulos
+theta <- runif(n, 0, 2 * pi)
+
+# Muestrear distancia al origen
+r <- radio * sqrt(runif(n, 0, 1))
+
+# Convertir coordenadas al plano cartesiano
+x <- r * cos(theta)
+y <- r * sin(theta)
+
+# Graficar
+centro <- c(0, 0)
+angulos <- seq(0, 2 * pi, length.out = 512)
+x_circulo <- centro[1] + radio * cos(angulos)
+y_circulo <- centro[2] + radio * sin(angulos)
+
+data.frame(x = x, y = y) |>
+    ggplot() +
+    geom_point(aes(x = x, y = y), alpha = 0.5, color = "grey50") +
+    geom_path(
+        aes(x = x, y = y),
+        linewidth = 1.25,
+        color = "#0984C0",
+        data = data.frame(x = x_circulo, y = y_circulo)
+    )
+```

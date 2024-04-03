@@ -6,9 +6,59 @@ El siguiente programa sirve para responder al ejercicio **Propiedades frecuentis
 inferencias bayesianas** de la Práctica 2.
 
 ```{r}
-#| echo: true
-#| eval: true
 #| fig-width: 8
 #| fig-align: center
-#| file: scripts/05_cobertura_ic.R
+library(ggplot2)
+
+set.seed(1234)
+
+# Definir cantidad de repeticiones
+reps_n <- 10000
+
+# Definir valores de 'n'
+n_vector <- c(1, 5, 10, 25)
+
+# Definir valores de 'theta'
+theta_vector <- seq(0.05, 0.5, by = 0.05)
+
+# Definir hiperparámetros del prior
+a_prior <- 0.5
+b_prior <- 0.5
+
+# Crear matriz para almacenar las coberturas empíricas
+coberturas <- matrix(
+    nrow = length(n_vector),
+    ncol = length(theta_vector)
+)
+
+for (i in seq_along(n_vector)) {
+    for (j in seq_along(theta_vector)) {
+        n <- n_vector[i]
+        theta <- theta_vector[j]
+        y_rvs <- rbinom(reps_n, n, theta)
+        a_posterior <- a_prior + y_rvs
+        b_posterior <- b_prior + (n - y_rvs)
+        ic_lower <- qbeta(0.025, a_posterior, b_posterior)
+        ic_upper <- qbeta(0.975, a_posterior, b_posterior)
+        cobertura <- mean(theta > ic_lower & theta < ic_upper)
+        cat("n=", n, "theta=", theta, "cobertura=", cobertura, "\n")
+        coberturas[i, j] <- cobertura
+    }
+}
+
+# Crear combinaciones entre los valores de 'n' y 'theta'
+datos <- as.data.frame(expand.grid(n_vector, theta_vector))
+
+# Asignar nombres de columnas mas claros
+colnames(datos) <- c("n", "theta")
+
+# Transformar matriz en vector y guardar como columna del data frame
+datos$cobertura <- as.vector(coberturas)
+
+# Graficar con ggplot2
+ggplot(datos, aes(x = theta, y = cobertura)) +
+    geom_line() +
+    geom_point() +
+    geom_hline(yintercept = 0.95, linetype = "dashed") +
+    facet_wrap(~ as.factor(n))
 ```

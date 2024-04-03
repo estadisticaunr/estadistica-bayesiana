@@ -24,9 +24,51 @@ $$
 $$
 
 ```{r}
-#| echo: true
-#| eval: true
-#| fig-width: 8
-#| fig-align: center
-#| file: scripts/04_likelihood_poisson.R
+library(ggplot2)
+
+# Cantidad de mensajes observados
+mensajes <- c(7, 3, 8, 9, 10, 12)
 ```
+
+**Opción 1**: Escribir la función de verosimilitud analíticamente
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+n <- length(mensajes)
+total <- sum(mensajes)
+producto_factoriales <- prod(factorial(mensajes))
+
+# Grilla de valores para 'lambda'
+# Teoréticamente, el soporte del parámetro es (0, infty). Lo acotamos en 20.
+lambda <- seq(0, 20, length.out = 200)
+
+# Cálculo de la verosimilitud
+verosimilitud <- exp(-n * lambda) * lambda ^ total / producto_factoriales
+
+# Visualización de la verosimilitud para los valores de lambda en la grilla
+data.frame(x = lambda, y = verosimilitud) |>
+    ggplot() +
+    geom_line(aes(x = x, y = y), linewidth = 1) +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
+```
+
+**Opción 2**: Utilizar `dpois`
+
+```{r}
+#| fig-width: 7
+#| fig-align: center
+mensajes_matriz <- matrix(rep(mensajes, 200), nrow = 200, byrow = TRUE)
+pmf <- dpois(mensajes_matriz, lambda)                                            # <1>
+verosimilitud <- apply(pmf, 1, prod)                                             # <2>
+
+data.frame(x = lambda, y = verosimilitud) |>
+    ggplot() +
+    geom_line(aes(x = x, y = y), linewidth = 1) +
+    labs(x = expression(lambda), y = expression("p(y | " ~ lambda ~ ")"))
+```
+
+
+1. Evaluar la función de masa de probabilidad de la distribución Poisson en cada uno de los
+valores observados utilizando una grilla de valores de $\lambda$.
+2. Para cada valor de $\lambda$, multiplicar todas las evaluaciones realizadas.
