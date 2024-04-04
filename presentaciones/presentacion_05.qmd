@@ -88,6 +88,19 @@ Esto ya lo hemos hecho
 -   El riesgo bayesiano es $\int L(\theta,\hat\theta) p(\theta\mid y) d\theta$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)$
 -   Si consideramos la integral $\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta$ es la probabilidad de que $\theta$ esté en $A$ y puede aproximarse por $\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}$
 
+<!-- tibble( -->
+<!--   theta = c(0.3, 0.4, 0.5, 0.6, 0.7), -->
+<!--   post = c(0.1, 0.2, 0.5, 0.1, 0.1) -->
+<!-- ) |> -->
+<!--   tidyr::crossing(y = 0:5) |> -->
+<!--   mutate(prob = dbinom(y, 5, theta)) |> -->
+<!--   group_by(y) |> -->
+<!--   summarise(p_y_tilde = sum(prob*post)) -->
+
+
+<!-- thetas <- sample(x = c(0.3, 0.4, 0.5, 0.6, 0.7), size = 1000, replace = TRUE, prob = c(0.1, 0.2, 0.5, 0.1, 0.1)) -->
+<!-- y <- rbinom(1000, 5, thetas) -->
+
 ## {.smaller}
 
 Teniendo muestras de $p(x)$ es fácil estimar las integrales $\mathbb{E}[\phi(x)] = \int \phi(x) p(x) d x$ por lo que nos centraremos en el problema de cómo obtener muestras de $p(x)$.
@@ -335,7 +348,7 @@ Idea general:
 -    En nuestro caso tenemos $p(\theta) \propto p(y\mid\theta)p(\theta) = p^*(\theta\mid y)$ (_unnormalized posterior_)
 -    ¿Qué necesitamos? Poder evaluar el _prior_ y poder evaluar el _likelihood_ para cualquier valor de $\theta$
 
-## Metropolis-Hastings (MH) {style="font-size: 0.75em; text-align: left"}
+## Metropolis-Hastings (MH) {style="font-size: 0.60em; text-align: left"}
 
 El algoritmo de Metropolis--Hastings (1953)
 
@@ -343,12 +356,12 @@ El algoritmo de Metropolis--Hastings (1953)
 1.    En función del valor de parámetro actual $\theta^{(i)}=\theta$, proponemos un nuevo valor $\theta'$ en función de $q(\theta'\mid\theta)$
 1.    Decidimos si vamos a la nueva ubicación $\theta^{(i+1)} = \theta'$ o si nos quedamos $\theta^{(i+1)} = \theta$:
       -   Calcular la probabilidad de salto:
-          $$\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}$$
-      -   Pasar a $\theta'$ con probabilidad $\alpha$:
+          $$\alpha_{\theta \rightarrow \theta'} = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}$$
+      -   Pasar a $\theta'$ con probabilidad $\alpha_{\theta \rightarrow \theta'}$:
           $$\theta^{(i+1)} = 
           \begin{cases}
-          \theta' \text{ con probabilidad } \alpha \\
-          \theta \text{ con probabilidad } (1-\alpha)
+          \theta' \text{ con probabilidad } \alpha_{\theta \rightarrow \theta'} \\
+          \theta \text{ con probabilidad } (1-\alpha_{\theta \rightarrow \theta'})
           \end{cases}$$
           
 ## 
@@ -438,6 +451,26 @@ p5
 1.    ¿Saltamos?
 
 ## {.smaller}
+
+Notar que la probabilidad de transicionar de $\theta$ a $\theta'$ es $t(\theta'\mid\theta) = q(\theta'\mid\theta) \alpha_{\theta \rightarrow \theta'}$ (la probabilidad de proponer el salto a ese $\theta'$ y de aceptarla)
+
+. . .
+
+En realidad, una de las condiciones necesarias para que la secuencia de muestras tienda a la distribución buscada $f(\theta)$ es que el salto sea reversible: es decir, que la probabilidad de estar en $\theta$ y transicionar a $\theta'$ tiene que ser igual que la de estar en $\theta'$ y transicionar a $\theta$: $f(\theta)t(\theta'\mid\theta) = f(\theta')t(\theta\mid\theta')$.
+
+. . .
+
+Si la distribución propuesta $q$ es simétrica, esto está resuelto. ¿Se puede elegir una $q$ que no sea simétrica? ¿Qué es lo que nos define la probabilidad de pasar de $\theta$ a $\theta'$ (y viceversa)?
+
+. . .
+
+Tenemos que ajustar la probabilidad de transición:
+
+$$\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \frac{q(\theta \mid \theta')}{q(\theta' \mid \theta)} \right\}$$
+
+## {.smaller}
+
+Para el caso de $q$ simétrica:
 
 ```{r}
 #| echo: true
