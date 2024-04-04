@@ -1623,7 +1623,7 @@
     "href": "presentaciones/presentacion_05.html#metropolis-hastings-mh",
     "title": "Estadística Bayesiana",
     "section": "Metropolis-Hastings (MH)",
-    "text": "Metropolis-Hastings (MH)\nEl algoritmo de Metropolis–Hastings (1953)\n\nEn la iteración \\(i\\) estamos en el valor del parámetro \\(\\theta^{(i)}\\)\nEn función del valor de parámetro actual \\(\\theta^{(i)}=\\theta\\), proponemos un nuevo valor \\(\\theta'\\) en función de \\(q(\\theta'\\mid\\theta)\\)\nDecidimos si vamos a la nueva ubicación \\(\\theta^{(i+1)} = \\theta'\\) o si nos quedamos \\(\\theta^{(i+1)} = \\theta\\):\n\nCalcular la probabilidad de salto: \\[\\alpha = \\min\\left\\{ 1,\\frac{f(\\theta')}{f(\\theta)} \\right\\}\\]\nPasar a \\(\\theta'\\) con probabilidad \\(\\alpha\\): \\[\\theta^{(i+1)} =\n\\begin{cases}\n\\theta' \\text{ con probabilidad } \\alpha \\\\\n\\theta \\text{ con probabilidad } (1-\\alpha)\n\\end{cases}\\]"
+    "text": "Metropolis-Hastings (MH)\nEl algoritmo de Metropolis–Hastings (1953)\n\nEn la iteración \\(i\\) estamos en el valor del parámetro \\(\\theta^{(i)}\\)\nEn función del valor de parámetro actual \\(\\theta^{(i)}=\\theta\\), proponemos un nuevo valor \\(\\theta'\\) en función de \\(q(\\theta'\\mid\\theta)\\)\nDecidimos si vamos a la nueva ubicación \\(\\theta^{(i+1)} = \\theta'\\) o si nos quedamos \\(\\theta^{(i+1)} = \\theta\\):\n\nCalcular la probabilidad de salto: \\[\\alpha_{\\theta \\rightarrow \\theta'} = \\min\\left\\{ 1,\\frac{f(\\theta')}{f(\\theta)} \\right\\}\\]\nPasar a \\(\\theta'\\) con probabilidad \\(\\alpha_{\\theta \\rightarrow \\theta'}\\): \\[\\theta^{(i+1)} =\n\\begin{cases}\n\\theta' \\text{ con probabilidad } \\alpha_{\\theta \\rightarrow \\theta'} \\\\\n\\theta \\text{ con probabilidad } (1-\\alpha_{\\theta \\rightarrow \\theta'})\n\\end{cases}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-10",
@@ -1644,18 +1644,25 @@
     "href": "presentaciones/presentacion_05.html#section-13",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "theta &lt;- double()\ntheta[1] &lt;- -1    \ni &lt;- 1\n\npropuesta &lt;- rnorm(1, mean = theta[i], sd = 0.8)\n\nf_actual &lt;- fx(theta[i])\nf_propuesta &lt;- fx(propuesta)\n\nalpha &lt;- min(c(1,f_propuesta/f_actual))\n\nquehacemos &lt;- sample(c(\"salto\",\"no salto\"), \n                    size = 1, \n                    prob = c(alpha,1-alpha))\n\nif(quehacemos==\"salto\") {\n  theta[i+1] &lt;- propuesta \n} else {\n  theta[i+1] &lt;- theta[i]\n  }\n\nDebe repetirse el proceso en un for"
+    "text": "Notar que la probabilidad de transicionar de \\(\\theta\\) a \\(\\theta'\\) es \\(t(\\theta'\\mid\\theta) = q(\\theta'\\mid\\theta) \\alpha_{\\theta \\rightarrow \\theta'}\\) (la probabilidad de proponer el salto a ese \\(\\theta'\\) y de aceptarla)\n\nEn realidad, una de las condiciones necesarias para que la secuencia de muestras tienda a la distribución buscada \\(f(\\theta)\\) es que el salto sea reversible: es decir, que la probabilidad de estar en \\(\\theta\\) y transicionar a \\(\\theta'\\) tiene que ser igual que la de estar en \\(\\theta'\\) y transicionar a \\(\\theta\\): \\(f(\\theta)t(\\theta'\\mid\\theta) = f(\\theta')t(\\theta\\mid\\theta')\\).\n\n\nSi la distribución propuesta \\(q\\) es simétrica, esto está resuelto. ¿Se puede elegir una \\(q\\) que no sea simétrica? ¿Qué es lo que nos define la probabilidad de pasar de \\(\\theta\\) a \\(\\theta'\\) (y viceversa)?\n\n\nTenemos que ajustar la probabilidad de transición:\n\\[\\alpha = \\min\\left\\{ 1,\\frac{f(\\theta')}{f(\\theta)} \\frac{q(\\theta \\mid \\theta')}{q(\\theta' \\mid \\theta)} \\right\\}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-14",
     "href": "presentaciones/presentacion_05.html#section-14",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\[\\sigma = 0.8\\]\n\n\n \\[\\sigma = 0.1\\]\n\n\n \\[\\sigma = 0.6\\]\n\n\n \\[\\sigma = 4.8\\]"
+    "text": "Para el caso de \\(q\\) simétrica:\n\ntheta &lt;- double()\ntheta[1] &lt;- -1    \ni &lt;- 1\n\npropuesta &lt;- rnorm(1, mean = theta[i], sd = 0.8)\n\nf_actual &lt;- fx(theta[i])\nf_propuesta &lt;- fx(propuesta)\n\nalpha &lt;- min(c(1,f_propuesta/f_actual))\n\nquehacemos &lt;- sample(c(\"salto\",\"no salto\"), \n                    size = 1, \n                    prob = c(alpha,1-alpha))\n\nif(quehacemos==\"salto\") {\n  theta[i+1] &lt;- propuesta \n} else {\n  theta[i+1] &lt;- theta[i]\n  }\n\nDebe repetirse el proceso en un for"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-15",
     "href": "presentaciones/presentacion_05.html#section-15",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "\\[\\sigma = 0.8\\]\n\n\n \\[\\sigma = 0.1\\]\n\n\n \\[\\sigma = 0.6\\]\n\n\n \\[\\sigma = 4.8\\]"
+  },
+  {
+    "objectID": "presentaciones/presentacion_05.html#section-16",
+    "href": "presentaciones/presentacion_05.html#section-16",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "¿Qué esperamos de nuestra cadena?\n\nRepresentatividad: haber explorado el rango completo de la distribución a posteriori, independientemente de las condiciones iniciales\nPrecisión y estabilidad: a lo largo de diferentes cadenas (distintas condiciones iniciales)\nEficiencia: esperamos requerir la menor cantidad posible de muestras\n\nNingún objetivo se alcanza absolutamente, existen chequeos gráficos y numéricos para saber si las cadenas de MCMC están sanas."
@@ -1689,15 +1696,15 @@
     "text": "\\(\\hat{R}\\)\nEl estadístico de Rubin–Gelman \\(\\hat{R}\\) es un indicador de convergencia. Si múltiples cadenas se establizaron en un muestreo representativo del posterior, la diferencia promedio entre cadenas debe ser similar a la diferencia promedio en la cadena.\n\\[\\hat{R} = \\sqrt{\\frac{\\frac{S-1}{S} W  +  \\frac{1}{S}  B}{W}}\\]\nEl valor 1 indica convergencia. Si una cadena se perdió/divergió, el \\(\\hat{R}\\) será mucho mayor a 1."
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-17",
-    "href": "presentaciones/presentacion_05.html#section-17",
+    "objectID": "presentaciones/presentacion_05.html#section-18",
+    "href": "presentaciones/presentacion_05.html#section-18",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Si tenemos \\(M\\) cadenas, \\(\\theta_m\\), cada una de las cuales tiene \\(S\\) muestras \\(\\theta_m^{(s)}\\). La varianza entre cadenas (\\(B\\)) es:\n\\[B = \\frac{S}{M-1} \\sum_{m=1}^M (\\bar{\\theta}^{(\\bullet)}_{m} - \\bar{\\theta}^{(\\bullet)}_{\\bullet})^2\\]\n\\[\\bar{\\theta}_m^{(\\bullet)} = \\frac{1}{S} \\sum_{s = 1}^S \\theta_m^{(s)}\\]\n\\[\\bar{\\theta}^{(\\bullet)}_{\\bullet} = \\frac{1}{M} \\, \\sum_{m=1}^M \\bar{\\theta}_m^{(\\bullet)}\\]\nLa varianza intra cadena (\\(W\\)) es:\n\\[W = \\frac{1}{M} \\, \\sum_{m=1}^M s_m^2\\]\n\\[ s_m^2 = \\frac{1}{S-1} \\, \\sum_{s=1}^S (\\theta^{(s)}_m - \\bar{\\theta}^{(\\bullet)}_m)^2\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-18",
-    "href": "presentaciones/presentacion_05.html#section-18",
+    "objectID": "presentaciones/presentacion_05.html#section-19",
+    "href": "presentaciones/presentacion_05.html#section-19",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "El estimador de la varianza total\n\\[\\widehat{\\mbox{var}}^{+}\\!(\\theta|y) = \\frac{N-1}{N}\\, W \\, + \\, \\frac{1}{N} \\, B\\]\n\\[\\hat{R} \\, = \\, \\sqrt{\\frac{\\widehat{\\mbox{var}}^{+}\\!(\\theta|y)}{W}}\\]"
@@ -1710,64 +1717,64 @@
     "text": "Hamiltonian Montecarlo\n\nMetropolis-Hastings (MH) es una exploración a ciegas del espacio de parámetros\nLa distribución de propuesta de salto es fija\nEn las colas de la distribución, se proponen tanto saltos que se acercan al grueso (bulk) de la distribución como saltos que se alejan. Se rechazan muchos saltos propuestos.\nHamiltonian-Montecarlo (HMC) es una variante más eficiente de MCMC. Para lograr la eficiencia, los saltos propuestos se adaptan a la forma del posterior.\nLa forma del posterior está en su gradiente"
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-20",
-    "href": "presentaciones/presentacion_05.html#section-20",
-    "title": "Estadística Bayesiana",
-    "section": "",
-    "text": "HMC trata de aprovechar la geometría local del posterior para decidir dónde ir en la próxima iteración.\nSi bien MH no ignora por completo la forma del posterior, HMC utiliza más información (el gradiente)\nPara entender conceptualmente HMC se necesita un poco de imaginación y entender algo de Física"
-  },
-  {
     "objectID": "presentaciones/presentacion_05.html#section-21",
     "href": "presentaciones/presentacion_05.html#section-21",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "\\(p^*(\\theta\\mid y)\\) es el posterior sin normalizar. Consideraremos \\(-\\log[p^*(\\theta\\mid y)]\\).\nLos puntos de alta densidad de probabilidad (máximos locales de \\(p^*(\\theta\\mid y)\\)) se convierten en mínimos locales de \\(-\\log[p^*(\\theta\\mid y)]\\)\nLa lógica es la misma que en MH (después de todo, se trata de un algoritmo de MCMC): estamos en algún punto del espacio de parámetros y decidimos movernos a otro… Aquí cambia cómo proponemos un salto.\nPara ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por \\(-\\log[p^*(\\theta\\mid y)]\\)"
+    "text": "HMC trata de aprovechar la geometría local del posterior para decidir dónde ir en la próxima iteración.\nSi bien MH no ignora por completo la forma del posterior, HMC utiliza más información (el gradiente)\nPara entender conceptualmente HMC se necesita un poco de imaginación y entender algo de Física"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-22",
     "href": "presentaciones/presentacion_05.html#section-22",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de \\(-\\log[p^*(\\theta\\mid y)]\\) por efecto de la gravedad. E irá cada vez más rápido.\nEstá bueno que el trineo deslice hacia los mínimos de \\(-\\log[p^*(\\theta\\mid y)]\\) pues son zonas de alta densidad de probabilidad\nQuisiéramos que nuestro trineo explore otras zonas del posterior, para eso en lugar de soltar el trineo le damos un impulso inicial (velocidad inicial o momento).\nEste impulso inicial será aleatorio"
+    "text": "\\(p^*(\\theta\\mid y)\\) es el posterior sin normalizar. Consideraremos \\(-\\log[p^*(\\theta\\mid y)]\\).\nLos puntos de alta densidad de probabilidad (máximos locales de \\(p^*(\\theta\\mid y)\\)) se convierten en mínimos locales de \\(-\\log[p^*(\\theta\\mid y)]\\)\nLa lógica es la misma que en MH (después de todo, se trata de un algoritmo de MCMC): estamos en algún punto del espacio de parámetros y decidimos movernos a otro… Aquí cambia cómo proponemos un salto.\nPara ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por \\(-\\log[p^*(\\theta\\mid y)]\\)"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-23",
     "href": "presentaciones/presentacion_05.html#section-23",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Conociendo la posición inicial del trineo y el impulso que se le da (la velocidad inicial), la Física permite calcular cuál será su trayectoria (y por ende su posición después de un tiempo)\nLa posición final después de un tiempo será el nuevo \\(\\theta\\) propuesto. Es decir: mientras que en MH proponíamos un salto con la distribución \\(q(\\theta'\\mid\\theta)\\), aquí lo hacemos con un momento inicial y estudiando la posición del trineo.\nLuego se acepta o se rechaza el salto propuesto"
+    "text": "Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de \\(-\\log[p^*(\\theta\\mid y)]\\) por efecto de la gravedad. E irá cada vez más rápido.\nEstá bueno que el trineo deslice hacia los mínimos de \\(-\\log[p^*(\\theta\\mid y)]\\) pues son zonas de alta densidad de probabilidad\nQuisiéramos que nuestro trineo explore otras zonas del posterior, para eso en lugar de soltar el trineo le damos un impulso inicial (velocidad inicial o momento).\nEste impulso inicial será aleatorio"
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-26",
-    "href": "presentaciones/presentacion_05.html#section-26",
+    "objectID": "presentaciones/presentacion_05.html#section-24",
+    "href": "presentaciones/presentacion_05.html#section-24",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "HMC propone nuevos saltos de manera más sofisticada que MH\nBusca que los saltos propuestos sean hacia valores del parámetro más prometedores"
+    "text": "Conociendo la posición inicial del trineo y el impulso que se le da (la velocidad inicial), la Física permite calcular cuál será su trayectoria (y por ende su posición después de un tiempo)\nLa posición final después de un tiempo será el nuevo \\(\\theta\\) propuesto. Es decir: mientras que en MH proponíamos un salto con la distribución \\(q(\\theta'\\mid\\theta)\\), aquí lo hacemos con un momento inicial y estudiando la posición del trineo.\nLuego se acepta o se rechaza el salto propuesto"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-27",
     "href": "presentaciones/presentacion_05.html#section-27",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Cómo calcular la trayectoria del trineo es una de las cuestiones claves del algoritmo. Planteamos la conservación de la energía:\n\\[\\mathcal{H}(\\theta,v) = U(\\theta) + K(v)\\]\n\\(\\mathcal{H}\\) se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial \\(U(\\theta)\\) (función de la posición \\(\\theta\\)) y la energía cinética \\(K(v)\\) (función de la velocidad \\(v\\)).\nSe toma \\(U(\\theta) = -\\log[p^*(\\theta\\mid y)]\\) y \\(K(v) = \\frac{1}{2} m v^2\\)"
+    "text": "HMC propone nuevos saltos de manera más sofisticada que MH\nBusca que los saltos propuestos sean hacia valores del parámetro más prometedores"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-28",
     "href": "presentaciones/presentacion_05.html#section-28",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Las ecuaciones de Hamilton describen el cambio de \\(\\theta\\) y de \\(v\\) en función del tiempo\n\\[\\frac{d\\theta}{dt} = \\frac{\\partial \\mathcal{H}}{\\partial v}\\] \\[\\frac{dv}{dt} = -\\frac{\\partial \\mathcal{H}}{\\partial \\theta}\\]"
+    "text": "Cómo calcular la trayectoria del trineo es una de las cuestiones claves del algoritmo. Planteamos la conservación de la energía:\n\\[\\mathcal{H}(\\theta,v) = U(\\theta) + K(v)\\]\n\\(\\mathcal{H}\\) se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial \\(U(\\theta)\\) (función de la posición \\(\\theta\\)) y la energía cinética \\(K(v)\\) (función de la velocidad \\(v\\)).\nSe toma \\(U(\\theta) = -\\log[p^*(\\theta\\mid y)]\\) y \\(K(v) = \\frac{1}{2} m v^2\\)"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-29",
     "href": "presentaciones/presentacion_05.html#section-29",
     "title": "Estadística Bayesiana",
     "section": "",
-    "text": "Es necesario resolver estas ecuaciones… Queremos hallar la posición (\\(\\theta\\)) del trineo tras un tiempo. No se pueden resolver analíticamente. Discretizamos el tiempo estudiando \\(L\\) pequeños intervalitos de duración \\(\\varepsilon\\)"
+    "text": "Las ecuaciones de Hamilton describen el cambio de \\(\\theta\\) y de \\(v\\) en función del tiempo\n\\[\\frac{d\\theta}{dt} = \\frac{\\partial \\mathcal{H}}{\\partial v}\\] \\[\\frac{dv}{dt} = -\\frac{\\partial \\mathcal{H}}{\\partial \\theta}\\]"
   },
   {
     "objectID": "presentaciones/presentacion_05.html#section-30",
     "href": "presentaciones/presentacion_05.html#section-30",
+    "title": "Estadística Bayesiana",
+    "section": "",
+    "text": "Es necesario resolver estas ecuaciones… Queremos hallar la posición (\\(\\theta\\)) del trineo tras un tiempo. No se pueden resolver analíticamente. Discretizamos el tiempo estudiando \\(L\\) pequeños intervalitos de duración \\(\\varepsilon\\)"
+  },
+  {
+    "objectID": "presentaciones/presentacion_05.html#section-31",
+    "href": "presentaciones/presentacion_05.html#section-31",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Se tiene: \\[\n\\small{\n  \\begin{aligned}\n  \\frac{dv}{dt} &\\approx \\frac{v_{t+\\varepsilon} - v_{t}}{\\varepsilon} = \\frac{v_{t_2} - v_{t_1}}{\\varepsilon} \\\\\n  \\frac{d\\theta}{dt} &\\approx \\frac{\\theta_{t+\\varepsilon} - \\theta_{t}}{\\varepsilon} = \\frac{\\theta_{t_2} - \\theta_{t_1}}{\\varepsilon}\n  \\end{aligned}\n}\n\\]\ncon lo cual: \\[\n\\small{\n  \\begin{aligned}\n  v_{t_2} &= v_{t_1} + \\varepsilon \\frac{dv}{dt} = v_{t_1}-\\varepsilon \\frac{\\partial \\mathcal{H}}{\\partial \\theta} \\\\\n  \\theta_{t_2} &= \\theta_{t_1} + \\varepsilon \\frac{d\\theta}{dt} = \\theta_{t_1}-\\varepsilon \\frac{\\partial \\mathcal{H}}{\\partial \\theta}\n  \\end{aligned}\n}\n\\]\nEstas aproximaciones no son buenas…"
@@ -1780,22 +1787,22 @@
     "text": "Leapfrog integrator\nSe parte de \\(t\\) y se busca \\(v\\) en \\(t+\\frac{\\varepsilon}{2}\\). Luego se busca \\(\\theta\\) en \\(t+\\varepsilon\\) usando el resultado anterior \\(v\\) en \\(\\frac{\\varepsilon}{2}\\).\n\\[v(t+\\frac{\\varepsilon}{2}) = v(t) - \\frac{\\varepsilon}{2} \\frac{\\partial \\mathcal{H}}{\\partial \\theta}\\rvert_t\\]\n\\[\\theta(t+\\varepsilon) = \\theta(t) + \\varepsilon \\frac{\\partial \\mathcal{H}}{\\partial v}\\rvert_{t+\\frac{\\varepsilon}{2}}\\]\n\\[v(t+\\varepsilon) = v(t+\\frac{\\varepsilon}{2}) - \\frac{\\varepsilon}{2} \\frac{\\partial \\mathcal{H}}{\\partial \\theta}\\rvert_{t+\\varepsilon}\\]"
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-32",
-    "href": "presentaciones/presentacion_05.html#section-32",
+    "objectID": "presentaciones/presentacion_05.html#section-33",
+    "href": "presentaciones/presentacion_05.html#section-33",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "La elección de \\(\\varepsilon\\) es clave para el algoritmo. Si \\(L\\cdot\\varepsilon\\) es pequeño, tomará mucho tiempo explorar el posterior. Con un valor muy grande, ocurrirán giros en U."
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-34",
-    "href": "presentaciones/presentacion_05.html#section-34",
+    "objectID": "presentaciones/presentacion_05.html#section-35",
+    "href": "presentaciones/presentacion_05.html#section-35",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Propuesta: A partir de \\(\\theta^{(i)}\\) disparar una bolita en alguna dirección aleatoria, con una velocidad (momento lineal) aleatoria\nLeapfrog integration: Calcular una serie de \\(L\\) pasos (leapfrog steps) de duración fija \\(\\varepsilon\\) (step size): instantes dónde vamos a sacar una foto de la posición de la partícula\nAceptación: Obtener la posición final \\(\\theta^{(i+1)}\\) como la posición final luego de \\(L\\) steps siempre y cuando la aproximación haya sido buena (la energía se haya conservado)\n\n\nUn \\(\\varepsilon\\) pequeño da más resolución sobre la trayectoria, permitiendo que la bolita gire ángulos pronunciados (¿pero?).\n\n\nUn \\(\\varepsilon\\) grande hará que los saltos sean largos y podemos saltear el punto donde la partícula iba a girar (divergent transition)."
   },
   {
-    "objectID": "presentaciones/presentacion_05.html#section-35",
-    "href": "presentaciones/presentacion_05.html#section-35",
+    "objectID": "presentaciones/presentacion_05.html#section-36",
+    "href": "presentaciones/presentacion_05.html#section-36",
     "title": "Estadística Bayesiana",
     "section": "",
     "text": "Estadística Bayesiana – 2024"

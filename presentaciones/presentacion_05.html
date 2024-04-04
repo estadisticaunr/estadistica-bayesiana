@@ -438,6 +438,16 @@
 <li class="fragment">El riesgo bayesiano es <span class="math inline">\(\int L(\theta,\hat\theta) p(\theta\mid y) d\theta\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N L(\theta_i,\hat\theta)\)</span></li>
 <li class="fragment">Si consideramos la integral <span class="math inline">\(\int \mathbb{I}_{\theta \in A} p(\theta\mid y) d\theta = \int_A p(\theta\mid y)d\theta\)</span> es la probabilidad de que <span class="math inline">\(\theta\)</span> esté en <span class="math inline">\(A\)</span> y puede aproximarse por <span class="math inline">\(\frac{1}{N} \sum_{i=1}^N \mathbb{I}_{\theta_i \in A}\)</span></li>
 </ul>
+<!-- tibble( -->
+<!--   theta = c(0.3, 0.4, 0.5, 0.6, 0.7), -->
+<!--   post = c(0.1, 0.2, 0.5, 0.1, 0.1) -->
+<!-- ) |> -->
+<!--   tidyr::crossing(y = 0:5) |> -->
+<!--   mutate(prob = dbinom(y, 5, theta)) |> -->
+<!--   group_by(y) |> -->
+<!--   summarise(p_y_tilde = sum(prob*post)) -->
+<!-- thetas <- sample(x = c(0.3, 0.4, 0.5, 0.6, 0.7), size = 1000, replace = TRUE, prob = c(0.1, 0.2, 0.5, 0.1, 0.1)) -->
+<!-- y <- rbinom(1000, 5, thetas) -->
 </div>
 </section>
 <section id="section-2" class="slide level2 smaller">
@@ -566,7 +576,7 @@
 </ul>
 </div>
 </section>
-<section id="metropolis-hastings-mh" class="slide level2" style="font-size: 0.75em; text-align: left">
+<section id="metropolis-hastings-mh" class="slide level2" style="font-size: 0.60em; text-align: left">
 <h2>Metropolis-Hastings (MH)</h2>
 <p>El algoritmo de Metropolis–Hastings (1953)</p>
 <ol type="1">
@@ -574,11 +584,11 @@
 <li class="fragment">En función del valor de parámetro actual <span class="math inline">\(\theta^{(i)}=\theta\)</span>, proponemos un nuevo valor <span class="math inline">\(\theta'\)</span> en función de <span class="math inline">\(q(\theta'\mid\theta)\)</span></li>
 <li class="fragment">Decidimos si vamos a la nueva ubicación <span class="math inline">\(\theta^{(i+1)} = \theta'\)</span> o si nos quedamos <span class="math inline">\(\theta^{(i+1)} = \theta\)</span>:
 <ul>
-<li class="fragment">Calcular la probabilidad de salto: <span class="math display">\[\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}\]</span></li>
-<li class="fragment">Pasar a <span class="math inline">\(\theta'\)</span> con probabilidad <span class="math inline">\(\alpha\)</span>: <span class="math display">\[\theta^{(i+1)} =
+<li class="fragment">Calcular la probabilidad de salto: <span class="math display">\[\alpha_{\theta \rightarrow \theta'} = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \right\}\]</span></li>
+<li class="fragment">Pasar a <span class="math inline">\(\theta'\)</span> con probabilidad <span class="math inline">\(\alpha_{\theta \rightarrow \theta'}\)</span>: <span class="math display">\[\theta^{(i+1)} =
 \begin{cases}
-\theta' \text{ con probabilidad } \alpha \\
-\theta \text{ con probabilidad } (1-\alpha)
+\theta' \text{ con probabilidad } \alpha_{\theta \rightarrow \theta'} \\
+\theta \text{ con probabilidad } (1-\alpha_{\theta \rightarrow \theta'})
 \end{cases}\]</span></li>
 </ul></li>
 </ol>
@@ -665,6 +675,21 @@
 </section>
 <section id="section-13" class="slide level2 smaller">
 <h2></h2>
+<p>Notar que la probabilidad de transicionar de <span class="math inline">\(\theta\)</span> a <span class="math inline">\(\theta'\)</span> es <span class="math inline">\(t(\theta'\mid\theta) = q(\theta'\mid\theta) \alpha_{\theta \rightarrow \theta'}\)</span> (la probabilidad de proponer el salto a ese <span class="math inline">\(\theta'\)</span> y de aceptarla)</p>
+<div class="fragment">
+<p>En realidad, una de las condiciones necesarias para que la secuencia de muestras tienda a la distribución buscada <span class="math inline">\(f(\theta)\)</span> es que el salto sea reversible: es decir, que la probabilidad de estar en <span class="math inline">\(\theta\)</span> y transicionar a <span class="math inline">\(\theta'\)</span> tiene que ser igual que la de estar en <span class="math inline">\(\theta'\)</span> y transicionar a <span class="math inline">\(\theta\)</span>: <span class="math inline">\(f(\theta)t(\theta'\mid\theta) = f(\theta')t(\theta\mid\theta')\)</span>.</p>
+</div>
+<div class="fragment">
+<p>Si la distribución propuesta <span class="math inline">\(q\)</span> es simétrica, esto está resuelto. ¿Se puede elegir una <span class="math inline">\(q\)</span> que no sea simétrica? ¿Qué es lo que nos define la probabilidad de pasar de <span class="math inline">\(\theta\)</span> a <span class="math inline">\(\theta'\)</span> (y viceversa)?</p>
+</div>
+<div class="fragment">
+<p>Tenemos que ajustar la probabilidad de transición:</p>
+<p><span class="math display">\[\alpha = \min\left\{ 1,\frac{f(\theta')}{f(\theta)} \frac{q(\theta \mid \theta')}{q(\theta' \mid \theta)} \right\}\]</span></p>
+</div>
+</section>
+<section id="section-14" class="slide level2 smaller">
+<h2></h2>
+<p>Para el caso de <span class="math inline">\(q\)</span> simétrica:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>theta <span class="ot">&lt;-</span> <span class="fu">double</span>()</span>
 <span id="cb2-2"><a></a>theta[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">1</span>    </span>
@@ -689,7 +714,7 @@
 </div>
 <p>Debe repetirse el proceso en un <code>for</code></p>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <div class="r-stack">
 <div class="fragment fade-in-then-out" data-fragment-index="1">
@@ -706,7 +731,7 @@
 </div>
 </div>
 </section>
-<section id="section-15" class="slide level2 smaller">
+<section id="section-16" class="slide level2 smaller">
 <h2></h2>
 <p>¿Qué esperamos de nuestra <em>cadena</em>?</p>
 <ul>
@@ -727,7 +752,7 @@
 <p>Para cada valor de lag <span class="math inline">\(k\)</span> se calcula la correlación de la serie consigo misma originando la función de autocorrelación (<span class="math inline">\(ACF(k)\)</span>)</p>
 
 <img data-src="presentacion_05_files/figure-revealjs/unnamed-chunk-10-1.png" class="quarto-figure quarto-figure-center r-stretch" width="2880"></section>
-<section id="section-16" class="slide level2">
+<section id="section-17" class="slide level2">
 <h2></h2>
 <div class="quarto-layout-panel" data-layout-nrow="2">
 <div class="quarto-layout-row">
@@ -753,7 +778,7 @@
 <p><span class="math display">\[\hat{R} = \sqrt{\frac{\frac{S-1}{S} W  +  \frac{1}{S}  B}{W}}\]</span></p>
 <p>El valor 1 indica convergencia. Si una cadena se perdió/divergió, el <span class="math inline">\(\hat{R}\)</span> será mucho mayor a 1.</p>
 </section>
-<section id="section-17" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
 <p>Si tenemos <span class="math inline">\(M\)</span> cadenas, <span class="math inline">\(\theta_m\)</span>, cada una de las cuales tiene <span class="math inline">\(S\)</span> muestras <span class="math inline">\(\theta_m^{(s)}\)</span>. La <em>varianza entre cadenas</em> (<span class="math inline">\(B\)</span>) es:</p>
 <p><span class="math display">\[B = \frac{S}{M-1} \sum_{m=1}^M (\bar{\theta}^{(\bullet)}_{m} - \bar{\theta}^{(\bullet)}_{\bullet})^2\]</span></p>
@@ -763,13 +788,13 @@
 <p><span class="math display">\[W = \frac{1}{M} \, \sum_{m=1}^M s_m^2\]</span></p>
 <p><span class="math display">\[ s_m^2 = \frac{1}{S-1} \, \sum_{s=1}^S (\theta^{(s)}_m - \bar{\theta}^{(\bullet)}_m)^2\]</span></p>
 </section>
-<section id="section-18" class="slide level2">
+<section id="section-19" class="slide level2">
 <h2></h2>
 <p>El estimador de la varianza total</p>
 <p><span class="math display">\[\widehat{\mbox{var}}^{+}\!(\theta|y) = \frac{N-1}{N}\, W \, + \, \frac{1}{N} \, B\]</span></p>
 <p><span class="math display">\[\hat{R} \, = \, \sqrt{\frac{\widehat{\mbox{var}}^{+}\!(\theta|y)}{W}}\]</span></p>
 </section>
-<section id="section-19" class="slide level2">
+<section id="section-20" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/r_hat.png" class="quarto-figure quarto-figure-center r-stretch"></section>
@@ -783,7 +808,7 @@
 <li class="fragment">La forma del <em>posterior</em> está en su gradiente</li>
 </ul>
 </section>
-<section id="section-20" class="slide level2 smaller">
+<section id="section-21" class="slide level2 smaller">
 <h2></h2>
 <ul>
 <li class="fragment">HMC trata de aprovechar la geometría local del <em>posterior</em> para decidir dónde ir en la próxima iteración.</li>
@@ -791,7 +816,7 @@
 <li class="fragment">Para entender conceptualmente HMC se necesita un poco de imaginación y entender algo de Física</li>
 </ul>
 </section>
-<section id="section-21" class="slide level2 smaller">
+<section id="section-22" class="slide level2 smaller">
 <h2></h2>
 <ul>
 <li class="fragment"><span class="math inline">\(p^*(\theta\mid y)\)</span> es el <em>posterior</em> sin normalizar. Consideraremos <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span>.</li>
@@ -800,7 +825,7 @@
 <li class="fragment">Para ello, imaginamos un trineo (o culipatín, o bolita) que puede deslizarse por la superficie determinada por <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span></li>
 </ul>
 </section>
-<section id="section-22" class="slide level2 smaller">
+<section id="section-23" class="slide level2 smaller">
 <h2></h2>
 <ul>
 <li class="fragment">Si soltamos el trineo en algún punto de la superficie, tenderá a deslizar hacia abajo de <span class="math inline">\(-\log[p^*(\theta\mid y)]\)</span> por efecto de la gravedad. E irá cada vez más rápido.</li>
@@ -809,7 +834,7 @@
 <li class="fragment">Este impulso inicial será aleatorio</li>
 </ul>
 </section>
-<section id="section-23" class="slide level2 smaller">
+<section id="section-24" class="slide level2 smaller">
 <h2></h2>
 <ul>
 <li class="fragment">Conociendo la posición inicial del trineo y el impulso que se le da (la velocidad inicial), la Física permite calcular cuál será su trayectoria (y por ende su posición después de un tiempo)</li>
@@ -817,38 +842,38 @@
 <li class="fragment">Luego se acepta o se rechaza el salto propuesto</li>
 </ul>
 </section>
-<section id="section-24" class="slide level2">
-<h2></h2>
-
-<img data-src="imgs/hmc_impulsos_iniciales.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="section-25" class="slide level2">
 <h2></h2>
 
+<img data-src="imgs/hmc_impulsos_iniciales.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="section-26" class="slide level2">
+<h2></h2>
+
 <img data-src="imgs/hmc_proposals.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-26" class="slide level2 smaller">
+<section id="section-27" class="slide level2 smaller">
 <h2></h2>
 <ul>
 <li class="fragment">HMC propone nuevos saltos de manera más sofisticada que MH</li>
 <li class="fragment">Busca que los saltos propuestos sean hacia valores del parámetro más prometedores</li>
 </ul>
 </section>
-<section id="section-27" class="slide level2 smaller">
+<section id="section-28" class="slide level2 smaller">
 <h2></h2>
 <p>Cómo calcular la trayectoria del trineo es una de las cuestiones claves del algoritmo. Planteamos la conservación de la energía:</p>
 <p><span class="math display">\[\mathcal{H}(\theta,v) = U(\theta) + K(v)\]</span></p>
 <p><span class="math inline">\(\mathcal{H}\)</span> se conoce como hamiltoniano y representa la energía total del sistema que es la suma de la energía potencial <span class="math inline">\(U(\theta)\)</span> (función de la posición <span class="math inline">\(\theta\)</span>) y la energía cinética <span class="math inline">\(K(v)\)</span> (función de la velocidad <span class="math inline">\(v\)</span>).</p>
 <p>Se toma <span class="math inline">\(U(\theta) = -\log[p^*(\theta\mid y)]\)</span> y <span class="math inline">\(K(v) = \frac{1}{2} m v^2\)</span></p>
 </section>
-<section id="section-28" class="slide level2 smaller">
+<section id="section-29" class="slide level2 smaller">
 <h2></h2>
 <p>Las ecuaciones de Hamilton describen el cambio de <span class="math inline">\(\theta\)</span> y de <span class="math inline">\(v\)</span> en función del tiempo</p>
 <p><span class="math display">\[\frac{d\theta}{dt} = \frac{\partial \mathcal{H}}{\partial v}\]</span> <span class="math display">\[\frac{dv}{dt} = -\frac{\partial \mathcal{H}}{\partial \theta}\]</span></p>
 </section>
-<section id="section-29" class="slide level2 smaller">
+<section id="section-30" class="slide level2 smaller">
 <h2></h2>
 <p>Es necesario resolver estas ecuaciones… Queremos hallar la posición (<span class="math inline">\(\theta\)</span>) del trineo tras un tiempo. No se pueden resolver analíticamente. Discretizamos el tiempo estudiando <span class="math inline">\(L\)</span> pequeños intervalitos de duración <span class="math inline">\(\varepsilon\)</span></p>
 </section>
-<section id="section-30" class="slide level2">
+<section id="section-31" class="slide level2">
 <h2></h2>
 <p>Se tiene: <span class="math display">\[
 \small{
@@ -875,20 +900,20 @@
 <p><span class="math display">\[\theta(t+\varepsilon) = \theta(t) + \varepsilon \frac{\partial \mathcal{H}}{\partial v}\rvert_{t+\frac{\varepsilon}{2}}\]</span></p>
 <p><span class="math display">\[v(t+\varepsilon) = v(t+\frac{\varepsilon}{2}) - \frac{\varepsilon}{2} \frac{\partial \mathcal{H}}{\partial \theta}\rvert_{t+\varepsilon}\]</span></p>
 </section>
-<section id="section-31" class="slide level2">
+<section id="section-32" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/hmc_leapfrogs.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-32" class="slide level2 smaller">
+<section id="section-33" class="slide level2 smaller">
 <h2></h2>
 <p>La elección de <span class="math inline">\(\varepsilon\)</span> es clave para el algoritmo. Si <span class="math inline">\(L\cdot\varepsilon\)</span> es pequeño, tomará mucho tiempo explorar el <em>posterior</em>. Con un valor muy grande, ocurrirán giros en U.</p>
 
 <img data-src="imgs/hmc_discretisation_length.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-33" class="slide level2">
+<section id="section-34" class="slide level2">
 <h2></h2>
 
 <img data-src="imgs/hmc_divergent.png" class="quarto-figure quarto-figure-center r-stretch"></section>
-<section id="section-34" class="slide level2 smaller">
+<section id="section-35" class="slide level2 smaller">
 <h2></h2>
 <ol type="1">
 <li class="fragment">Propuesta: A partir de <span class="math inline">\(\theta^{(i)}\)</span> disparar una bolita en alguna dirección aleatoria, con una velocidad (<em>momento lineal</em>) aleatoria</li>
@@ -902,7 +927,7 @@
 <p>Un <span class="math inline">\(\varepsilon\)</span> grande hará que los saltos sean largos y podemos saltear el punto donde la partícula iba a girar (<em>divergent transition</em>).</p>
 </div>
 </section>
-<section id="section-35" class="slide level2">
+<section id="section-36" class="slide level2">
 <h2></h2>
 
 <div class="quarto-auto-generated-content">
