@@ -224,7 +224,7 @@ sample(x, replace = TRUE, prob = p_rulito)
 
 . . .
 
-El _posterior_ es $\frac{1}{Z} p(\theta\mid y) p(\theta)$. Sabemos calcular el valor del _posterior_ (sin normalizar) para cualquier valor de $\theta$: haciendo el producto del _prior_ por el _likelihood_.
+El _posterior_ es $\frac{1}{Z} p(y\mid \theta) p(\theta)$. Sabemos calcular el valor del _posterior_ (sin normalizar) para cualquier valor de $\theta$: haciendo el producto del _prior_ por el _likelihood_.
 
 . . .
 
