@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - 03 - Diferentes observaciones, diferentes posteriors</title>
+<title>Estadística Bayesiana - 08 - Bolas infinitas</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -63,8 +63,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/codigo/04_likelihood_poisson.html" rel="next">
-<link href="../../recursos/codigo/02_ostras.html" rel="prev">
+<link href="../../recursos/codigo/09_grid_2d.html" rel="next">
+<link href="../../recursos/codigo/07_encuentro_fotocopiadora.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -159,7 +159,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/03_diferentes_posteriors.html">03 - Diferentes observaciones, diferentes posteriors</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/08_bolas_infinitas.html">08 - Bolas infinitas</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -196,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/03_diferentes_posteriors.html" class="sidebar-item-text sidebar-link active">
+  <a href="../../recursos/codigo/03_diferentes_posteriors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03 - Diferentes observaciones, diferentes posteriors</span></a>
   </div>
 </li>
@@ -226,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../recursos/codigo/08_bolas_infinitas.html" class="sidebar-item-text sidebar-link">
+  <a href="../../recursos/codigo/08_bolas_infinitas.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">08 - Bolas infinitas</span></a>
   </div>
 </li>
@@ -253,9 +253,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/03_diferentes_posteriors.html">03 - Diferentes observaciones, diferentes posteriors</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/codigo/index.html">Código</a></li><li class="breadcrumb-item"><a href="../../recursos/codigo/08_bolas_infinitas.html">08 - Bolas infinitas</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">03 - Diferentes observaciones, diferentes posteriors</h1>
+<h1 class="title">08 - Bolas infinitas</h1>
 </div>
 
 
@@ -272,44 +272,102 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Este programa obtiene la distribución <em>a posteriori</em> para los diferentes trabajadores del ejercicio <strong>Diferentes observaciones, diferentes <em>posteriors</em></strong> de la Práctica 2.</p>
+<p>El siguiente programa sirve para responder al ejercicio <strong>Bolas infinitas</strong> de la Práctica 3.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Parte 1</strong></p>
+<p>Se ejecutan 10000 pasos de este proceso una sola vez.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inicializar urna con una bola azul y otra amarilla</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>urna <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"azul"</span>, <span class="st">"amarillo"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar 10000 pasos del proceso</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">seq_len</span>(<span class="dv">10000</span>)) {</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Seleccionar uno de los elementos de la urna</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    muestra <span class="ot">&lt;-</span> <span class="fu">sample</span>(urna, <span class="dv">1</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Agregar otro elemento igual al extraido</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    urna <span class="ot">&lt;-</span> <span class="fu">c</span>(urna, muestra)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Cada 500 iteraciones imprimir la proporción de bolas azules</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (i <span class="sc">%%</span> <span class="dv">500</span> <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">cat</span>(<span class="st">"Proporcion de bolas azules"</span>, <span class="fu">round</span>(<span class="fu">mean</span>(urna <span class="sc">==</span> <span class="st">"azul"</span>), <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Proporcion de bolas azules 0.6355 
+Proporcion de bolas azules 0.6397 
+Proporcion de bolas azules 0.6465 
+Proporcion de bolas azules 0.6434 
+Proporcion de bolas azules 0.6507 
+Proporcion de bolas azules 0.6526 
+Proporcion de bolas azules 0.6556 
+Proporcion de bolas azules 0.6602 
+Proporcion de bolas azules 0.6619 
+Proporcion de bolas azules 0.6651 
+Proporcion de bolas azules 0.6652 
+Proporcion de bolas azules 0.6603 
+Proporcion de bolas azules 0.6581 
+Proporcion de bolas azules 0.6584 
+Proporcion de bolas azules 0.659 
+Proporcion de bolas azules 0.6591 
+Proporcion de bolas azules 0.6597 
+Proporcion de bolas azules 0.6606 
+Proporcion de bolas azules 0.661 
+Proporcion de bolas azules 0.6607 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar la proporción de bolas azules</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(urna <span class="sc">==</span> <span class="st">"azul"</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6606679</code></pre>
+</div>
+</div>
+<p><strong>Parte 2</strong></p>
+<p>Se ejecutan 10000 pasos de este proceso diez veces.</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear grilla para los valores de "pi"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>grid_n <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>pi_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">length.out =</span> grid_n)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluar la funcion de densidad del posterior de cada trabajador</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># en cada uno de los puntos de "pi_grid"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>posterior1 <span class="ot">&lt;-</span> <span class="fu">dbeta</span>(pi_grid, <span class="dv">4</span>, <span class="dv">4</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>posterior2 <span class="ot">&lt;-</span> <span class="fu">dbeta</span>(pi_grid, <span class="dv">7</span>, <span class="dv">10</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>posterior3 <span class="ot">&lt;-</span> <span class="fu">dbeta</span>(pi_grid, <span class="dv">24</span>, <span class="dv">83</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear un data.frame, necesario para trabajar con ggplot2</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">p =</span> <span class="fu">rep</span>(pi_grid, <span class="at">times =</span> <span class="dv">3</span>),</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">posterior =</span> <span class="fu">c</span>(posterior1, posterior2, posterior3),</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">trabajador =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">"T1"</span>, <span class="st">"T2"</span>, <span class="st">"T3"</span>), <span class="at">each =</span> grid_n)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el grafico con ggplot2 con los siguientes mapeos</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># * Los valores del eje horizontal "x" salen de "pi"</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># * Los valores de la altura en el eje vertical "y" salen de "posterior"</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># * Los colores se mapean a cada uno de los valores de "trabajador"</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># * Las areas tienen un color de relleno distinto para cada valor en "trabajador"</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> p, <span class="at">y =</span> posterior, <span class="at">color =</span> trabajador)) <span class="sc">+</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span> </span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> trabajador), <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">position =</span> <span class="st">"identity"</span>) <span class="sc">+</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="fu">expression</span>(pi), <span class="at">y =</span> <span class="fu">expression</span>(<span class="st">"p("</span> <span class="sc">~</span> pi <span class="sc">~</span> <span class="st">"| y)"</span>))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear vector vacío que contendrá las proporciones de azules a medida que</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># se realizan pasos del experimento. </span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>proporciones <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">0</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Realizar 10 iteraciones independientes (utilizando 10 bolsas independientes)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    urna <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"azul"</span>, <span class="st">"amarillo"</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>) {</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        muestra <span class="ot">&lt;-</span> <span class="fu">sample</span>(urna, <span class="dv">1</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        urna <span class="ot">&lt;-</span> <span class="fu">c</span>(urna, muestra)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calcular la proporción de azules conforme se avanza en el experimento</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    proporcion <span class="ot">&lt;-</span> <span class="fu">cumsum</span>(urna <span class="sc">==</span> <span class="st">"azul"</span>) <span class="sc">/</span> <span class="fu">seq_along</span>(urna)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Descartar el primer valor, que siempre es 0.5</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    proporcion <span class="ot">&lt;-</span> proporcion[<span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(proporcion)]</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Guardar el vector producido en el vector 'proporciones'</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    proporciones <span class="ot">&lt;-</span> <span class="fu">c</span>(proporciones, proporcion)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Generar un data.frame para graficar con ggplot2</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># x: Los pasos del experimento</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># y: Las proporciones conforme se realizan pasos del experimento</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># prueba: Indica la prueba. Sirve para graficar una línea para cada prueba</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">rep</span>(<span class="fu">seq_along</span>(proporcion), <span class="dv">10</span>),</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> proporciones,</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">prueba =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="at">each =</span> <span class="fu">length</span>(proporcion)))</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos) <span class="sc">+</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y, <span class="at">color =</span> prueba))</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="03_diferentes_posteriors_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="08_bolas_infinitas_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p><strong>¿Conclusión?</strong></p>
 
 
 
@@ -703,13 +761,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../recursos/codigo/02_ostras.html" class="pagination-link  aria-label=" 02="" -="" ¡ostras!="" ¡estoy="" haciendo="" inferencia="" bayesiana!"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</span>
+      <a href="../../recursos/codigo/07_encuentro_fotocopiadora.html" class="pagination-link  aria-label=" 07="" -="" te="" veo="" en="" la="" fotocopiadora"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">07 - Te veo en la fotocopiadora</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/codigo/04_likelihood_poisson.html" class="pagination-link" aria-label="04 - Función de verosimilitud Poisson">
-        <span class="nav-page-text">04 - Función de verosimilitud Poisson</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/09_grid_2d.html" class="pagination-link" aria-label="09 - Aproximación de grilla en 2 dimensiones">
+        <span class="nav-page-text">09 - Aproximación de grilla en 2 dimensiones</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
