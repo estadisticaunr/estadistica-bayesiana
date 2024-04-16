@@ -593,7 +593,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
     utilizando Metropolis-Hastings y la siguiente distribución de propuesta:
 
     $$
-    \mu' | \mu \sim \text{Uniforme}(\mu - w, \mu + w)
+    \mu' \mid \mu \sim \text{Uniforme}(\mu - w, \mu + w)
     $$
 
     Obtenga $n=5000$ muestras con $w \in \{0.01, 1, 100\}$ y compute la probabilidad de
@@ -769,7 +769,7 @@ y gráficas.
     modelo con verosimilitud binomial está dado por
 
     $$
-    \pi | \boldsymbol{y} \sim \text{Beta}(12, 6)
+    \pi \mid \boldsymbol{y} \sim \text{Beta}(12, 6)
     $$
 
     i. Obtenga 4 conjuntos independientes de 1000 muestras independientes de esta 
@@ -946,9 +946,9 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     utilizando `{RStan}`. No es necesario ejecutar nada, solo necesita proporcionar el 
     código correcto.
 
-    i. $Y | \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$.
-    i. $Y | \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$.
-    i. $Y | \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$.
+    i. $Y \mid \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$.
+    i. $Y \mid \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$.
+    i. $Y \mid \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$.
     <!-- @Johnson2021 6.11 -->
 
 1.  📌 **MCMC con RStan: Precalentamiento (II)**
@@ -958,10 +958,10 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     No es necesario ejecutar nada, solo necesita proporcionar el 
     código correcto.
 
-    i. $Y | \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$ e $y = 12$.
-    i. $Y | \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$ e 
+    i. $Y \mid \pi \sim \text{Binomial}(\pi, 20)$ con $\pi \sim \text{Beta}(1, 1)$ e $y = 12$.
+    i. $Y \mid \lambda \sim \text{Poisson}(\lambda)$ con $\lambda \sim \text{Gamma}(4, 2)$ e 
     $y = 3$.
-    i. $Y | \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$ e 
+    i. $Y \mid \mu \sim \text{Normal}(\mu, 1^2)$ con $\mu \sim \text{Normal}(0, 10^2)$ e 
     $y = 12.2$.
     <!-- @Johnson2021 6.12 -->
 
@@ -1008,14 +1008,14 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
     Repita los mismos pasos del ejercicio **Modelo Gamma-Poisson con Rstan (I)** pero
     considere el modelo Normal-Normal para $\mu$ con 
-    $Y_i | \mu \sim \text{Normal}(\mu, 1.3^2)$ y $\mu \sim \text{Normal}(10, 1.2^2)$.
+    $Y_i \mid \mu \sim \text{Normal}(\mu, 1.3^2)$ y $\mu \sim \text{Normal}(10, 1.2^2)$.
     Suponga que cuenta con $n = 4$ observaciones independientes 
     $(y_1, y_2, y_3, y_4) = (7.1, 8.9, 8.4, 8.6)$
 
 1.  📌 **Modelo Normal-Normal con RStan (II)**
 
     Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere 
-    $Y_i | \mu \sim \text{Normal}(\mu, 8^2)$ y $\mu \sim \text{Normal}(-15, 2^2)$.
+    $Y_i \mid \mu \sim \text{Normal}(\mu, 8^2)$ y $\mu \sim \text{Normal}(-15, 2^2)$.
     Suponga que en $n = 5$ observaciones independientes observa 
     $(y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)$
 
