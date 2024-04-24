@@ -694,7 +694,7 @@ inferencia estadística bayesiana: el algoritmo de Metropolis-Hastings.
 <!-- 1.  **Demostración sobre la distribución estacionaria**
     
     Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
-    la distribución objetivo $p(\boldsymbol{\theta} | \boldsymbol{y})$ -->
+    la distribución objetivo $p(\boldsymbol{\theta} \mid \boldsymbol{y})$ -->
 
 <!--
 TO DO
@@ -967,7 +967,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
 1.  📌 **Modelo Beta-Binomial con RStan (I)**
 
-    Considere el modelo Beta-Binomial para $\pi$ con $Y | \pi \sim \text{Binomial}(\pi, n)$
+    Considere el modelo Beta-Binomial para $\pi$ con $Y \mid \pi \sim \text{Binomial}(\pi, n)$
     y $\pi \sim \text{Beta}(3, 8)$. Suponga que en $n = 10$ ensayos independientes
     observa $y = 2$ éxitos.
 
@@ -1022,12 +1022,11 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
 1.  **Un modelo que es un poco ¿complicado?**
 
-    Considere el siguiente modelo
-
+    Considere el siguiente modelo:
     $$
     \begin{aligned}
-    \text{mass}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
-    \mu_i         &= \theta_1 + \theta_2 + \text{age}_i^{\theta_3} \\
+    \text{peso}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
+    \mu_i         &= \theta_1 + \theta_2 + \text{edad}_i^{\theta_3} \\
     \theta_1      &\sim \text{Normal}(0, 100^2) \\
     \theta_2      &\sim \text{Uniforme}(0, 20000) \\
     \theta_3      &\sim \text{Normal}(0, 1) \\
@@ -1035,7 +1034,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
     \end{aligned}
     $$
 
-    y los siguientes datos
+    y los siguientes datos:
 
     ```{R}
     #| eval: false
@@ -1069,7 +1068,7 @@ deben ser resueltos con la interface de `Stan` a R, `{RStan}`.
 
     $$
     \begin{aligned}
-    \log(\text{Peso}_i) &\sim \text{Normal}(\mu, \sigma) \\
+    \log(\text{Peso}_i) &\sim \text{Normal}(\mu_i, \sigma) \\
     \mu_i               &= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
     \sigma              &\sim \text{Gamma}(k, \theta)
     \end{aligned}
@@ -1119,7 +1118,7 @@ TO DO: Mover a otro lado?
 1.  Considere la siguiente familia de distribuciones normales en 2D
 
     $$
-    f(\boldsymbol{x} | \boldsymbol{\Sigma}, \boldsymbol{\mu} = \boldsymbol{0}) 
+    f(\boldsymbol{x} \mid \boldsymbol{\Sigma}, \boldsymbol{\mu} = \boldsymbol{0}) 
     = \frac{1}{\det(2\pi\boldsymbol{\Sigma})^{-\frac{1}{2}}}
     \exp[{-\frac{1}{2} \boldsymbol{x}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{x}}]
     $$
