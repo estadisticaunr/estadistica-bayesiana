@@ -651,7 +651,7 @@ Y_t        &amp;\sim \text{Poisson}(\lambda_t) \\
 <!-- 1.  **Demostración sobre la distribución estacionaria**
     
     Demostrar que la distribución estacionaria del algoritmo de Metropolis-Hastings es
-    la distribución objetivo $p(\boldsymbol{\theta} | \boldsymbol{y})$ -->
+    la distribución objetivo $p(\boldsymbol{\theta} \mid \boldsymbol{y})$ -->
 <!--
 TO DO
 
@@ -810,7 +810,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li><span class="math inline">\(Y \mid \mu \sim \text{Normal}(\mu, 1^2)\)</span> con <span class="math inline">\(\mu \sim \text{Normal}(0, 10^2)\)</span> e <span class="math inline">\(y = 12.2\)</span>. <!-- @Johnson2021 6.12 --></li>
 </ol></li>
 <li><p>📌 <strong>Modelo Beta-Binomial con RStan (I)</strong></p>
-<p>Considere el modelo Beta-Binomial para <span class="math inline">\(\pi\)</span> con <span class="math inline">\(Y | \pi \sim \text{Binomial}(\pi, n)\)</span> y <span class="math inline">\(\pi \sim \text{Beta}(3, 8)\)</span>. Suponga que en <span class="math inline">\(n = 10\)</span> ensayos independientes observa <span class="math inline">\(y = 2\)</span> éxitos.</p>
+<p>Considere el modelo Beta-Binomial para <span class="math inline">\(\pi\)</span> con <span class="math inline">\(Y \mid \pi \sim \text{Binomial}(\pi, n)\)</span> y <span class="math inline">\(\pi \sim \text{Beta}(3, 8)\)</span>. Suponga que en <span class="math inline">\(n = 10\)</span> ensayos independientes observa <span class="math inline">\(y = 2\)</span> éxitos.</p>
 <ol type="i">
 <li>Obtenga muestras del <em>posterior</em> de <span class="math inline">\(\pi\)</span> con <code>{RStan}</code> utilizando 3 cadenas y 12000 iteraciones por cadena.</li>
 <li>Grafique la traza de cada una de las tres cadenas.</li>
@@ -835,18 +835,17 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <li><p>📌 <strong>Modelo Normal-Normal con RStan (II)</strong></p>
 <p>Repita el ejercicio anterior con el modelo Normal-Normal pero ahora considere <span class="math inline">\(Y_i \mid \mu \sim \text{Normal}(\mu, 8^2)\)</span> y <span class="math inline">\(\mu \sim \text{Normal}(-15, 2^2)\)</span>. Suponga que en <span class="math inline">\(n = 5\)</span> observaciones independientes observa <span class="math inline">\((y_1, y_2, y_3, y_4, y_5) = (−10.1, 5.5, 0.1,−1.4, 11.5)\)</span></p></li>
 <li><p><strong>Un modelo que es un poco ¿complicado?</strong></p>
-<p>Considere el siguiente modelo</p>
-<p><span class="math display">\[
+<p>Considere el siguiente modelo: <span class="math display">\[
 \begin{aligned}
-\text{mass}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
-\mu_i         &amp;= \theta_1 + \theta_2 + \text{age}_i^{\theta_3} \\
+\text{peso}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
+\mu_i         &amp;= \theta_1 + \theta_2 + \text{edad}_i^{\theta_3} \\
 \theta_1      &amp;\sim \text{Normal}(0, 100^2) \\
 \theta_2      &amp;\sim \text{Uniforme}(0, 20000) \\
 \theta_3      &amp;\sim \text{Normal}(0, 1) \\
 \sigma^2      &amp;\sim \text{InvGamma}(0.01, 0.01)
 \end{aligned}
 \]</span></p>
-<p>y los siguientes datos</p>
+<p>y los siguientes datos:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>edad <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">28</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>peso <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">29.9</span>, <span class="dv">1761</span>, <span class="dv">1807</span>, <span class="dv">2984</span>, <span class="dv">3230</span>, <span class="dv">5040</span>, <span class="dv">5654</span>)</span>
@@ -869,7 +868,7 @@ y esta [discusión](https://statmodeling.stat.columbia.edu/2019/03/19/maybe-its-
 <p>El modelo propuesto por el equipo de investigación es el siguiente:</p>
 <p><span class="math display">\[
 \begin{aligned}
-\log(\text{Peso}_i) &amp;\sim \text{Normal}(\mu, \sigma) \\
+\log(\text{Peso}_i) &amp;\sim \text{Normal}(\mu_i, \sigma) \\
 \mu_i               &amp;= \beta_0 + \beta_1 \log(\text{Largo}_i) \\
 \sigma              &amp;\sim \text{Gamma}(k, \theta)
 \end{aligned}
@@ -910,7 +909,7 @@ TO DO: Mover a otro lado?
 1.  Considere la siguiente familia de distribuciones normales en 2D
 
     $$
-    f(\boldsymbol{x} | \boldsymbol{\Sigma}, \boldsymbol{\mu} = \boldsymbol{0}) 
+    f(\boldsymbol{x} \mid \boldsymbol{\Sigma}, \boldsymbol{\mu} = \boldsymbol{0}) 
     = \frac{1}{\det(2\pi\boldsymbol{\Sigma})^{-\frac{1}{2}}}
     \exp[{-\frac{1}{2} \boldsymbol{x}^T \boldsymbol{\Sigma}^{-1} \boldsymbol{x}}]
     $$
