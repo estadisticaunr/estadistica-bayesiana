@@ -59,6 +59,7 @@ generated quantities {
 library(rstan)
 library(tidybayes)
 library(ggdist)
+library(ggplot2)
 ```
 
 

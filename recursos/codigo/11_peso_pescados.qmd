@@ -9,6 +9,7 @@ El siguiente programa muestra como se puede resolver en R el ejercicio
 library(ggplot2)
 library(ggdist)
 library(dplyr)
+library(tidybayes)
 
 url <- paste0(
   "https://raw.githubusercontent.com/estadisticaunr/",
