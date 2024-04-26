@@ -44,6 +44,7 @@ jobs:
             any::rmarkdown
             any::tidyr
             any::viridis
+            any::ggdist
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2   
