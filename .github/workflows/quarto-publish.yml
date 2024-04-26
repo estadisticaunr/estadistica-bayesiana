@@ -45,6 +45,7 @@ jobs:
             any::tidyr
             any::viridis
             any::ggdist
+            any::tidybayes
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2   
