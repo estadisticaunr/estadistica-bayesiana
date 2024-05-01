@@ -179,7 +179,6 @@ log_peso_prom_new_group |>
 log_peso_prom_new |>
   group_by(log_largo) |>
   mean_hdi(value, .width = c(.50, .70, .90),) |> # resumo la distribución a posteriori con media y hdi
-  mean_hdi(value, .width = c(0.50, 0.70, 0.90),) |>
   ggplot(aes(x = log_largo, y = value, ymin = .lower, ymax = .upper)) +
   geom_lineribbon(linewidth = 0.8) +
   scale_fill_brewer() +
