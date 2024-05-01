@@ -336,7 +336,7 @@ window.Quarto = {
 <ol type="1">
 <li>Escribir un programa en Stan (archivo <code>.stan</code> o <code>string</code> en una variable)</li>
 <li>Usando la función <code>rstan::stan_model</code>, generar el código C<span class="math inline">\(++\)</span>, compilarlo y generar un objeto <code>stanmodel</code></li>
-<li>Usando la función <code>rstan::sampling</code>, obtener muestras del <em>posterior</em> dado el <code>stanmodel</code> y los datos. Las muestras quedan en un objeto <code>stan_fit</code></li>
+<li>Usando la función <code>rstan::sampling</code>, obtener muestras del <em>posterior</em> dado el <code>stanmodel</code> y los datos. Las muestras quedan en un objeto <code>stanfit</code></li>
 <li>Procesar el <code>stan_fit</code> y sacar conclusiones</li>
 </ol>
 <p>Estructura de un modelo en Stan</p>
@@ -411,14 +411,14 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>model_beta1_fit <span class="ot">&lt;-</span> <span class="fu">sampling</span>(<span class="at">object=</span>model_beta1, </span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">data=</span>data_list, </span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">chains =</span> <span class="dv">3</span>, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">iter =</span> <span class="dv">1000</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>                            <span class="at">iter =</span> <span class="dv">2000</span>,</span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>                            <span class="at">warmup =</span> <span class="dv">100</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 7e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -430,22 +430,22 @@ Chain 1:            init_buffer = 15
 Chain 1:            adapt_window = 75
 Chain 1:            term_buffer = 10
 Chain 1: 
-Chain 1: Iteration:   1 / 1000 [  0%]  (Warmup)
-Chain 1: Iteration: 100 / 1000 [ 10%]  (Warmup)
-Chain 1: Iteration: 101 / 1000 [ 10%]  (Sampling)
-Chain 1: Iteration: 200 / 1000 [ 20%]  (Sampling)
-Chain 1: Iteration: 300 / 1000 [ 30%]  (Sampling)
-Chain 1: Iteration: 400 / 1000 [ 40%]  (Sampling)
-Chain 1: Iteration: 500 / 1000 [ 50%]  (Sampling)
-Chain 1: Iteration: 600 / 1000 [ 60%]  (Sampling)
-Chain 1: Iteration: 700 / 1000 [ 70%]  (Sampling)
-Chain 1: Iteration: 800 / 1000 [ 80%]  (Sampling)
-Chain 1: Iteration: 900 / 1000 [ 90%]  (Sampling)
-Chain 1: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 1: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 1: Iteration:  101 / 2000 [  5%]  (Sampling)
+Chain 1: Iteration:  300 / 2000 [ 15%]  (Sampling)
+Chain 1: Iteration:  500 / 2000 [ 25%]  (Sampling)
+Chain 1: Iteration:  700 / 2000 [ 35%]  (Sampling)
+Chain 1: Iteration:  900 / 2000 [ 45%]  (Sampling)
+Chain 1: Iteration: 1100 / 2000 [ 55%]  (Sampling)
+Chain 1: Iteration: 1300 / 2000 [ 65%]  (Sampling)
+Chain 1: Iteration: 1500 / 2000 [ 75%]  (Sampling)
+Chain 1: Iteration: 1700 / 2000 [ 85%]  (Sampling)
+Chain 1: Iteration: 1900 / 2000 [ 95%]  (Sampling)
+Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0 seconds (Warm-up)
-Chain 1:                0.003 seconds (Sampling)
-Chain 1:                0.003 seconds (Total)
+Chain 1:                0.007 seconds (Sampling)
+Chain 1:                0.007 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
@@ -463,22 +463,22 @@ Chain 2:            init_buffer = 15
 Chain 2:            adapt_window = 75
 Chain 2:            term_buffer = 10
 Chain 2: 
-Chain 2: Iteration:   1 / 1000 [  0%]  (Warmup)
-Chain 2: Iteration: 100 / 1000 [ 10%]  (Warmup)
-Chain 2: Iteration: 101 / 1000 [ 10%]  (Sampling)
-Chain 2: Iteration: 200 / 1000 [ 20%]  (Sampling)
-Chain 2: Iteration: 300 / 1000 [ 30%]  (Sampling)
-Chain 2: Iteration: 400 / 1000 [ 40%]  (Sampling)
-Chain 2: Iteration: 500 / 1000 [ 50%]  (Sampling)
-Chain 2: Iteration: 600 / 1000 [ 60%]  (Sampling)
-Chain 2: Iteration: 700 / 1000 [ 70%]  (Sampling)
-Chain 2: Iteration: 800 / 1000 [ 80%]  (Sampling)
-Chain 2: Iteration: 900 / 1000 [ 90%]  (Sampling)
-Chain 2: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 2: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 2: Iteration:  101 / 2000 [  5%]  (Sampling)
+Chain 2: Iteration:  300 / 2000 [ 15%]  (Sampling)
+Chain 2: Iteration:  500 / 2000 [ 25%]  (Sampling)
+Chain 2: Iteration:  700 / 2000 [ 35%]  (Sampling)
+Chain 2: Iteration:  900 / 2000 [ 45%]  (Sampling)
+Chain 2: Iteration: 1100 / 2000 [ 55%]  (Sampling)
+Chain 2: Iteration: 1300 / 2000 [ 65%]  (Sampling)
+Chain 2: Iteration: 1500 / 2000 [ 75%]  (Sampling)
+Chain 2: Iteration: 1700 / 2000 [ 85%]  (Sampling)
+Chain 2: Iteration: 1900 / 2000 [ 95%]  (Sampling)
+Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0 seconds (Warm-up)
-Chain 2:                0.003 seconds (Sampling)
-Chain 2:                0.003 seconds (Total)
+Chain 2:                0.007 seconds (Sampling)
+Chain 2:                0.007 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).
@@ -496,35 +496,35 @@ Chain 3:            init_buffer = 15
 Chain 3:            adapt_window = 75
 Chain 3:            term_buffer = 10
 Chain 3: 
-Chain 3: Iteration:   1 / 1000 [  0%]  (Warmup)
-Chain 3: Iteration: 100 / 1000 [ 10%]  (Warmup)
-Chain 3: Iteration: 101 / 1000 [ 10%]  (Sampling)
-Chain 3: Iteration: 200 / 1000 [ 20%]  (Sampling)
-Chain 3: Iteration: 300 / 1000 [ 30%]  (Sampling)
-Chain 3: Iteration: 400 / 1000 [ 40%]  (Sampling)
-Chain 3: Iteration: 500 / 1000 [ 50%]  (Sampling)
-Chain 3: Iteration: 600 / 1000 [ 60%]  (Sampling)
-Chain 3: Iteration: 700 / 1000 [ 70%]  (Sampling)
-Chain 3: Iteration: 800 / 1000 [ 80%]  (Sampling)
-Chain 3: Iteration: 900 / 1000 [ 90%]  (Sampling)
-Chain 3: Iteration: 1000 / 1000 [100%]  (Sampling)
+Chain 3: Iteration:    1 / 2000 [  0%]  (Warmup)
+Chain 3: Iteration:  101 / 2000 [  5%]  (Sampling)
+Chain 3: Iteration:  300 / 2000 [ 15%]  (Sampling)
+Chain 3: Iteration:  500 / 2000 [ 25%]  (Sampling)
+Chain 3: Iteration:  700 / 2000 [ 35%]  (Sampling)
+Chain 3: Iteration:  900 / 2000 [ 45%]  (Sampling)
+Chain 3: Iteration: 1100 / 2000 [ 55%]  (Sampling)
+Chain 3: Iteration: 1300 / 2000 [ 65%]  (Sampling)
+Chain 3: Iteration: 1500 / 2000 [ 75%]  (Sampling)
+Chain 3: Iteration: 1700 / 2000 [ 85%]  (Sampling)
+Chain 3: Iteration: 1900 / 2000 [ 95%]  (Sampling)
+Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0 seconds (Warm-up)
-Chain 3:                0.003 seconds (Sampling)
-Chain 3:                0.003 seconds (Total)
+Chain 3:                0.007 seconds (Sampling)
+Chain 3:                0.007 seconds (Total)
 Chain 3: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_beta1_fit</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Inference for Stan model: anon_model.
-3 chains, each with iter=1000; warmup=100; thin=1; 
-post-warmup draws per chain=900, total post-warmup draws=2700.
+3 chains, each with iter=2000; warmup=100; thin=1; 
+post-warmup draws per chain=1900, total post-warmup draws=5700.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.10   0.18   0.24   0.31   0.44  1048    1
-lp__ -14.06    0.02 0.77 -16.24 -14.25 -13.76 -13.56 -13.50  1435    1
+pi     0.25    0.00 0.09   0.11   0.19   0.24   0.31   0.43  2171    1
+lp__ -14.00    0.01 0.69 -15.93 -14.16 -13.73 -13.55 -13.50  2811    1
 
-Samples were drawn using NUTS(diag_e) at Tue Apr 30 01:42:25 2024.
+Samples were drawn using NUTS(diag_e) at Wed May  1 18:02:03 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -542,21 +542,21 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:2700(1d)] 0.29 0.1646 0.0898 0.1086 0.1583 ...
+ $ pi: num [1:5700(1d)] 0.374 0.177 0.225 0.301 0.161 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2700</code></pre>
+<pre><code>[1] 5700</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.28998710 0.16461932 0.08981706 0.10861352 0.15827406 0.29091931</code></pre>
+<pre><code>[1] 0.3737157 0.1769817 0.2254479 0.3006397 0.1605864 0.3244957</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 0.9998246</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
