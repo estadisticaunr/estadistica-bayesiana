@@ -74,10 +74,10 @@ El $\boldsymbol{\beta}$ que minimiza el error cuadrático se conoce como **estim
 
 datos <-
 ggplot(data) +
-  geom_point(aes(x=x, y=y)) +
-  geom_abline(slope = 2, intercept = 1) + # slope es w1, intercept es w0
-  geom_abline(slope = -0.5, intercept = -2) +
-  geom_abline(slope = 2, intercept = -1)
+  geom_point(aes(x=x, y=y), size = 3) +
+  geom_abline(slope = 2, intercept = 1, size = 1.5) + # slope es w1, intercept es w0
+  geom_abline(slope = -0.5, intercept = -2, size = 1.5) +
+  geom_abline(slope = 2, intercept = -1, size = 1.5)
 
 parameters <-
   expand.grid(w0 = seq(w0-5,w0+6,length.out = 100),
@@ -116,7 +116,7 @@ $$\ell(\boldsymbol\beta,\sigma|\mathbf{y}) = \prod_{i=1}^N p(y_i|\mathbf{x_i},\b
 
 ##
 
-Maximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud $\mathcal{L}(\boldsymbol\beta,\sigma|\mathbf{y}) = \log(\ell(\boldsymbol\beta,\sigma|\mathbf{y}))$
+Maximizar la verosimilitud equivale a minimizar el opuesto de la log-verosimilitud $$\mathcal{L}(\boldsymbol\beta,\sigma|\mathbf{y}) = \log(\ell(\boldsymbol\beta,\sigma|\mathbf{y}))$$
 
 $$\hat{\boldsymbol{\beta}}_{ML} = \underset{\boldsymbol\beta}{\mathrm{arg\,min}}\left[ - \sum_{i=1}^N \log \left( \left( \frac{1}{2\pi\sigma^2} \right)^{1/2} e^{-\frac{(y_i - \boldsymbol\beta^T\mathbf{x}_i)^2}{2\sigma^2}} \right) \right]$$
 
@@ -185,7 +185,7 @@ prior <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) + 
-  stat_contour(aes(x = w0, y = w1, z = prior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = prior), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -196,7 +196,7 @@ likelihood <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -207,7 +207,7 @@ posterior <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -243,7 +243,7 @@ likelihood2 <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -254,7 +254,7 @@ posterior2 <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -283,13 +283,13 @@ dv1 <-
   mutate(posterior = likelihood*prior) %>%
   select(-data)
 
-prior <- 
+prior1 <- 
   ggplot(data = dv1,
          aes(x=w0, y=w1, fill=prior)) +
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) + 
-  stat_contour(aes(x = w0, y = w1, z = prior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = prior), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -300,23 +300,23 @@ likelihood <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
 
-posterior <- 
+posterior3 <- 
   ggplot(data = dv1,
          aes(x=w0, y=w1, fill=posterior)) +
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white", size = 1) +
   viridis::scale_fill_viridis()  +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
 
-prior + likelihood + posterior 
+prior1 + likelihood + posterior3
 ```
 
 
@@ -354,7 +354,7 @@ prior <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) + 
-  stat_contour(aes(x = w0, y = w1, z = prior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = prior), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
@@ -365,27 +365,29 @@ likelihood <-
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = likelihood), col = "white", size = 1) +
   viridis::scale_fill_viridis() +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
 
-posterior <- 
+posterior4 <- 
   ggplot(data = dv1,
          aes(x=w0, y=w1, fill=posterior)) +
   geom_raster() +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
-  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white") +
+  stat_contour(aes(x = w0, y = w1, z = posterior), col = "white", size = 1) +
   viridis::scale_fill_viridis()  +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
 
-prior + likelihood + posterior 
+prior + likelihood + posterior4 
 ```
 
 
 ##
+
+Observando un punto (¿se puede hacer inferencia con un solo punto?)
 
 ```{r}
 #| warning: false
@@ -393,6 +395,57 @@ prior + likelihood + posterior
 #| fig-width: 20
 #| fig-height: 10
 #| fig-align: center
+
+parameters <-
+  expand.grid(w0 = seq(w0-3,w0+4,length.out = 100),
+              w1 = seq(w1-5,w1+3,length.out = 100)) |>
+  mutate(prior = purrr::map2_dbl(w0, w1, ~mvtnorm::dmvnorm(x = c(.x,.y), 
+                                                           mean = c(0,0), 
+                                                           sigma = diag(1,2)*1.5)))
+
+dv1 <-
+  data %>% 
+  slice(1) %>% 
+  tidyr::crossing(parameters) %>% 
+  nest(data = c(x,y)) %>%
+  mutate(likelihood = purrr::pmap_dbl(list(data = data, w0 = w0, w1 = w1, sd = 0.8),
+                                      calc_likelihood)) %>%
+  mutate(posterior = likelihood*prior) %>%
+  select(-data)
+
+rectas_prior <- 
+  ggplot(data) +
+  geom_point(aes(x=x, y=y)) +
+  geom_abline(data = parameters %>%
+  slice_sample(n = 50, weight_by = prior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+
+rectas_posterior <-
+  ggplot(data) +
+  geom_point(aes(x=x, y=y)) +
+  geom_abline(data = dv1 %>%
+  slice_sample(n = 50, weight_by = posterior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+
+rectas_prior + rectas_posterior
+```
+##
+
+Observando diez puntos
+
+```{r}
+#| warning: false
+#| echo: false
+#| fig-width: 20
+#| fig-height: 10
+#| fig-align: center
+
+parameters <-
+  expand.grid(w0 = seq(w0-3,w0+4,length.out = 100),
+              w1 = seq(w1-5,w1+3,length.out = 100)) |>
+  mutate(prior = purrr::map2_dbl(w0, w1, ~mvtnorm::dmvnorm(x = c(.x,.y), 
+                                                           mean = c(0,0), 
+                                                           sigma = diag(1,2)*1.5)))
 
 dv1 <-
   data %>% 
@@ -420,6 +473,7 @@ rectas_posterior <-
 
 rectas_prior + rectas_posterior
 ```
+
 
 ##
 
