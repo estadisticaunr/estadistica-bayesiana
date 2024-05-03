@@ -13,7 +13,7 @@ theme_set(theme_bw() +
           theme(legend.position = "none",
                 panel.grid = element_blank(),
                 #strip.background = element_rect(fill="#ade658"),
-                text = element_text(size=26)))
+                text = element_text(size=32)))
 
 calc_likelihood <- function(data, w0, w1, sd){
   lik_i <- dnorm(data$y, w0+w1*data$x, sd)
@@ -97,9 +97,9 @@ ggplot(dv) +
   scale_x_continuous(expand = c(0,0)) +
   scale_y_continuous(expand = c(0,0)) +
   viridis::scale_fill_viridis() +
-  geom_point(x = 1, y = 2, shape = 4, size = 1.5, col = "white") + # x es w0, y es w1
-  geom_point(x = -2, y = -0.5, shape = 4, size = 1.5, col = "white") +
-  geom_point(x = -1, y = 2, shape = 4, size = 1.5, col = "white") +
+  geom_point(x = 1, y = 2, shape = 4, stroke = 2.5, col = "white") + # x es w0, y es w1
+  geom_point(x = -2, y = -0.5, shape = 4, stroke = 2.5, col = "white") +
+  geom_point(x = -1, y = 2, shape = 4, stroke = 2.5, col = "white") +
   xlab(expression(beta[0])) +
   ylab(expression(beta[1]))
 
@@ -153,7 +153,7 @@ $p(\boldsymbol\beta,\sigma\mid\mathbf{y}) \propto p(\mathbf{y}|\boldsymbol\beta,
 
 ## 
 
-Observando un dato...
+Observando un dato (¿se puede hacer inferencia con un solo punto?)...
 
 ```{r bayesian1}
 #| warning: false
@@ -178,6 +178,8 @@ data %>%
                          calc_likelihood)) %>%
   mutate(posterior = likelihood*prior) %>%
   select(-data)
+
+post1 <- dv1$posterior
 
 prior <- 
   ggplot(data = dv1,
@@ -234,7 +236,7 @@ dv1 <-
   nest(data = c(x,y)) %>%
   mutate(likelihood = purrr::pmap_dbl(list(data = data, w0 = w0, w1 = w1, sd = 0.8),
                                       calc_likelihood)) %>%
-  mutate(posterior = likelihood*prior) %>%
+  mutate(posterior = likelihood*post1) %>%
   select(-data)
 
 likelihood2 <- 
@@ -387,7 +389,7 @@ prior + likelihood + posterior4
 
 ##
 
-Observando un punto (¿se puede hacer inferencia con un solo punto?)
+Observando **un punto** (¿se puede hacer inferencia con un solo punto?)
 
 ```{r}
 #| warning: false
@@ -415,23 +417,25 @@ dv1 <-
 
 rectas_prior <- 
   ggplot(data) +
-  geom_point(aes(x=x, y=y)) +
+  geom_point(aes(x=x, y=y), size = 3) +
+  geom_point(data = data %>% slice(1), aes(x=x, y=y), size=6) +
   geom_abline(data = parameters %>%
   slice_sample(n = 50, weight_by = prior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
-  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1", size = 1)
 
 rectas_posterior <-
   ggplot(data) +
-  geom_point(aes(x=x, y=y)) +
+  geom_point(aes(x=x, y=y), size = 3) +
+  geom_point(data = data %>% slice(1), aes(x=x, y=y), size=6) +
   geom_abline(data = dv1 %>%
   slice_sample(n = 50, weight_by = posterior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
-  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1", size = 1)
 
 rectas_prior + rectas_posterior
 ```
 ##
 
-Observando diez puntos
+Observando **diez puntos**
 
 ```{r}
 #| warning: false
@@ -459,17 +463,19 @@ dv1 <-
 
 rectas_prior <- 
   ggplot(data) +
-  geom_point(aes(x=x, y=y)) +
+  geom_point(aes(x=x, y=y), size = 3) +
+  geom_point(data = data %>% slice(1:10), aes(x=x, y=y), size=6) +
   geom_abline(data = parameters %>%
   slice_sample(n = 50, weight_by = prior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
-  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1", size = 1)
 
 rectas_posterior <-
   ggplot(data) +
-  geom_point(aes(x=x, y=y)) +
+  geom_point(aes(x=x, y=y), size = 3) +
+  geom_point(data = data %>% slice(1:10), aes(x=x, y=y), size=6) +
   geom_abline(data = dv1 %>%
   slice_sample(n = 50, weight_by = posterior), mapping = aes(slope=w1, intercept=w0), alpha = 0.3, size = 1) +
-  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1")
+  geom_vline(xintercept = c(-1,2), linetype = "dashed", col = "maroon1", size = 1)
 
 rectas_prior + rectas_posterior
 ```
@@ -477,7 +483,7 @@ rectas_prior + rectas_posterior
 
 ##
 
-$\mu$ depende de los parámetros (y por supuesto del valor de $x$), por lo que tiene una distribución de probabilidad asociada
+$\mu$ depende de los parámetros (y por supuesto del valor de $x$), por lo que tiene una <span style="color:#FF729F;">distribución de probabilidad asociada</span>
 
 ```{r}
 #| warning: false
@@ -494,44 +500,48 @@ parameters %>%
   slice_sample(n = 5000, weight_by = prior, replace = T) %>%
   mutate(mu_i = w0 + w1*x1) %>%
   ggplot(aes(x=mu_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FF729F",col="#FF729F", alpha = 0.7, size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(mu*"|x=-1")) +
-  xlim(c(-7,5))
+  xlab(expression(mu*" | x = –1")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1400))
 
 p2 <-
 parameters %>%
   slice_sample(n = 5000, weight_by = prior, replace = T) %>%
   mutate(mu_i = w0 + w1*x2) %>%
   ggplot(aes(x=mu_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FF729F",col="#FF729F", alpha = 0.7, size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(mu*"|x=2")) +
-  xlim(c(-7,5))
+  xlab(expression(mu*" | x = 2")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1400))
 
 p3 <-
 dv1 %>%
   slice_sample(n = 5000, weight_by = posterior, replace = T) %>%
   mutate(mu_i = w0 + w1*x1) %>%
   ggplot(aes(x=mu_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FF729F",col="#FF729F", alpha = 0.7, size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(mu*"|x=-1")) +
-  xlim(c(-7,5))
+  xlab(expression(mu*" | x = –1")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1400))
 
 p4 <-
 dv1 %>%
   slice_sample(n = 5000, weight_by = posterior, replace = T) %>%
   mutate(mu_i = w0 + w1*x2) %>%
   ggplot(aes(x=mu_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FF729F",col="#FF729F", alpha = 0.7, size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(mu*"|x=2")) +
-  xlim(c(-7,5))
+  xlab(expression(mu*" | x = 2")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1400))
 
 (p1 + p3) /
   (p2 + p4)
@@ -540,7 +550,7 @@ dv1 %>%
 
 ##
 
-Por supuesto, las predicciones para $y$ también son probabilísticas...
+Por supuesto, las predicciones para $y$ también son probabilísticas: <span style="color:#FFC099;">distribución predictiva _a posteriori_</span>
 
 ```{r}
 #| warning: false
@@ -557,22 +567,25 @@ dv1 %>%
   slice_sample(n = 5000, weight_by = posterior, replace = T) %>%
   mutate(y_i = rnorm(5000, w0 + w1*x1, sd)) %>%
   ggplot(aes(x=y_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FFC099", col="#FFA770", size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(hat(y)*"|x=-1")) +
-  xlim(c(-7,5))
+  xlab(expression(hat(y)*" | x = –1")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1000))
 
 p4 <-
 dv1 %>%
   slice_sample(n = 5000, weight_by = posterior, replace = T) %>%
   mutate(y_i = rnorm(5000, w0 + w1*x2, sd)) %>%
   ggplot(aes(x=y_i)) +
-  geom_histogram(fill="#FFC099",col="#FFA770") +
+  geom_histogram(fill="#FFC099", col="#FFA770", size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(hat(y)*"|x=2")) +
-  xlim(c(-7,5))
+  xlab(expression(hat(y)*" | x = 2")) +
+  xlim(c(-7,7)) +
+  coord_cartesian(xlim = c(-7.5,5)) +
+  coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1000))
 
 (p3 + p4)
 
@@ -582,9 +595,9 @@ dv1 %>%
 
 -   Tenemos una distribución de probabilidad para los parámetros. Es decir, tenemos incertidumbre en los valores de los parámetros
 -   Tenemos que trabajar con todo el _posterior_ (a través de muestras) y no con estimaciones puntuales
--   No confundir predicción de la media (también llamado predictor lineal) con distribución predictiva (para las observaciones)
+-   No confundir <span style="color:#FF729F;">predicción de la media</span> (también llamado predictor lineal) con <span style="color:#FFC099;">distribución predictiva</span> (para las observaciones)
 -   A medida que aumenta el tamaño de muestra, los coeficientes de la regresión se estiman cada vez con mayor precisión y la incertidumbre
-    del predictor lineal desaparece. No obstante, la incertidumbre en la distribución predictiva no desaparece (siempre quedará $\sigma$)
+    del <span style="color:#FF729F;">predictor lineal</span> desaparece (incertidumbre epistémica). No obstante, la incertidumbre en la <span style="color:#FFC099;">distribución predictiva</span> no desaparece (siempre quedará $\sigma$: incertidumbre aleatoria).
     
 ## Validación interna {.smaller}
 
