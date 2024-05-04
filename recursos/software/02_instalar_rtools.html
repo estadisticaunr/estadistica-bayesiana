@@ -286,6 +286,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>RTools es un conjunto esencial de herramientas que incluye compiladores, paquetes y utilidades necesarias para compilar tanto paquetes de R como código fuente en diversos lenguajes de bajo nivel, como C, C++ y Fortran, en computadoras con el sistema operativo Windows.</p>
+<p>En el contexto de la materia, RTools adquiere una relevancia significativa al posibilitar el uso de Stan en Windows, ya que este requiere la compilación de programas en C++ para obtener muestras del <em>posterior</em> de un modelo.</p>
+<p>En la misma página donde se seleccionó la opción <strong>base</strong> para descargar R base, se encuentra el enlace para continuar con la descarga de <strong>RTools</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/17_select_rtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Al igual que R, RTools también cuenta con diferentes versiones. Es <strong>muy importante</strong> tener presente que la versión de RTools que se utilice debe corresponderse con la versión de R que se tenga instalada. Si se instaló R 4.3.x, de acuerdo a la guía <a href="../../recursos/software/01_instalar_r.html">Instalar R</a>, se debe seleccionar RTools 4.3.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -295,6 +308,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>A continuación, se muestra una página con abundante información sobre RTools. El enlace para realizar la descarga se encuentra en <strong>Rtools43 installer</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -304,6 +318,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>Cuando finaliza la descarga se tiene que encontrar un archivo como el que se muestra debajo. Nuevamente, es solo cuestión de hacer doble clic sobre el mismo y seleccionar <strong>Next</strong> e <strong>Install</strong> hasta finalizar.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -349,6 +364,7 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
+<p>Para comprobar si RTools fue instalado en una ruta identificada por R, se puede correr <code>Sys.which("make")</code> en el intérprete de R y esto tiene que devolver una cadena con la ruta donde se encuentra la utilidad <code>make</code> (que en Windows es provista por RTools).</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">

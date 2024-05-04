@@ -1,3 +1,15 @@
 img {
     border: grey solid 1px;
 }
+
+@media (max-width: 991.98px) {
+    img {
+        width: 80% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    img {
+        width: 100% !important;
+    }
+}

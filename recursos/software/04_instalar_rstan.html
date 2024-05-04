@@ -320,6 +320,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p>Si bien los pasos a continuación pueden funcionar con múltiples versiones de R, en esta guía se asume que se tiene instalado R 4.3.3, RTools 4.3 y RStudio (aunque este último no sea estrictamente necesario).</p>
+<p><strong>No se recomienda</strong> utilizar las versiones 4.0, 4.1 y 4.2 de R para trabajar con RStan en Windows debido a la cantidad de problemas que han reportado en el pasado.</p>
+<p>Previo a instalar RStan, se debe verificar que RTools se encuentra instalado y R tiene acceso al mismo. Una forma de verificarlo es ejecutando <code>Sys.which("make")</code>, como se explica en <a href="../../recursos/software/02_instalar_rtools.html">Instalar RTools</a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -329,6 +332,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Dado que RTools funciona en el sistema, instalar RStan estan sencillo como correr <code>install.packages("rstan")</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -338,6 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Comienza un proceso de descarga de dependencias (ya compiladas):</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -347,6 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>y luego se instalan y verifican las mismas:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -356,6 +362,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Una vez finalizado este proceso, se puede ejecutar <code>library("rstan")</code>. Es de esperar que aparezcan varios mensajes, pero no hay que alarmarse ya que suelen ser a modo informativo. Lo más relevante son las versiones de RStan y Stan.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -365,6 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Finalmente, la mejor forma de determinar si RStan funciona correctamente es obteniendo muestras de un <em>posterior</em>. En las capturas debajo se utiliza el siguiente bloque de código:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"rstan"</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -396,6 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">warmup =</span> <span class="dv">100</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>En el caso de que RStan haya funcionado correctamente, los mensajes en la consola serán similares a los que se muestran a continuación:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -414,6 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+<p>Si se quiere obtener más información sobre la instalación de RStan se puede consultar la <a href="https://github.com/stan-dev/rstan/wiki">wiki</a> del repositorio de RStan o el <a href="https://discourse.mc-stan.org/">foro de Stan</a> donde se discuten múltiples temas.</p>
 
 
 
