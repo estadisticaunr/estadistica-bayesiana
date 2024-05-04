@@ -1,0 +1,86 @@
+---
+title: "Instalar RStan"
+execute:
+  echo: false
+---
+
+```{r}
+img_root <- here::here("recursos", "software", "imgs", "windows")
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "32_which_make.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "33_install_rstan.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "34_downloading_deps.png"))
+```
+
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "35_successful_install.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "36_library_rstan.png"))
+```
+
+```{r}
+#| eval: false
+#| echo: true
+library("rstan")
+
+N <- 20
+y <- 4
+
+model_beta1_stan <- "
+data {
+  int N;     
+  int Y; 
+}
+parameters {
+  real<lower=0, upper=1> pi;
+}
+model {
+  pi ~ beta(2,2); // prior
+  Y ~ binomial(N, pi);  // likelihood
+}"
+
+model_beta1 <- stan_model(model_code = model_beta1_stan)
+
+data_list <- list(Y = y, N = N)
+
+model_beta1_fit <- sampling(
+  object = model_beta1, 
+  data = data_list, 
+  chains = 2, 
+  iter = 500,
+  warmup = 100
+)
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "37_modelo_stan.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 75%
+knitr::include_graphics(file.path(img_root, "38_modelo_stan_2.png"))
+```

@@ -1,9 +1,8 @@
 ---
-title: "Instalación de Software"
+title: "Instalación de software [WIP]"
 ---
 
-Esta sección contiene _scripts_ de R que son de utilidad para el curso.
-
+Se incluyen guías para instalar programas necesarios (en Windows).
 
 ```{r}
 #| echo: false
@@ -28,10 +27,11 @@ extract_title_qmd <- function(file_name) {
 }
 ```
 
+
 ```{r}
 #| results: asis
 #| echo: false
-file_names <- list.files(here::here("recursos", "codigo"), full.names = TRUE)
+file_names <- list.files(here::here("recursos", "software"), full.names = TRUE)
 file_names <- file_names[str_detect(file_names, "\\.qmd")]
 # No considerar los que empiezan con '_'
 file_names <- file_names[!str_starts(basename(file_names), "_")]

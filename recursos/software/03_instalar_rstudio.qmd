@@ -1,0 +1,58 @@
+---
+title: "Instalar RStudio"
+execute:
+  echo: false
+---
+
+```{r}
+img_root <- here::here("recursos", "software", "imgs", "windows")
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "24_posit_rstudio.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "25_rstudio_downloads.png"))
+```
+
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "26_rstudio_installer.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "27_rstudio_install_location.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "28_rstudio_menu_folder.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "29_rstudio_installing.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "30_rstudio_install_finish.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "31_choose_r_installation.png"))
+```

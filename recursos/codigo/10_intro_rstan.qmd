@@ -63,7 +63,7 @@ library(ggplot2)
 ```
 
 
-```{r}
+```{r beta-binomial}
 N <- 20
 y <- 4
 

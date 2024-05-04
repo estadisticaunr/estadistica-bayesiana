@@ -1,0 +1,124 @@
+---
+title: "Instalar R"
+execute:
+  echo: false
+---
+
+```{r}
+img_root <- here::here("recursos", "software", "imgs", "windows")
+```
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "01_rproject.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "02_cran.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "03_install_windows.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "04_base.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "05_previous_releases.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "06_previous_versions.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "07_R433.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "08_download.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "10_destination.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "11_components.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "12_startup_options.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "13_menu_folder.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "14_additional_tasks.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "15_installing.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "16_completing.png"))
+```
+
+```{r}
+# 17_download_rtools.png
+# 17_rtools.png
+# 18_rtools_downloads.png
+# 19_rtools_installer.png
+# 20_additional_tasks.png
+# 21_ready_to_install.png
+# 22_installing.png
+# 23_which_make.png
+# 24_posit_rstudio.png
+# 25_rstudio_downloads.png
+# 26_rstudio_installer.png
+# 27_rstudio_install_location.png
+# 28_rstudio_menu_folder.png
+# 29_rstudio_installing.png
+# 30_rstudio_install_finish.png
+# 31_choose_r_installation.png
+# 32_which_make.png
+# 33_install_rstan.png
+# 34_downloading_deps.png
+# 35_successful_install.png
+# 36_library_rstan.png
+# 37_modelo_stan.png
+# 38_modelo_stan_2.png
+```

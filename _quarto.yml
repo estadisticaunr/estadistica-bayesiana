@@ -99,11 +99,17 @@ website:
       style: docked
       search: false
       header: Recursos
+      collapse-level: 1
       contents:
         - text: Código
           file: recursos/codigo/index.qmd
           contents:
             - auto: recursos/codigo/*.qmd
+            - sort-ui: false
+        - text: Instalación de software
+          file: recursos/software/index.qmd
+          contents:
+            - auto: recursos/software/*.qmd
             - sort-ui: false
         - text: Distribuciones
           file: recursos/distribuciones/distribuciones.qmd

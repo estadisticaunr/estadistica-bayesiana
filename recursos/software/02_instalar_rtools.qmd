@@ -1,0 +1,57 @@
+---
+title: "Instalar RTools"
+execute:
+  echo: false
+---
+
+```{r}
+img_root <- here::here("recursos", "software", "imgs", "windows")
+```
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "17_rtools.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "17_download_rtools.png"))
+```
+
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "18_rtools_downloads.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "19_rtools_installer.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "20_additional_tasks.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "21_ready_to_install.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 50%
+knitr::include_graphics(file.path(img_root, "22_installing.png"))
+```
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "23_which_make.png"))
+```
