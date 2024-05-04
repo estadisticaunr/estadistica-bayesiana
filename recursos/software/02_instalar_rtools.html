@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - Instalación de herramientas computacionales</title>
+<title>Estadística Bayesiana - Instalar RTools</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
+<link href="../../recursos/software/03_instalar_rstudio.html" rel="next">
+<link href="../../recursos/software/01_instalar_r.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
@@ -68,9 +70,10 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="nav-sidebar docked nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -104,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Trabajos Prácticos</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../recursos/codigo/index.html"> 
+    <a class="nav-link active" href="../../recursos/codigo/index.html" aria-current="page"> 
 <span class="menu-text">Recursos</span></a>
   </li>  
   <li class="nav-item compact">
@@ -118,18 +121,155 @@ ul.task-list li input[type="checkbox"] {
 </div>
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/software/index.html">Instalación de software</a></li><li class="breadcrumb-item"><a href="../../recursos/software/02_instalar_rtools.html">Instalar RTools</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto"><div class="quarto-sidebar-header"><div class="sidebar-header-item">
+<p>Recursos</p>
+</div></div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../recursos/codigo/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Código</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/01_ositos_grilla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01 - Los ositos de Pagani</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/02_ostras.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/03_diferentes_posteriors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03 - Diferentes observaciones, diferentes posteriors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/04_likelihood_poisson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04 - Función de verosimilitud Poisson</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/05_cobertura_ic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05 - Propiedades frecuentistas de inferencias bayesianas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/06_puntos_uniformes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06 - Los puntos uniformes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/07_encuentro_fotocopiadora.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07 - Te veo en la fotocopiadora</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/08_bolas_infinitas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08 - Bolas infinitas</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/09_grid_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09 - Aproximación de grilla en 2 dimensiones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/10_intro_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10 - Introducción a RStan</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/11_peso_pescados.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11 - El peso de los pescados</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../recursos/software/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de software</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="true" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/01_instalar_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/02_instalar_rtools.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Instalar RTools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/03_instalar_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/04_instalar_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar RStan</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Distribuciones</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../recursos/software/index.html">Instalación de software</a></li><li class="breadcrumb-item"><a href="../../recursos/software/02_instalar_rtools.html">Instalar RTools</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Instalación de herramientas computacionales</h1>
+<h1 class="title">Instalar RTools</h1>
 </div>
 
 
@@ -146,69 +286,80 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="instalar-r" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-r">Instalar R</h2>
-<section id="windows" class="level3">
-<h3 class="anchored" data-anchor-id="windows">Windows</h3>
-</section>
-<section id="ubuntu" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntu">Ubuntu</h3>
-</section>
-<section id="mac-os" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os">Mac OS</h3>
-</section>
-</section>
-<section id="instalar-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-rstudio">Instalar RStudio</h2>
-<section id="windows-1" class="level3">
-<h3 class="anchored" data-anchor-id="windows-1">Windows</h3>
-</section>
-<section id="ubuntu-1" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntu-1">Ubuntu</h3>
-</section>
-<section id="mac-os-1" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os-1">Mac OS</h3>
-</section>
-</section>
-<section id="instalar-quarto" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-quarto">Instalar Quarto</h2>
-<section id="windows-2" class="level3">
-<h3 class="anchored" data-anchor-id="windows-2">Windows</h3>
-</section>
-<section id="ubuntu-2" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntu-2">Ubuntu</h3>
-</section>
-<section id="mac-os-2" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os-2">Mac OS</h3>
-</section>
-</section>
-<section id="instalar-rstan-y-brms" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-rstan-y-brms">Instalar RStan y brms</h2>
-<section id="windows-3" class="level3">
-<h3 class="anchored" data-anchor-id="windows-3">Windows</h3>
-</section>
-<section id="ubuntu-3" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntu-3">Ubuntu</h3>
-</section>
-<section id="mac-os-3" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os-3">Mac OS</h3>
-<!-- https://glennwilliams.me/ds-psych/99d_installing-bayesian-software.html -->
-</section>
-</section>
-<section id="instalar-otras-librerías" class="level2">
-<h2 class="anchored" data-anchor-id="instalar-otras-librerías">Instalar otras librerías</h2>
-<section id="windows-4" class="level3">
-<h3 class="anchored" data-anchor-id="windows-4">Windows</h3>
-</section>
-<section id="ubuntu-4" class="level3">
-<h3 class="anchored" data-anchor-id="ubuntu-4">Ubuntu</h3>
-</section>
-<section id="mac-os-4" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os-4">Mac OS</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/17_rtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/17_download_rtools.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/18_rtools_downloads.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/19_rtools_installer.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/20_additional_tasks.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/21_ready_to_install.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/22_installing.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="imgs/windows/23_which_make.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -598,6 +749,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../recursos/software/01_instalar_r.html" class="pagination-link  aria-label=" instalar="" r"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalar R</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../recursos/software/03_instalar_rstudio.html" class="pagination-link" aria-label="Instalar RStudio">
+        <span class="nav-page-text">Instalar RStudio</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

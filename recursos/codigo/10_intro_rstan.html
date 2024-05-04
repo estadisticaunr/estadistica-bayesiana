@@ -279,6 +279,41 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../../recursos/software/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalación de software</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" aria-expanded="false" aria-label="Alternar sección">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/01_instalar_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/02_instalar_rtools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar RTools</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/03_instalar_rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/software/04_instalar_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Instalar RStan</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../recursos/distribuciones/distribuciones.html" class="sidebar-item-text sidebar-link">
@@ -417,8 +452,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 5e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+Chain 1: Gradient evaluation took 4e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -510,8 +545,8 @@ Chain 3: Iteration: 1900 / 2000 [ 95%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0 seconds (Warm-up)
-Chain 3:                0.007 seconds (Sampling)
-Chain 3:                0.007 seconds (Total)
+Chain 3:                0.008 seconds (Sampling)
+Chain 3:                0.008 seconds (Total)
 Chain 3: </code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model_beta1_fit</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -520,11 +555,11 @@ Chain 3: </code></pre>
 3 chains, each with iter=2000; warmup=100; thin=1; 
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
-       mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.10   0.19   0.24   0.31   0.44  2013    1
-lp__ -14.02    0.01 0.73 -16.08 -14.20 -13.73 -13.55 -13.50  2778    1
+       mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat
+pi     0.25    0.00 0.09   0.1   0.19   0.25   0.30   0.44  2397    1
+lp__ -14.01    0.01 0.72 -16.1 -14.19 -13.72 -13.54 -13.50  2390    1
 
-Samples were drawn using NUTS(diag_e) at Fri May  3 15:14:44 2024.
+Samples were drawn using NUTS(diag_e) at Sat May  4 02:48:59 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -542,7 +577,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.325 0.224 0.153 0.169 0.201 ...
+ $ pi: num [1:5700(1d)] 0.1725 0.2519 0.2169 0.2472 0.0989 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -552,11 +587,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3248597 0.2239158 0.1528869 0.1686809 0.2013505 0.1688102</code></pre>
+<pre><code>[1] 0.17249777 0.25190703 0.21686530 0.24720482 0.09888490 0.08594311</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 1</code></pre>
+<pre><code>[1] 0.9996491</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -564,7 +599,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 <figcaption>Distribución a posteriori de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -578,7 +613,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 <figcaption>Traceplot de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -589,7 +624,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 <figcaption>Histograma para cada cadena de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -600,7 +635,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 <figcaption>Estimación de densidad para cada cadena de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>
@@ -617,7 +652,7 @@ convergence, Rhat=1).</code></pre>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="10_intro_rstan_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 <figcaption>Distribución a posteriori de <span class="math inline">\(\pi\)</span>.</figcaption>
 </figure>
 </div>

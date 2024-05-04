@@ -1009,32 +1009,103 @@
     "text": "Preguntas frecuentes\n\nPertenezo al plan 2003 de la carrera, ¿puedo participar de las clases?\nSi, podés asistir a las clases como oyente y también realizar los trabajos prácticos. Sin embargo, los profesores no se comprometen a realizar devoluciones o correcciones sobre los trabajos de estudiantes que asistan en calidad de oyente."
   },
   {
-    "objectID": "recursos/computo/instalacion.html#instalar-rstudio",
-    "href": "recursos/computo/instalacion.html#instalar-rstudio",
-    "title": "Instalación de herramientas computacionales",
-    "section": "Instalar RStudio",
-    "text": "Instalar RStudio\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
+    "objectID": "recursos/distribuciones/distribuciones.html",
+    "href": "recursos/distribuciones/distribuciones.html",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Normal}(\\mu, \\sigma)\n\\]\n\\[\np(x \\mid \\mu, \\sigma) = \\frac{1}{\\sqrt{2\\pi} \\sigma}e^{-\\frac{(x - \\mu) ^ 2}{2\\sigma^2}}\n\\]\n\\[\nP(X \\le x) = \\int_{-\\infty}^{x}{p(x | \\mu, \\sigma) dx}\n\\]\no también\n\\[\nP(X \\le x) = \\frac{1}{2} \\left[1 + \\text{erf}\\left(\\frac{x - \\mu}{\\sigma\\sqrt{2}} \\right) \\right]\n\\]\ncon\n\\[\n\\text{erf}(x) = \\frac{2}{\\sqrt{\\pi}}\\int_0^{x} {e^{-t^2}dt}\n\\]\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\mu \\in \\mathbb{R}\\)\n\\(\\sigma &gt; 0\\)\n\\(\\mathbb{E}(X) = \\mu\\)\n\\(\\mathbb{V}(X) = \\sigma^2\\)\n\n\n\n\n\\[\nX \\sim \\text{StudentT}(\\nu)\n\\]\n\\[\np(x \\mid \\nu) =\n    \\frac{\\Gamma(\\frac{\\nu + 1}{2})}{\\Gamma(\\frac{\\nu}{2})}\n    \\left(\\frac{1}{\\pi\\nu}\\right) ^ {\\frac{1}{2}}\n    \\left[1 + \\frac{x^2}{\\nu}\\right]^{-\\frac{\\nu + 1}{2}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{2} + x \\Gamma\\left(\\frac{\\nu + 1}{2}\\right)\n             \\frac{{}_2F_1\\left(\\frac{1}{2}, \\frac{v + 1}{2}, \\frac{3}{2}, \\frac{-x^2}{\\nu} \\right)}\n             {\\sqrt{\\pi \\nu} \\Gamma(\\frac{\\nu}{2})}\n\\]\ndonde \\({}_2F_1\\) es la función hipergeométrica.\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\nu &gt; 0\\)\n\\(\\mathbb{E}(X) = 0\\) si \\(\\nu &gt; 1\\)\n\\(\\mathbb{V}(X) = \\nu / (\\nu - 2)\\) si \\(\\nu &gt; 2\\)\n\n\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(k, \\theta)\n\\]\n\\[\np(x \\mid k, \\theta) = \\frac{1}{\\Gamma(k)\\theta^k}x^{k-1}e^{-\\frac{x}{\\theta}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(k)} \\gamma \\left(k, \\frac{x}{\\theta}\\right)\n\\]\n\n\\(X &gt; 0\\)\n\\(k &gt; 0\\)\n\\(\\theta &gt; 0\\)\n\\(\\mathbb{E}(X) = k\\theta\\)\n\\(\\mathbb{V}(X) = k\\theta^2\\)\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(\\alpha, \\beta)\n\\]\n\\[\np(x | \\alpha, \\beta) = \\frac{1}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}\\beta^\\alpha\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(\\alpha)} \\gamma(\\alpha, \\beta x)\n\\]\n\n\\(X &gt; 0\\)\n\\(\\alpha &gt; 0\\)\n\\(\\beta &gt; 0\\)\n\\(\\mathbb{E}(X) = \\alpha/\\beta\\)\n\\(\\mathbb{V}(X) = \\alpha/\\beta^2\\)\n\n\n\n\n\n\\[\nX \\sim \\text{Exponencial}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\lambda e^{-\\lambda x}\n\\]\n\\[\nP(X \\le x) = 1 - e^{-\\lambda x}\n\\]\n\n\\(X &gt; 0\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = 1 / \\lambda\\)\n\\(\\mathbb{V}(X) = 1 / \\lambda ^ 2\\)\n\nEs un caso particular de \\(\\text{Gamma}(\\alpha, \\beta)\\) con \\(\\alpha = 1\\) y \\(\\beta = \\lambda\\)\n\n\n\n\\[\nX \\sim \\text{Beta}(a, b)\n\\]\n\\[\np(x \\mid a, b) = \\frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}\n\\]\n\\[\nB(a, b) = \\int_0^1 x^{a-1} (1-x)^{b-1} dx = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]\n\n\\(X \\in (0, 1)\\)\n\\(\\displaystyle \\mathbb{E}(X) = \\frac{a}{a + b}\\)\n\\(\\displaystyle \\mathbb{V}(X) = \\frac{ab}{(a + b) ^ 2 (a + b + 1)}\\)\n\n\n\n\n\\[\nX \\sim \\text{Binomial}(\\theta, n)\n\\]\n\\[\np(x \\mid \\theta, n) = {n \\choose x} \\theta^x (1 - \\theta)^{(n - x)}\n\\]\n\\[\nP(X \\le x) = \\sum_{i = 0} ^ {x} {n \\choose i} \\theta^i (1 - \\theta)^{(n - i)}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots, n\\}\\)\n\\(\\theta \\in [0, 1]\\)\n\\(n \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(\\mathbb{E}(X) = n \\theta\\)\n\\(\\mathbb{V}(X) = n \\theta (1 - \\theta)\\)\n\n\n\n\n\\[\nX \\sim \\text{Poisson}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!}\n\\]\n\\[\nP(X \\le x) = e^{-\\lambda} \\sum_{i = 0} ^ {x} \\frac{\\lambda^i}{i!}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots\\}\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = \\lambda\\)\n\\(\\mathbb{V}(X) = \\lambda\\)\n\n\n\n\n\\[\nX \\sim \\text{BinomialNegativa}(r, p)\n\\]\n\\[\np(x \\mid k, p)= \\binom{x + r - 1}{x}(1 - p)^x p^r\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(r \\in \\{1, 2, 3, \\cdots \\}\\)\n\\(p \\in [0, 1]\\)\n\\(\\mathbb{E}(X) = r(1 - p) / p\\)\n\\(\\mathbb{V}(X) = r(1 - p) / p^2\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
   },
   {
-    "objectID": "recursos/computo/instalacion.html#instalar-quarto",
-    "href": "recursos/computo/instalacion.html#instalar-quarto",
-    "title": "Instalación de herramientas computacionales",
-    "section": "Instalar Quarto",
-    "text": "Instalar Quarto\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
+    "objectID": "recursos/distribuciones/distribuciones.html#normal",
+    "href": "recursos/distribuciones/distribuciones.html#normal",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Normal}(\\mu, \\sigma)\n\\]\n\\[\np(x \\mid \\mu, \\sigma) = \\frac{1}{\\sqrt{2\\pi} \\sigma}e^{-\\frac{(x - \\mu) ^ 2}{2\\sigma^2}}\n\\]\n\\[\nP(X \\le x) = \\int_{-\\infty}^{x}{p(x | \\mu, \\sigma) dx}\n\\]\no también\n\\[\nP(X \\le x) = \\frac{1}{2} \\left[1 + \\text{erf}\\left(\\frac{x - \\mu}{\\sigma\\sqrt{2}} \\right) \\right]\n\\]\ncon\n\\[\n\\text{erf}(x) = \\frac{2}{\\sqrt{\\pi}}\\int_0^{x} {e^{-t^2}dt}\n\\]\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\mu \\in \\mathbb{R}\\)\n\\(\\sigma &gt; 0\\)\n\\(\\mathbb{E}(X) = \\mu\\)\n\\(\\mathbb{V}(X) = \\sigma^2\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
   },
   {
-    "objectID": "recursos/computo/instalacion.html#instalar-rstan-y-brms",
-    "href": "recursos/computo/instalacion.html#instalar-rstan-y-brms",
-    "title": "Instalación de herramientas computacionales",
-    "section": "Instalar RStan y brms",
-    "text": "Instalar RStan y brms\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
+    "objectID": "recursos/distribuciones/distribuciones.html#t-student",
+    "href": "recursos/distribuciones/distribuciones.html#t-student",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{StudentT}(\\nu)\n\\]\n\\[\np(x \\mid \\nu) =\n    \\frac{\\Gamma(\\frac{\\nu + 1}{2})}{\\Gamma(\\frac{\\nu}{2})}\n    \\left(\\frac{1}{\\pi\\nu}\\right) ^ {\\frac{1}{2}}\n    \\left[1 + \\frac{x^2}{\\nu}\\right]^{-\\frac{\\nu + 1}{2}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{2} + x \\Gamma\\left(\\frac{\\nu + 1}{2}\\right)\n             \\frac{{}_2F_1\\left(\\frac{1}{2}, \\frac{v + 1}{2}, \\frac{3}{2}, \\frac{-x^2}{\\nu} \\right)}\n             {\\sqrt{\\pi \\nu} \\Gamma(\\frac{\\nu}{2})}\n\\]\ndonde \\({}_2F_1\\) es la función hipergeométrica.\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\nu &gt; 0\\)\n\\(\\mathbb{E}(X) = 0\\) si \\(\\nu &gt; 1\\)\n\\(\\mathbb{V}(X) = \\nu / (\\nu - 2)\\) si \\(\\nu &gt; 2\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
   },
   {
-    "objectID": "recursos/computo/instalacion.html#instalar-otras-librerías",
-    "href": "recursos/computo/instalacion.html#instalar-otras-librerías",
-    "title": "Instalación de herramientas computacionales",
-    "section": "Instalar otras librerías",
-    "text": "Instalar otras librerías\n\nWindows\n\n\nUbuntu\n\n\nMac OS"
+    "objectID": "recursos/distribuciones/distribuciones.html#gamma",
+    "href": "recursos/distribuciones/distribuciones.html#gamma",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Gamma}(k, \\theta)\n\\]\n\\[\np(x \\mid k, \\theta) = \\frac{1}{\\Gamma(k)\\theta^k}x^{k-1}e^{-\\frac{x}{\\theta}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(k)} \\gamma \\left(k, \\frac{x}{\\theta}\\right)\n\\]\n\n\\(X &gt; 0\\)\n\\(k &gt; 0\\)\n\\(\\theta &gt; 0\\)\n\\(\\mathbb{E}(X) = k\\theta\\)\n\\(\\mathbb{V}(X) = k\\theta^2\\)\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(\\alpha, \\beta)\n\\]\n\\[\np(x | \\alpha, \\beta) = \\frac{1}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}\\beta^\\alpha\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(\\alpha)} \\gamma(\\alpha, \\beta x)\n\\]\n\n\\(X &gt; 0\\)\n\\(\\alpha &gt; 0\\)\n\\(\\beta &gt; 0\\)\n\\(\\mathbb{E}(X) = \\alpha/\\beta\\)\n\\(\\mathbb{V}(X) = \\alpha/\\beta^2\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
+  },
+  {
+    "objectID": "recursos/distribuciones/distribuciones.html#exponencial",
+    "href": "recursos/distribuciones/distribuciones.html#exponencial",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Exponencial}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\lambda e^{-\\lambda x}\n\\]\n\\[\nP(X \\le x) = 1 - e^{-\\lambda x}\n\\]\n\n\\(X &gt; 0\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = 1 / \\lambda\\)\n\\(\\mathbb{V}(X) = 1 / \\lambda ^ 2\\)\n\nEs un caso particular de \\(\\text{Gamma}(\\alpha, \\beta)\\) con \\(\\alpha = 1\\) y \\(\\beta = \\lambda\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
+  },
+  {
+    "objectID": "recursos/distribuciones/distribuciones.html#beta",
+    "href": "recursos/distribuciones/distribuciones.html#beta",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Beta}(a, b)\n\\]\n\\[\np(x \\mid a, b) = \\frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}\n\\]\n\\[\nB(a, b) = \\int_0^1 x^{a-1} (1-x)^{b-1} dx = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]\n\n\\(X \\in (0, 1)\\)\n\\(\\displaystyle \\mathbb{E}(X) = \\frac{a}{a + b}\\)\n\\(\\displaystyle \\mathbb{V}(X) = \\frac{ab}{(a + b) ^ 2 (a + b + 1)}\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
+  },
+  {
+    "objectID": "recursos/distribuciones/distribuciones.html#binomial",
+    "href": "recursos/distribuciones/distribuciones.html#binomial",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Binomial}(\\theta, n)\n\\]\n\\[\np(x \\mid \\theta, n) = {n \\choose x} \\theta^x (1 - \\theta)^{(n - x)}\n\\]\n\\[\nP(X \\le x) = \\sum_{i = 0} ^ {x} {n \\choose i} \\theta^i (1 - \\theta)^{(n - i)}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots, n\\}\\)\n\\(\\theta \\in [0, 1]\\)\n\\(n \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(\\mathbb{E}(X) = n \\theta\\)\n\\(\\mathbb{V}(X) = n \\theta (1 - \\theta)\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
+  },
+  {
+    "objectID": "recursos/distribuciones/distribuciones.html#poisson",
+    "href": "recursos/distribuciones/distribuciones.html#poisson",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{Poisson}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!}\n\\]\n\\[\nP(X \\le x) = e^{-\\lambda} \\sum_{i = 0} ^ {x} \\frac{\\lambda^i}{i!}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots\\}\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = \\lambda\\)\n\\(\\mathbb{V}(X) = \\lambda\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
+  },
+  {
+    "objectID": "recursos/distribuciones/distribuciones.html#binomial-negativa",
+    "href": "recursos/distribuciones/distribuciones.html#binomial-negativa",
+    "title": "Distribuciones de probabilidad",
+    "section": "",
+    "text": "\\[\nX \\sim \\text{BinomialNegativa}(r, p)\n\\]\n\\[\np(x \\mid k, p)= \\binom{x + r - 1}{x}(1 - p)^x p^r\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(r \\in \\{1, 2, 3, \\cdots \\}\\)\n\\(p \\in [0, 1]\\)\n\\(\\mathbb{E}(X) = r(1 - p) / p\\)\n\\(\\mathbb{V}(X) = r(1 - p) / p^2\\)",
+    "crumbs": [
+      "Recursos",
+      "Distribuciones"
+    ]
   },
   {
     "objectID": "recursos/codigo/11_peso_pescados.html",
@@ -1051,7 +1122,7 @@
   {
     "objectID": "recursos/codigo/index.html",
     "href": "recursos/codigo/index.html",
-    "title": "Código",
+    "title": "Instalación de Software",
     "section": "",
     "text": "Esta sección contiene scripts de R que son de utilidad para el curso.\n01 - Los ositos de Pagani02 - ¡Ostras! ¡Estoy haciendo inferencia bayesiana!03 - Diferentes observaciones, diferentes posteriors04 - Función de verosimilitud Poisson05 - Propiedades frecuentistas de inferencias bayesianas06 - Los puntos uniformes07 - Te veo en la fotocopiadora08 - Bolas infinitas09 - Aproximación de grilla en 2 dimensiones10 - Introducción a RStan11 - El peso de los pescados",
     "crumbs": [
@@ -1076,7 +1147,7 @@
     "href": "recursos/codigo/08_bolas_infinitas.html",
     "title": "08 - Bolas infinitas",
     "section": "",
-    "text": "El siguiente programa sirve para responder al ejercicio Bolas infinitas de la Práctica 3.\n\nlibrary(ggplot2)\n\nParte 1\nSe ejecutan 10000 pasos de este proceso una sola vez.\n\n# Inicializar urna con una bola azul y otra amarilla\nurna &lt;- c(\"azul\", \"amarillo\")\n\n# Realizar 10000 pasos del proceso\nfor (i in seq_len(10000)) {\n    # Seleccionar uno de los elementos de la urna\n    muestra &lt;- sample(urna, 1)\n    \n    # Agregar otro elemento igual al extraido\n    urna &lt;- c(urna, muestra)\n\n    # Cada 500 iteraciones imprimir la proporción de bolas azules\n    if (i %% 500 == 0) {\n        cat(\"Proporcion de bolas azules\", round(mean(urna == \"azul\"), 4), \"\\n\")\n    }\n}\n\nProporcion de bolas azules 0.8765 \nProporcion de bolas azules 0.8812 \nProporcion de bolas azules 0.8728 \nProporcion de bolas azules 0.8746 \nProporcion de bolas azules 0.8769 \nProporcion de bolas azules 0.8811 \nProporcion de bolas azules 0.8804 \nProporcion de bolas azules 0.8803 \nProporcion de bolas azules 0.8827 \nProporcion de bolas azules 0.8808 \nProporcion de bolas azules 0.8813 \nProporcion de bolas azules 0.8825 \nProporcion de bolas azules 0.8814 \nProporcion de bolas azules 0.8809 \nProporcion de bolas azules 0.8816 \nProporcion de bolas azules 0.8813 \nProporcion de bolas azules 0.8803 \nProporcion de bolas azules 0.8799 \nProporcion de bolas azules 0.8797 \nProporcion de bolas azules 0.8799 \n\n# Mostrar la proporción de bolas azules\nmean(urna == \"azul\")\n\n[1] 0.879924\n\n\nParte 2\nSe ejecutan 10000 pasos de este proceso diez veces.\n\n# Crear vector vacío que contendrá las proporciones de azules a medida que\n# se realizan pasos del experimento. \nproporciones &lt;- numeric(0)\n\n# Realizar 10 iteraciones independientes (utilizando 10 bolsas independientes)\nfor (j in 1:10) {\n    urna &lt;- c(\"azul\", \"amarillo\")\n    for (i in 1:1000) {\n        muestra &lt;- sample(urna, 1)\n        urna &lt;- c(urna, muestra)\n    }\n    # Calcular la proporción de azules conforme se avanza en el experimento\n    proporcion &lt;- cumsum(urna == \"azul\") / seq_along(urna)\n    \n    # Descartar el primer valor, que siempre es 0.5\n    proporcion &lt;- proporcion[2:length(proporcion)]\n    \n    # Guardar el vector producido en el vector 'proporciones'\n    proporciones &lt;- c(proporciones, proporcion)\n}\n\n# Generar un data.frame para graficar con ggplot2\n# x: Los pasos del experimento\n# y: Las proporciones conforme se realizan pasos del experimento\n# prueba: Indica la prueba. Sirve para graficar una línea para cada prueba\ndatos &lt;- data.frame(\n    x = rep(seq_along(proporcion), 10),\n    y = proporciones,\n    prueba = as.factor(rep(1:10, each = length(proporcion)))\n)\n\nggplot(datos) +\n    geom_line(aes(x = x, y = y, color = prueba))\n\n\n\n\n\n\n\n\n¿Conclusión?",
+    "text": "El siguiente programa sirve para responder al ejercicio Bolas infinitas de la Práctica 3.\n\nlibrary(ggplot2)\n\nParte 1\nSe ejecutan 10000 pasos de este proceso una sola vez.\n\n# Inicializar urna con una bola azul y otra amarilla\nurna &lt;- c(\"azul\", \"amarillo\")\n\n# Realizar 10000 pasos del proceso\nfor (i in seq_len(10000)) {\n    # Seleccionar uno de los elementos de la urna\n    muestra &lt;- sample(urna, 1)\n    \n    # Agregar otro elemento igual al extraido\n    urna &lt;- c(urna, muestra)\n\n    # Cada 500 iteraciones imprimir la proporción de bolas azules\n    if (i %% 500 == 0) {\n        cat(\"Proporcion de bolas azules\", round(mean(urna == \"azul\"), 4), \"\\n\")\n    }\n}\n\nProporcion de bolas azules 0.0239 \nProporcion de bolas azules 0.0289 \nProporcion de bolas azules 0.0346 \nProporcion de bolas azules 0.031 \nProporcion de bolas azules 0.0304 \nProporcion de bolas azules 0.0306 \nProporcion de bolas azules 0.0311 \nProporcion de bolas azules 0.0335 \nProporcion de bolas azules 0.0331 \nProporcion de bolas azules 0.033 \nProporcion de bolas azules 0.0324 \nProporcion de bolas azules 0.033 \nProporcion de bolas azules 0.0335 \nProporcion de bolas azules 0.0336 \nProporcion de bolas azules 0.0349 \nProporcion de bolas azules 0.0347 \nProporcion de bolas azules 0.0339 \nProporcion de bolas azules 0.0332 \nProporcion de bolas azules 0.0334 \nProporcion de bolas azules 0.0336 \n\n# Mostrar la proporción de bolas azules\nmean(urna == \"azul\")\n\n[1] 0.03359328\n\n\nParte 2\nSe ejecutan 10000 pasos de este proceso diez veces.\n\n# Crear vector vacío que contendrá las proporciones de azules a medida que\n# se realizan pasos del experimento. \nproporciones &lt;- numeric(0)\n\n# Realizar 10 iteraciones independientes (utilizando 10 bolsas independientes)\nfor (j in 1:10) {\n    urna &lt;- c(\"azul\", \"amarillo\")\n    for (i in 1:1000) {\n        muestra &lt;- sample(urna, 1)\n        urna &lt;- c(urna, muestra)\n    }\n    # Calcular la proporción de azules conforme se avanza en el experimento\n    proporcion &lt;- cumsum(urna == \"azul\") / seq_along(urna)\n    \n    # Descartar el primer valor, que siempre es 0.5\n    proporcion &lt;- proporcion[2:length(proporcion)]\n    \n    # Guardar el vector producido en el vector 'proporciones'\n    proporciones &lt;- c(proporciones, proporcion)\n}\n\n# Generar un data.frame para graficar con ggplot2\n# x: Los pasos del experimento\n# y: Las proporciones conforme se realizan pasos del experimento\n# prueba: Indica la prueba. Sirve para graficar una línea para cada prueba\ndatos &lt;- data.frame(\n    x = rep(seq_along(proporcion), 10),\n    y = proporciones,\n    prueba = as.factor(rep(1:10, each = length(proporcion)))\n)\n\nggplot(datos) +\n    geom_line(aes(x = x, y = y, color = prueba))\n\n\n\n\n\n\n\n\n¿Conclusión?",
     "crumbs": [
       "Recursos",
       "Código",
@@ -1112,7 +1183,7 @@
     "href": "recursos/codigo/10_intro_rstan.html#pasos-a-seguir",
     "title": "10 - Introducción a RStan",
     "section": "Pasos a seguir",
-    "text": "Pasos a seguir\n\nEscribir un programa en Stan (archivo .stan o string en una variable)\nUsando la función rstan::stan_model, generar el código C\\(++\\), compilarlo y generar un objeto stanmodel\nUsando la función rstan::sampling, obtener muestras del posterior dado el stanmodel y los datos. Las muestras quedan en un objeto stanfit\nProcesar el stan_fit y sacar conclusiones\n\nEstructura de un modelo en Stan\n\nmodelo &lt;- \"\ndata {\n \n}\ntransformed data {\n\n}\nparameters {\n\n}\ntransformed parameters {\n\n}\nmodel {\n\n}\ngenerated quantities {\n\n}\"\n\n\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\n\n\nrstan version 2.32.6 (Stan version 2.32.2)\n\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\nlibrary(tidybayes)\nlibrary(ggdist)\nlibrary(ggplot2)\n\n\nN &lt;- 20\ny &lt;- 4\n\nmodel_beta1_stan &lt;- \"\ndata {\n  int N;     \n  int Y; \n}\nparameters {\n  real&lt;lower=0, upper=1&gt; pi;\n}\nmodel {\n  pi ~ beta(2,2); // prior\n  Y ~ binomial(N, pi);  // likelihood\n}\"\n\n# No olvidar el final de línea ;\n# Todas las variables tienen que estar declaradas\n\n\nmodel_beta1 &lt;- stan_model(model_code = model_beta1_stan)\n\ndata_list &lt;- list(Y=y, N=N)\n\nmodel_beta1_fit &lt;- sampling(object=model_beta1, \n                            data=data_list, \n                            chains = 3, \n                            iter = 2000,\n                            warmup = 100)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 5e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: WARNING: There aren't enough warmup iterations to fit the\nChain 1:          three stages of adaptation as currently configured.\nChain 1:          Reducing each adaptation stage to 15%/75%/10% of\nChain 1:          the given number of warmup iterations:\nChain 1:            init_buffer = 15\nChain 1:            adapt_window = 75\nChain 1:            term_buffer = 10\nChain 1: \nChain 1: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 1: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 1: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 1: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 1: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 1: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 1: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 1: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 1: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 1: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 1: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 1: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0 seconds (Warm-up)\nChain 1:                0.007 seconds (Sampling)\nChain 1:                0.007 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 1e-06 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: WARNING: There aren't enough warmup iterations to fit the\nChain 2:          three stages of adaptation as currently configured.\nChain 2:          Reducing each adaptation stage to 15%/75%/10% of\nChain 2:          the given number of warmup iterations:\nChain 2:            init_buffer = 15\nChain 2:            adapt_window = 75\nChain 2:            term_buffer = 10\nChain 2: \nChain 2: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 2: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 2: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 2: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 2: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 2: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 2: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 2: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 2: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 2: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 2: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 2: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0 seconds (Warm-up)\nChain 2:                0.007 seconds (Sampling)\nChain 2:                0.007 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 1e-06 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: WARNING: There aren't enough warmup iterations to fit the\nChain 3:          three stages of adaptation as currently configured.\nChain 3:          Reducing each adaptation stage to 15%/75%/10% of\nChain 3:          the given number of warmup iterations:\nChain 3:            init_buffer = 15\nChain 3:            adapt_window = 75\nChain 3:            term_buffer = 10\nChain 3: \nChain 3: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 3: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 3: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 3: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 3: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 3: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 3: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 3: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 3: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 3: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 3: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 3: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0 seconds (Warm-up)\nChain 3:                0.007 seconds (Sampling)\nChain 3:                0.007 seconds (Total)\nChain 3: \n\nmodel_beta1_fit\n\nInference for Stan model: anon_model.\n3 chains, each with iter=2000; warmup=100; thin=1; \npost-warmup draws per chain=1900, total post-warmup draws=5700.\n\n       mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat\npi     0.25    0.00 0.09   0.10   0.19   0.24   0.31   0.44  2013    1\nlp__ -14.02    0.01 0.73 -16.08 -14.20 -13.73 -13.55 -13.50  2778    1\n\nSamples were drawn using NUTS(diag_e) at Fri May  3 15:14:44 2024.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1).\n\n\n\nmodel_beta1_fit@model_pars\n\n[1] \"pi\"   \"lp__\"\n\n\n\nlist_of_draws &lt;- extract(model_beta1_fit,pars=\"pi\")\n\nstr(list_of_draws)\n\nList of 1\n $ pi: num [1:5700(1d)] 0.325 0.224 0.153 0.169 0.201 ...\n  ..- attr(*, \"dimnames\")=List of 1\n  .. ..$ iterations: NULL\n\ndim(list_of_draws$pi)\n\n[1] 5700\n\nhead(list_of_draws$pi)\n\n[1] 0.3248597 0.2239158 0.1528869 0.1686809 0.2013505 0.1688102\n\nmean(list_of_draws$pi&lt;0.6)\n\n[1] 1\n\n\n\nggplot2::qplot(list_of_draws$pi)\n\n\n\n\nDistribución a posteriori de \\(\\pi\\).\n\n\n\n\n\narray_of_draws &lt;- as.array(model_beta1_fit, pars=\"pi\")\n\n\nbayesplot::mcmc_trace(array_of_draws,pars=\"pi\")\n\n\n\n\nTraceplot de \\(\\pi\\).\n\n\n\n\n\nbayesplot::mcmc_hist_by_chain(array_of_draws,pars=\"pi\")\n\n\n\n\nHistograma para cada cadena de \\(\\pi\\).\n\n\n\n\n\nbayesplot::mcmc_dens_chains(array_of_draws,pars=\"pi\")\n\n\n\n\nEstimación de densidad para cada cadena de \\(\\pi\\).\n\n\n\n\n\ndf_of_draws &lt;- as.data.frame(model_beta1_fit,pars=\"pi\")\n\n#usando el paquete tidybayes + ggdist\nmodel_beta1_fit |&gt;\n  spread_draws(pi) |&gt;\n  ggplot(aes(x=pi)) + \n  stat_histinterval()\n\n\n\n\nDistribución a posteriori de \\(\\pi\\).",
+    "text": "Pasos a seguir\n\nEscribir un programa en Stan (archivo .stan o string en una variable)\nUsando la función rstan::stan_model, generar el código C\\(++\\), compilarlo y generar un objeto stanmodel\nUsando la función rstan::sampling, obtener muestras del posterior dado el stanmodel y los datos. Las muestras quedan en un objeto stanfit\nProcesar el stan_fit y sacar conclusiones\n\nEstructura de un modelo en Stan\n\nmodelo &lt;- \"\ndata {\n \n}\ntransformed data {\n\n}\nparameters {\n\n}\ntransformed parameters {\n\n}\nmodel {\n\n}\ngenerated quantities {\n\n}\"\n\n\nlibrary(rstan)\n\nLoading required package: StanHeaders\n\n\n\nrstan version 2.32.6 (Stan version 2.32.2)\n\n\nFor execution on a local, multicore CPU with excess RAM we recommend calling\noptions(mc.cores = parallel::detectCores()).\nTo avoid recompilation of unchanged Stan programs, we recommend calling\nrstan_options(auto_write = TRUE)\nFor within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,\nchange `threads_per_chain` option:\nrstan_options(threads_per_chain = 1)\n\nlibrary(tidybayes)\nlibrary(ggdist)\nlibrary(ggplot2)\n\n\nN &lt;- 20\ny &lt;- 4\n\nmodel_beta1_stan &lt;- \"\ndata {\n  int N;     \n  int Y; \n}\nparameters {\n  real&lt;lower=0, upper=1&gt; pi;\n}\nmodel {\n  pi ~ beta(2,2); // prior\n  Y ~ binomial(N, pi);  // likelihood\n}\"\n\n# No olvidar el final de línea ;\n# Todas las variables tienen que estar declaradas\n\n\nmodel_beta1 &lt;- stan_model(model_code = model_beta1_stan)\n\ndata_list &lt;- list(Y=y, N=N)\n\nmodel_beta1_fit &lt;- sampling(object=model_beta1, \n                            data=data_list, \n                            chains = 3, \n                            iter = 2000,\n                            warmup = 100)\n\n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).\nChain 1: \nChain 1: Gradient evaluation took 4e-06 seconds\nChain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.\nChain 1: Adjust your expectations accordingly!\nChain 1: \nChain 1: \nChain 1: WARNING: There aren't enough warmup iterations to fit the\nChain 1:          three stages of adaptation as currently configured.\nChain 1:          Reducing each adaptation stage to 15%/75%/10% of\nChain 1:          the given number of warmup iterations:\nChain 1:            init_buffer = 15\nChain 1:            adapt_window = 75\nChain 1:            term_buffer = 10\nChain 1: \nChain 1: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 1: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 1: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 1: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 1: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 1: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 1: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 1: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 1: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 1: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 1: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 1: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 1: \nChain 1:  Elapsed Time: 0 seconds (Warm-up)\nChain 1:                0.007 seconds (Sampling)\nChain 1:                0.007 seconds (Total)\nChain 1: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).\nChain 2: \nChain 2: Gradient evaluation took 1e-06 seconds\nChain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.\nChain 2: Adjust your expectations accordingly!\nChain 2: \nChain 2: \nChain 2: WARNING: There aren't enough warmup iterations to fit the\nChain 2:          three stages of adaptation as currently configured.\nChain 2:          Reducing each adaptation stage to 15%/75%/10% of\nChain 2:          the given number of warmup iterations:\nChain 2:            init_buffer = 15\nChain 2:            adapt_window = 75\nChain 2:            term_buffer = 10\nChain 2: \nChain 2: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 2: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 2: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 2: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 2: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 2: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 2: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 2: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 2: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 2: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 2: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 2: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 2: \nChain 2:  Elapsed Time: 0 seconds (Warm-up)\nChain 2:                0.007 seconds (Sampling)\nChain 2:                0.007 seconds (Total)\nChain 2: \n\nSAMPLING FOR MODEL 'anon_model' NOW (CHAIN 3).\nChain 3: \nChain 3: Gradient evaluation took 1e-06 seconds\nChain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.\nChain 3: Adjust your expectations accordingly!\nChain 3: \nChain 3: \nChain 3: WARNING: There aren't enough warmup iterations to fit the\nChain 3:          three stages of adaptation as currently configured.\nChain 3:          Reducing each adaptation stage to 15%/75%/10% of\nChain 3:          the given number of warmup iterations:\nChain 3:            init_buffer = 15\nChain 3:            adapt_window = 75\nChain 3:            term_buffer = 10\nChain 3: \nChain 3: Iteration:    1 / 2000 [  0%]  (Warmup)\nChain 3: Iteration:  101 / 2000 [  5%]  (Sampling)\nChain 3: Iteration:  300 / 2000 [ 15%]  (Sampling)\nChain 3: Iteration:  500 / 2000 [ 25%]  (Sampling)\nChain 3: Iteration:  700 / 2000 [ 35%]  (Sampling)\nChain 3: Iteration:  900 / 2000 [ 45%]  (Sampling)\nChain 3: Iteration: 1100 / 2000 [ 55%]  (Sampling)\nChain 3: Iteration: 1300 / 2000 [ 65%]  (Sampling)\nChain 3: Iteration: 1500 / 2000 [ 75%]  (Sampling)\nChain 3: Iteration: 1700 / 2000 [ 85%]  (Sampling)\nChain 3: Iteration: 1900 / 2000 [ 95%]  (Sampling)\nChain 3: Iteration: 2000 / 2000 [100%]  (Sampling)\nChain 3: \nChain 3:  Elapsed Time: 0 seconds (Warm-up)\nChain 3:                0.008 seconds (Sampling)\nChain 3:                0.008 seconds (Total)\nChain 3: \n\nmodel_beta1_fit\n\nInference for Stan model: anon_model.\n3 chains, each with iter=2000; warmup=100; thin=1; \npost-warmup draws per chain=1900, total post-warmup draws=5700.\n\n       mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat\npi     0.25    0.00 0.09   0.1   0.19   0.25   0.30   0.44  2397    1\nlp__ -14.01    0.01 0.72 -16.1 -14.19 -13.72 -13.54 -13.50  2390    1\n\nSamples were drawn using NUTS(diag_e) at Sat May  4 02:48:59 2024.\nFor each parameter, n_eff is a crude measure of effective sample size,\nand Rhat is the potential scale reduction factor on split chains (at \nconvergence, Rhat=1).\n\n\n\nmodel_beta1_fit@model_pars\n\n[1] \"pi\"   \"lp__\"\n\n\n\nlist_of_draws &lt;- extract(model_beta1_fit,pars=\"pi\")\n\nstr(list_of_draws)\n\nList of 1\n $ pi: num [1:5700(1d)] 0.1725 0.2519 0.2169 0.2472 0.0989 ...\n  ..- attr(*, \"dimnames\")=List of 1\n  .. ..$ iterations: NULL\n\ndim(list_of_draws$pi)\n\n[1] 5700\n\nhead(list_of_draws$pi)\n\n[1] 0.17249777 0.25190703 0.21686530 0.24720482 0.09888490 0.08594311\n\nmean(list_of_draws$pi&lt;0.6)\n\n[1] 0.9996491\n\n\n\nggplot2::qplot(list_of_draws$pi)\n\n\n\n\nDistribución a posteriori de \\(\\pi\\).\n\n\n\n\n\narray_of_draws &lt;- as.array(model_beta1_fit, pars=\"pi\")\n\n\nbayesplot::mcmc_trace(array_of_draws,pars=\"pi\")\n\n\n\n\nTraceplot de \\(\\pi\\).\n\n\n\n\n\nbayesplot::mcmc_hist_by_chain(array_of_draws,pars=\"pi\")\n\n\n\n\nHistograma para cada cadena de \\(\\pi\\).\n\n\n\n\n\nbayesplot::mcmc_dens_chains(array_of_draws,pars=\"pi\")\n\n\n\n\nEstimación de densidad para cada cadena de \\(\\pi\\).\n\n\n\n\n\ndf_of_draws &lt;- as.data.frame(model_beta1_fit,pars=\"pi\")\n\n#usando el paquete tidybayes + ggdist\nmodel_beta1_fit |&gt;\n  spread_draws(pi) |&gt;\n  ggplot(aes(x=pi)) + \n  stat_histinterval()\n\n\n\n\nDistribución a posteriori de \\(\\pi\\).",
     "crumbs": [
       "Recursos",
       "Código",
@@ -1794,102 +1865,26 @@
     ]
   },
   {
-    "objectID": "recursos/distribuciones/distribuciones.html",
-    "href": "recursos/distribuciones/distribuciones.html",
-    "title": "Distribuciones de probabilidad",
+    "objectID": "recursos/software/04_instalar_rstan.html",
+    "href": "recursos/software/04_instalar_rstan.html",
+    "title": "Instalar RStan",
     "section": "",
-    "text": "\\[\nX \\sim \\text{Normal}(\\mu, \\sigma)\n\\]\n\\[\np(x \\mid \\mu, \\sigma) = \\frac{1}{\\sqrt{2\\pi} \\sigma}e^{-\\frac{(x - \\mu) ^ 2}{2\\sigma^2}}\n\\]\n\\[\nP(X \\le x) = \\int_{-\\infty}^{x}{p(x | \\mu, \\sigma) dx}\n\\]\no también\n\\[\nP(X \\le x) = \\frac{1}{2} \\left[1 + \\text{erf}\\left(\\frac{x - \\mu}{\\sigma\\sqrt{2}} \\right) \\right]\n\\]\ncon\n\\[\n\\text{erf}(x) = \\frac{2}{\\sqrt{\\pi}}\\int_0^{x} {e^{-t^2}dt}\n\\]\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\mu \\in \\mathbb{R}\\)\n\\(\\sigma &gt; 0\\)\n\\(\\mathbb{E}(X) = \\mu\\)\n\\(\\mathbb{V}(X) = \\sigma^2\\)\n\n\n\n\n\\[\nX \\sim \\text{StudentT}(\\nu)\n\\]\n\\[\np(x \\mid \\nu) =\n    \\frac{\\Gamma(\\frac{\\nu + 1}{2})}{\\Gamma(\\frac{\\nu}{2})}\n    \\left(\\frac{1}{\\pi\\nu}\\right) ^ {\\frac{1}{2}}\n    \\left[1 + \\frac{x^2}{\\nu}\\right]^{-\\frac{\\nu + 1}{2}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{2} + x \\Gamma\\left(\\frac{\\nu + 1}{2}\\right)\n             \\frac{{}_2F_1\\left(\\frac{1}{2}, \\frac{v + 1}{2}, \\frac{3}{2}, \\frac{-x^2}{\\nu} \\right)}\n             {\\sqrt{\\pi \\nu} \\Gamma(\\frac{\\nu}{2})}\n\\]\ndonde \\({}_2F_1\\) es la función hipergeométrica.\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\nu &gt; 0\\)\n\\(\\mathbb{E}(X) = 0\\) si \\(\\nu &gt; 1\\)\n\\(\\mathbb{V}(X) = \\nu / (\\nu - 2)\\) si \\(\\nu &gt; 2\\)\n\n\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(k, \\theta)\n\\]\n\\[\np(x \\mid k, \\theta) = \\frac{1}{\\Gamma(k)\\theta^k}x^{k-1}e^{-\\frac{x}{\\theta}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(k)} \\gamma \\left(k, \\frac{x}{\\theta}\\right)\n\\]\n\n\\(X &gt; 0\\)\n\\(k &gt; 0\\)\n\\(\\theta &gt; 0\\)\n\\(\\mathbb{E}(X) = k\\theta\\)\n\\(\\mathbb{V}(X) = k\\theta^2\\)\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(\\alpha, \\beta)\n\\]\n\\[\np(x | \\alpha, \\beta) = \\frac{1}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}\\beta^\\alpha\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(\\alpha)} \\gamma(\\alpha, \\beta x)\n\\]\n\n\\(X &gt; 0\\)\n\\(\\alpha &gt; 0\\)\n\\(\\beta &gt; 0\\)\n\\(\\mathbb{E}(X) = \\alpha/\\beta\\)\n\\(\\mathbb{V}(X) = \\alpha/\\beta^2\\)\n\n\n\n\n\n\\[\nX \\sim \\text{Exponencial}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\lambda e^{-\\lambda x}\n\\]\n\\[\nP(X \\le x) = 1 - e^{-\\lambda x}\n\\]\n\n\\(X &gt; 0\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = 1 / \\lambda\\)\n\\(\\mathbb{V}(X) = 1 / \\lambda ^ 2\\)\n\nEs un caso particular de \\(\\text{Gamma}(\\alpha, \\beta)\\) con \\(\\alpha = 1\\) y \\(\\beta = \\lambda\\)\n\n\n\n\\[\nX \\sim \\text{Beta}(a, b)\n\\]\n\\[\np(x \\mid a, b) = \\frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}\n\\]\n\\[\nB(a, b) = \\int_0^1 x^{a-1} (1-x)^{b-1} dx = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]\n\n\\(X \\in (0, 1)\\)\n\\(\\displaystyle \\mathbb{E}(X) = \\frac{a}{a + b}\\)\n\\(\\displaystyle \\mathbb{V}(X) = \\frac{ab}{(a + b) ^ 2 (a + b + 1)}\\)\n\n\n\n\n\\[\nX \\sim \\text{Binomial}(\\theta, n)\n\\]\n\\[\np(x \\mid \\theta, n) = {n \\choose x} \\theta^x (1 - \\theta)^{(n - x)}\n\\]\n\\[\nP(X \\le x) = \\sum_{i = 0} ^ {x} {n \\choose i} \\theta^i (1 - \\theta)^{(n - i)}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots, n\\}\\)\n\\(\\theta \\in [0, 1]\\)\n\\(n \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(\\mathbb{E}(X) = n \\theta\\)\n\\(\\mathbb{V}(X) = n \\theta (1 - \\theta)\\)\n\n\n\n\n\\[\nX \\sim \\text{Poisson}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!}\n\\]\n\\[\nP(X \\le x) = e^{-\\lambda} \\sum_{i = 0} ^ {x} \\frac{\\lambda^i}{i!}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots\\}\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = \\lambda\\)\n\\(\\mathbb{V}(X) = \\lambda\\)\n\n\n\n\n\\[\nX \\sim \\text{BinomialNegativa}(r, p)\n\\]\n\\[\np(x \\mid k, p)= \\binom{x + r - 1}{x}(1 - p)^x p^r\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(r \\in \\{1, 2, 3, \\cdots \\}\\)\n\\(p \\in [0, 1]\\)\n\\(\\mathbb{E}(X) = r(1 - p) / p\\)\n\\(\\mathbb{V}(X) = r(1 - p) / p^2\\)",
+    "text": "library(\"rstan\")\n\nN &lt;- 20\ny &lt;- 4\n\nmodel_beta1_stan &lt;- \"\ndata {\n  int N;     \n  int Y; \n}\nparameters {\n  real&lt;lower=0, upper=1&gt; pi;\n}\nmodel {\n  pi ~ beta(2,2); // prior\n  Y ~ binomial(N, pi);  // likelihood\n}\"\n\nmodel_beta1 &lt;- stan_model(model_code = model_beta1_stan)\n\ndata_list &lt;- list(Y = y, N = N)\n\nmodel_beta1_fit &lt;- sampling(\n  object = model_beta1, \n  data = data_list, \n  chains = 2, \n  iter = 500,\n  warmup = 100\n)",
     "crumbs": [
       "Recursos",
-      "Distribuciones"
+      "Instalación de software",
+      "Instalar RStan"
     ]
   },
   {
-    "objectID": "recursos/distribuciones/distribuciones.html#normal",
-    "href": "recursos/distribuciones/distribuciones.html#normal",
-    "title": "Distribuciones de probabilidad",
+    "objectID": "recursos/software/index.html",
+    "href": "recursos/software/index.html",
+    "title": "Instalación de software [WIP]",
     "section": "",
-    "text": "\\[\nX \\sim \\text{Normal}(\\mu, \\sigma)\n\\]\n\\[\np(x \\mid \\mu, \\sigma) = \\frac{1}{\\sqrt{2\\pi} \\sigma}e^{-\\frac{(x - \\mu) ^ 2}{2\\sigma^2}}\n\\]\n\\[\nP(X \\le x) = \\int_{-\\infty}^{x}{p(x | \\mu, \\sigma) dx}\n\\]\no también\n\\[\nP(X \\le x) = \\frac{1}{2} \\left[1 + \\text{erf}\\left(\\frac{x - \\mu}{\\sigma\\sqrt{2}} \\right) \\right]\n\\]\ncon\n\\[\n\\text{erf}(x) = \\frac{2}{\\sqrt{\\pi}}\\int_0^{x} {e^{-t^2}dt}\n\\]\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\mu \\in \\mathbb{R}\\)\n\\(\\sigma &gt; 0\\)\n\\(\\mathbb{E}(X) = \\mu\\)\n\\(\\mathbb{V}(X) = \\sigma^2\\)",
+    "text": "Se incluyen guías para instalar programas necesarios (en Windows).\nInstalar RInstalar RToolsInstalar RStudioInstalar RStan",
     "crumbs": [
       "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#t-student",
-    "href": "recursos/distribuciones/distribuciones.html#t-student",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{StudentT}(\\nu)\n\\]\n\\[\np(x \\mid \\nu) =\n    \\frac{\\Gamma(\\frac{\\nu + 1}{2})}{\\Gamma(\\frac{\\nu}{2})}\n    \\left(\\frac{1}{\\pi\\nu}\\right) ^ {\\frac{1}{2}}\n    \\left[1 + \\frac{x^2}{\\nu}\\right]^{-\\frac{\\nu + 1}{2}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{2} + x \\Gamma\\left(\\frac{\\nu + 1}{2}\\right)\n             \\frac{{}_2F_1\\left(\\frac{1}{2}, \\frac{v + 1}{2}, \\frac{3}{2}, \\frac{-x^2}{\\nu} \\right)}\n             {\\sqrt{\\pi \\nu} \\Gamma(\\frac{\\nu}{2})}\n\\]\ndonde \\({}_2F_1\\) es la función hipergeométrica.\n\n\\(X \\in \\mathbb{R}\\)\n\\(\\nu &gt; 0\\)\n\\(\\mathbb{E}(X) = 0\\) si \\(\\nu &gt; 1\\)\n\\(\\mathbb{V}(X) = \\nu / (\\nu - 2)\\) si \\(\\nu &gt; 2\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#gamma",
-    "href": "recursos/distribuciones/distribuciones.html#gamma",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{Gamma}(k, \\theta)\n\\]\n\\[\np(x \\mid k, \\theta) = \\frac{1}{\\Gamma(k)\\theta^k}x^{k-1}e^{-\\frac{x}{\\theta}}\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(k)} \\gamma \\left(k, \\frac{x}{\\theta}\\right)\n\\]\n\n\\(X &gt; 0\\)\n\\(k &gt; 0\\)\n\\(\\theta &gt; 0\\)\n\\(\\mathbb{E}(X) = k\\theta\\)\n\\(\\mathbb{V}(X) = k\\theta^2\\)\n\n\n\n\n\\[\nX \\sim \\text{Gamma}(\\alpha, \\beta)\n\\]\n\\[\np(x | \\alpha, \\beta) = \\frac{1}{\\Gamma(\\alpha)}x^{\\alpha-1}e^{-\\beta x}\\beta^\\alpha\n\\]\n\\[\nP(X \\le x) = \\frac{1}{\\Gamma(\\alpha)} \\gamma(\\alpha, \\beta x)\n\\]\n\n\\(X &gt; 0\\)\n\\(\\alpha &gt; 0\\)\n\\(\\beta &gt; 0\\)\n\\(\\mathbb{E}(X) = \\alpha/\\beta\\)\n\\(\\mathbb{V}(X) = \\alpha/\\beta^2\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#exponencial",
-    "href": "recursos/distribuciones/distribuciones.html#exponencial",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{Exponencial}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\lambda e^{-\\lambda x}\n\\]\n\\[\nP(X \\le x) = 1 - e^{-\\lambda x}\n\\]\n\n\\(X &gt; 0\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = 1 / \\lambda\\)\n\\(\\mathbb{V}(X) = 1 / \\lambda ^ 2\\)\n\nEs un caso particular de \\(\\text{Gamma}(\\alpha, \\beta)\\) con \\(\\alpha = 1\\) y \\(\\beta = \\lambda\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#beta",
-    "href": "recursos/distribuciones/distribuciones.html#beta",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{Beta}(a, b)\n\\]\n\\[\np(x \\mid a, b) = \\frac{x^{a-1} (1-x)^{b-1}}{B(a, b)}\n\\]\n\\[\nB(a, b) = \\int_0^1 x^{a-1} (1-x)^{b-1} dx = \\frac{\\Gamma(a)\\Gamma(b)}{\\Gamma(a+b)}\n\\]\n\\[\n\\Gamma(x) = \\int_0^\\infty u^{x-1} e^{-u} du\n\\]\n\n\\(X \\in (0, 1)\\)\n\\(\\displaystyle \\mathbb{E}(X) = \\frac{a}{a + b}\\)\n\\(\\displaystyle \\mathbb{V}(X) = \\frac{ab}{(a + b) ^ 2 (a + b + 1)}\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#binomial",
-    "href": "recursos/distribuciones/distribuciones.html#binomial",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{Binomial}(\\theta, n)\n\\]\n\\[\np(x \\mid \\theta, n) = {n \\choose x} \\theta^x (1 - \\theta)^{(n - x)}\n\\]\n\\[\nP(X \\le x) = \\sum_{i = 0} ^ {x} {n \\choose i} \\theta^i (1 - \\theta)^{(n - i)}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots, n\\}\\)\n\\(\\theta \\in [0, 1]\\)\n\\(n \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(\\mathbb{E}(X) = n \\theta\\)\n\\(\\mathbb{V}(X) = n \\theta (1 - \\theta)\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#poisson",
-    "href": "recursos/distribuciones/distribuciones.html#poisson",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{Poisson}(\\lambda)\n\\]\n\\[\np(x \\mid \\lambda) = \\frac{\\lambda^x e^{-\\lambda}}{x!}\n\\]\n\\[\nP(X \\le x) = e^{-\\lambda} \\sum_{i = 0} ^ {x} \\frac{\\lambda^i}{i!}\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots\\}\\)\n\\(\\lambda &gt; 0\\)\n\\(\\mathbb{E}(X) = \\lambda\\)\n\\(\\mathbb{V}(X) = \\lambda\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
-    ]
-  },
-  {
-    "objectID": "recursos/distribuciones/distribuciones.html#binomial-negativa",
-    "href": "recursos/distribuciones/distribuciones.html#binomial-negativa",
-    "title": "Distribuciones de probabilidad",
-    "section": "",
-    "text": "\\[\nX \\sim \\text{BinomialNegativa}(r, p)\n\\]\n\\[\np(x \\mid k, p)= \\binom{x + r - 1}{x}(1 - p)^x p^r\n\\]\n\n\\(X \\in \\{0, 1, 2, \\cdots \\}\\)\n\\(r \\in \\{1, 2, 3, \\cdots \\}\\)\n\\(p \\in [0, 1]\\)\n\\(\\mathbb{E}(X) = r(1 - p) / p\\)\n\\(\\mathbb{V}(X) = r(1 - p) / p^2\\)",
-    "crumbs": [
-      "Recursos",
-      "Distribuciones"
+      "Instalación de software"
     ]
   },
   {
