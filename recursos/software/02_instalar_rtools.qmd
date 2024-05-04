@@ -7,11 +7,38 @@ execute:
 ```{r}
 img_root <- here::here("recursos", "software", "imgs", "windows")
 ```
+
+RTools es un conjunto esencial de herramientas que incluye compiladores, paquetes y utilidades necesarias para compilar tanto paquetes de R como código fuente en diversos lenguajes de 
+bajo nivel, como C, C++ y Fortran, en computadoras con el sistema operativo Windows.
+
+En el contexto de la materia, RTools adquiere una relevancia significativa al posibilitar
+el uso de Stan en Windows, ya que este requiere la compilación de programas en C++ para 
+obtener muestras del _posterior_ de un modelo.
+
+En la misma página donde se seleccionó la opción **base** para descargar R base, 
+se encuentra el enlace para continuar con la descarga de **RTools**.
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics(file.path(img_root, "17_select_rtools.png"))
+```
+
+Al igual que R, RTools también cuenta con diferentes versiones. Es **muy importante**
+tener presente que la versión de RTools que se utilice debe corresponderse con la 
+versión de R que se tenga instalada.
+Si se instaló R 4.3.x, de acuerdo a la guía [Instalar R](01_instalar_r.qmd), se debe
+seleccionar RTools 4.3.
+
 ```{r}
 #| fig-align: center
 #| out-width: 80%
 knitr::include_graphics(file.path(img_root, "17_rtools.png"))
 ```
+
+A continuación, se muestra una página con abundante información sobre RTools. El enlace
+para realizar la descarga se encuentra en **Rtools43 installer**. 
+
 
 ```{r}
 #| fig-align: center
@@ -19,6 +46,9 @@ knitr::include_graphics(file.path(img_root, "17_rtools.png"))
 knitr::include_graphics(file.path(img_root, "17_download_rtools.png"))
 ```
 
+Cuando finaliza la descarga se tiene que encontrar un archivo como el que se muestra 
+debajo. Nuevamente, es solo cuestión de hacer doble clic sobre el mismo y seleccionar
+**Next** e **Install** hasta finalizar.
 
 ```{r}
 #| fig-align: center
@@ -49,6 +79,10 @@ knitr::include_graphics(file.path(img_root, "21_ready_to_install.png"))
 #| out-width: 50%
 knitr::include_graphics(file.path(img_root, "22_installing.png"))
 ```
+
+Para comprobar si RTools fue instalado en una ruta identificada por R, se puede correr
+`Sys.which("make")` en el intérprete de R y esto tiene que devolver una cadena con la
+ruta donde se encuentra la utilidad `make` (que en Windows es provista por RTools).
 
 ```{r}
 #| fig-align: center

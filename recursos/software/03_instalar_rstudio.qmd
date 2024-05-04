@@ -8,11 +8,19 @@ execute:
 img_root <- here::here("recursos", "software", "imgs", "windows")
 ```
 
+La descarga e instalación de RStudio en Windows es sencilla. 
+Para descargar RStudio hay que ir a la página de descargas de RStudio de Posit 
+[https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+y seleccionar el botón que descarga RStudio para Windows.
+
 ```{r}
 #| fig-align: center
 #| out-width: 80%
 knitr::include_graphics(file.path(img_root, "24_posit_rstudio.png"))
 ```
+
+Una vez que se tiene el instalador descargado, hay que ejecutarlo haciendo doble clic y
+seleccionar **Next** e **Install** hasta finalizar.
 
 ```{r}
 #| fig-align: center
@@ -50,6 +58,10 @@ knitr::include_graphics(file.path(img_root, "29_rstudio_installing.png"))
 #| out-width: 50%
 knitr::include_graphics(file.path(img_root, "30_rstudio_install_finish.png"))
 ```
+
+La primera vez que se abre, RStudio requiere que se especifique la instalación de R a 
+utilizar. Al menos que se cuente con múltiples instalaciones y se quiera usar una en particular,
+es recomendable utilizar la opción seleccionada por defecto.
 
 ```{r}
 #| fig-align: center

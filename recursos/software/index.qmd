@@ -1,8 +1,17 @@
 ---
-title: "Instalación de software [WIP]"
+title: "Instalación de software"
 ---
 
-Se incluyen guías para instalar programas necesarios (en Windows).
+En este curso se utiliza el lenguaje de programación probabilística Stan mediante su
+interface RStan.
+
+La instalación de RStan en sistemas operativos basados en Linux es relativamente sencilla.
+Pero no lo es así en el sistema operativo Windows. En este último caso se necesita tener
+instalado un conjunto de herramientas conocido como RTools. 
+
+En las guías debajo se explica como instalar R, RTools, RStudio y RStan en una 
+computadora que utiliza Windows.
+
 
 ```{r}
 #| echo: false

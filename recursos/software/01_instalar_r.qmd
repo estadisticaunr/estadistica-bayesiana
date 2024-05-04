@@ -7,11 +7,19 @@ execute:
 ```{r}
 img_root <- here::here("recursos", "software", "imgs", "windows")
 ```
+
+El primer paso es ir al sitio [https://r-project.org/](https://r-project.org/) y hacer 
+clic en donde dice [CRAN](https://cran.r-project.org/mirrors.html).
+
 ```{r}
 #| fig-align: center
 #| out-width: 80%
 knitr::include_graphics(file.path(img_root, "01_rproject.png"))
 ```
+
+Una vez allí, aparecen _mirrors_ (réplicas o copias) de la red CRAN donde se almacenan 
+múltiples versiones de R, paquetes y otras dependencias. Se recomienda seleccionar la 
+réplica **Cloud** o **Argentina**.
 
 ```{r}
 #| fig-align: center
@@ -19,11 +27,20 @@ knitr::include_graphics(file.path(img_root, "01_rproject.png"))
 knitr::include_graphics(file.path(img_root, "02_cran.png"))
 ```
 
+Aquí se incluyen diferentes enlaces que proveen el instalador de R para diferentes
+sistemas operativos. En el caso de encontrarse en Windows, hay que cliquear en 
+[Download R for Windows](https://cloud.r-project.org/bin/windows/).
+
 ```{r}
 #| fig-align: center
 #| out-width: 80%
 knitr::include_graphics(file.path(img_root, "03_install_windows.png"))
 ```
+
+La siguiente página muestra diferentes subdirectorios. Para instalar R base hay que 
+seleccionar el que dice [base](https://cloud.r-project.org/bin/windows/base/). Notar
+que también aparece [RTools](https://cloud.r-project.org/bin/windows/Rtools/), 
+un programa utilitario que será necesario más adelante.
 
 ```{r}
 #| fig-align: center
@@ -31,11 +48,20 @@ knitr::include_graphics(file.path(img_root, "03_install_windows.png"))
 knitr::include_graphics(file.path(img_root, "04_base.png"))
 ```
 
+En esta sección, aparece por defecto el enlace para descargar la última versión
+de R. Al momento de realizar esta guía la versión R 4.4.0 se encuentra recién lanzada, 
+por lo que se recomienda utilizar la última versión de la serie 4.3. Para encontrar
+el enlace de descarga de versiones anteriores hay que hacer clic en 
+[Previous releases](https://cloud.r-project.org/bin/windows/base/old/).
+
 ```{r}
 #| fig-align: center
 #| out-width: 80%
 knitr::include_graphics(file.path(img_root, "05_previous_releases.png"))
 ```
+
+Allí se encuentran enlaces para descargar versiones anteriores de R, junto a su fecha
+de publicación. Se recomienda seleccionar la version [4.3.3](https://cloud.r-project.org/bin/windows/base/old/4.3.3).
 
 ```{r}
 #| fig-align: center
@@ -43,17 +69,28 @@ knitr::include_graphics(file.path(img_root, "05_previous_releases.png"))
 knitr::include_graphics(file.path(img_root, "06_previous_versions.png"))
 ```
 
+Luego se presenta un listado de archivos disponibles en el directorio. 
+Hay que seleccionar el instalador, que es el archivo que termina en **.exe**, y esto
+comienza la descarga del mismo.
+
 ```{r}
 #| fig-align: center
 #| out-width: 50%
 knitr::include_graphics(file.path(img_root, "07_R433.png"))
 ```
 
+Al finalizar la descarga, se tiene que encontrar un archivo como el que se muestra debajo.
+Simplemente hay que hacer doble clic para ejecutar el instalador.
+
 ```{r}
 #| fig-align: center
 #| out-width: 50%
 knitr::include_graphics(file.path(img_root, "08_download.png"))
 ```
+
+La instalación es sencilla y solamente hay que hacer seleccionar **Next** hasta finalizar.
+Las capturas a continuación se incluyen para mostrar las opciones seleccionadas en los
+diferentes pasos de la instalación.
 
 ```{r}
 #| fig-align: center

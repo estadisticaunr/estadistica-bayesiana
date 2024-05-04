@@ -8,11 +8,23 @@ execute:
 img_root <- here::here("recursos", "software", "imgs", "windows")
 ```
 
+Si bien los pasos a continuación pueden funcionar con múltiples versiones de R, en esta 
+guía se asume que se tiene instalado R 4.3.3, RTools 4.3 y RStudio (aunque este último no sea estrictamente necesario).
+
+**No se recomienda** utilizar las versiones 4.0, 4.1 y 4.2 de R para trabajar con RStan
+en Windows debido a la cantidad de problemas que han reportado en el pasado.
+
+Previo a instalar RStan, se debe verificar que RTools se encuentra instalado y R tiene
+acceso al mismo. Una forma de verificarlo es ejecutando `Sys.which("make")`, 
+como se explica en [Instalar RTools](02_instalar_rtools.qmd).
+
 ```{r}
 #| fig-align: center
 #| out-width: 75%
 knitr::include_graphics(file.path(img_root, "32_which_make.png"))
 ```
+
+Dado que RTools funciona en el sistema, instalar RStan estan sencillo como correr `install.packages("rstan")`.
 
 ```{r}
 #| fig-align: center
@@ -20,12 +32,15 @@ knitr::include_graphics(file.path(img_root, "32_which_make.png"))
 knitr::include_graphics(file.path(img_root, "33_install_rstan.png"))
 ```
 
+Comienza un proceso de descarga de dependencias (ya compiladas):
+
 ```{r}
 #| fig-align: center
 #| out-width: 75%
 knitr::include_graphics(file.path(img_root, "34_downloading_deps.png"))
 ```
 
+y luego se instalan y verifican las mismas:
 
 ```{r}
 #| fig-align: center
@@ -33,11 +48,19 @@ knitr::include_graphics(file.path(img_root, "34_downloading_deps.png"))
 knitr::include_graphics(file.path(img_root, "35_successful_install.png"))
 ```
 
+Una vez finalizado este proceso, se puede ejecutar `library("rstan")`. 
+Es de esperar que aparezcan varios mensajes, pero no hay que alarmarse ya que suelen ser a
+modo informativo. Lo más relevante son las versiones de RStan y Stan.
+
 ```{r}
 #| fig-align: center
 #| out-width: 75%
 knitr::include_graphics(file.path(img_root, "36_library_rstan.png"))
 ```
+
+Finalmente, la mejor forma de determinar si RStan funciona correctamente es obteniendo
+muestras de un _posterior_. En las capturas debajo se utiliza el siguiente bloque de 
+código:
 
 ```{r}
 #| eval: false
@@ -73,6 +96,9 @@ model_beta1_fit <- sampling(
 )
 ```
 
+En el caso de que RStan haya funcionado correctamente, los mensajes en la consola
+serán similares a los que se muestran a continuación:
+
 ```{r}
 #| fig-align: center
 #| out-width: 75%
@@ -84,3 +110,7 @@ knitr::include_graphics(file.path(img_root, "37_modelo_stan.png"))
 #| out-width: 75%
 knitr::include_graphics(file.path(img_root, "38_modelo_stan_2.png"))
 ```
+
+Si se quiere obtener más información sobre la instalación de RStan se puede consultar la
+[wiki](https://github.com/stan-dev/rstan/wiki) del repositorio de RStan o el 
+[foro de Stan](https://discourse.mc-stan.org/) donde se discuten múltiples temas.
