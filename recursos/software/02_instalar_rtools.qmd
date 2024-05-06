@@ -82,7 +82,7 @@ knitr::include_graphics(file.path(img_root, "22_installing.png"))
 
 Para comprobar si RTools fue instalado en una ruta identificada por R, se puede correr
 `Sys.which("make")` en el intérprete de R y esto tiene que devolver una cadena con la
-ruta donde se encuentra la utilidad `make` (que en Windows es provista por RTools).
+ruta donde se encuentra el programa `make` (que en Windows es provista por RTools).
 
 ```{r}
 #| fig-align: center

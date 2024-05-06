@@ -24,7 +24,8 @@ como se explica en [Instalar RTools](02_instalar_rtools.qmd).
 knitr::include_graphics(file.path(img_root, "32_which_make.png"))
 ```
 
-Dado que RTools funciona en el sistema, instalar RStan estan sencillo como correr `install.packages("rstan")`.
+Dado que RTools funciona en el sistema, instalar RStan es tan sencillo como correr 
+`install.packages("rstan")`.
 
 ```{r}
 #| fig-align: center
