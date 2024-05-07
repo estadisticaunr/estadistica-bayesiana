@@ -425,7 +425,7 @@
 <img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1920"></section>
 <section id="section-12" class="slide level2">
 <h2></h2>
-<p>Por supuesto, las predicciones para <span class="math inline">\(y\)</span> también son probabilísticas: <span style="color:#FFC099;">distribución predictiva <em>a posteriori</em></span></p>
+<p>Por supuesto, las predicciones para <span class="math inline">\(y\)</span> (<span class="math inline">\(\tilde{y}\)</span>) también son probabilísticas: <span style="color:#FFC099;">distribución predictiva <em>a posteriori</em></span></p>
 
 <img data-src="presentacion_06_files/figure-revealjs/unnamed-chunk-4-1.png" class="quarto-figure quarto-figure-center r-stretch" width="1920"></section>
 <section id="resumen" class="slide level2 smaller">
@@ -484,9 +484,10 @@ Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
 </section>
 <section id="section-15" class="slide level2 smaller">
 <h2></h2>
-<p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asociaba, <span class="math inline">\(\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\)</span>. El <em>score</em> predictivo total (para todas las posibles observaciones) es la <em>log-posterior pointwise predictive density</em></p>
+<p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asocia, <span class="math display">\[\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\]</span></p>
+<p>El <em>score</em> predictivo total (para todas las posibles observaciones) es la <em><span style="color:#1f7a8c;">log</span>-<u>posterior</u> <span style="color:#EB8A90;">pointwise</span> <span style="color:#683257;">predictive density</span></em></p>
 <p><span class="math display">\[
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \right)
+\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
 \]</span></p>
 <p><span class="math display">\[
 \mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
@@ -511,15 +512,18 @@ Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
 </section>
 <section id="section-18" class="slide level2">
 <h2></h2>
-<p>No contamos con muestras de <span class="math inline">\(P(\theta\mid \mathbf{Y}_{-i})\)</span> sino simplemente de <span class="math inline">\(P(\theta\mid \mathbf{Y})\)</span>. No sabemos la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> sin considerar la observación <span class="math inline">\(i\)</span>. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la “importancia” de cada observación en el <em>posterior</em>. Esto da lugar a una técnica que se conoce como <em>Pareto-smoothed importance sampling cross-validation</em> (PSIS)</p>
+<p>No contamos con muestras de <span class="math inline">\(p(\theta\mid \mathbf{y}_{-i})\)</span> sino simplemente de <span class="math inline">\(p(\theta\mid \mathbf{y})\)</span>. No sabemos la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> sin considerar la observación <span class="math inline">\(i\)</span>. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la “importancia” de cada observación en el <em>posterior</em>. Esto da lugar a una técnica que se conoce como <em>Pareto-smoothed importance sampling cross-validation</em> (PSIS)</p>
 </section>
 <section id="section-19" class="slide level2">
 <h2></h2>
 <p>Históricamente se han desarrollado los llamados <strong>criterios de información</strong> que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.</p>
 </section>
-<section id="section-20" class="slide level2 smaller">
+<section id="section-20" class="slide level2">
 <h2></h2>
-<p>El <strong>AIC</strong> (<em>Akaike information criterion</em>) es <span class="math display">\[AIC = D + 2p = -2\ lppd + 2p\]</span> donde <span class="math inline">\(p\)</span> es el número de parámetros del modelo y <span class="math inline">\(D=-2\ \mathrm{lppd}\)</span> se conoce como <strong>deviance</strong>. Penalizamos el <span class="math inline">\(\mathrm{lppd}\)</span> con la tendencia (o capacidad) del modelo de sobreajustar. ##</p>
+<p>El <strong>AIC</strong> (<em>Akaike information criterion</em>) es <span class="math display">\[AIC = D + 2p = -2\ lppd + 2p\]</span> donde <span class="math inline">\(p\)</span> es el número de parámetros del modelo y <span class="math inline">\(D=-2\ \mathrm{lppd}\)</span> se conoce como <strong>deviance</strong>. Penalizamos el <span class="math inline">\(\mathrm{lppd}\)</span> con la tendencia (o capacidad) del modelo de sobreajustar.</p>
+</section>
+<section id="section-21" class="slide level2">
+<h2></h2>
 <p>El <strong>WAIC</strong> (<em>widely applicable information criterion</em>) es un criterio más general que el AIC (y un poquitito más difícil de calcular):</p>
 <p><span class="math display">\[WAIC = - 2\left(\mathrm{lppd} - \sum_{i=1}^N \mathbb{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\right)\]</span></p>
 <p><span class="math inline">\(\sum_{i=1}^N \mathrm{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\)</span> es un término de penalización que se suele llamar “número efectivo de parámetros”. Es la suma de las varianzas en la log-probabilidad de cada observación <span class="math inline">\(i\)</span> (o sea, la varianza total). Si, para un determinado dato <span class="math inline">\(i\)</span>, las diferentes muestras del <em>posterior</em> <span class="math inline">\(\theta_{(s)}\)</span> dan como resultado predicciones muy diferentes, es porque el modelo tiene mucha incertidumbre (y es posiblemente muy flexible).</p>
