@@ -550,7 +550,7 @@ dv1 %>%
 
 ##
 
-Por supuesto, las predicciones para $y$ también son probabilísticas: <span style="color:#FFC099;">distribución predictiva _a posteriori_</span>
+Por supuesto, las predicciones para $y$ ($\tilde{y}$) también son probabilísticas: <span style="color:#FFC099;">distribución predictiva _a posteriori_</span>
 
 ```{r}
 #| warning: false
@@ -570,7 +570,7 @@ dv1 %>%
   geom_histogram(fill="#FFC099", col="#FFA770", size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(hat(y)*" | x = –1")) +
+  xlab(expression(tilde(y)*" | x = –1")) +
   xlim(c(-7,7)) +
   coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1000))
 
@@ -582,7 +582,7 @@ dv1 %>%
   geom_histogram(fill="#FFC099", col="#FFA770", size = 1) +
   scale_y_continuous(expand = c(0,0,0.1,0)) +
   theme(axis.title.y = element_blank()) +
-  xlab(expression(hat(y)*" | x = 2")) +
+  xlab(expression(tilde(y)*" | x = 2")) +
   xlim(c(-7,7)) +
   coord_cartesian(xlim = c(-7.5,5)) +
   coord_cartesian(xlim = c(-7.5,5), ylim = c(0,1000))
@@ -636,10 +636,13 @@ dv1 %>%
 
 ## {.smaller}
 
-Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asociaba, $\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})$. El _score_ predictivo total (para todas las posibles observaciones) es la _log-posterior pointwise predictive density_
+Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asocia, 
+$$\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})$$ 
+
+El _score_ predictivo total (para todas las posibles observaciones) es la _<span style="color:#1f7a8c;">log</span>-[posterior]{.underline} <span style="color:#EB8A90;">pointwise</span> <span style="color:#683257;">predictive density</span>_
 
 $$
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \right)
+\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
 $$
 
 $$
@@ -669,17 +672,18 @@ El problema de hacer LOO-CV es que, si tenemos 1000 observaciones, hay que calcu
 
 ## 
 
-No contamos con muestras de $P(\theta\mid \mathbf{Y}_{-i})$ sino simplemente de $P(\theta\mid \mathbf{Y})$. No sabemos la distribución _a posteriori_ de $\theta$ sin considerar la observación $i$. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la "importancia" de cada observación en el _posterior_. Esto da lugar a una técnica que se conoce como _Pareto-smoothed importance sampling cross-validation_ (PSIS)
+No contamos con muestras de $p(\theta\mid \mathbf{y}_{-i})$ sino simplemente de $p(\theta\mid \mathbf{y})$. No sabemos la distribución _a posteriori_ de $\theta$ sin considerar la observación $i$. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la "importancia" de cada observación en el _posterior_. Esto da lugar a una técnica que se conoce como _Pareto-smoothed importance sampling cross-validation_ (PSIS)
 
 ## 
 
 Históricamente se han desarrollado los llamados **criterios de información** que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.
 
-## {.smaller}
+## 
 
 El **AIC** (_Akaike information criterion_) es 
 $$AIC = D + 2p = -2\ lppd + 2p$$
 donde $p$ es el número de parámetros del modelo y $D=-2\ \mathrm{lppd}$ se conoce como **deviance**. Penalizamos el $\mathrm{lppd}$ con la tendencia (o capacidad) del modelo de sobreajustar. 
+
 ##
 
 El **WAIC** (_widely applicable information criterion_) es un criterio más general que el AIC (y un poquitito más difícil de calcular): 
