@@ -6,7 +6,6 @@ Este _script_ fue utilizado en la primer clase de práctica en el laboratorio pa
 mostrar como resolver el ejercicio de los ositos utilizando código.
 
 ```{r}
-
 library(ggplot2)
 library(patchwork)
 ```
