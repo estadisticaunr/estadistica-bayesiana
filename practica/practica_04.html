@@ -261,33 +261,33 @@ window.Quarto = {
 <p>El conjunto de datos <code>sales</code> contiene los montos semanales de inversión en publicidad y de ingresos de una determinada compañía. Considere el siguiente modelo de regresión lineal simple:</p>
 <p><span class="math display">\[
 \begin{aligned}
+\text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
 \mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
-\text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Ajuste el modelo utilizando <code>{brms}</code> y sus <em>priors</em> por defecto.</li>
+<li>Ajuste el modelo utilizando <code>{Rstan}</code> y distribuciones uniformes como <em>priors</em>.</li>
 <li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad y superponga la recta de regresión estimada.</li>
 </ol></li>
 <li><p>📌 <strong>Mejorando mi regresión bayesiana</strong></p>
 <p>Considere la siguiente versión del modelo del ejercicio anterior que propone distribuciones <em>a priori</em> para los parámetros del modelo: <span class="math display">\[
 \begin{aligned}
-\mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
 \text{ventas}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
-\beta_0  &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
-\beta_1  &amp;\sim \text{Normal}(0, 0.5) \\
+\mu_i &amp;= \beta_0 + \beta_1 \text{publicidad}_i \\
+\beta_0  &amp;\sim \text{Normal}(\overline{\text{ventas}}, 10^2) \\
+\beta_1  &amp;\sim \text{Normal}(0, 0.5^2) \\
 \sigma &amp;\sim \text{Normal}^+(5)
 \end{aligned}
 \]</span></p>
 <ol type="i">
-<li>Ajuste el modelo utilizando <code>{brms}</code> y los <em>priors</em> sugeridos.</li>
+<li>Ajuste el modelo utilizando <code>{RStan}</code> y los <em>priors</em> sugeridos.</li>
 <li>Construya un gráfico que muestre las ventas en función de la inversión en publicidad, superponga la recta de regresión estimada, y el intervalo de credibilidad del 95% para la recta de regresión.</li>
 </ol></li>
-<li><p><strong>Comparando de <code>lm()</code> y <code>brm()</code></strong></p>
+<li><p><strong>Regresiones frecuentistas y bayesianas</strong></p>
 <p>Utilice datos simulados para comparar la estimación por mínimos cuadrados con la estimación Bayesiana en modelos de regresión.</p>
 <ol type="i">
 <li>Simule 100 observaciones del modelo <span class="math inline">\(Y = 2 + 3X + \varepsilon\)</span> donde los valores del predictor <span class="math inline">\(X\)</span> se obtienen de una distribución <span class="math inline">\(\text{Uniforme}(0, 20)\)</span> y los errores son obtenidos de manera independiente de una distribución <span class="math inline">\(\text{Normal}(0, 5^2)\)</span>.</li>
-<li>Ajuste el modelo de regresión utilizando <code>lm()</code> y <code>brm()</code> del paquete <code>{brms}</code> utilizando <em>priors</em> por defecto.</li>
+<li>Ajuste el modelo de regresión utilizando <code>lm()</code> y un modelo bayesiano mediante <code>{RStan}</code> utilizando <em>priors</em> uniformes.</li>
 <li>Verifique que ambos métodos arrojan resultados similares.</li>
 <li>Represente gráficamente los datos y las dos rectas de regresión.</li>
 <li>Intente repetir la simulación, pero esta vez cree las condiciones para que ambos enfoques den resultados diferentes. <!-- @Gelman2021 8.8 --></li>
@@ -297,12 +297,12 @@ window.Quarto = {
 <ol type="i">
 <li>Elabore un gráfico que permita ver la relación entre las alturas de las madres y las hijas. Aplique las técnicas que crea necesaria para obtener una visualización informativa y fidedigna.</li>
 <li>¿Por qué es adecuado utilizar un modelo de regresión lineal?</li>
-<li>Ajuste el siguiente modelo de regresión lineal utilizando <code>{brms}</code> y <em>priors</em> por defecto:</li>
+<li>Ajuste el siguiente modelo de regresión lineal utilizando <code>{Rstan}</code> y <em>priors</em> que crea convenientes:</li>
 </ol>
 <p><span class="math display">\[
 \begin{aligned}
-\mu_i &amp;= \beta_0 + \beta_1 \text{altura\_madre}_i \\
-\text{altura\_hija}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
+\text{altura hija}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
+\mu_i &amp;= \beta_0 + \beta_1 \text{altura madre}_i
 \end{aligned}
 \]</span></p>
 <ol type="i">
@@ -398,18 +398,18 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 <p>Considere el conjunto de datos sobre belleza y proporción de sexos (<code>sexratio</code>) . Estos datos provienen de un estudio de adolescentes estadounidenses cuyo atractivo en una escala de cinco puntos fue evaluado por entrevistadores en una encuesta cara a cara. Años más tarde, muchos de estos encuestados tuvieron hijos y se registraron ciertos atributos entre los cuales se incluyó el sexo. El objetivo del análisis es comparar la proporción de sexos de los hijos según la belleza de los padres. Para ello considere el siguiente modelo de regresión:</p>
 <p><span class="math display">\[
 \begin{aligned}
+\text{pf}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2) \\
 \mu_i &amp;= \beta_0 + \beta_1 \text{belleza}_i \\
-\text{pf}_i &amp;\sim \text{Normal}(\mu_i, \sigma^2)
 \end{aligned}
 \]</span></p>
 <p>Donde <span class="math inline">\(\text{pf}\)</span> representa la proporción de bebés de sexo femenino y <span class="math inline">\(\text{belleza}\)</span> representa el grupo de belleza de los padres.</p>
 <ol type="i">
 <li>Ajuste el modelo utilizando mínimos cuadrados.</li>
-<li>Ajuste el modelo con <code>brm()</code> y sus <em>priors</em> por defecto.</li>
+<li>Ajuste el modelo con <code>{RStan}</code> y <em>priors</em> uniformes.</li>
 <li>Compare el ajuste de ambos modelos.</li>
-<li>Explore los <em>priors</em> utilizados por <code>{brms}</code> y la distribución predictiva <em>a priori</em>. ¿Qué puede concluir?</li>
+<li>Explore los <em>priors</em> utilizados por <code>{RStan}</code> y la distribución predictiva <em>a priori</em>. ¿Qué puede concluir?</li>
 <li>Proponga distribuciones <em>a priori</em> informativas.</li>
-<li>Ajuste el modelo utilizando <code>brm()</code> y los <em>priors</em> informativos.</li>
+<li>Ajuste el modelo utilizando <code>{RStan}</code> y los <em>priors</em> informativos.</li>
 <li>Compare el resultado con los obtenidos anteriormente y concluya.</li>
 </ol></li>
 <li><p>📌 <strong>¡A la pesca de <em>priors</em>!</strong></p>
@@ -423,7 +423,7 @@ i. Considere un modelo de regresión `courseevaluation ~ btystdave`.
 \]</span></p>
 <p><span class="math inline">\(\text{Weight}_i\)</span> es el peso del i-ésimo pescado en gramos y <span class="math inline">\(\text{Length1}_i\)</span> es la longitud del i-ésimo pescado en centímetros. La letra <span class="math inline">\(j\)</span> indexa las especies de los pescados. Por lo tanto, en este modelo cada especie tiene su propio intercepto y pendiente.</p>
 <ol type="i">
-<li>Implemente el modelo utilizando <code>{brms}</code> y los siguientes <em>priors</em> no informativos <span class="math display">\[
+<li>Implemente el modelo utilizando <code>{RStan}</code> y los siguientes <em>priors</em> no informativos: <span class="math display">\[
 \begin{aligned}
 \beta_{0, j[i]} &amp;\sim \text{Normal}(0, 10) \\
 \beta_{1, j[i]} &amp;\sim \text{Normal}(0, 5)

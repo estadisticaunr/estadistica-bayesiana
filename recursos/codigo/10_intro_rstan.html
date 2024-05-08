@@ -277,6 +277,18 @@ window.Quarto = {
  <span class="menu-text">11 - El peso de los pescados</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/12_rwmh_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12 - Random-Walk Metropolis-Hastings en 2 dimensiones</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/13_hmc_gaussian_2d.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13 - Hamiltonian Monte Carlo para normal bivariada</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -452,8 +464,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 6e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -556,10 +568,10 @@ Chain 3: </code></pre>
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.10   0.19   0.24   0.31   0.44  2250    1
-lp__ -14.02    0.01 0.72 -16.12 -14.20 -13.74 -13.55 -13.50  2844    1
+pi     0.25    0.00 0.09   0.10   0.18   0.24   0.30   0.44  2376    1
+lp__ -14.03    0.01 0.75 -16.13 -14.19 -13.75 -13.55 -13.50  2672    1
 
-Samples were drawn using NUTS(diag_e) at Tue May  7 20:21:29 2024.
+Samples were drawn using NUTS(diag_e) at Wed May  8 01:16:28 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -577,7 +589,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.174 0.423 0.206 0.258 0.257 ...
+ $ pi: num [1:5700(1d)] 0.151 0.27 0.371 0.254 0.207 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -587,11 +599,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1738872 0.4232010 0.2057375 0.2581234 0.2567234 0.2701565</code></pre>
+<pre><code>[1] 0.1509504 0.2695455 0.3705902 0.2535722 0.2065074 0.1871828</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998246</code></pre>
+<pre><code>[1] 0.9996491</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
