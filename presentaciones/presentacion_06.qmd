@@ -631,40 +631,49 @@ dv1 %>%
 
 -   Idealmente quisiéramos ver si nuestro modelo tiene capacidad predictiva para datos nuevos (no usados para ajustarlo)
 -   Antes de preocuparnos por los datos nuevos, pensemos en las predicciones... Las predicciones son probabilísticas
--   No podemos simplemente comparar $y$ con $\hat{y}$
--   Debemos utilizar toda la distribución _a posteriori_ para evaluar el ajuste y (la capacidad predictiva) del modelo
+-   No podemos simplemente comparar $y_i$ con $\hat{y}_i$
+-   Debemos utilizar toda la distribución _a posteriori_ para evaluar el ajuste (y la capacidad predictiva) del modelo
 
-## {.smaller}
+##
 
-Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asocia, 
+Un posible _score_ predictivo para un determinado valor $y_i$ es la probabilidad que el modelo le asocia (también llamada densidad predictiva), 
 $$\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})$$ 
 
-El _score_ predictivo total (para todas las posibles observaciones) es la _<span style="color:#1f7a8c;">log</span>-[posterior]{.underline} <span style="color:#EB8A90;">pointwise</span> <span style="color:#683257;">predictive density</span>_
+## 
+
+El _score_ predictivo total (para todas las observaciones) es la _<span style="color:#EB8A90;">log</span>-[posterior]{.underline} <span style="color:#1f7a8c;">pointwise</span> <span style="color:#683257;">predictive density</span>_. A mayor $\mathrm{lppd}$, mejor es el ajuste del modelo.
 
 $$
 \mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
 $$
 
-$$
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
-$$
+. . .
 
-A mayor $\mathrm{lppd}$, mejor es el modelo para realizar predicciones
+Que podemos estimar a través de muestras del _posterior_
+
+$$
+\mathrm{lppd} = \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right)} \right)
+$$
 
 ## 
 
 La **deviance** de un modelo es
 
-$$D = -2 \mathrm{lppd}$$
+$$D = -2\ \mathrm{lppd}$$
 
 -   La deviance (o la $\mathrm{lppd}$) evalúa las predicciones de un modelo (el ajuste), no nos dice qué tan correcto es...
--   Son medidas que siempre mejoran con más parámetros y en realidad nos importa cómo se desempeña el modelo con datos nuevos. 
+-   Son medidas que siempre mejoran con más parámetros
+-   En realidad nos importa cómo se desempeña el modelo con datos nuevos. 
 
 ## {.smaller}
 
-La $\mathrm{lppd}$ predice el $i$-ésimo valor con un _posterior_ que usa todos los datos, incluido el $i$. Más que la $\mathrm{lppd}$ nos interesa su valor esperado en datos nuevos ($\mathrm{elpd}$). Por supuesto, no conocemos datos nuevos. Podemos aproximar o estimar $\mathrm{elpd}$ haciendo _cross-validation_ (CV) o, en particular, _leave-one-out cross-validation_ (LOO-CV).
+La $\mathrm{lppd}$ predice el $i$-ésimo valor con un _posterior_ que usa todos los datos, incluido el $i$. Más que la $\mathrm{lppd}$ nos interesa su valor esperado en datos nuevos ($\mathrm{elppd}$). Por supuesto, no conocemos datos nuevos. 
 
-$$\mathrm{elpd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)$$
+. . .
+
+Podemos aproximar o estimar $\mathrm{elppd}$ haciendo _cross-validation_ (CV) o, en particular, _leave-one-out cross-validation_ (LOO-CV).
+
+$$\mathrm{elppd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)$$
 
 donde los $\theta_{-i}^{(s)}$ son muestras del _posterior_ de $\theta$ obtenido sin considerar la $i$-ésima observación.
 
@@ -684,11 +693,17 @@ El **AIC** (_Akaike information criterion_) es
 $$AIC = D + 2p = -2\ lppd + 2p$$
 donde $p$ es el número de parámetros del modelo y $D=-2\ \mathrm{lppd}$ se conoce como **deviance**. Penalizamos el $\mathrm{lppd}$ con la tendencia (o capacidad) del modelo de sobreajustar. 
 
-##
+## {.smaller}
 
 El **WAIC** (_widely applicable information criterion_) es un criterio más general que el AIC (y un poquitito más difícil de calcular): 
 
 $$WAIC = - 2\left(\mathrm{lppd} - \sum_{i=1}^N \mathbb{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\right)$$
 
 $\sum_{i=1}^N \mathrm{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]$ es un término de penalización que se suele llamar "número efectivo de parámetros". Es la suma de las varianzas en la log-probabilidad de cada observación $i$ (o sea, la varianza total). Si, para un determinado dato $i$, las diferentes muestras del _posterior_ $\theta_{(s)}$ dan como resultado predicciones muy diferentes, es porque el modelo tiene mucha incertidumbre (y es posiblemente muy flexible).
+
+<!-- More generally, the adjustment can be thought of as an approximation
+to the number of ‘unconstrained’ parameters in the model, where a parameter
+counts as 1 if it is estimated with no constraints or prior information, 0 if it is fully constrained
+or if all the information about the parameter comes from the prior distribution, or
+an intermediate value if both the data and prior distributions are informative. -->
   
