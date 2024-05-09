@@ -478,55 +478,69 @@ Y_1^{(S)} &amp; Y_2^{(S)} &amp; \cdots &amp; Y_{N}^{(S)} \\
 <ul>
 <li class="fragment">Idealmente quisiéramos ver si nuestro modelo tiene capacidad predictiva para datos nuevos (no usados para ajustarlo)</li>
 <li class="fragment">Antes de preocuparnos por los datos nuevos, pensemos en las predicciones… Las predicciones son probabilísticas</li>
-<li class="fragment">No podemos simplemente comparar <span class="math inline">\(y\)</span> con <span class="math inline">\(\hat{y}\)</span></li>
-<li class="fragment">Debemos utilizar toda la distribución <em>a posteriori</em> para evaluar el ajuste y (la capacidad predictiva) del modelo</li>
+<li class="fragment">No podemos simplemente comparar <span class="math inline">\(y_i\)</span> con <span class="math inline">\(\hat{y}_i\)</span></li>
+<li class="fragment">Debemos utilizar toda la distribución <em>a posteriori</em> para evaluar el ajuste (y la capacidad predictiva) del modelo</li>
 </ul>
 </section>
-<section id="section-15" class="slide level2 smaller">
+<section id="section-15" class="slide level2">
 <h2></h2>
-<p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asocia, <span class="math display">\[\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\]</span></p>
-<p>El <em>score</em> predictivo total (para todas las posibles observaciones) es la <em><span style="color:#1f7a8c;">log</span>-<u>posterior</u> <span style="color:#EB8A90;">pointwise</span> <span style="color:#683257;">predictive density</span></em></p>
-<p><span class="math display">\[
-\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
-\]</span></p>
-<p><span class="math display">\[
-\mathrm{lppd} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right) \right)
-\]</span></p>
-<p>A mayor <span class="math inline">\(\mathrm{lppd}\)</span>, mejor es el modelo para realizar predicciones</p>
+<p>Un posible <em>score</em> predictivo para un determinado valor <span class="math inline">\(y_i\)</span> es la probabilidad que el modelo le asocia (también llamada densidad predictiva), <span class="math display">\[\int p\left(y_i\mid\theta\right) p(\theta\mid y) d\theta \approx \frac{1}{S}\sum_{s=1}^S p(y_i\mid \theta^{(s)})\]</span></p>
 </section>
 <section id="section-16" class="slide level2">
 <h2></h2>
+<p>El <em>score</em> predictivo total (para todas las observaciones) es la <em><span style="color:#EB8A90;">log</span>-<u>posterior</u> <span style="color:#1f7a8c;">pointwise</span> <span style="color:#683257;">predictive density</span></em>. A mayor <span class="math inline">\(\mathrm{lppd}\)</span>, mejor es el ajuste del modelo.</p>
+<p><span class="math display">\[
+\mathrm{lppd} =  \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\int p\left(y_i\mid\theta\right) \underline{p(\theta\mid y)}d\theta} \right)
+\]</span></p>
+<div class="fragment">
+<p>Que podemos estimar a través de muestras del <em>posterior</em></p>
+<p><span class="math display">\[
+\mathrm{lppd} = \color{#1f7a8c}{\sum_{i=1}^{N}} \color{#EB8A90}{\log} \left( \color{#683257}{\frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta^{(s)}\right)} \right)
+\]</span></p>
+</div>
+</section>
+<section id="section-17" class="slide level2">
+<h2></h2>
 <p>La <strong>deviance</strong> de un modelo es</p>
-<p><span class="math display">\[D = -2 \mathrm{lppd}\]</span></p>
+<p><span class="math display">\[D = -2\ \mathrm{lppd}\]</span></p>
 <ul>
 <li class="fragment">La deviance (o la <span class="math inline">\(\mathrm{lppd}\)</span>) evalúa las predicciones de un modelo (el ajuste), no nos dice qué tan correcto es…</li>
-<li class="fragment">Son medidas que siempre mejoran con más parámetros y en realidad nos importa cómo se desempeña el modelo con datos nuevos.</li>
+<li class="fragment">Son medidas que siempre mejoran con más parámetros</li>
+<li class="fragment">En realidad nos importa cómo se desempeña el modelo con datos nuevos.</li>
 </ul>
 </section>
-<section id="section-17" class="slide level2 smaller">
+<section id="section-18" class="slide level2 smaller">
 <h2></h2>
-<p>La <span class="math inline">\(\mathrm{lppd}\)</span> predice el <span class="math inline">\(i\)</span>-ésimo valor con un <em>posterior</em> que usa todos los datos, incluido el <span class="math inline">\(i\)</span>. Más que la <span class="math inline">\(\mathrm{lppd}\)</span> nos interesa su valor esperado en datos nuevos (<span class="math inline">\(\mathrm{elpd}\)</span>). Por supuesto, no conocemos datos nuevos. Podemos aproximar o estimar <span class="math inline">\(\mathrm{elpd}\)</span> haciendo <em>cross-validation</em> (CV) o, en particular, <em>leave-one-out cross-validation</em> (LOO-CV).</p>
-<p><span class="math display">\[\mathrm{elpd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)\]</span></p>
+<p>La <span class="math inline">\(\mathrm{lppd}\)</span> predice el <span class="math inline">\(i\)</span>-ésimo valor con un <em>posterior</em> que usa todos los datos, incluido el <span class="math inline">\(i\)</span>. Más que la <span class="math inline">\(\mathrm{lppd}\)</span> nos interesa su valor esperado en datos nuevos (<span class="math inline">\(\mathrm{elppd}\)</span>). Por supuesto, no conocemos datos nuevos.</p>
+<div class="fragment">
+<p>Podemos aproximar o estimar <span class="math inline">\(\mathrm{elppd}\)</span> haciendo <em>cross-validation</em> (CV) o, en particular, <em>leave-one-out cross-validation</em> (LOO-CV).</p>
+<p><span class="math display">\[\mathrm{elppd} \approx \mathrm{lppd}_{LOO} = \sum_{i=1}^{N} \log \left( \frac{1}{S} \sum_{s=1}^{S} p\left(y_i\mid\theta_{-i}^{(s)}\right) \right)\]</span></p>
 <p>donde los <span class="math inline">\(\theta_{-i}^{(s)}\)</span> son muestras del <em>posterior</em> de <span class="math inline">\(\theta\)</span> obtenido sin considerar la <span class="math inline">\(i\)</span>-ésima observación.</p>
 <p>El problema de hacer LOO-CV es que, si tenemos 1000 observaciones, hay que calcular 1000 distribuciones <em>a posteriori</em>.</p>
-</section>
-<section id="section-18" class="slide level2">
-<h2></h2>
-<p>No contamos con muestras de <span class="math inline">\(p(\theta\mid \mathbf{y}_{-i})\)</span> sino simplemente de <span class="math inline">\(p(\theta\mid \mathbf{y})\)</span>. No sabemos la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> sin considerar la observación <span class="math inline">\(i\)</span>. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la “importancia” de cada observación en el <em>posterior</em>. Esto da lugar a una técnica que se conoce como <em>Pareto-smoothed importance sampling cross-validation</em> (PSIS)</p>
+</div>
 </section>
 <section id="section-19" class="slide level2">
 <h2></h2>
-<p>Históricamente se han desarrollado los llamados <strong>criterios de información</strong> que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.</p>
+<p>No contamos con muestras de <span class="math inline">\(p(\theta\mid \mathbf{y}_{-i})\)</span> sino simplemente de <span class="math inline">\(p(\theta\mid \mathbf{y})\)</span>. No sabemos la distribución <em>a posteriori</em> de <span class="math inline">\(\theta\)</span> sin considerar la observación <span class="math inline">\(i\)</span>. Hay formas de aproximar el desempeño en LOO-CV sin necesidad de reajustar el modelo. Una forma de hacerlo es usar la “importancia” de cada observación en el <em>posterior</em>. Esto da lugar a una técnica que se conoce como <em>Pareto-smoothed importance sampling cross-validation</em> (PSIS)</p>
 </section>
 <section id="section-20" class="slide level2">
 <h2></h2>
-<p>El <strong>AIC</strong> (<em>Akaike information criterion</em>) es <span class="math display">\[AIC = D + 2p = -2\ lppd + 2p\]</span> donde <span class="math inline">\(p\)</span> es el número de parámetros del modelo y <span class="math inline">\(D=-2\ \mathrm{lppd}\)</span> se conoce como <strong>deviance</strong>. Penalizamos el <span class="math inline">\(\mathrm{lppd}\)</span> con la tendencia (o capacidad) del modelo de sobreajustar.</p>
+<p>Históricamente se han desarrollado los llamados <strong>criterios de información</strong> que penalizan la verosimilitud con un término adicional para compensar la capacidad de sobreajuste de un modelo que tiene más parámetros.</p>
 </section>
 <section id="section-21" class="slide level2">
+<h2></h2>
+<p>El <strong>AIC</strong> (<em>Akaike information criterion</em>) es <span class="math display">\[AIC = D + 2p = -2\ lppd + 2p\]</span> donde <span class="math inline">\(p\)</span> es el número de parámetros del modelo y <span class="math inline">\(D=-2\ \mathrm{lppd}\)</span> se conoce como <strong>deviance</strong>. Penalizamos el <span class="math inline">\(\mathrm{lppd}\)</span> con la tendencia (o capacidad) del modelo de sobreajustar.</p>
+</section>
+<section id="section-22" class="slide level2 smaller">
 <h2></h2>
 <p>El <strong>WAIC</strong> (<em>widely applicable information criterion</em>) es un criterio más general que el AIC (y un poquitito más difícil de calcular):</p>
 <p><span class="math display">\[WAIC = - 2\left(\mathrm{lppd} - \sum_{i=1}^N \mathbb{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\right)\]</span></p>
 <p><span class="math inline">\(\sum_{i=1}^N \mathrm{V}_\theta\left[\log\left(p(y_i\mid\theta\right)\right]\)</span> es un término de penalización que se suele llamar “número efectivo de parámetros”. Es la suma de las varianzas en la log-probabilidad de cada observación <span class="math inline">\(i\)</span> (o sea, la varianza total). Si, para un determinado dato <span class="math inline">\(i\)</span>, las diferentes muestras del <em>posterior</em> <span class="math inline">\(\theta_{(s)}\)</span> dan como resultado predicciones muy diferentes, es porque el modelo tiene mucha incertidumbre (y es posiblemente muy flexible).</p>
+<!-- More generally, the adjustment can be thought of as an approximation
+to the number of ‘unconstrained’ parameters in the model, where a parameter
+counts as 1 if it is estimated with no constraints or prior information, 0 if it is fully constrained
+or if all the information about the parameter comes from the prior distribution, or
+an intermediate value if both the data and prior distributions are informative. -->
 
 <div class="quarto-auto-generated-content">
 <p><img src="../utils/imgs/logo.png" class="slide-logo"></p>
