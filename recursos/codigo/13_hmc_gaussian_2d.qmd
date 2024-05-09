@@ -1,3 +1,24 @@
+---
+title: "13 - Hamiltonian Monte Carlo para normal bivariada"
+execute:
+  warning: false
+  fig-align: center
+  fig-width: 7
+---
+
+Esta sección muestra una implementación de Hamiltonian Monte Carlo para obtener muestras
+de una distribución $\mathcal{N}(\mathbf{0}, \pmb{\Sigma})$ con:
+$$
+\pmb{\Sigma} = 
+    \begin{bmatrix}
+    1 & \rho \\
+    \rho & 1
+    \end{bmatrix}
+$$
+
+**Funciones auxiliares**
+
+```{r}
 library(ggplot2)
 library(ggquiver)
 library(mvtnorm)
@@ -111,10 +132,12 @@ hmc <- function(
   colnames(leap_q) <- c("q0", "q1")
   list(samples = samples, leap_p = leap_p, leap_q = leap_q)
 }
+```
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Primer caso: Graficar trayectorias
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Ejemplo 1**: Se grafican trayectorias
+
+```{r}
+#| fig-cap: Trayectorias realizadas junto a las 10 muestras obtenidas.
 neg_logp <- make_neg_logp(0)
 neg_dlogp <- make_neg_dlogp(0)
 
@@ -155,11 +178,12 @@ plt +
   labs(x = "x", y = "y") +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0))
+```
 
+**Ejemplo 2**: Se obtienen muestras
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Segundo caso: Obtencion de muestras
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```{r}
+#| fig-cap: 1000 muestras de una distribución $\mathcal{N}(\mathbf{0}, \mathbf{I})$.
 neg_logp <- make_neg_logp(0)
 neg_dlogp <- make_neg_dlogp(0)
 
@@ -193,11 +217,12 @@ plt +
   labs(x = "x", y = "y") +
   scale_x_continuous(expand = c(0, 0)) +
   scale_y_continuous(expand = c(0, 0))
+```
 
+**Ejemplo 3**: Se obtienen muestras con $\rho = 0.6$
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Tercer caso: rho = 0.6
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+```{r}
+#| fig-cap: 1000 muestras de una distribución $\mathcal{N}(\mathbf{0}, 0.7 \mathbf{I})$.
 neg_logp <- make_neg_logp(0.7)
 neg_dlogp <- make_neg_dlogp(0.7)
 
@@ -235,3 +260,4 @@ plt +
   scale_y_continuous(expand = c(0, 0))
 
 cor(df_samples$x, df_samples$y)
+```

@@ -44,12 +44,12 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
 
     $$
     \begin{aligned}
+    \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
     \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
-    \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2)
     \end{aligned}
     $$
 
-    i. Ajuste el modelo utilizando `{brms}` y sus _priors_ por defecto.
+    i. Ajuste el modelo utilizando `{Rstan}` y distribuciones uniformes como _priors_.
     i. Construya un gráfico que muestre las ventas en función de la inversión en 
     publicidad y superponga la recta de regresión estimada.
 
@@ -59,20 +59,20 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     distribuciones _a priori_ para los parámetros del modelo:
     $$
     \begin{aligned}
-    \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
     \text{ventas}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
-    \beta_0  &\sim \text{Normal}(\overline{\text{ventas}}, 10) \\
-    \beta_1  &\sim \text{Normal}(0, 0.5) \\
+    \mu_i &= \beta_0 + \beta_1 \text{publicidad}_i \\
+    \beta_0  &\sim \text{Normal}(\overline{\text{ventas}}, 10^2) \\
+    \beta_1  &\sim \text{Normal}(0, 0.5^2) \\
     \sigma &\sim \text{Normal}^+(5)
     \end{aligned}
     $$
 
-    i. Ajuste el modelo utilizando `{brms}` y los _priors_ sugeridos.
+    i. Ajuste el modelo utilizando `{RStan}` y los _priors_ sugeridos.
     i. Construya un gráfico que muestre las ventas en función de la inversión en 
     publicidad, superponga la recta de regresión estimada, y el intervalo de credibilidad
     del 95% para la recta de regresión.
 
-1.  **Comparando de `lm()` y `brm()`**
+1.  **Regresiones frecuentistas y bayesianas**
 
     Utilice datos simulados para comparar la estimación por mínimos cuadrados con la 
     estimación Bayesiana en modelos de regresión.
@@ -80,8 +80,8 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     i. Simule 100 observaciones del modelo $Y = 2 + 3X + \varepsilon$ donde los valores 
     del predictor $X$ se obtienen de una distribución $\text{Uniforme}(0, 20)$ y los errores
     son obtenidos de manera independiente de una distribución $\text{Normal}(0, 5^2)$.
-    i. Ajuste el modelo de regresión utilizando `lm()` y `brm()` del paquete `{brms}`
-    utilizando _priors_ por defecto.
+    i. Ajuste el modelo de regresión utilizando `lm()` y un modelo bayesiano mediante 
+    `{RStan}` utilizando _priors_ uniformes.
     i. Verifique que ambos métodos arrojan resultados similares.
     i. Represente gráficamente los datos y las dos rectas de regresión.
     i. Intente repetir la simulación, pero esta vez cree las condiciones para que ambos
@@ -98,13 +98,13 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     las hijas. Aplique las técnicas que crea necesaria para obtener una visualización 
     informativa y fidedigna.
     i. ¿Por qué es adecuado utilizar un modelo de regresión lineal?
-    i. Ajuste el siguiente modelo de regresión lineal utilizando `{brms}` y _priors_ por
-    defecto:
+    i. Ajuste el siguiente modelo de regresión lineal utilizando `{Rstan}` y _priors_ que
+    crea convenientes:
 
     $$
     \begin{aligned}
-    \mu_i &= \beta_0 + \beta_1 \text{altura\_madre}_i \\
-    \text{altura\_hija}_i &\sim \text{Normal}(\mu_i, \sigma^2)
+    \text{altura hija}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
+    \mu_i &= \beta_0 + \beta_1 \text{altura madre}_i
     \end{aligned}
     $$
     
@@ -240,8 +240,8 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
 
     $$
     \begin{aligned}
+    \text{pf}_i &\sim \text{Normal}(\mu_i, \sigma^2) \\
     \mu_i &= \beta_0 + \beta_1 \text{belleza}_i \\
-    \text{pf}_i &\sim \text{Normal}(\mu_i, \sigma^2)
     \end{aligned}
     $$
 
@@ -249,12 +249,12 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     representa el grupo de belleza de los padres.
 
     i. Ajuste el modelo utilizando mínimos cuadrados.
-    i. Ajuste el modelo con `brm()` y sus _priors_ por defecto.
+    i. Ajuste el modelo con `{RStan}` y _priors_ uniformes.
     i. Compare el ajuste de ambos modelos.
-    i. Explore los _priors_ utilizados por `{brms}` y la distribución predictiva _a priori_.
+    i. Explore los _priors_ utilizados por `{RStan}` y la distribución predictiva _a priori_.
     ¿Qué puede concluir? 
     i. Proponga distribuciones _a priori_ informativas.
-    i. Ajuste el modelo utilizando `brm()` y los _priors_ informativos.
+    i. Ajuste el modelo utilizando `{RStan}` y los _priors_ informativos.
     i. Compare el resultado con los obtenidos anteriormente y concluya.
 
 1.  📌 **¡A la pesca de _priors_!**
@@ -277,7 +277,7 @@ bayesiana para evaluar la adecuación y comparar los modelos utilizados.
     de los pescados. Por lo tanto, en este modelo cada especie tiene su propio intercepto
     y pendiente.
 
-    i. Implemente el modelo utilizando `{brms}` y los siguientes _priors_ no informativos
+    i. Implemente el modelo utilizando `{RStan}` y los siguientes _priors_ no informativos:
     $$
     \begin{aligned}
     \beta_{0, j[i]} &\sim \text{Normal}(0, 10) \\
