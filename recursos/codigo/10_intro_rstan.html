@@ -289,6 +289,12 @@ window.Quarto = {
  <span class="menu-text">13 - Hamiltonian Monte Carlo para normal bivariada</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/14_regresion_lineal_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14 - Regresión lineal con <code>{RStan}</code></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -464,8 +470,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 5e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
+Chain 1: Gradient evaluation took 6e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -491,14 +497,14 @@ Chain 1: Iteration: 1900 / 2000 [ 95%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0 seconds (Warm-up)
-Chain 1:                0.006 seconds (Sampling)
-Chain 1:                0.006 seconds (Total)
+Chain 1:                0.007 seconds (Sampling)
+Chain 1:                0.007 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 1e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.01 seconds.
+Chain 2: Gradient evaluation took 2e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.02 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -568,10 +574,10 @@ Chain 3: </code></pre>
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.10   0.18   0.24   0.30   0.44  1990    1
-lp__ -14.04    0.01 0.75 -16.28 -14.22 -13.74 -13.55 -13.50  2711    1
+pi     0.25    0.00 0.09   0.11   0.19   0.25   0.31   0.44  2204    1
+lp__ -13.99    0.01 0.67 -15.88 -14.15 -13.72 -13.55 -13.50  2705    1
 
-Samples were drawn using NUTS(diag_e) at Thu May  9 23:23:06 2024.
+Samples were drawn using NUTS(diag_e) at Mon May 13 18:07:23 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -589,7 +595,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.305 0.319 0.267 0.212 0.253 ...
+ $ pi: num [1:5700(1d)] 0.239 0.211 0.276 0.312 0.117 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -599,11 +605,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3053278 0.3186477 0.2671196 0.2117233 0.2534005 0.1451645</code></pre>
+<pre><code>[1] 0.2386924 0.2113755 0.2761420 0.3119189 0.1165290 0.2918820</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998246</code></pre>
+<pre><code>[1] 1</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
