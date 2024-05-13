@@ -155,9 +155,9 @@ ggplot(df_sales) +
 ```
 
 
-1.  Se utiliza `sample(nrow(df_draws_1), 40)` seleccionar 40 muestras del _posterior_ al 
-azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas asociadas
-a muchas más muestras.
+1.  Se utiliza `sample(nrow(df_draws_1), 40)` para seleccionar 40 muestras del _posterior_ 
+al azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas 
+asociadas a muchas más muestras.
 
 También es posible utilizar todas las muestras del _posterior_ para obtener bandas
 de credibilidad para la recta de regresión. A continuación, se obtiene la distribución
