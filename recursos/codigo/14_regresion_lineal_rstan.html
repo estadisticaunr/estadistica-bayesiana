@@ -447,7 +447,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1344    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.46  1956    1
 lp__  -34.53    0.03 1.19 -37.50 -35.10 -34.23 -33.63 -33.13  1204    1
 
-Samples were drawn using NUTS(diag_e) at Mon May 13 18:05:09 2024.
+Samples were drawn using NUTS(diag_e) at Mon May 13 18:19:53 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -458,13 +458,13 @@ convergence, Rhat=1).</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_draws_1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">extract</span>(stan_model))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     beta0     beta1     sigma      lp__
-1 5.364426 0.3065419 1.1356354 -33.51123
-2 4.933894 0.3056259 1.2153103 -34.88932
-3 5.808721 0.2787149 1.2118439 -34.31194
-4 5.895527 0.2436801 1.1968060 -33.81014
-5 5.173150 0.3074427 0.9736224 -34.99730
-6 5.880499 0.2598320 1.2110602 -33.60085</code></pre>
+<pre><code>     beta0     beta1    sigma      lp__
+1 5.456963 0.2832841 1.221346 -33.18593
+2 6.293824 0.2166284 1.117927 -35.11108
+3 5.070013 0.3234357 1.075550 -33.84770
+4 6.378268 0.2204585 1.205865 -35.08072
+5 5.209743 0.2978054 1.200261 -33.37032
+6 4.872140 0.3603654 1.415896 -36.94961</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -530,7 +530,7 @@ convergence, Rhat=1).</code></pre>
 <dl class="code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="7" data-code-annotation="1">Se utiliza <code>sample(nrow(df_draws_1), 40)</code> seleccionar 40 muestras del <em>posterior</em> al azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas asociadas a muchas más muestras.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="7" data-code-annotation="1">Se utiliza <code>sample(nrow(df_draws_1), 40)</code> para seleccionar 40 muestras del <em>posterior</em> al azar. La figura resultaría muy difícil de leer si se intenta visualizar las rectas asociadas a muchas más muestras.</span>
 </dd>
 </dl>
 </div>
@@ -720,7 +720,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1631    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.47  1810    1
 lp__  -34.82    0.03 1.24 -37.88 -35.41 -34.50 -33.88 -33.37  1421    1
 
-Samples were drawn using NUTS(diag_e) at Mon May 13 18:06:13 2024.
+Samples were drawn using NUTS(diag_e) at Mon May 13 18:20:54 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
