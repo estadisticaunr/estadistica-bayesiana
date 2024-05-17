@@ -1,5 +1,5 @@
 ---
-title: "TP3: Una masacre estadística (WIP)"
+title: "TP3: Una masacre estadística"
 practica: "Trabajo Práctico 3"
 ---
 
@@ -87,7 +87,6 @@ tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.
 Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en 
 matemática se conoce como ecuación diferencial. En este caso, la temperatura del cuerpo
 de Segio satisface la siguiente ley:
-
 $$
 \frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}} - T(t)]
 $$
@@ -101,7 +100,6 @@ ecuación donde la solución es una función. Buscamos una función $T(t)$ que s
 ecuación: su derivada debe cambiar con el valor que toma la función.
 
 Una función que satisface esa ecuación es:
-
 $$
 T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
 $$ 

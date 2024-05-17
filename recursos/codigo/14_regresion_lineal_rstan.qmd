@@ -47,7 +47,7 @@ uniformes. El programa de Stan para implementar el modelo es el siguiente:
 ```{stan}
 #| echo: true
 #| eval: false 
-#| file: stan/01_regresion_lineal_simple.stan
+#| file: stan/regresion_lineal/01_modelo.stan
 #| output.var: modelo_01
 ```
 
@@ -61,7 +61,9 @@ stan_data <- list(
     y = df_sales$y      # Ventas
 )
 
-ruta_modelo <- here::here("recursos", "codigo", "stan", "01_regresion_lineal_simple.stan")
+ruta_modelo <- here::here(
+  "recursos", "codigo", "stan", "regresion_lineal", "01_modelo.stan"
+)
 
 stan_model <- stan( 
     file = ruta_modelo, # Ubicación del archivo con el codigo del modelo en Stan
@@ -262,7 +264,7 @@ y el programa de Stan que lo implementa es el siguiente
 ```{stan}
 #| echo: true
 #| eval: false 
-#| file: stan/02_regresion_linea_simple_priors.stan
+#| file: stan/regresion_lineal/02_modelo_con_priors.stan
 #| output.var: modelo_02
 ```
 
@@ -279,7 +281,7 @@ stan_data <- list(
 )
 
 ruta_modelo <- here::here(
-    "recursos", "codigo", "stan", "02_regresion_linea_simple_priors.stan"
+    "recursos", "codigo", "stan", "regresion_lineal", "02_modelo_con_priors.stan"
 )
 
 stan_model <- stan( 

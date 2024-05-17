@@ -1,0 +1,354 @@
+---
+title: "15 - Regresión lineal con `{RStan}` (Clima en Australia) [WIP]"
+execute:
+    message: false
+    warning: false
+---
+
+En este artículo se muestra como implementar en `R` y `{RStan}` algunos de los modelos
+necesarios en el ejercicio **Clima en Australia** de la Práctica 4.
+
+Comenzamos cargando las liberías que vamos a usar.
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(rstan)
+
+c_orange_dark <- "#e76f51"
+c_orange_light <- "#f4a261"
+c_yellow <- "#e9c46a"
+c_green_blue <-"#2a9d8f"
+c_blue_dark <- "#264653"
+c_lightblue <- "#219ebc"
+```
+
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+df <- read_csv(
+    "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/weather_WU.csv"
+)
+
+# Explorar los datos
+ggplot(df) +
+  geom_point(aes(x = temp9am, y = temp3pm, color = location), alpha = 0.7, size = 2) +
+  scale_color_manual(values = c(c_orange_dark, c_green_blue)) +
+  labs(
+    x = "Temperatura a las 9 a.m. (C°)", 
+    y = "Temperatura a las 3 p.m. (C°)",
+    color = "Ciudad"
+)
+```
+
+## Modelos
+
+A continuación se presentan los modelos que se consideran en el ejercicio. En todos los 
+casos se tiene 
+
+* $Y_i$: temperatura a las 3 p.m. de la observación i-ésima.
+* $X_i$: temperatura a las 9 a.m. de la observacion i-ésima.
+
+### Modelo 1
+
+$$
+\begin{aligned}
+Y_i \mid \mu_i, \sigma &\underset{iid}{\sim} \text{Normal}(\mu_i, \sigma) \\
+\mu_i &= \beta_0 + \beta_1 x_i \\
+\beta_0 &\sim \text{Normal}(15, 8^2)\\
+\beta_1 &\sim \text{Normal}(0, 3^2)\\
+\sigma &\sim \text{Normal}^+(0, 12^2)\\
+\end{aligned}
+$$
+
+### Modelo 2
+
+$$
+\begin{aligned}
+Y_i \mid \mu_i, \sigma &\underset{iid}{\sim}\text{Normal}(\mu_i, \sigma) \\
+\mu_i &= \beta_{0, j[i]} \\
+\beta_{0, j} &\sim \text{Normal}(20, 10^2) \quad \forall j = 1, 2  \\
+\sigma &\sim \text{Normal}^+(0, 15^2) \\
+\end{aligned}
+$$
+
+donde $j$ indexa a las diferentes ciudades.
+
+**Para pensar:** ¿qué indican $\beta_{0, 1}$ y $\beta_{0, 2}$?
+
+### Modelo 3
+
+$$
+\begin{aligned}
+Y_i \mid \mu_i, \sigma &\underset{iid}{\sim} \text{Normal}(\mu_i, \sigma) \\
+\mu_i &= \beta_{0, j[i]} + \beta_1 x_i \\
+\beta_{0, j} &\sim \text{Normal}(15, 8^2) \quad \forall j = 1, 2  \\
+\beta_1 &\sim \text{Normal}(0, 3^2) \\
+\sigma &\sim \text{Normal}^+(0, 12^2) \\
+\end{aligned}
+$$
+
+**Para pensar:** ¿en qué difieren los $\beta_{0, 1}$ y $\beta_{0, 2}$ de este modelo
+con los del modelo 2? ¿Y en qué difiere $\beta_1$ de este modelo con el del modelo 1?
+
+
+## Implementación
+
+### Modelo 1
+
+```{stan}
+#| echo: true
+#| eval: false 
+#| file: stan/australia/modelo_1.stan
+#| output.var: modelo_01
+```
+
+```{r}
+stan_data_1 <- list(
+    N = nrow(df), 
+    temp9am = df$temp9am, 
+    temp3pm = df$temp3pm
+)
+
+ruta_modelo_1 <- here::here(
+  "recursos", "codigo", "stan", "australia", "modelo_1.stan"
+)
+
+fit_1 <- stan( 
+    file = ruta_modelo_1,
+    data = stan_data_1,
+    model_name = "modelo 1",
+    chains = 2,
+    refresh = 0,
+    seed = 121195
+)
+
+df_draws_1 <- as.data.frame(extract(fit_1, c("beta0", "beta1", "sigma")))    
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 10
+df_draws_long_1 <- df_draws_1 |>
+  tidyr::pivot_longer(c("beta0", "beta1", "sigma"), names_to = "parametro")
+
+ggplot(df_draws_long_1) +
+  geom_histogram(
+    aes(x = value, y = after_stat(density)), 
+    bins = 30, 
+    fill = c_orange_light, 
+    color = c_orange_light
+) +
+  facet_wrap(~ parametro, scales = "free") +
+  labs(x = "Valor", y = "Densidad")
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+ggplot(df) +
+  geom_point(aes(x = temp9am, y = temp3pm, color = location), alpha = 0.7, size = 2) +
+  geom_abline(
+    aes(intercept = beta0, slope = beta1),
+    alpha = 0.3,
+    color = "gray30",
+    data = df_draws_1[sample(4000, 40), ]
+  ) +
+  scale_color_manual(values = c(c_orange_dark, c_green_blue)) +
+  labs(
+    x = "Temperatura a las 9 a.m. (C°)", 
+    y = "Temperatura a las 3 p.m. (C°)",
+    color = "Ciudad"
+)
+```
+
+
+### Modelo 2
+
+```{stan}
+#| echo: true
+#| eval: false 
+#| file: stan/australia/modelo_2.stan
+#| output.var: modelo_02
+```
+
+```{r}
+as.factor(df$location)
+as.integer(as.factor(df$location))
+```
+
+```{r}
+stan_data_2 <- list(
+    N = nrow(df), 
+    location_idx = as.integer(as.factor(df$location)),
+    temp3pm = df$temp3pm
+)
+
+ruta_modelo_2 <- here::here(
+  "recursos", "codigo", "stan", "australia", "modelo_2.stan"
+)
+
+fit_2 <- stan( 
+    file = ruta_modelo_2,
+    data = stan_data_2,
+    model_name = "modelo 2",
+    chains = 2,
+    refresh = 0,
+    seed = 121195
+)
+
+df_draws_2 <- as.data.frame(extract(fit_2, c("beta0", "sigma")))
+colnames(df_draws_2) <- c("beta0[Uluru]", "beta0[Wollongong]", "sigma")
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 10
+df_draws_long_2 <- df_draws_2 |>
+  tidyr::pivot_longer(
+    c("beta0[Uluru]", "beta0[Wollongong]", "sigma"), 
+    names_to = "parametro"
+)
+
+ggplot(df_draws_long_2) +
+  geom_histogram(
+    aes(x = value, y = after_stat(density)), 
+    bins = 30, 
+    fill = c_orange_light, 
+    color = c_orange_light
+) +
+  facet_wrap(~ parametro, scales = "free") +
+  labs(x = "Valor", y = "Densidad")
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+data_lines <- data.frame(
+    beta0 = c(df_draws_2[["beta0[Uluru]"]], df_draws_2[["beta0[Wollongong]"]]),
+    location = rep(c("Uluru", "Wollongong"), each = nrow(df_draws_2))
+)
+
+ggplot(df) +
+  geom_point(aes(x = temp9am, y = temp3pm, color = location), alpha = 0.7, size = 2) +
+  geom_abline(
+    aes(intercept = beta0, slope = 0, color = location),
+    alpha = 0.3,
+    data = data_lines[sample(nrow(data_lines), 80), ]
+  ) +
+  scale_color_manual(values = c(c_orange_dark, c_green_blue)) +
+  labs(
+    x = "Temperatura a las 9 a.m. (C°)", 
+    y = "Temperatura a las 3 p.m. (C°)",
+    color = "Ciudad"
+)
+```
+
+
+### Modelo 3
+
+```{stan}
+#| echo: true
+#| eval: false 
+#| file: stan/australia/modelo_3.stan
+#| output.var: modelo_03
+```
+
+```{r}
+stan_data_3 <- list(
+    N = nrow(df), 
+    location_idx = as.integer(as.factor(df$location)),
+    temp9am = df$temp9am, 
+    temp3pm = df$temp3pm
+)
+
+ruta_modelo_3 <- here::here(
+  "recursos", "codigo", "stan", "australia", "modelo_3.stan"
+)
+
+fit_3 <- stan( 
+    file = ruta_modelo_3,
+    data = stan_data_3,
+    model_name = "modelo 3",
+    chains = 2,
+    refresh = 0,
+    seed = 121195
+)
+
+df_draws_3 <- as.data.frame(extract(fit_3, c("beta0", "beta1", "sigma")))
+colnames(df_draws_3) <- c("beta0[Uluru]", "beta0[Wollongong]", "beta1", "sigma")
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 10
+df_draws_long_3 <- df_draws_3 |>
+  tidyr::pivot_longer(
+    c("beta0[Uluru]", "beta0[Wollongong]", "beta1", "sigma"), 
+    names_to = "parametro"
+)
+
+ggplot(df_draws_long_3) +
+  geom_histogram(
+    aes(x = value, y = after_stat(density)), 
+    bins = 30, 
+    fill = c_orange_light, 
+    color = c_orange_light
+) +
+  facet_wrap(~ parametro, scales = "free") +
+  labs(x = "Valor", y = "Densidad")
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+data_lines <- data.frame(
+    beta0 = c(df_draws_3[["beta0[Uluru]"]], df_draws_3[["beta0[Wollongong]"]]),
+    beta1 = rep(df_draws_3[["beta1"]], 2),
+    location = rep(c("Uluru", "Wollongong"), each = nrow(df_draws_3))
+)
+
+ggplot(df) +
+  geom_abline(
+    aes(intercept = beta0, slope = beta1, color = location),
+    alpha = 0.3,
+    data = data_lines[sample(nrow(data_lines), 80), ]
+  ) +
+  geom_point(aes(x = temp9am, y = temp3pm, color = location), alpha = 0.7, size = 2) +
+  scale_color_manual(values = c(c_orange_dark, c_green_blue)) +
+  labs(
+    x = "Temperatura a las 9 a.m. (C°)", 
+    y = "Temperatura a las 3 p.m. (C°)",
+    color = "Ciudad"
+)
+```
+
+
+## Comparación [WIP]
+
+```{r}
+loo_1 <- loo(fit_1, pars = "log_likelihood")
+loo_1
+
+loo_2 <- loo(fit_2, pars = "log_likelihood")
+loo_2
+
+loo_3 <- loo(fit_3, pars = "log_likelihood")
+loo_3
+```
+
+
+```{r}
+library(bayesplot)
+
+y_rep_1 <- extract(fit_1, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_1[sample(2000, 500), ])
+
+y_rep_2 <- extract(fit_2, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_2[sample(2000, 500), ])
+
+y_rep_3 <- extract(fit_3, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_3[sample(2000, 500), ])
+```
