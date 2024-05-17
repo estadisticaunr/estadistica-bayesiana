@@ -63,7 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../recursos/software/index.html" rel="next">
+<link href="../../recursos/codigo/15_regresion_lineal_rstan_2.html" rel="next">
 <link href="../../recursos/codigo/13_hmc_gaussian_2d.html" rel="prev">
 <link href="../../utils/imgs/favicon.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js"></script>
@@ -295,6 +295,12 @@ window.Quarto = {
  <span class="menu-text">14 - Regresión lineal con <code>{RStan}</code></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/15_regresion_lineal_rstan_2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15 - Regresión lineal con <code>{RStan}</code> (Clima en Australia) [WIP]</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -423,15 +429,17 @@ window.Quarto = {
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> df_sales<span class="sc">$</span>y      <span class="co"># Ventas</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ruta_modelo <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"recursos"</span>, <span class="st">"codigo"</span>, <span class="st">"stan"</span>, <span class="st">"01_regresion_lineal_simple.stan"</span>)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>stan_model <span class="ot">&lt;-</span> <span class="fu">stan</span>( </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> ruta_modelo, <span class="co"># Ubicación del archivo con el codigo del modelo en Stan</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">4</span>,         <span class="co"># Cantidad de cadenas</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> stan_data,   <span class="co"># Datos</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">refresh =</span> <span class="dv">0</span>,        <span class="co"># No mostrar mensajes del sampler</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">121195</span>       <span class="co"># Para que el resultado sea reproducible</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ruta_modelo <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"recursos"</span>, <span class="st">"codigo"</span>, <span class="st">"stan"</span>, <span class="st">"regresion_lineal"</span>, <span class="st">"01_modelo.stan"</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>stan_model <span class="ot">&lt;-</span> <span class="fu">stan</span>( </span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">file =</span> ruta_modelo, <span class="co"># Ubicación del archivo con el codigo del modelo en Stan</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">chains =</span> <span class="dv">4</span>,         <span class="co"># Cantidad de cadenas</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> stan_data,   <span class="co"># Datos</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">refresh =</span> <span class="dv">0</span>,        <span class="co"># No mostrar mensajes del sampler</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">seed =</span> <span class="dv">121195</span>       <span class="co"># Para que el resultado sea reproducible</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Al imprimir el objeto que devuelve <code>stan()</code> se puede encontrar un resumen del <em>posterior</em>, incluyendo medidas de diagnóstico como el tamaño de muestra efectivo y <span class="math inline">\(\hat{R}\)</span>.</p>
 <div class="cell">
@@ -447,7 +455,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1344    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.46  1956    1
 lp__  -34.53    0.03 1.19 -37.50 -35.10 -34.23 -33.63 -33.13  1204    1
 
-Samples were drawn using NUTS(diag_e) at Mon May 13 18:19:53 2024.
+Samples were drawn using NUTS(diag_e) at Fri May 17 02:41:46 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -458,13 +466,13 @@ convergence, Rhat=1).</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_draws_1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">extract</span>(stan_model))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     beta0     beta1    sigma      lp__
-1 5.456963 0.2832841 1.221346 -33.18593
-2 6.293824 0.2166284 1.117927 -35.11108
-3 5.070013 0.3234357 1.075550 -33.84770
-4 6.378268 0.2204585 1.205865 -35.08072
-5 5.209743 0.2978054 1.200261 -33.37032
-6 4.872140 0.3603654 1.415896 -36.94961</code></pre>
+<pre><code>     beta0     beta1     sigma      lp__
+1 5.273481 0.2995405 0.9581159 -35.21561
+2 5.934167 0.2496376 1.3758317 -34.77749
+3 5.422371 0.2902387 1.1133891 -33.09414
+4 5.439116 0.3021688 1.0057046 -34.86322
+5 5.877896 0.2444590 1.1769150 -33.79184
+6 5.994933 0.2455998 1.2296341 -33.84388</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -695,7 +703,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>ruta_modelo <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recursos"</span>, <span class="st">"codigo"</span>, <span class="st">"stan"</span>, <span class="st">"02_regresion_linea_simple_priors.stan"</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"recursos"</span>, <span class="st">"codigo"</span>, <span class="st">"stan"</span>, <span class="st">"regresion_lineal"</span>, <span class="st">"02_modelo_con_priors.stan"</span></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>stan_model <span class="ot">&lt;-</span> <span class="fu">stan</span>( </span>
@@ -720,7 +728,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1631    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.47  1810    1
 lp__  -34.82    0.03 1.24 -37.88 -35.41 -34.50 -33.88 -33.37  1421    1
 
-Samples were drawn using NUTS(diag_e) at Mon May 13 18:20:54 2024.
+Samples were drawn using NUTS(diag_e) at Fri May 17 02:42:46 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -1141,8 +1149,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../recursos/software/index.html" class="pagination-link" aria-label="Instalación de software">
-        <span class="nav-page-text">Instalación de software</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../recursos/codigo/15_regresion_lineal_rstan_2.html" class="pagination-link" aria-label="15 - Regresión lineal con `{RStan}` (Clima en Australia) [WIP]">
+        <span class="nav-page-text">15 - Regresión lineal con <code>{RStan}</code> (Clima en Australia) [WIP]</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

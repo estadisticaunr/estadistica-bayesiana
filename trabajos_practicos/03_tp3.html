@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Estadística Bayesiana - TP3: Una masacre estadística (WIP)</title>
+<title>Estadística Bayesiana - TP3: Una masacre estadística</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -210,7 +210,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TP3: Una masacre estadística (WIP)</h1>
+<h1 class="title">TP3: Una masacre estadística</h1>
 </div>
 
 
@@ -251,14 +251,12 @@ transcurrido. -->
 <p>De manera similar, esto es lo que ocurre con el cuerpo de Sergio que yace en el living de su casa: en algún momento, llega al equilibrio térmico con el ambiente. La salvedad necesaria acá es que, como el ambiente es grande, no aumenta su temperatura con la energía que pierde el cuerpo.</p>
 <p>Ahora bien, el ritmo con el cual el cuerpo pierde energía no es constante. Físicamente, mientras mayor sea la diferencia de temperatura entre dos cuerpos, más rápido fluirá la energía (y más rápido cambiará la temperatura). Si estudiamos la temperatura de un cuerpo en función del tiempo, notaremos que el ritmo con el que cambia decrece a medida con el que transcurre el tiempo.</p>
 <p>La lectura del párrafo anterior debería permitir asociar el concepto de <em>ritmo de cambio</em> con la noción matemática de derivada. En efecto, la derivada de la temperatura respecto al tiempo varía con el tiempo. En otras palabras, la pendiente no es constante.</p>
-<p>Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del cuerpo de Segio satisface la siguiente ley:</p>
-<p><span class="math display">\[
+<p>Las leyes que rigen el universo pueden muchas veces formularse en términos de lo que en matemática se conoce como ecuación diferencial. En este caso, la temperatura del cuerpo de Segio satisface la siguiente ley: <span class="math display">\[
 \frac{\mathrm{d}T(t)}{\mathrm{d}t} = r [T_{\text{amb}} - T(t)]
 \]</span></p>
 <p>donde <span class="math inline">\(T_{\text{amb}}\)</span> es la temperatura ambiente (un valor fijo y conocido), <span class="math inline">\(r\)</span> es una constante y <span class="math inline">\(T(t)\)</span> es la función (en principio desconocida) que describe la temperatura del cuerpo en función del tiempo.</p>
 <p>No se trata de una ecuación algebraica donde la solución es un valor numérico sino de una ecuación donde la solución es una función. Buscamos una función <span class="math inline">\(T(t)\)</span> que satisfaga la ecuación: su derivada debe cambiar con el valor que toma la función.</p>
-<p>Una función que satisface esa ecuación es:</p>
-<p><span class="math display">\[
+<p>Una función que satisface esa ecuación es: <span class="math display">\[
 T(t) = T_{\text{amb}} + (T_i - T_{\text{amb}})e^{-rt}
 \]</span></p>
 <p>siendo <span class="math inline">\(T_i\)</span> la temperatura a la que está inicialmente el cuerpo de Sergio.</p>
