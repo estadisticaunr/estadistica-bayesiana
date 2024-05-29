@@ -329,7 +329,8 @@ ggplot(df_draws_long_3) +
     color = c_orange_light
 ) +
   facet_wrap(~ parametro, scales = "free") +
-  labs(x = "Valor", y = "Densidad")
+  labs(x = "Valor", y = "Densidad") +
+  theme_bw()
 ```
 
 ```{r}
