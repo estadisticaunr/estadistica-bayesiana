@@ -1,5 +1,5 @@
 ---
-title: "15 - Regresión lineal con `{RStan}` (Clima en Australia) [WIP]"
+title: "15 - Regresión lineal con `{RStan}` (Clima en Australia)"
 execute:
     message: false
     warning: false
@@ -40,13 +40,14 @@ ggplot(df) +
     x = "Temperatura a las 9 a.m. (C°)", 
     y = "Temperatura a las 3 p.m. (C°)",
     color = "Ciudad"
-)
+  ) +
+  theme_bw()
 ```
 
 ## Modelos
 
 A continuación se presentan los modelos que se consideran en el ejercicio. En todos los 
-casos se tiene 
+casos se tiene:
 
 * $Y_i$: temperatura a las 3 p.m. de la observación i-ésima.
 * $X_i$: temperatura a las 9 a.m. de la observacion i-ésima.
@@ -106,6 +107,7 @@ con los del modelo 2? ¿Y en qué difiere $\beta_1$ de este modelo con el del mo
 ```
 
 ```{r}
+# Datos que pasamos a Stan
 stan_data_1 <- list(
     N = nrow(df), 
     temp9am = df$temp9am, 
@@ -116,6 +118,7 @@ ruta_modelo_1 <- here::here(
   "recursos", "codigo", "stan", "australia", "modelo_1.stan"
 )
 
+# Muestreamos del posterior con Stan
 fit_1 <- stan( 
     file = ruta_modelo_1,
     data = stan_data_1,
@@ -125,8 +128,11 @@ fit_1 <- stan(
     seed = 121195
 )
 
+# Convertimos las muestras a data.frame, conservando solo los parámetros de interés
 df_draws_1 <- as.data.frame(extract(fit_1, c("beta0", "beta1", "sigma")))    
 ```
+
+Graficamos la distribución _a posteriori_ marginal de los parámetros.
 
 ```{r}
 #| fig-align: center
@@ -142,8 +148,15 @@ ggplot(df_draws_long_1) +
     color = c_orange_light
 ) +
   facet_wrap(~ parametro, scales = "free") +
-  labs(x = "Valor", y = "Densidad")
+  labs(x = "Valor", y = "Densidad") +
+  theme_bw()
 ```
+
+La recta de regresión está dada por un intercepto y una pendiente. 
+Al contar con múltiples valores de interceptos y pendientes, es posible pensar que se 
+tienen múltiples muestras de rectas de regresión. 
+Para graficar algunas de estas rectas simplemente seleccionamos algunos de los pares de
+`(beta0, beta1)` que se obtuvieron del _posterior_.
 
 ```{r}
 #| fig-align: center
@@ -158,10 +171,11 @@ ggplot(df) +
   ) +
   scale_color_manual(values = c(c_orange_dark, c_green_blue)) +
   labs(
-    x = "Temperatura a las 9 a.m. (C°)", 
-    y = "Temperatura a las 3 p.m. (C°)",
-    color = "Ciudad"
-)
+      x = "Temperatura a las 9 a.m. (C°)", 
+      y = "Temperatura a las 3 p.m. (C°)",
+      color = "Ciudad"
+  ) +
+  theme_bw()
 ```
 
 
@@ -173,6 +187,9 @@ ggplot(df) +
 #| file: stan/australia/modelo_2.stan
 #| output.var: modelo_02
 ```
+
+Este modelo incorpora la ubicación. Una forma de implementarlo es utilizando índices que
+indiquen a que ubicación pertence cada observación.
 
 ```{r}
 as.factor(df$location)
@@ -199,9 +216,12 @@ fit_2 <- stan(
     seed = 121195
 )
 
+# Extraemos las muestras del posterior y renombramos la columnas de beta0
 df_draws_2 <- as.data.frame(extract(fit_2, c("beta0", "sigma")))
 colnames(df_draws_2) <- c("beta0[Uluru]", "beta0[Wollongong]", "sigma")
 ```
+
+El código para visualizar los _posteriors_ marginales es análogo.
 
 ```{r}
 #| fig-align: center
@@ -220,8 +240,12 @@ ggplot(df_draws_long_2) +
     color = c_orange_light
 ) +
   facet_wrap(~ parametro, scales = "free") +
-  labs(x = "Valor", y = "Densidad")
+  labs(x = "Valor", y = "Densidad") +
+  theme_bw()
 ```
+
+En este segundo modelo se tienen dos interceptos, uno para cada ciudad, 
+y una pendiente nula. 
 
 ```{r}
 #| fig-align: center
@@ -243,9 +267,12 @@ ggplot(df) +
     x = "Temperatura a las 9 a.m. (C°)", 
     y = "Temperatura a las 3 p.m. (C°)",
     color = "Ciudad"
-)
+  ) +
+  theme_bw()
 ```
 
+El modelo predice una temperatura única para cada ciudad a las 3 p.m., independiente de la
+temperatura a las 9 a.m.
 
 ### Modelo 3
 
@@ -255,6 +282,10 @@ ggplot(df) +
 #| file: stan/australia/modelo_3.stan
 #| output.var: modelo_03
 ```
+
+Este último modelo presenta un intercepto distinto para cada ciudad y una pendiente común
+a ambas. Por lo tanto, es necesario pasarle a Stan el vector de índices para las ciudades
+y la temperatura a las 9 a.m.
 
 ```{r}
 stan_data_3 <- list(
@@ -322,13 +353,62 @@ ggplot(df) +
     x = "Temperatura a las 9 a.m. (C°)", 
     y = "Temperatura a las 3 p.m. (C°)",
     color = "Ciudad"
-)
+  ) +
+  theme_bw()
 ```
 
+De manera cuantitativa, es posible ver que este modelo es el que mejor ajusta a la nube
+de puntos.
 
-## Comparación [WIP]
+## Comparación
+
+### _Posterior predictive checks_
+
+La librería `{bayesplot}` nos permite realizar pruebas predictivas _a posteriori_ mediante
+el uso de `ppc_dens_overlay()`. El gráfico que se obtiene permite comparar la distribución
+empírica de los datos (marginal) con distribuciones estimadas a partir de valores de 
+la distribución predictiva _a posteriori_. 
+
+Para crear este gráfico es necesario haber obtenido muestras de la distribución predictiva
+_a posteriori_ con Stan. En nuestro caso, las guardamos en `y_rep`.
 
 ```{r}
+library(bayesplot)
+
+# Notar que solo se muestran 200 muestras para que el gráfico quede menos cargado.
+y_rep_1 <- extract(fit_1, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_1[sample(2000, 200), ]) +
+  labs(x = "Temperatura a las 3 p.m. (C°)", y = "Densidad") + 
+  theme_bw()
+
+y_rep_2 <- extract(fit_2, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_2[sample(2000, 200), ]) +
+  labs(x = "Temperatura a las 3 p.m. (C°)", y = "Densidad") + 
+  theme_bw()
+
+y_rep_3 <- extract(fit_3, "y_rep")$y_rep
+ppc_dens_overlay(df$temp3pm, y_rep_3[sample(2000, 200), ]) +
+  labs(x = "Temperatura a las 3 p.m. (C°)", y = "Densidad") + 
+  theme_bw()
+```
+
+Las distribuciones generadas con los modelos 1 y 2 no replican fielmente la distribución
+empírica de la variable respuesta, mientras que las distribuciones generadas con el 
+modelo 3 proveen una mejor aproximación.
+
+### LOO
+
+En esta sección utilizamos la función `loo()` de la librería `{loo}` para estimar 
+el ELPD (_Expected log pointwise predictive density for a new dataset_) mediante una
+aproximación a la validación cruzada conocido como PSIS-LOO CV.
+
+Lo único que necesitamos es el objeto que obtuvimos al muestrear del _posterior_ e indicar
+el nombre de la variable donde guardamos el cómputo del log-likelihood punto a punto 
+(`log_likelihood` en todos los casos).
+
+```{r}
+library(loo)
+
 loo_1 <- loo(fit_1, pars = "log_likelihood")
 loo_1
 
@@ -339,16 +419,22 @@ loo_3 <- loo(fit_3, pars = "log_likelihood")
 loo_3
 ```
 
+`loo()` devuelve un objeto con varias métricas asociadas al ELPD. 
+Para entender mejor cada una de ellas, se puede echar un vistazo al 
+[glosario de loo](https://mc-stan.org/loo/reference/loo-glossary.html). `elpd_loo` es
+la estimación de ELPD mediante el método PSIS-LOO CV, para la cual también se tiene
+una medida de la variabilidad con un error estándar.
+
+`{loo}` también provee la función `loo_compare()` que toma objetos devueltos por `loo()` 
+y los ordena de mejor a peor según este criterio. En este caso se obtiene una estimación
+de la diferencia de ELPDs y un error estándar de la misma.
 
 ```{r}
-library(bayesplot)
-
-y_rep_1 <- extract(fit_1, "y_rep")$y_rep
-ppc_dens_overlay(df$temp3pm, y_rep_1[sample(2000, 500), ])
-
-y_rep_2 <- extract(fit_2, "y_rep")$y_rep
-ppc_dens_overlay(df$temp3pm, y_rep_2[sample(2000, 500), ])
-
-y_rep_3 <- extract(fit_3, "y_rep")$y_rep
-ppc_dens_overlay(df$temp3pm, y_rep_3[sample(2000, 500), ])
+loo_compare(loo_1, loo_2, loo_3)
 ```
+
+Según este criterio, el mejor modelo es el modelo 3. La diferencia de ELPD entre el modelo
+3 y el modelo 2 es -107.3 y el error estándar de la misma es 19,2. Si se construye un 
+intervalo aproximado del 95% restando y sumando 2 desvíos estándar de la estimación
+puntual, el mismo no cubre el 0 y se puede concluir que la diferencia de ELPDs 
+entre el modelo 3 y el 2 es significativa.
