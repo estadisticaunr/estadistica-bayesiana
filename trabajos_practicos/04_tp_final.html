@@ -199,14 +199,10 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">Introducción</h2>
-<p>En este último trabajo práctico nos sitúa como parte del equipo de ciencia de datos en una empresa de comercio electrónico que se especializa en vender pescado fresco de alta calidad a una clientela muy selectiva que consiste principalmente en restaurantes de lujo.</p>
-<p>Cuando enviamos nuestros productos hay un dato que no puede faltar: el peso del pescado. Esta información es relevante por dos razones. En primer lugar, el monto de dinero que se le factura a nuestros clientes es función del peso del pescado que reciben. En segundo lugar, la empresa de transporte con la que trabajamos tiene diferentes bandas tarifarias según el peso de la mercadería transportada, y algunas de estas bandas pueden resultar bastante caras.</p>
-<!-- En consecuencia, queremos determinar la probabilidad de que un 
-pescado exceda un umbral de peso particular. En otras palabras, es esencial estimar el 
-nivel de incertidumbre involucrado. -->
-<p>El problema es que nuestra empresa compra pescados al por mayor, por lo que se sabe el peso total del pedido, pero no el de los pescados individualmente. La solución mas obvia consiste en pesar a cada uno de los pescados de manera manual. Pero no es una gran solución: pesar cada pescado manualmente es costoso, requiere mucho tiempo y mano de obra. Entonces, ¿qué podemos hacer?, ¿ideas?</p>
-<p>Resulta que hablando con algunos colegas descubrimos que nuestro proveedor mayorista conoce el tamaño (es decir, largo, alto y ancho) de cada pescado de manera individual. Es imposible pesar los peces en el bote, porque el bote siempre está en movimiento, pero tienen una cámara que registra el tamaño de cada pez 🤯.</p>
-<p>¡Qué notición! Pero eso no es todo. Nuestra empresa solía pesar cada pez manualmente antes de detenerse por razones de costo, lo que significa que tenemos un conjunto de datos de entrenamiento de diferentes tipos de peces, con su peso medido de manera precisa.</p>
+<p>La resonancia magnética es una técnica que utiliza campos magnéticos y ondas de radio para generar imágenes detalladas de los órganos y tejidos dentro del cuerpo. En el caso del cerebro, permite obtener imágenes muy precisas de su estructura anatómica. Las neuroimágenes estructurales por resonancia magnética (sMRI) se caracterizan por su alta resolución espacial y por un alto contraste entre los diferentes tipos de tejidos cerebrales. Estas características favorecen el uso de algoritmos de segmentación estructural, lo cual permite caracterizar propiedades morfométricas del cerebro.</p>
+<p>El cuerpo y el cerebro sufren cambios durante la vejez. Entre los efectos de la vejez se pueden mencionar los conocidos problemas de memoria y deterioro de los reflejos, junto con procesos de razonamiento más lentos. A lo largo de los años, el cerebro va cambiando en su forma, en los volúmenes y espesores de las estructuras constitutivas: aun en personas sanas, el volumen del cerebro disminuye. Cuando los trastornos cognitivos son mayores que los esperables para la edad, se habla de deterioro cognitivo leve (DCL o MCI por sus siglas en inglés, <em>mild cognitive impairment</em>) o de demencia incipiente. La demencia es un deterioro gradual en la memoria, el pensamiento, el comportamiento y las habilidades sociales, que impactan en la capacidad de una persona para realizar sus tareas diarias. El MCI, si bien no alcanza a interferir con el desarrollo de la vida diaria, se considera una enfermedad neurológica. Este trastorno puede mantenerse durante varios años sin cambios o puede transformarse en la Enfermedad de Alzheimer, la causa más habitual de demencia. Entre sus síntomas principales destacan la pérdida de la memoria inmediata y de otras capacidades mentales avanzadas. A medida que la enfermedad avanza, los síntomas pueden incluir problemas con el lenguaje, desorientación (incluyendo perderse fácilmente), cambios de humor, pérdida de motivación, descuido personal y problemas de comportamiento.</p>
+<p>La Enfermedad de Alzheimer se asocia a la acumulación progresiva de una proteína anormal en el cerebro, que causa daños neuronales. Es muy importante mencionar que los cambios neurobiológicos ocurren mucho antes de que aparezcan los síntomas. En otras palabras, la patología del Alzheimer está presente en personas que no tienen signos de pérdida de memoria, aunque la atrofia cerebral ya haya comenzado. El patrón característico de esta demencia incluye cambios morfológicos en algunas regiones del cerebro.</p>
+<p>Dado que los cambios en el cerebro no son lineales con la edad y presentan además gran variabilidad entre diferentes personas, sumado a que la progresión de una enfermedad neurodegenerativa no es igual en todos los pacientes, se vuelve difícil poder definir qué es normal y qué es patológico. El diagnóstico de enfermedades neurodegenerativas se hace yuxtaponiendo a los síntomas clínicos que observa un neurólogo (utilizando diversos instrumentos de análisis), a la información extraida de las imágenes de resonancia magnética. Vale destacar que el enfoque de análisis de las imágenes de resonancia magnética es esencialmente cualitativo: un/a especialista en imágenes compara el grado de atrofia que observa con el modelo mental que tiene del cerebro sano a esa edad.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -220,17 +216,22 @@ nivel de incertidumbre involucrado. -->
 </section>
 <section id="el-desafío" class="level2">
 <h2 class="anchored" data-anchor-id="el-desafío">El desafío</h2>
-<p>El conjunto de datos <code>fish-market.csv</code> contiene la información de los pescados mencionados en la introducción e incluye mediciones sobre las siguientes variables:</p>
+<p>El conjunto de datos <code>cerebros.csv</code> contiene información de 142 pacientes que se sometieron a diferentes estudios de resonancia magnética en diferentes partes del mundo.</p>
+<p>Incluye las siguientes variables</p>
 <ul>
-<li><strong>Species</strong>: Nombre de la especie del pescado</li>
-<li><strong>Weight</strong>: Peso del pescado en gramos</li>
-<li><strong>Length1</strong>: Longitud vertical en centímetros</li>
-<li><strong>Length2</strong>: Longitud diagonal en centímetros</li>
-<li><strong>Length3</strong>: Longitud transversal en centímetros</li>
-<li><strong>Height</strong>: Altura en centímetros</li>
-<li><strong>Width</strong>: Ancho diagonal en centímetros</li>
+<li><strong>id</strong></li>
+<li><strong>intensidad_campo</strong>: Intensidad del campo magnético utilizado en la imagen, puede ser 3 T o 1.5 T</li>
+<li><strong>resonador_fab</strong>: Marca del resonador magnético</li>
+<li><strong>edad</strong></li>
+<li><strong>sexo</strong></li>
+<li><strong>diag</strong>: Diagnóstico, puede ser HC (<em>healthy control</em>), MCI (<em>mild cognitive impairment</em>) o AZ (<em>Alzheimer disease</em>)</li>
+<li><strong>lh_subcx_hippocampus_volume</strong>: Volumen del hipocampo izquierdo</li>
+<li><strong>xh_general_etiv_volume</strong>: Volumen intracraneal<br>
+</li>
+<li><strong>lh_cortex_superiorfrontal_thickness</strong>: Espesor de la corteza superior frontal</li>
+<li><strong>lh_cortex_fusiform_volume</strong>: Volumen de la corteza fusiforme</li>
 </ul>
-<p>El objetivo final de este trabajo es construir un modelo regresión bayesiano que en base a la información de los pescados prediga su peso. Para ello, se recomienda que se tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:</p>
+<p>El objetivo final de este trabajo es construir un modelo regresión bayesiano que… Para ello, se recomienda que se tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:</p>
 <ul>
 <li>Introducción</li>
 <li>Análisis exploratorio de datos</li>
