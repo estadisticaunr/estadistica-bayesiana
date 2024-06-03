@@ -17,7 +17,7 @@ captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tama
 La resonancia magnética es una técnica que utiliza campos magnéticos y ondas de radio 
 para generar imágenes detalladas de los órganos y tejidos dentro del cuerpo. 
 En el caso del cerebro, permite obtener imágenes muy precisas de su estructura anatómica. 
-Las neuroimágenes estructurales por resonancia magnética (sMRI) se caracterizan 
+Las neuroimágenes estructurales por resonancia magnética se caracterizan 
 por su alta resolución espacial y
 por un alto contraste entre los diferentes tipos de tejidos cerebrales.
 Estas características favorecen el uso de algoritmos de segmentación estructural, 
@@ -63,7 +63,7 @@ if (is_html) knitr::include_graphics(file.path("imgs", "especies_pescados.png"))
 
 ## El desafío
 
-El conjunto de datos `cerebros.csv` contiene información de 142 pacientes que se sometieron
+El conjunto de datos `cerebros.csv` contiene información de 128 pacientes que se sometieron
 a diferentes estudios de resonancia magnética en diferentes partes del mundo.
 
 Incluye las siguientes variables
@@ -74,15 +74,23 @@ Incluye las siguientes variables
 * **edad**
 * **sexo**
 * **diag**: Diagnóstico, puede ser HC (_healthy control_), MCI (_mild cognitive impairment_) o AZ (_Alzheimer disease_)
-* **lh_subcx_hippocampus_volume**: Volumen del hipocampo izquierdo
-* **xh_general_etiv_volume**: Volumen intracraneal  
-* **lh_cortex_superiorfrontal_thickness**: Espesor de la corteza superior frontal
-* **lh_cortex_fusiform_volume**: Volumen de la corteza fusiforme
+* **lh_subcx_hippocampus_volume**: Volumen del hipocampo izquierdo (en mm³)
+* **xh_general_etiv_volume**: Volumen intracraneal (en mm³)  
+* **lh_cortex_superiorfrontal_thickness**: Espesor de la corteza superior frontal (en mm)
+* **lh_cortex_fusiform_volume**: Volumen de la corteza fusiforme (en mm³)
 
-El objetivo final de este trabajo es construir un modelo regresión bayesiano que... Para ello, se recomienda que se 
-tengan en consideración las siguientes pautas generales que hacen a un análisis bayesiano:
+El objetivo final de este trabajo es realizar un análisis bayesiano que permita descubrir
+las variables que se asocian a una mayor predisposicion a desarrollar una enfermedad neurodogenerativa y 
+las asociaciones entre estas.
 
-* Introducción
+Se propone, por ejemplo, considerar los siguientes interrogantes:
+- ¿Cuáles de las variables morfológicas están más asociadas a las patologías neurodegenerativas?
+- ¿Qué características demográficas pueden predecir los valores de esas variables morfológicas?
+- ¿Hay alguna asociación entre las variables tecnológicas (asociadas al resonador) y las variables de interés?
+
+Para ello, se recomienda que se tengan en consideración las siguientes pautas generales 
+que hacen a un análisis bayesiano:
+
 * Análisis exploratorio de datos
 * Propuesta y ajuste de modelos
     - Descripción matemática 
@@ -95,11 +103,12 @@ tengan en consideración las siguientes pautas generales que hacen a un análisi
     - Evaluación del ajuste del modelo
     - Interpretación de parámetros
 * Comparación de modelos
-* Ajuste del modelo final en un conjunto de entrenamiento y predicción sobre un conjunto 
-de datos de evaluación
 * Análisis final y conclusión
 
 Se recomienda fuertemente que se haga uso de diferentes visualizaciones para comunicar 
 los resultados de las diferentes etapas del análisis y que se propongan y evalúen un 
-mínimo de tres modelos. En particular, considere que sucede a medida que se incorporan mas
-predictores e interacciones entre los mismos.
+mínimo de tres modelos.
+
+La presentación deberá incluir: introducción clara al problema y definición de preguntas de investigación,
+descripción del conjunto de datos a utilizar, análisis exploratorio de datos; fundamentación y análisis
+de los modelos propuestos; hallazgos, resultados y conclusiones.
