@@ -1,5 +1,5 @@
 ---
-title: "TP Final: WIP"
+title: "TP Final"
 practica: "Trabajo Práctico Final"
 ---
 
@@ -57,11 +57,11 @@ con el modelo mental que tiene del cerebro sano a esa edad.
 #| echo: false
 #| out.width: 70%
 #| fig-align: center
-#| fig-cap: !expr captions[["especies_pescados"]]
+#| fig-cap: !expr captions[["cerebros"]]
 if (is_html) knitr::include_graphics(file.path("imgs", "cerebrito.png"))
 ```
 
-## El desafío
+## El objetivo
 
 El conjunto de datos `cerebros.csv` contiene información de 128 pacientes que se sometieron
 a diferentes estudios de resonancia magnética en diferentes partes del mundo.
@@ -73,7 +73,7 @@ Incluye las siguientes variables
 * **resonador_fab**: Marca del resonador magnético
 * **edad**
 * **sexo**
-* **diag**: Diagnóstico, puede ser HC (_healthy control_), MCI (_mild cognitive impairment_) o AZ (_Alzheimer disease_)
+* **diag**: Diagnóstico, puede ser HC (_healthy control_), MCI (_mild cognitive impairment_) o AD (_Alzheimer disease_)
 * **lh_subcx_hippocampus_volume**: Volumen del hipocampo izquierdo (en mm³)
 * **xh_general_etiv_volume**: Volumen intracraneal (en mm³)  
 * **lh_cortex_superiorfrontal_thickness**: Espesor de la corteza superior frontal (en mm)
@@ -109,10 +109,11 @@ Se recomienda fuertemente que se haga uso de diferentes visualizaciones para com
 los resultados de las diferentes etapas del análisis y que se propongan y evalúen un 
 mínimo de tres modelos.
 
-La presentación deberá incluir: 
-    - Introducción clara al problema
-    - Definición de las preguntas de investigación
-    - Descripción del conjunto de datos a utilizar
-    - Análisis exploratorio de los datos
-    - Fundamentación y análisis de los modelos propuestos
-    - Hallazgos, resultados y conclusiones
+La presentación deberá incluir:
+
+* Introducción clara al problema
+* Definición de las preguntas de investigación
+* Descripción del conjunto de datos a utilizar
+* Análisis exploratorio de los datos
+* Fundamentación y análisis de los modelos propuestos
+* Hallazgos, resultados y conclusiones
