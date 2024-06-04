@@ -8,7 +8,7 @@ practica: "Trabajo Práctico Final"
 #| include: false
 is_html <- knitr::is_html_output()
 captions <- list()
-captions[["especies_pescados"]] <- "Especies de peces de todas variedades y tamaños."
+captions[["cerebros"]] <- "Imagen de resonancia magnética estructural con segmentación de regiones y estructuras del cerebro"
 ```
 
 
@@ -58,7 +58,7 @@ con el modelo mental que tiene del cerebro sano a esa edad.
 #| out.width: 70%
 #| fig-align: center
 #| fig-cap: !expr captions[["especies_pescados"]]
-if (is_html) knitr::include_graphics(file.path("imgs", "especies_pescados.png"))
+if (is_html) knitr::include_graphics(file.path("imgs", "cerebrito.png"))
 ```
 
 ## El desafío
@@ -109,6 +109,10 @@ Se recomienda fuertemente que se haga uso de diferentes visualizaciones para com
 los resultados de las diferentes etapas del análisis y que se propongan y evalúen un 
 mínimo de tres modelos.
 
-La presentación deberá incluir: introducción clara al problema y definición de preguntas de investigación,
-descripción del conjunto de datos a utilizar, análisis exploratorio de datos; fundamentación y análisis
-de los modelos propuestos; hallazgos, resultados y conclusiones.
+La presentación deberá incluir: 
+    - Introducción clara al problema
+    - Definición de las preguntas de investigación
+    - Descripción del conjunto de datos a utilizar
+    - Análisis exploratorio de los datos
+    - Fundamentación y análisis de los modelos propuestos
+    - Hallazgos, resultados y conclusiones
