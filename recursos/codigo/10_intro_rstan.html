@@ -476,8 +476,8 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <pre><code>
 SAMPLING FOR MODEL 'anon_model' NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 6e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.06 seconds.
+Chain 1: Gradient evaluation took 5e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.05 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -580,10 +580,10 @@ Chain 3: </code></pre>
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
        mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.10   0.19   0.24   0.30   0.44  2067    1
-lp__ -14.01    0.01 0.72 -16.09 -14.17 -13.72 -13.55 -13.50  2564    1
+pi     0.25    0.00 0.09   0.10   0.19   0.24   0.31   0.45  1867    1
+lp__ -14.04    0.02 0.79 -16.31 -14.20 -13.74 -13.55 -13.50  2628    1
 
-Samples were drawn using NUTS(diag_e) at Tue Jun  4 20:12:20 2024.
+Samples were drawn using NUTS(diag_e) at Wed Jun  5 13:05:17 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -601,7 +601,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.193 0.382 0.233 0.165 0.267 ...
+ $ pi: num [1:5700(1d)] 0.225 0.296 0.308 0.292 0.11 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -611,11 +611,11 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.1926853 0.3819325 0.2327616 0.1649183 0.2669043 0.2864101</code></pre>
+<pre><code>[1] 0.2252571 0.2957804 0.3075087 0.2920926 0.1095530 0.3919283</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9998246</code></pre>
+<pre><code>[1] 0.9996491</code></pre>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
