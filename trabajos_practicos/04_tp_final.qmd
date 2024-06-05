@@ -84,9 +84,10 @@ las variables que se asocian a una mayor predisposicion a desarrollar una enferm
 las asociaciones entre estas.
 
 Se propone, por ejemplo, considerar los siguientes interrogantes:
-- ¿Cuáles de las variables morfológicas están más asociadas a las patologías neurodegenerativas?
-- ¿Qué características demográficas pueden predecir los valores de esas variables morfológicas?
-- ¿Hay alguna asociación entre las variables tecnológicas (asociadas al resonador) y las variables de interés?
+
+* ¿Cuáles de las variables morfológicas están más asociadas a las patologías neurodegenerativas?
+* ¿Qué características demográficas pueden predecir los valores de esas variables morfológicas?
+* ¿Hay alguna asociación entre las variables tecnológicas (asociadas al resonador) y las variables de interés?
 
 Para ello, se recomienda que se tengan en consideración las siguientes pautas generales 
 que hacen a un análisis bayesiano:
