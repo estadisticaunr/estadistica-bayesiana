@@ -301,6 +301,12 @@ window.Quarto = {
  <span class="menu-text">15 - Regresión lineal con <code>{RStan}</code> (Clima en Australia)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../recursos/codigo/16_regresion_logistica_rstan.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15 - Regresión logística con<code>{RStan}</code> (Clima en Australia)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -455,7 +461,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1344    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.46  1956    1
 lp__  -34.53    0.03 1.19 -37.50 -35.10 -34.23 -33.63 -33.13  1204    1
 
-Samples were drawn using NUTS(diag_e) at Wed Jun  5 13:06:32 2024.
+Samples were drawn using NUTS(diag_e) at Sat Jun  8 01:33:57 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -467,12 +473,12 @@ convergence, Rhat=1).</code></pre>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     beta0     beta1    sigma      lp__
-1 4.939336 0.3235925 1.066493 -34.11983
-2 5.559438 0.2644249 1.247234 -33.86460
-3 6.106803 0.2544598 1.226421 -34.86233
-4 6.409634 0.2162304 1.344876 -35.72620
-5 5.655568 0.2897714 1.169405 -34.03122
-6 5.663683 0.2803072 1.308685 -33.98540</code></pre>
+1 5.671020 0.2377755 1.368419 -36.66499
+2 4.492933 0.3500469 1.246339 -35.40772
+3 5.496877 0.2766259 1.161841 -33.18004
+4 5.002054 0.3466925 1.278476 -35.34819
+5 5.340361 0.3041575 1.223552 -33.35169
+6 6.094546 0.2581643 1.164108 -35.14449</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -728,7 +734,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1631    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.47  1810    1
 lp__  -34.82    0.03 1.24 -37.88 -35.41 -34.50 -33.88 -33.37  1421    1
 
-Samples were drawn using NUTS(diag_e) at Wed Jun  5 13:07:34 2024.
+Samples were drawn using NUTS(diag_e) at Sat Jun  8 01:34:59 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
