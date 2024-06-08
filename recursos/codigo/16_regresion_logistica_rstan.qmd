@@ -1,0 +1,109 @@
+---
+title: "15 - Regresión logística con`{RStan}` (Clima en Australia)"
+execute:
+    message: false
+    warning: false
+---
+
+En este programa se muestra código de `R` que se puede utilizar con el ejercicio 
+**Intención de voto** de la Práctica 5.
+
+La variable respuesta $Y$ se define:
+
+$$
+\begin{split}Y_i =
+\left\{
+    \begin{array}{ll}
+        1 & \text{si la persona } i \text{ vota al candidato A} \\
+        0 & \text{si la persona } i \text{ vota al candidato B}
+    \end{array}
+\right.\end{split}
+$$
+
+Se trabaja con los siguientes tres modelos:
+
+$$
+\begin{array}{lc}
+    \mathcal{M}_1 & 
+    \begin{aligned}
+    Y_i &\sim \text{Bernoulli}(\pi_i) \\
+    \text{logit}(\pi_i) &= \beta_0 + \beta_1 \text{edad}_i \\
+    \end{aligned} \\
+    \\
+    \mathcal{M}_2 & 
+    \begin{aligned}
+    Y_i &\sim \text{Bernoulli}(\pi_i) \\
+    \text{logit}(\pi_i) &= \beta_{0, j[i]} + \beta_1 \text{edad}_i \\
+    \end{aligned} \\
+    \\
+    \mathcal{M}_3 & 
+    \begin{aligned}
+    Y_i &\sim \text{Bernoulli}(\pi_i) \\
+    \text{logit}(\pi_i) &= \beta_{0, j[i]} + \beta_{1, j[i]} \text{edad}_i \\
+    \end{aligned}
+\end{array}
+$$
+
+donde $j = 1, 2, 3$ indexa a los diferentes partidos.
+
+
+```{r}
+library(ggdist)
+library(ggplot2)
+library(readr)
+library(rstan)
+library(tidybayes)
+```
+
+
+```{r}
+ruta <- "https://raw.githubusercontent.com/estadisticaunr/estadistica-bayesiana/main/datos/elecciones.csv"
+datos <- read_csv(ruta)
+head(datos)
+```
+
+
+```{r}
+table(datos$voto)
+prop.table(table(datos$voto))
+```
+
+```{r}
+table(datos$partido)
+prop.table(table(datos$partido))
+```
+
+
+```{r}
+table(datos$partido, datos$voto)
+prop.table(table(datos$partido, datos$voto))
+```
+
+```{r}
+prop.table(table(datos$partido, datos$voto), margin = 1)
+```
+
+
+```{r}
+qts <- quantile(datos$edad, c(0, 0.2, 0.4, 0.6, 0.8, 1))
+breaks <- c(18, 30, 40, 60, 80, 95)
+prop.table(table(cut(datos$edad, breaks = breaks), datos$voto), margin = 1)
+```
+
+
+```{r}
+stan_data <- list(
+  N = nrow(datos),
+  x = datos$edad,
+  y = as.numeric(datos$voto == "candidato A")
+)
+
+ruta_modelo <- here::here("recursos", "codigo", "stan", "elecciones", "modelo_1.stan")
+
+stan_fit <- stan(file = ruta_modelo, data = stan_data)
+```
+
+
+
+
+https://mc-stan.org/cmdstanr/articles/cmdstanr.html
