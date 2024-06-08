@@ -1,5 +1,5 @@
 ---
-title: "15 - Regresión logística con`{RStan}` (Clima en Australia)"
+title: "16 - Regresión logística con`{RStan}`"
 execute:
     message: false
     warning: false
@@ -20,7 +20,7 @@ $$
 \right.\end{split}
 $$
 
-Se trabaja con los siguientes tres modelos:
+Se trabaja con los siguientes dos modelos:
 
 $$
 \begin{array}{lc}
@@ -33,12 +33,6 @@ $$
     \mathcal{M}_2 & 
     \begin{aligned}
     Y_i &\sim \text{Bernoulli}(\pi_i) \\
-    \text{logit}(\pi_i) &= \beta_{0, j[i]} + \beta_1 \text{edad}_i \\
-    \end{aligned} \\
-    \\
-    \mathcal{M}_3 & 
-    \begin{aligned}
-    Y_i &\sim \text{Bernoulli}(\pi_i) \\
     \text{logit}(\pi_i) &= \beta_{0, j[i]} + \beta_{1, j[i]} \text{edad}_i \\
     \end{aligned}
 \end{array}
@@ -48,11 +42,26 @@ donde $j = 1, 2, 3$ indexa a los diferentes partidos.
 
 
 ```{r}
+library(dplyr)
 library(ggdist)
 library(ggplot2)
 library(readr)
 library(rstan)
 library(tidybayes)
+
+
+colores <- c(
+    "#107591",
+    "#00c0bf",
+    "#f69a48",
+    "#fdcd49",
+    "#8da798",
+    "#a19368",
+    "#525252",
+    "#a6761d",
+    "#7035b7",
+    "#cf166e"
+)
 ```
 
 
@@ -83,13 +92,20 @@ prop.table(table(datos$partido, datos$voto))
 prop.table(table(datos$partido, datos$voto), margin = 1)
 ```
 
-
 ```{r}
 qts <- quantile(datos$edad, c(0, 0.2, 0.4, 0.6, 0.8, 1))
 breaks <- c(18, 30, 40, 60, 80, 95)
 prop.table(table(cut(datos$edad, breaks = breaks), datos$voto), margin = 1)
 ```
 
+## Modelo 1
+
+```{stan}
+#| echo: true
+#| eval: false 
+#| file: stan/elecciones/modelo_1.stan
+#| output.var: modelo_1
+```
 
 ```{r}
 stan_data <- list(
@@ -99,11 +115,208 @@ stan_data <- list(
 )
 
 ruta_modelo <- here::here("recursos", "codigo", "stan", "elecciones", "modelo_1.stan")
+stan_model <- stan_model(ruta_modelo, auto_write = TRUE)
+stan_fit <- sampling(stan_model, data = stan_data, refresh = 0, seed = 1211)
+```
 
-stan_fit <- stan(file = ruta_modelo, data = stan_data)
+```{r}
+print(stan_fit, pars = c("a", "b"))
+```
+
+```{r}
+df_draws <- spread_draws(stan_fit, a, b)
+head(df_draws)
+```
+
+```{r}
+df_draws_long <- tidyr::pivot_longer(df_draws, c("a", "b"))
+head(df_draws_long)
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+ggplot(df_draws_long) +
+    geom_line(
+        aes(x = .iteration, y = value, color = as.factor(.chain)),
+        alpha = 0.7
+    ) +
+    scale_color_manual(name = "Cadena", values = colores[1:4]) + 
+    labs(x = "Iteración", y = "Valor") +
+    facet_wrap(~ name,  ncol = 1, scales = "free_y") +
+    theme_bw()
+```
+
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 4
+ggplot(df_draws_long) +
+    geom_histogram(aes(x = value), bins = 30, fill = colores[3]) +
+    labs(x = "Valor", y = NULL) +
+    facet_wrap(~ name, ncol = 2, scales = "free") +
+    theme_bw() +
+    theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
+```
+
+```{r}
+mean(df_draws$b < 0)
+```
+
+$$
+\text{expit}(x) = \frac{\exp(x)}{1 + \exp(x)}
+$$
+
+```{r}
+expit <- function(x) exp(x) / (1 + exp(x))
+```
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 4
+eta_18 <- df_draws$a + df_draws$b * 18
+pi_18 <- expit(eta_18)
+data.frame(x = pi_18) |> 
+    ggplot() + 
+    geom_histogram(aes(x = x), fill = colores[3], bins = 30) +
+    labs(x = expression(pi ~ "| edad = 18"), y = NULL) +
+    theme_bw() +
+    theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
+```
+
+
+```{r}
+#| fig-align: center
+#| fig-width: 5
+#| fig-height: 4
+eta_50 <- df_draws$a + df_draws$b * 50
+pi_50 <- expit(eta_50)
+data.frame(x = pi_50) |> 
+    ggplot() + 
+    geom_histogram(aes(x = x), fill = colores[3], bins = 30) +
+    labs(x = expression(pi ~ "| edad = 50"), y = NULL) +
+    theme_bw() +
+    theme(axis.ticks.y = element_blank(), axis.text.y = element_blank())
 ```
 
 
 
 
-https://mc-stan.org/cmdstanr/articles/cmdstanr.html
+```{r}
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 4
+sample_rows <- function(data, n) data[sample(nrow(data), n), ]
+sample_cols <- function(data, n) t(sample_rows(t(data), n))
+
+calcular_eta <- function(pars, x) {
+    intercepto <- pars[1]
+    pendiente <- pars[2]
+    intercepto + pendiente * x
+}
+
+n_seq <- 100
+n_draws <- 4000
+edad_seq <- seq(18, 95, length.out = n_seq)
+
+# (100, 4000)
+eta_matrix <- apply(df_draws[c("a", "b")],  1, calcular_eta,  x = edad_seq)
+
+
+df_lines <- data.frame(
+    eta = as.vector(eta_matrix),
+    edad = rep(edad_seq, n_draws),
+    draw = rep(seq_len(n_draws), each = n_seq)
+)
+
+df_lines |>
+    filter(draw <= 50) |>
+    ggplot() +
+        geom_line(aes(x = edad, y = eta, group = draw), color = "grey30") +
+        labs(x = "Edad", y = expression(eta)) +
+        theme_bw()
+
+df_lines |>
+  ggplot(aes(x = edad, y = eta)) +
+  stat_lineribbon() +
+  scale_fill_brewer() +
+  labs(x = "Edad", y = expression(eta)) +
+  theme_bw()
+```
+
+
+```{r}
+#| fig-align: center
+#| fig-width: 7
+#| fig-height: 4
+df_lines$p <- expit(df_lines$eta)
+
+df_lines |>
+    filter(draw <= 50) |>
+    ggplot() +
+        geom_line(aes(x = edad, y = p, group = draw), color = "grey30", alpha = 0.7) +
+        labs(x = "Edad", y = expression(pi)) +
+        theme_bw()
+
+df_lines |>
+  ggplot(aes(x = edad, y = p)) +
+  stat_lineribbon() +
+  scale_fill_brewer() +
+  labs(x = "Edad", y = expression(pi)) +
+  theme_bw()
+```
+
+
+## Modelo 2
+
+```{stan}
+#| echo: true
+#| eval: false 
+#| file: stan/elecciones/modelo_2.stan
+#| output.var: modelo_2
+```
+
+```{r}
+as.factor(datos$partido)[1:10]
+```
+
+```{r}
+stan_data <- list(
+  N = nrow(datos),
+  x = datos$edad,
+  y = as.numeric(datos$voto == "candidato A"),
+  partido_idx = as.numeric(as.factor(datos$partido))
+)
+
+ruta_modelo <- here::here("recursos", "codigo", "stan", "elecciones", "modelo_2.stan")
+stan_model <- stan_model(ruta_modelo, auto_write = TRUE)
+stan_fit <- sampling(stan_model, data = stan_data, refresh = 0, seed = 1211)
+```
+
+
+```{r}
+df_draws <- spread_draws(stan_fit, a[partido_idx], b[partido_idx])
+head(df_draws)
+```
+
+
+
+```{r}
+#| fig-align: center
+#| fig-width: 8
+#| fig-height: 16
+# TODO: reemplazar etiquetas de partido_idx por partido
+df_draws_long <- tidyr::pivot_longer(df_draws, c("a", "b"))
+
+ggplot(df_draws_long) +
+    geom_line(
+        aes(x = .iteration, y = value, color = as.factor(.chain)),
+        alpha = 0.7
+    ) +
+    scale_color_manual(name = "Cadena", values = colores[1:4]) + 
+    labs(x = "Iteración", y = "Valor") +
+    facet_wrap(vars(name, partido_idx), nrow = 6, scales = "free", labeller = label_both) +
+    theme_bw()
+```
