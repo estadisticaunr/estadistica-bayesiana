@@ -585,11 +585,11 @@ Chain 3: </code></pre>
 3 chains, each with iter=2000; warmup=100; thin=1; 
 post-warmup draws per chain=1900, total post-warmup draws=5700.
 
-       mean se_mean   sd  2.5%    25%    50%    75%  97.5% n_eff Rhat
-pi     0.25    0.00 0.09   0.1   0.19   0.24   0.30   0.43  2310    1
-lp__ -14.00    0.01 0.70 -16.1 -14.16 -13.72 -13.55 -13.50  2788    1
+       mean se_mean   sd   2.5%    25%    50%    75%  97.5% n_eff Rhat
+pi     0.25    0.00 0.09   0.10   0.19   0.24   0.31   0.44  2403    1
+lp__ -14.02    0.01 0.75 -16.26 -14.19 -13.72 -13.55 -13.50  2714    1
 
-Samples were drawn using NUTS(diag_e) at Sat Jun  8 18:40:33 2024.
+Samples were drawn using NUTS(diag_e) at Mon Jun 10 04:20:38 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -607,7 +607,7 @@ convergence, Rhat=1).</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_draws)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 1
- $ pi: num [1:5700(1d)] 0.135 0.368 0.273 0.092 0.139 ...
+ $ pi: num [1:5700(1d)] 0.24 0.192 0.203 0.194 0.306 ...
   ..- attr(*, "dimnames")=List of 1
   .. ..$ iterations: NULL</code></pre>
 </div>
@@ -617,7 +617,7 @@ convergence, Rhat=1).</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(list_of_draws<span class="sc">$</span>pi)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.13507645 0.36763514 0.27268855 0.09200807 0.13867351 0.16447723</code></pre>
+<pre><code>[1] 0.2401154 0.1919939 0.2034087 0.1941623 0.3060516 0.2699090</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(list_of_draws<span class="sc">$</span>pi<span class="sc">&lt;</span><span class="fl">0.6</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">

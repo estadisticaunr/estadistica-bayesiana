@@ -461,7 +461,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1344    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.46  1956    1
 lp__  -34.53    0.03 1.19 -37.50 -35.10 -34.23 -33.63 -33.13  1204    1
 
-Samples were drawn using NUTS(diag_e) at Sat Jun  8 18:41:50 2024.
+Samples were drawn using NUTS(diag_e) at Mon Jun 10 04:21:53 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
@@ -472,13 +472,13 @@ convergence, Rhat=1).</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_draws_1 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">extract</span>(stan_model))</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df_draws_1)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>     beta0     beta1     sigma      lp__
-1 5.377511 0.2962837 0.9898532 -34.46906
-2 5.168576 0.3131336 1.2911452 -33.74764
-3 5.610633 0.2706442 1.3287555 -33.98974
-4 5.512588 0.2703088 1.3580026 -34.51620
-5 5.012019 0.3261945 1.0247902 -34.50858
-6 5.343456 0.2988426 1.2233531 -33.19963</code></pre>
+<pre><code>     beta0     beta1    sigma      lp__
+1 5.854549 0.2500604 1.315222 -34.19154
+2 5.513152 0.2857792 1.091080 -33.24437
+3 5.381024 0.2933590 1.178323 -33.03234
+4 5.507832 0.2655259 1.116121 -34.08678
+5 6.489117 0.1976323 1.221400 -35.85056
+6 6.213144 0.2419933 1.053644 -35.78941</code></pre>
 </div>
 </div>
 <p>Lo siguiente es un enfoque posible, aunque bastante manual, para graficar los <em>posteriors</em> marginales de los parámetros del modelo.</p>
@@ -734,7 +734,7 @@ beta1   0.29    0.00 0.04   0.21   0.26   0.29   0.31   0.36  1631    1
 sigma   1.20    0.00 0.12   0.99   1.11   1.19   1.27   1.47  1810    1
 lp__  -34.82    0.03 1.24 -37.88 -35.41 -34.50 -33.88 -33.37  1421    1
 
-Samples were drawn using NUTS(diag_e) at Sat Jun  8 18:42:53 2024.
+Samples were drawn using NUTS(diag_e) at Mon Jun 10 04:22:56 2024.
 For each parameter, n_eff is a crude measure of effective sample size,
 and Rhat is the potential scale reduction factor on split chains (at 
 convergence, Rhat=1).</code></pre>
