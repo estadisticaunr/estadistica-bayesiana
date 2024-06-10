@@ -8,6 +8,7 @@ parameters {
   real b;
 }
 model {
+  // Notar que 'a' y 'b' reciben priors uniformes
   y ~ bernoulli_logit(a + b * x);
 }
 
