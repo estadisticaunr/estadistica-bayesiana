@@ -357,6 +357,28 @@ Y_i   &amp;\sim \mathrm{Bernoulli}(\theta_i) \\
 <li><em>No pooling</em></li>
 <li><em>Partial pooling</em></li>
 </ul></li>
+<li><p>📌 <strong>Las 8 escuelas</strong></p>
+<p>El archivo <code>escuelas.csv</code> contiene la cantidad de horas semanales que dedican a estudiar los estudiantes de 8 escuelas. Obtener la distribución <em>a posteriori</em> para las medias poblacionales de los 8 colegios considerando el modelo normal jerárquico: <span class="math display">\[
+\begin{aligned}
+Y_{i} &amp;\sim \text{Normal}(\theta_{j[i]}, \sigma^2) \\
+\theta_j &amp;\sim \text{Normal}(\mu, \tau^2) \\
+\mu &amp;\sim \text{Normal}(\mu_0, \gamma_0^2) \\
+1/\tau^2   &amp;\sim \text{Gamma}(\eta_0 / 2, \eta_0 \tau_0^2 / 2) \\
+1/\sigma^2 &amp;\sim \text{Gamma}(\nu_0 / 2, \nu_0 \sigma_0^2 / 2)
+\end{aligned}
+\]</span></p>
+<p>donde <span class="math inline">\(i \in \{1, 2, \cdots, 180\}\)</span> y <span class="math inline">\(j \in \{1, 2, \cdots, 8\}\)</span> y los valores de los hiperparámetros fijos son:</p>
+<p><span class="math display">\[
+\mu_0 = 7,\ \gamma_0^2=5, \  \tau_0^2 = 10,\ \eta_0 = 2,\ \sigma_0^2 = 15,\ \nu_0 = 2.
+\]</span></p>
+<ol type="i">
+<li>Use <code>{Stan}</code> para obtener una muestra de la distribuición <em>a posteriori</em>. Para verificar la convergencia de las cadenas de Markov, considere la medida <span class="math inline">\(R\)</span> de Rubin y un tamaño de muestra efectivo de al menos 1000.</li>
+<li>Presentar en una tabla la media, la mediana y el intervalo de credibilidad 95% para <span class="math inline">\(\sigma^2\)</span>, <span class="math inline">\(\mu\)</span> y <span class="math inline">\(\tau^2\)</span>.<br>
+Compare las densidades <em>a priori</em> y <em>a posteriori</em> para cada uno de los parámetros. Interprete.</li>
+<li>Dibuje las densidades <em>a priori</em> y <em>a posteriori</em> para <span class="math inline">\(\gamma=\frac{\tau^2}{\sigma^2 + \tau^2}\)</span> y compare.</li>
+<li>Determine <span class="math inline">\(P(\theta_4 &lt; \theta_3 \mid \boldsymbol{y}_1, \cdots , \boldsymbol{y}_8)\)</span></li>
+<li>Hacer un gráfico que relacione las medias muestrales <span class="math inline">\(\bar{y}_1, \cdots, \bar{y}_8\)</span> con las medias <em>a posteriori</em> de <span class="math inline">\(\theta_1, \cdots,\theta_8\)</span>. Compare también la media a posteriori de <span class="math inline">\(\mu\)</span> con la media global de todas las observaciones.</li>
+</ol></li>
 <li><p>📌 <strong>Modelo lineal para elecciones en Estados Unidos</strong></p>
 <p>Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del año 2016 que se provee en <span class="citation" data-cites="Reich2020">Reich y Ghosh (<a href="#ref-Reich2020" role="doc-biblioref">2019</a>)</span> (<code>rep_2012_2016</code>). Elabore un modelo de regresión lineal bayesiano donde la variable respuesta es la diferencia porcentual entre el porcentaje de votos que obtuvo el candidato Republicano en el 2016 versus los que tuvo en el 2012 en cada condado y utilice todas las demás variables como predictoras.</p>
 <ol type="i">
