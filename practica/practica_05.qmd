@@ -139,6 +139,46 @@ esta unidad presenta ejercicios con modelos jerárquicos.
     * _Partial pooling_
 
 
+1.  📌 **Las 8 escuelas**
+
+    El archivo `escuelas.csv` contiene la cantidad de horas semanales que dedican a 
+    estudiar los estudiantes de 8 escuelas. Obtener la distribución _a posteriori_
+    para las medias poblacionales de los 8 colegios considerando el modelo normal 
+    jerárquico:
+    $$
+    \begin{aligned}
+    Y_{i} &\sim \text{Normal}(\theta_{j[i]}, \sigma^2) \\
+    \theta_j &\sim \text{Normal}(\mu, \tau^2) \\
+    \mu &\sim \text{Normal}(\mu_0, \gamma_0^2) \\
+    1/\tau^2   &\sim \text{Gamma}(\eta_0 / 2, \eta_0 \tau_0^2 / 2) \\
+    1/\sigma^2 &\sim \text{Gamma}(\nu_0 / 2, \nu_0 \sigma_0^2 / 2)
+    \end{aligned}
+    $$
+
+    donde $i \in \{1, 2, \cdots, 180\}$ y $j \in \{1, 2, \cdots, 8\}$ y los valores de los 
+    hiperparámetros fijos son:
+
+    $$
+    \mu_0 = 7,\ \gamma_0^2=5, \  \tau_0^2 = 10,\ \eta_0 = 2,\ \sigma_0^2 = 15,\ \nu_0 = 2.
+    $$
+
+
+    i.  Use `{Stan}` para obtener una muestra de la distribuición _a posteriori_. Para 
+    verificar la convergencia de las cadenas de Markov, considere la medida $R$ de Rubin y 
+    un tamaño de muestra efectivo de al menos 1000.
+    i.  Presentar en una tabla la media, la mediana y el intervalo de credibilidad 95% 
+    para $\sigma^2$, $\mu$ y $\tau^2$.   
+    Compare las densidades _a priori_ y _a posteriori_   para cada uno de los parámetros. 
+    Interprete.
+    i.  Dibuje las densidades _a priori_ y _a posteriori_ para 
+    $\gamma=\frac{\tau^2}{\sigma^2 + \tau^2}$ y compare.
+    i.  Determine $P(\theta_4 < \theta_3 \mid \boldsymbol{y}_1, \cdots , \boldsymbol{y}_8)$
+    i.  Hacer un gráfico que relacione las medias muestrales $\bar{y}_1, \cdots, \bar{y}_8$
+    con las medias _a posteriori_ de $\theta_1, \cdots,\theta_8$. 
+    Compare también la media a posteriori de $\mu$ con la media global de todas las 
+    observaciones.
+
+
 1.  📌 **Modelo lineal para elecciones en Estados Unidos**
 
     Utilice el conjunto de datos de las elecciones presidenciales de Estados Unidos del 
